@@ -27,7 +27,7 @@
     "url": "https://app.famulor.de"
   }, {
     "name": "Support",
-    "url": "https://app.famulor.de/contact"
+    "url": "https://famulor.de/kontakt"
   }],
   "topbarCtaButton": {
     "name": "Dashboard",
@@ -38,11 +38,6 @@
     "icon": "wand-magic-sparkles",
     "color": "#6c63ff",
     "url": "automation-platform"
-  }, {
-    "name": "White Label",
-    "icon": "tag",
-    "color": "#ff0142",
-    "url": "white-label"
   }, {
     "name": "API Reference",
     "icon": "code",
@@ -138,14 +133,6 @@
       "pages": [
         "provisioning/supported-countries",
         "provisioning/managing-numbers"
-      ]
-    },
-    {
-      "group": "White Label Program",
-      "pages": [
-        "white-label/overview",
-        "white-label/onboarding",
-        "white-label/plans-setup"
       ]
     },
     {
