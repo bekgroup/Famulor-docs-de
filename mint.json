@@ -24,10 +24,10 @@
   },
   "topbarLinks": [{
     "name": "Home",
-    "url": "https://app.famulor.de"
+    "url": "https://www.famulor.de"
   }, {
     "name": "Support",
-    "url": "https://famulor.de/kontakt"
+    "url": "https://famulor.de/support"
   }],
   "topbarCtaButton": {
     "name": "Dashboard",
