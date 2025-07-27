@@ -44,26 +44,7 @@
     "color": "#1c51fc",
     "url": "api-reference"
   }],
-  "navigation": [
-    {
-      "group": "Language Selection | Sprachauswahl",
-      "pages": [
-        "index"
-      ]
-    },
-    {
-      "group": "English Documentation",
-      "pages": [
-        "en/index"
-      ]
-    },
-    {
-      "group": "Deutsche Dokumentation", 
-      "pages": [
-        "de/index"
-      ]
-    },
-    {
+  "navigation": [{
       "group": "Introduction",
       "pages": [
         "introduction/what-is-Famulor",
@@ -103,6 +84,67 @@
       ]
     },
     {
+      "group": "Inbound Calls",
+      "pages": [
+        "inbound-calls/overview",
+        "inbound-calls/provisioning",
+        "inbound-calls/configuring",
+        "inbound-calls/insights"
+      ]
+    },
+    {
+      "group": "Outbound Calls",
+      "pages": [
+        "outbound-calls/overview",
+        "outbound-calls/campaigns",
+        "outbound-calls/caller-id",
+        "outbound-calls/voicemail-handling",
+        "outbound-calls/scripts-and-prompts",
+        "outbound-calls/mass-dialing"
+      ]
+    },
+    {
+      "group": "AI Prompting & Conversation Design",
+      "pages": [
+        "conversation-design/prompt-basics",
+        "conversation-design/knowledge-bases",
+        "conversation-design/interruptions",
+        "conversation-design/language-support"
+      ]
+    },
+    {
+      "group": "Automation & Integrations",
+      "pages": [
+        "automation/overview",
+        "automation/webhook-api",
+        "provisioning/phone-system-integrations"
+      ]
+    },
+    {
+      "group": "Costs & Pricing",
+      "pages": [
+        "pricing/overview",
+        "pricing/usage-based",
+        "pricing/number-rentals"
+      ]
+    },
+    {
+      "group": "Number Provisioning",
+      "pages": [
+        "provisioning/supported-countries",
+        "provisioning/managing-numbers"
+      ]
+    },
+    {
+      "group": "Troubleshooting & FAQs",
+      "pages": [
+        "troubleshooting/voice-problems",
+        "troubleshooting/billing",
+        "troubleshooting/call-quality",
+        "troubleshooting/ai-behavior"
+      ]
+    },
+    {
       "group": "API Reference",
       "pages": [
         "api-reference/introduction",
@@ -121,6 +163,22 @@
         "automation-platform/debugging-runs",
         "automation-platform/versioning",
         "automation-platform/known-limits"
+      ]
+    },
+    {
+      "group": "Calls Related",
+      "pages": [
+        "automation-platform/calls-related/Famulor-tool",
+        "automation-platform/calls-related/common-integrations",
+        "automation-platform/calls-related/sms-capabilities"
+      ]
+    },
+    {
+      "group": "Tutorials",
+      "pages": [
+        "automation-platform/tutorials/outbound-form-call",
+        "automation-platform/tutorials/inbound-context-injection"
+
       ]
     }
   ],
