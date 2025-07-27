@@ -44,114 +44,86 @@
     "color": "#1c51fc",
     "url": "api-reference"
   }],
-  "navigation": {
-    "languages": [
-      {
-        "language": "en",
-        "groups": [
-          {
-            "group": "Introduction",
-            "pages": [
-              "en/introduction/what-is-Famulor",
-              "en/introduction/how-it-works",
-              "en/introduction/key-terminology"
-            ]
-          },
-          {
-            "group": "Getting Started",
-            "pages": [
-              "en/getting-started/core-concepts",
-              "en/getting-started/understanding-billing"
-            ]
-          },
-          {
-            "group": "AI Assistants Overview",
-            "pages": [
-              "en/ai-assistants/what-is-ai-assistant",
-              "en/ai-assistants/system-prompt",
-              "en/ai-assistants/initial-message",
-              "en/ai-assistants/creating-and-editing",
-              "en/ai-assistants/tools-and-functions",
-              "en/ai-assistants/voice-selection",
-              "en/ai-assistants/filler-audio",
-              "en/ai-assistants/cal-com-scheduling",
-              "en/ai-assistants/testing"
-            ]
-          },
-          {
-            "group": "API Reference",
-            "pages": [
-              "en/api-reference/introduction",
-              "en/api-reference/authentication",
-              "en/api-reference/leads/create",
-              "en/api-reference/campaigns/index"
-            ]
-          },
-          {
-            "group": "No-Code Automation platform",
-            "pages": [
-              "en/automation-platform/introduction",
-              "en/automation-platform/building-flows",
-              "en/automation-platform/passing-data",
-              "en/automation-platform/publishing-flows"
-            ]
-          }
-        ]
-      },
-      {
-        "language": "de",
-        "groups": [
-          {
-            "group": "Einführung",
-            "pages": [
-              "de/introduction/what-is-Famulor",
-              "de/introduction/how-it-works",
-              "de/introduction/key-terminology"
-            ]
-          },
-          {
-            "group": "Erste Schritte",
-            "pages": [
-              "de/getting-started/core-concepts",
-              "de/getting-started/understanding-billing"
-            ]
-          },
-          {
-            "group": "KI-Assistenten Übersicht",
-            "pages": [
-              "de/ai-assistants/what-is-ai-assistant",
-              "de/ai-assistants/system-prompt",
-              "de/ai-assistants/initial-message",
-              "de/ai-assistants/creating-and-editing",
-              "de/ai-assistants/tools-and-functions",
-              "de/ai-assistants/voice-selection",
-              "de/ai-assistants/filler-audio",
-              "de/ai-assistants/cal-com-scheduling",
-              "de/ai-assistants/testing"
-            ]
-          },
-          {
-            "group": "API-Referenz",
-            "pages": [
-              "de/api-reference/introduction",
-              "de/api-reference/authentication",
-              "de/api-reference/leads/create",
-              "de/api-reference/campaigns/index"
-            ]
-          },
-          {
-            "group": "No-Code Automatisierungs-Plattform",
-            "pages": [
-              "de/automation-platform/introduction",
-              "de/automation-platform/building-flows",
-              "de/automation-platform/passing-data",
-              "de/automation-platform/publishing-flows"
-            ]
-          }
-        ]
-      }
-    ]
-  },
+  "navigation": [
+    {
+      "group": "Language Selection | Sprachauswahl",
+      "pages": [
+        "index"
+      ]
+    },
+    {
+      "group": "English Documentation",
+      "pages": [
+        "en/index"
+      ]
+    },
+    {
+      "group": "Deutsche Dokumentation", 
+      "pages": [
+        "de/index"
+      ]
+    },
+    {
+      "group": "Introduction",
+      "pages": [
+        "introduction/what-is-Famulor",
+        "introduction/how-it-works",
+        "introduction/key-terminology"
+      ]
+    },
+    {
+      "group": "Getting Started",
+      "pages": [
+        "getting-started/core-concepts",
+        "getting-started/understanding-billing"
+      ]
+    },
+    {
+      "group": "AI Assistants Overview",
+      "pages": [
+        "ai-assistants/what-is-ai-assistant",
+        "ai-assistants/system-prompt",
+        "ai-assistants/initial-message",
+        "ai-assistants/creating-and-editing",
+        "ai-assistants/tools-and-functions",
+        "ai-assistants/voice-selection",
+        "ai-assistants/filler-audio",
+        "ai-assistants/cal-com-scheduling",
+        "ai-assistants/testing"
+      ]
+    },
+    {
+      "group": "Phone Numbers",
+      "pages": [
+        "phone-numbers/types",
+        "phone-numbers/purchasing-and-managing",
+        "phone-numbers/pricing-and-regions",
+        "phone-numbers/sms-capabilities",
+        "phone-numbers/assigning-to-assistants"
+      ]
+    },
+    {
+      "group": "API Reference",
+      "pages": [
+        "api-reference/introduction",
+        "api-reference/authentication",
+        "api-reference/leads/create",
+        "api-reference/campaigns/index"
+      ]
+    },
+    {
+      "group": "No-Code Automation platform",
+      "pages": [
+        "automation-platform/introduction",
+        "automation-platform/building-flows",
+        "automation-platform/passing-data",
+        "automation-platform/publishing-flows",
+        "automation-platform/debugging-runs",
+        "automation-platform/versioning",
+        "automation-platform/known-limits"
+      ]
+    }
+  ],
   "footerSocials": {
     "linkedin": "https://www.linkedin.com/company/Famulor-ai"
   },
