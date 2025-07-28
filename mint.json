@@ -64,6 +64,7 @@
       "pages": [
         "ai-assistants/what-is-ai-assistant",
         "ai-assistants/system-prompt",
+        "ai-assistants/custom-gpt",
         "ai-assistants/initial-message",
         "ai-assistants/creating-and-editing",
         "ai-assistants/tools-and-functions",
