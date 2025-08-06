@@ -1,42 +1,41 @@
 ---
-title: "Authentication"
+title: "Authentifizierung"
 icon: "key"
-description: "Learn how to authenticate your API requests"
+description: "Lernen Sie, wie Sie Ihre API-Anfragen authentifizieren"
 ---
 
-The Famulor API uses API keys to authenticate requests. You need to include your API key in the header of each request you make to the API.
+Die Famulor API verwendet API-Schlüssel zur Authentifizierung von Anfragen. Sie müssen Ihren API-Schlüssel im Header jeder Anfrage an die API einbeziehen.
 
-## Obtaining an API Key
+## API-Schlüssel erhalten
 
-To obtain an API key:
+Um einen API-Schlüssel zu erhalten:
 
-1. Log in to your Famulor account at [https://app.famulor.de](https://app.famulor.de)
-2. Navigate to the "API Keys" page
-3. Click on the "Create new API Key" button
-4. Copy your new API key and store it securely
+1. Melden Sie sich bei Ihrem Famulor-Konto an unter [https://app.famulor.de](https://app.famulor.de)
+2. Navigieren Sie zur "API-Schlüssel" Seite
+3. Klicken Sie auf den "Neuen API-Schlüssel erstellen" Button
+4. Kopieren Sie Ihren neuen API-Schlüssel und speichern Sie ihn sicher
 
 <Warning>
-  Keep your API key confidential and secure. Do not share it publicly or commit
-  it to version control systems.
+  Halten Sie Ihren API-Schlüssel vertraulich und sicher. Teilen Sie ihn nicht öffentlich oder committen Sie ihn nicht in Versionskontrollsysteme.
 </Warning>
 
-## Using the API Key
+## API-Schlüssel verwenden
 
-Include your API key in the `Authorization` header of each request:
+Fügen Sie Ihren API-Schlüssel in den `Authorization` Header jeder Anfrage ein:
 
 ```
 Authorization: Bearer YOUR_API_KEY
 ```
 
-Replace `YOUR_API_KEY` with your actual API key.
+Ersetzen Sie `YOUR_API_KEY` mit Ihrem tatsächlichen API-Schlüssel.
 
-## Example Request
+## Beispiel-Anfrage
 
-Here's an example of how to include the API key in a cURL request:
+Hier ist ein Beispiel, wie Sie den API-Schlüssel in einer cURL-Anfrage einbeziehen:
 
 ```bash
 curl -X GET "https://api.famulor.de/api/user/campaigns" \
      -H "Authorization: Bearer YOUR_API_KEY"
 ```
 
-Replace `YOUR_API_KEY` with your actual API key when making requests.
+Ersetzen Sie `YOUR_API_KEY` mit Ihrem tatsächlichen API-Schlüssel bei Anfragen. 

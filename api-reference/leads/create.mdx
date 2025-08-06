@@ -1,42 +1,42 @@
 ---
-title: "Create lead"
+title: "Lead erstellen"
 api: "POST /user/lead"
 icon: "user-plus"
-description: "Create a new lead in the Famulor system"
+description: "Einen neuen Lead im Famulor-System erstellen"
 ---
 
-This endpoint allows you to create a new lead in the Famulor system.
+Dieser Endpunkt ermöglicht es Ihnen, einen neuen Lead im Famulor-System zu erstellen.
 
-### Request body
+### Anfrage-Body
 
 <ParamField body="phone_number" type="string" required>
-  The phone number of the lead in E.164 format (e.g. +1234567890)
+  Die Telefonnummer des Leads im E.164-Format (z.B. +1234567890)
 </ParamField>
 
 <ParamField body="campaign_id" type="integer" required>
-  The ID of the campaign to create the lead for
+  Die ID der Kampagne, für die der Lead erstellt werden soll
 </ParamField>
 
 <ParamField body="variables" type="array">
-  The variables to pass to the lead
+  Die Variablen, die an den Lead weitergegeben werden sollen
 </ParamField>
 
 <ParamField body="allow_dupplicate" type="boolean">
-  Whether to allow duplicate leads in a campaign.
+  Ob doppelte Leads in einer Kampagne erlaubt sind.
 </ParamField>
 
-### Response fields
+### Antwort-Felder
 
 <ResponseField name="message" type="string">
-  The message of the response
+  Die Nachricht der Antwort
 </ResponseField>
 
 <ResponseField name="data" type="object">
-  The data of the response
+  Die Daten der Antwort
 </ResponseField>
 
 <ResponseField name="data.id" type="string">
-  The id of the lead
+  Die ID des Leads
 </ResponseField>
 
 <RequestExample>
@@ -61,11 +61,11 @@ This endpoint allows you to create a new lead in the Famulor system.
 
 ```json 200 Response
 {
-  "message": "Lead created successfully",
+  "message": "Lead erfolgreich erstellt",
   "data": {
     "id": "1234569"
   }
 }
 ```
 
-</ResponseExample>
+</ResponseExample> 

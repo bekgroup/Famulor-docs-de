@@ -1,108 +1,108 @@
 ---
-title: "Pricing Breakdown"
+title: "Preisaufschlüsselung"
 icon: "calculator"
-description: "Detailed explanation of how call minutes are calculated and billed"
+description: "Detaillierte Erklärung, wie Anrufminuten berechnet und abgerechnet werden"
 ---
 
-# Pricing Breakdown
+# Preisaufschlüsselung
 
-famulor.de uses a **minutes-based** system for billing. These minutes (or tokens/credits) get **deducted** from your balance each time you make or receive a call. The actual “per-minute cost” depends on your plan, and **carrier costs** are also converted into minutes. Below is how it works.
-
----
-
-## 1. Inbound vs. Outbound Calls
-
-- **Inbound**: You spend minutes as soon as the AI assistant picks up and is engaged in a call.
-- **Outbound**: Minutes start deducting once the customer answers the call and stays connected. Dial time is not billed.
-
-> **Note**: A call is considered active until the AI or the user hangs up, **or** until voicemail detection ends the call if the user’s voicemail answers (for outbound).
+famulor.de verwendet ein **minutenbasiertes** System für die Abrechnung. Diese Minuten (oder Tokens/Credits) werden von Ihrem Guthaben **abgezogen**, jedes Mal wenn Sie einen Anruf tätigen oder empfangen. Die tatsächlichen "Kosten pro Minute" hängen von Ihrem Plan ab, und **Carrier-Kosten** werden ebenfalls in Minuten umgerechnet. So funktioniert es:
 
 ---
 
-## 2. How Minutes Are Used
+## 1. Eingehende vs. Ausgehende Anrufe
 
-### a) AI Spoken Time
+- **Eingehende**: Sie verbrauchen Minuten, sobald der KI-Assistent abhebt und in einem Anruf engagiert ist.
+- **Ausgehende**: Minuten beginnen abzuziehen, sobald der Kunde den Anruf beantwortet und verbunden bleibt. Wählzeit wird nicht abgerechnet.
 
-- If your AI assistant is actively on the call for 1 minute, you consume **1 minute** of AI time.
-- The cost is **prorated** by the second, so a 30-second call uses 0.5 minutes from your plan (for AI time).
-
-### b) Carrier Conversion
-
-- **Carrier cost** (the telecom network fee) is also deducted from your balance **but** is typically **rounded up** to the next minute.
-- We convert the carrier’s dollar amount to minutes at your plan’s rate.
-  - **Example**: If your carrier charge is €0.05 for a 1-minute call, and your plan’s AI rate is €0.10/min, we convert that €0.05 to 0.5 minutes from your balance.
-
-**So a single 1-minute conversation might consume:**
-
-- **1 AI minute** (for the assistant)
-- **+ 0.5 "carrier minutes"** (converted from the carrier's €0.05 to half your AI cost).
-- **= 1.5 minutes total** deducted from your plan balance.
+> **Hinweis**: Ein Anruf wird als aktiv betrachtet, bis die KI oder der Benutzer auflegt, **oder** bis die Anrufbeantworter-Erkennung den Anruf beendet, falls der Anrufbeantworter des Benutzers antwortet (für ausgehende Anrufe).
 
 ---
 
-## 3. Per-Second Billing vs. Rounding
+## 2. Wie Minuten verwendet werden
 
-1. **AI Time**
+### a) KI-Sprechzeit
 
-   - **Measured per second**, so 70 seconds is ~1.17 minutes of AI usage.
-   - Deducted exactly from your plan’s minute balance.
+- Wenn Ihr KI-Assistent aktiv 1 Minute am Anruf ist, verbrauchen Sie **1 Minute** KI-Zeit.
+- Die Kosten werden **anteilig** pro Sekunde berechnet, also verwendet ein 30-Sekunden-Anruf 0,5 Minuten von Ihrem Plan (für KI-Zeit).
 
-2. **Carrier Time**
-   - **Rounded to next full minute** for the network fee.
-   - Then converted into a fraction of your AI plan cost to decide how many “minutes” to deduct from your credit balance.
+### b) Carrier-Umrechnung
+
+- **Carrier-Kosten** (die Telekom-Netzwerkgebühr) werden ebenfalls von Ihrem Guthaben **abgezogen**, aber typischerweise **auf die nächste Minute aufgerundet**.
+- Wir konvertieren den Dollar-Betrag des Carriers in Minuten zu Ihrer Plan-Rate.
+  - **Beispiel**: Wenn Ihre Carrier-Gebühr €0,05 für einen 1-Minuten-Anruf beträgt und Ihre Plan-KI-Rate €0,10/Min ist, konvertieren wir diese €0,05 zu 0,5 Minuten von Ihrem Guthaben.
+
+**Also könnte ein einzelner 1-Minuten-Anruf verbrauchen:**
+
+- **1 KI-Minute** (für den Assistenten)
+- **+ 0,5 "Carrier-Minuten"** (umgerechnet von den €0,05 des Carriers zu der Hälfte Ihrer KI-Kosten).
+- **= 1,5 Minuten insgesamt** von Ihrem Plan-Guthaben abgezogen.
 
 ---
 
-## 4. Included Minutes & Top-Ups
+## 3. Pro-Sekunden-Abrechnung vs. Aufrundung
 
-- **Each Plan**: Usually includes a monthly allotment of minutes.
-- **Using Up Minutes**: Once you exceed included minutes, you can **top up** your wallet with additional minutes at your plan’s rate.
-- **No Rollover**: Unused minutes typically don’t roll over to the next month.
+1. **KI-Zeit**
 
-**Example**
+   - **Pro Sekunde gemessen**, also sind 70 Sekunden ~1,17 Minuten KI-Nutzung.
+   - Genau von Ihrem Plan-Minuten-Guthaben abgezogen.
 
-> You’re on the **Starter Plan** with 200 included minutes:
+2. **Carrier-Zeit**
+   - **Auf die nächste volle Minute aufgerundet** für die Netzwerkgebühr.
+   - Dann in einen Bruchteil Ihrer KI-Plan-Kosten umgerechnet, um zu entscheiden, wie viele "Minuten" von Ihrem Credit-Guthaben abgezogen werden.
+
+---
+
+## 4. Inkludierte Minuten & Nachladungen
+
+- **Jeder Plan**: Enthält normalerweise eine monatliche Zuteilung von Minuten.
+- **Minuten aufbrauchen**: Sobald Sie die inkludierten Minuten überschreiten, können Sie Ihr Wallet mit zusätzlichen Minuten zu Ihrer Plan-Rate **nachladen**.
+- **Kein Übertrag**: Ungenutzte Minuten rollen normalerweise nicht in den nächsten Monat über.
+
+**Beispiel**
+
+> Sie sind im **Starter Plan** mit 200 inkludierten Minuten:
 >
-> - If you make enough calls that total 180 AI minutes + carrier conversions = 180 used, you have 20 left this month.
-> - Next month, you reset to 200. If you need 210 minutes, you pay for 10 extra minutes at your plan’s rate.
+> - Wenn Sie genug Anrufe tätigen, die insgesamt 180 KI-Minuten + Carrier-Umrechnungen = 180 verwendet ergeben, haben Sie 20 übrig diesen Monat.
+> - Nächsten Monat setzen Sie auf 200 zurück. Wenn Sie 210 Minuten benötigen, zahlen Sie für 10 zusätzliche Minuten zu Ihrer Plan-Rate.
 
 ---
 
-## 5. Volume Discounts or Tiers
+## 5. Mengenrabatte oder Stufen
 
-- Plans vary (e.g., **Starter** at €0.35/min, **Pro** at €0.33/min, **Agency** at €0.11/min).
-- High-volume usage (like 50,000+ minutes/month) can often get **bulk discounts** by contacting sales.
+- Pläne variieren (z.B. **Starter** bei €0,35/Min, **Pro** bei €0,33/Min, **Agency** bei €0,11/Min).
+- Hohe Volumen-Nutzung (wie 50.000+ Minuten/Monat) kann oft **Mengenrabatte** erhalten, indem Sie den Vertrieb kontaktieren.
 
 ---
 
-## 6. Quick Usage Examples
+## 6. Schnelle Nutzungsbeispiele
 
-### Example A (Outbound Call, Starter Plan)
+### Beispiel A (Ausgehender Anruf, Starter Plan)
 
-- **AI Rate**: €0.35/min
-- **Call Duration**: 30 seconds → 0.5 AI minutes = €0.175 AI cost.
-- **Carrier**: €0.01/min, but 30 seconds → 1 minute rounded up → €0.01.
-  - €0.01 at your plan's €0.35 rate = 0.03 "plan minutes" used (Or if you do a simpler approach, €0.01 / €0.35 = 0.03 minutes)
-- **Total**: 0.5 (AI) + 0.03 (carrier) = 0.53 minutes from your plan. If you had 200 included, you'd have 199.47 left.
+- **KI-Rate**: €0,35/Min
+- **Anrufdauer**: 30 Sekunden → 0,5 KI-Minuten = €0,175 KI-Kosten.
+- **Carrier**: €0,01/Min, aber 30 Sekunden → 1 Minute aufgerundet → €0,01.
+  - €0,01 zu Ihrer Plan-Rate von €0,35 = 0,03 "Plan-Minuten" verwendet (Oder wenn Sie einen einfacheren Ansatz machen, €0,01 / €0,35 = 0,03 Minuten)
+- **Gesamt**: 0,5 (KI) + 0,03 (Carrier) = 0,53 Minuten von Ihrem Plan. Wenn Sie 200 inkludiert hätten, hätten Sie 199,47 übrig.
 
-### Example B (Inbound Call, Pro Plan)
+### Beispiel B (Eingehender Anruf, Pro Plan)
 
-- **AI Rate**: €0.33/min
-- **Call Duration**: 90 seconds → 1.5 AI minutes = €0.495 AI cost.
-- **Carrier**: Suppose inbound is €0.015/min, rounding up to 2 minutes if the call was 1.5 min. That's €0.03 total.
-  - €0.03 / €0.33 = 0.09 minutes from your plan.
-- **Total**: 1.5 (AI) + 0.09 (carrier) = 1.59 minutes deducted.
+- **KI-Rate**: €0,33/Min
+- **Anrufdauer**: 90 Sekunden → 1,5 KI-Minuten = €0,495 KI-Kosten.
+- **Carrier**: Angenommen, eingehende Anrufe sind €0,015/Min, aufgerundet auf 2 Minuten, wenn der Anruf 1,5 Min war. Das sind €0,03 insgesamt.
+  - €0,03 / €0,33 = 0,09 Minuten von Ihrem Plan.
+- **Gesamt**: 1,5 (KI) + 0,09 (Carrier) = 1,59 Minuten abgezogen.
 
 ---
 
 ### FAQ
 
-- **Do I pay double if user + AI talk simultaneously?**  
-  **No**, it’s based on total call duration, not per speaker concurrency.
-- **What if someone picks up then instantly hangs up?**  
-  The AI might register a few seconds; cost is fractional for the AI, but carrier may round up to 1 minute.
+- **Zahle ich doppelt, wenn Benutzer + KI gleichzeitig sprechen?**  
+  **Nein**, es basiert auf der Gesamtanrufdauer, nicht pro Sprecher-Gleichzeitigkeit.
+- **Was, wenn jemand abhebt und sofort auflegt?**  
+  Die KI könnte ein paar Sekunden registrieren; Kosten sind anteilig für die KI, aber Carrier kann auf 1 Minute aufrunden.
 
 ---
 
-**Bottom Line**  
-All calls burn **AI time** plus a **converted carrier cost** from your plan’s minute balance. Keep track of usage in your dashboard, top up if needed, and choose the plan that best suits your volume.
+**Fazit**  
+Alle Anrufe verbrauchen **KI-Zeit** plus **umgerechnete Carrier-Kosten** von Ihrem Plan-Minuten-Guthaben. Behalten Sie die Nutzung in Ihrem Dashboard im Auge, laden Sie nach, falls nötig, und wählen Sie den Plan, der am besten zu Ihrem Volumen passt. 

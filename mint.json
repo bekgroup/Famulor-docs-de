@@ -16,11 +16,11 @@
     }
   },
   "locales": {
-    "default": "en",
-    "supported": ["en", "de"]
+    "default": "de",
+    "supported": ["de", "en"]
   },
   "topAnchor": {
-    "name": "Platform Guide",
+    "name": "Plattform-Anleitung",
     "icon": "book"
   },
   "sidebar": {
@@ -30,6 +30,9 @@
     "name": "Home",
     "url": "https://www.famulor.de"
   }, {
+    "name": "🇬🇧 English",
+    "url": "https://docs.famulor.io/"
+  }, {
     "name": "Support",
     "url": "https://famulor.de/support"
   }],
@@ -38,18 +41,18 @@
     "url": "https://app.famulor.de"
   },
   "anchors": [{
-    "name": "No-Code Automation",
+    "name": "No-Code Automatisierung",
     "icon": "wand-magic-sparkles",
     "color": "#6c63ff",
     "url": "automation-platform"
   }, {
-    "name": "API Reference",
+    "name": "API Referenz",
     "icon": "code",
     "color": "#1c51fc",
     "url": "api-reference"
   }],
   "navigation": [{
-      "group": "Introduction",
+      "group": "Einführung",
       "pages": [
         "introduction/what-is-Famulor",
         "introduction/how-it-works",
@@ -57,14 +60,14 @@
       ]
     },
     {
-      "group": "Getting Started",
+      "group": "Erste Schritte",
       "pages": [
         "getting-started/core-concepts",
         "getting-started/understanding-billing"
       ]
     },
     {
-      "group": "AI Assistants Overview",
+      "group": "KI-Assistenten Übersicht",
       "pages": [
         "ai-assistants/what-is-ai-assistant",
         "ai-assistants/system-prompt",
@@ -79,7 +82,7 @@
       ]
     },
     {
-      "group": "Phone Numbers",
+      "group": "Telefonnummern",
       "pages": [
         "phone-numbers/types",
         "phone-numbers/purchasing-and-managing",
@@ -89,7 +92,7 @@
       ]
     },
     {
-      "group": "Inbound Calls",
+      "group": "Eingehende Anrufe",
       "pages": [
         "inbound-calls/overview",
         "inbound-calls/provisioning",
@@ -98,7 +101,7 @@
       ]
     },
     {
-      "group": "Outbound Calls",
+      "group": "Ausgehende Anrufe",
       "pages": [
         "outbound-calls/overview",
         "outbound-calls/campaigns",
@@ -109,7 +112,7 @@
       ]
     },
     {
-      "group": "AI Prompting & Conversation Design",
+      "group": "KI-Prompting & Konversationsdesign",
       "pages": [
         "conversation-design/prompt-basics",
         "conversation-design/knowledge-bases",
@@ -118,7 +121,7 @@
       ]
     },
     {
-      "group": "Automation & Integrations",
+      "group": "Automatisierung & Integrationen",
       "pages": [
         "automation/overview",
         "automation/webhook-api",
@@ -126,7 +129,7 @@
       ]
     },
     {
-      "group": "Costs & Pricing",
+      "group": "Kosten & Preise",
       "pages": [
         "pricing/overview",
         "pricing/usage-based",
@@ -134,14 +137,14 @@
       ]
     },
     {
-      "group": "Number Provisioning",
+      "group": "Nummern-Bereitstellung",
       "pages": [
         "provisioning/supported-countries",
         "provisioning/managing-numbers"
       ]
     },
     {
-      "group": "Troubleshooting & FAQs",
+      "group": "Fehlerbehebung & FAQs",
       "pages": [
         "troubleshooting/voice-problems",
         "troubleshooting/billing",
@@ -150,7 +153,7 @@
       ]
     },
     {
-      "group": "API Reference",
+      "group": "API Referenz",
       "pages": [
         "api-reference/introduction",
         "api-reference/authentication",
@@ -159,7 +162,7 @@
       ]
     },
     {
-      "group": "No-Code Automation platform",
+      "group": "No-Code Automatisierungsplattform",
       "pages": [
         "automation-platform/introduction",
         "automation-platform/building-flows",
@@ -171,7 +174,7 @@
       ]
     },
     {
-      "group": "Calls Related",
+      "group": "Anruf-bezogen",
       "pages": [
         "automation-platform/calls-related/Famulor-tool",
         "automation-platform/calls-related/common-integrations",
@@ -183,7 +186,6 @@
       "pages": [
         "automation-platform/tutorials/outbound-form-call",
         "automation-platform/tutorials/inbound-context-injection"
-
       ]
     }
   ],
@@ -196,4 +198,4 @@
       "method": "bearer"
     }
   }
-}
+} 
