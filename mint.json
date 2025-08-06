@@ -124,8 +124,7 @@
       "group": "Automatisierung & Integrationen",
       "pages": [
         "automation/overview",
-        "automation/webhook-api",
-        "provisioning/phone-system-integrations"
+        "automation/webhook-api"
       ]
     },
     {
@@ -140,7 +139,7 @@
       "group": "Nummern-Bereitstellung",
       "pages": [
         "provisioning/supported-countries",
-        "provisioning/managing-numbers"
+        "provisioning/compliance"
       ]
     },
     {
