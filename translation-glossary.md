@@ -84,6 +84,6 @@
 ## Formatierung
 
 - **Code-Beispiele**: Deutsche Kommentare hinzufügen
-- **Links**: Deutsche URLs verwenden (z.B. `/de/` Präfix)
+- **Links**: Deutsche URLs verwenden (z.B. `/` Präfix)
 - **Bilder**: Deutsche Alt-Texte
 - **Screenshots**: Deutsche UI-Elemente wenn möglich 
