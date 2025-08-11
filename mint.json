@@ -161,6 +161,13 @@
       ]
     },
     {
+      "group": "Updates",
+      "icon": "megaphone",
+      "pages": [
+        "updates/changelog"
+      ]
+    },
+    {
       "group": "No-Code Automatisierungsplattform",
       "pages": [
         "automation-platform/introduction",
