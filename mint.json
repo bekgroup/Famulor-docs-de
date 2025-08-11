@@ -52,6 +52,13 @@
     "url": "api-reference"
   }],
   "navigation": [{
+      "group": "Updates",
+      "icon": "megaphone",
+      "pages": [
+        "updates/changelog"
+      ]
+    },
+    {
       "group": "Einführung",
       "pages": [
         "introduction/what-is-Famulor",
@@ -158,13 +165,6 @@
         "api-reference/authentication",
         "api-reference/leads/create",
         "api-reference/campaigns/index"
-      ]
-    },
-    {
-      "group": "Updates",
-      "icon": "megaphone",
-      "pages": [
-        "updates/changelog"
       ]
     },
     {
