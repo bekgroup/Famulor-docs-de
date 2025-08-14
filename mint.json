@@ -59,6 +59,19 @@
       ]
     },
     {
+      "group": "Vertrieb & Best Practices",
+      "pages": [
+        "sales/beste-zeit-fuer-kaltakquise",
+        "sales/gespraechsfuehrung-und-einwandbehandlung",
+        "sales/skript-optimierung",
+        "sales/qualitaetsmanagement",
+        "sales/datenschutz-und-compliance",
+        "sales/zielgruppenansprache",
+        "sales/technische-optimierung",
+        "sales/erfolgsmessung-und-reporting"
+      ]
+    },
+    {
       "group": "Einführung",
       "pages": [
         "introduction/what-is-Famulor",

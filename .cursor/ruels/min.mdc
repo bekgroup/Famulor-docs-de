@@ -402,3 +402,23 @@ description: "Concise description explaining page purpose and value"
 - Use **RequestExample/ResponseExample** specifically for API endpoint documentation
 - Use **ParamField** for API parameters, **ResponseField** for API responses
 - Use **Expandable** for nested object properties or hierarchical information
+
+## Template: Sales/Best‑Practices Page
+
+Frontmatter:
+
+```yaml
+---
+title: "Thema (kurz & präzise)"
+icon: "passendes-icon"
+description: "Nutzenorientierte Zusammenfassung in 1–2 Sätzen"
+---
+```
+
+Empfohlene Struktur:
+
+1. Warum das wichtig ist (1–2 Absätze)
+2. Vorgehen als **Steps** (3–5 Schritte)
+3. Praxisbeispiele als **AccordionGroup**
+4. Messung/Erfolg (KPIs) und nächste Iteration
+5. Verweise auf relevante Famulor‑Seiten (Links)
