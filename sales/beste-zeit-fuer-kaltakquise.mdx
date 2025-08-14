@@ -5,46 +5,49 @@ description: "Datenbasierte Zeitfenster, Planung nach Zeitzonen und Branchenspez
 ---
 
 ## Warum Timing entscheidend ist
-Die Erreichbarkeit variiert je nach Branche, Rolle und Zeitzone. Starten Sie mit bewährten Fenstern und validieren Sie diese kontinuierlich per A/B‑Tests.
+Die Erreichbarkeit variiert je nach Branche, Rolle und Zeitzone. Nutzen Sie datenbasierte Ausgangswerte und validieren Sie diese kontinuierlich per A/B‑Tests.
 
 <Tabs>
-<Tab title="B2B (typisch)">
+<Tab title="B2B (Benchmarks)">
 
-- Optimal: 10:00–11:30, 14:00–16:30 (Ortszeit)
-- Eher vermeiden: Mo 08:00–10:00, Fr nach 16:00
-- C‑Level: Häufig früher (08:00–09:00) oder später (17:00–18:00)
+- Höchste Connect‑Rates: späte Nachmittage (ca. 16:00–17:30) und späte Vormittage (ca. 10:00–12:00)
+- Wochentage: Mittwoch/Donnerstag performen häufig besser als Montag/Freitag
+- Quelle: [Gong – Best Time to Call (Analyse von >10 Mio. Anrufen)](https://www.gong.io/blog/best-time-to-call/), [XANT/InsideSales – Lead Response & Timing Report](https://www.xant.ai/blog/best-time-to-call-prospects/)
 
 </Tab>
 <Tab title="B2C (typisch)">
 
-- Optimal: 11:00–13:00, 17:00–19:30 (Ortszeit)
-- Eher vermeiden: Wochentage 09:00–10:00 und sehr spät am Abend
-- Wochenende: Sa vormittags kann je nach Segment funktionieren
+- Gute Zeitfenster: 11:00–13:00, 17:00–19:30 (Ortszeit)
+- Meiden: sehr frühe Morgenstunden und sehr spät am Abend
+- Quelle: Branchenzusammenfassungen, z. B. [HubSpot – Cold Calling Data](https://blog.hubspot.com/sales/cold-calling-stats)
 
 </Tab>
 </Tabs>
 
 <Info>
-Diese Richtwerte sind Ausgangspunkte. Nutzen Sie Kampagnen-Reports, um zeitzonen- und branchenspezifische Muster zu erkennen.
+Antwortzeiten sind kritisch: Leads innerhalb von 5 Minuten zu kontaktieren steigert die Kontaktchance signifikant (bis zu 21× höher).
+Quelle: [Harvard Business Review – The Short Life of Online Sales Leads](https://hbr.org/2011/03/the-short-life-of-online-sales-leads)
 </Info>
 
 ## Umsetzung in Famulor
-- Richten Sie Zeitfenster in Ihren Kampagnen ein: siehe [/outbound-calls/campaigns](/outbound-calls/campaigns)
-- Segmentieren Sie Leads nach Zeitzone, Branche und Rolle
-- Planen Sie Rückrufe automatisch zu den besten Zeitfenstern
+- Zeitfenster in Kampagnen konfigurieren: [/outbound-calls/campaigns](/outbound-calls/campaigns)
+- Leads nach Zeitzone, Branche und Rolle segmentieren
+- Rückrufe automatisch in Hochleistungs‑Fenstern planen
 
 <Steps>
 <Step title="Baseline definieren">
-Starten Sie mit 2–3 Zeitfenstern pro Wochentag und Segment.
+Starten Sie mit 2–3 Zeitfenstern pro Wochentag und Segment (z. B. C‑Level vs. Fachrollen).
 </Step>
-<Step title="A/B-Test einrichten">
-Teilen Sie Ihre Leads in Kohorten und vergleichen Sie Erreichbarkeit, Gesprächsdauer und Conversion.
+<Step title="A/B‑Test einrichten">
+Vergleichen Sie Zeitfenster (Vormittag vs. Nachmittag) und Wochentage. Metriken: Connect‑Rate, Gesprächsdauer, Terminquote.
 </Step>
 <Step title="Skalieren & Feintunen">
-Konzentrieren Sie Anrufvolumen auf die Top‑Fenster und verfeinern Sie je Segment.
+Volumen auf Top‑Fenster verschieben; Feiertage/Regionen dynamisch berücksichtigen.
 </Step>
 </Steps>
 
-<Tip>
-Nutzen Sie die Automatisierungsplattform, um Fenster dynamisch zu steuern (z. B. Feiertage, lokale Events): [/automation/overview](/automation/overview)
-</Tip>
+## Referenzen
+- Gong. Best Time to Call. https://www.gong.io/blog/best-time-to-call/
+- XANT (InsideSales). Best Time to Call Prospects. https://www.xant.ai/blog/best-time-to-call-prospects/
+- HubSpot. Cold Calling Stats. https://blog.hubspot.com/sales/cold-calling-stats
+- Harvard Business Review. The Short Life of Online Sales Leads. https://hbr.org/2011/03/the-short-life-of-online-sales-leads
