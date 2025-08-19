@@ -1,0 +1,132 @@
+---
+title: "Best Practices für KI‑Assistenten"
+icon: "check"
+description: "Kurzanleitung zum Feinabstimmen von Modus, Transcriber, Modell und weiteren Einstellungen für das beste Anruferlebnis"
+---
+
+<Info>
+Zuletzt aktualisiert: 29. Aug. 2025
+</Info>
+
+Gute Ergebnisse hängen oft von den richtigen Engine‑Einstellungen ab. Verwende diese Checkliste beim Konfigurieren eines Famulor‑Assistenten.
+
+## 1. Modus wählen
+
+| Modus | Warum wählen? | Hinweise |
+| --- | --- | --- |
+| Speech‑to‑Speech (Multimodal) | Schnellstes Turn‑Taking und natürlichster Gesprächsfluss | Empfohlener Startpunkt. Teste die Gemini‑2.5‑Engine (Beta) für die niedrigste Latenz; beachte jedoch, dass sie experimentell und ggf. weniger stabil ist. |
+| Pipeline | Maximale Kontrolle über Stimme und lange Antworten | Wenn du Pipeline wählst, fahre unten mit dem Transcriber‑Schritt fort. |
+
+Mehr zu den Unterschieden? Siehe den Leitfaden [Assistenten‑Modi](/ai-assistants/assistant-modes).
+
+<Tip>
+Nimm dasselbe Szenario in beiden Modi auf und vergleiche Reaktionszeit und Zufriedenheit der Anrufer.
+</Tip>
+
+## 2. Transcriber wählen (nur Pipeline)
+
+| Transcriber | Genauigkeit | Latenz | Am besten geeignet für |
+| --- | --- | --- | --- |
+| Azure | ⭐️⭐️⭐️⭐️ | ⏱️⏱️⏱️ (langsamer) | Höchste Transkriptionsqualität |
+| Gladia | ⭐️⭐️⭐️ | ⏱️ (schneller) | Guter Allrounder für die meisten Sprachen |
+| Deepgram | ⭐️⭐️⭐️ | ⏱️ (schneller) | Solide Alternative — teste, was für deine Sprache und dein Audio‑Setup besser funktioniert |
+
+<Tip>
+Sprachen, Akzente und Hintergrundgeräusche beeinflussen die Engines unterschiedlich. Führe einen kurzen A/B‑Test durch und behalte den besten Kandidaten.
+</Tip>
+
+## 3. LLM‑Modell auswählen
+
+| Modell | Stärken | Abwägungen |
+| --- | --- | --- |
+| GPT-4o | Beste Reasoning‑Leistung, bewältigt komplexe Prompts | Etwas höhere Latenz und Kosten |
+| Gemini 2.5‑Flash‑Lite | Extrem schnell, dennoch sehr leistungsfähig | Kann bei sehr komplexen Aufgaben Nuancen übersehen — für deinen Anwendungsfall testen |
+
+<Tip>
+Wenn Geschwindigkeit entscheidend ist, starte mit Gemini 2.5‑Flash‑Lite. Für anspruchsvolles Reasoning nutze GPT‑4o und kompensiere die Latenz durch kürzere Antworten.
+</Tip>
+
+## 4. Rauschunterdrückung
+
+Wenn Anrufer über Lautsprecher telefonieren oder es ruhig ist, lasse die Rauschunterdrückung AN. Wenn die Lautstärke niedrig ist oder Wörter „abgeschnitten“ klingen, schalte sie AUS, damit der Transcriber das volle Signal erhält.
+
+<Tip>
+Wenn der Assistent dich schlecht versteht, versuche die Rauschunterdrückung auszuschalten.
+</Tip>
+
+## 5. Konversations‑Timer
+
+| Parameter | Empfehlung | Warum |
+| --- | --- | --- |
+| Re‑engagement | ≈ 30 s | Gibt Anrufern genügend Zeit zum Nachdenken. Niedrigere Werte können aufdringlich wirken. |
+| Maximale Stille‑Dauer | ≈ 60 s | Verhindert verfrühte Auflegungen und beendet dennoch wirklich stille Anrufe. |
+
+<Info>
+Teste verschiedene Werte in echten Anrufen — zu niedrig unterbricht, zu hoch erzeugt peinliche Pausen.
+</Info>
+
+## 6. Einstiegsnachricht
+
+| Modus | Verwendung | Best Practice |
+| --- | --- | --- |
+| Pipeline | Wird exakt wie geschrieben vorgelesen (per TTS) | Formuliere die Begrüßung wörtlich: „Hallo, hier ist Alex von …“. |
+| Speech‑to‑Speech | Wird vom Modell als Prompt interpretiert | Füge Anweisungen hinzu wie „Begrüße die Kundin/den Kunden und sage …“ oder stelle `sage genau:` voran, um wortgetreue Ausgabe zu erzwingen. |
+
+## 7. Umgebungsgeräusch
+
+Umgebungsgeräusch fügt der Stimme des Assistenten dezente Hintergrundgeräusche hinzu und ist standardmäßig aktiviert.
+
+<Tip>
+Wenn der Assistent dich schlecht hört, deaktiviere das Umgebungsgeräusch oder reduziere die Umgebungslautstärke.
+</Tip>
+
+## 8. Endpointing‑Regler
+
+Steuere mit dem Endpointing‑Empfindlichkeitsregler unten in den Assistenten‑Einstellungen, wann dein Assistent zu sprechen beginnt.
+
+| Einstellung | Wirkung | Verwenden, wenn |
+| --- | --- | --- |
+| Niedrige Empfindlichkeit | Assistent antwortet schneller, nachdem die Anruferin/der Anrufer aufgehört hat zu sprechen | Du möchtest knackige, schnelle Gesprächswechsel |
+| Hohe Empfindlichkeit | Assistent wartet länger, bevor er antwortet | Anrufer geben längere, detailliertere Antworten |
+
+<Tip>
+Wenn dein Assistent Anruferinnen/Anrufer mitten im Satz abschneidet, erhöhe die Empfindlichkeit. Wenn Antworten träge wirken, verringere sie.
+</Tip>
+
+## 9. Debugging mit dem Anruf‑Transkript
+
+<Steps>
+<Step title="Anrufverlauf öffnen">
+Wechsle im Dashboard zur Seite Anrufverlauf.
+</Step>
+
+<Step title="Neueste*n Testanruf auswählen">
+Öffne den zuletzt getätigten Anruf dieses Assistenten.
+</Step>
+
+<Step title="Transkript und Funktionsaufrufe prüfen">
+Überprüfe Transkript, Funktionsaufrufe und Parameter, um Timing‑ oder Logikprobleme zu erkennen.
+
+<Check>
+Bestätige, dass der Assistent den erwarteten Modus, das Modell und die Tools gemäß deiner Konfiguration nutzt.
+</Check>
+</Step>
+</Steps>
+
+## 10. Noch Fragen?
+
+Wenn du Hilfe brauchst, kontaktiere unser Support‑Team über das Chat‑Widget in der App.
+
+---
+
+<CardGroup cols={2}>
+<Card title="Assistenten‑Modi" icon="bolt" href="/ai-assistants/assistant-modes">
+Verstehe die Unterschiede zwischen Pipeline und Speech‑to‑Speech.
+</Card>
+
+<Card title="Sprachauswahl & Klonen" icon="microphone" href="/ai-assistants/voice-selection">
+Wähle eine eingebaute Stimme oder deine eigens geklonte Markenstimme.
+</Card>
+</CardGroup>
+
+
