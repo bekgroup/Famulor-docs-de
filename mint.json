@@ -25,13 +25,10 @@
   },
   "topAnchor": {
     "name": "Plattform-Anleitung",
-    "icon": "book",
-    "color": "#1FD5F9"
+    "icon": "book"
   },
   "sidebar": {
-    "items": "card",
-    "showIcons": true,
-    "collapsed": false
+    "items": "card"
   },
   "topbarLinks": [{
     "name": "Home",
@@ -61,7 +58,6 @@
   "navigation": [    {
       "group": "Updates",
       "icon": "megaphone",
-      "color": "#f59e0b",
       "pages": [
         "updates/changelog"
       ]
@@ -70,7 +66,6 @@
     {
       "group": "Einführung",
       "icon": "info",
-      "color": "#3b82f6",
       "pages": [
         "introduction/what-is-Famulor",
         "introduction/how-it-works",
@@ -80,7 +75,6 @@
     {
       "group": "Erste Schritte",
       "icon": "rocket",
-      "color": "#10b981",
       "pages": [
         "getting-started/core-concepts",
         "getting-started/understanding-billing"
@@ -89,7 +83,6 @@
     {
       "group": "KI-Assistenten Übersicht",
       "icon": "bot",
-      "color": "#8b5cf6",
       "pages": [
         "ai-assistants/what-is-ai-assistant",
         "ai-assistants/assistant-best-practices",
@@ -107,7 +100,6 @@
     {
       "group": "Telefonnummern",
       "icon": "phone",
-      "color": "#06b6d4",
       "pages": [
         "phone-numbers/types",
         "phone-numbers/purchasing-and-managing",
@@ -119,7 +111,6 @@
     {
       "group": "Eingehende Anrufe",
       "icon": "phone-incoming",
-      "color": "#059669",
       "pages": [
         "inbound-calls/overview",
         "inbound-calls/provisioning",
@@ -130,7 +121,6 @@
     {
       "group": "Ausgehende Anrufe",
       "icon": "phone-outgoing",
-      "color": "#dc2626",
       "pages": [
         "outbound-calls/overview",
         "outbound-calls/campaigns",
@@ -143,7 +133,6 @@
     {
       "group": "KI-Prompting & Konversationsdesign",
       "icon": "message-square",
-      "color": "#7c3aed",
       "pages": [
         "conversation-design/prompt-basics",
         "conversation-design/knowledge-bases",
@@ -154,7 +143,6 @@
     {
       "group": "Automatisierung & Integrationen",
       "icon": "zap",
-      "color": "#f59e0b",
       "pages": [
         "automation/overview",
         "automation/webhook-api"
@@ -163,7 +151,6 @@
     {
       "group": "Kosten & Preise",
       "icon": "credit-card",
-      "color": "#10b981",
       "pages": [
         "pricing/overview",
         "pricing/usage-based",
@@ -173,7 +160,6 @@
     {
       "group": "Nummern-Bereitstellung",
       "icon": "globe",
-      "color": "#3b82f6",
       "pages": [
         "provisioning/supported-countries",
         "provisioning/compliance"
@@ -182,7 +168,6 @@
     {
       "group": "Fehlerbehebung & FAQs",
       "icon": "help-circle",
-      "color": "#ef4444",
       "pages": [
         "troubleshooting/voice-problems",
         "troubleshooting/billing",
@@ -193,7 +178,6 @@
     {
       "group": "API Referenz",
       "icon": "code",
-      "color": "#1c51fc",
       "pages": [
         "api-reference/introduction",
         "api-reference/authentication",
@@ -204,7 +188,6 @@
     {
       "group": "No-Code Automatisierungsplattform",
       "icon": "workflow",
-      "color": "#8b5cf6",
       "pages": [
         "automation-platform/introduction",
         "automation-platform/building-flows",
@@ -218,7 +201,6 @@
     {
       "group": "Anruf-bezogen",
       "icon": "phone-call",
-      "color": "#06b6d4",
       "pages": [
         "automation-platform/calls-related/Famulor-tool",
         "automation-platform/calls-related/common-integrations",
@@ -228,7 +210,6 @@
     {
       "group": "Tutorials",
       "icon": "play-circle",
-      "color": "#f59e0b",
       "pages": [
         "automation-platform/tutorials/outbound-form-call",
         "automation-platform/tutorials/inbound-context-injection"
@@ -237,7 +218,6 @@
     {
       "group": "Vertrieb & Best Practices",
       "icon": "trending-up",
-      "color": "#10b981",
       "pages": [
         "sales/beste-zeit-fuer-kaltakquise",
         "sales/gespraechsfuehrung-und-einwandbehandlung",
@@ -253,19 +233,10 @@
   "footerSocials": {
     "linkedin": "https://www.linkedin.com/company/Famulor-ai"
   },
-  "footer": {
-    "socials": {
-      "linkedin": "https://www.linkedin.com/company/Famulor-ai"
-    }
-  },
   "api": {
     "baseUrl": "https://app.famulor.de/api/",
     "auth": {
       "method": "bearer"
     }
-  },
-  "search": {
-    "enabled": true,
-    "placeholder": "Dokumentation durchsuchen..."
   }
 } 
