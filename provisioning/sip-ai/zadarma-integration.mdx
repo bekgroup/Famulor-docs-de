@@ -126,22 +126,20 @@ Wenn Sie Ihr Zadarma-System mit Famulor integrieren:
       color="orange">
       <strong>Für IP-Autorisierungstyp:</strong>
       
-      <ol>
-        <li>Gehen Sie zu "Dienste" → "Nummer verbinden" auf der Hauptseite</li>
-        <li>Gehen Sie zu "Aktive Nummern"</li>
-        <li>Klicken Sie auf die Nummer, die Sie verbinden möchten, und drücken Sie den Einstellungs-Button</li>
-        <li>Klicken Sie auf "Externe Dienste" und aktivieren Sie dann die Option für SIP URI</li>
-        <li>Fügen Sie <code>sip:extension@ihre-unique-id.sip.livekit.cloud</code> hinzu (dies ist die Famulor SIP-Server-Adresse)</li>
-        
-        <Note>
-          **Wichtig:** Die spezifische Famulor SIP-Adresse finden Sie in Ihrem Famulor-Dashboard unter "Telefonnummern" → "SIP-Trunk integrieren" → "Unsere SIP-Adresse".
-        </Note>
-      </ol>
+      1. Gehen Sie zu "Dienste" → "Nummer verbinden" auf der Hauptseite
+      2. Gehen Sie zu "Aktive Nummern"
+      3. Klicken Sie auf die Nummer, die Sie verbinden möchten, und drücken Sie den Einstellungs-Button
+      4. Klicken Sie auf "Externe Dienste" und aktivieren Sie dann die Option für SIP URI
+      5. Fügen Sie `sip:extension@ihre-unique-id.sip.livekit.cloud` hinzu (dies ist die Famulor SIP-Server-Adresse)
       
       <Note>
         Sie benötigen diese IPs, die Sie in Schritt 2 für den eingehenden Autorisierungstyp eingeben werden.
       </Note>
     </Card>
+    
+    <Note>
+      **Wichtig:** Die spezifische Famulor SIP-Adresse finden Sie in Ihrem Famulor-Dashboard unter "Telefonnummern" → "SIP-Trunk integrieren" → "Unsere SIP-Adresse".
+    </Note>
   </Step>
   
   <Step title="Nummern zu Famulor importieren">
@@ -151,11 +149,9 @@ Wenn Sie Ihr Zadarma-System mit Famulor integrieren:
       color="blue">
       Sie müssen zu Famulor importieren.
       
-      <ol>
-        <li>Gehen Sie zu Ihrem Famulor-Dashboard</li>
-        <li>Navigieren Sie zu "Ihre Telefonnummern"</li>
-        <li>Klicken Sie auf "SIP-Trunk integrieren"</li>
-      </ol>
+      1. Gehen Sie zu Ihrem Famulor-Dashboard
+      2. Navigieren Sie zu "Ihre Telefonnummern"
+      3. Klicken Sie auf "SIP-Trunk integrieren"
     </Card>
     
     <CardGroup cols={2}>
@@ -212,11 +208,9 @@ Wenn Sie Ihr Zadarma-System mit Famulor integrieren:
       color="green">
       Nach der Konfiguration:
       
-      <ol>
-        <li>Tätigen Sie einen Testanruf an Ihre Nummer/Erweiterung</li>
-        <li>Überprüfen Sie, dass der KI-Assistent antwortet</li>
-        <li>Verwenden Sie die Testanruf-Funktion, um ausgehende Anrufe zu verifizieren</li>
-      </ol>
+      1. Tätigen Sie einen Testanruf an Ihre Nummer/Erweiterung
+      2. Überprüfen Sie, dass der KI-Assistent antwortet
+      3. Verwenden Sie die Testanruf-Funktion, um ausgehende Anrufe zu verifizieren
     </Card>
   </Step>
 </Steps>
@@ -229,17 +223,12 @@ Wenn Sie Ihr Zadarma-System mit Famulor integrieren:
   color="red">
   Ihre SIP-Anmeldedaten müssen sicher sein:
   
-  <ul>
-    <li><strong>Benutzername:</strong> Ihre Erweiterungsnummer oder von Zadarma bereitgestellter Benutzername</li>
-    <li><strong>Passwort muss haben:</strong>
-      <ul>
-        <li>12 oder mehr Zeichen</li>
-        <li>Zahlen</li>
-        <li>Groß- und Kleinbuchstaben</li>
-        <li>Sonderzeichen empfohlen</li>
-      </ul>
-    </li>
-  </ul>
+  - **Benutzername:** Ihre Erweiterungsnummer oder von Zadarma bereitgestellter Benutzername
+  - **Passwort muss haben:**
+    - 12 oder mehr Zeichen
+    - Zahlen
+    - Groß- und Kleinbuchstaben
+    - Sonderzeichen empfohlen
 </Card>
 
 ## Häufige Probleme
