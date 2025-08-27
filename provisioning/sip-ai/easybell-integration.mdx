@@ -6,7 +6,7 @@ description: 'Verbinden Sie Ihr Easybell-Telefonsystem mit Famulor über SIP-Tru
 # Easybell-Integration
 
 <Note>
-  Eine Schritt-für-Schritt-Anleitung zur Verbindung Ihres Easybell-Telefonsystems mit Famulor über SIP-Trunking
+  Eine Schritt-für-Schritt-Anleitung zur Verbindung Ihres Easybell-Telefonsystems mit Famulor über SIP-Trunking.
 </Note>
 
 <CardGroup cols={2}>
@@ -26,54 +26,58 @@ description: 'Verbinden Sie Ihr Easybell-Telefonsystem mit Famulor über SIP-Tru
 
 ## Was ist Easybell-Integration?
 
+<p>
 Die Easybell-Integration ermöglicht es Ihnen, Ihr Easybell-Telefonsystem mit Famulor zu verbinden. Easybell bietet SIP-Trunking-Lösungen, die eine einfache und kostengünstige Integration ermöglichen.
+</p>
 
 <Steps>
   <Step title="Feature anfordern">
-    Das SIP Trunking FQDN Feature über Easybell-Support anfordern
+    Das SIP Trunking FQDN Feature über Easybell-Support anfordern.
   </Step>
   <Step title="Nummer verbinden">
-    Ihre Easybell-Nummer mit der Famulor-Domain verbinden
+    Ihre Easybell-Nummer mit der Famulor-Domain verbinden.
   </Step>
   <Step title="Format konfigurieren">
-    Das korrekte Rufnummernformat (E.164) einstellen
+    Das korrekte Rufnummernformat (E.164) einstellen.
   </Step>
   <Step title="Integration testen">
-    Die Verbindung zwischen Easybell und Famulor testen
+    Die Verbindung zwischen Easybell und Famulor testen.
   </Step>
   <Step title="Anrufe verwalten">
-    Anrufe über Ihr Easybell-Setup mit Famulor verwalten
+    Anrufe über Ihr Easybell-Setup mit Famulor verwalten.
   </Step>
 </Steps>
 
 ## Wie es funktioniert
 
+<p>
 Wenn Sie Ihr Easybell-System mit Famulor integrieren:
+</p>
 
 <CardGroup cols={2}>
   <Card
     title="Eingehende Anrufe"
     icon="phone-incoming"
     color="green">
-    Anrufe an Ihre Easybell-Nummern werden über SIP-Trunking zu unseren KI-Assistenten weitergeleitet
+    Anrufe an Ihre Easybell-Nummern werden über SIP-Trunking zu unseren KI-Assistenten weitergeleitet.
   </Card>
   <Card
     title="Ausgehende Anrufe"
     icon="phone-outgoing"
     color="blue">
-    Unsere KI-Assistenten können Anrufe tätigen, die von Ihren Easybell-Nummern zu kommen scheinen
+    Unsere KI-Assistenten können Anrufe tätigen, die von Ihren Easybell-Nummern zu kommen scheinen.
   </Card>
   <Card
     title="Verwaltung"
     icon="settings"
     color="purple">
-    Sie verwalten Ihre Nummern weiterhin über das Easybell-Kundenportal
+    Sie verwalten Ihre Nummern weiterhin über das Easybell-Kundenportal.
   </Card>
   <Card
     title="Kosteneffizienz"
     icon="dollar-sign"
     color="orange">
-    Nutzen Sie Easybell's wettbewerbsfähige Tarife (10€/Monat für SIP Trunking)
+    Nutzen Sie Easybell's wettbewerbsfähige Tarife (10€/Monat für SIP Trunking).
   </Card>
 </CardGroup>
 
@@ -85,86 +89,74 @@ Wenn Sie Ihr Easybell-System mit Famulor integrieren:
       title="SIP Trunking FQDN Feature"
       icon="mail"
       color="red">
-      <strong>Wichtig:</strong> Da das Produkt im Easybell-Kundenportal aktuell noch nicht buchbar ist, muss dies über eine E-Mail an 'support@easybell.de' mit der Easybell-Kundennummer angefragt werden.
-      
+      <p><strong>Wichtig:</strong> Da das Produkt im Easybell-Kundenportal aktuell noch nicht buchbar ist, muss dies über eine E-Mail an 'support@easybell.de' mit der Easybell-Kundennummer angefragt werden.</p>
       <Note>
         <strong>Aktueller Preis August 2025: 10€ / Monat</strong>
       </Note>
-      
       <CodeGroup>
         <CodeGroupItem title="E-Mail-Vorlage">
-          ```text
-          Sehr geehrtes Easybell Team,
-          
-          Könnten Sie uns bitte das SIP Trunking FQDN Feature für die Nutzung mit Famulor freischalten?
-          
-          Vielen Dank und liebe Grüße
-          ```
+        ```text
+        Sehr geehrtes Easybell Team,
+
+        Könnten Sie uns bitte das SIP Trunking FQDN Feature für die Nutzung mit Famulor freischalten?
+
+        Vielen Dank und liebe Grüße
+        ```
         </CodeGroupItem>
       </CodeGroup>
     </Card>
   </Step>
-  
   <Step title="Nummer mit Easybell verbinden">
     <Card
       title="Domain konfigurieren"
       icon="link"
       color="blue">
-      <strong>Im Easybell-Kundenportal muss folgende Domain hinterlegt werden:</strong>
-      
+      <p><strong>Im Easybell-Kundenportal muss folgende Domain hinterlegt werden:</strong></p>
       <CodeGroup>
         <CodeGroupItem title="Famulor Domain">
-          ```bash
-          ihre-unique-id.sip.livekit.cloud
-          ```
+        ```bash
+        ihre-unique-id.sip.livekit.cloud
+        ```
         </CodeGroupItem>
       </CodeGroup>
-      
       <Note>
-        **Wichtig:** Die spezifische Famulor SIP-Adresse finden Sie in Ihrem Famulor-Dashboard unter "Telefonnummern" → "SIP-Trunk integrieren" → "Unsere SIP-Adresse".
+        <strong>Wichtig:</strong> Die spezifische Famulor SIP-Adresse finden Sie in Ihrem Famulor-Dashboard unter "Telefonnummern" → "SIP-Trunk integrieren" → "Unsere SIP-Adresse".
       </Note>
-      
       <Note>
         Weitere Informationen finden Sie in der <a href="https://www.easybell.de/hilfe/fragen/fragen-zum-telefonanschluss/antwort/sip-trunk-authentifizierung-per-fqdn-domain-einrichten/" target="_blank">Easybell-Hilfe</a>.
       </Note>
     </Card>
   </Step>
-  
   <Step title="Rufnummernformat konfigurieren">
     <Card
       title="E.164 Format"
       icon="settings"
       color="green">
-      <strong>Wichtig:</strong> Im Kundenportal muss für das eingehende Rufnummernformat E.164 mit führendem "+" ausgewählt werden.
-      
-      Nur so können wir den Anruf in diesem Format weitergeben, zum Beispiel:
-      
+      <p><strong>Wichtig:</strong> Im Kundenportal muss für das eingehende Rufnummernformat E.164 mit führendem "+" ausgewählt werden.</p>
+      <p>Nur so können wir den Anruf in diesem Format weitergeben, zum Beispiel:</p>
       <CodeGroup>
         <CodeGroupItem title="Beispiel">
-          ```bash
-          +49301234567@ihre-unique-id.sip.livekit.cloud
-          ```
+        ```bash
+        +49301234567@ihre-unique-id.sip.livekit.cloud
+        ```
         </CodeGroupItem>
       </CodeGroup>
-      
       <Note>
         Das E.164-Format stellt sicher, dass internationale Rufnummern korrekt übertragen werden.
       </Note>
     </Card>
   </Step>
-  
   <Step title="Integration testen">
     <Card
       title="Verbindung testen"
       icon="check-circle"
       color="purple">
-      Nach der Konfiguration:
-      
+      <p>Nach der Konfiguration:</p>
       <ol>
-        <li>Testen Sie einen eingehenden Anruf an Ihre Easybell-Nummer</li>
-        <li>Überprüfen Sie, dass der Anruf korrekt an Famulor weitergeleitet wird</li>
-        <li>Verifizieren Sie, dass der KI-Assistent antwortet</li>
-        <li>Testen Sie das Rufnummernformat (E.164)</li>
+        <li>Testen Sie einen eingehenden Anruf an Ihre Easybell-Nummer.</li>
+        <li>Überprüfen Sie, dass der Anruf korrekt an Famulor weitergeleitet wird.</li>
+        <li>Verifizieren Sie, dass der KI-Assistent antwortet.</li>
+        <li>Testen Sie das Rufnummernformat (E.164).</li>
       </ol>
     </Card>
   </Step>
@@ -177,25 +169,25 @@ Wenn Sie Ihr Easybell-System mit Famulor integrieren:
     title="Feature-Anfrage erforderlich"
     icon="alert-triangle"
     color="red">
-    <strong>Wichtig:</strong> Das SIP Trunking FQDN Feature ist nicht automatisch verfügbar und muss über den Support angefordert werden.
+    <p><strong>Wichtig:</strong> Das SIP Trunking FQDN Feature ist nicht automatisch verfügbar und muss über den Support angefordert werden.</p>
   </Card>
   <Card
     title="E.164 Format erforderlich"
     icon="phone"
     color="orange">
-    <strong>Rufnummernformat:</strong> Das E.164-Format mit führendem "+" ist zwingend erforderlich für die korrekte Weiterleitung.
+    <p><strong>Rufnummernformat:</strong> Das E.164-Format mit führendem "+" ist zwingend erforderlich für die korrekte Weiterleitung.</p>
   </Card>
   <Card
     title="Kosten"
     icon="dollar-sign"
     color="green">
-    <strong>Preis:</strong> Aktuell 10€ / Monat für das SIP Trunking FQDN Feature (Stand: August 2025).
+    <p><strong>Preis:</strong> Aktuell 10€ / Monat für das SIP Trunking FQDN Feature (Stand: August 2025).</p>
   </Card>
   <Card
     title="Domain-Konfiguration"
     icon="server"
     color="blue">
-    <strong>Domain:</strong> Verwenden Sie die korrekte Famulor SIP-Server-Domain: <code>ihre-unique-id.sip.livekit.cloud</code>
+    <p><strong>Domain:</strong> Verwenden Sie die korrekte Famulor SIP-Server-Domain: <code>ihre-unique-id.sip.livekit.cloud</code></p>
   </Card>
 </CardGroup>
 
@@ -205,11 +197,11 @@ Wenn Sie Ihr Easybell-System mit Famulor integrieren:
   title="SIP-Anmeldedaten Sicherheit"
   icon="shield"
   color="red">
-  Ihre SIP-Anmeldedaten müssen sicher sein:
-  
+  <p>Ihre SIP-Anmeldedaten müssen sicher sein:</p>
   <ul>
-    <li><strong>Benutzername:</strong> Ihre Easybell-Kundennummer oder bereitgestellter Benutzername</li>
-    <li><strong>Passwort muss haben:</strong>
+    <li><strong>Benutzername:</strong> Ihre Easybell-Kundennummer oder bereitgestellter Benutzername.</li>
+    <li>
+      <p><strong>Passwort muss haben:</strong></p>
       <ul>
         <li>12 oder mehr Zeichen</li>
         <li>Zahlen</li>
@@ -227,52 +219,45 @@ Wenn Sie Ihr Easybell-System mit Famulor integrieren:
     title="Feature nicht verfügbar"
     icon="alert-circle"
     color="red">
-    <strong>Das SIP Trunking FQDN Feature ist nicht verfügbar?</strong>
-    
+    <p><strong>Das SIP Trunking FQDN Feature ist nicht verfügbar?</strong></p>
     <ul>
-      <li>Stellen Sie sicher, dass Sie eine E-Mail an support@easybell.de gesendet haben</li>
-      <li>Fügen Sie Ihre Easybell-Kundennummer in der Anfrage hinzu</li>
-      <li>Warten Sie auf die Bestätigung vom Easybell-Support</li>
-      <li>Das Feature kann einige Tage zur Aktivierung benötigen</li>
+      <li>Stellen Sie sicher, dass Sie eine E-Mail an support@easybell.de gesendet haben.</li>
+      <li>Fügen Sie Ihre Easybell-Kundennummer in der Anfrage hinzu.</li>
+      <li>Warten Sie auf die Bestätigung vom Easybell-Support.</li>
+      <li>Das Feature kann einige Tage zur Aktivierung benötigen.</li>
     </ul>
   </Card>
-  
   <Card
     title="Rufnummernformat-Probleme"
     icon="phone-x"
     color="orange">
-    <strong>Anrufe werden nicht korrekt weitergeleitet?</strong>
-    
+    <p><strong>Anrufe werden nicht korrekt weitergeleitet?</strong></p>
     <ul>
-      <li>Überprüfen Sie, ob E.164 mit führendem "+" ausgewählt ist</li>
-      <li>Stellen Sie sicher, dass die Domain korrekt konfiguriert ist</li>
-      <li>Testen Sie mit einer einfachen Rufnummer</li>
+      <li>Überprüfen Sie, ob E.164 mit führendem "+" ausgewählt ist.</li>
+      <li>Stellen Sie sicher, dass die Domain korrekt konfiguriert ist.</li>
+      <li>Testen Sie mit einer einfachen Rufnummer.</li>
     </ul>
   </Card>
-  
   <Card
     title="Domain-Konfiguration"
     icon="server"
     color="blue">
-    <strong>Verbindungsprobleme mit der Domain?</strong>
-    
+    <p><strong>Verbindungsprobleme mit der Domain?</strong></p>
     <ul>
       <li>Überprüfen Sie die Schreibweise: <code>ihre-unique-id.sip.livekit.cloud</code></li>
-      <li>Stellen Sie sicher, dass keine Leerzeichen vorhanden sind</li>
-      <li>Kontaktieren Sie den Easybell-Support bei Problemen</li>
+      <li>Stellen Sie sicher, dass keine Leerzeichen vorhanden sind.</li>
+      <li>Kontaktieren Sie den Easybell-Support bei Problemen.</li>
     </ul>
   </Card>
-  
   <Card
     title="Kostenabrechnung"
     icon="dollar-sign"
     color="purple">
-    <strong>Fragen zur Abrechnung?</strong>
-    
+    <p><strong>Fragen zur Abrechnung?</strong></p>
     <ul>
-      <li>Das Feature kostet 10€ / Monat (Stand: August 2025)</li>
-      <li>Preise können sich ändern - fragen Sie beim Support nach</li>
-      <li>Die Abrechnung erfolgt über Ihr Easybell-Konto</li>
+      <li>Das Feature kostet 10€ / Monat (Stand: August 2025).</li>
+      <li>Preise können sich ändern - fragen Sie beim Support nach.</li>
+      <li>Die Abrechnung erfolgt über Ihr Easybell-Konto.</li>
     </ul>
   </Card>
 </CardGroup>

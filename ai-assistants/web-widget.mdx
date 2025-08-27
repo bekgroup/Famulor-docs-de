@@ -14,7 +14,9 @@ description: "Lernen Sie, wie Sie das Famulor Chat Widget auf Ihrer Website einb
 
 <Card title="Was ist das Famulor Web Widget?" color="blue">
   <p>
-  Das Famulor Web Widget ermöglicht es Ihren Website-Besuchern, direkt über einen Voice-Chat-Button mit Ihrem KI-Assistenten zu interagieren. Das Widget ist vollständig anpassbar und kann nahtlos in jede Website integriert werden.</p>
+  Das Famulor Web Widget ermöglicht es Ihren Website-Besuchern, direkt über einen Voice-Chat-Button mit Ihrem KI-Assistenten zu interagieren. Das Widget ist vollständig anpassbar und kann nahtlos in jede Website integriert werden.
+
+  </p>
 </Card>
 
 ## Zugriff auf das Web Widget
@@ -25,19 +27,20 @@ description: "Lernen Sie, wie Sie das Famulor Chat Widget auf Ihrer Website einb
 
   <ol>
   <li>
-  Gehen Sie zu Assistenten
-  </li>
+  Gehen Sie zu "Assistenten".</li>
+
   
   <li>
-  Wählen Sie Ihren Assistenten aus</li>
+  Wählen Sie Ihren Assistenten aus.</li>
+
   
   <li>
-  Klicken Sie auf Bearbeitung
-  </li>
+  Klicken Sie auf "Bearbeitung".</li>
+
   
   <li>
-  Navigieren Sie zu Web Widget
-  </li>
+  Navigieren Sie zu "Web Widget".</li>
+
   </ol>
 </Card>
 
@@ -47,25 +50,31 @@ description: "Lernen Sie, wie Sie das Famulor Chat Widget auf Ihrer Website einb
   <Card title="Live-Vorschau" icon="eye" color="blue">
     <ul>
     <li>
-    Sehen Sie eine Echtzeit-Vorschau Ihres Widgets</li>
+    Sehen Sie eine Echtzeit-Vorschau Ihres Widgets.</li>
+
     
     <li>
-    Auto-Updates bei Änderungen</li>
+    Auto-Updates bei Änderungen.</li>
+
     
     <li>
-    Testen Sie die Funktionalität direkt</li>
+    Testen Sie die Funktionalität direkt.</li>
+
     </ul>
   </Card>
   <Card title="Anpassungsoptionen" icon="palette" color="purple">
     <ul>
     <li>
-    Position auf der Website wählen</li>
+    Position auf der Website wählen.</li>
+
     
     <li>
-    Primärfarbe anpassen</li>
+    Primärfarbe anpassen.</li>
+
     
     <li>
-    Button- und Menü-Texte bearbeiten</li>
+    Button- und Menü-Texte bearbeiten.</li>
+
     </ul>
   </Card>
 </CardGroup>
@@ -78,61 +87,67 @@ description: "Lernen Sie, wie Sie das Famulor Chat Widget auf Ihrer Website einb
   <ul>
   <li>
   Position:
-   Wählen Sie die Position des Widgets (z.B. "Unten rechts")</li>
+
+   Wählen Sie die Position des Widgets (z.B. "Unten rechts").</li>
+
   
   <li>
   Primärfarbe:
-   Anpassung der Widget-Farbe (z.B. #3B82F6)</li>
+
+   Anpassung der Widget-Farbe (z.B. #3B82F6).</li>
+
   </ul>
 </Card>
 
 ### 2. Button-Konfiguration
 
 <CodeGroup>
-```
-Need help?Primärer Text, der auf dem Widget-Button angezeigt wird
-```
 
-```
-Start voice chat ✨Sekundärer Text, der unter dem Haupt-Button-Text angezeigt wird
-```
+````text
+// Primärer Text, der auf dem Widget-Button angezeigt wird
+Need help?
+```text
+// Sekundärer Text, der unter dem Haupt-Button-Text angezeigt wird
+Start voice chat ✨
+````
+
 </CodeGroup>
 
 ### 3. Menü-Konfiguration
 
 <CodeGroup>
-```
-Voice AITitel im Widget-Header
-```
 
-```
-Ready to help ✨Untertitel im Widget-Header
-```
+````text
+// Titel im Widget-Header
+Voice AI
+```text
+// Untertitel im Widget-Header
+Ready to help ✨
+```text
+// Titel, der angezeigt wird, wenn das Modal geöffnet wird
+Ready to chat?
+```text
+// Text auf dem Button, der das Gespräch startet
+Start Voice Chat
+```text
+// Beschreibungstext im Modal
+Click below to start your voice conversation
+````
 
-```
-Ready to chat?Titel, der angezeigt wird, wenn das Modal geöffnet wird
-```
-
-```
-Start Voice ChatText auf dem Button, der das Gespräch startet
-```
-
-```
-Click below to start your voice conversationBeschreibungstext im Modal
-```
 </CodeGroup>
 
 ## Script-Tag Integration
 
 <Card title="Einfache Integration" icon="code" color="green">
   <p>
-  Kopieren Sie den generierten Script-Tag und fügen Sie ihn in Ihre Website ein:</p>
+  Kopieren Sie den generierten Script-Tag und fügen Sie ihn in Ihre Website ein:
+
+  </p>
 </Card>
 
 ### Beispiel Script-Tag
 
-<CodeGroup>
-```
+```html
 <script 
   src="https://app.famulor.de/embed.js" 
   data-assistant-id="5c92d914-9099-4d5-8f09-096ada2ade0" 
@@ -147,10 +162,9 @@ Click below to start your voice conversationBeschreibungstext im Modal
   data-modal-description="Click below to start your voice conversation">
 </script>
 ```
-</CodeGroup>
 
 <Warning>
-  **Verwendung:** Fügen Sie diesen Script-Tag überall in den HTML-Code Ihrer Website ein, vorzugsweise vor dem schließenden `</body>`-Tag.
+  **Verwendung:** Fügen Sie diesen Script-Tag überall in den HTML-Code Ihrer Website ein, vorzugsweise vor dem schließenden `&lt;/body&gt;`-Tag.
 </Warning>
 
 ## Data-Attribute Erklärung
@@ -159,43 +173,63 @@ Click below to start your voice conversationBeschreibungstext im Modal
   <ul>
   <li>
   data-assistant-id:
-   Eindeutige ID Ihres Assistenten</li>
+
+   Eindeutige ID Ihres Assistenten.</li>
+
   
   <li>
   data-position:
-   Position des Widgets (z.B. "right-bottom")</li>
+
+   Position des Widgets (z.B. "right-bottom").</li>
+
   
   <li>
   data-color:
-   Primärfarbe des Widgets</li>
+
+   Primärfarbe des Widgets.</li>
+
   
   <li>
   data-header-title:
-   Titel im Widget-Header</li>
+
+   Titel im Widget-Header.</li>
+
   
   <li>
   data-header-subtitle:
-   Untertitel im Widget-Header</li>
+
+   Untertitel im Widget-Header.</li>
+
   
   <li>
   data-button-main-text:
-   Haupt-Button-Text</li>
+
+   Haupt-Button-Text.</li>
+
   
   <li>
   data-button-sub-text:
-   Unter-Button-Text</li>
+
+   Unter-Button-Text.</li>
+
   
   <li>
   data-start-button-text:
-   Text des Start-Buttons</li>
+
+   Text des Start-Buttons.</li>
+
   
   <li>
   data-modal-title:
-   Modal-Titel</li>
+
+   Modal-Titel.</li>
+
   
   <li>
   data-modal-description:
-   Modal-Beschreibung</li>
+
+   Modal-Beschreibung.</li>
+
   </ul>
 </Card>
 
@@ -206,25 +240,36 @@ Click below to start your voice conversationBeschreibungstext im Modal
     <ul>
     <li>
     right-bottom:
+
      Unten rechts</li>
+
     
     <li>
     left-bottom:
+
      Unten links</li>
+
     
     <li>
     right-top:
+
      Oben rechts</li>
+
     
     <li>
     left-top:
+
      Oben links</li>
+
     </ul>
   </Card>
   <Card title="Empfohlene Position" icon="star" color="blue">
     <p>
     Unten rechts
-     ist die häufigste und benutzerfreundlichste Position für Chat-Widgets auf Websites.</p>
+
+     ist die häufigste und benutzerfreundlichste Position für Chat-Widgets auf Websites.
+
+    </p>
   </Card>
 </CardGroup>
 
@@ -234,19 +279,27 @@ Click below to start your voice conversationBeschreibungstext im Modal
   <ul>
   <li>
   Farben:
-   Wählen Sie eine Farbe, die zu Ihrem Branding passt</li>
+
+   Wählen Sie eine Farbe, die zu Ihrem Branding passt.</li>
+
   
   <li>
   Texte:
-   Verwenden Sie einladende und klare Formulierungen</li>
+
+   Verwenden Sie einladende und klare Formulierungen.</li>
+
   
   <li>
   Position:
-   Achten Sie darauf, dass das Widget andere wichtige Elemente nicht verdeckt</li>
+
+   Achten Sie darauf, dass das Widget andere wichtige Elemente nicht verdeckt.</li>
+
   
   <li>
   Test:
-   Testen Sie das Widget auf verschiedenen Geräten und Bildschirmgrößen</li>
+
+   Testen Sie das Widget auf verschiedenen Geräten und Bildschirmgrößen.</li>
+
   </ul>
 </Card>
 
@@ -255,22 +308,30 @@ Click below to start your voice conversationBeschreibungstext im Modal
 <CardGroup cols={2}>
   <Card title="WordPress" icon="wordpress" color="blue">
     <p>
-    Fügen Sie den Script-Tag in den Footer Ihres Themes oder verwenden Sie ein Plugin für benutzerdefinierte Scripts.</p>
+    Fügen Sie den Script-Tag in den Footer Ihres Themes oder verwenden Sie ein Plugin für benutzerdefinierte Scripts.
+
+    </p>
   </Card>
   <Card title="HTML/CSS Websites" icon="code" color="green">
     <p>
-    Fügen Sie den Script-Tag direkt vor dem schließenden &lt;/body&gt;-Tag in Ihre HTML-Dateien ein.</p>
+    Fügen Sie den Script-Tag direkt vor dem schließenden `&lt;/body&gt;`-Tag in Ihre HTML-Dateien ein.
+
+    </p>
   </Card>
 </CardGroup>
 
 <CardGroup cols={2}>
-  <Card title="React/Vue/Angular" icon="javascript" color="orange">
+  <Card title="React/Vue/Angular" icon="react" color="orange">
     <p>
-    Integrieren Sie den Script-Tag über Ihren Package Manager oder fügen Sie ihn direkt in die index.html ein.</p>
+    Integrieren Sie den Script-Tag über Ihren Package Manager oder fügen Sie ihn direkt in die `index.html` ein.
+
+    </p>
   </Card>
   <Card title="CMS-Systeme" icon="cms" color="purple">
     <p>
-    Nutzen Sie die Script-Injection-Features Ihres CMS oder fügen Sie den Code in die Template-Dateien ein.</p>
+    Nutzen Sie die Script-Injection-Features Ihres CMS oder fügen Sie den Code in die Template-Dateien ein.
+
+    </p>
   </Card>
 </CardGroup>
 
@@ -280,19 +341,27 @@ Click below to start your voice conversationBeschreibungstext im Modal
   <ul>
   <li>
   Sicher:
-   Alle Daten werden verschlüsselt übertragen</li>
+
+   Alle Daten werden verschlüsselt übertragen.</li>
+
   
   <li>
   Schnell:
-   Minimale Ladezeiten durch optimierte Scripts</li>
+
+   Minimale Ladezeiten durch optimierte Scripts.</li>
+
   
   <li>
   Zuverlässig:
-   99.9% Verfügbarkeit</li>
+
+   99.9% Verfügbarkeit.</li>
+
   
   <li>
   DSGVO-konform:
-   Entspricht deutschen Datenschutzbestimmungen</li>
+
+   Entspricht deutschen Datenschutzbestimmungen.</li>
+
   </ul>
 </Card>
 
@@ -302,23 +371,33 @@ Click below to start your voice conversationBeschreibungstext im Modal
   <ol>
   <li>
   Live-Vorschau nutzen:
-   Verwenden Sie die Vorschau im Dashboard</li>
+
+   Verwenden Sie die Vorschau im Dashboard.</li>
+
   
   <li>
   Staging-Umgebung:
-   Testen Sie das Widget zunächst auf einer Test-Website</li>
+
+   Testen Sie das Widget zunächst auf einer Test-Website.</li>
+
   
   <li>
   Verschiedene Geräte:
-   Testen Sie auf Desktop, Tablet und Mobile</li>
+
+   Testen Sie auf Desktop, Tablet und Mobile.</li>
+
   
   <li>
   Browser-Tests:
-   Prüfen Sie die Kompatibilität mit verschiedenen Browsern</li>
+
+   Prüfen Sie die Kompatibilität mit verschiedenen Browsern.</li>
+
   
   <li>
   Funktionstest:
-   Starten Sie einen echten Voice-Chat zur Überprüfung</li>
+
+   Starten Sie einen echten Voice-Chat zur Überprüfung.</li>
+
   </ol>
 </Card>
 
@@ -328,19 +407,27 @@ Click below to start your voice conversationBeschreibungstext im Modal
   <ul>
   <li>
   Widget wird nicht angezeigt:
-   Überprüfen Sie, ob der Script-Tag korrekt eingebettet wurde</li>
+
+   Überprüfen Sie, ob der Script-Tag korrekt eingebettet wurde.</li>
+
   
   <li>
   Farben falsch:
-   Stellen Sie sicher, dass der Hex-Code (#) korrekt formatiert ist</li>
+
+   Stellen Sie sicher, dass der Hex-Code (#) korrekt formatiert ist.</li>
+
   
   <li>
   Position passt nicht:
-   Verwenden Sie die verfügbaren Positionswerte</li>
+
+   Verwenden Sie die verfügbaren Positionswerte.</li>
+
   
   <li>
   Text wird nicht angezeigt:
-   Prüfen Sie die data-attribute auf Schreibfehler</li>
+
+   Prüfen Sie die data-attribute auf Schreibfehler.</li>
+
   </ul>
 </Card>
 
@@ -350,6 +437,6 @@ Click below to start your voice conversationBeschreibungstext im Modal
   Unser Support-Team kann Ihnen bei der Integration des Web Widgets helfen.
 </Tip>
 
-<Card title="Support kontaktieren" icon="headphones" color="blue" href="https://famulor.de/support">
+<Card title="Support kontaktieren" icon="headphones" color="blue" href="[https://famulor.de/support](https://famulor.de/support)">
   Benötigen Sie Hilfe bei der Widget-Integration? Kontaktieren Sie unser Support-Team.
 </Card>
