@@ -92,6 +92,8 @@ Wenn Sie Ihr Twilio-System mit Famulor integrieren:
           <li>Klicken Sie auf "Create Elastic SIP Trunking"</li>
           <li>Geben Sie dem Trunk einen Namen und aktivieren Sie die allgemeinen Einstellungen</li>
         </ol>
+        
+        ![Twilio Create Elastic SIP Trunking](/provisioning/sip-ai/twillio-create-elastic-sip1.jpeg)
       </Card>
       <Card
         title="Wichtig"
@@ -108,17 +110,21 @@ Wenn Sie Ihr Twilio-System mit Famulor integrieren:
         title="Termination SIP URI"
         icon="link"
         color="green">
-        <ul>
-          <li>Die Termination SIP URI ist hier wichtig - wir werden sie in späteren Schritten verwenden</li>
-          <li>Verwenden Sie eine lokalisierte Termination URI, die sich in Ihrer Nähe befindet</li>
-          <li>Sie können Ihre lokalisierten URIs in der Twilio-Konsole erweitern und anzeigen</li>
-        </ul>
+        - Die Termination SIP URI ist hier wichtig - wir werden sie in späteren Schritten verwenden
+        - Verwenden Sie eine lokalisierte Termination URI, die sich in Ihrer Nähe befindet
+        - Sie können Ihre lokalisierten URIs in der Twilio-Konsole erweitern und anzeigen
+        
+        ![Twilio Setup Termination](/provisioning/sip-ai/twillio-setup-termination1.jpeg)
       </Card>
       <Card
         title="IP-Whitelist oder Authentifizierung"
         icon="shield"
         color="orange">
         Für Ihren Elastic SIP Trunk, um unsere ausgehenden Anfragen zu akzeptieren, müssen Sie entweder IP-Adressen whitelisten oder eine Authentifizierung mit Benutzername und Passwort erstellen.
+        
+        ![Twilio New Access Control](/provisioning/sip-ai/twillio-new-access-control.jpeg)
+        
+        ![Twilio New Access Control Settings](/provisioning/sip-ai/twillio-new-access-control2.jpeg)
       </Card>
     </CardGroup>
     
@@ -159,6 +165,8 @@ Wenn Sie Ihr Twilio-System mit Famulor integrieren:
       <Note>
         **Wichtig:** Die spezifische Famulor SIP-Adresse finden Sie in Ihrem Famulor-Dashboard unter "Telefonnummern" → "SIP-Trunk integrieren" → "Unsere SIP-Adresse".
       </Note>
+      
+      ![Twilio Setup Origination](/provisioning/sip-ai/twillio-setup-origination1.jpeg)
     </Card>
   </Step>
 
@@ -168,6 +176,8 @@ Wenn Sie Ihr Twilio-System mit Famulor integrieren:
       icon="phone"
       color="green">
       Sie haben den Elastic SIP Trunk erstellt, jetzt müssen Sie Nummern kaufen oder bestehende Nummern zu diesem Trunk verschieben.
+      
+      ![Twilio Move Numbers](/provisioning/sip-ai/twillio-move-numbers1.jpeg)
     </Card>
   </Step>
   
@@ -273,17 +283,12 @@ Wenn Sie Ihr Twilio-System mit Famulor integrieren:
   color="red">
   Ihre SIP-Anmeldedaten müssen sicher sein:
   
-  <ul>
-    <li><strong>Benutzername:</strong> Ihre Erweiterungsnummer oder von Twilio bereitgestellter Benutzername</li>
-    <li><strong>Passwort muss haben:</strong>
-      <ul>
-        <li>12 oder mehr Zeichen</li>
-        <li>Zahlen</li>
-        <li>Groß- und Kleinbuchstaben</li>
-        <li>Sonderzeichen empfohlen</li>
-      </ul>
-    </li>
-  </ul>
+  - **Benutzername:** Ihre Erweiterungsnummer oder von Twilio bereitgestellter Benutzername
+  - **Passwort muss haben:**
+    - 12 oder mehr Zeichen
+    - Zahlen
+    - Groß- und Kleinbuchstaben
+    - Sonderzeichen empfohlen
 </Card>
 
 ## Häufige Probleme
@@ -311,6 +316,8 @@ Wenn Sie Ihr Twilio-System mit Famulor integrieren:
         </ul>
       </TabItem>
     </Tabs>
+    
+    ![Twilio Outbound Not Working](/provisioning/sip-ai/twillio-outbound-not-work.png)
   </Card>
   
   <Card
@@ -324,6 +331,10 @@ Wenn Sie Ihr Twilio-System mit Famulor integrieren:
       <li>Wählen Sie "Elastic SIP Trunking" im Selektor aus</li>
       <li>Wählen Sie die Länder aus, in die Sie wählen möchten</li>
     </ol>
+    
+    ![Twilio Choose Elastic SIP Trunking](/provisioning/sip-ai/twillio-choose-elastic-sip-trunking.png)
+    
+    ![Twilio Setup Dialing International](/provisioning/sip-ai/twillio-setup-dialing-international.png)
   </Card>
 </CardGroup>
 
