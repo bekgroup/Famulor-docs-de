@@ -1,0 +1,385 @@
+---
+title: "Assistenten auflisten"
+api: "GET https://app.famulor.de/api/user/assistants/get"
+icon: "robot"
+description: "Alle Assistenten für den authentifizierten Benutzer mit Paginierung auflisten"
+---
+
+Dieser Endpunkt ermöglicht es Ihnen, alle KI-Assistenten abzurufen, die dem authentifizierten Benutzer gehören.
+
+### Query-Parameter
+
+<ParamField query="per_page" type="integer">
+  Anzahl der Assistenten pro Seite (1-100, Standard: 10)
+</ParamField>
+
+<ParamField query="page" type="integer">
+  Seitennummer (Standard: 1)
+</ParamField>
+
+### Antwort-Felder
+
+<ResponseField name="data" type="array">
+  Array der Assistenten
+
+  <Expandable title="Assistenten-Eigenschaften">
+    <ResponseField name="id" type="integer">
+      Die eindeutige Kennung des Assistenten
+    </ResponseField>
+
+    <ResponseField name="user_id" type="integer">
+      Die ID des Benutzers, dem dieser Assistent gehört
+    </ResponseField>
+
+    <ResponseField name="phone_number_id" type="integer">
+      Die ID der dem Assistenten zugewiesenen Telefonnummer
+    </ResponseField>
+
+    <ResponseField name="engine_id" type="integer">
+      Engine-ID
+    </ResponseField>
+
+    <ResponseField name="synthesizer_id" type="integer">
+      Synthesizer-ID
+    </ResponseField>
+
+    <ResponseField name="transcriber_id" type="integer">
+      Transcriber-ID
+    </ResponseField>
+
+    <ResponseField name="voice_id" type="integer">
+      Die ID der vom Assistenten verwendeten Stimme
+    </ResponseField>
+
+    <ResponseField name="instance_id" type="integer">
+      Die Instanz-ID für den Assistenten
+    </ResponseField>
+
+    <ResponseField name="name" type="string">
+      Der Name des Assistenten
+    </ResponseField>
+
+    <ResponseField name="variables" type="object">
+      Benutzerdefinierte Variablen für den Assistenten
+    </ResponseField>
+
+    <ResponseField name="post_call_evaluation" type="boolean">
+      Ob Post-Call-Evaluation aktiviert ist
+    </ResponseField>
+
+    <ResponseField name="fillers" type="integer">
+      Ob Füller-Audio aktiviert ist (1 = aktiviert, 0 = deaktiviert)
+    </ResponseField>
+
+    <ResponseField name="post_call_schema" type="array">
+      Schema-Definition für Post-Call-Datenextraktion
+    </ResponseField>
+
+    <ResponseField name="tools" type="array">
+      Array von Tools, die dem Assistenten zur Verfügung stehen
+    </ResponseField>
+
+    <ResponseField name="is_webhook_active" type="boolean">
+      Ob Webhook-Benachrichtigungen aktiviert sind
+    </ResponseField>
+
+    <ResponseField name="webhook_url" type="string">
+      Die Webhook-URL für Post-Call-Benachrichtigungen
+    </ResponseField>
+
+    <ResponseField name="inbound_webhook_url" type="string">
+      Die Webhook-URL für Inbound-Call-Benachrichtigungen
+    </ResponseField>
+
+    <ResponseField name="language" type="string">
+      Sprache
+    </ResponseField>
+
+    <ResponseField name="type" type="string">
+      Der Typ des Assistenten (inbound oder outbound)
+    </ResponseField>
+
+    <ResponseField name="status" type="string">
+      Der aktuelle Status des Assistenten (active oder inactive)
+    </ResponseField>
+
+    <ResponseField name="max_duration" type="integer">
+      Maximale Anrufdauer in Sekunden
+    </ResponseField>
+
+    <ResponseField name="record" type="boolean">
+      Ob Anrufe aufgezeichnet werden sollen
+    </ResponseField>
+
+    <ResponseField name="initial_message" type="string">
+      Die erste Nachricht, die der Assistent sprechen wird
+    </ResponseField>
+
+    <ResponseField name="system_prompt" type="string">
+      Der System-Prompt, der das Verhalten des Assistenten definiert
+    </ResponseField>
+
+    <ResponseField name="flows_platform_id" type="integer">
+      ID für Flows-Platform-Integration
+    </ResponseField>
+
+    <ResponseField name="timezone" type="string">
+      Die Zeitzoneneinstellung für den Assistenten
+    </ResponseField>
+
+    <ResponseField name="created_at" type="string">
+      Datum und Uhrzeit der Erstellung des Assistenten
+    </ResponseField>
+
+    <ResponseField name="updated_at" type="string">
+      Datum und Uhrzeit der letzten Aktualisierung des Assistenten
+    </ResponseField>
+
+    <ResponseField name="max_silence_duration" type="integer">
+      Maximale Stillstand-Dauer in Sekunden vor Re-Engagement
+    </ResponseField>
+
+    <ResponseField name="reengagement_interval" type="integer">
+      Re-Engagement-Intervall in Sekunden
+    </ResponseField>
+
+    <ResponseField name="deleted_at" type="string">
+      Soft-Deletion-Zeitstempel (null wenn nicht gelöscht)
+    </ResponseField>
+
+    <ResponseField name="end_call_on_voicemail" type="integer">
+      Ob Anruf bei Voicemail-Erkennung beendet werden soll (1 = ja, 0 = nein)
+    </ResponseField>
+
+    <ResponseField name="llm_temperature" type="string">
+      LLM-Temperatur-Einstellung als String
+    </ResponseField>
+
+    <ResponseField name="voice_stability" type="string">
+      Stimm-Stabilität-Einstellung als String
+    </ResponseField>
+
+    <ResponseField name="voice_similarity" type="string">
+      Stimm-Ähnlichkeit-Einstellung als String
+    </ResponseField>
+
+    <ResponseField name="allow_interruptions" type="boolean">
+      Ob Unterbrechungen durch den Anrufer erlaubt sind
+    </ResponseField>
+
+    <ResponseField name="enable_noise_cancellation" type="boolean">
+      Ob Geräuschunterdrückung aktiviert ist
+    </ResponseField>
+
+    <ResponseField name="endpoint_sensitivity" type="number">
+      Endpunkt-Sensibilitätslevel
+    </ResponseField>
+
+    <ResponseField name="speech_speed" type="string">
+      Sprechgeschwindigkeits-Multiplikator als String
+    </ResponseField>
+
+    <ResponseField name="endpoint_type" type="string">
+      Sprachaktivitätserkennung-Typ (vad oder ai)
+    </ResponseField>
+
+    <ResponseField name="wait_for_customer" type="boolean">
+      Ob auf den ersten Kunden-Sprachbeitrag gewartet werden soll
+    </ResponseField>
+
+    <ResponseField name="mode" type="string">
+      Der Engine-Modus (pipeline oder multimodal)
+    </ResponseField>
+
+    <ResponseField name="language_id" type="integer">
+      Die ID der vom Assistenten verwendeten Sprache
+    </ResponseField>
+
+    <ResponseField name="transcriber_provider_id" type="integer">
+      ID des Transcriber-Anbieters
+    </ResponseField>
+
+    <ResponseField name="synthesizer_provider_id" type="integer">
+      ID des Synthesizer-Anbieters
+    </ResponseField>
+
+    <ResponseField name="llm_model_id" type="integer">
+      ID des verwendeten LLM-Modells
+    </ResponseField>
+
+    <ResponseField name="multimodal_model_id" type="integer">
+      ID des verwendeten Multimodal-Modells
+    </ResponseField>
+
+    <ResponseField name="ambient_sound" type="string">
+      Ambiente-Sound-Einstellung
+    </ResponseField>
+
+    <ResponseField name="uuid" type="string">
+      Eindeutige UUID für den Assistenten
+    </ResponseField>
+
+    <ResponseField name="send_webhook_only_on_completed" type="boolean">
+      Ob Webhooks nur bei abgeschlossenen Anrufen gesendet werden
+    </ResponseField>
+
+    <ResponseField name="include_recording_in_webhook" type="boolean">
+      Ob Aufzeichnungs-URL in Webhook-Payload eingeschlossen werden soll
+    </ResponseField>
+
+    <ResponseField name="interrupt_sensitivity" type="number">
+      Unterbrechungs-Sensibilitätslevel
+    </ResponseField>
+
+    <ResponseField name="filler_config" type="object">
+      Konfiguration für Füller-Audio-Antworten
+    </ResponseField>
+
+    <ResponseField name="knowledgebase_id" type="integer">
+      ID der zugeordneten Wissensdatenbank
+    </ResponseField>
+
+    <ResponseField name="knowledgebase_mode" type="string">
+      Wissensdatenbank-Modus-Einstellung
+    </ResponseField>
+
+    <ResponseField name="min_interrupt_words" type="integer">
+      Mindestanzahl von Wörtern vor erlaubter Unterbrechung
+    </ResponseField>
+
+    <ResponseField name="ambient_sound_volume" type="string">
+      Ambiente-Sound-Lautstärke als String
+    </ResponseField>
+
+    <ResponseField name="widget_settings" type="object">
+      Einstellungen für Web-Widget-Integration
+    </ResponseField>
+
+    <ResponseField name="ringing_time" type="integer">
+      Klingelzeit in Sekunden vor Beendigung des Anrufs
+    </ResponseField>
+
+    <ResponseField name="max_initial_silence_duration" type="integer">
+      Maximale anfängliche Stillstand-Dauer in Sekunden
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="current_page" type="integer">
+  Die aktuelle Seitennummer
+</ResponseField>
+
+<ResponseField name="per_page" type="integer">
+  Anzahl der Elemente pro Seite
+</ResponseField>
+
+<ResponseField name="total" type="integer">
+  Gesamtanzahl der Assistenten
+</ResponseField>
+
+<ResponseField name="last_page" type="integer">
+  Die letzte Seitennummer
+</ResponseField>
+
+<RequestExample>
+
+```bash Alle Assistenten abrufen
+curl -H "Authorization: Bearer YOUR_API_TOKEN" \
+  "https://app.famulor.de/api/user/assistants/get"
+```
+
+```bash Mit Paginierung
+curl -H "Authorization: Bearer YOUR_API_TOKEN" \
+  "https://app.famulor.de/api/user/assistants/get?per_page=20&page=2"
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 200 Response
+{
+  "data": [
+    {
+      "id": 123,
+      "user_id": 456,
+      "phone_number_id": 789,
+      "engine_id": 1,
+      "synthesizer_id": 2,
+      "transcriber_id": 3,
+      "voice_id": 4,
+      "instance_id": 5,
+      "name": "Verkaufs-Assistent",
+      "variables": {
+        "company_name": "Famulor",
+        "product_focus": "KI-Telefonie"
+      },
+      "post_call_evaluation": true,
+      "fillers": 1,
+      "post_call_schema": [
+        {
+          "name": "customer_interested",
+          "type": "boolean",
+          "description": "Ist der Kunde interessiert?"
+        }
+      ],
+      "tools": ["calendar_booking", "crm_integration"],
+      "is_webhook_active": true,
+      "webhook_url": "https://example.com/webhook",
+      "inbound_webhook_url": "https://example.com/inbound-webhook",
+      "language": "de",
+      "type": "outbound",
+      "status": "active",
+      "max_duration": 1800,
+      "record": true,
+      "initial_message": "Guten Tag! Ich rufe von Famulor an...",
+      "system_prompt": "Du bist ein freundlicher Verkaufsassistent...",
+      "flows_platform_id": null,
+      "timezone": "Europe/Berlin",
+      "created_at": "2024-01-15T10:30:00Z",
+      "updated_at": "2024-01-15T10:30:00Z",
+      "max_silence_duration": 3,
+      "reengagement_interval": 5,
+      "deleted_at": null,
+      "end_call_on_voicemail": 1,
+      "llm_temperature": "0.7",
+      "voice_stability": "0.8",
+      "voice_similarity": "0.9",
+      "allow_interruptions": true,
+      "enable_noise_cancellation": true,
+      "endpoint_sensitivity": 0.5,
+      "speech_speed": "1.0",
+      "endpoint_type": "vad",
+      "wait_for_customer": false,
+      "mode": "pipeline",
+      "language_id": 1,
+      "transcriber_provider_id": 1,
+      "synthesizer_provider_id": 1,
+      "llm_model_id": 1,
+      "multimodal_model_id": null,
+      "ambient_sound": "office",
+      "uuid": "550e8400-e29b-41d4-a716-446655440000",
+      "send_webhook_only_on_completed": true,
+      "include_recording_in_webhook": false,
+      "interrupt_sensitivity": 0.3,
+      "filler_config": {
+        "enabled": true,
+        "phrases": ["Hmm...", "Ich verstehe..."]
+      },
+      "knowledgebase_id": 100,
+      "knowledgebase_mode": "semantic",
+      "min_interrupt_words": 2,
+      "ambient_sound_volume": "0.3",
+      "widget_settings": {
+        "enabled": false
+      }
+    }
+  ],
+  "current_page": 1,
+  "per_page": 10,
+  "total": 1,
+  "last_page": 1
+}
+```
+
+</ResponseExample>
