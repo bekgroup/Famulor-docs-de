@@ -221,7 +221,11 @@ SIP-Anfrage: sip:030123456@ihr.pbx.com
 
 Diese Einstellungen bestimmen, wie Famulor eingehende Anrufe von Ihrem SIP-Anbieter empfängt und authentifiziert.
 
-**Unsere SIP-Adresse** - Famulor weist eine eindeutige eingehende SIP-URI zu (z.B. 5wed79aeavr.sip.livekit.cloud). Ihr SIP-Anbieter muss so konfiguriert sein, dass er eingehende Anrufe an diese Adresse sendet, indem er seinen ausgehenden Trunk oder seine Routing-Regel auf diese URI zeigt.
+**Unsere SIP-Adresse** - Famulor weist eine eindeutige eingehende SIP-URI zu (z.B. `ihre-unique-id.sip.livekit.cloud`). Ihr SIP-Anbieter muss so konfiguriert sein, dass er eingehende Anrufe an diese Adresse sendet, indem er seinen ausgehenden Trunk oder seine Routing-Regel auf diese URI zeigt.
+
+<Note>
+  **Wichtig:** Die spezifische Sip-URL finden Sie in Ihrem Famulor-Dashboard unter "Telefonnummern" → "SIP-Trunk integrieren" → "Unsere SIP-Adresse".
+</Note>
 
 **IP-Adresse (Whitelist-IPs)** - Wenn Ihr SIP-Anbieter Anrufe von einer bekannten Menge öffentlicher IP-Adressen senden kann, wählen Sie "IP-Adresse". Fügen Sie dann jede Anbieter-IP zur Whitelist unter "Eingehende Authentifizierung" hinzu.
 

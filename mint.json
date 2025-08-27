@@ -145,11 +145,31 @@
       ]
     },
     {
+      "group": "SIP Telefonnummern",
+      "pages": [
+        "provisioning/sip-ai/sip-integration",
+        "provisioning/sip-ai/twilio-integration",
+        "provisioning/sip-ai/zadarma-integration",
+        "provisioning/sip-ai/3cx-integration",
+        "provisioning/sip-ai/easybell-integration",
+        "provisioning/sip-ai/telnyx-integration"
+      ]
+    },
+    {
+      "group": "Nicht unterstützte Anbieter",
+      "pages": [
+        "provisioning/sip-ai/placetel-limitations",
+        "provisioning/sip-ai/peoplefone-limitations",
+        "provisioning/sip-ai/nfon-limitations",
+        "provisioning/sip-ai/fonial-limitations",
+        "provisioning/sip-ai/sipgate-limitations"
+      ]
+    },
+    {
       "group": "Nummern-Bereitstellung",
       "pages": [
         "provisioning/supported-countries",
-        "provisioning/compliance",
-        "provisioning/sip-ai/sip-integration"
+        "provisioning/compliance"
       ]
     },
     {

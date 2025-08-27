@@ -1,0 +1,322 @@
+---
+title: 'Telnyx-Integration'
+icon: 'phone-volume'
+description: 'Verbinden Sie Ihr Telnyx-Telefonsystem mit Famulor über SIP-Trunking'
+---
+
+# Telnyx-Integration
+
+<Note>
+  Eine Schritt-für-Schritt-Anleitung zur Verbindung Ihres Telnyx-Telefonsystems mit Famulor über SIP-Trunking
+</Note>
+
+<CardGroup cols={2}>
+  <Card
+    title="Was ist Telnyx-Integration?"
+    icon="phone-volume"
+    color="blue">
+    Verbinden Sie Ihr Telnyx-Telefonsystem mit Famulor über SIP-Trunking für flexible und skalierbare Telefonie-Integration.
+  </Card>
+  <Card
+    title="Vorteile"
+    icon="star"
+    color="green">
+    Nutzen Sie Telnyx's robuste Infrastruktur und globale Reichweite mit unseren KI-Assistenten für erweiterte Telefonie-Funktionen.
+  </Card>
+</CardGroup>
+
+## Was ist Telnyx-Integration?
+
+Die Telnyx-Integration ermöglicht es Ihnen, Ihr Telnyx-Telefonsystem mit Famulor zu verbinden. Telnyx bietet flexible SIP-Trunking-Lösungen mit FQDN-Einstellungen für die Telefonie-Integration.
+
+<Steps>
+  <Step title="SIP Trunk erstellen">
+    Erstellen Sie einen SIP Trunk mit FQDN-Einstellung in Telnyx
+  </Step>
+  <Step title="Konfiguration anpassen">
+    Passen Sie die Einstellungen für Inbound und Outbound an
+  </Step>
+  <Step title="Nummer hinzufügen">
+    Fügen Sie Ihre gekaufte Nummer zum Trunk hinzu
+  </Step>
+  <Step title="Famulor konfigurieren">
+    Erstellen Sie die Nummer in Famulor mit den Telnyx-Einstellungen
+  </Step>
+  <Step title="Assistent zuweisen">
+    Weisen Sie die Nummer einem KI-Assistenten zu
+  </Step>
+</Steps>
+
+## Wie es funktioniert
+
+Wenn Sie Ihr Telnyx-System mit Famulor integrieren:
+
+<CardGroup cols={2}>
+  <Card
+    title="Eingehende Anrufe"
+    icon="phone-incoming"
+    color="green">
+    Anrufe an Ihre Telnyx-Nummern werden über SIP-Trunking zu unseren KI-Assistenten weitergeleitet
+  </Card>
+  <Card
+    title="Ausgehende Anrufe"
+    icon="phone-outgoing"
+    color="blue">
+    Unsere KI-Assistenten können Anrufe tätigen, die von Ihren Telnyx-Nummern zu kommen scheinen
+  </Card>
+  <Card
+    title="Verwaltung"
+    icon="settings"
+    color="purple">
+    Sie verwalten Ihre Nummern weiterhin über das Telnyx-Dashboard
+  </Card>
+  <Card
+    title="Integration"
+    icon="link"
+    color="orange">
+    Nahtlose Integration zwischen Telnyx und Famulor über SIP-Trunking
+  </Card>
+</CardGroup>
+
+## Einrichtung Ihrer Telnyx-Integration
+
+<Steps>
+  <Step title="SIP Trunk erstellen">
+    <Card
+      title="FQDN-Einstellung"
+      icon="plus-circle"
+      color="blue">
+      <strong>Erstelle einen SIP Trunk mit FQDN-Einstellung:</strong>
+      
+      <ul>
+        <li>Füge die <code>ihre-unique-id.sip.livekit.cloud</code> hinzu</li>
+        
+        <Note>
+          **Wichtig:** Die spezifische Famulor SIP-Adresse finden Sie in Ihrem Famulor-Dashboard unter "Telefonnummern" → "SIP-Trunk integrieren" → "Unsere SIP-Adresse".
+        </Note>
+        <li>Wähle <strong>SRV</strong> als Eintrag</li>
+      </ul>
+      
+      <Note>
+        Die FQDN-Einstellung ist wichtig für die korrekte Weiterleitung der Anrufe an Famulor.
+      </Note>
+    </Card>
+    
+    <Card
+      title="Zugangsdaten (Optional für ausgehende Anrufe)"
+      icon="key"
+      color="green">
+      <strong>Füge Zugangsdaten für ausgehende Anrufe hinzu:</strong>
+      
+      Der Name und Passwort kann beliebig gewählt werden.
+      
+      <Note>
+        Diese Einstellung ist optional und nur erforderlich, wenn Sie ausgehende Anrufe nutzen möchten.
+      </Note>
+    </Card>
+  </Step>
+  
+  <Step title="Inbound-Einstellungen">
+    <Card
+      title="Inbound-Konfiguration"
+      icon="settings"
+      color="purple">
+      <strong>Konfiguriere die Inbound-Einstellungen:</strong>
+      
+      <ul>
+        <li><strong>Nummer Format:</strong> Ändere das Nummer Format auf <code>+E.164</code> (Achtung: nicht das + vergessen)</li>
+        <li><strong>Protokoll:</strong> Wähle <strong>TCP</strong> als Protokoll aus</li>
+        <li><strong>Region:</strong> Ändere die Region auf <strong>Europa</strong></li>
+        <li><strong>Codecs:</strong> Schränke die Codecs auf die im Screenshot ausgewählten Codecs ein</li>
+      </ul>
+      
+      <Note>
+        Das +E.164-Format ist wichtig für die korrekte Übertragung internationaler Rufnummern.
+      </Note>
+    </Card>
+  </Step>
+  
+  <Step title="Outbound-Einstellungen">
+    <Card
+      title="Outbound Settings V2"
+      icon="phone-outgoing"
+      color="orange">
+      <strong>Konfiguriere die Outbound-Einstellungen:</strong>
+      
+      <ul>
+        <li><strong>Profil:</strong> Wähle <strong>Default</strong> als Profil</li>
+        <li><strong>Country:</strong> Wähle dein Land bei Country</li>
+      </ul>
+    </Card>
+  </Step>
+  
+  <Step title="Nummer zum Trunk hinzufügen">
+    <Card
+      title="Nummer hinzufügen"
+      icon="phone"
+      color="green">
+      <strong>Schließlich musst du nur noch die bereits gekaufte Nummer zu dem Trunk hinzufügen.</strong>
+      
+      Stellen Sie sicher, dass die Nummer korrekt dem erstellten SIP Trunk zugeordnet ist.
+    </Card>
+  </Step>
+  
+  <Step title="Nummer in Famulor erstellen">
+    <Card
+      title="Famulor-Konfiguration"
+      icon="download"
+      color="blue">
+      <strong>Erstelle die Nummer in Famulor:</strong>
+      
+      <ul>
+        <li><strong>Nummer / Name:</strong> Fülle mit genau der Nummer die du hinzugefügt hast</li>
+        <li><strong>Optional für Outbound:</strong>
+          <ul>
+            <li><strong>Termination URL:</strong> <code>sip.telnyx.eu</code></li>
+            <li><strong>Username:</strong> Username von der Konfiguration</li>
+            <li><strong>Passwort:</strong> Passwort von der Konfiguration</li>
+          </ul>
+        </li>
+      </ul>
+    </Card>
+  </Step>
+  
+  <Step title="Assistent zuweisen">
+    <Card
+      title="Zuweisung"
+      icon="check-circle"
+      color="purple">
+      <strong>Nun kannst du die Nummer speichern und einem Assistenten zuweisen.</strong>
+      
+      Die Integration ist abgeschlossen und die Nummer kann für eingehende und ausgehende Anrufe verwendet werden.
+    </Card>
+  </Step>
+</Steps>
+
+## Wichtige Hinweise
+
+<CardGroup cols={2}>
+  <Card
+    title="FQDN-Einstellung"
+    icon="server"
+    color="red">
+    <strong>Wichtig:</strong> Die FQDN <code>vojhwtf1hn6.eu.sip.livekit.cloud</code> muss korrekt als SRV-Eintrag konfiguriert werden.
+  </Card>
+  <Card
+    title="E.164 Format"
+    icon="phone"
+    color="orange">
+    <strong>Nummer Format:</strong> Das <code>+E.164</code> Format ist zwingend erforderlich für die korrekte Weiterleitung.
+  </Card>
+  <Card
+    title="TCP-Protokoll"
+    icon="shield"
+    color="blue">
+    <strong>Protokoll:</strong> TCP muss als Protokoll ausgewählt werden für eine stabile Verbindung.
+  </Card>
+  <Card
+    title="Codec-Beschränkung"
+    icon="settings"
+    color="green">
+    <strong>Codecs:</strong> Die Codecs müssen auf die empfohlenen Optionen beschränkt werden.
+  </Card>
+</CardGroup>
+
+## Sicherheitsanforderungen
+
+<Card
+  title="SIP-Anmeldedaten Sicherheit"
+  icon="shield"
+  color="red">
+  Ihre SIP-Anmeldedaten müssen sicher sein:
+  
+  <ul>
+    <li><strong>Benutzername:</strong> Ihr Telnyx-Benutzername oder bereitgestellter Benutzername</li>
+    <li><strong>Passwort muss haben:</strong>
+      <ul>
+        <li>12 oder mehr Zeichen</li>
+        <li>Zahlen</li>
+        <li>Groß- und Kleinbuchstaben</li>
+        <li>Sonderzeichen empfohlen</li>
+      </ul>
+    </li>
+  </ul>
+</Card>
+
+## Häufige Probleme
+
+<CardGroup cols={2}>
+  <Card
+    title="FQDN-Konfiguration"
+    icon="alert-circle"
+    color="red">
+    <strong>Die FQDN wird nicht korrekt erkannt?</strong>
+    
+    <ul>
+      <li>Stellen Sie sicher, dass <code>vojhwtf1hn6.eu.sip.livekit.cloud</code> korrekt eingegeben wurde</li>
+      <li>Wählen Sie <strong>SRV</strong> als Eintragstyp</li>
+      <li>Überprüfen Sie die Schreibweise</li>
+    </ul>
+  </Card>
+  
+  <Card
+    title="E.164 Format-Probleme"
+    icon="phone-x"
+    color="orange">
+    <strong>Anrufe werden nicht korrekt weitergeleitet?</strong>
+    
+    <ul>
+      <li>Überprüfen Sie, ob das <code>+E.164</code> Format ausgewählt ist</li>
+      <li>Stellen Sie sicher, dass das "+" nicht vergessen wurde</li>
+      <li>Testen Sie mit einer einfachen Rufnummer</li>
+    </ul>
+  </Card>
+  
+  <Card
+    title="TCP-Protokoll"
+    icon="server"
+    color="blue">
+    <strong>Verbindungsprobleme?</strong>
+    
+    <ul>
+      <li>Stellen Sie sicher, dass TCP als Protokoll ausgewählt ist</li>
+      <li>Überprüfen Sie Ihre Firewall-Einstellungen</li>
+      <li>Kontaktieren Sie den Telnyx-Support bei Problemen</li>
+    </ul>
+  </Card>
+  
+  <Card
+    title="Codec-Probleme"
+    icon="settings"
+    color="purple">
+    <strong>Audio-Qualitätsprobleme?</strong>
+    
+    <ul>
+      <li>Überprüfen Sie, ob die empfohlenen Codecs ausgewählt sind</li>
+      <li>Stellen Sie sicher, dass die Codec-Beschränkung aktiviert ist</li>
+      <li>Testen Sie mit verschiedenen Codec-Einstellungen</li>
+    </ul>
+  </Card>
+</CardGroup>
+
+## Hilfe benötigt?
+
+<Tip>
+  Unser Support-Team ist darauf spezialisiert, Kunden bei der Integration ihrer Telefonsysteme zu helfen. Wir führen Sie durch den gesamten Prozess und stellen eine reibungslose Einrichtung mit Ihrer spezifischen Telnyx-Konfiguration sicher.
+</Tip>
+
+<Card
+  title="Support kontaktieren"
+  icon="headphones"
+  color="blue"
+  href="https://famulor.de/support">
+  Benötigen Sie weitere Hilfe? Kontaktieren Sie unser Support-Team für persönliche Unterstützung bei der Telnyx-Integration.
+</Card>
+
+<Card
+  title="Telnyx Support"
+  icon="globe"
+  color="green"
+  href="https://developers.telnyx.com/docs">
+  Für technische Fragen zu Telnyx SIP-Trunking besuchen Sie die <a href="https://developers.telnyx.com/docs" target="_blank">Telnyx-Dokumentation</a>.
+</Card>

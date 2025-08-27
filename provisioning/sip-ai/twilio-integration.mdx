@@ -1,0 +1,343 @@
+---
+title: 'Twilio-Integration'
+icon: 'phone-volume'
+description: 'Verbinden Sie Ihr Twilio-Konto über SIP-Trunking mit Famulor'
+---
+
+# Twilio-Integration
+
+<Note>
+  Eine Schritt-für-Schritt-Anleitung zur Verbindung Ihres Twilio-Kontos über SIP-Trunking mit Famulor
+</Note>
+
+<CardGroup cols={2}>
+  <Card
+    title="Was ist Twilio-Integration?"
+    icon="phone-volume"
+    color="blue">
+    Verbinden Sie Ihr Twilio-Telefonsystem mit Famulor über Elastic SIP Trunking für flexible und skalierbare Telefonie-Integration.
+  </Card>
+  <Card
+    title="Vorteile"
+    icon="star"
+    color="green">
+    Nutzen Sie Twilio's robuste Infrastruktur, globale Reichweite und wettbewerbsfähige Tarife mit unseren KI-Assistenten.
+  </Card>
+</CardGroup>
+
+## Was ist Twilio-Integration?
+
+Die Twilio-Integration ermöglicht es Ihnen, Ihr Twilio-Telefonsystem mit Famulor zu verbinden. Twilio bietet Elastic SIP Trunking, das eine flexible und skalierbare Lösung für die Telefonie-Integration darstellt.
+
+<Steps>
+  <Step title="Bestehende Nummern nutzen">
+    Ihre bestehenden Twilio-Telefonnummern mit unseren KI-Assistenten nutzen
+  </Step>
+  <Step title="Infrastruktur beibehalten">
+    Twilio's robuste Infrastruktur und globale Reichweite beibehalten
+  </Step>
+  <Step title="Anrufe verwalten">
+    Anrufe über Ihr Twilio-Setup tätigen und empfangen
+  </Step>
+  <Step title="Kontrolle behalten">
+    Die vollständige Kontrolle über Ihre Nummern behalten
+  </Step>
+  <Step title="Kosten sparen">
+    Von Twilio's wettbewerbsfähigen Tarifen und regionalen Endpunkten profitieren
+  </Step>
+</Steps>
+
+## Wie es funktioniert
+
+Wenn Sie Ihr Twilio-System mit Famulor integrieren:
+
+<CardGroup cols={2}>
+  <Card
+    title="Eingehende Anrufe"
+    icon="phone-incoming"
+    color="green">
+    Anrufe an Ihre Twilio-Nummern werden über Elastic SIP Trunking zu unseren KI-Assistenten weitergeleitet
+  </Card>
+  <Card
+    title="Ausgehende Anrufe"
+    icon="phone-outgoing"
+    color="blue">
+    Unsere KI-Assistenten können Anrufe tätigen, die von Ihren Twilio-Nummern zu kommen scheinen
+  </Card>
+  <Card
+    title="Verwaltung"
+    icon="settings"
+    color="purple">
+    Sie verwalten Ihre Nummern weiterhin über das Twilio-Dashboard
+  </Card>
+  <Card
+    title="Kosteneffizienz"
+    icon="dollar-sign"
+    color="orange">
+    Nutzen Sie Twilio's wettbewerbsfähige Tarife und regionale Endpunkte
+  </Card>
+</CardGroup>
+
+## Einrichtung Ihrer Twilio-Integration
+
+<Steps>
+  <Step title="Elastic SIP Trunking erstellen">
+    <CardGroup cols={2}>
+      <Card
+        title="Trunk erstellen"
+        icon="plus-circle"
+        color="blue">
+        <ol>
+          <li>Gehen Sie zu Ihrem Twilio-Dashboard</li>
+          <li>Navigieren Sie zu "Elastic SIP Trunking"</li>
+          <li>Klicken Sie auf "Create Elastic SIP Trunking"</li>
+          <li>Geben Sie dem Trunk einen Namen und aktivieren Sie die allgemeinen Einstellungen</li>
+        </ol>
+      </Card>
+      <Card
+        title="Wichtig"
+        icon="alert-triangle"
+        color="orange">
+        Stellen Sie sicher, dass Sie alle erforderlichen Einstellungen korrekt konfigurieren, bevor Sie fortfahren.
+      </Card>
+    </CardGroup>
+  </Step>
+
+  <Step title="Termination einrichten (für ausgehende Anrufe)">
+    <CardGroup cols={2}>
+      <Card
+        title="Termination SIP URI"
+        icon="link"
+        color="green">
+        <ul>
+          <li>Die Termination SIP URI ist hier wichtig - wir werden sie in späteren Schritten verwenden</li>
+          <li>Verwenden Sie eine lokalisierte Termination URI, die sich in Ihrer Nähe befindet</li>
+          <li>Sie können Ihre lokalisierten URIs in der Twilio-Konsole erweitern und anzeigen</li>
+        </ul>
+      </Card>
+      <Card
+        title="IP-Whitelist oder Authentifizierung"
+        icon="shield"
+        color="orange">
+        Für Ihren Elastic SIP Trunk, um unsere ausgehenden Anfragen zu akzeptieren, müssen Sie entweder IP-Adressen whitelisten oder eine Authentifizierung mit Benutzername und Passwort erstellen.
+      </Card>
+    </CardGroup>
+    
+    <Note>
+      Da der Famulor SIP-Server derzeit keine statische IP hat, müssen Sie, wenn Sie sich für die IP-Route entscheiden, alle IP-Adressen im Bereich whitelisten.
+    </Note>
+    
+    <CodeGroup>
+      <CodeGroupItem title="IP-Whitelist">
+        ```bash
+        54.244.51.0
+        54.244.51.1  
+        54.244.51.2
+        54.244.51.3
+        54.172.60.0
+        54.172.60.1
+        54.172.60.2
+        54.172.60.3
+        ```
+      </CodeGroupItem>
+    </CodeGroup>
+  </Step>
+  
+  <Step title="Origination einrichten (für eingehende Anrufe)">
+    <Card
+      title="Famulor SIP-Server"
+      icon="server"
+      color="blue">
+      Hier geben Sie die Famulor SIP-Server-Adresse als Origination SIP URI an:
+      <CodeGroup>
+        <CodeGroupItem title="SIP URI">
+          ```bash
+          sip:ihre-unique-id.sip.livekit.cloud
+          ```
+        </CodeGroupItem>
+      </CodeGroup>
+      
+      <Note>
+        **Wichtig:** Die spezifische Famulor SIP-Adresse finden Sie in Ihrem Famulor-Dashboard unter "Telefonnummern" → "SIP-Trunk integrieren" → "Unsere SIP-Adresse".
+      </Note>
+    </Card>
+  </Step>
+
+  <Step title="Nummern zu Elastic SIP Trunking verschieben">
+    <Card
+      title="Nummern verwalten"
+      icon="phone"
+      color="green">
+      Sie haben den Elastic SIP Trunk erstellt, jetzt müssen Sie Nummern kaufen oder bestehende Nummern zu diesem Trunk verschieben.
+    </Card>
+  </Step>
+  
+  <Step title="Nummern zu Famulor importieren">
+    <Card
+      title="Import-Prozess"
+      icon="download"
+      color="blue">
+      Jetzt, da die Nummer mit Ihrem Elastic SIP Trunking eingerichtet ist, müssen Sie die Nummer zu Famulor importieren, damit wir wissen, wie wir den Anruf routen können.
+      
+      <ol>
+        <li>Gehen Sie zu Ihrem Famulor-Dashboard</li>
+        <li>Navigieren Sie zu "Ihre Telefonnummern"</li>
+        <li>Klicken Sie auf "SIP-Trunk integrieren"</li>
+      </ol>
+    </Card>
+  </Step>
+
+  <Step title="Details konfigurieren">
+    <CardGroup cols={2}>
+      <Card
+        title="Integrationstyp Details"
+        icon="settings"
+        color="purple">
+        <CodeGroup>
+          <CodeGroupItem title="Beispiel">
+            ```bash
+            Telefonnummer: z.B. +1 555 0123
+            Benutzername: Ihr Erweiterungs-Benutzername
+            Passwort: Ihr Erweiterungs-Passwort
+            ```
+          </CodeGroupItem>
+        </CodeGroup>
+      </Card>
+      <Card
+        title="Server-Adresse"
+        icon="server"
+        color="blue">
+        Hier geben Sie die Termination SIP URI an, die Sie in Schritt 1 eingerichtet haben.
+        <CodeGroup>
+          <CodeGroupItem title="Beispiel">
+            ```bash
+            Server-Adresse: z.B. xxx.pstn.twilio.com
+            ```
+          </CodeGroupItem>
+        </CodeGroup>
+      </Card>
+    </CardGroup>
+    
+    <Card
+      title="Autorisierungstyp"
+      icon="shield"
+      color="orange">
+      Wählen Sie hier den Autorisierungstyp aus, den Sie in Schritt 2 gewählt haben.
+      
+      Wenn Sie den IP-Typ gewählt haben, fügen Sie die IPs hinzu:
+      
+      <CodeGroup>
+        <CodeGroupItem title="IP-Whitelist">
+          ```bash
+          54.244.51.0
+          54.244.51.1  
+          54.244.51.2
+          54.244.51.3
+          54.172.60.0
+          54.172.60.1
+          54.172.60.2
+          54.172.60.3
+          ```
+        </CodeGroupItem>
+      </CodeGroup>
+    </Card>
+    
+    <Card
+      title="Land auswählen"
+      icon="globe"
+      color="green">
+      Wählen Sie das Land aus, in dem sich Ihr SIP-Trunk befindet.
+    </Card>
+  </Step>
+
+  <Step title="Einrichtung verifizieren">
+    <Card
+      title="Verifikationsschritte"
+      icon="check-circle"
+      color="green">
+      Nach der Konfiguration:
+      
+      <ol>
+        <li>Tätigen Sie einen Testanruf an Ihre Nummer/Erweiterung</li>
+        <li>Überprüfen Sie, dass der KI-Assistent antwortet</li>
+        <li>Verwenden Sie die Testanruf-Funktion, um ausgehende Anrufe zu verifizieren</li>
+      </ol>
+    </Card>
+  </Step>
+</Steps>
+
+## Sicherheitsanforderungen
+
+<Card
+  title="SIP-Anmeldedaten Sicherheit"
+  icon="shield"
+  color="red">
+  Ihre SIP-Anmeldedaten müssen sicher sein:
+  
+  <ul>
+    <li><strong>Benutzername:</strong> Ihre Erweiterungsnummer oder von Twilio bereitgestellter Benutzername</li>
+    <li><strong>Passwort muss haben:</strong>
+      <ul>
+        <li>12 oder mehr Zeichen</li>
+        <li>Zahlen</li>
+        <li>Groß- und Kleinbuchstaben</li>
+        <li>Sonderzeichen empfohlen</li>
+      </ul>
+    </li>
+  </ul>
+</Card>
+
+## Häufige Probleme
+
+<CardGroup cols={2}>
+  <Card
+    title="Ausgehende Anrufe funktionieren nicht"
+    icon="phone-x"
+    color="red">
+    <strong>Nach der Verbindung funktioniert der eingehende Anruf, aber der ausgehende funktioniert nicht?</strong>
+    
+    <Tabs>
+      <TabItem title="Termination SIP URI">
+        <ul>
+          <li>Wenn es ein Leerzeichen gibt, entfernen Sie es bitte</li>
+          <li>Verwenden Sie eine lokalisierte Termination URI, die sich in Ihrer Nähe befindet</li>
+          <li>Schauen Sie sich diese Dokumentation an, um eine auszuwählen</li>
+        </ul>
+      </TabItem>
+      <TabItem title="Benutzername & Anmeldedaten">
+        <ul>
+          <li>Stellen Sie sicher, dass Sie den richtigen Benutzernamen und die richtigen Anmeldedaten eingegeben haben</li>
+          <li>Beachten Sie, dass der Benutzername nicht der freundliche Name ist, der in der Anmeldedatenliste angezeigt wird</li>
+          <li>Der freundliche Name unterscheidet sich vom Benutzernamen - überprüfen Sie dies doppelt</li>
+        </ul>
+      </TabItem>
+    </Tabs>
+  </Card>
+  
+  <Card
+    title="Internationale Länder einrichten"
+    icon="globe"
+    color="blue">
+    <strong>Wie richte ich das Wählen in internationale Länder ein?</strong>
+    
+    <ol>
+      <li>Suchen Sie nach "geo", um die "Voice Geographic Permissions"-Einstellung zu finden</li>
+      <li>Wählen Sie "Elastic SIP Trunking" im Selektor aus</li>
+      <li>Wählen Sie die Länder aus, in die Sie wählen möchten</li>
+    </ol>
+  </Card>
+</CardGroup>
+
+## Hilfe benötigt?
+
+<Tip>
+  Unser Support-Team ist darauf spezialisiert, Kunden bei der Integration ihrer Telefonsysteme zu helfen. Wir führen Sie durch den gesamten Prozess und stellen eine reibungslose Einrichtung mit Ihrer spezifischen Twilio-Konfiguration sicher.
+</Tip>
+
+<Card
+  title="Support kontaktieren"
+  icon="headphones"
+  color="blue"
+  href="https://famulor.de/support">
+  Benötigen Sie weitere Hilfe? Kontaktieren Sie unser Support-Team für persönliche Unterstützung bei der Twilio-Integration.
+</Card>
