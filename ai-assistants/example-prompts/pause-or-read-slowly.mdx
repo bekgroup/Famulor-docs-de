@@ -1,7 +1,7 @@
 ---
-title: 'Pause oder langsam lesen'
-icon: 'pause'
-description: 'Steuern Sie das Sprechtempo durch Pausen in den Antworten Ihres Assistenten'
+title: "Pause oder langsam lesen"
+icon: "pause"
+description: "Steuern Sie das Sprechtempo durch Pausen in den Antworten Ihres Assistenten"
 ---
 
 # Pause oder langsam lesen
@@ -12,47 +12,45 @@ description: 'Steuern Sie das Sprechtempo durch Pausen in den Antworten Ihres As
 
 ## Übersicht
 
-<Card
-  title="Warum Pausen verwenden?"
-  icon="volume-2"
-  color="blue">
-  <p>Obwohl Sie die allgemeine Geschwindigkeit des Audios durch Ändern der Sprachgeschwindigkeit anpassen können, möchten Sie möglicherweise das Sprechtempo Ihres Assistenten nur an bestimmten Stellen verlangsamen (z.B. beim Lesen von Telefonnummern).</p>
-  <p>Dies können Sie tun, indem Sie den LLM anweisen und Text mit Leerzeichen-Bindestrichen dazwischen generieren.</p>
+<Card title="Warum Pausen verwenden?" icon="user-shakespeare" color="blue">
+  <p>
+  Obwohl Sie die allgemeine Geschwindigkeit des Audios durch Ändern der Sprachgeschwindigkeit anpassen können, möchten Sie möglicherweise das Sprechtempo Ihres Assistenten nur an bestimmten Stellen verlangsamen (z.B. beim Lesen von Telefonnummern).</p>
+
+  
+  <p>
+  Dies können Sie tun, indem Sie den LLM anweisen und Text mit Leerzeichen-Bindestrichen dazwischen generieren.</p>
 </Card>
 
 ## Grundlegende Pausen
 
-<Card
-  title="Einfache Pausen hinzufügen"
-  icon="minus"
-  color="green">
-  <p>Verwenden Sie einzelne Bindestriche mit Leerzeichen davor und danach, um kurze Pausen zu erzeugen:</p>
+<Card title="Einfache Pausen hinzufügen" icon="gauge-circle-minus" color="green">
+  <p>
+  Verwenden Sie einzelne Bindestriche mit Leerzeichen davor und danach, um kurze Pausen zu erzeugen:</p>
 </Card>
 
 ### Beispiel für einfache Pausen
 
 <CodeGroup>
-  <CodeGroupItem title="Prompt für den LLM">
-    ```markdown
-    ## Einfache Pausen
-    
-    Die Nummer ist 2 - 1 - 3 - 4
-    
-    Wichtig: Die Leerzeichen um den Bindestrich (-) sind wichtig für das korrekte Pausenverhalten.
-    ```
-  </CodeGroupItem>
-  
-  <CodeGroupItem title="Deutsche Beispiele">
-    ```markdown
-    ## Deutsche Telefonnummern
-    
-    Meine Telefonnummer ist 0 - 3 - 0 - 1 - 2 - 3 - 4 - 5 - 6 - 7 - 8
-    
-    Die Postleitzahl ist 1 - 0 - 1 - 1 - 5
-    
-    Die Kontonummer lautet 1 - 2 - 3 - 4 - 5 - 6 - 7 - 8 - 9 - 0
-    ```
-  </CodeGroupItem>
+
+```
+## Einfache Pausen
+
+Die Nummer ist 2 - 1 - 3 - 4
+
+Wichtig: Die Leerzeichen um den Bindestrich (-) sind wichtig für das korrekte Pausenverhalten.
+```
+
+
+```
+## Deutsche Telefonnummern
+
+Meine Telefonnummer ist 0 - 3 - 0 - 1 - 2 - 3 - 4 - 5 - 6 - 7 - 8
+
+Die Postleitzahl ist 1 - 0 - 1 - 1 - 5
+
+Die Kontonummer lautet 1 - 2 - 3 - 4 - 5 - 6 - 7 - 8 - 9 - 0
+```
+
 </CodeGroup>
 
 <Warning>
@@ -61,37 +59,34 @@ description: 'Steuern Sie das Sprechtempo durch Pausen in den Antworten Ihres As
 
 ## Längere Pausen
 
-<Card
-  title="Längere Pausen erzeugen"
-  icon="pause"
-  color="orange">
-  <p>Manchmal möchten Sie längere Pausen in das Gespräch einbauen. Dies können Sie tun, indem Sie mehrere Bindestriche zwischen den Wörtern hinzufügen.</p>
+<Card title="Längere Pausen erzeugen" icon="pause" color="orange">
+  <p>
+  Manchmal möchten Sie längere Pausen in das Gespräch einbauen. Dies können Sie tun, indem Sie mehrere Bindestriche zwischen den Wörtern hinzufügen.</p>
 </Card>
 
 ### Beispiel für längere Pausen
 
 <CodeGroup>
-  <CodeGroupItem title="Mehrere Bindestriche">
-    ```markdown
-    ## Längere Pausen
-    
-    Die Nummer ist 2 -  -  -  - 1 -  -  -  - 3
-    
-    // Beachten Sie die doppelten Leerzeichen zwischen den Bindestrichen
-    ```
-  </CodeGroupItem>
-  
-  <CodeGroupItem title="Deutsche Beispiele">
-    ```markdown
-    ## Deutsche Beispiele für längere Pausen
-    
-    Die Telefonnummer ist 0 -  -  -  - 3 -  -  -  - 0 -  -  -  - 1 -  -  -  - 2
-    
-    Die Postleitzahl lautet 1 -  -  -  - 0 -  -  -  - 1 -  -  -  - 1 -  -  -  - 5
-    
-    Die Kontonummer ist 1 -  -  -  - 2 -  -  -  - 3 -  -  -  - 4 -  -  -  - 5
-    ```
-  </CodeGroupItem>
+
+```
+## Längere Pausen
+
+Die Nummer ist 2 -  -  -  - 1 -  -  -  - 3
+
+// Beachten Sie die doppelten Leerzeichen zwischen den Bindestrichen
+```
+
+
+```
+## Deutsche Beispiele für längere Pausen
+
+Die Telefonnummer ist 0 -  -  -  - 3 -  -  -  - 0 -  -  -  - 1 -  -  -  - 2
+
+Die Postleitzahl lautet 1 -  -  -  - 0 -  -  -  - 1 -  -  -  - 1 -  -  -  - 5
+
+Die Kontonummer ist 1 -  -  -  - 2 -  -  -  - 3 -  -  -  - 4 -  -  -  - 5
+```
+
 </CodeGroup>
 
 <Note>
@@ -101,49 +96,67 @@ description: 'Steuern Sie das Sprechtempo durch Pausen in den Antworten Ihres As
 ## Praktische Anwendungsfälle
 
 <CardGroup cols={2}>
-  <Card
-    title="Telefonnummern"
-    icon="phone"
-    color="blue">
+  <Card title="Telefonnummern" icon="phone" color="blue">
     <ul>
-      <li>Verwende Pausen zwischen den Ziffern</li>
-      <li>Beispiel: 0 - 3 - 0 - 1 - 2 - 3 - 4 - 5 - 6 - 7 - 8</li>
-      <li>Hilft bei der besseren Verständlichkeit</li>
+    <li>
+    Verwende Pausen zwischen den Ziffern</li>
+
+    
+    <li>
+    Beispiel: 0 - 3 - 0 - 1 - 2 - 3 - 4 - 5 - 6 - 7 - 8</li>
+
+    
+    <li>
+    Hilft bei der besseren Verständlichkeit</li>
+
     </ul>
   </Card>
-  
-  <Card
-    title="Postleitzahlen"
-    icon="map-pin"
-    color="green">
+  <Card title="Postleitzahlen" icon="map-pin" color="green">
     <ul>
-      <li>Pausen zwischen den einzelnen Ziffern</li>
-      <li>Beispiel: 1 - 0 - 1 - 1 - 5</li>
-      <li>Besonders wichtig bei deutschen PLZ</li>
+    <li>
+    Pausen zwischen den einzelnen Ziffern</li>
+
+    
+    <li>
+    Beispiel: 1 - 0 - 1 - 1 - 5</li>
+
+    
+    <li>
+    Besonders wichtig bei deutschen PLZ</li>
+
     </ul>
   </Card>
 </CardGroup>
 
 <CardGroup cols={2}>
-  <Card
-    title="Kontonummern"
-    icon="credit-card"
-    color="purple">
+  <Card title="Kontonummern" icon="credit-card" color="purple">
     <ul>
-      <li>Längere Pausen für bessere Verständlichkeit</li>
-      <li>Beispiel: 1 -  -  -  - 2 -  -  -  - 3 -  -  -  - 4</li>
-      <li>Wichtig bei IBAN oder Kontonummern</li>
+    <li>
+    Längere Pausen für bessere Verständlichkeit</li>
+
+    
+    <li>
+    Beispiel: 1 -  -  -  - 2 -  -  -  - 3 -  -  -  - 4</li>
+
+    
+    <li>
+    Wichtig bei IBAN oder Kontonummern</li>
+
     </ul>
   </Card>
-  
-  <Card
-    title="Daten und Zeiten"
-    icon="calendar"
-    color="orange">
+  <Card title="Daten und Zeiten" icon="calendar" color="orange">
     <ul>
-      <li>Pausen zwischen Datum und Uhrzeit</li>
-      <li>Beispiel: 5 - Juli - 2024 - um - 14 - Uhr - 30</li>
-      <li>Hilft bei der Strukturierung von Informationen</li>
+    <li>
+    Pausen zwischen Datum und Uhrzeit</li>
+
+    
+    <li>
+    Beispiel: 5 - Juli - 2024 - um - 14 - Uhr - 30</li>
+
+    
+    <li>
+    Hilft bei der Strukturierung von Informationen</li>
+
     </ul>
   </Card>
 </CardGroup>
@@ -151,131 +164,208 @@ description: 'Steuern Sie das Sprechtempo durch Pausen in den Antworten Ihres As
 ## Prompt-Beispiele für verschiedene Situationen
 
 <CodeGroup>
-  <CodeGroupItem title="Telefonnummern">
-    ```markdown
-    ## Telefonnummern aussprechen
-    
-    Wenn Sie nach meiner Telefonnummer gefragt werden, antworten Sie:
-    
-    "Meine Telefonnummer ist 0 - 3 - 0 - 1 - 2 - 3 - 4 - 5 - 6 - 7 - 8"
-    
-    Verwenden Sie immer Pausen zwischen den Ziffern für bessere Verständlichkeit.
-    ```
-  </CodeGroupItem>
-  
-  <CodeGroupItem title="Adressen">
-    ```markdown
-    ## Adressen aussprechen
-    
-    Bei Adressen verwenden Sie Pausen für bessere Strukturierung:
-    
-    "Die Adresse lautet Musterstraße - 123 - 10115 - Berlin"
-    
-    Verwenden Sie längere Pausen zwischen den Hauptbestandteilen.
-    ```
-  </CodeGroupItem>
-  
-  <CodeGroupItem title="Wichtige Informationen">
-    ```markdown
-    ## Wichtige Informationen betonen
-    
-    Bei wichtigen Informationen können Sie längere Pausen verwenden:
-    
-    "Ihre Bestellnummer ist -  -  -  - 1 -  -  -  - 2 -  -  -  - 3 -  -  -  - 4 -  -  -  - 5"
-    
-    Dies gibt dem Kunden Zeit, die Information zu notieren.
-    ```
-  </CodeGroupItem>
+
+```
+## Telefonnummern aussprechen
+
+Wenn Sie nach meiner Telefonnummer gefragt werden, antworten Sie:
+
+"Meine Telefonnummer ist 0 - 3 - 0 - 1 - 2 - 3 - 4 - 5 - 6 - 7 - 8"
+
+Verwenden Sie immer Pausen zwischen den Ziffern für bessere Verständlichkeit.
+```
+
+
+```
+## Adressen aussprechen
+
+Bei Adressen verwenden Sie Pausen für bessere Strukturierung:
+
+"Die Adresse lautet Musterstraße - 123 - 10115 - Berlin"
+
+Verwenden Sie längere Pausen zwischen den Hauptbestandteilen.
+```
+
+
+```
+## Wichtige Informationen betonen
+
+Bei wichtigen Informationen können Sie längere Pausen verwenden:
+
+"Ihre Bestellnummer ist -  -  -  - 1 -  -  -  - 2 -  -  -  - 3 -  -  -  - 4 -  -  -  - 5"
+
+Dies gibt dem Kunden Zeit, die Information zu notieren.
+```
+
 </CodeGroup>
 
 ## Best Practices
 
-<Card
-  title="Empfohlene Vorgehensweise"
-  icon="check-circle"
-  color="green">
+<Card title="Empfohlene Vorgehensweise" icon="florin-sign" color="green">
   <ul>
-    <li><strong>Konsistenz</strong> - Verwenden Sie immer das gleiche Format für ähnliche Informationen</li>
-    <li><strong>Leerzeichen</strong> - Stellen Sie sicher, dass Leerzeichen um Bindestriche vorhanden sind</li>
-    <li><strong>Länge der Pausen</strong> - Passen Sie die Anzahl der Bindestriche an die Wichtigkeit der Information an</li>
-    <li><strong>Testen</strong> - Hören Sie sich die generierte Sprache an, um die Pausen zu überprüfen</li>
-    <li><strong>Benutzerfreundlichkeit</strong> - Verwenden Sie Pausen, um die Verständlichkeit zu verbessern, nicht zu erschweren</li>
+  <li>
+  Konsistenz
+
+   - Verwenden Sie immer das gleiche Format für ähnliche Informationen</li>
+
+  
+  <li>
+  Leerzeichen
+
+   - Stellen Sie sicher, dass Leerzeichen um Bindestriche vorhanden sind</li>
+
+  
+  <li>
+  Länge der Pausen
+
+   - Passen Sie die Anzahl der Bindestriche an die Wichtigkeit der Information an</li>
+
+  
+  <li>
+  Testen
+
+   - Hören Sie sich die generierte Sprache an, um die Pausen zu überprüfen</li>
+
+  
+  <li>
+  Benutzerfreundlichkeit
+
+   - Verwenden Sie Pausen, um die Verständlichkeit zu verbessern, nicht zu erschweren</li>
+
   </ul>
 </Card>
 
 ## Häufige Fehler vermeiden
 
-<Card
-  title="Was Sie vermeiden sollten"
-  icon="x-circle"
-  color="red">
+<Card title="Was Sie vermeiden sollten" icon="user-helmet-safety" color="red">
   <ul>
-    <li><strong>Fehlende Leerzeichen</strong> - "-" funktioniert nicht, nur " - " funktioniert</li>
-    <li><strong>Zu viele Pausen</strong> - Zu viele Bindestriche können das Sprechen unnatürlich machen</li>
-    <li><strong>Inkonsistente Verwendung</strong> - Verwenden Sie das gleiche Format für ähnliche Informationen</li>
-    <li><strong>Fehlende Tests</strong> - Testen Sie immer die generierte Sprache</li>
+  <li>
+  Fehlende Leerzeichen
+
+   - "-" funktioniert nicht, nur " - " funktioniert</li>
+
+  
+  <li>
+  Zu viele Pausen
+
+   - Zu viele Bindestriche können das Sprechen unnatürlich machen</li>
+
+  
+  <li>
+  Inkonsistente Verwendung
+
+   - Verwenden Sie das gleiche Format für ähnliche Informationen</li>
+
+  
+  <li>
+  Fehlende Tests
+
+   - Testen Sie immer die generierte Sprache</li>
+
   </ul>
 </Card>
 
 ## Integration in Ihre Prompts
 
-<Card
-  title="Wie Sie Pausen in Ihre Prompts integrieren"
-  icon="settings"
-  color="blue">
+<Card title="Wie Sie Pausen in Ihre Prompts integrieren" icon="circle-pause" color="blue">
   <ol>
-    <li><strong>Identifizieren Sie Stellen</strong>, an denen Pausen hilfreich wären</li>
-    <li><strong>Fügen Sie Bindestriche hinzu</strong> mit entsprechenden Leerzeichen</li>
-    <li><strong>Testen Sie die Aussprache</strong> mit Audio-Tests</li>
-    <li><strong>Passen Sie bei Bedarf an</strong> - zu viele oder zu wenige Pausen</li>
-    <li><strong>Dokumentieren Sie Ihre Entscheidungen</strong> für zukünftige Referenz</li>
+  <li>
+  Identifizieren Sie Stellen
+
+  , an denen Pausen hilfreich wären</li>
+
+  
+  <li>
+  Fügen Sie Bindestriche hinzu
+
+   mit entsprechenden Leerzeichen</li>
+
+  
+  <li>
+  Testen Sie die Aussprache
+
+   mit Audio-Tests</li>
+
+  
+  <li>
+  Passen Sie bei Bedarf an
+
+   - zu viele oder zu wenige Pausen</li>
+
+  
+  <li>
+  Dokumentieren Sie Ihre Entscheidungen
+
+   für zukünftige Referenz</li>
+
   </ol>
 </Card>
 
 ## Beispiel für einen vollständigen Prompt
 
 <CodeGroup>
-  <CodeGroupItem title="Vollständiger Beispiel-Prompt">
-    ```markdown
-    # Famulor Assistent - Pausen und langsames Lesen
-    
-    ## Identität
-    Du bist ein professioneller Famulor KI-Assistent, der Kunden bei Telefonanrufen unterstützt.
-    
-    ## Pausen-Richtlinien
-    
-    ### Telefonnummern
-    - Verwende immer Pausen zwischen den Ziffern
-    - Beispiel: "Meine Telefonnummer ist 0 - 3 - 0 - 1 - 2 - 3 - 4 - 5 - 6 - 7 - 8"
-    
-    ### Wichtige Informationen
-    - Verwende längere Pausen für sehr wichtige Informationen
-    - Beispiel: "Ihre Bestellnummer ist -  -  -  - 1 -  -  -  - 2 -  -  -  - 3"
-    
-    ### Adressen
-    - Verwende Pausen zwischen Straße, Hausnummer, PLZ und Stadt
-    - Beispiel: "Die Adresse lautet Musterstraße - 123 - 10115 - Berlin"
-    
-    ## Wichtige Regeln
-    - Verwende IMMER Leerzeichen um Bindestriche: " - " nicht "-"
-    - Teste die Aussprache mit Audio-Tests
-    - Passe die Anzahl der Bindestriche an die Wichtigkeit an
-    ```
-  </CodeGroupItem>
+
+```
+# Famulor Assistent - Pausen und langsames Lesen
+
+## Identität
+Du bist ein professioneller Famulor KI-Assistent, der Kunden bei Telefonanrufen unterstützt.
+
+## Pausen-Richtlinien
+
+### Telefonnummern
+- Verwende immer Pausen zwischen den Ziffern
+- Beispiel: "Meine Telefonnummer ist 0 - 3 - 0 - 1 - 2 - 3 - 4 - 5 - 6 - 7 - 8"
+
+### Wichtige Informationen
+- Verwende längere Pausen für sehr wichtige Informationen
+- Beispiel: "Ihre Bestellnummer ist -  -  -  - 1 -  -  -  - 2 -  -  -  - 3"
+
+### Adressen
+- Verwende Pausen zwischen Straße, Hausnummer, PLZ und Stadt
+- Beispiel: "Die Adresse lautet Musterstraße - 123 - 10115 - Berlin"
+
+## Wichtige Regeln
+- Verwende IMMER Leerzeichen um Bindestriche: " - " nicht "-"
+- Teste die Aussprache mit Audio-Tests
+- Passe die Anzahl der Bindestriche an die Wichtigkeit an
+```
+
 </CodeGroup>
 
 ## Testen und Optimieren
 
-<Card
-  title="Testen Sie Ihre Pausen"
-  icon="play"
-  color="purple">
+<Card title="Testen Sie Ihre Pausen" icon="play" color="purple">
   <ol>
-    <li><strong>Audio-Tests durchführen</strong> - Hören Sie sich die generierte Sprache an</li>
-    <li><strong>Pausen überprüfen</strong> - Sind sie zu kurz, zu lang oder genau richtig?</li>
-    <li><strong>Verständlichkeit testen</strong> - Können Kunden die Informationen gut verstehen?</li>
-    <li><strong>Anpassungen vornehmen</strong> - Passen Sie die Anzahl der Bindestriche an</li>
-    <li><strong>Konsistenz prüfen</strong> - Verwenden Sie das gleiche Format überall?</li>
+  <li>
+  Audio-Tests durchführen
+
+   - Hören Sie sich die generierte Sprache an</li>
+
+  
+  <li>
+  Pausen überprüfen
+
+   - Sind sie zu kurz, zu lang oder genau richtig?</li>
+
+  
+  <li>
+  Verständlichkeit testen
+
+   - Können Kunden die Informationen gut verstehen?</li>
+
+  
+  <li>
+  Anpassungen vornehmen
+
+   - Passen Sie die Anzahl der Bindestriche an</li>
+
+  
+  <li>
+  Konsistenz prüfen
+
+   - Verwenden Sie das gleiche Format überall?</li>
+
   </ol>
 </Card>
 
@@ -285,24 +375,36 @@ description: 'Steuern Sie das Sprechtempo durch Pausen in den Antworten Ihres As
   Unser Support-Team kann Ihnen bei der Integration von Pausen in Ihre Prompts helfen.
 </Tip>
 
-<Card
-  title="Support kontaktieren"
-  icon="headphones"
-  color="blue"
-  href="https://famulor.de/support">
+<Card title="Support kontaktieren" icon="headphones" color="blue" href="https://famulor.de/support">
   Benötigen Sie Hilfe bei der Sprachsteuerung? Kontaktieren Sie unser Support-Team.
 </Card>
 
 ## Nächste Schritte
 
-<Card
-  title="Weiterführende Ressourcen"
-  icon="arrow-right"
-  color="green">
+<Card title="Weiterführende Ressourcen" icon="arrow-right" color="green">
   <ul>
-    <li>Schauen Sie sich unseren <strong>Allgemeinen Prompt Engineering Guide</strong> an</li>
-    <li>Entdecken Sie unseren <strong>Prompt Guide für spezifische Situationen</strong></li>
-    <li>Lernen Sie mehr über <strong>Sprachsteuerbarkeit</strong></li>
-    <li>Testen Sie Ihre Prompts mit <strong>Audio-Tests</strong></li>
+  <li>
+  Schauen Sie sich unseren Allgemeinen Prompt Engineering Guide
+
+   an</li>
+
+  
+  <li>
+  Entdecken Sie unseren Prompt Guide für spezifische Situationen
+
+  </li>
+
+  
+  <li>
+  Lernen Sie mehr über Sprachsteuerbarkeit
+
+  </li>
+
+  
+  <li>
+  Testen Sie Ihre Prompts mit Audio-Tests
+
+  </li>
+
   </ul>
 </Card>
