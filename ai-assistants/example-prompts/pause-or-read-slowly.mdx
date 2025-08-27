@@ -13,30 +13,32 @@ description: "Steuern Sie das Sprechtempo durch Pausen in den Antworten Ihres As
 ## Übersicht
 
 <Card title="Warum Pausen verwenden?" icon="volume-2" color="blue">
-  <p>Obwohl Sie die allgemeine Geschwindigkeit des Audios durch Ändern der Sprachgeschwindigkeit anpassen können, möchten Sie möglicherweise das Sprechtempo Ihres Assistenten nur an bestimmten Stellen verlangsamen (z.B. beim Lesen von Telefonnummern).</p>
-  <p>Dies können Sie tun, indem Sie den LLM anweisen und Text mit Leerzeichen-Bindestrichen dazwischen generieren.</p>
+  <p>
+  Obwohl Sie die allgemeine Geschwindigkeit des Audios durch Ändern der Sprachgeschwindigkeit anpassen können, möchten Sie möglicherweise das Sprechtempo Ihres Assistenten nur an bestimmten Stellen verlangsamen (z.B. beim Lesen von Telefonnummern).</p>
+
+  
+  <p>
+  Dies können Sie tun, indem Sie den LLM anweisen und Text mit Leerzeichen-Bindestrichen dazwischen generieren.</p>
 </Card>
 
 ## Grundlegende Pausen
 
 <Card title="Einfache Pausen hinzufügen" icon="gauge-circle-minus" color="green">
-  <p>Verwenden Sie einzelne Bindestriche mit Leerzeichen davor und danach, um kurze Pausen zu erzeugen:</p>
+  <p>
+  Verwenden Sie einzelne Bindestriche mit Leerzeichen davor und danach, um kurze Pausen zu erzeugen:</p>
 </Card>
 
 ### Beispiel für einfache Pausen
 
 <CodeGroup>
 
-```
+````text
 ## Einfache Pausen
 
 Die Nummer ist 2 - 1 - 3 - 4
 
 Wichtig: Die Leerzeichen um den Bindestrich (-) sind wichtig für das korrekte Pausenverhalten.
-```
-
-
-```
+```text
 ## Deutsche Telefonnummern
 
 Meine Telefonnummer ist 0 - 3 - 0 - 1 - 2 - 3 - 4 - 5 - 6 - 7 - 8
@@ -44,74 +46,112 @@ Meine Telefonnummer ist 0 - 3 - 0 - 1 - 2 - 3 - 4 - 5 - 6 - 7 - 8
 Die Postleitzahl ist 1 - 0 - 1 - 1 - 5
 
 Die Kontonummer lautet 1 - 2 - 3 - 4 - 5 - 6 - 7 - 8 - 9 - 0
-```
+````
 
 </CodeGroup>
 
 <Warning>
-  **Wichtig:** Die Leerzeichen um den Bindestrich (-) sind entscheidend für das korrekte Pausenverhalten. Ohne diese Leerzeichen funktioniert die Pause nicht richtig.
+  **Wichtig:** Die Leerzeichen um den Bindestrich (`-`) sind entscheidend für das korrekte Pausenverhalten. Ohne diese Leerzeichen funktioniert die Pause nicht richtig.
 </Warning>
 
 ## Längere Pausen
 
 <Card title="Längere Pausen erzeugen" icon="clock" color="orange">
-  <p>Manchmal möchten Sie längere Pausen in das Gespräch einbauen. Dies können Sie tun, indem Sie mehrere Bindestriche zwischen den Wörtern hinzufügen.</p>
+  <p>
+  Manchmal möchten Sie längere Pausen in das Gespräch einbauen. Dies können Sie tun, indem Sie mehrere Bindestriche zwischen den Wörtern hinzufügen.</p>
 </Card>
 
 ### Beispiel für längere Pausen
 
 <CodeGroup>
 
-```
+````text
 ## Längere Pausen
 
-Die Nummer ist 2 -  -  -  - 1 -  -  -  - 3
+Die Nummer ist 2 - - - - 1 - - - - 3
 
 // Beachten Sie die doppelten Leerzeichen zwischen den Bindestrichen
-```
-
-
-```
+```text
 ## Deutsche Beispiele für längere Pausen
 
-Die Telefonnummer ist 0 -  -  -  - 3 -  -  -  - 0 -  -  -  - 1 -  -  -  - 2
+Die Telefonnummer ist 0 - - - - 3 - - - - 0 - - - - 1 - - - - 2
 
-Die Postleitzahl lautet 1 -  -  -  - 0 -  -  -  - 1 -  -  -  - 1 -  -  -  - 5
+Die Postleitzahl lautet 1 - - - - 0 - - - - 1 - - - - 1 - - - - 5
 
-Die Kontonummer ist 1 -  -  -  - 2 -  -  -  - 3 -  -  -  - 4 -  -  -  - 5
-```
+Die Kontonummer ist 1 - - - - 2 - - - - 3 - - - - 4 - - - - 5
+````
 
 </CodeGroup>
 
 <Note>
-  **Hinweis:** Die doppelten Leerzeichen zwischen den Bindestrichen erzeugen längere Pausen als einzelne Bindestriche.
+  **Hinweis:** Mehrere Bindestriche mit Leerzeichen dazwischen erzeugen längere Pausen als einzelne Bindestriche.
 </Note>
 
 ## Praktische Anwendungsfälle
 
 <CardGroup cols={2}>
   <Card title="Telefonnummern" icon="phone" color="blue">
-    - Verwende Pausen zwischen den Ziffern
-    - Beispiel: 0 - 3 - 0 - 1 - 2 - 3 - 4 - 5 - 6 - 7 - 8
-    - Hilft bei der besseren Verständlichkeit
+    <ul>
+    <li>
+    Verwende Pausen zwischen den Ziffern</li>
+
+    
+    <li>
+    Beispiel: 0 - 3 - 0 - 1 - 2 - 3 - 4 - 5 - 6 - 7 - 8</li>
+
+    
+    <li>
+    Hilft bei der besseren Verständlichkeit</li>
+
+    </ul>
   </Card>
   <Card title="Postleitzahlen" icon="map-pin" color="green">
-    - Pausen zwischen den einzelnen Ziffern
-    - Beispiel: 1 - 0 - 1 - 1 - 5
-    - Besonders wichtig bei deutschen PLZ
+    <ul>
+    <li>
+    Pausen zwischen den einzelnen Ziffern</li>
+
+    
+    <li>
+    Beispiel: 1 - 0 - 1 - 1 - 5</li>
+
+    
+    <li>
+    Besonders wichtig bei deutschen PLZ</li>
+
+    </ul>
   </Card>
 </CardGroup>
 
 <CardGroup cols={2}>
   <Card title="Kontonummern" icon="credit-card" color="purple">
-    - Längere Pausen für bessere Verständlichkeit
-    - Beispiel: 1 -  -  -  - 2 -  -  -  - 3 -  -  -  - 4
-    - Wichtig bei IBAN oder Kontonummern
+    <ul>
+    <li>
+    Längere Pausen für bessere Verständlichkeit</li>
+
+    
+    <li>
+    Beispiel: 1 - - - - 2 - - - - 3 - - - - 4</li>
+
+    
+    <li>
+    Wichtig bei IBAN oder Kontonummern</li>
+
+    </ul>
   </Card>
   <Card title="Daten und Zeiten" icon="calendar" color="orange">
-    - Pausen zwischen Datum und Uhrzeit
-    - Beispiel: 5 - Juli - 2024 - um - 14 - Uhr - 30
-    - Hilft bei der Strukturierung von Informationen
+    <ul>
+    <li>
+    Pausen zwischen Datum und Uhrzeit</li>
+
+    
+    <li>
+    Beispiel: 5 - Juli - 2024 - um - 14 - Uhr - 30</li>
+
+    
+    <li>
+    Hilft bei der Strukturierung von Informationen</li>
+
+    </ul>
   </Card>
 </CardGroup>
 
@@ -119,7 +159,7 @@ Die Kontonummer ist 1 -  -  -  - 2 -  -  -  - 3 -  -  -  - 4 -  -  -  - 5
 
 <CodeGroup>
 
-```
+````text
 ## Telefonnummern aussprechen
 
 Wenn Sie nach meiner Telefonnummer gefragt werden, antworten Sie:
@@ -127,10 +167,7 @@ Wenn Sie nach meiner Telefonnummer gefragt werden, antworten Sie:
 "Meine Telefonnummer ist 0 - 3 - 0 - 1 - 2 - 3 - 4 - 5 - 6 - 7 - 8"
 
 Verwenden Sie immer Pausen zwischen den Ziffern für bessere Verständlichkeit.
-```
-
-
-```
+```text
 ## Adressen aussprechen
 
 Bei Adressen verwenden Sie Pausen für bessere Strukturierung:
@@ -138,18 +175,15 @@ Bei Adressen verwenden Sie Pausen für bessere Strukturierung:
 "Die Adresse lautet Musterstraße - 123 - 10115 - Berlin"
 
 Verwenden Sie längere Pausen zwischen den Hauptbestandteilen.
-```
-
-
-```
+```text
 ## Wichtige Informationen betonen
 
 Bei wichtigen Informationen können Sie längere Pausen verwenden:
 
-"Ihre Bestellnummer ist -  -  -  - 1 -  -  -  - 2 -  -  -  - 3 -  -  -  - 4 -  -  -  - 5"
+"Ihre Bestellnummer ist - - - - 1 - - - - 2 - - - - 3 - - - - 4 - - - - 5"
 
 Dies gibt dem Kunden Zeit, die Information zu notieren.
-```
+````
 
 </CodeGroup>
 
@@ -158,33 +192,33 @@ Dies gibt dem Kunden Zeit, die Information zu notieren.
 <Card title="Empfohlene Vorgehensweise" icon="florin-sign" color="green">
   <ul>
   <li>
-  Konsistenz
+  Konsistenz:
 
-   - Verwenden Sie immer das gleiche Format für ähnliche Informationen</li>
-
-  
-  <li>
-  Leerzeichen
-
-   - Stellen Sie sicher, dass Leerzeichen um Bindestriche vorhanden sind</li>
+   Verwenden Sie immer das gleiche Format für ähnliche Informationen.</li>
 
   
   <li>
-  Länge der Pausen
+  Leerzeichen:
 
-   - Passen Sie die Anzahl der Bindestriche an die Wichtigkeit der Information an</li>
-
-  
-  <li>
-  Testen
-
-   - Hören Sie sich die generierte Sprache an, um die Pausen zu überprüfen</li>
+   Stellen Sie sicher, dass Leerzeichen um Bindestriche vorhanden sind.</li>
 
   
   <li>
-  Benutzerfreundlichkeit
+  Länge der Pausen:
 
-   - Verwenden Sie Pausen, um die Verständlichkeit zu verbessern, nicht zu erschweren</li>
+   Passen Sie die Anzahl der Bindestriche an die Wichtigkeit der Information an.</li>
+
+  
+  <li>
+  Testen:
+
+   Hören Sie sich die generierte Sprache an, um die Pausen zu überprüfen.</li>
+
+  
+  <li>
+  Benutzerfreundlichkeit:
+
+   Verwenden Sie Pausen, um die Verständlichkeit zu verbessern, nicht zu erschweren.</li>
 
   </ul>
 </Card>
@@ -194,27 +228,27 @@ Dies gibt dem Kunden Zeit, die Information zu notieren.
 <Card title="Was Sie vermeiden sollten" icon="user-helmet-safety" color="red">
   <ul>
   <li>
-  Fehlende Leerzeichen
+  Fehlende Leerzeichen:
 
-   - "-" funktioniert nicht, nur " - " funktioniert</li>
-
-  
-  <li>
-  Zu viele Pausen
-
-   - Zu viele Bindestriche können das Sprechen unnatürlich machen</li>
+   "-" funktioniert nicht, nur " - " funktioniert.</li>
 
   
   <li>
-  Inkonsistente Verwendung
+  Zu viele Pausen:
 
-   - Verwenden Sie das gleiche Format für ähnliche Informationen</li>
+   Zu viele Bindestriche können das Sprechen unnatürlich machen.</li>
 
   
   <li>
-  Fehlende Tests
+  Inkonsistente Verwendung:
 
-   - Testen Sie immer die generierte Sprache</li>
+   Verwenden Sie das gleiche Format für ähnliche Informationen.</li>
+
+  
+  <li>
+  Fehlende Tests:
+
+   Testen Sie immer die generierte Sprache.</li>
 
   </ul>
 </Card>
@@ -224,33 +258,23 @@ Dies gibt dem Kunden Zeit, die Information zu notieren.
 <Card title="Wie Sie Pausen in Ihre Prompts integrieren" icon="circle-pause" color="blue">
   <ol>
   <li>
-  Identifizieren Sie Stellen
-
-  , an denen Pausen hilfreich wären</li>
+  Identifizieren Sie Stellen, an denen Pausen hilfreich wären.</li>
 
   
   <li>
-  Fügen Sie Bindestriche hinzu
-
-   mit entsprechenden Leerzeichen</li>
+  Fügen Sie Bindestriche mit entsprechenden Leerzeichen hinzu.</li>
 
   
   <li>
-  Testen Sie die Aussprache
-
-   mit Audio-Tests</li>
+  Testen Sie die Aussprache mit Audio-Tests.</li>
 
   
   <li>
-  Passen Sie bei Bedarf an
-
-   - zu viele oder zu wenige Pausen</li>
+  Passen Sie bei Bedarf an, falls es zu viele oder zu wenige Pausen gibt.</li>
 
   
   <li>
-  Dokumentieren Sie Ihre Entscheidungen
-
-   für zukünftige Referenz</li>
+  Dokumentieren Sie Ihre Entscheidungen für zukünftige Referenz.</li>
 
   </ol>
 </Card>
@@ -259,7 +283,7 @@ Dies gibt dem Kunden Zeit, die Information zu notieren.
 
 <CodeGroup>
 
-```
+```text
 # Famulor Assistent - Pausen und langsames Lesen
 
 ## Identität
@@ -273,7 +297,7 @@ Du bist ein professioneller Famulor KI-Assistent, der Kunden bei Telefonanrufen 
 
 ### Wichtige Informationen
 - Verwende längere Pausen für sehr wichtige Informationen
-- Beispiel: "Ihre Bestellnummer ist -  -  -  - 1 -  -  -  - 2 -  -  -  - 3"
+- Beispiel: "Ihre Bestellnummer ist - - - - 1 - - - - 2 - - - - 3"
 
 ### Adressen
 - Verwende Pausen zwischen Straße, Hausnummer, PLZ und Stadt
@@ -292,33 +316,23 @@ Du bist ein professioneller Famulor KI-Assistent, der Kunden bei Telefonanrufen 
 <Card title="Testen Sie Ihre Pausen" icon="play" color="purple">
   <ol>
   <li>
-  Audio-Tests durchführen
-
-   - Hören Sie sich die generierte Sprache an</li>
+  Führen Sie Audio-Tests durch und hören Sie sich die generierte Sprache an.</li>
 
   
   <li>
-  Pausen überprüfen
-
-   - Sind sie zu kurz, zu lang oder genau richtig?</li>
+  Überprüfen Sie die Pausen: Sind sie zu kurz, zu lang oder genau richtig?</li>
 
   
   <li>
-  Verständlichkeit testen
-
-   - Können Kunden die Informationen gut verstehen?</li>
+  Testen Sie die Verständlichkeit: Können Kunden die Informationen gut verstehen?</li>
 
   
   <li>
-  Anpassungen vornehmen
-
-   - Passen Sie die Anzahl der Bindestriche an</li>
+  Nehmen Sie Anpassungen vor und ändern Sie die Anzahl der Bindestriche.</li>
 
   
   <li>
-  Konsistenz prüfen
-
-   - Verwenden Sie das gleiche Format überall?</li>
+  Prüfen Sie die Konsistenz: Verwenden Sie überall das gleiche Format?</li>
 
   </ol>
 </Card>
@@ -338,27 +352,19 @@ Du bist ein professioneller Famulor KI-Assistent, der Kunden bei Telefonanrufen 
 <Card title="Weiterführende Ressourcen" icon="arrow-right" color="green">
   <ul>
   <li>
-  Schauen Sie sich unseren Allgemeinen Prompt Engineering Guide
-
-   an</li>
+  Schauen Sie sich unseren Allgemeinen Prompt Engineering Guide an.</li>
 
   
   <li>
-  Entdecken Sie unseren Prompt Guide für spezifische Situationen
-
-  </li>
+  Entdecken Sie unseren Prompt Guide für spezifische Situationen.</li>
 
   
   <li>
-  Lernen Sie mehr über Sprachsteuerbarkeit
-
-  </li>
+  Lernen Sie mehr über Sprachsteuerbarkeit.</li>
 
   
   <li>
-  Testen Sie Ihre Prompts mit Audio-Tests
-
-  </li>
+  Testen Sie Ihre Prompts mit Audio-Tests.</li>
 
   </ul>
 </Card>

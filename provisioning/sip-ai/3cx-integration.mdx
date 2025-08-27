@@ -6,7 +6,7 @@ description: 'Verbinden Sie Ihre 3CX-Telefonanlage mit Famulor über SIP-Trunkin
 # 3CX-Integration
 
 <Note>
-  Eine Schritt-für-Schritt-Anleitung zur Verbindung Ihrer 3CX-Telefonanlage mit Famulor über SIP-Trunking
+  Eine Schritt-für-Schritt-Anleitung zur Verbindung Ihrer 3CX-Telefonanlage mit Famulor über SIP-Trunking.
 </Note>
 
 <CardGroup cols={2}>
@@ -26,54 +26,58 @@ description: 'Verbinden Sie Ihre 3CX-Telefonanlage mit Famulor über SIP-Trunkin
 
 ## Was ist 3CX-Integration?
 
+<p>
 Die 3CX-Integration ermöglicht es Ihnen, Ihre 3CX-Telefonanlage mit Famulor zu verbinden. 3CX ist eine beliebte IP-Telefonanlage, die flexible SIP-Trunking-Lösungen für die Telefonie-Integration bietet.
+</p>
 
 <Steps>
   <Step title="Bestehende Infrastruktur nutzen">
-    Ihre bestehende 3CX-Telefonanlage mit unseren KI-Assistenten verbinden
+    Ihre bestehende 3CX-Telefonanlage mit unseren KI-Assistenten verbinden.
   </Step>
   <Step title="Einfache Konfiguration">
-    Einfache Einrichtung über die 3CX Admin-Oberfläche
+    Einfache Einrichtung über die 3CX Admin-Oberfläche.
   </Step>
   <Step title="Anrufe verwalten">
-    Anrufe über Ihr 3CX-Setup tätigen und empfangen
+    Anrufe über Ihr 3CX-Setup tätigen und empfangen.
   </Step>
   <Step title="Kontrolle behalten">
-    Die vollständige Kontrolle über Ihre 3CX-Konfiguration behalten
+    Die vollständige Kontrolle über Ihre 3CX-Konfiguration behalten.
   </Step>
   <Step title="Kosten sparen">
-    Von Ihrer bestehenden 3CX-Infrastruktur profitieren
+    Von Ihrer bestehenden 3CX-Infrastruktur profitieren.
   </Step>
 </Steps>
 
 ## Wie es funktioniert
 
+<p>
 Wenn Sie Ihre 3CX-Telefonanlage mit Famulor integrieren:
+</p>
 
 <CardGroup cols={2}>
   <Card
     title="Eingehende Anrufe"
     icon="phone-incoming"
     color="green">
-    Anrufe an Ihre 3CX-Nummern werden über SIP-Trunking zu unseren KI-Assistenten weitergeleitet
+    Anrufe an Ihre 3CX-Nummern werden über SIP-Trunking zu unseren KI-Assistenten weitergeleitet.
   </Card>
   <Card
     title="Ausgehende Anrufe"
     icon="phone-outgoing"
     color="blue">
-    Unsere KI-Assistenten können Anrufe tätigen, die von Ihren 3CX-Nummern zu kommen scheinen
+    Unsere KI-Assistenten können Anrufe tätigen, die von Ihren 3CX-Nummern zu kommen scheinen.
   </Card>
   <Card
     title="Verwaltung"
     icon="settings"
     color="purple">
-    Sie verwalten Ihre Nummern weiterhin über die 3CX Admin-Oberfläche
+    Sie verwalten Ihre Nummern weiterhin über die 3CX Admin-Oberfläche.
   </Card>
   <Card
     title="Integration"
     icon="link"
     color="orange">
-    Nahtlose Integration zwischen 3CX und Famulor über SIP-Trunking
+    Nahtlose Integration zwischen 3CX und Famulor über SIP-Trunking.
   </Card>
 </CardGroup>
 
@@ -85,14 +89,12 @@ Wenn Sie Ihre 3CX-Telefonanlage mit Famulor integrieren:
       title="Trunk-Erstellung"
       icon="plus-circle"
       color="blue">
-      <strong>Navigiere über die Admin-Oberfläche zu dem Menüpunkt "Trunks & Chat" und erstelle dort über den +Trunk Button einen neuen Trunk.</strong>
-      
+      <p><strong>Navigiere über die Admin-Oberfläche zu dem Menüpunkt "Trunks & Chat" und erstelle dort über den +Trunk Button einen neuen Trunk.</strong></p>
       <Note>
         Wähle dabei die Option "Generic SIP Trunk (IP Based)". <strong>Achtung - diese ist nur bei hosted Anlagen verfügbar!</strong>
       </Note>
     </Card>
   </Step>
-  
   <Step title="3CX Trunk konfigurieren">
     <CardGroup cols={2}>
       <Card
@@ -103,55 +105,47 @@ Wenn Sie Ihre 3CX-Telefonanlage mit Famulor integrieren:
           <li><strong>Wähle einen beliebigen Namen</strong></li>
           <li><strong>Nutze die Nummer</strong> (also die volle Nummer inkl. Nebenstelle) über die Famulor erreichbar sein soll</li>
           <li><strong>Fülle Registrar</strong> mit <code>ihre-unique-id.sip.livekit.cloud</code></li>
-          
-          <Note>
-            **Wichtig:** Die spezifische Famulor SIP-Adresse finden Sie in Ihrem Famulor-Dashboard unter "Telefonnummern" → "SIP-Trunk integrieren" → "Unsere SIP-Adresse".
-          </Note>
         </ul>
+        <Note>
+          <strong>Wichtig:</strong> Die spezifische Famulor SIP-Adresse finden Sie in Ihrem Famulor-Dashboard unter "Telefonnummern" → "SIP-Trunk integrieren" → "Unsere SIP-Adresse".
+        </Note>
       </Card>
       <Card
         title="Transportprotokoll"
         icon="shield"
         color="orange">
-        <strong>Schränke das Transportprotokoll auf TCP ein</strong>
-        
-        Dies ist wichtig für die Stabilität der Verbindung zwischen 3CX und Famulor.
+        <p><strong>Schränke das Transportprotokoll auf TCP ein.</strong></p>
+        <p>Dies ist wichtig für die Stabilität der Verbindung zwischen 3CX und Famulor.</p>
       </Card>
     </CardGroup>
   </Step>
-  
   <Step title="Famulor Nummer erstellen">
     <Card
       title="Nummer in Famulor"
       icon="phone"
       color="purple">
-      <strong>Navigiere zu Telefonnummern - Nummer hinzufügen - SIP Nummer erstellen und erstelle die Nummer in Famulor.</strong>
-      
+      <p><strong>Navigiere zu Telefonnummern - Nummer hinzufügen - SIP Nummer erstellen und erstelle die Nummer in Famulor.</strong></p>
       <Note>
         Nimm hier 1:1 die gleiche Nummer die du oben verwendet hast.
       </Note>
     </Card>
   </Step>
-  
   <Step title="Ausgehende Anrufe">
     <Card
       title="Funktionalität"
       icon="phone-outgoing"
       color="blue">
-      <strong>Ausgehende Anrufe - Coming soon!</strong>
-      
-      Diese Funktion wird in Kürze verfügbar sein.
+      <p><strong>Ausgehende Anrufe - Coming soon!</strong></p>
+      <p>Diese Funktion wird in Kürze verfügbar sein.</p>
     </Card>
   </Step>
-  
   <Step title="Anwendung">
     <Card
       title="Trunk verwenden"
       icon="check-circle"
       color="green">
-      <strong>Nun kannst du diesen Trunk bei 3CX einstellen und dort verwenden wo du möchtest.</strong>
-      
-      Der Trunk ist jetzt konfiguriert und kann für eingehende Anrufe verwendet werden.
+      <p><strong>Nun kannst du diesen Trunk bei 3CX einstellen und dort verwenden wo du möchtest.</strong></p>
+      <p>Der Trunk ist jetzt konfiguriert und kann für eingehende Anrufe verwendet werden.</p>
     </Card>
   </Step>
 </Steps>
@@ -163,27 +157,26 @@ Wenn Sie Ihre 3CX-Telefonanlage mit Famulor integrieren:
     title="Hosted Anlagen erforderlich"
     icon="alert-triangle"
     color="red">
-    <strong>Wichtig:</strong> Die Option "Generic SIP Trunk (IP Based)" ist nur bei hosted 3CX-Anlagen verfügbar.
-    
-    Lokale Installationen unterstützen diese Funktion möglicherweise nicht.
+    <p><strong>Wichtig:</strong> Die Option "Generic SIP Trunk (IP Based)" ist nur bei hosted 3CX-Anlagen verfügbar.</p>
+    <p>Lokale Installationen unterstützen diese Funktion möglicherweise nicht.</p>
   </Card>
   <Card
     title="TCP-Protokoll"
     icon="shield"
     color="orange">
-    <strong>Transportprotokoll:</strong> Das Transportprotokoll muss auf TCP eingeschränkt werden für eine stabile Verbindung.
+    <p><strong>Transportprotokoll:</strong> Das Transportprotokoll muss auf TCP eingeschränkt werden für eine stabile Verbindung.</p>
   </Card>
   <Card
     title="Nummernübereinstimmung"
     icon="phone"
     color="blue">
-    <strong>Nummernübereinstimmung:</strong> Die Nummer in 3CX muss exakt mit der Nummer in Famulor übereinstimmen.
+    <p><strong>Nummernübereinstimmung:</strong> Die Nummer in 3CX muss exakt mit der Nummer in Famulor übereinstimmen.</p>
   </Card>
   <Card
     title="Registrar-Adresse"
     icon="server"
     color="green">
-    <strong>Registrar:</strong> Verwenden Sie die korrekte Famulor SIP-Server-Adresse: <code>vojhwtf1hn6.eu.sip.livekit.cloud</code>
+    <p><strong>Registrar:</strong> Verwenden Sie die korrekte Famulor SIP-Server-Adresse.</p>
   </Card>
 </CardGroup>
 
@@ -193,11 +186,11 @@ Wenn Sie Ihre 3CX-Telefonanlage mit Famulor integrieren:
   title="SIP-Anmeldedaten Sicherheit"
   icon="shield"
   color="red">
-  Ihre SIP-Anmeldedaten müssen sicher sein:
-  
+  <p>Ihre SIP-Anmeldedaten müssen sicher sein:</p>
   <ul>
     <li><strong>Benutzername:</strong> Ihre 3CX-Erweiterungsnummer oder bereitgestellter Benutzername</li>
-    <li><strong>Passwort muss haben:</strong>
+    <li>
+      <strong>Passwort muss haben:</strong>
       <ul>
         <li>12 oder mehr Zeichen</li>
         <li>Zahlen</li>
@@ -215,47 +208,40 @@ Wenn Sie Ihre 3CX-Telefonanlage mit Famulor integrieren:
     title="Trunk-Option nicht verfügbar"
     icon="alert-circle"
     color="red">
-    <strong>Die Option "Generic SIP Trunk (IP Based)" ist nicht verfügbar?</strong>
-    
+    <p><strong>Die Option "Generic SIP Trunk (IP Based)" ist nicht verfügbar?</strong></p>
     <ul>
-      <li>Überprüfen Sie, ob Sie eine hosted 3CX-Anlage verwenden</li>
-      <li>Lokale Installationen unterstützen diese Funktion möglicherweise nicht</li>
-      <li>Kontaktieren Sie den 3CX-Support für weitere Informationen</li>
+      <li>Überprüfen Sie, ob Sie eine hosted 3CX-Anlage verwenden.</li>
+      <li>Lokale Installationen unterstützen diese Funktion möglicherweise nicht.</li>
+      <li>Kontaktieren Sie den 3CX-Support für weitere Informationen.</li>
     </ul>
   </Card>
-  
   <Card
     title="Verbindungsprobleme"
     icon="phone-x"
     color="orange">
-    <strong>Verbindungsprobleme zwischen 3CX und Famulor?</strong>
-    
+    <p><strong>Verbindungsprobleme zwischen 3CX und Famulor?</strong></p>
     <ul>
-      <li>Überprüfen Sie, ob das Transportprotokoll auf TCP eingestellt ist</li>
-      <li>Stellen Sie sicher, dass die Registrar-Adresse korrekt ist</li>
-      <li>Überprüfen Sie Ihre Firewall-Einstellungen</li>
+      <li>Überprüfen Sie, ob das Transportprotokoll auf TCP eingestellt ist.</li>
+      <li>Stellen Sie sicher, dass die Registrar-Adresse korrekt ist.</li>
+      <li>Überprüfen Sie Ihre Firewall-Einstellungen.</li>
     </ul>
   </Card>
-  
   <Card
     title="Nummernübereinstimmung"
     icon="phone"
     color="blue">
-    <strong>Anrufe werden nicht korrekt weitergeleitet?</strong>
-    
+    <p><strong>Anrufe werden nicht korrekt weitergeleitet?</strong></p>
     <ul>
-      <li>Stellen Sie sicher, dass die Nummer in 3CX exakt mit der Nummer in Famulor übereinstimmt</li>
-      <li>Überprüfen Sie die Nebenstelle-Konfiguration</li>
-      <li>Testen Sie mit einem einfachen Anruf</li>
+      <li>Stellen Sie sicher, dass die Nummer in 3CX exakt mit der Nummer in Famulor übereinstimmt.</li>
+      <li>Überprüfen Sie die Nebenstelle-Konfiguration.</li>
+      <li>Testen Sie mit einem einfachen Anruf.</li>
     </ul>
   </Card>
-  
   <Card
     title="Ausgehende Anrufe"
     icon="phone-outgoing"
     color="purple">
-    <strong>Ausgehende Anrufe funktionieren nicht?</strong>
-    
+    <p><strong>Ausgehende Anrufe funktionieren nicht?</strong></p>
     <Note>
       Ausgehende Anrufe sind derzeit noch nicht verfügbar. Diese Funktion wird in Kürze hinzugefügt.
     </Note>
