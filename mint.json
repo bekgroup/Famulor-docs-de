@@ -200,7 +200,12 @@
       "group": "API Referenz",
       "pages": [
         "api-reference/introduction",
-        "api-reference/authentication",
+        "api-reference/authentication"
+      ]
+    },
+    {
+      "group": "Leads",
+      "pages": [
         "api-reference/leads/create",
         "api-reference/campaigns/index"
       ]
