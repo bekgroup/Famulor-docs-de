@@ -206,8 +206,37 @@
     {
       "group": "Leads",
       "pages": [
+        "api-reference/leads/list",
         "api-reference/leads/create",
-        "api-reference/campaigns/index"
+        "api-reference/leads/update",
+        "api-reference/leads/delete"
+      ]
+    },
+    {
+      "group": "Campaigns",
+      "pages": [
+        "api-reference/campaigns/list",
+        "api-reference/campaigns/update-status"
+      ]
+    },
+    {
+      "group": "SMS",
+      "pages": [
+        "api-reference/sms/send"
+      ]
+    },
+    {
+      "group": "Calls",
+      "pages": [
+        "api-reference/calls/list",
+        "api-reference/calls/make",
+        "api-reference/calls/delete"
+      ]
+    },
+    {
+      "group": "Webhooks",
+      "pages": [
+        "api-reference/webhooks/post-call"
       ]
     },
     {

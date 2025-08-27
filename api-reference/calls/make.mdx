@@ -1,0 +1,104 @@
+---
+title: "Anruf tätigen"
+api: "POST https://app.famulor.de/api/user/make_call"
+icon: "phone-volume"
+description: "Einen Anruf mit einem bestimmten Assistenten tätigen"
+---
+
+Dieser Endpunkt ermöglicht es Ihnen, einen Anruf zu tätigen.
+
+### Request Body
+
+<ParamField body="phone_number" type="string" required>
+  Die Telefonnummer des Kunden im E.164-Format (z.B. +1234567890)
+</ParamField>
+
+<ParamField body="assistant_id" type="integer" required>
+  Die ID des Assistenten, mit dem der Anruf getätigt werden soll
+</ParamField>
+
+<ParamField body="variables" type="object">
+  Die Variablen, die an den Lead übergeben werden sollen
+
+  <Expandable title="Variable-Eigenschaften">
+    <ParamField body="customer_name" type="string" default="<string>">
+      Der Name des Kunden
+    </ParamField>
+
+    <ParamField body="email" type="string" default="<string>">
+      Die E-Mail-Adresse des Kunden
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+### Response
+
+<ResponseField name="message" type="string">
+  Bestätigungsnachricht, dass der Anruf erfolgreich initiiert wurde
+</ResponseField>
+
+<ResponseField name="call_id" type="integer">
+  Die eindeutige ID des erstellten Anrufs
+</ResponseField>
+
+<ResponseField name="status" type="string">
+  Der initiale Status des Anrufs (z.B. "initiated")
+</ResponseField>
+
+<RequestExample>
+
+```bash Einfacher Anruf
+curl -X POST "https://app.famulor.de/api/user/make_call" \
+  -H "Authorization: Bearer YOUR_API_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "phone_number": "+4915123456789",
+    "assistant_id": 123
+  }'
+```
+
+```bash Anruf mit Variablen
+curl -X POST "https://app.famulor.de/api/user/make_call" \
+  -H "Authorization: Bearer YOUR_API_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "phone_number": "+4915123456789",
+    "assistant_id": 123,
+    "variables": {
+      "customer_name": "Max Mustermann",
+      "email": "max.mustermann@example.com"
+    }
+  }'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 200 Success
+{
+  "message": "Call initiated successfully",
+  "call_id": 480337,
+  "status": "initiated"
+}
+```
+
+```json 400 Ungültige Telefonnummer
+{
+  "message": "Invalid phone number format. Please use E.164 format (e.g. +1234567890)"
+}
+```
+
+```json 404 Assistent nicht gefunden
+{
+  "message": "Assistant not found or does not belong to the authenticated user"
+}
+```
+
+```json 422 Unzureichendes Guthaben
+{
+  "message": "Insufficient balance to make call. Please top up your account."
+}
+```
+
+</ResponseExample>
