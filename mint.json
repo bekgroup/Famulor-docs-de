@@ -204,6 +204,23 @@
       ]
     },
     {
+      "group": "Assistants",
+      "pages": [
+        "api-reference/assistants/list",
+        "api-reference/assistants/outbound",
+        "api-reference/assistants/create",
+        "api-reference/assistants/update",
+        "api-reference/assistants/delete",
+        "api-reference/assistants/languages",
+        "api-reference/assistants/voices",
+        "api-reference/assistants/models",
+        "api-reference/assistants/phone-numbers",
+        "api-reference/assistants/enable-inbound-webhook",
+        "api-reference/assistants/disable-inbound-webhook",
+        "api-reference/assistants/disable-webhook"
+      ]
+    },
+    {
       "group": "Leads",
       "pages": [
         "api-reference/leads/list",
@@ -231,20 +248,6 @@
         "api-reference/calls/list",
         "api-reference/calls/make",
         "api-reference/calls/delete"
-      ]
-    },
-    {
-      "group": "Assistants",
-      "pages": [
-        "api-reference/assistants/list",
-        "api-reference/assistants/outbound",
-        "api-reference/assistants/languages",
-        "api-reference/assistants/voices",
-        "api-reference/assistants/models",
-        "api-reference/assistants/phone-numbers",
-        "api-reference/assistants/enable-inbound-webhook",
-        "api-reference/assistants/disable-inbound-webhook",
-        "api-reference/assistants/disable-webhook"
       ]
     },
     {

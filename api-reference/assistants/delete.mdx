@@ -1,0 +1,64 @@
+---
+title: "Assistenten löschen"
+api: "DELETE https://app.famulor.de/api/user/assistant/{id}"
+icon: "trash"
+description: "Einen spezifischen KI-Assistenten permanent löschen"
+---
+
+Dieser Endpunkt ermöglicht es Ihnen, einen KI-Assistenten permanent zu löschen, der dem authentifizierten Benutzer gehört.
+
+### Path Parameter
+
+<ParamField path="id" type="integer" required>
+  Die eindeutige Kennung des zu löschenden Assistenten
+</ParamField>
+
+### Response
+
+<ResponseField name="message" type="string">
+  Bestätigungsnachricht, dass der Assistent erfolgreich gelöscht wurde
+</ResponseField>
+
+### Fehler-Responses
+
+<ResponseField name="message" type="string">
+  Fehlermeldung, wenn der Assistent nicht gefunden wurde oder nicht dem authentifizierten Benutzer gehört
+</ResponseField>
+
+### Hinweise
+
+- Nur Assistenten, die dem authentifizierten Benutzer gehören, können gelöscht werden
+- Sobald ein Assistent gelöscht wurde, kann er nicht wiederhergestellt werden
+- Diese Aktion entfernt den Assistenten und seine gesamte Konfiguration permanent
+- Wenn der Assistent gerade aktive Anrufe bearbeitet, können diese Anrufe beeinträchtigt werden
+
+<RequestExample>
+
+```bash Assistenten löschen
+curl -X DELETE "https://app.famulor.de/api/user/assistant/123" \
+  -H "Authorization: Bearer YOUR_API_TOKEN"
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 200 Success
+{
+  "message": "Assistant deleted successfully"
+}
+```
+
+```json 404 Not Found
+{
+  "message": "Assistant not found or does not belong to the authenticated user"
+}
+```
+
+```json 500 Internal Server Error
+{
+  "message": "Assistant deletion failed"
+}
+```
+
+</ResponseExample>

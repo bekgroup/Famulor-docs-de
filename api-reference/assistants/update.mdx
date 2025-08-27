@@ -1,0 +1,310 @@
+---
+title: "Assistenten aktualisieren"
+api: "PUT https://app.famulor.de/api/user/assistant/{id}"
+icon: "pen-to-square"
+description: "Die Konfiguration eines bestehenden KI-Assistenten aktualisieren"
+---
+
+Dieser Endpunkt ermöglicht es Ihnen, die Konfiguration eines bestehenden KI-Assistenten zu aktualisieren. Alle Felder sind optional - geben Sie nur die Felder an, die Sie aktualisieren möchten.
+
+### Path Parameter
+
+<ParamField path="id" type="integer" required>
+  Die eindeutige Kennung des zu aktualisierenden Assistenten
+</ParamField>
+
+### Request Body
+
+#### Kernfelder
+
+<ParamField body="assistant_name" type="string">
+  Der Name des Assistenten (max. 255 Zeichen)
+</ParamField>
+
+<ParamField body="voice_id" type="integer">
+  Die Stimmen-ID für den Assistenten (muss in verfügbaren Stimmen existieren)
+</ParamField>
+
+<ParamField body="language" type="string">
+  Der Sprachname für den Assistenten (max. 100 Zeichen)
+</ParamField>
+
+<ParamField body="llm_model" type="string">
+  Der Name des zu verwendenden LLM-Modells (max. 100 Zeichen)
+</ParamField>
+
+<ParamField body="calls_direction" type="string">
+  Der Anrufrichtungstyp. Optionen: `receive`, `make`
+</ParamField>
+
+<ParamField body="engine_type" type="string">
+  Der zu verwendende Engine-Typ. Optionen: `pipeline`, `multimodal`
+</ParamField>
+
+<ParamField body="timezone" type="string">
+  Die Zeitzone für den Assistenten (z.B. "Europe/Berlin")
+</ParamField>
+
+<ParamField body="initial_message" type="string">
+  Die erste Nachricht, die der Assistent beim Anrufstart sprechen wird
+</ParamField>
+
+<ParamField body="system_prompt" type="string">
+  Der System-Prompt, der das Verhalten und die Persönlichkeit des Assistenten definiert
+</ParamField>
+
+#### Optionale Konfiguration
+
+<ParamField body="phone_number_id" type="integer">
+  Die ID einer Telefonnummer, die dem Assistenten zugewiesen werden soll (auf null setzen zum Entfernen)
+</ParamField>
+
+<ParamField body="endpoint_type" type="string">
+  Sprachaktivitätserkennung-Typ. Optionen: `vad`, `ai`
+</ParamField>
+
+<ParamField body="endpoint_sensitivity" type="number">
+  Endpunkt-Sensibilitätslevel (0-5)
+</ParamField>
+
+<ParamField body="interrupt_sensitivity" type="number">
+  Unterbrechungs-Sensibilitätslevel (0-5)
+</ParamField>
+
+<ParamField body="ambient_sound_volume" type="number">
+  Ambiente-Sound-Lautstärke (0-1)
+</ParamField>
+
+<ParamField body="post_call_evaluation" type="boolean">
+  Ob Post-Call-Evaluation aktiviert werden soll
+</ParamField>
+
+<ParamField body="send_webhook_only_on_completed" type="boolean">
+  Ob Webhooks nur bei abgeschlossenen Anrufen gesendet werden sollen
+</ParamField>
+
+<ParamField body="include_recording_in_webhook" type="boolean">
+  Ob Aufzeichnungs-URL in Webhook-Payload eingeschlossen werden soll
+</ParamField>
+
+#### Webhook-Konfiguration
+
+<ParamField body="is_webhook_active" type="boolean">
+  Ob Webhook-Benachrichtigungen aktiviert sind
+</ParamField>
+
+<ParamField body="webhook_url" type="string">
+  Die Webhook-URL für Post-Call-Benachrichtigungen (kann auf null gesetzt werden zum Entfernen)
+</ParamField>
+
+#### Unterbrechungseinstellungen
+
+<ParamField body="use_min_interrupt_words" type="boolean">
+  Ob die Mindest-Unterbrechungswörter-Einstellung verwendet werden soll
+</ParamField>
+
+<ParamField body="min_interrupt_words" type="integer">
+  Mindestanzahl von Wörtern vor erlaubter Unterbrechung (0-10)
+</ParamField>
+
+#### Variablen und Schema
+
+<ParamField body="variables" type="object">
+  Schlüssel-Wert-Paare von benutzerdefinierten Variablen für den Assistenten
+</ParamField>
+
+<ParamField body="post_call_schema" type="array">
+  Schema-Definition für Post-Call-Datenextraktion
+
+  <Expandable title="post_call_schema Eigenschaften">
+    <ParamField body="post_call_schema[].name" type="string" required>
+      Der Name des Schema-Feldes (nur alphanumerisch und Unterstriche)
+    </ParamField>
+
+    <ParamField body="post_call_schema[].type" type="string" required>
+      Der Datentyp. Optionen: `string`, `number`, `bool`
+    </ParamField>
+
+    <ParamField body="post_call_schema[].description" type="string" required>
+      Beschreibung dessen, was dieses Feld repräsentiert
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+#### End Call Tool
+
+<ParamField body="end_call_tool.description" type="string">
+  Beschreibung für die End Call Tool-Funktionalität (max. 500 Zeichen)
+</ParamField>
+
+#### Stimme und Sprache
+
+<ParamField body="llm_temperature" type="number">
+  LLM-Temperatur-Einstellung (0-1)
+</ParamField>
+
+<ParamField body="voice_stability" type="number">
+  Stimm-Stabilität-Einstellung (0-1)
+</ParamField>
+
+<ParamField body="voice_similarity" type="number">
+  Stimm-Ähnlichkeit-Einstellung (0-1)
+</ParamField>
+
+<ParamField body="speech_speed" type="number">
+  Sprechgeschwindigkeits-Multiplikator (0.7-1.2)
+</ParamField>
+
+#### Anrufverhalten
+
+<ParamField body="allow_interruptions" type="boolean">
+  Ob Unterbrechungen durch den Anrufer erlaubt werden sollen
+</ParamField>
+
+<ParamField body="filler_audios" type="boolean">
+  Ob Füller-Audio während der Verarbeitung verwendet werden soll
+</ParamField>
+
+<ParamField body="re_engagement_interval" type="integer">
+  Re-Engagement-Intervall in Sekunden (7-600)
+</ParamField>
+
+<ParamField body="max_call_duration" type="integer">
+  Maximale Anrufdauer in Sekunden (20-1200)
+</ParamField>
+
+<ParamField body="max_silence_duration" type="integer">
+  Maximale Stillstand-Dauer in Sekunden (1-120)
+</ParamField>
+
+<ParamField body="end_call_on_voicemail" type="boolean">
+  Ob Anruf bei Voicemail-Erkennung beendet werden soll
+</ParamField>
+
+<ParamField body="noise_cancellation" type="boolean">
+  Ob Geräuschunterdrückung aktiviert werden soll
+</ParamField>
+
+<ParamField body="record_call" type="boolean">
+  Ob der Anruf aufgezeichnet werden soll
+</ParamField>
+
+<ParamField body="who_speaks_first" type="string">
+  Wer zuerst im Anruf spricht. Optionen: `AI assistant`, `Customer`
+</ParamField>
+
+### Response
+
+<ResponseField name="message" type="string">
+  Erfolgsmeldung, die die Assistenten-Aktualisierung bestätigt
+</ResponseField>
+
+<ResponseField name="data" type="object">
+  Daten des aktualisierten Assistenten
+
+  <Expandable title="Daten-Eigenschaften">
+    <ResponseField name="id" type="integer">
+      Die eindeutige Kennung des aktualisierten Assistenten
+    </ResponseField>
+
+    <ResponseField name="name" type="string">
+      Der Name des Assistenten
+    </ResponseField>
+
+    <ResponseField name="status" type="string">
+      Der aktuelle Status des Assistenten
+    </ResponseField>
+
+    <ResponseField name="type" type="string">
+      Der Typ des Assistenten (inbound oder outbound)
+    </ResponseField>
+
+    <ResponseField name="mode" type="string">
+      Der Engine-Modus (pipeline oder multimodal)
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+### Hinweise
+
+- Nur die Felder, die Sie im Request Body angeben, werden aktualisiert
+- Alle Validierungsregeln gelten genauso wie beim Erstellen eines Assistenten
+- Um eine Telefonnummer-Zuweisung zu entfernen, setzen Sie `phone_number_id` auf `null`
+- Um Webhook zu deaktivieren, setzen Sie `webhook_url` auf `null` oder `is_webhook_active` auf `false`
+- Der Assistent muss dem authentifizierten Benutzer gehören, um aktualisiert zu werden
+
+<RequestExample>
+
+```bash Grundlegende Aktualisierung
+curl -X PUT "https://app.famulor.de/api/user/assistant/123" \
+  -H "Authorization: Bearer YOUR_API_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "assistant_name": "Neuer Assistent Name",
+    "initial_message": "Hallo! Wie kann ich Ihnen heute helfen?"
+  }'
+```
+
+```bash Erweiterte Konfiguration
+curl -X PUT "https://app.famulor.de/api/user/assistant/123" \
+  -H "Authorization: Bearer YOUR_API_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "voice_id": 413,
+    "language": "German",
+    "llm_model": "GPT-4o",
+    "system_prompt": "Du bist ein hilfsfreundlicher Assistent...",
+    "webhook_url": "https://example.com/webhook",
+    "is_webhook_active": true,
+    "post_call_evaluation": true,
+    "variables": {
+      "company_name": "Famulor",
+      "service_type": "AI-Telefonie"
+    }
+  }'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 200 Success
+{
+  "message": "Assistant updated successfully",
+  "data": {
+    "id": 123,
+    "name": "Neuer Assistent Name",
+    "status": "active",
+    "type": "outbound",
+    "mode": "pipeline"
+  }
+}
+```
+
+```json 404 Not Found
+{
+  "message": "Assistant not found or does not belong to the authenticated user"
+}
+```
+
+```json 422 Validation Error
+{
+  "message": "The given data was invalid.",
+  "errors": {
+    "voice_id": [
+      "The selected voice id is invalid."
+    ],
+    "speech_speed": [
+      "The speech speed must be between 0.7 and 1.2."
+    ]
+  }
+}
+```
+
+```json 500 Internal Server Error
+{
+  "message": "Assistant update failed"
+}
+```
+
+</ResponseExample>
