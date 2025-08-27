@@ -1,0 +1,337 @@
+---
+title: 'Prompt Guide für spezifische Situationen'
+icon: 'target'
+description: 'Spezifische Prompt-Guides und Beispiele für häufige Situationen beim Aufbau eines Sprachassistenten'
+---
+
+# Prompt Guide für spezifische Situationen
+
+<Note>
+  Hier finden Sie spezifische Prompt-Guides und Beispiele für häufige Situationen, die Sie beim Aufbau eines Sprachassistenten mit Famulor antreffen könnten.
+</Note>
+
+## Telefonnummern aussprechen
+
+<Card
+  title="Verwende die "Langsam sprechen" Funktion"
+  icon="volume-2"
+  color="blue">
+  <p>Wir nutzen die "Langsam sprechen" Funktion, um Pausen zwischen Wörtern hinzuzufügen. Für weitere Informationen siehe die Dokumentation zur Sprachsteuerbarkeit.</p>
+  <p>Es wird empfohlen, einen Prompt als Richtlinie für den LLM zu verwenden. Dies stellt sicher, dass der Assistent konsistent mit dem korrekten Format antwortet, auch wenn Kunden die Telefonnummer überprüfen.</p>
+</Card>
+
+### Beispiel für Telefonnummer-Aussprache
+
+<CodeGroup>
+  <CodeGroupItem title="Prompt für Telefonnummern">
+    ```markdown
+    Wenn Menschen nach Ihrer Telefonnummer fragen, Ihre Telefonnummer ist 03012345678
+
+    ## Richtlinie
+    Beim Aussprechen der Telefonnummer transformiere das Format wie folgt:
+    - Eingabeformate wie 03012345678, (030) 123-45678 oder 030-123-45678
+    - Sollte ausgesprochen werden als: "null drei null - eins zwei drei - vier fünf sechs sieben acht"
+    - Wichtig: Lassen Sie den Platz um den Bindestrich beim Sprechen nicht weg
+    ```
+  </CodeGroupItem>
+  
+  <CodeGroupItem title="Deutsche Aussprache">
+    ```markdown
+    ## Deutsche Telefonnummern
+    
+    Für deutsche Telefonnummern:
+    - 0 wird als "null" ausgesprochen
+    - Verwende Bindestriche für bessere Verständlichkeit
+    - Beispiel: 030-123-45678 → "null drei null - eins zwei drei - vier fünf sechs sieben acht"
+    ```
+  </CodeGroupItem>
+</CodeGroup>
+
+## E-Mail-Adressen buchstabieren
+
+<Card
+  title="E-Mail-Adressen korrekt aussprechen"
+  icon="mail"
+  color="green">
+  <p>E-Mail-Adressen müssen buchstabiert werden, um Verwirrung zu vermeiden. Hier ist der korrekte Ansatz:</p>
+</Card>
+
+### Beispiel für E-Mail-Buchstabierung
+
+<CodeGroup>
+  <CodeGroupItem title="E-Mail-Format">
+    ```markdown
+    ## Wie man buchstabiert
+    Das mögliche E-Mail-Format ist name@unternehmen.de
+    
+    Um eine E-Mail-Adresse zu buchstabieren:
+    n-a-m-e-@-u-n-t-e-r-n-e-h-m-e-n-punkt-de
+    
+    @ wird als "at" ausgesprochen
+    ```
+  </CodeGroupItem>
+  
+  <CodeGroupItem title="Deutsche E-Mail-Adressen">
+    ```markdown
+    ## Deutsche E-Mail-Adressen
+    
+    Für deutsche E-Mail-Adressen:
+    - Verwende deutsche Aussprache für Buchstaben
+    - Beispiel: info@famulor.de → "i-n-f-o-at-f-a-m-u-l-o-r-punkt-d-e"
+    - Punkt wird als "punkt" ausgesprochen
+    ```
+  </CodeGroupItem>
+</CodeGroup>
+
+## Websites aussprechen
+
+<Card
+  title="Website-URLs korrekt aussprechen"
+  icon="globe"
+  color="purple">
+  <p>Website-URLs müssen klar und verständlich ausgesprochen werden. Hier ist der richtige Ansatz:</p>
+</Card>
+
+### Beispiel für Website-Aussprache
+
+<CodeGroup>
+  <CodeGroupItem title="Allgemeine Richtlinien">
+    ```markdown
+    Wann immer Sie auf eine Website-URL stoßen, bitte:
+    
+    1. Identifizieren Sie jedes Segment des Domainnamens
+    2. Wenn ein Segment aus einzelnen Buchstaben besteht (z.B. "NK"), sprechen Sie jeden Buchstaben in seiner gesprochenen Form auf Deutsch aus (z.B. "N" → "en", "K" → "ka")
+    3. Wenn ein Segment ein erkennbares Wort ist (z.B. "laundry"), sprechen Sie es normal als dieses Wort aus
+    4. Sprechen Sie "punkt" vor der Angabe der Top-Level-Domain aus (z.B. "punkt de", "punkt net", "punkt org", etc.)
+    ```
+  </CodeGroupItem>
+  
+  <CodeGroupItem title="Deutsche Beispiele">
+    ```markdown
+    ## Deutsche Beispiele
+    
+    "famulor.de" → "f-a-m-u-l-o-r punkt de"
+    "testfirma.net" → "t-e-s-t-f-i-r-m-a punkt net"
+    "beispiel.org" → "b-e-i-s-p-i-e-l punkt org"
+    
+    Halten Sie sich genau an diese phonetische Aufschlüsselung, um Klarheit und korrekte Aussprache für Kunden zu gewährleisten.
+    ```
+  </CodeGroupItem>
+</CodeGroup>
+
+## Uhrzeiten aussprechen
+
+<Card
+  title="Uhrzeiten korrekt aussprechen"
+  icon="clock"
+  color="orange">
+  <p>Uhrzeiten müssen in einem verständlichen Format ausgesprochen werden. Hier sind die Richtlinien:</p>
+</Card>
+
+### Beispiel für Uhrzeit-Aussprache
+
+<CodeGroup>
+  <CodeGroupItem title="Deutsche Uhrzeiten">
+    ```markdown
+    ## Für Uhrzeiten
+    
+    Für 13:00 Uhr, sagen Sie "Dreizehn Uhr" oder "Ein Uhr nachmittags"
+    Für 15:30 Uhr, sagen Sie "Fünfzehn Uhr dreißig" oder "Drei Uhr dreißig nachmittags"
+    Für 8:45 Uhr, sagen Sie "Acht Uhr fünfundvierzig" oder "Viertel vor neun morgens"
+    
+    Verwenden Sie "morgens" für AM und "nachmittags" für PM
+    ```
+  </CodeGroupItem>
+  
+  <CodeGroupItem title="Alternative Formate">
+    ```markdown
+    ## Alternative Formate
+    
+    Sie können auch sagen:
+    - "Halb neun" für 8:30 Uhr
+    - "Viertel nach zwei" für 14:15 Uhr
+    - "Drei viertel vier" für 15:45 Uhr
+    
+    Wählen Sie das Format, das für Ihre Kunden am verständlichsten ist.
+    ```
+  </CodeGroupItem>
+</CodeGroup>
+
+## Warten lassen / Keine Antwort erforderlich
+
+<Card
+  title="Kunden warten lassen"
+  icon="pause"
+  color="yellow">
+  <p>Manchmal müssen Sie Kunden warten lassen oder es ist keine Antwort erforderlich. Famulor hat eine spezielle Funktion dafür:</p>
+</Card>
+
+### Beispiel für Warten lassen
+
+<CodeGroup>
+  <CodeGroupItem title="Keine Antwort erforderlich">
+    ```markdown
+    ## Warten lassen
+    
+    - Wenn der Benutzer sagt "einen Moment", antworte genau mit: "Gerne, ich warte."
+    - Verwende die Pause-Funktion, um den Anruf zu halten
+    - Kehre zurück, sobald der Benutzer wieder spricht
+    ```
+  </CodeGroupItem>
+  
+  <CodeGroupItem title="Pause-Funktion">
+    ```markdown
+    ## Pause-Funktion verwenden
+    
+    Für längere Wartezeiten:
+    1. Informiere den Kunden über die Wartezeit
+    2. Verwende die Pause-Funktion
+    3. Überwache den Anruf
+    4. Kehre zurück, wenn der Kunde bereit ist
+    ```
+  </CodeGroupItem>
+</CodeGroup>
+
+## Text für Sprache normalisieren
+
+<Card
+  title="Text für Sprache normalisieren"
+  icon="type"
+  color="indigo">
+  <p>Normalisieren Sie bestimmte Teile des Textes (Zahlen, Währung, Datum, etc.) in ihre gesprochene Form für eine konsistentere Sprachsynthese. Manchmal können TTS-Modelle nicht normalisierten Text falsch lesen.</p>
+</Card>
+
+### Beispiel für Text-Normalisierung
+
+<CodeGroup>
+  <CodeGroupItem title="Vor der Normalisierung">
+    ```markdown
+    ## Vor der Normalisierung
+    
+    Rufen Sie meine Nummer 03012345678 am 5. Juli 2024 für die 24,12 € Zahlung an
+    ```
+  </CodeGroupItem>
+  
+  <CodeGroupItem title="Nach der Normalisierung">
+    ```markdown
+    ## Nach der Normalisierung
+    
+    Rufen Sie meine Nummer null drei null eins zwei drei vier fünf sechs sieben acht am fünften Juli zweiundzwanzig vierundzwanzig für die vierundzwanzig Euro zwölf Cent Zahlung an
+    ```
+  </CodeGroupItem>
+</CodeGroup>
+
+<Note>
+  Diese Funktion fügt dem gesamten Prozess eine kleine Latenz (~100ms) hinzu.
+</Note>
+
+## Sprachunterstützung
+
+<Card
+  title="Unterstützte Sprachen"
+  icon="globe"
+  color="teal">
+  <p>Derzeit wird Sprachnormalisierung für folgende Sprachen unterstützt:</p>
+  <ul>
+    <li><strong>Deutsch</strong> - Vollständige Unterstützung</li>
+    <li><strong>Englisch</strong> - Vollständige Unterstützung</li>
+    <li><strong>Spanisch</strong> - Vollständige Unterstützung</li>
+    <li><strong>Französisch</strong> - Vollständige Unterstützung</li>
+  </ul>
+  <p>Andere Sprachen führen zu einem No-Op (Text wird nicht modifiziert) für diesen Schritt.</p>
+</Card>
+
+<Card
+  title="Spracheinstellungen"
+  icon="settings"
+  color="blue">
+  <p>Wenn Sie eine Sprache auswählen, die nicht mehrsprachig ist, wird dieser Sprachcode verwendet, um den Text zu normalisieren (z.B. wird 1 zu "eins" normalisiert, wenn Sie Deutsch verwenden).</p>
+  <p>Wenn Sie mehrsprachig auswählen, wird die Sprache automatisch basierend auf dem generierten Text erkannt und entsprechend normalisiert.</p>
+</Card>
+
+## Praktische Beispiele für Famulor
+
+<Card
+  title="Famulor-spezifische Anpassungen"
+  icon="star"
+  color="red">
+  <p>Hier sind einige spezifische Anpassungen für Famulor:</p>
+</Card>
+
+### Beispiel für einen vollständigen Prompt
+
+<CodeGroup>
+  <CodeGroupItem title="Vollständiger Beispiel-Prompt">
+    ```markdown
+    # Famulor Assistent - Prompt für spezifische Situationen
+    
+    ## Identität
+    Du bist ein professioneller Famulor KI-Assistent, der Kunden bei Telefonanrufen unterstützt.
+    
+    ## Aussprache-Richtlinien
+    
+    ### Telefonnummern
+    - Verwende deutsche Aussprache
+    - Beispiel: 030-123-45678 → "null drei null - eins zwei drei - vier fünf sechs sieben acht"
+    
+    ### E-Mail-Adressen
+    - Buchstabiere jeden Teil
+    - Beispiel: info@famulor.de → "i-n-f-o-at-f-a-m-u-l-o-r-punkt-d-e"
+    
+    ### Websites
+    - Spreche jeden Buchstaben einzeln aus
+    - Beispiel: famulor.de → "f-a-m-u-l-o-r-punkt-d-e"
+    
+    ### Uhrzeiten
+    - Verwende deutsche Zeitformate
+    - Beispiel: 14:30 → "Vierzehn Uhr dreißig"
+    
+    ## Verhalten
+    - Sei höflich und professionell
+    - Verwende die Pause-Funktion bei Bedarf
+    - Normalisiere Zahlen und Daten für bessere Verständlichkeit
+    ```
+  </CodeGroupItem>
+</CodeGroup>
+
+## Testen und Optimieren
+
+<Card
+  title="Testen Sie Ihre Prompts"
+  icon="play"
+  color="green">
+  <ol>
+    <li><strong>Audio-Tests durchführen</strong> - Hören Sie sich die Aussprache an</li>
+    <li><strong>Verschiedene Szenarien testen</strong> - Testen Sie alle spezifischen Situationen</li>
+    <li><strong>Kundenfeedback sammeln</strong> - Fragen Sie nach der Verständlichkeit</li>
+    <li><strong>Iterativ verbessern</strong> - Passen Sie basierend auf den Ergebnissen an</li>
+  </ol>
+</Card>
+
+## Hilfe und Support
+
+<Tip>
+  Unser Support-Team kann Ihnen bei der Anpassung Ihrer Prompts für spezifische Situationen helfen.
+</Tip>
+
+<Card
+  title="Support kontaktieren"
+  icon="headphones"
+  color="blue"
+  href="https://famulor.de/support">
+  Benötigen Sie Hilfe bei der Anpassung Ihrer Prompts? Kontaktieren Sie unser Support-Team.
+</Card>
+
+## Nächste Schritte
+
+<Card
+  title="Weiterführende Ressourcen"
+  icon="arrow-right"
+  color="purple">
+  <ul>
+    <li>Schauen Sie sich unseren <strong>Allgemeinen Prompt Engineering Guide</strong> an</li>
+    <li>Entdecken Sie unsere <strong>Prompt-Vorlagen</strong></li>
+    <li>Lernen Sie mehr über <strong>Sprachsteuerbarkeit</strong></li>
+    <li>Testen Sie Ihre Prompts mit <strong>Audio-Tests</strong></li>
+  </ul>
+</Card>

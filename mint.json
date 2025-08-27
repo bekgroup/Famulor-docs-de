@@ -86,8 +86,21 @@
         "ai-assistants/tools-and-functions",
         "ai-assistants/voice-selection",
         "ai-assistants/filler-audio",
+        "ai-assistants/web-widget",
         "ai-assistants/cal-com-scheduling",
         "ai-assistants/testing"
+      ]
+    },
+    {
+      "group": "Beispiel-Prompts",
+      "pages": [
+        "ai-assistants/example-prompts/general-prompt-engineering-guide",
+        "ai-assistants/example-prompts/prompt-guide-specific-situations",
+        "ai-assistants/example-prompts/pause-or-read-slowly",
+        "ai-assistants/example-prompts/intelligent-answering-machine",
+        "ai-assistants/example-prompts/receptionist",
+        "ai-assistants/example-prompts/appointment-booking",
+        "ai-assistants/example-prompts/first-level-support"
       ]
     },
     {
@@ -152,12 +165,8 @@
         "provisioning/sip-ai/zadarma-integration",
         "provisioning/sip-ai/3cx-integration",
         "provisioning/sip-ai/easybell-integration",
-        "provisioning/sip-ai/telnyx-integration"
-      ]
-    },
-    {
-      "group": "Nicht unterstützte Anbieter",
-      "pages": [
+        "provisioning/sip-ai/telnyx-integration",
+        "provisioning/sip-ai/vonage-integration",
         "provisioning/sip-ai/placetel-limitations",
         "provisioning/sip-ai/peoplefone-limitations",
         "provisioning/sip-ai/nfon-limitations",

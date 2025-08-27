@@ -1,0 +1,199 @@
+---
+title: 'Allgemeiner Prompt Engineering Guide'
+icon: 'book-open'
+description: 'Ein umfassender Leitfaden für das Schreiben effektiver Prompts für Ihre Famulor KI-Assistenten'
+---
+
+# Allgemeiner Prompt Engineering Guide
+
+<Note>
+  Prompt Engineering ist möglicherweise der wichtigste Teil Ihres Assistenten - es kann Ihren Assistenten zum Erfolg führen oder zum Scheitern bringen. Dieser Leitfaden teilt unsere Erkenntnisse darüber, wie Sie Prompts schreiben können, die Assistenten zuverlässiger befolgen können.
+</Note>
+
+<Warning>
+  Dieser Leitfaden ist ein Work-in-Progress und wird aktualisiert, während wir mehr lernen. Wenn Sie Vorschläge oder Feedback haben, lassen Sie es uns wissen.
+</Warning>
+
+<Tip>
+  Um einige der Prompts zu sehen, die wir erstellt haben, können Sie sich die Vorlagen im Dashboard ansehen (erstellen Sie einen neuen Assistenten und wählen Sie eine Vorlage zum Starten).
+</Tip>
+
+## Strukturierte Prompts
+
+<Card
+  title="Warum strukturierte Prompts?"
+  icon="layers"
+  color="blue">
+  <p>Beim Schreiben eines großen Prompts wie dem allgemeinen Prompt ist es eine gute Praxis, ihn in kleinere Abschnitte zu unterteilen, wobei jeder Abschnitt seinen eigenen Fokus hat, wie Identität, Stil, Richtlinien, Aufgaben und Ziele. Dies hat mehrere Vorteile:</p>
+  <ul>
+    <li><strong>Wiederverwendbar</strong> - Abschnitte können in anderen Prompts verwendet werden</li>
+    <li><strong>Einfacher zu warten</strong> - Änderungen können gezielt vorgenommen werden</li>
+    <li><strong>Einfacher für LLMs zu verstehen</strong> - Klare Struktur verbessert das Verständnis</li>
+  </ul>
+</Card>
+
+## Beispiel für einen strukturierten Prompt
+
+<CodeGroup>
+  <CodeGroupItem title="Identität">
+    ```markdown
+    ## Identität
+    Du bist ein freundlicher KI-Assistent für Famulor. Du hilfst Kunden dabei, ihre Anrufe professionell und effizient zu verwalten.
+    ```
+  </CodeGroupItem>
+  
+  <CodeGroupItem title="Stil & Grenzen">
+    ```markdown
+    ## Stil & Grenzen
+    Sei präzise: Halte deine Antworten kurz und auf den Punkt
+    Sei gesprächig: Verwende einen natürlichen, freundlichen Ton
+    Bleibe professionell: Behalte immer einen höflichen Umgangston bei
+    ```
+  </CodeGroupItem>
+  
+  <CodeGroupItem title="Antwort-Richtlinien">
+    ```markdown
+    ## Antwort-Richtlinien
+    Gib Daten in ihrer gesprochenen Form zurück: "fünfter Juli" statt "5.7."
+    Stelle maximal eine Frage auf einmal: Vermeide mehrere Fragen in einer Antwort
+    Bestätige das Verständnis: Fasse wichtige Punkte kurz zusammen
+    ```
+  </CodeGroupItem>
+  
+  <CodeGroupItem title="Einwände">
+    ```markdown
+    ## Einwände
+    Höre dem Kunden zuerst zu, bevor du antwortest
+    Bestätige das Problem, bevor du eine Lösung vorschlägst
+    Biete alternative Lösungen an, wenn möglich
+    ```
+  </CodeGroupItem>
+</CodeGroup>
+
+## Für komplexe Aufgaben: Conversation Flow verwenden
+
+<Card
+  title="Wann Conversation Flow verwenden?"
+  icon="git-branch"
+  color="orange">
+  <p>Wenn die Prompt-Logik kompliziert wird und/oder viele Tools beteiligt sind, kann es für den LLM ziemlich einfach sein, eine falsche Entscheidung zu treffen. Daher ist es ziemlich intuitiv, es in mehrere Knoten aufzuteilen.</p>
+</Card>
+
+<Card
+  title="Vorteile von Conversation Flow"
+  icon="check-circle"
+  color="green">
+  <ul>
+    <li><strong>Bessere Kontrolle</strong> - Jeder Schritt kann einzeln gesteuert werden</li>
+    <li><strong>Einfachere Fehlerbehebung</strong> - Probleme können isoliert werden</li>
+    <li><strong>Flexibilität</strong> - Verschiedene Pfade können definiert werden</li>
+    <li><strong>Skalierbarkeit</strong> - Neue Funktionen können einfach hinzugefügt werden</li>
+  </ul>
+</Card>
+
+## Für Single/Multi Prompt Agenten: Explizit schreiben, wann Tools aufgerufen werden
+
+<Note>
+  Conversation Flow Agenten handhaben Funktionsaufrufe auf deterministische Weise, daher müssen Sie sich darüber keine Sorgen machen. Der folgende Abschnitt gilt nur für Single/Multi Prompt Agenten.
+</Note>
+
+<Card
+  title="Wichtigkeit der Tool-Aufrufe"
+  icon="tool"
+  color="red">
+  <p>Oft hat der LLM keine Ahnung, wann er die Tools mit einer Beschreibung dessen aufrufen soll, was das Tool macht. Es ist wichtig, im Prompt zu schreiben, wann das Tool aufgerufen werden soll, um einen genauen Tool-Aufruf zu gewährleisten. Stellen Sie sicher, dass Sie sich auf das Tool anhand seines Namens beziehen.</p>
+</Card>
+
+## Beispiel für explizite Tool-Aufrufe
+
+<CodeGroup>
+  <CodeGroupItem title="Tool-Aufrufe definieren">
+    ```markdown
+    ## Tool-Aufrufe
+    
+    1. Frage, ob der Benutzer eine Rückerstattung benötigt oder nur Informationen abrufen möchte
+      - Wenn der Benutzer eine Rückerstattung benötigt, rufe die Funktion transfer_to_support auf, um den Benutzer weiter zu unterstützen
+      - Wenn der Benutzer einen Ersatz benötigt, wechsle zum Ersatz-Status
+    ```
+  </CodeGroupItem>
+  
+  <CodeGroupItem title="Tool-Namen verwenden">
+    ```markdown
+    ## Verfügbare Tools
+    
+    - <strong>kalender_buchen</strong>: Verwende dieses Tool, um Termine zu vereinbaren
+    - <strong>kundendaten_abrufen</strong>: Verwende dieses Tool, um Kundendaten zu suchen
+    - <strong>anruf_weiterleiten</strong>: Verwende dieses Tool, um Anrufe weiterzuleiten
+    ```
+  </CodeGroupItem>
+</CodeGroup>
+
+## Best Practices für Famulor
+
+<CardGroup cols={2}>
+  <Card
+    title="Sprachliche Anpassung"
+    icon="globe"
+    color="blue">
+    <ul>
+      <li>Verwende deutsche Begriffe und Ausdrücke</li>
+      <li>Berücksichtige deutsche Geschäftsetikette</li>
+      <li>Passe den Ton an Ihre Zielgruppe an</li>
+    </ul>
+  </Card>
+  
+  <Card
+    title="Technische Integration"
+    icon="settings"
+    color="green">
+    <ul>
+      <li>Integriere Famulor-spezifische Tools</li>
+      <li>Nutze die verfügbaren Funktionen optimal</li>
+      <li>Teste Prompts mit echten Anrufen</li>
+    </ul>
+  </Card>
+</CardGroup>
+
+## Häufige Fehler vermeiden
+
+<Card
+  title="Was Sie vermeiden sollten"
+  icon="x-circle"
+  color="red">
+  <ul>
+    <li><strong>Zu lange Prompts</strong> - LLMs können sich in zu langen Anweisungen verlieren</li>
+    <li><strong>Widersprüchliche Anweisungen</strong> - Stellen Sie sicher, dass alle Teile konsistent sind</li>
+    <li><strong>Unklare Tool-Aufrufe</strong> - Seien Sie explizit, wann und wie Tools verwendet werden sollen</li>
+    <li><strong>Fehlende Beispiele</strong> - Geben Sie konkrete Beispiele für erwartetes Verhalten</li>
+    <li><strong>Überkomplexe Logik</strong> - Teilen Sie komplexe Aufgaben in einfachere Schritte auf</li>
+  </ul>
+</Card>
+
+## Testen und Optimieren
+
+<Card
+  title="Schritte zum Testen"
+  icon="play"
+  color="purple">
+  <ol>
+    <li><strong>Schritt-für-Schritt testen</strong> - Testen Sie jeden Abschnitt einzeln</li>
+    <li><strong>Echte Anrufe simulieren</strong> - Verwenden Sie verschiedene Szenarien</li>
+    <li><strong>Feedback sammeln</strong> - Hören Sie sich die Aufzeichnungen an</li>
+    <li><strong>Iterativ verbessern</strong> - Passen Sie basierend auf den Ergebnissen an</li>
+    <li><strong>Performance überwachen</strong> - Achten Sie auf Antwortzeiten und Qualität</li>
+  </ol>
+</Card>
+
+## Hilfe und Support
+
+<Tip>
+  Unser Support-Team kann Ihnen bei der Erstellung und Optimierung Ihrer Prompts helfen.
+</Tip>
+
+<Card
+  title="Support kontaktieren"
+  icon="headphones"
+  color="blue"
+  href="https://famulor.de/support">
+  Benötigen Sie Hilfe beim Prompt Engineering? Kontaktieren Sie unser Support-Team.
+</Card>
