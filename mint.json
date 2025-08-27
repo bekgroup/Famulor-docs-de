@@ -50,6 +50,12 @@
     "icon": "code",
     "color": "#1c51fc",
     "url": "api-reference"
+  },
+  {
+    "name": "Updates",
+    "icon": "megaphone",
+    "color": "#1c51fc",
+    "url": "updates"
   }],
   "navigation": [{
       "group": "Updates",
