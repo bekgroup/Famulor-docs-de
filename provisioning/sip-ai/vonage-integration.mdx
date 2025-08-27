@@ -15,7 +15,7 @@ description: 'Eine Schritt-für-Schritt-Anleitung zur Verbindung mit Ihrem Vonag
   title="Was ist Vonage?"
   icon="building"
   color="blue">
-  <p>Vonage ist ein führender Anbieter für Cloud-Kommunikationslösungen. Mit der SIP-Trunking-Integration können Sie Ihre bestehenden Vonage-Telefonnummern mit Famulor verbinden und von der KI-gestützten Anrufverwaltung profitieren.</p>
+  Vonage ist ein führender Anbieter für Cloud-Kommunikationslösungen. Mit der SIP-Trunking-Integration können Sie Ihre bestehenden Vonage-Telefonnummern mit Famulor verbinden und von der KI-gestützten Anrufverwaltung profitieren.
 </Card>
 
 ## Schritt 1: Elastic SIP Trunking erstellen
@@ -24,11 +24,11 @@ description: 'Eine Schritt-für-Schritt-Anleitung zur Verbindung mit Ihrem Vonag
   title="SIP-Trunk in Vonage einrichten"
   icon="settings"
   color="green">
-  <ol>
-    <li>Navigieren Sie zum <strong>SIP-Bereich</strong> im Vonage-Dashboard</li>
-    <li>Wählen Sie <strong>"Other"</strong> als Anbieter aus</li>
-    <li>Folgen Sie den Anweisungen Schritt für Schritt</li>
-  </ol>
+  
+    - Navigieren Sie zum **SIP-Bereich** im Vonage-Dashboard
+    - Wählen Sie **"Other"** als Anbieter aus
+    - Folgen Sie den Anweisungen Schritt für Schritt
+  
 </Card>
 
 ### Termination einrichten (für ausgehende Anrufe)
@@ -37,13 +37,13 @@ description: 'Eine Schritt-für-Schritt-Anleitung zur Verbindung mit Ihrem Vonag
   title="Wichtige Informationen notieren"
   icon="edit"
   color="orange">
-  <p>Bei der Einrichtung der Termination (ausgehende Anrufe) sind folgende Informationen wichtig:</p>
-  <ul>
-    <li><strong>Termination SIP URI</strong></li>
-    <li><strong>Benutzername</strong></li>
-    <li><strong>Passwort</strong></li>
-  </ul>
-  <p><strong>Wichtig:</strong> Notieren Sie sich diese Informationen, da Sie sie in den späteren Schritten benötigen werden.</p>
+  Bei der Einrichtung der Termination (ausgehende Anrufe) sind folgende Informationen wichtig:
+  
+    - **Termination SIP URI**
+    - **Benutzername**
+    - **Passwort**
+  
+  **Wichtig:** Notieren Sie sich diese Informationen, da Sie sie in den späteren Schritten benötigen werden.
 </Card>
 
 ### Origination einrichten (für eingehende Anrufe)
@@ -52,7 +52,7 @@ description: 'Eine Schritt-für-Schritt-Anleitung zur Verbindung mit Ihrem Vonag
   title="Famulor SIP-Server konfigurieren"
   icon="server"
   color="purple">
-  <p>Hier geben Sie die Famulor SIP-Server-Adresse als Origination SIP URI an:</p>
+  Hier geben Sie die Famulor SIP-Server-Adresse als Origination SIP URI an:
   <CodeGroup>
     <CodeGroupItem title="SIP-Server">
       ```bash
@@ -72,11 +72,11 @@ description: 'Eine Schritt-für-Schritt-Anleitung zur Verbindung mit Ihrem Vonag
   title="Nummern verknüpfen"
   icon="phone"
   color="blue">
-  <p>Nachdem Sie den Elastic SIP-Trunk erstellt haben, müssen Sie:</p>
-  <ul>
-    <li>Neue Nummern kaufen <strong>ODER</strong></li>
-    <li>Bestehende Nummern mit diesem Trunk verknüpfen</li>
-  </ul>
+  Nachdem Sie den Elastic SIP-Trunk erstellt haben, müssen Sie:
+  
+    - Neue Nummern kaufen **ODER**
+    - Bestehende Nummern mit diesem Trunk verknüpfen
+  
 </Card>
 
 ## Schritt 3: Nummern in Famulor importieren
@@ -85,7 +85,7 @@ description: 'Eine Schritt-für-Schritt-Anleitung zur Verbindung mit Ihrem Vonag
   title="Integration in Famulor abschließen"
   icon="download"
   color="green">
-  <p>Jetzt, da die Nummer mit Ihrem Elastic SIP-Trunking eingerichtet ist, müssen Sie sie in Famulor importieren, damit wir wissen, wie wir die Anrufe routen können.</p>
+  Jetzt, da die Nummer mit Ihrem Elastic SIP-Trunking eingerichtet ist, müssen Sie sie in Famulor importieren, damit wir wissen, wie wir die Anrufe routen können.
 </Card>
 
 ### Benötigte Informationen
@@ -94,12 +94,12 @@ description: 'Eine Schritt-für-Schritt-Anleitung zur Verbindung mit Ihrem Vonag
   title="Vonage-Daten eingeben"
   icon="database"
   color="red">
-  <p>Geben Sie hier die folgenden Informationen ein, die Sie in Schritt 1 eingerichtet haben:</p>
-  <ul>
-    <li><strong>Termination SIP URI</strong> aus Schritt 1</li>
-    <li><strong>Benutzername</strong> aus Schritt 1</li>
-    <li><strong>Passwort</strong> aus Schritt 1</li>
-  </ul>
+  Geben Sie hier die folgenden Informationen ein, die Sie in Schritt 1 eingerichtet haben:
+  
+    - **Termination SIP URI** aus Schritt 1
+    - **Benutzername** aus Schritt 1
+    - **Passwort** aus Schritt 1
+  
 </Card>
 
 ### Programmgesteuerter Import
@@ -108,7 +108,7 @@ description: 'Eine Schritt-für-Schritt-Anleitung zur Verbindung mit Ihrem Vonag
   title="API-Import verfügbar"
   icon="code"
   color="indigo">
-  <p>Sie können Nummern auch programmgesteuert über die <strong>Import Number API</strong> importieren.</p>
+  Sie können Nummern auch programmgesteuert über die **Import Number API** importieren.
 </Card>
 
 ## Nach dem Import
@@ -117,20 +117,20 @@ description: 'Eine Schritt-für-Schritt-Anleitung zur Verbindung mit Ihrem Vonag
   title="Vollständige Funktionalität"
   icon="check-circle"
   color="green">
-  <p>Sobald die Nummer importiert ist, können Sie:</p>
-  <ul>
-    <li>Anrufe mit dieser Nummer tätigen und empfangen</li>
-    <li>Die Nummer wird in Ihrem Dashboard angezeigt</li>
-    <li>Sie können Assistenten an die Nummer binden</li>
-    <li>Direkt vom Dashboard aus Anrufe tätigen</li>
-  </ul>
+  Sobald die Nummer importiert ist, können Sie:
+  
+    - Anrufe mit dieser Nummer tätigen und empfangen
+    - Die Nummer wird in Ihrem Dashboard angezeigt
+    - Sie können Assistenten an die Nummer binden
+    - Direkt vom Dashboard aus Anrufe tätigen
+  
 </Card>
 
 <Card
   title="Weiterführende Informationen"
   icon="book-open"
   color="blue">
-  <p>Schauen Sie sich den <strong>Anruf-Guide</strong> an, um zu lernen, wie Sie Anrufe tätigen können.</p>
+  Schauen Sie sich den **Anruf-Guide** an, um zu lernen, wie Sie Anrufe tätigen können.
 </Card>
 
 ## Technische Details
@@ -140,22 +140,22 @@ description: 'Eine Schritt-für-Schritt-Anleitung zur Verbindung mit Ihrem Vonag
     title="SIP-Protokoll"
     icon="settings"
     color="blue">
-    <ul>
-      <li>Verwendet Standard SIP-Trunking</li>
-      <li>Unterstützt eingehende und ausgehende Anrufe</li>
-      <li>Vollständige Integration mit Famulor</li>
-    </ul>
+    
+      - Verwendet Standard SIP-Trunking
+      - Unterstützt eingehende und ausgehende Anrufe
+      - Vollständige Integration mit Famulor
+    
   </Card>
   
   <Card
     title="Authentifizierung"
     icon="shield"
     color="green">
-    <ul>
-      <li>Benutzername/Passwort-basierte Authentifizierung</li>
-      <li>Sichere Verbindung über SIP</li>
-      <li>Verschlüsselte Kommunikation</li>
-    </ul>
+    
+      - Benutzername/Passwort-basierte Authentifizierung
+      - Sichere Verbindung über SIP
+      - Verschlüsselte Kommunikation
+    
   </Card>
 </CardGroup>
 
@@ -165,12 +165,12 @@ description: 'Eine Schritt-für-Schritt-Anleitung zur Verbindung mit Ihrem Vonag
   title="Troubleshooting"
   icon="help-circle"
   color="orange">
-  <ul>
-    <li><strong>Verbindungsprobleme:</strong> Überprüfen Sie die SIP-URI und Anmeldedaten</li>
-    <li><strong>Anrufe funktionieren nicht:</strong> Stellen Sie sicher, dass der Trunk aktiviert ist</li>
-    <li><strong>Eingehende Anrufe fehlen:</strong> Überprüfen Sie die Origination-Einstellungen</li>
-    <li><strong>Ausgehende Anrufe fehlen:</strong> Überprüfen Sie die Termination-Einstellungen</li>
-  </ul>
+  
+    - **Verbindungsprobleme:** Überprüfen Sie die SIP-URI und Anmeldedaten
+    - **Anrufe funktionieren nicht:** Stellen Sie sicher, dass der Trunk aktiviert ist
+    - **Eingehende Anrufe fehlen:** Überprüfen Sie die Origination-Einstellungen
+    - **Ausgehende Anrufe fehlen:** Überprüfen Sie die Termination-Einstellungen
+  
 </Card>
 
 ## Einrichtung in Famulor
@@ -179,15 +179,15 @@ description: 'Eine Schritt-für-Schritt-Anleitung zur Verbindung mit Ihrem Vonag
   title="Schritte zur Einrichtung"
   icon="settings"
   color="purple">
-  <ol>
-    <li>Gehen Sie zu <strong>Telefonnummern</strong> → <strong>SIP-Trunk integrieren</strong></li>
-    <li>Wählen Sie <strong>"Vonage"</strong> als Anbieter</li>
-    <li>Geben Sie die <strong>Termination SIP URI</strong> ein</li>
-    <li>Geben Sie den <strong>Benutzernamen</strong> ein</li>
-    <li>Geben Sie das <strong>Passwort</strong> ein</li>
-    <li>Klicken Sie auf <strong>"Speichern"</strong></li>
-    <li>Testen Sie die Verbindung mit einem Anruf</li>
-  </ol>
+  
+    - Gehen Sie zu **Telefonnummern** → **SIP-Trunk integrieren**
+    - Wählen Sie **"Vonage"** als Anbieter
+    - Geben Sie die **Termination SIP URI** ein
+    - Geben Sie den **Benutzernamen** ein
+    - Geben Sie das **Passwort** ein
+    - Klicken Sie auf **"Speichern"**
+    - Testen Sie die Verbindung mit einem Anruf
+  
 </Card>
 
 ## Hilfe benötigt?
@@ -210,10 +210,10 @@ description: 'Eine Schritt-für-Schritt-Anleitung zur Verbindung mit Ihrem Vonag
   title="Weiterführende Ressourcen"
   icon="arrow-right"
   color="green">
-  <ul>
-    <li>Lernen Sie mehr über <strong>SIP-Integration</strong></li>
-    <li>Entdecken Sie andere <strong>Telefonie-Anbieter</strong></li>
-    <li>Testen Sie Ihre Integration mit <strong>Anruf-Tests</strong></li>
-    <li>Konfigurieren Sie <strong>KI-Assistenten</strong> für Ihre Nummern</li>
-  </ul>
+  
+    - Lernen Sie mehr über **SIP-Integration**
+    - Entdecken Sie andere **Telefonie-Anbieter**
+    - Testen Sie Ihre Integration mit **Anruf-Tests**
+    - Konfigurieren Sie **KI-Assistenten** für Ihre Nummern
+  
 </Card>

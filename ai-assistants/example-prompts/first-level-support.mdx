@@ -14,53 +14,53 @@ description: "Erklärung des Ablaufs und vollständiger Prompt als Code für Fir
 
 <CardGroup cols={2}>
   <Card title="Gesprächsablauf" icon="phone" color="blue">
-    <ul>
-      <li>Die KI informiert zu Beginn transparent über die Aufzeichnung</li>
-      <li>Bei technischen Problemen fragt die KI nach der Produktnummer</li>
-      <li>Verkaufsanrufe werden freundlich abgelehnt</li>
-      <li>Die KI führt Rufweiterleitungen anhand klarer Regeln aus</li>
-    </ul>
+    
+      - Die KI informiert zu Beginn transparent über die Aufzeichnung
+      - Bei technischen Problemen fragt die KI nach der Produktnummer
+      - Verkaufsanrufe werden freundlich abgelehnt
+      - Die KI führt Rufweiterleitungen anhand klarer Regeln aus
+    
   </Card>
   <Card title="Funktionalitäten" icon="help-circle" color="green">
-    <ul>
-      <li>Bei fehlgeschlagener Weiterleitung erfasst die KI strukturiert Kontaktdaten</li>
-      <li>Die KI beantwortet keine inhaltlichen Detailfragen</li>
-      <li>Ziel ist qualifizieren, weiterleiten und Daten erfassen</li>
-      <li>Häufige Fragen sind als kurze Antwortsnippets enthalten</li>
-    </ul>
+    
+      - Bei fehlgeschlagener Weiterleitung erfasst die KI strukturiert Kontaktdaten
+      - Die KI beantwortet keine inhaltlichen Detailfragen
+      - Ziel ist qualifizieren, weiterleiten und Daten erfassen
+      - Häufige Fragen sind als kurze Antwortsnippets enthalten
+    
   </Card>
 </CardGroup>
 
 ## Erfasste Datenpunkte
 
 <Card title="Wichtige Informationen" icon="database" color="purple">
-  <ul>
-    <li><strong>Adresse</strong></li>
-    <li><strong>Vorname und Nachname</strong></li>
-    <li><strong>Rückrufnummer oder alternative Nummer</strong></li>
-    <li><strong>Zusammenfassung des Anliegens im Detail</strong></li>
-  </ul>
+  
+    - **Adresse**
+    - **Vorname und Nachname**
+    - **Rückrufnummer oder alternative Nummer**
+    - **Zusammenfassung des Anliegens im Detail**
+  
 </Card>
 
 ## Routinglogik im Gespräch
 
 <Card title="Weiterleitungsregeln" icon="phone-forward" color="orange">
-  <ul>
-    <li><strong>Angebot:</strong> Vertrieb → Max Muster</li>
-    <li><strong>Mensch sprechen:</strong> Empfang → Sophie Muster</li>
-    <li><strong>Notfall:</strong> Geschäftsführung → Thomas Muster</li>
-  </ul>
+  
+    - **Angebot:** Vertrieb → Max Muster
+    - **Mensch sprechen:** Empfang → Sophie Muster
+    - **Notfall:** Geschäftsführung → Thomas Muster
+  
 </Card>
 
 ## Voraussetzungen in Famulor
 
 <Card title="Technische Einrichtung" icon="phone-intercom" color="red">
-  <ul>
-    <li><strong>Tool Rufweiterleitung</strong> im Assistenten aktivieren und Ziele konfigurieren</li>
-    <li><strong>Namen, Rollen und Kontaktdaten</strong> im Prompt mit echten Daten ersetzen</li>
-    <li><strong>FAQ und Unternehmensinfos</strong> im entsprechenden Abschnitt pflegen</li>
-    <li><strong>Optional:</strong> Nachverarbeitung per E-Mail aktivieren</li>
-  </ul>
+  
+    - **Tool Rufweiterleitung** im Assistenten aktivieren und Ziele konfigurieren
+    - **Namen, Rollen und Kontaktdaten** im Prompt mit echten Daten ersetzen
+    - **FAQ und Unternehmensinfos** im entsprechenden Abschnitt pflegen
+    - **Optional:** Nachverarbeitung per E-Mail aktivieren
+  
 </Card>
 
 ## Vollständiger Prompt
@@ -152,34 +152,34 @@ Falls der Kunde über folgenden Themen spricht, sage, dass du nicht weiterhelfen
 
 <CardGroup cols={2}>
   <Card title="FAQ erweitern" icon="flask-gear" color="blue">
-    <ul>
-    <li>Ergänze weitere FAQ-Snippets, die für Anrufer hilfreich sind</li>
-    <li>Definiere eine kurze Abschlussformel</li>
-    <li>Beispiel: "Wir melden uns schnellstmöglich zurück"</li>
-    </ul>
+    
+    - Ergänze weitere FAQ-Snippets, die für Anrufer hilfreich sind
+    - Definiere eine kurze Abschlussformel
+    - Beispiel: "Wir melden uns schnellstmöglich zurück"
+    
   </Card>
   <Card title="Daten anpassen" icon="circle-dashed" color="green">
-    <ul>
-    <li>Prüfe die Reihenfolge der Datenerfassung</li>
-    <li>Passe sie an deinen Prozess an</li>
-    <li>Ersetze alle Platzhalter durch echte Daten</li>
-    </ul>
+    
+    - Prüfe die Reihenfolge der Datenerfassung
+    - Passe sie an deinen Prozess an
+    - Ersetze alle Platzhalter durch echte Daten
+    
   </Card>
 </CardGroup>
 
 ## Einrichtung in Famulor
 
 <Card title="Schritte zur Einrichtung" icon="arrow-progress" color="orange">
-  <ol>
-  <li>Gehen Sie zu <strong>Assistenten</strong> → <strong>Prompt & Werkzeuge</strong></li>
-  <li>Wählen Sie <strong>System Prompt</strong></li>
-  <li>Kopieren Sie den obigen Prompt und passen Sie ihn an</li>
-  <li>Aktivieren Sie das <strong>Rufweiterleitung-Tool</strong> unter Tools</li>
-  <li>Konfigurieren Sie die Weiterleitungsziele</li>
-  <li>Ersetzen Sie alle Platzhalter durch Ihre Unternehmensdaten</li>
-  <li>Speichern Sie den Prompt</li>
-  <li>Testen Sie den Assistenten mit einem Anruf</li>
-  </ol>
+  
+  - Gehen Sie zu **Assistenten** → **Prompt & Werkzeuge**
+  - Wählen Sie **System Prompt**
+  - Kopieren Sie den obigen Prompt und passen Sie ihn an
+  - Aktivieren Sie das **Rufweiterleitung-Tool** unter Tools
+  - Konfigurieren Sie die Weiterleitungsziele
+  - Ersetzen Sie alle Platzhalter durch Ihre Unternehmensdaten
+  - Speichern Sie den Prompt
+  - Testen Sie den Assistenten mit einem Anruf
+  
 </Card>
 
 ## Hilfe benötigt?
