@@ -90,6 +90,7 @@
         "ai-assistants/initial-message",
         "ai-assistants/creating-and-editing",
         "ai-assistants/tools-and-functions",
+        "ai-assistants/custom-mid-call-tools",
         "ai-assistants/voice-selection",
         "ai-assistants/filler-audio",
         "ai-assistants/web-widget",
