@@ -149,7 +149,7 @@ icon: "brain-circuit"
 </Card>
 
 <ButtonGroup>
-  <Button href="https://app.famulor.de/demo">Kostenlose Demo anfordern ⚡</Button>
+  <Button href="https://https://www.famulor.io">Kostenlose Demo anfordern ⚡</Button>
   <Button href="/getting-started/core-concepts">Agent erstellen</Button>
 </ButtonGroup>
 ```
