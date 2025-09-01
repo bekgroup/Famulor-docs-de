@@ -35,12 +35,6 @@
   }, {
     "name": "Support",
     "url": "mailto:support@famulor.io"
-  }, {
-    "name": "Platform Status",
-    "url": "https://status.famulor.io/"
-  }, {
-    "name": "Demo buchen",
-    "url": "https://cal.com/bek-group/demotermine"
   }],
   "topbarCtaButton": {
     "name": "Dashboard",
@@ -56,8 +50,19 @@
     "icon": "code",
     "color": "#1c51fc",
     "url": "api-reference"
-  },
-  {
+  }, {
+    "name": "Platform Status",
+    "icon": "chart-line",
+    "color": "#10b981",
+    "url": "https://status.famulor.io/",
+    "isDefaultHidden": false
+  }, {
+    "name": "Demo buchen",
+    "icon": "calendar-days",
+    "color": "#f59e0b",
+    "url": "https://cal.com/bek-group/demotermine",
+    "isDefaultHidden": false
+  }, {
     "name": "Updates",
     "icon": "megaphone",
     "color": "#1c51fc",
