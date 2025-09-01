@@ -349,6 +349,15 @@
         "sales/technische-optimierung",
         "sales/erfolgsmessung-und-reporting"
       ]
+    },
+    {
+      "group": "Rechtliche Informationen",
+      "icon": "scale-balanced",
+      "pages": [
+        "legal/voice-cloning-legal-information",
+        "legal/voice-cloning-compliance",
+        "legal/voice-cloning-contracts"
+      ]
     }
   ],
   "footerSocials": {
