@@ -35,6 +35,12 @@
   }, {
     "name": "Support",
     "url": "mailto:support@famulor.io"
+  }, {
+    "name": "Platform Status",
+    "url": "https://status.famulor.io/"
+  }, {
+    "name": "Demo buchen",
+    "url": "https://cal.com/bek-group/demotermine"
   }],
   "topbarCtaButton": {
     "name": "Dashboard",

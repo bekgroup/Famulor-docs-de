@@ -160,11 +160,11 @@ docker run -e FAMULOR_API_KEY=your_actual_api_key_here your-app
 ### Häufige Fehler und Lösungen
 
 <AccordionGroup>
-  <Accordion title=\"401 Unauthorized - Ungültiger API-Schlüssel\">
+  <Accordion title="401 Unauthorized - Ungültiger API-Schlüssel">
     ```json
     {
-      \"error\": \"Invalid API key\",
-      \"message\": \"The provided API key is invalid or expired\"
+      "error": "Invalid API key",
+      "message": "The provided API key is invalid or expired"
     }
     ```
     
@@ -175,11 +175,11 @@ docker run -e FAMULOR_API_KEY=your_actual_api_key_here your-app
     - Erstellen Sie bei Bedarf einen neuen API-Schlüssel
   </Accordion>
 
-  <Accordion title=\"403 Forbidden - Fehlende Berechtigung\">
+  <Accordion title="403 Forbidden - Fehlende Berechtigung">
     ```json
     {
-      \"error\": \"Insufficient permissions\",
-      \"message\": \"Your API key does not have permission for this resource\"
+      "error": "Insufficient permissions",
+      "message": "Your API key does not have permission for this resource"
     }
     ```
     
@@ -189,11 +189,11 @@ docker run -e FAMULOR_API_KEY=your_actual_api_key_here your-app
     - Stellen Sie sicher, dass Sie auf die richtige Ressource zugreifen
   </Accordion>
 
-  <Accordion title=\"Missing Authorization Header\">
+  <Accordion title="Missing Authorization Header">
     ```json
     {
-      \"error\": \"Missing Authorization header\",
-      \"message\": \"Authorization header is required\"
+      "error": "Missing Authorization header",
+      "message": "Authorization header is required"
     }
     ```
     
@@ -209,20 +209,20 @@ docker run -e FAMULOR_API_KEY=your_actual_api_key_here your-app
 ### Einfacher Test-Aufruf
 
 ```bash
-curl -X GET \"https://app.famulor.de/api/user/assistants\" \\
-     -H \"Authorization: Bearer YOUR_API_KEY\" \\
-     -H \"Content-Type: application/json\"
+curl -X GET "https://app.famulor.de/api/user/assistants" \
+     -H "Authorization: Bearer YOUR_API_KEY" \
+     -H "Content-Type: application/json"
 ```
 
 ### Erwartete Antwort
 
 ```json
 {
-  \"assistants\": [
+  "assistants": [
     {
-      \"id\": 123,
-      \"name\": \"Mein Assistent\",
-      \"created_at\": \"2024-01-15T10:30:00Z\"
+      "id": 123,
+      "name": "Mein Assistent",
+      "created_at": "2024-01-15T10:30:00Z"
     }
   ]
 }
@@ -265,25 +265,25 @@ X-RateLimit-Reset: 1640995200
 
 ```json
 {
-  \"error\": \"Rate limit exceeded\",
-  \"message\": \"Too many requests. Please try again later.\",
-  \"retry_after\": 60
+  "error": "Rate limit exceeded",
+  "message": "Too many requests. Please try again later.",
+  "retry_after": 60
 }
 ```
 
 ## Nächste Schritte
 
 <CardGroup cols={2}>
-  <Card title=\"Ersten Anruf tätigen\" icon=\"phone\" href=\"/api-reference/calls/make\">
+  <Card title="Ersten Anruf tätigen" icon="phone" href="/api-reference/calls/make">
     Lernen Sie, wie Sie API-Aufrufe für Voice Agents implementieren
   </Card>
-  <Card title=\"Webhook-Integration\" icon=\"webhook\" href=\"/api-reference/webhooks/post-call\">
+  <Card title="Webhook-Integration" icon="webhook" href="/api-reference/webhooks/post-call">
     Post-Call-Datenverarbeitung einrichten
   </Card>
-  <Card title=\"Automatisierungsplattform\" icon=\"wand-magic-sparkles\" href=\"/automation-platform/introduction\">
+  <Card title="Automatisierungsplattform" icon="wand-magic-sparkles" href="/automation-platform/introduction">
     No-Code-Alternative zur direkten API-Nutzung
   </Card>
-  <Card title=\"API Referenz\" icon=\"book\" href=\"/api-reference/introduction\">
+  <Card title="API Referenz" icon="book" href="/api-reference/introduction">
     Vollständige API-Dokumentation
   </Card>
 </CardGroup>
