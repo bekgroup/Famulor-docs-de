@@ -312,6 +312,13 @@
       ]
     },
     {
+      "group": "Whitepapers & Ressourcen",
+      "icon": "graduation-cap",
+      "pages": [
+        "resources/whitepaper-ki-telefonie-zukunft"
+      ]
+    },
+    {
       "group": "Vertrieb & Best Practices",
       "pages": [
         "sales/beste-zeit-fuer-kaltakquise",
