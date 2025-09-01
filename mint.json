@@ -85,6 +85,7 @@
       "pages": [
         "ai-assistants/what-is-ai-assistant",
         "ai-assistants/assistant-best-practices",
+        "ai-assistants/assistant-modes",
         "ai-assistants/system-prompt",
         "ai-assistants/custom-gpt",
         "ai-assistants/initial-message",
