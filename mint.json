@@ -324,11 +324,31 @@
         "automation-platform/integrations/einzelintegrations/hubspot",
         "automation-platform/integrations/einzelintegrations/salesforce",
         "automation-platform/integrations/einzelintegrations/openai",
+        "automation-platform/integrations/einzelintegrations/anthropic-claude",
         "automation-platform/integrations/einzelintegrations/slack",
+        "automation-platform/integrations/einzelintegrations/microsoft-teams",
         "automation-platform/integrations/einzelintegrations/gmail",
+        "automation-platform/integrations/einzelintegrations/google-calendar",
         "automation-platform/integrations/einzelintegrations/google-sheets",
         "automation-platform/integrations/einzelintegrations/shopify",
-        "automation-platform/integrations/einzelintegrations/calendly"
+        "automation-platform/integrations/einzelintegrations/calendly",
+        "automation-platform/integrations/einzelintegrations/zoom"
+      ]
+    },
+    {
+      "group": "CRM & Sales Integrationen",
+      "pages": [
+        "automation-platform/integrations/einzelintegrations/pipedrive",
+        "automation-platform/integrations/einzelintegrations/activecampaign",
+        "automation-platform/integrations/einzelintegrations/airtable",
+        "automation-platform/integrations/einzelintegrations/asana"
+      ]
+    },
+    {
+      "group": "Integration Database",
+      "pages": [
+        "automation-platform/integrations/famulor-integrations-database",
+        "automation-platform/integrations/famulor-integrations-c-z"
       ]
     },
     {
