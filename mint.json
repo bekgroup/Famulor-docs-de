@@ -34,7 +34,7 @@
     "url": "https://docs.famulor.io/"
   }, {
     "name": "Support",
-    "url": "https://famulor.de/support"
+    "url": "mailto:support@famulor.io"
   }],
   "topbarCtaButton": {
     "name": "Dashboard",
@@ -71,6 +71,15 @@
         "introduction/what-is-Famulor",
         "introduction/how-it-works",
         "introduction/key-terminology"
+      ]
+    },
+    {
+      "group": "Für Entwickler",
+      "icon": "code",
+      "pages": [
+        "developers/overview",
+        "developers/authentication-guide",
+        "developers/api-integration-examples"
       ]
     },
     {

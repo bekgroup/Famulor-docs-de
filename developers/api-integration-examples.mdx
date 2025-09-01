@@ -1,0 +1,780 @@
+---
+title: "API-Integration Beispiele"
+icon: "code-branch"
+description: "Praktische Beispiele für die Integration der Famulor API in verschiedene Anwendungen"
+---
+
+# API-Integration Beispiele
+
+Dieses Handbuch zeigt Ihnen praktische Implementierungsbeispiele für häufige Anwendungsfälle der Famulor API.
+
+## Grundlegende Integration
+
+### Assistenten auflisten
+
+Bevor Sie Anrufe tätigen, listen Sie verfügbare Assistenten auf:
+
+<CodeGroup>
+
+```javascript JavaScript
+async function getAssistants() {
+  const response = await fetch('https://app.famulor.de/api/user/assistants', {
+    headers: {
+      'Authorization': `Bearer ${process.env.FAMULOR_API_KEY}`,
+      'Content-Type': 'application/json'
+    }
+  });
+  
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+  
+  const assistants = await response.json();
+  return assistants;
+}
+
+// Verwendung
+getAssistants()
+  .then(assistants => console.log('Verfügbare Assistenten:', assistants))
+  .catch(error => console.error('Fehler:', error));
+```
+
+```python Python
+import requests
+import os
+from typing import Dict, List
+
+def get_assistants() -> List[Dict]:
+    """Hole alle verfügbaren Assistenten"""
+    api_key = os.getenv('FAMULOR_API_KEY')
+    
+    response = requests.get(
+        'https://app.famulor.de/api/user/assistants',
+        headers={
+            'Authorization': f'Bearer {api_key}',
+            'Content-Type': 'application/json'
+        }
+    )
+    
+    response.raise_for_status()  # Wirft Exception bei HTTP-Fehler
+    return response.json()
+
+# Verwendung
+try:
+    assistants = get_assistants()
+    print(f"Gefunden: {len(assistants)} Assistenten")
+    for assistant in assistants:
+        print(f"- {assistant['name']} (ID: {assistant['id']})")
+except requests.exceptions.RequestException as e:
+    print(f"API-Fehler: {e}")
+```
+
+</CodeGroup>
+
+## Anruf-Integration
+
+### Einfacher Anruf
+
+<CodeGroup>
+
+```javascript JavaScript
+async function makeCall(phoneNumber, assistantId, variables = {}) {
+  const response = await fetch('https://app.famulor.de/api/user/make_call', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${process.env.FAMULOR_API_KEY}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      phone_number: phoneNumber,
+      assistant_id: assistantId,
+      variables: variables
+    })
+  });
+
+  const result = await response.json();
+  
+  if (!response.ok) {
+    throw new Error(`API Error: ${result.message}`);
+  }
+
+  return result;
+}
+
+// Beispiel-Verwendung
+makeCall('+4915123456789', 123, {
+  customer_name: 'Max Mustermann',
+  email: 'max@example.com',
+  appointment_time: '2024-03-15 14:00'
+})
+.then(result => {
+  console.log('Anruf erfolgreich gestartet:', result.call_id);
+  console.log('Status:', result.status);
+})
+.catch(error => console.error('Fehler:', error.message));
+```
+
+```python Python
+import requests
+import json
+from typing import Dict, Optional
+
+def make_call(phone_number: str, assistant_id: int, variables: Optional[Dict] = None) -> Dict:
+    """Tätige einen Anruf mit dem Famulor API"""
+    api_key = os.getenv('FAMULOR_API_KEY')
+    
+    payload = {
+        'phone_number': phone_number,
+        'assistant_id': assistant_id,
+        'variables': variables or {}
+    }
+    
+    response = requests.post(
+        'https://app.famulor.de/api/user/make_call',
+        headers={
+            'Authorization': f'Bearer {api_key}',
+            'Content-Type': 'application/json'
+        },
+        json=payload
+    )
+    
+    if not response.ok:
+        error_data = response.json()
+        raise Exception(f"API Error: {error_data.get('message', 'Unknown error')}")
+    
+    return response.json()
+
+# Beispiel-Verwendung
+try:
+    result = make_call(
+        phone_number='+4915123456789',
+        assistant_id=123,
+        variables={
+            'customer_name': 'Max Mustermann',
+            'email': 'max@example.com'
+        }
+    )
+    print(f"Anruf gestartet - Call ID: {result['call_id']}")
+except Exception as e:
+    print(f"Fehler beim Anruf: {e}")
+```
+
+</CodeGroup>
+
+## CRM-Integration Beispiele
+
+### HubSpot Integration
+
+```javascript
+// HubSpot-Kontakt zu Famulor-Anruf
+class HubSpotFamulor {
+  constructor(hubspotToken, famularToken) {
+    this.hubspotToken = hubspotToken;
+    this.famularToken = famularToken;
+  }
+
+  async getHubSpotContact(email) {
+    const response = await fetch(`https://api.hubapi.com/crm/v3/objects/contacts/search`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${this.hubspotToken}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        filterGroups: [{
+          filters: [{
+            propertyName: 'email',
+            operator: 'EQ',
+            value: email
+          }]
+        }]
+      })
+    });
+    
+    const data = await response.json();
+    return data.results[0];
+  }
+
+  async callHubSpotContact(email, assistantId) {
+    try {
+      // 1. HubSpot Kontakt abrufen
+      const contact = await this.getHubSpotContact(email);
+      
+      if (!contact) {
+        throw new Error('Kontakt nicht in HubSpot gefunden');
+      }
+
+      // 2. Famulor Anruf mit HubSpot-Daten
+      const callResult = await fetch('https://app.famulor.de/api/user/make_call', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${this.famularToken}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          phone_number: contact.properties.phone,
+          assistant_id: assistantId,
+          variables: {
+            customer_name: `${contact.properties.firstname} ${contact.properties.lastname}`,
+            email: contact.properties.email,
+            company: contact.properties.company,
+            last_interaction: contact.properties.notes_last_updated
+          }
+        })
+      });
+
+      const result = await callResult.json();
+      console.log('Anruf gestartet für HubSpot-Kontakt:', result.call_id);
+      
+      return result;
+    } catch (error) {
+      console.error('CRM-Integration Fehler:', error);
+      throw error;
+    }
+  }
+}
+
+// Verwendung
+const integration = new HubSpotFamulor(
+  process.env.HUBSPOT_TOKEN,
+  process.env.FAMULOR_API_KEY
+);
+
+integration.callHubSpotContact('max@example.com', 123);
+```
+
+### Salesforce Integration
+
+```python
+import requests
+from simple_salesforce import Salesforce
+
+class SalesforceFamulor:
+    def __init__(self, sf_username, sf_password, sf_token, famulor_key):
+        self.sf = Salesforce(
+            username=sf_username,
+            password=sf_password,
+            security_token=sf_token
+        )
+        self.famulor_key = famulor_key
+    
+    def call_salesforce_lead(self, lead_id: str, assistant_id: int):
+        """Rufe Salesforce Lead mit Famulor an"""
+        try:
+            # 1. Lead-Daten aus Salesforce abrufen
+            lead = self.sf.Lead.get(lead_id)
+            
+            # 2. Telefonnummer validieren
+            phone = lead['Phone']
+            if not phone:
+                raise ValueError("Lead hat keine Telefonnummer")
+            
+            # 3. Famulor-Anruf tätigen
+            payload = {
+                'phone_number': phone,
+                'assistant_id': assistant_id,
+                'variables': {
+                    'customer_name': f"{lead['FirstName']} {lead['LastName']}",
+                    'email': lead['Email'],
+                    'company': lead['Company'],
+                    'lead_source': lead['LeadSource'],
+                    'salesforce_id': lead_id
+                }
+            }
+            
+            response = requests.post(
+                'https://app.famulor.de/api/user/make_call',
+                headers={
+                    'Authorization': f'Bearer {self.famulor_key}',
+                    'Content-Type': 'application/json'
+                },
+                json=payload
+            )
+            
+            result = response.json()
+            
+            # 4. Salesforce mit Anruf-ID aktualisieren
+            self.sf.Lead.update(lead_id, {
+                'Description': f"Famulor Anruf gestartet - Call ID: {result['call_id']}"
+            })
+            
+            return result
+            
+        except Exception as e:
+            print(f"Salesforce Integration Fehler: {e}")
+            raise
+
+# Verwendung
+integration = SalesforceFamulor(
+    sf_username='user@company.com',
+    sf_password='password',
+    sf_token='security_token',
+    famulor_key=os.getenv('FAMULOR_API_KEY')
+)
+
+integration.call_salesforce_lead('00Q1234567890ABC', 123)
+```
+
+## Web-Anwendung Integration
+
+### React Component
+
+```jsx
+import React, { useState, useEffect } from 'react';
+
+const FamuloreCallComponent = () => {
+  const [assistants, setAssistants] = useState([]);
+  const [selectedAssistant, setSelectedAssistant] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [customerName, setCustomerName] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [callResult, setCallResult] = useState(null);
+
+  // Assistenten laden beim Komponenten-Mount
+  useEffect(() => {
+    fetchAssistants();
+  }, []);
+
+  const fetchAssistants = async () => {
+    try {
+      const response = await fetch('/api/famulor/assistants'); // Backend-Proxy
+      const data = await response.json();
+      setAssistants(data);
+      if (data.length > 0) {
+        setSelectedAssistant(data[0].id);
+      }
+    } catch (error) {
+      console.error('Fehler beim Laden der Assistenten:', error);
+    }
+  };
+
+  const handleCall = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setCallResult(null);
+
+    try {
+      const response = await fetch('/api/famulor/make-call', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          phone_number: phoneNumber,
+          assistant_id: selectedAssistant,
+          variables: {
+            customer_name: customerName
+          }
+        }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setCallResult({
+          success: true,
+          message: `Anruf erfolgreich gestartet! Call ID: ${result.call_id}`,
+          callId: result.call_id
+        });
+        // Formular zurücksetzen
+        setPhoneNumber('');
+        setCustomerName('');
+      } else {
+        setCallResult({
+          success: false,
+          message: result.message || 'Fehler beim Anruf'
+        });
+      }
+    } catch (error) {
+      setCallResult({
+        success: false,
+        message: 'Netzwerkfehler: ' + error.message
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <div className="famulor-call-component">
+      <h2>Voice Agent Anruf starten</h2>
+      
+      <form onSubmit={handleCall}>
+        <div className="form-group">
+          <label htmlFor="assistant">KI-Assistent:</label>
+          <select
+            id="assistant"
+            value={selectedAssistant}
+            onChange={(e) => setSelectedAssistant(e.target.value)}
+            required
+          >
+            <option value="">Assistent auswählen...</option>
+            {assistants.map(assistant => (
+              <option key={assistant.id} value={assistant.id}>
+                {assistant.name}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="phone">Telefonnummer:</label>
+          <input
+            type="tel"
+            id="phone"
+            value={phoneNumber}
+            onChange={(e) => setPhoneNumber(e.target.value)}
+            placeholder="+4915123456789"
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="name">Kundenname:</label>
+          <input
+            type="text"
+            id="name"
+            value={customerName}
+            onChange={(e) => setCustomerName(e.target.value)}
+            placeholder="Max Mustermann"
+          />
+        </div>
+
+        <button 
+          type="submit" 
+          disabled={isLoading || !selectedAssistant}
+          className="call-button"
+        >
+          {isLoading ? 'Anruf wird gestartet...' : 'Anruf starten'}
+        </button>
+      </form>
+
+      {callResult && (
+        <div className={`result ${callResult.success ? 'success' : 'error'}`}>
+          <p>{callResult.message}</p>
+          {callResult.success && (
+            <p>
+              <small>Call-ID: {callResult.callId}</small>
+            </p>
+          )}
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default FamuloreCallComponent;
+```
+
+### Backend API-Proxy (Express.js)
+
+```javascript
+// Backend-Proxy für sichere API-Aufrufe
+const express = require('express');
+const router = express.Router();
+
+// Assistenten abrufen
+router.get('/assistants', async (req, res) => {
+  try {
+    const response = await fetch('https://app.famulor.de/api/user/assistants', {
+      headers: {
+        'Authorization': `Bearer ${process.env.FAMULOR_API_KEY}`,
+        'Content-Type': 'application/json'
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`API Error: ${response.status}`);
+    }
+
+    const assistants = await response.json();
+    res.json(assistants);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Anruf tätigen
+router.post('/make-call', async (req, res) => {
+  try {
+    const { phone_number, assistant_id, variables } = req.body;
+
+    // Input-Validierung
+    if (!phone_number || !assistant_id) {
+      return res.status(400).json({
+        error: 'phone_number und assistant_id sind erforderlich'
+      });
+    }
+
+    const response = await fetch('https://app.famulor.de/api/user/make_call', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${process.env.FAMULOR_API_KEY}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        phone_number,
+        assistant_id,
+        variables: variables || {}
+      })
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      return res.status(response.status).json(result);
+    }
+
+    res.json(result);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+module.exports = router;
+```
+
+## Fehlerbehandlung und Retry-Logik
+
+```javascript
+class FamuloreApiClient {
+  constructor(apiKey) {
+    this.apiKey = apiKey;
+    this.baseUrl = 'https://app.famulor.de/api';
+    this.maxRetries = 3;
+    this.retryDelay = 1000; // 1 Sekunde
+  }
+
+  async makeRequest(endpoint, options = {}) {
+    const url = `${this.baseUrl}${endpoint}`;
+    
+    const defaultOptions = {
+      headers: {
+        'Authorization': `Bearer ${this.apiKey}`,
+        'Content-Type': 'application/json',
+        ...options.headers
+      }
+    };
+
+    const requestOptions = { ...defaultOptions, ...options };
+
+    for (let attempt = 1; attempt <= this.maxRetries; attempt++) {
+      try {
+        const response = await fetch(url, requestOptions);
+        
+        // Rate Limiting behandeln
+        if (response.status === 429) {
+          const retryAfter = response.headers.get('Retry-After') || this.retryDelay / 1000;
+          console.log(`Rate limit erreicht, warte ${retryAfter} Sekunden...`);
+          await this.sleep(retryAfter * 1000);
+          continue;
+        }
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}: ${data.message || 'Unknown error'}`);
+        }
+
+        return data;
+      } catch (error) {
+        console.log(`Versuch ${attempt}/${this.maxRetries} fehlgeschlagen:`, error.message);
+        
+        if (attempt === this.maxRetries) {
+          throw error;
+        }
+
+        // Exponential backoff
+        const delay = this.retryDelay * Math.pow(2, attempt - 1);
+        await this.sleep(delay);
+      }
+    }
+  }
+
+  sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  // API-Methoden
+  async getAssistants() {
+    return this.makeRequest('/user/assistants');
+  }
+
+  async makeCall(phoneNumber, assistantId, variables = {}) {
+    return this.makeRequest('/user/make_call', {
+      method: 'POST',
+      body: JSON.stringify({
+        phone_number: phoneNumber,
+        assistant_id: assistantId,
+        variables
+      })
+    });
+  }
+
+  async getCalls(limit = 50) {
+    return this.makeRequest(`/user/calls?limit=${limit}`);
+  }
+}
+
+// Verwendung mit Fehlerbehandlung
+const client = new FamuloreApiClient(process.env.FAMULOR_API_KEY);
+
+async function robustCall() {
+  try {
+    const result = await client.makeCall('+4915123456789', 123, {
+      customer_name: 'Test Kunde'
+    });
+    console.log('Anruf erfolgreich:', result.call_id);
+  } catch (error) {
+    console.error('Finaler Fehler nach allen Versuchen:', error.message);
+    // Hier könnte eine Notification, Logging, etc. stattfinden
+  }
+}
+```
+
+## Batch-Verarbeitung
+
+```python
+import asyncio
+import aiohttp
+from typing import List, Dict
+import csv
+
+class BatchCallProcessor:
+    def __init__(self, api_key: str):
+        self.api_key = api_key
+        self.base_url = 'https://app.famulor.de/api'
+        self.session = None
+        
+    async def __aenter__(self):
+        self.session = aiohttp.ClientSession(
+            headers={'Authorization': f'Bearer {self.api_key}'}
+        )
+        return self
+        
+    async def __aexit__(self, exc_type, exc_val, exc_tb):
+        if self.session:
+            await self.session.close()
+
+    async def make_single_call(self, phone_number: str, assistant_id: int, 
+                              variables: Dict = None, semaphore=None):
+        """Einzelnen Anruf asynchron tätigen"""
+        async with semaphore:  # Rate Limiting
+            try:
+                payload = {
+                    'phone_number': phone_number,
+                    'assistant_id': assistant_id,
+                    'variables': variables or {}
+                }
+                
+                async with self.session.post(
+                    f'{self.base_url}/user/make_call',
+                    json=payload
+                ) as response:
+                    result = await response.json()
+                    
+                    if response.status == 200:
+                        return {
+                            'status': 'success',
+                            'phone_number': phone_number,
+                            'call_id': result['call_id'],
+                            'message': result['message']
+                        }
+                    else:
+                        return {
+                            'status': 'error',
+                            'phone_number': phone_number,
+                            'error': result.get('message', 'Unknown error')
+                        }
+                        
+            except Exception as e:
+                return {
+                    'status': 'error',
+                    'phone_number': phone_number,
+                    'error': str(e)
+                }
+
+    async def process_batch_calls(self, call_list: List[Dict], 
+                                 concurrent_limit: int = 5):
+        """Batch von Anrufen verarbeiten"""
+        semaphore = asyncio.Semaphore(concurrent_limit)
+        
+        tasks = []
+        for call_data in call_list:
+            task = self.make_single_call(
+                phone_number=call_data['phone_number'],
+                assistant_id=call_data['assistant_id'],
+                variables=call_data.get('variables', {}),
+                semaphore=semaphore
+            )
+            tasks.append(task)
+        
+        results = await asyncio.gather(*tasks, return_exceptions=True)
+        return results
+
+    @classmethod
+    def from_csv(cls, csv_file: str, assistant_id: int, api_key: str):
+        """CSV-Datei in Anruf-Liste konvertieren"""
+        call_list = []
+        
+        with open(csv_file, 'r', encoding='utf-8') as file:
+            reader = csv.DictReader(file)
+            for row in reader:
+                call_data = {
+                    'phone_number': row['phone_number'],
+                    'assistant_id': assistant_id,
+                    'variables': {
+                        'customer_name': row.get('name', ''),
+                        'email': row.get('email', ''),
+                        'company': row.get('company', '')
+                    }
+                }
+                call_list.append(call_data)
+        
+        return call_list
+
+# Verwendungsbeispiel
+async def main():
+    api_key = os.getenv('FAMULOR_API_KEY')
+    
+    # CSV-Daten laden
+    call_list = BatchCallProcessor.from_csv('leads.csv', assistant_id=123, api_key=api_key)
+    
+    # Batch-Verarbeitung
+    async with BatchCallProcessor(api_key) as processor:
+        results = await processor.process_batch_calls(call_list, concurrent_limit=3)
+        
+        # Ergebnisse auswerten
+        success_count = sum(1 for r in results if r['status'] == 'success')
+        error_count = len(results) - success_count
+        
+        print(f"Verarbeitung abgeschlossen:")
+        print(f"✅ Erfolgreich: {success_count}")
+        print(f"❌ Fehler: {error_count}")
+        
+        # Fehler-Details
+        for result in results:
+            if result['status'] == 'error':
+                print(f"Fehler für {result['phone_number']}: {result['error']}")
+
+# Ausführung
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+## Nächste Schritte
+
+<CardGroup cols={2}>
+  <Card title="Webhook-Integration" icon="webhook" href="/api-reference/webhooks/post-call">
+    Post-Call-Datenverarbeitung automatisieren
+  </Card>
+  <Card title="Automatisierungsplattform" icon="wand-magic-sparkles" href="/automation-platform/introduction">
+    No-Code-Alternative für komplexe Workflows
+  </Card>
+  <Card title="API Referenz" icon="book" href="/api-reference/introduction">
+    Vollständige API-Dokumentation
+  </Card>
+  <Card title="Best Practices" icon="lightbulb" href="/developers/authentication-guide">
+    Sicherheit und Optimierung
+  </Card>
+</CardGroup>
