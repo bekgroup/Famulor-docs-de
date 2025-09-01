@@ -286,6 +286,32 @@
       ]
     },
     {
+      "group": "Integrationen",
+      "pages": [
+        "automation-platform/integrations/overview",
+        "automation-platform/integrations/ai-machine-learning",
+        "automation-platform/integrations/crm",
+        "automation-platform/integrations/communication",
+        "automation-platform/integrations/email-marketing",
+        "automation-platform/integrations/productivity",
+        "automation-platform/integrations/calendar",
+        "automation-platform/integrations/ecommerce"
+      ]
+    },
+    {
+      "group": "Beliebte Einzelintegrationen",
+      "pages": [
+        "automation-platform/integrations/einzelintegrations/hubspot",
+        "automation-platform/integrations/einzelintegrations/salesforce",
+        "automation-platform/integrations/einzelintegrations/openai",
+        "automation-platform/integrations/einzelintegrations/slack",
+        "automation-platform/integrations/einzelintegrations/gmail",
+        "automation-platform/integrations/einzelintegrations/google-sheets",
+        "automation-platform/integrations/einzelintegrations/shopify",
+        "automation-platform/integrations/einzelintegrations/calendly"
+      ]
+    },
+    {
       "group": "Vertrieb & Best Practices",
       "pages": [
         "sales/beste-zeit-fuer-kaltakquise",
