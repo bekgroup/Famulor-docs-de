@@ -334,6 +334,10 @@
         "automation-platform/integrations/einzelintegrations/google-sheets",
         "automation-platform/integrations/einzelintegrations/shopify",
         "automation-platform/integrations/einzelintegrations/calendly",
+        "automation-platform/integrations/einzelintegrations/cal-com",
+        "automation-platform/integrations/einzelintegrations/clickup",
+        "automation-platform/integrations/einzelintegrations/notion",
+        "automation-platform/integrations/einzelintegrations/monday",
         "automation-platform/integrations/einzelintegrations/zoom"
       ]
     },
