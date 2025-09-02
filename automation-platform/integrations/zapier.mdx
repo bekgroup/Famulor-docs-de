@@ -1,0 +1,347 @@
+---
+title: "Zapier Integration"
+description: "Verbinden Sie Famulor mit über 5.000 Apps durch Zapier - Automatisieren Sie Workflows zwischen Ihrer KI-Telefonie und externen Anwendungen"
+---
+
+# Zapier Integration
+
+Verbinden Sie Famulor nahtlos mit über **5.000 externen Anwendungen** durch unsere umfassende Zapier-Integration. Automatisieren Sie Workflows zwischen Ihrer KI-Telefonie-Plattform und den Tools, die Sie täglich verwenden - von CRM-Systemen bis hin zu Projektmanagement-Tools.
+
+<Card title="Zapier Integration einrichten" icon="link" href="https://zapier.com/developer/public-invite/230037/92504c8a528059feedf28b7998c7a212/">
+  Verbinden Sie Famulor mit Zapier und beginnen Sie mit der Automatisierung
+</Card>
+
+## Architektur-Übersicht
+
+Die Zapier-Integration folgt einer webhook-basierten Architektur, die Echtzeit-Kommunikation zwischen Famulor und externen Anwendungen über die Zapier-Plattform ermöglicht.
+
+```mermaid
+graph TB
+    subgraph "Famulor System"
+        A[Dokumentationsplattform]
+        B[Webhook Service]
+        C[Integration Database]
+        D[API Gateway]
+    end
+    
+    subgraph "Zapier Platform"
+        E[Zapier Webhooks]
+        F[Zapier Triggers]
+        G[Zapier Actions]
+    end
+    
+    subgraph "Externe Apps"
+        H[Slack]
+        I[Google Sheets]
+        J[Trello]
+        K[Weitere Apps]
+    end
+    
+    A --> B
+    B --> C
+    B --> D
+    D --> E
+    E --> F
+    F --> G
+    G --> H
+    G --> I
+    G --> J
+    G --> K
+    
+    E --> B
+```
+
+## Integration Database
+
+Die Integration Database dient als zentrales Speichersystem für die Verwaltung von Integrationskonfigurationen, Webhook-Endpoints und Event-Tracking für die Zapier-Integration.
+
+### Datenbankschema
+
+| Tabelle | Zweck | Hauptfelder |
+|---------|-------|-------------|
+| `zapier_integrations` | Aktive Zapier-Verbindungen speichern | `id`, `user_id`, `webhook_url`, `trigger_type`, `status`, `created_at` |
+| `webhook_events` | Alle Webhook-Events protokollieren | `id`, `integration_id`, `event_type`, `payload`, `response_status`, `timestamp` |
+| `integration_settings` | Benutzereinstellungen speichern | `id`, `user_id`, `notification_preferences`, `retry_settings` |
+
+### Datenmodelle
+
+```mermaid
+erDiagram
+    ZAPIER_INTEGRATIONS {
+        uuid id PK
+        uuid user_id FK
+        string webhook_url
+        string trigger_type
+        string status
+        timestamp created_at
+        timestamp updated_at
+    }
+    
+    WEBHOOK_EVENTS {
+        uuid id PK
+        uuid integration_id FK
+        string event_type
+        json payload
+        integer response_status
+        timestamp timestamp
+    }
+    
+    INTEGRATION_SETTINGS {
+        uuid id PK
+        uuid user_id FK
+        json notification_preferences
+        json retry_settings
+        timestamp created_at
+        timestamp updated_at
+    }
+    
+    ZAPIER_INTEGRATIONS ||--o{ WEBHOOK_EVENTS : "has many"
+    ZAPIER_INTEGRATIONS }o--|| USERS : "belongs to"
+    INTEGRATION_SETTINGS }o--|| USERS : "belongs to"
+```
+
+## Verfügbare Trigger
+
+Die Integration unterstützt folgende Trigger-Events, die Zapier-Workflows initiieren können:
+
+### Dokumentations-Events
+
+| Trigger | Beschreibung | Payload-Felder |
+|---------|-------------|----------------|
+| `document_created` | Neue Dokumentationsseite erstellt | `title`, `content`, `author`, `url`, `timestamp` |
+| `document_updated` | Dokumentationsseite geändert | `title`, `content`, `author`, `url`, `changes`, `timestamp` |
+| `document_published` | Dokumentationsseite veröffentlicht | `title`, `url`, `author`, `publish_date` |
+| `comment_added` | Neuer Kommentar zur Dokumentation | `comment_text`, `author`, `document_url`, `timestamp` |
+| `translation_completed` | Übersetzung abgeschlossen | `language`, `document_title`, `translator`, `completion_date` |
+
+### Anruf-basierte Trigger
+
+| Trigger | Beschreibung | Payload-Felder |
+|---------|-------------|----------------|
+| `call_completed` | KI-Anruf beendet | `duration`, `transcript`, `caller_id`, `assistant_id`, `timestamp` |
+| `call_started` | KI-Anruf begonnen | `caller_id`, `assistant_id`, `phone_number`, `timestamp` |
+| `voicemail_received` | Voicemail empfangen | `caller_id`, `duration`, `audio_url`, `timestamp` |
+
+## Verfügbare Actions
+
+Die Integration unterstützt auch Actions, die von externen Anwendungen ausgelöst werden können:
+
+### Content-Management Actions
+
+| Action | Beschreibung | Erforderliche Felder |
+|--------|-------------|---------------------|
+| `create_document` | Neue Dokumentationsseite erstellen | `title`, `content`, `author` |
+| `update_document` | Bestehende Dokumentation ändern | `document_id`, `content`, `author` |
+| `add_comment` | Kommentar zur Dokumentation hinzufügen | `document_id`, `comment_text`, `author` |
+| `trigger_translation` | Übersetzungs-Workflow starten | `document_id`, `target_language` |
+
+### KI-Assistant Actions
+
+| Action | Beschreibung | Erforderliche Felder |
+|--------|-------------|---------------------|
+| `create_assistant` | Neuen KI-Assistenten erstellen | `name`, `prompt`, `voice_id` |
+| `update_assistant` | Assistenten-Konfiguration ändern | `assistant_id`, `prompt`, `settings` |
+| `make_call` | Ausgehenden Anruf starten | `phone_number`, `assistant_id`, `context` |
+
+## Webhook-Konfiguration
+
+```mermaid
+sequenceDiagram
+    participant U as Benutzer
+    participant F as Famulor
+    participant Z as Zapier
+    participant EA as Externe App
+    
+    U->>F: Zapier-Integration konfigurieren
+    F->>Z: Webhook-URL registrieren
+    Z->>F: Registrierung bestätigen
+    
+    Note over F: Dokumenten-Event tritt auf
+    F->>Z: Webhook-Payload senden
+    Z->>EA: Verbundene Aktion auslösen
+    EA->>Z: Antwort zurückgeben
+    Z->>F: Webhook-Bestätigung
+```
+
+## Authentifizierung & Sicherheit
+
+Die Zapier-Integration implementiert folgende Sicherheitsmaßnahmen:
+
+- **API-Key-Authentifizierung**: Jede Integration verwendet einen eindeutigen API-Schlüssel
+- **Webhook-Signatur-Verifizierung**: Alle Webhook-Payloads werden signiert und verifiziert
+- **Rate Limiting**: Verhindert Missbrauch mit konfigurierbaren Rate Limits
+- **Payload-Verschlüsselung**: Sensible Daten werden bei der Übertragung verschlüsselt
+
+## Fehlerbehandlung & Retry-Logik
+
+```mermaid
+flowchart TD
+    A[Webhook Event] --> B{An Zapier senden}
+    B -->|Erfolg| C[Erfolg protokollieren]
+    B -->|Fehler| D{Retry Count < 3?}
+    D -->|Ja| E[Warten & Wiederholen]
+    D -->|Nein| F[Fehler protokollieren]
+    E --> B
+    F --> G[Admin benachrichtigen]
+    C --> H[Abgeschlossen]
+```
+
+## Beliebte Anwendungsfälle
+
+### CRM-Integration
+Automatisch Kontakte in Ihr CRM-System eintragen, wenn ein Anruf beendet wird:
+- **Trigger**: `call_completed`
+- **Action**: Neuen Kontakt in Salesforce/HubSpot erstellen
+- **Daten**: Telefonnummer, Gesprächsnotizen, Call-Duration
+
+### Team-Benachrichtigungen
+Ihr Team über wichtige Dokumentationsänderungen informieren:
+- **Trigger**: `document_published`
+- **Action**: Slack-Nachricht senden
+- **Daten**: Dokumententitel, Autor, Link zur Seite
+
+### Lead-Qualifizierung
+Qualifizierte Leads automatisch an Ihr Vertriebsteam weiterleiten:
+- **Trigger**: `call_completed` mit positivem Sentiment
+- **Action**: Task in Asana/Trello erstellen
+- **Daten**: Kontaktinformationen, Gesprächszusammenfassung, Priorität
+
+### Content-Synchronisation
+Dokumentationsänderungen automatisch in andere Systeme übernehmen:
+- **Trigger**: `document_updated`
+- **Action**: Google Sheets-Zeile aktualisieren
+- **Daten**: Änderungsdatum, Editor, Änderungstyp
+
+## Überwachung & Analytics
+
+Wichtige Metriken für die Zapier-Integration:
+
+- **Webhook-Erfolgsrate**: Prozentsatz erfolgreich zugestellter Webhooks
+- **Durchschnittliche Antwortzeit**: Zeit zwischen Event und Webhook-Zustellung
+- **Fehlgeschlagene Webhook-Versuche**: Anzahl nicht zustellbarer Events
+- **Beliebteste Trigger/Action-Kombinationen**: Meist genutzte Workflows
+- **Benutzer-Adoption**: Anzahl aktiver Integrationen
+
+## Einrichtung und Konfiguration
+
+### Schritt 1: Zapier-Verbindung herstellen
+1. Besuchen Sie die [Zapier-Integrationsseite](https://zapier.com/developer/public-invite/230037/92504c8a528059feedf28b7998c7a212/)
+2. Klicken Sie auf "Try It" um die Integration zu testen
+3. Authentifizieren Sie sich mit Ihrem Famulor-Account
+
+### Schritt 2: Erstes Zap erstellen
+1. Wählen Sie Famulor als Trigger-App
+2. Wählen Sie das gewünschte Event (z.B. "Call Completed")
+3. Verbinden Sie Ihr Famulor-Konto
+4. Testen Sie den Trigger mit Beispieldaten
+
+### Schritt 3: Action konfigurieren
+1. Wählen Sie die Ziel-App (z.B. Slack, Google Sheets)
+2. Konfigurieren Sie die gewünschte Aktion
+3. Mappen Sie die Datenfelder zwischen Apps
+4. Testen Sie das komplette Zap
+
+### Schritt 4: Zap aktivieren
+1. Überprüfen Sie alle Einstellungen
+2. Aktivieren Sie das Zap
+3. Überwachen Sie die ersten Ausführungen
+
+## Fehlerbehebung
+
+### Häufige Probleme
+
+#### Webhook wird nicht empfangen
+- **Ursache**: Falsche Webhook-URL oder deaktivierte Integration
+- **Lösung**: Webhook-URL in Famulor-Dashboard überprüfen und neu konfigurieren
+
+#### Authentication-Fehler
+- **Ursache**: Abgelaufener API-Schlüssel oder falsche Berechtigungen
+- **Lösung**: API-Schlüssel in Zapier erneuern und Berechtigungen überprüfen
+
+#### Rate Limit erreicht
+- **Ursache**: Zu viele Webhook-Events in kurzer Zeit
+- **Lösung**: Rate Limits überprüfen und ggf. Event-Frequenz reduzieren
+
+#### Payload-Validierungsfehler
+- **Ursache**: Unerwartete Datenstruktur im Webhook-Payload
+- **Lösung**: Payload-Format in Dokumentation überprüfen und Mapping anpassen
+
+## Erweiterte Konfiguration
+
+### Custom Headers
+Fügen Sie benutzerdefinierte HTTP-Headers zu Webhook-Requests hinzu:
+```json
+{
+  "headers": {
+    "X-Custom-Source": "famulor",
+    "X-Event-Version": "v1.0"
+  }
+}
+```
+
+### Retry-Einstellungen
+Konfigurieren Sie Retry-Verhalten für fehlgeschlagene Webhooks:
+```json
+{
+  "retry_settings": {
+    "max_attempts": 3,
+    "backoff_strategy": "exponential",
+    "initial_delay": 1000
+  }
+}
+```
+
+### Event-Filter
+Filtern Sie Events basierend auf bestimmten Kriterien:
+```json
+{
+  "filters": {
+    "call_duration": "> 60",
+    "assistant_type": "sales",
+    "caller_location": "DE"
+  }
+}
+```
+
+## Best Practices
+
+### Performance-Optimierung
+- Verwenden Sie spezifische Event-Filter um unnötige Webhook-Calls zu vermeiden
+- Implementieren Sie Batch-Verarbeitung für hochfrequente Events
+- Nutzen Sie asynchrone Verarbeitung in der Ziel-Anwendung
+
+### Sicherheit
+- Verifizieren Sie immer Webhook-Signaturen
+- Verwenden Sie HTTPS für alle Webhook-Endpoints
+- Implementieren Sie Rate Limiting in Ihren Webhook-Handleren
+
+### Monitoring
+- Loggen Sie alle Webhook-Events für Debugging-Zwecke
+- Überwachen Sie Erfolgsraten und Antwortzeiten
+- Richten Sie Alerts für kritische Fehler ein
+
+### Datenqualität
+- Validieren Sie Payload-Daten vor der Verarbeitung
+- Implementieren Sie Fallback-Strategien für fehlende Daten
+- Führen Sie regelmäßige Datenqualitätsprüfungen durch
+
+## Support und Ressourcen
+
+<CardGroup cols={2}>
+  <Card title="Zapier-Integration testen" icon="flask" href="https://zapier.com/developer/public-invite/230037/92504c8a528059feedf28b7998c7a212/">
+    Probieren Sie unsere Zapier-Integration direkt aus
+  </Card>
+  <Card title="API-Dokumentation" icon="code" href="/api-reference/webhooks/post-call">
+    Detaillierte Webhook-API-Referenz
+  </Card>
+  <Card title="Automation Platform" icon="wand-magic-sparkles" href="/automation-platform/introduction">
+    Entdecken Sie weitere Automatisierungsmöglichkeiten
+  </Card>
+  <Card title="Support kontaktieren" icon="life-ring" href="mailto:support@famulor.io">
+    Benötigen Sie Hilfe? Unser Support-Team hilft gerne
+  </Card>
+</CardGroup>
+
+---
+
+**Hinweis**: Die Zapier-Integration ist sofort verfügbar und kann ohne technische Kenntnisse eingerichtet werden. Für erweiterte Konfigurationen steht unser Support-Team zur Verfügung.
