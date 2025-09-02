@@ -309,7 +309,6 @@
       "group": "Integrationen",
       "pages": [
         "automation-platform/integrations/overview",
-        "automation-platform/integrations/zapier",
         "automation-platform/integrations/crm-sales-hub",
         "automation-platform/integrations/communication-collaboration-hub",
         "automation-platform/integrations/ai-machine-learning",
@@ -355,7 +354,8 @@
       "group": "Integration Database",
       "pages": [
         "automation-platform/integrations/famulor-integrations-database",
-        "automation-platform/integrations/famulor-integrations-c-z"
+        "automation-platform/integrations/famulor-integrations-c-z",
+         "automation-platform/integrations/zapier"
       ]
     },
     {
