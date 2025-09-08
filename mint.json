@@ -356,6 +356,7 @@
         "automation-platform/integrations/famulor-integrations-database",
         "automation-platform/integrations/famulor-integrations-c-z",
          "automation-platform/integrations/zapier",
+         "automation-platform/integrations/make-com",
          "automation-platform/integrations/n8n"
       ]
     },
