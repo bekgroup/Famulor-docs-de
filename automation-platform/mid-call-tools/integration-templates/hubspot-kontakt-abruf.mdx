@@ -247,25 +247,25 @@ Der KI-Assistent kann die abgerufenen Daten wie folgt verwenden:
 
 <AccordionGroup>
   <Accordion title="Personalisierte Begrüßung">
-**Beispiele für natürliche Integration**:
+    **Beispiele für natürliche Integration**:
     
-- "Hallo Herr Mustermann! Ich sehe, Sie sind Geschäftsführer der Beispiel GmbH."
-- "Schön, Sie wieder zu sprechen, Max. Wie geht es denn der Beispiel GmbH?"
-- "Perfekt, ich habe Ihre Daten gefunden. Sie sind seit Januar 2024 bei uns im System."
+    - "Hallo Herr Mustermann! Ich sehe, Sie sind Geschäftsführer der Beispiel GmbH."
+    - "Schön, Sie wieder zu sprechen, Max. Wie geht es denn der Beispiel GmbH?"
+    - "Perfekt, ich habe Ihre Daten gefunden. Sie sind seit Januar 2024 bei uns im System."
   </Accordion>
   
   <Accordion title="Kontextuelle Gesprächsführung">
-**Basierend auf Lifecycle-Stage**:
-```yaml
-Wenn lifecyclestage == "lead":
-  "Ich sehe, Sie interessieren sich für unsere Services. Wie kann ich Ihnen helfen?"
+    **Basierend auf Lifecycle-Stage**:
+    ```yaml
+    Wenn lifecyclestage == "lead":
+      "Ich sehe, Sie interessieren sich für unsere Services. Wie kann ich Ihnen helfen?"
 
-Wenn lifecyclestage == "customer":
-  "Als bestehender Kunde haben Sie natürlich Vorrang. Was kann ich für Sie tun?"
+    Wenn lifecyclestage == "customer":
+      "Als bestehender Kunde haben Sie natürlich Vorrang. Was kann ich für Sie tun?"
 
-Wenn lifecyclestage == "opportunity":
-  "Ich sehe, wir sind bereits im Gespräch über eine mögliche Zusammenarbeit..."
-```
+    Wenn lifecyclestage == "opportunity":
+      "Ich sehe, wir sind bereits im Gespräch über eine mögliche Zusammenarbeit..."
+    ```
   </Accordion>
   
   <Accordion title="Automatische Qualifizierung">
@@ -355,9 +355,9 @@ Wenn lifecyclestage == "opportunity":
   
   <Step title="Performance-Monitoring">
     Überwachung kritischer Metriken:
-    - Response Time: <3 Sekunden (Ziel)
-    - Success Rate: >95%
-    - Error Rate: <5%
+    - Response Time: &lt;3 Sekunden (Ziel)
+    - Success Rate: &gt;95%
+    - Error Rate: &lt;5%
   </Step>
 </Steps>
 
@@ -368,7 +368,7 @@ Wenn lifecyclestage == "opportunity":
     **Positive Test-Fälle**:
     - [ ] Bekannte E-Mail-Adresse → Korrekte Datenrückgabe
     - [ ] Korrekte Datenformatierung in der Antwort
-    - [ ] Angemessene Response-Zeit (<5 Sekunden)
+    - [ ] Angemessene Response-Zeit (&lt;5 Sekunden)
     - [ ] Natürliche Sprachintegration
     
     **Negative Test-Fälle**:
@@ -517,10 +517,10 @@ sequenceDiagram
 
 | Metrik | Zielwert | Kritischer Wert |
 |--------|----------|-----------------|
-| **Success Rate** | >98% | <90% |
-| **Average Response Time** | <2s | >5s |
-| **Error Rate** | <2% | >10% |
-| **Customer Satisfaction** | >4.5/5 | <4.0/5 |
+| **Success Rate** | &gt;98% | &lt;90% |
+| **Average Response Time** | &lt;2s | &gt;5s |
+| **Error Rate** | &lt;2% | &gt;10% |
+| **Customer Satisfaction** | &gt;4.5/5 | &lt;4.0/5 |
 
 ### Troubleshooting Guide
 
@@ -533,7 +533,7 @@ sequenceDiagram
   </Step>
   
   <Step title="Monitoring einrichten">
-    - Automatische Alerts bei >5% Error Rate
+    - Automatische Alerts bei &gt;5% Error Rate
     - Daily Performance Reports
     - Weekly Usage Analytics
   </Step>

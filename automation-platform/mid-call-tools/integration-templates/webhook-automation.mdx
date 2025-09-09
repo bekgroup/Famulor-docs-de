@@ -198,9 +198,9 @@ Schritte:
      - Urgency-Level
      - Bisherige Interaktionen
   5. Team-Assignment basierend auf Score:
-     - >80: Enterprise Sales Team
+     - &gt;80: Enterprise Sales Team
      - 50-80: Standard Sales Team  
-     - <50: Inside Sales/Nurturing
+     - &lt;50: Inside Sales/Nurturing
   6. Follow-up-Sequence starten:
      - E-Mail-Bestätigung an Kunde
      - Slack-Notification an Team
@@ -475,10 +475,10 @@ Natural_Language_Processing:
 
 | Metrik | Zielwert | Kritischer Wert |
 |--------|----------|-----------------|
-| **Execution Time** | <5 Sekunden | >15 Sekunden |
-| **Success Rate** | >95% | <85% |
-| **Retry Rate** | <10% | >25% |
-| **Partial Success Rate** | >98% | <90% |
+| **Execution Time** | &lt;5 Sekunden | &gt;15 Sekunden |
+| **Success Rate** | &gt;95% | &lt;85% |
+| **Retry Rate** | &lt;10% | &gt;25% |
+| **Partial Success Rate** | &gt;98% | &lt;90% |
 
 ### Monitoring & Alerting
 
@@ -496,13 +496,13 @@ Natural_Language_Processing:
   <Step title="Alerting-Rules">
     ```yaml
     Kritische_Alerts:
-      - Success Rate <90% über 5 Minuten
-      - Execution Time >10s für >10 Requests
-      - Error Rate >20% über 2 Minuten
+      - Success Rate &lt;90% über 5 Minuten
+      - Execution Time &gt;10s für &gt;10 Requests
+      - Error Rate &gt;20% über 2 Minuten
     
     Warning_Alerts:
-      - Queue-Größe >50 Pending
-      - Retry-Rate >15%
+      - Queue-Größe &gt;50 Pending
+      - Retry-Rate &gt;15%
       - einzelne Workflow-Failures
     ```
   </Step>

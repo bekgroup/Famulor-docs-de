@@ -180,9 +180,9 @@ Indirekte Hinweise:
   "Wir müssen schauen..." → budget_range: "limited"
 
 Lead-Score-Einfluss:
-  High Budget (>50k): +25 Punkte
+  High Budget (&gt;50k): +25 Punkte
   Medium Budget (10-50k): +15 Punkte  
-  Low Budget (<10k): +5 Punkte
+  Low Budget (&lt;10k): +5 Punkte
   Unbekannt: 0 Punkte
 ```
   </Accordion>
@@ -427,7 +427,7 @@ sequenceDiagram
     **Unmittelbar nach Lead-Erstellung**:
     ```yaml
     1. Lead-Bestätigungs-E-Mail senden
-    2. Sales-Team-Benachrichtigung (bei Score >70)
+    2. Sales-Team-Benachrichtigung (bei Score &gt;70)
     3. CRM-Aufgabe erstellen: "Lead-Follow-up innerhalb 24h"
     4. Lead in entsprechende HubSpot-Liste einordnen
     5. Marketing-Automation-Sequenz starten
@@ -440,7 +440,7 @@ sequenceDiagram
     Wenn kein Sales-Kontakt erfolgte:
       → Automated Follow-up E-Mail
       → SMS-Erinnerung (bei hohem Score)
-      → Manager-Eskalation (bei Score >80)
+      → Manager-Eskalation (bei Score &gt;80)
     
     Nach 1 Woche:
       → Lead-Nurturing-E-Mail-Serie
@@ -488,7 +488,7 @@ sequenceDiagram
     ```yaml
     HubSpot-Workflow:
       Trigger: Neue Kontakt-Erstellung
-      Bedingung: Duplicate-Score >80%
+      Bedingung: Duplicate-Score &gt;80%
       Aktion: 
         - Merge-Vorschlag an Sales-Team
         - Temporary-Hold auf Automated Follow-ups
@@ -512,7 +512,7 @@ sequenceDiagram
       current_solution: "Bestehende Lösung"
       
     Custom_Scoring:
-      Enterprise_Size (+20): >500 Employees
+      Enterprise_Size (+20): &gt;500 Employees
       High_Tech_Stack (+15): Modern APIs mentioned
       Compliance_Needs (+10): Security/Privacy concerns
     ```
@@ -528,7 +528,7 @@ sequenceDiagram
       growth_challenges: "Hauptwachstumshürden"
       
     Custom_Scoring:
-      High_Revenue (+25): >100k monthly
+      High_Revenue (+25): &gt;100k monthly
       Growth_Stage (+15): "schnell wachsend"
       Multi_Channel (+10): "Omnichannel"
     ```
@@ -544,7 +544,7 @@ sequenceDiagram
       billing_model: "Abrechnungsmodell"
       
     Custom_Scoring:
-      Established_Practice (+20): >3 Jahre
+      Established_Practice (+20): &gt;3 Jahre
       Growing_Team (+15): Hiring mentioned
       Process_Pain (+10): Efficiency issues
     ```
@@ -574,11 +574,11 @@ German_Localization:
 
 | Metrik | Beschreibung | Zielwert |
 |--------|-------------|----------|
-| **Data Completeness** | % der Leads mit vollständigen Kerndaten | >90% |
-| **Lead-Score-Accuracy** | Korrelation Score vs. tatsächliche Conversion | >0.7 |
-| **Duplicate-Rate** | % der durch Tool erstellten Duplicates | <5% |
-| **Sales-Acceptance-Rate** | % der von Sales akzeptierten Leads | >80% |
-| **Speed-to-Lead** | Zeit von Gespräch bis Sales-Kontakt | <2 Stunden |
+| **Data Completeness** | % der Leads mit vollständigen Kerndaten | &gt;90% |
+| **Lead-Score-Accuracy** | Korrelation Score vs. tatsächliche Conversion | &gt;0.7 |
+| **Duplicate-Rate** | % der durch Tool erstellten Duplicates | &lt;5% |
+| **Sales-Acceptance-Rate** | % der von Sales akzeptierten Leads | &gt;80% |
+| **Speed-to-Lead** | Zeit von Gespräch bis Sales-Kontakt | &lt;2 Stunden |
 
 ### Automated Quality Checks
 

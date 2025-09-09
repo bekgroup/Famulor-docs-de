@@ -294,18 +294,36 @@
       "group": "Mid-Call-Tools",
       "pages": [
         "automation-platform/mid-call-tools/was-sind-mid-call-tools",
-        "automation-platform/mid-call-tools/wann-verwenden"
+        "automation-platform/mid-call-tools/wann-verwenden",
+        "automation-platform/mid-call-tools/integration-templates/webhook-automation"
       ]
     },
     {
-      "group": "Integration Templates",
+      "group": "Mid-Call-Tools Integrationen",
       "pages": [
-        "automation-platform/mid-call-tools/integration-templates/hubspot-kontakt-abruf",
-        "automation-platform/mid-call-tools/integration-templates/hubspot-deal-management",
-        "automation-platform/mid-call-tools/integration-templates/hubspot-lead-erstellung",
-        "automation-platform/mid-call-tools/integration-templates/salesforce-integration",
-        "automation-platform/mid-call-tools/integration-templates/google-sheets-integration",
-        "automation-platform/mid-call-tools/integration-templates/webhook-automation"
+        {
+          "group": "Gesundheitswesen",
+          "pages": [
+            "automation-platform/mid-call-tools/integration-templates/doctolib-integration"
+          ]
+        },
+        {
+          "group": "CRM & Vertrieb",
+          "pages": [
+            "automation-platform/mid-call-tools/integration-templates/hubspot-kontakt-abruf",
+            "automation-platform/mid-call-tools/integration-templates/hubspot-deal-management",
+            "automation-platform/mid-call-tools/integration-templates/hubspot-lead-erstellung",
+            "automation-platform/mid-call-tools/integration-templates/salesforce-integration",
+            "automation-platform/mid-call-tools/integration-templates/google-sheets-integration"
+          ]
+        },
+        {
+          "group": "Kommunikation",
+          "pages": [
+            "automation-platform/mid-call-tools/integration-templates/slack-integration",
+            "automation-platform/mid-call-tools/integration-templates/teams-integration"
+          ]
+        }
       ]
     },
     {
