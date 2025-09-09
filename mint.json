@@ -323,6 +323,20 @@
             "automation-platform/mid-call-tools/integration-templates/slack-integration",
             "automation-platform/mid-call-tools/integration-templates/teams-integration"
           ]
+        },
+        {
+          "group": "Marketing",
+          "pages": [
+            "automation-platform/mid-call-tools/integration-templates/sendgrid-integration",
+            "automation-platform/mid-call-tools/integration-templates/mailchimp-integration"
+          ]
+        },
+        {
+          "group": "Projektmanagement",
+          "pages": [
+            "automation-platform/mid-call-tools/integration-templates/asana-integration",
+            "automation-platform/mid-call-tools/integration-templates/notion-integration"
+          ]
         }
       ]
     },
