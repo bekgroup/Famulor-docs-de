@@ -291,6 +291,24 @@
       ]
     },
     {
+      "group": "Mid-Call-Tools",
+      "pages": [
+        "automation-platform/mid-call-tools/was-sind-mid-call-tools",
+        "automation-platform/mid-call-tools/wann-verwenden"
+      ]
+    },
+    {
+      "group": "Integration Templates",
+      "pages": [
+        "automation-platform/mid-call-tools/integration-templates/hubspot-kontakt-abruf",
+        "automation-platform/mid-call-tools/integration-templates/hubspot-deal-management",
+        "automation-platform/mid-call-tools/integration-templates/hubspot-lead-erstellung",
+        "automation-platform/mid-call-tools/integration-templates/salesforce-integration",
+        "automation-platform/mid-call-tools/integration-templates/google-sheets-integration",
+        "automation-platform/mid-call-tools/integration-templates/webhook-automation"
+      ]
+    },
+    {
       "group": "Anruf-bezogen",
       "pages": [
         "automation-platform/calls-related/Famulor-tool",
