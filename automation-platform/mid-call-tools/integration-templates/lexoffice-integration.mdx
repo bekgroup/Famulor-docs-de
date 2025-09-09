@@ -1,0 +1,154 @@
+---
+title: "lexoffice Integration"
+description: "Automatische Rechnungserstellung in lexoffice direkt während Kundengesprächem für nahtlose Buchhaltungs-Automation"
+icon: "receipt"
+---
+
+# lexoffice Integration Template
+
+Integrieren Sie lexoffice-Rechnungsstellung in Ihre Mid-Call-Tools und ermöglichen Sie es Ihrem KI-Assistenten, während Kundengesprächem automatisch Rechnungen zu erstellen, Angebote umzuwandeln und Buchhaltungsprozesse zu streamlinen.
+
+## Überblick & Funktionen
+
+<CardGroup cols={2}>
+  <Card title="Sofortige Rechnungserstellung" icon="file-invoice">
+    - Automatische Rechnung während des Verkaufsgesprächs
+    - Kontakt-Integration aus lexoffice-Stammdaten
+    - Steuerberechnung nach deutschem Recht
+    - PDF-Generation und E-Mail-Versand
+  </Card>
+  <Card title="Buchhaltungs-Automation" icon="calculator">
+    - Integration mit Steuerberater-Workflows
+    - GOBD-konforme Belegarchivierung
+    - Automatische USt-VA-Vorbereitung
+    - Liquiditäts- und Reporting-Integration
+  </Card>
+</CardGroup>
+
+## lexoffice API Setup
+
+### Konfiguration im Famulor Interface
+
+<Tabs>
+  <Tab title="Werkzeugdetails">
+    | Feld | Wert |
+    |------|------|
+    | **Name*** | `lexoffice Rechnung erstellen` |
+    | **Beschreibung** | "Erstellt automatisch eine neue Rechnung in lexoffice basierend auf Gesprächsinhalten" |
+    | **Funktionsname*** | `create_lexoffice_invoice` |
+    | **Funktionsbeschreibung*** | "Erstellt eine neue Rechnung in lexoffice. Verwenden Sie dies, wenn ein Kunde kaufbereit ist oder Sie ein Angebot in eine Rechnung umwandeln möchten." |
+    | **HTTP-Methode** | `POST` |
+    | **Timeout (ms)** | `5000` |
+    | **Endpoint*** | `https://api.lexoffice.io/v1/invoices` |
+  </Tab>
+  
+  <Tab title="Request Body Template">
+    ```json
+    {
+      "voucherDate": "{invoice_date}",
+      "address": {
+        "contactId": "{contact_id}"
+      },
+      "lineItems": [
+        {
+          "type": "custom",
+          "name": "{item_name}",
+          "quantity": "{quantity}",
+          "unitName": "{unit}",
+          "unitPrice": {
+            "currency": "EUR",
+            "netAmount": "{net_amount}",
+            "taxRatePercentage": "{tax_rate}"
+          }
+        }
+      ],
+      "totalPrice": {
+        "currency": "EUR"
+      },
+      "taxConditions": {
+        "taxType": "{tax_type}"
+      },
+      "paymentConditions": {
+        "paymentTermLabel": "30 Tage netto",
+        "paymentTermDuration": 30
+      }
+    }
+    ```
+  </Tab>
+</Tabs>
+
+### Parameter-Schema
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "invoice_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Rechnungsdatum (YYYY-MM-DD)"
+    },
+    "contact_id": {
+      "type": "string",
+      "description": "lexoffice Kontakt-ID des Kunden"
+    },
+    "item_name": {
+      "type": "string",
+      "description": "Bezeichnung der Leistung/des Produkts",
+      "examples": ["Beratungsleistung", "Software-Lizenz", "Projekt-Setup"]
+    },
+    "quantity": {
+      "type": "number",
+      "description": "Menge/Anzahl",
+      "minimum": 0.01
+    },
+    "unit": {
+      "type": "string",
+      "description": "Einheit (z.B. 'Stück', 'Stunden', 'Pauschal')",
+      "default": "Stück"
+    },
+    "net_amount": {
+      "type": "number",
+      "description": "Netto-Einzelpreis in Euro",
+      "minimum": 0.01
+    },
+    "tax_rate": {
+      "type": "integer",
+      "enum": [0, 7, 19],
+      "description": "Umsatzsteuersatz in Prozent",
+      "default": 19
+    },
+    "tax_type": {
+      "type": "string",
+      "enum": ["net", "gross"],
+      "description": "Steuertyp (Netto- oder Bruttopreisangabe)",
+      "default": "net"
+    }
+  },
+  "required": ["invoice_date", "contact_id", "item_name", "quantity", "net_amount"]
+}
+```
+
+### Praktische Szenarien
+
+<Steps>
+  <Step title="Sofort-Rechnung im Sales-Call">
+    ```yaml
+    Sales-Kontext:
+      Kunde: "Das passt perfekt! Können Sie mir sofort eine Rechnung stellen?"
+      
+    KI: "Gerne! Ich erstelle die Rechnung in lexoffice..."
+    
+    create_lexoffice_invoice:
+      invoice_date: "2024-01-15"
+      contact_id: "abc123-def456-ghi789"
+      item_name: "CRM-Integration Premium Paket"
+      quantity: 1
+      net_amount: 4500.00
+      tax_rate: 19
+    ```
+  </Step>
+</Steps>
+
+---
+

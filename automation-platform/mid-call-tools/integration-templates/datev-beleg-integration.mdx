@@ -1,0 +1,96 @@
+---
+title: "DATEV Beleg hochladen"
+description: "Automatische Belegerfassung in DATEV Unternehmen online direkt während Geschäftsgesprächem für nahtlose Buchhaltung"
+icon: "file-invoice"
+---
+
+# DATEV Beleg-Upload Integration
+
+Digitalisieren Sie Ihre Belegerfassung durch Mid-Call-Tools und ermöglichen Sie es Ihrem KI-Assistenten, während Geschäftsgesprächem Belege direkt in DATEV zu erfassen.
+
+## Konfiguration im Famulor Interface
+
+<Tabs>
+  <Tab title="Werkzeugdetails">
+    | **Name*** | `DATEV Beleg hochladen` |
+    | **Funktionsname*** | `upload_datev_document` |
+    | **HTTP-Methode** | `POST` |
+    | **Endpoint*** | `https://api.datev.de/data/v1/clients/{client_id}/documents` |
+    | **Timeout (ms)** | `10000` |
+  </Tab>
+  
+  <Tab title="Request Body">
+    ```json
+    {
+      "document_type": "{document_type}",
+      "document_date": "{document_date}",
+      "vendor": {
+        "name": "{vendor_name}",
+        "tax_id": "{vendor_tax_id}"
+      },
+      "amounts": {
+        "gross_amount": "{gross_amount}",
+        "net_amount": "{net_amount}",
+        "tax_amount": "{tax_amount}",
+        "tax_rate": "{tax_rate}"
+      },
+      "booking_text": "{description}",
+      "cost_center": "{cost_center}"
+    }
+    ```
+  </Tab>
+</Tabs>
+
+### Parameter-Schema
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "client_id": {
+      "type": "string",
+      "description": "DATEV Mandantennummer"
+    },
+    "document_type": {
+      "type": "string",
+      "enum": ["invoice", "receipt", "credit_note", "expense"],
+      "description": "Belegtyp"
+    },
+    "document_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Belegdatum"
+    },
+    "vendor_name": {
+      "type": "string",
+      "description": "Lieferant/Empfänger"
+    },
+    "gross_amount": {
+      "type": "number",
+      "description": "Bruttobetrag"
+    },
+    "tax_rate": {
+      "type": "integer",
+      "enum": [0, 7, 19],
+      "description": "Steuersatz"
+    },
+    "description": {
+      "type": "string", 
+      "description": "Buchungstext"
+    },
+    "cost_center": {
+      "type": "string",
+      "description": "Kostenstelle"
+    }
+  },
+  "required": ["client_id", "document_type", "document_date", "vendor_name", "gross_amount"]
+}
+```
+
+## Praktische Anwendung
+
+**Agent-Message**: `"Ich erfasse den Beleg in DATEV..."`
+
+**Success-Template**: `"Beleg erfasst. Belegnummer: {{bookingNumber}}. Der Beleg wurde zur Verbuchung an Ihren Steuerberater übermittelt."`
+
+---

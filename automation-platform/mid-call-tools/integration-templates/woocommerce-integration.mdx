@@ -1,0 +1,54 @@
+---
+title: "WooCommerce Integration"
+description: "Vollständige WooCommerce WordPress-Integration für Lagerbestand, Kundensuche und Bestellungsmanagement"
+icon: "wordpress"
+---
+
+# WooCommerce Integration Template
+
+## Tool 1: Lagerbestand prüfen
+
+### Konfiguration im Famulor Interface
+
+<Tabs>
+  <Tab title="Werkzeugdetails">
+    | **Name*** | `WooCommerce Lagerbestand` |
+    | **Funktionsname*** | `check_woo_stock` |
+    | **HTTP-Methode** | `GET` |
+    | **Endpoint*** | `https://{{WOO_SITE_URL}}/wp-json/wc/v3/products/{product_id}` |
+  </Tab>
+</Tabs>
+
+**Success-Template**: `"{{productName}}: {{#if stockQuantity}}{{stockQuantity}} Stück verfügbar{{else}}{{stockStatus}}{{/if}}, Preis: {{price}}€"`
+
+## Tool 2: Kundensuche
+
+### Konfiguration im Famulor Interface
+
+<Tabs>
+  <Tab title="Werkzeugdetails">
+    | **Name*** | `WooCommerce Kundensuche` |
+    | **Funktionsname*** | `search_woo_customer` |
+    | **HTTP-Methode** | `GET` |
+    | **Endpoint*** | `https://{{WOO_SITE_URL}}/wp-json/wc/v3/customers` |
+  </Tab>
+</Tabs>
+
+**Success-Template**: `"Kunde gefunden: {{firstCustomer.first_name}} {{firstCustomer.last_name}}, {{firstCustomer.orders_count}} Bestellungen, Kunde seit {{firstCustomer.date_created}}"`
+
+## Tool 3: Bestellung erstellen
+
+### Konfiguration im Famulor Interface
+
+<Tabs>
+  <Tab title="Werkzeugdetails">
+    | **Name*** | `WooCommerce Bestellung` |
+    | **Funktionsname*** | `create_woo_order` |
+    | **HTTP-Methode** | `POST` |
+    | **Endpoint*** | `https://{{WOO_SITE_URL}}/wp-json/wc/v3/orders` |
+  </Tab>
+</Tabs>
+
+**Success-Template**: `"Bestellung #{{orderNumber}} angelegt. Gesamtbetrag: {{total}}€. Der Kunde erhält eine Bestätigungs-E-Mail."`
+
+---

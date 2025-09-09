@@ -1,0 +1,311 @@
+---
+title: "DHL Integration"
+description: "Automatische Versandlabel-Erstellung über DHL API direkt während Kundengesprächem für nahtlose Logistik-Abwicklung"
+icon: "truck"
+---
+
+# DHL Integration Template
+
+Integrieren Sie DHL-Versandservices in Ihre Mid-Call-Tools und ermöglichen Sie es Ihrem KI-Assistenten, während Kundengesprächem automatisch Versandlabels zu erstellen, Sendungen zu verfolgen und Logistik-Prozesse zu optimieren.
+
+## Überblick & Funktionen
+
+<CardGroup cols={2}>
+  <Card title="Automated Shipping" icon="shipping-fast">
+    - Sofortige Versandlabel-Erstellung während Sales-Calls
+    - Multi-Produkt-Support (Paket, Warenpost, Express)
+    - Automatische Adress-Validierung und -Korrektur
+    - Integration mit E-Commerce-Systemen und CRM
+  </Card>
+  <Card title="Logistics Management" icon="route">
+    - Echtzeit-Sendungsverfolgung und Status-Updates
+    - Retouren-Management und Return-Labels
+    - Versandkosten-Kalkulation und Optimierung
+    - B2B und B2C Versand-Workflows
+  </Card>
+</CardGroup>
+
+## DHL API & Business Account Setup
+
+### 1. DHL Developer Portal & Credentials
+
+<Steps>
+  <Step title="DHL Business Account vorbereiten">
+    - Stellen Sie sicher, dass Sie einen DHL Business-Account haben
+    - Notieren Sie Ihre DHL-Abrechnungsnummer (14-stellig)
+    - Sammeln Sie Ihre Standard-Absenderdaten
+  </Step>
+  
+  <Step title="DHL Developer Portal registrieren">
+    ```yaml
+    API-Zugang beantragen:
+      1. Besuchen Sie das DHL Developer Portal
+      2. Account erstellen mit Business-Daten
+      3. API-Zugang für "Paket DE API" beantragen
+      4. Sandbox-Credentials für Testing erhalten
+    ```
+  </Step>
+  
+  <Step title="API-Credentials konfigurieren">
+    ```yaml
+    Authentication:
+      Method: Basic Auth (User:Password)
+      
+    Sandbox-Environment:
+      URL: https://api-sandbox.dhl.com/parcel/de/shipping/v2/
+      User: Sandbox-Username
+      Password: Sandbox-Password
+      
+    Production-Environment:
+      URL: https://api.dhl.com/parcel/de/shipping/v2/
+      User: Production-Username 
+      Password: Production-Password
+    ```
+  </Step>
+  
+  <Step title="Basic Auth String generieren">
+    ```yaml
+    Base64-Encoding:
+      Format: "username:password"
+      Beispiel: "dhl_user:dhl_password"
+      
+    Base64-Result:
+      echo -n "dhl_user:dhl_password" | base64
+      → "ZGhsX3VzZXI6ZGhsX3Bhc3N3b3Jk"
+    ```
+  </Step>
+</Steps>
+
+## Versandlabel-Tool konfigurieren
+
+### Konfiguration im Famulor Interface
+
+<Tabs>
+  <Tab title="Werkzeugdetails">
+    | Feld | Wert |
+    |------|------|
+    | **Name*** | `DHL Versandlabel erstellen` |
+    | **Beschreibung** | "Erstellt automatisch ein DHL-Versandlabel basierend auf Kunden- und Produktdaten" |
+    | **Funktionsname*** | `create_dhl_label` |
+    | **Funktionsbeschreibung*** | "Erstellt ein DHL Versandlabel. Verwenden Sie dies, wenn ein Kunde eine Bestellung aufgibt oder Sie Dokumente/Produkte versenden möchten." |
+    | **HTTP-Methode** | `POST` |
+    | **Timeout (ms)** | `10000` |
+    | **Endpoint*** | `https://api-sandbox.dhl.com/parcel/de/shipping/v2/orders` |
+  </Tab>
+  
+  <Tab title="Header-Konfiguration">
+    ```json
+    {
+      "Authorization": "Basic {{DHL_CREDENTIALS}}",
+      "Content-Type": "application/json",
+      "User-Agent": "Famulor-MidCall-DHL/1.0"
+    }
+    ```
+  </Tab>
+  
+  <Tab title="Request Body Template">
+    ```json
+    {
+      "profile": "STANDARD_GRUPPENPROFIL",
+      "shipments": [
+        {
+          "product": "{product}",
+          "billingNumber": "{billing_number}",
+          "refNo": "{reference_number}",
+          "shipper": {
+            "name": "{shipper_name}",
+            "addressStreet": "{shipper_street}",
+            "addressHouse": "{shipper_house}",
+            "postalCode": "{shipper_postal}",
+            "city": "{shipper_city}",
+            "country": "DEU",
+            "email": "{shipper_email}",
+            "phone": "{shipper_phone}"
+          },
+          "consignee": {
+            "name": "{receiver_name}",
+            "addressStreet": "{receiver_street}",
+            "addressHouse": "{receiver_house}",
+            "postalCode": "{receiver_postal}",
+            "city": "{receiver_city}",
+            "country": "{receiver_country}",
+            "email": "{receiver_email}",
+            "phone": "{receiver_phone}"
+          },
+          "details": {
+            "weight": {
+              "uom": "kg",
+              "value": "{weight}"
+            },
+            "length": {
+              "uom": "cm",
+              "value": "{length}"
+            },
+            "width": {
+              "uom": "cm", 
+              "value": "{width}"
+            },
+            "height": {
+              "uom": "cm",
+              "value": "{height}"
+            }
+          },
+          "services": [
+            {
+              "product": "preferredNeighbour",
+              "detail": "{preferred_neighbor}"
+            }
+          ]
+        }
+      ]
+    }
+    ```
+  </Tab>
+</Tabs>
+
+### Parameter-Schema
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "product": {
+      "type": "string",
+      "enum": ["V01PAK", "V53WPAK", "V54EPAK"],
+      "description": "DHL-Produkt: V01PAK (DHL Paket), V53WPAK (Warenpost), V54EPAK (Europaket)",
+      "default": "V01PAK"
+    },
+    "billing_number": {
+      "type": "string",
+      "description": "DHL-Abrechnungsnummer (14-stellig)"
+    },
+    "reference_number": {
+      "type": "string",
+      "description": "Ihre interne Referenznummer (Bestell-ID, etc.)"
+    },
+    "shipper_name": {
+      "type": "string",
+      "description": "Absender Name/Firma"
+    },
+    "shipper_street": {
+      "type": "string",
+      "description": "Absender Straße (ohne Hausnummer)"
+    },
+    "shipper_house": {
+      "type": "string",
+      "description": "Absender Hausnummer"
+    },
+    "shipper_postal": {
+      "type": "string",
+      "description": "Absender Postleitzahl"
+    },
+    "shipper_city": {
+      "type": "string",
+      "description": "Absender Stadt"
+    },
+    "receiver_name": {
+      "type": "string",
+      "description": "Empfänger Name"
+    },
+    "receiver_street": {
+      "type": "string",
+      "description": "Empfänger Straße"
+    },
+    "receiver_house": {
+      "type": "string",
+      "description": "Empfänger Hausnummer"
+    },
+    "receiver_postal": {
+      "type": "string",
+      "description": "Empfänger PLZ"
+    },
+    "receiver_city": {
+      "type": "string", 
+      "description": "Empfänger Stadt"
+    },
+    "receiver_country": {
+      "type": "string",
+      "description": "Empfänger Land (3-stelliger ISO-Code, z.B. 'DEU', 'AUT', 'CHE')",
+      "default": "DEU"
+    },
+    "weight": {
+      "type": "number",
+      "description": "Paketgewicht in Kilogramm",
+      "minimum": 0.1,
+      "maximum": 31.5
+    },
+    "length": {
+      "type": "number",
+      "description": "Paketlänge in cm (optional)",
+      "maximum": 120
+    },
+    "width": {
+      "type": "number",
+      "description": "Paketbreite in cm (optional)",
+      "maximum": 60
+    },
+    "height": {
+      "type": "number",
+      "description": "Pakethöhe in cm (optional)",
+      "maximum": 60
+    }
+  },
+  "required": ["product", "billing_number", "receiver_name", "receiver_street", "receiver_postal", "receiver_city", "weight"]
+}
+```
+
+## Praktische Anwendungsszenarien
+
+### Szenario 1: Sofort-Versand bei Bestellung
+
+<Steps>
+  <Step title="Bestellung während Gespräch">
+    ```yaml
+    Sales-Call-Kontext:
+      Kunde: "Perfekt! Wann kann ich mit der Lieferung rechnen?"
+      
+    KI: "Ich bereite den Versand sofort vor. Können Sie mir Ihre Lieferadresse bestätigen?"
+    
+    Address-Collection:
+      "Max Mustermann, Musterstraße 15, 80331 München"
+    
+    KI: "Ich erstelle das DHL Versandlabel für Max Mustermann..."
+    ```
+  </Step>
+  
+  <Step title="Automatische Label-Erstellung">
+    ```yaml
+    create_dhl_label Parameter:
+      product: "V01PAK"
+      billing_number: "22222222220101"
+      reference_number: "ORDER-2024-001"
+      receiver_name: "Max Mustermann"
+      receiver_street: "Musterstraße"
+      receiver_house: "15"
+      receiver_postal: "80331"
+      receiver_city: "München" 
+      receiver_country: "DEU"
+      weight: 2.5
+    ```
+  </Step>
+</Steps>
+
+### Versand-Response & Tracking
+
+```json
+{
+  "shipments": [
+    {
+      "shipmentNumber": "12345678901234567890",
+      "returnShipmentNumber": "98765432109876543210",
+      "label": {
+        "url": "https://api.dhl.com/parcel/de/shipping/v2/orders/labels/abc123def456"
+      }
+    }
+  ]
+}
+```
+
+**Success-Kommunikation**: `"Versandlabel wurde erstellt. Sendungsnummer: {{response.shipments[0].shipmentNumber}}"`
+
+---

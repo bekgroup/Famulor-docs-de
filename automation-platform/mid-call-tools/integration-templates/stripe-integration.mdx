@@ -1,0 +1,412 @@
+---
+title: "Stripe Integration"
+description: "Automatische Payment-Intent-Erstellung und Zahlungsabwicklung über Stripe direkt während Kundengesprächem für nahtlose E-Commerce-Integration"
+icon: "credit-card"
+---
+
+# Stripe Integration Template
+
+Integrieren Sie Stripe-Payment-Processing in Ihre Mid-Call-Tools und ermöglichen Sie es Ihrem KI-Assistenten, während Kundengesprächem Zahlungen zu initiieren, Payment-Intents zu erstellen und Subscription-Checkouts zu starten.
+
+## Überblick & Funktionen
+
+<CardGroup cols={2}>
+  <Card title="Payment-Intent-Management" icon="credit-card">
+    - Sofortige Zahlungsvorbereitung während des Gesprächs
+    - Support für einmalige Zahlungen und Subscriptions
+    - Multi-Currency-Unterstützung (EUR, USD, GBP, etc.)
+    - PCI-DSS-konforme Zahlungsabwicklung
+  </Card>
+  <Card title="Customer & Order-Integration" icon="shopping-cart">
+    - Automatische Customer-ID-Verknüpfung
+    - Order-Metadata für Business-Intelligence
+    - Integration mit bestehenden E-Commerce-Systemen
+    - Webhook-basierte Payment-Status-Updates
+  </Card>
+</CardGroup>
+
+## Stripe Account & API Setup
+
+### 1. Stripe Dashboard vorbereiten
+
+<Steps>
+  <Step title="Stripe Account einrichten">
+    - Registrieren Sie sich bei [Stripe](https://stripe.com) oder loggen Sie sich ein
+    - Vervollständigen Sie Ihr Business-Profil für Live-Zahlungen
+    - Aktivieren Sie relevante Payment-Methods (Karten, SEPA, etc.)
+  </Step>
+  
+  <Step title="API Keys abrufen">
+    ```yaml
+    API-Keys-Location:
+      1. Stripe Dashboard → "Developers" → "API keys"
+      2. Zwei Key-Typen verfügbar:
+         - Publishable Key (pk_test_ oder pk_live_)
+         - Secret Key (sk_test_ oder sk_live_)
+      
+    Für Mid-Call-Tools benötigt:
+      - Secret Key (für Server-to-Server API-Calls)
+      - Test-Environment: sk_test_...
+      - Production: sk_live_...
+    ```
+  </Step>
+  
+  <Step title="Webhooks konfigurieren">
+    ```yaml
+    Webhook-Setup für Payment-Updates:
+      1. "Developers" → "Webhooks" → "Add endpoint"
+      2. Endpoint URL: https://your-app.com/stripe-webhook
+      3. Events to send:
+         - payment_intent.succeeded
+         - payment_intent.payment_failed
+         - payment_intent.canceled
+      4. Webhook-Secret für Verification notieren
+    ```
+  </Step>
+  
+  <Step title="Customer-Management vorbereiten">
+    - Existing Customers in Stripe identifizieren
+    - Customer-ID-Mapping zu internen CRM-Systemen
+    - Default-Payment-Methods und Billing-Details überprüfen
+  </Step>
+</Steps>
+
+## Payment-Intent-Tool konfigurieren
+
+### Konfiguration im Famulor Interface
+
+<Tabs>
+  <Tab title="Werkzeugdetails">
+    | Feld | Wert |
+    |------|------|
+    | **Name*** | `Stripe Zahlung initiieren` |
+    | **Beschreibung** | "Erstellt einen Payment Intent in Stripe für sichere Zahlungsabwicklung während des Kundengesprächs" |
+    | **Funktionsname*** | `create_stripe_payment` |
+    | **Funktionsbeschreibung*** | "Erstellt einen Payment Intent für eine Zahlung. Verwenden Sie dies, wenn ein Kunde bereit ist zu bezahlen oder eine Anzahlung leisten möchte." |
+    | **HTTP-Methode** | `POST` |
+    | **Timeout (ms)** | `5000` |
+    | **Endpoint*** | `https://api.stripe.com/v1/payment_intents` |
+  </Tab>
+  
+  <Tab title="Header-Konfiguration">
+    ```json
+    {
+      "Authorization": "Bearer {{STRIPE_SECRET_KEY}}",
+      "Content-Type": "application/x-www-form-urlencoded",
+      "User-Agent": "Famulor-MidCall-Stripe/1.0"
+    }
+    ```
+    
+    <Warning>**Content-Type wichtig**: Stripe erwartet `application/x-www-form-urlencoded`, nicht JSON!</Warning>
+  </Tab>
+  
+  <Tab title="Body Template (Form Data)">
+    ```
+    amount={amount}&currency={currency}&customer={customer_id}&description={description}&metadata[order_id]={order_id}&metadata[call_source]=mid_call_tool&metadata[customer_phone]={customer_phone}&automatic_payment_methods[enabled]=true
+    ```
+  </Tab>
+</Tabs>
+
+### Parameter-Schema
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "amount": {
+      "type": "integer",
+      "description": "Betrag in kleinster Währungseinheit (z.B. 5000 für 50,00€)",
+      "minimum": 50,
+      "maximum": 9999999
+    },
+    "currency": {
+      "type": "string",
+      "enum": ["eur", "usd", "gbp", "chf", "dkk", "nok", "sek"],
+      "description": "Währungscode (ISO 4217)",
+      "default": "eur"
+    },
+    "customer_id": {
+      "type": "string",
+      "description": "Stripe Customer ID (falls vorhanden, z.B. 'cus_abc123')"
+    },
+    "description": {
+      "type": "string",
+      "description": "Zahlungsbeschreibung (erscheint auf Kreditkartenabrechnung)",
+      "examples": ["Rechnung INV-2024-001", "Anzahlung Projekt XY", "Subscription Premium Plan"]
+    },
+    "order_id": {
+      "type": "string",
+      "description": "Ihre interne Bestell- oder Rechnungs-ID"
+    },
+    "customer_phone": {
+      "type": "string",
+      "description": "Telefonnummer des Kunden (für Metadata)"
+    },
+    "customer_email": {
+      "type": "string",
+      "format": "email",
+      "description": "E-Mail-Adresse des Kunden (für Receipt und Follow-up)"
+    },
+    "payment_type": {
+      "type": "string",
+      "enum": ["one_time", "subscription", "installment"],
+      "description": "Art der Zahlung",
+      "default": "one_time"
+    }
+  },
+  "required": ["amount", "currency", "description"]
+}
+```
+
+## Praktische Anwendungsszenarien
+
+### Szenario 1: Sofortige Anzahlung während Sales-Call
+
+<Steps>
+  <Step title="Payment-Bereitschaft erkennen">
+    ```yaml
+    Sales-Conversation:
+      Kunde: "Das Angebot klingt gut. Wie kann ich die Anzahlung leisten?"
+      
+    KI-Assistant: "Perfekt! Ich bereite die Zahlung über 5.000€ vor..."
+    
+    → create_stripe_payment wird ausgelöst
+    ```
+  </Step>
+  
+  <Step title="Payment-Intent-Creation">
+    ```yaml
+    Stripe-API-Call:
+      amount: 500000  # 5.000€ in Cents
+      currency: "eur"
+      description: "Anzahlung Projekt CRM-Integration"
+      customer_id: "cus_abc123def456"  # Falls bekannt
+      order_id: "ORD-2024-001"
+      
+    Stripe-Response:
+      payment_intent_id: "pi_abc123def456ghi789"
+      client_secret: "pi_abc123def456ghi789_secret_xyz"
+      status: "requires_payment_method"
+    ```
+  </Step>
+  
+  <Step title="Payment-Link-Bereitstellung">
+    ```yaml
+    KI-Integration:
+      "Zahlung wurde vorbereitet. Ich sende Ihnen gleich einen sicheren 
+       Payment-Link per E-Mail. Der Betrag ist 5.000€ für die Anzahlung 
+       Ihres CRM-Integration-Projekts."
+    
+    Follow-up-Actions:
+      - E-Mail mit Stripe-Hosted-Checkout-Link
+      - SMS mit Payment-Link als Fallback
+      - CRM-Update: Payment-Intent erstellt
+      - Sales-Team-Benachrichtigung
+    ```
+  </Step>
+</Steps>
+
+### Szenario 2: Subscription-Upgrade
+
+<AccordionGroup>
+  <Accordion title="Plan-Upgrade während Support-Call">
+    **Subscription-Management**:
+    ```yaml
+    Support-Context:
+      Kunde: "Ich brauche mehr Features. Können wir das Upgrade sofort machen?"
+      
+    Payment-Intent für Subscription:
+      amount: 9900  # 99€/Monat
+      currency: "eur"
+      description: "Upgrade zu Professional Plan"
+      metadata: {
+        "subscription_type": "professional",
+        "billing_cycle": "monthly",
+        "upgrade_from": "basic",
+        "effective_date": "2024-01-15"
+      }
+    
+    Integration-Workflow:
+      1. Payment-Intent erstellen
+      2. Customer zu Premium-Subscription-Gruppe
+      3. Feature-Flags aktivieren nach erfolgreicher Zahlung
+      4. Billing-System-Update
+    ```
+  </Accordion>
+  
+  <Accordion title="Installment-Payment-Plans">
+    **Ratenzahlung für große Projekte**:
+    ```yaml
+    Enterprise-Deal-Context:
+      Total: 50.000€ Enterprise-Lizenz
+      Payment-Plan: 3 Raten à 16.667€
+      
+    Payment-Intent-Serie:
+      Rate 1 (sofort): amount: 1666700, description: "Rate 1/3 Enterprise-Lizenz"
+      Rate 2 (+30 Tage): Scheduled Payment-Intent
+      Rate 3 (+60 Tage): Scheduled Payment-Intent
+      
+    Automation:
+      - Erfolgreiche Rate 1 → Feature-Activation
+      - Scheduled Rates → Automatic Follow-up-Calls
+      - Payment-Failure → Account-Manager-Notification
+    ```
+  </Accordion>
+</AccordionGroup>
+
+## Stripe Response-Verarbeitung
+
+### Erfolgreiche Payment-Intent-Creation
+
+```json
+{
+  "id": "pi_abc123def456ghi789",
+  "object": "payment_intent",
+  "amount": 500000,
+  "currency": "eur",
+  "status": "requires_payment_method",
+  "customer": "cus_abc123def456",
+  "description": "Anzahlung Projekt CRM-Integration",
+  "client_secret": "pi_abc123def456ghi789_secret_xyz",
+  "created": 1640995200,
+  "metadata": {
+    "order_id": "ORD-2024-001",
+    "call_source": "mid_call_tool",
+    "customer_phone": "+49123456789"
+  },
+  "next_action": {
+    "type": "use_stripe_sdk"
+  }
+}
+```
+
+### Natürliche Sprachintegration
+
+<AccordionGroup>
+  <Accordion title="Agent-Nachrichten vor Payment-Creation">
+    **Template**: `"Ich bereite die Zahlung über {{amount}} {{currency}} vor..."`
+    
+    **Kontextuelle Beispiele**:
+    ```yaml
+    Einmalige Zahlung:
+      "Ich bereite die Zahlung über 5.000 Euro vor..."
+    
+    Subscription:
+      "Ich richte Ihr monatliches Abo über 99 Euro ein..."
+    
+    Anzahlung:
+      "Ich erstelle den Payment-Link für Ihre Anzahlung von 2.500 Euro..."
+    ```
+  </Accordion>
+  
+  <Accordion title="Success-Kommunikation">
+    **Template**: `"Zahlung wurde vorbereitet. Payment Intent ID: {{response.id}}"`
+    
+    **Customer-friendly Varianten**:
+    ```yaml
+    Mit E-Mail-Follow-up:
+      "Zahlung wurde vorbereitet. Sie erhalten gleich eine E-Mail mit 
+       dem sicheren Payment-Link für 5.000€."
+    
+    Mit Security-Assurance:
+      "Alle Zahlungsdaten werden sicher über Stripe verarbeitet - 
+       wir speichern keine Kreditkarteninformationen."
+    
+    Mit Next-Steps:
+      "Payment-Link ist versandbereit. Nach der Zahlung aktivieren wir 
+       sofort Ihre neuen Features."
+    ```
+  </Accordion>
+</AccordionGroup>
+
+## Compliance & Sicherheit
+
+### PCI-DSS-Konformität
+
+<CardGroup cols={2}>
+  <Card title="Sichere Payment-Handling" icon="shield-check">
+    **Best Practices**:
+    - Niemals Kreditkartendaten in Mid-Call-Tools
+    - Nur Payment-Intent-Creation, kein Direct-Charging
+    - Stripe-Hosted-Checkout für sichere Eingabe
+    - PCI-Level-1-Compliance durch Stripe
+  </Card>
+  <Card title="DSGVO-Compliance" icon="lock">
+    **Datenschutz-Aspekte**:
+    - Minimale Metadata-Speicherung
+    - Customer-Consent für Payment-Processing
+    - Audit-Trail aller Payment-Aktivitäten
+    - Right-to-Deletion für Payment-Metadaten
+  </Card>
+</CardGroup>
+
+### Webhook-Integration für Payment-Status
+
+```yaml
+Stripe-Webhook-Events:
+  payment_intent.succeeded:
+    → Customer-Benachrichtigung: "Zahlung erhalten"
+    → CRM-Update: Deal-Status "Paid"  
+    → Service-Activation: Features freischalten
+    → Team-Notification: Payment confirmed
+  
+  payment_intent.payment_failed:
+    → Customer-Support-Notification
+    → Retry-Payment-Link senden
+    → Account-Manager-Alert
+    → Alternative Payment-Methods anbieten
+  
+  payment_intent.canceled:
+    → Deal-Status auf "Payment-Canceled"
+    → Follow-up-Task für Sales-Team
+    → Customer-Retention-Workflow starten
+```
+
+## Advanced Stripe Features
+
+### Subscription-Management
+
+<AccordionGroup>
+  <Accordion title="Subscription-Creation via Mid-Call">
+    ```yaml
+    Subscription-Workflow:
+      
+    Payment-Intent für Recurring-Payments:
+      amount: 9900  # 99€/Monat
+      currency: "eur"
+      setup_future_usage: "off_session"  # Für wiederkehrende Zahlungen
+      metadata: {
+        "subscription_plan": "professional",
+        "billing_interval": "monthly"
+      }
+    
+    Customer-Communication:
+      "Ihr Professional-Abo für 99€ monatlich wird eingerichtet. 
+       Nach der ersten Zahlung aktivieren wir alle Premium-Features."
+    ```
+  </Accordion>
+  
+  <Accordion title="Invoice-Payment-Integration">
+    ```yaml
+    Invoice-based-Payments:
+      
+    Für B2B-Kunden:
+      - Payment-Intent mit payment_method_types: ["sepa_debit"]
+      - Automatische Invoice-Generation
+      - NET-30-Payment-Terms
+      
+    Customer-Experience:
+      "Für Ihr Unternehmen richten wir Rechnung mit 30 Tagen Zahlungsziel ein. 
+       Sie erhalten die Rechnung per E-Mail."
+    ```
+  </Accordion>
+</AccordionGroup>
+
+
+<Warning>
+**Zahlungs-Sicherheit**: Verwenden Sie niemals Stripe-Secret-Keys in Frontend-Code. Mid-Call-Tools laufen Server-seitig und sind damit sicher für Secret-Key-Usage.
+</Warning>
+
+<Info>
+**Payment-Tipp**: Kombinieren Sie Stripe-Payment-Intents mit CRM-Integration für vollständige Payment-to-Revenue-Attribution. Dies ermöglicht präzises ROI-Tracking von Mid-Call-Sales-Conversions.
+</Info>

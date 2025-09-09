@@ -1,0 +1,232 @@
+---
+title: "Lieferando Integration"
+description: "Vollständige Lieferando-Integration für Restaurant-Suche, Speisekarten-Abfrage und Bestellungsaufgabe direkt während Telefongesprächem"
+icon: "utensils"
+---
+
+# Lieferando Integration Template
+
+Integrieren Sie Deutschlands führende Food-Delivery-Plattform Lieferando in Ihre Mid-Call-Tools mit drei leistungsstarken Funktionen: Restaurant-Suche, Speisekarten-Abfrage und komplette Bestellabwicklung während des Gesprächs.
+
+## Überblick & Funktionen
+
+<CardGroup cols={3}>
+  <Card title="Restaurants suchen" icon="map-pin">
+    - PLZ-basierte Restaurant-Suche
+    - Cuisine-Filter und Bewertungs-Kriterien
+    - Lieferzeit- und Mindestbestellwert-Filter
+    - Verfügbarkeits- und Öffnungszeit-Check
+  </Card>
+  <Card title="Speisekarten abrufen" icon="list">
+    - Vollständige Menu-Kategorien und Preise
+    - Beliebte Gerichte und Empfehlungen
+    - Allergene und Zusatzstoff-Informationen
+    - Aktuelle Deals und Sonderangebote
+  </Card>
+  <Card title="Bestellungen aufgeben" icon="shopping-cart">
+    - Komplette Telefonbestellung-Abwicklung
+    - Lieferadresse und Zahlungsmethoden-Management
+    - Sonderwünsche und Lieferhinweise
+    - Automatische Bestellbestätigung
+  </Card>
+</CardGroup>
+
+## Tool 1: Restaurant-Suche
+
+### Konfiguration im Famulor Interface
+
+<Tabs>
+  <Tab title="Werkzeugdetails">
+    | Feld | Wert |
+    |------|------|
+    | **Name*** | `Lieferando Restaurants suchen` |
+    | **Beschreibung** | "Sucht verfügbare Restaurants in der Nähe des Kunden basierend auf PLZ und Präferenzen" |
+    | **Funktionsname*** | `search_lieferando_restaurants` |
+    | **Funktionsbeschreibung*** | "Sucht Restaurants basierend auf Postleitzahl und Präferenzen. Verwenden Sie dies, wenn ein Kunde nach verfügbaren Restaurants oder spezifischen Küchenstilen fragt." |
+    | **HTTP-Methode** | `GET` |
+    | **Timeout (ms)** | `3000` |
+    | **Endpoint*** | `https://api.lieferando.de/v1/restaurants/search` |
+  </Tab>
+  
+  <Tab title="Query-Parameter">
+    ```json
+    {
+      "postalCode": "{postal_code}",
+      "cuisine": "{cuisine_type}",
+      "minRating": "{min_rating}",
+      "maxDeliveryTime": "{max_delivery_time}"
+    }
+    ```
+  </Tab>
+</Tabs>
+
+### Parameter-Schema für Restaurant-Suche
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "postal_code": {
+      "type": "string",
+      "description": "Postleitzahl des Lieferorts",
+      "pattern": "^[0-9]{5}$"
+    },
+    "cuisine_type": {
+      "type": "string",
+      "enum": ["pizza", "burger", "sushi", "indian", "chinese", "italian", "german", "thai", "mexican", "vietnamese"],
+      "description": "Küchenstil-Präferenz"
+    },
+    "min_rating": {
+      "type": "number",
+      "description": "Mindestbewertung (1.0-5.0)",
+      "minimum": 1.0,
+      "maximum": 5.0,
+      "default": 3.5
+    },
+    "max_delivery_time": {
+      "type": "integer",
+      "description": "Maximale Lieferzeit in Minuten",
+      "minimum": 15,
+      "maximum": 120,
+      "default": 45
+    }
+  },
+  "required": ["postal_code"]
+}
+```
+
+### Response-Mapping
+
+```json
+{
+  "restaurants": "data.restaurants",
+  "count": "data.total"
+}
+```
+
+**Agent-Message**: `"Ich suche passende Restaurants in {{postal_code}}..."`
+
+**Success-Template**: `"Ich habe {{count}} Restaurants gefunden. Die besten Optionen sind: {{restaurants[0].name}} mit {{restaurants[0].rating}} Sternen, Lieferzeit {{restaurants[0].deliveryTime}} Minuten."`
+
+## Tool 2: Speisekarte abrufen
+
+### Konfiguration im Famulor Interface
+
+<Tabs>
+  <Tab title="Werkzeugdetails">
+    | **Name*** | `Lieferando Speisekarte abrufen` |
+    | **Funktionsname*** | `get_lieferando_menu` |
+    | **HTTP-Methode** | `GET` |
+    | **Endpoint*** | `https://api.lieferando.de/v1/restaurants/{restaurant_id}/menu` |
+    | **Timeout (ms)** | `3000` |
+  </Tab>
+</Tabs>
+
+### Parameter-Schema
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "restaurant_id": {
+      "type": "string",
+      "description": "Restaurant-ID von der vorherigen Suche"
+    }
+  },
+  "required": ["restaurant_id"]
+}
+```
+
+**Success-Template**: `"Die Speisekarte hat {{categories.length}} Kategorien. Beliebte Gerichte sind: {{popularItems[0].name}} für {{popularItems[0].price}}€."`
+
+## Tool 3: Bestellung aufgeben
+
+### Konfiguration im Famulor Interface
+
+<Tabs>
+  <Tab title="Werkzeugdetails">
+    | **Name*** | `Lieferando Bestellung aufgeben` |
+    | **Funktionsname*** | `create_lieferando_order` |
+    | **HTTP-Methode** | `POST` |
+    | **Endpoint*** | `https://api.lieferando.de/v1/orders` |
+    | **Timeout (ms)** | `5000` |
+  </Tab>
+  
+  <Tab title="Request Body">
+    ```json
+    {
+      "restaurantId": "{restaurant_id}",
+      "customer": {
+        "name": "{customer_name}",
+        "phone": "{customer_phone}",
+        "email": "{customer_email}"
+      },
+      "deliveryAddress": {
+        "street": "{street}",
+        "houseNumber": "{house_number}",
+        "postalCode": "{postal_code}",
+        "city": "{city}",
+        "additionalInfo": "{additional_info}"
+      },
+      "items": "{order_items}",
+      "paymentMethod": "{payment_method}"
+    }
+    ```
+  </Tab>
+</Tabs>
+
+### Parameter-Schema für Bestellung
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "restaurant_id": {
+      "type": "string",
+      "description": "Restaurant-ID"
+    },
+    "customer_name": {
+      "type": "string", 
+      "description": "Kundenname"
+    },
+    "customer_phone": {
+      "type": "string",
+      "description": "Telefonnummer"
+    },
+    "customer_email": {
+      "type": "string",
+      "description": "E-Mail-Adresse"
+    },
+    "street": {
+      "type": "string",
+      "description": "Straße"
+    },
+    "house_number": {
+      "type": "string",
+      "description": "Hausnummer"
+    },
+    "postal_code": {
+      "type": "string",
+      "description": "Postleitzahl"
+    },
+    "city": {
+      "type": "string",
+      "description": "Stadt"
+    },
+    "order_items": {
+      "type": "array",
+      "description": "Bestellte Artikel mit Mengen"
+    },
+    "payment_method": {
+      "type": "string",
+      "enum": ["cash", "paypal", "creditcard", "sofort"],
+      "description": "Zahlungsmethode"
+    }
+  },
+  "required": ["restaurant_id", "customer_name", "customer_phone", "street", "house_number", "postal_code", "city", "order_items", "payment_method"]
+}
+```
+
+**Success-Template**: `"Bestellung erfolgreich! Bestellnummer: {{orderId}}. Lieferzeit: {{estimatedDeliveryTime}}. Gesamtbetrag: {{totalAmount}}€"`
+
+---

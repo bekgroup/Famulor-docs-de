@@ -1,0 +1,40 @@
+---
+title: "Feiertage-Service Integration"
+description: "Kostenlose Feiertage-Abfrage für Terminplanung und Business-Scheduling während Kundengesprächem"
+icon: "calendar"
+---
+
+# Feiertage-Service Integration Template
+
+## Konfiguration im Famulor Interface
+
+<Tabs>
+  <Tab title="Werkzeugdetails">
+    | **Name*** | `Nächste Feiertage` |
+    | **Funktionsname*** | `get_next_public_holidays` |
+    | **HTTP-Methode** | `GET` |
+    | **Endpoint*** | `https://date.nager.at/api/v3/NextPublicHolidays/{countryCode}` |
+    | **Timeout (ms)** | `5000` |
+  </Tab>
+</Tabs>
+
+### Parameter-Schema
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "countryCode": {
+      "type": "string",
+      "description": "Ländercode (z.B. 'DE', 'AT', 'CH', 'US')"
+    }
+  },
+  "required": ["countryCode"]
+}
+```
+
+**Agent-Message**: `"Ich schaue nach den nächsten Feiertagen für {{countryCode}}..."`
+
+**Success-Template**: `"Die nächsten Feiertage für {{countryCode}}: {{response}}"`
+
+---

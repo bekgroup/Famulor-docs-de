@@ -1,0 +1,59 @@
+---
+title: "DATEV Kontenumsätze"
+description: "Echtzeit-Zugriff auf DATEV Kontenbewegungen und Salden für Liquiditätsmanagement während Geschäftsgesprächem"
+icon: "chart-bar"
+---
+
+# DATEV Kontenumsätze Integration
+
+## Konfiguration im Famulor Interface
+
+<Tabs>
+  <Tab title="Werkzeugdetails">
+    | **Name*** | `DATEV Kontenumsätze` |
+    | **Funktionsname*** | `get_datev_account_movements` |
+    | **HTTP-Methode** | `GET` |
+    | **Endpoint*** | `https://api.datev.de/data/v1/clients/{client_id}/accounts/{account_number}/movements` |
+    | **Timeout (ms)** | `5000` |
+  </Tab>
+</Tabs>
+
+### Parameter-Schema
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "client_id": {
+      "type": "string",
+      "description": "Mandantennummer"
+    },
+    "account_number": {
+      "type": "string",
+      "description": "Kontonummer (z.B. 1000 für Kasse)"
+    },
+    "date_from": {
+      "type": "string",
+      "format": "date",
+      "description": "Datum von"
+    },
+    "date_to": {
+      "type": "string",
+      "format": "date", 
+      "description": "Datum bis"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["all", "open", "cleared"],
+      "description": "Status der Posten"
+    }
+  },
+  "required": ["client_id", "account_number"]
+}
+```
+
+**Agent-Message**: `"Ich rufe die Kontoinformationen ab..."`
+
+**Success-Template**: `"Kontostand: {{balance}}€. {{#if openItems}}Offene Posten: {{openItems}}€.{{/if}} Bewegungen im Zeitraum: {{movements.length}}"`
+
+---

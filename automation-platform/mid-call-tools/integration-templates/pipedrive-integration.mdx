@@ -1,0 +1,197 @@
+---
+title: "Pipedrive Integration"
+description: "Automatische Deal-Updates und Pipeline-Management in Pipedrive direkt während Kundengesprächem für optimierte Sales-Workflows"
+icon: "chart-line"
+---
+
+# Pipedrive Integration Template
+
+Integrieren Sie Pipedrive CRM in Ihre Mid-Call-Tools und ermöglichen Sie es Ihrem KI-Assistenten, während Kundengesprächem automatisch Deal-Status zu aktualisieren, Pipeline-Stufen zu verwalten und Sales-Prozesse zu optimieren.
+
+## Überblick & Funktionen
+
+<CardGroup cols={2}>
+  <Card title="Deal-Management" icon="handshake">
+    - Echtzeit-Deal-Status-Updates während Gesprächen
+    - Pipeline-Stage-Management und -Progression  
+    - Deal-Wert-Anpassungen basierend auf Verhandlungen
+    - Automatische Activity-Protokollierung
+  </Card>
+  <Card title="Sales-Pipeline-Optimization" icon="chart-line">
+    - Intelligente Stage-Progression basierend auf Gesprächsinhalt
+    - Win/Loss-Tracking mit Begründungen
+    - Sales-Velocity-Verbesserung durch sofortige Updates
+    - Team-Performance-Analytics und Forecasting
+  </Card>
+</CardGroup>
+
+## Pipedrive API Setup
+
+### 1. Pipedrive API-Token beschaffen
+
+<Steps>
+  <Step title="API-Token generieren">
+    - Melden Sie sich bei Pipedrive an
+    - Navigieren Sie zu "Einstellungen" → "Personal preferences" → "API"
+    - Klicken Sie auf "Generate new token"
+    - Token-Name: "Famulor Mid-Call Integration"
+  </Step>
+  
+  <Step title="Pipeline und Stages identifizieren">
+    ```yaml
+    Pipeline-Konfiguration:
+      1. Gehen Sie zu "Einstellungen" → "Pipeline-Einstellungen"
+      2. Notieren Sie Pipeline-IDs und Stage-IDs:
+         - Lead-Pipeline: ID 1
+         - Sales-Pipeline: ID 2
+         - Enterprise-Pipeline: ID 3
+      
+    Stage-IDs dokumentieren:
+      - Qualification: Stage-ID 1
+      - Demo Scheduled: Stage-ID 2
+      - Proposal Made: Stage-ID 3
+      - Negotiation: Stage-ID 4
+    ```
+  </Step>
+</Steps>
+
+## Deal-Update-Tool konfigurieren
+
+### Konfiguration im Famulor Interface
+
+<Tabs>
+  <Tab title="Werkzeugdetails">
+    | Feld | Wert |
+    |------|------|
+    | **Name*** | `Pipedrive Deal aktualisieren` |
+    | **Beschreibung** | "Aktualisiert Deal-Status, Pipeline-Stage und Werte in Pipedrive basierend auf Gesprächsverlauf" |
+    | **Funktionsname*** | `update_pipedrive_deal` |
+    | **Funktionsbeschreibung*** | "Aktualisiert einen Deal in Pipedrive. Verwenden Sie dies, um Deal-Status zu ändern, Pipeline-Fortschritt zu dokumentieren oder Werte nach Verhandlungen anzupassen." |
+    | **HTTP-Methode** | `PUT` |
+    | **Timeout (ms)** | `5000` |
+    | **Endpoint*** | `https://api.pipedrive.com/v1/deals/{deal_id}` |
+  </Tab>
+  
+  <Tab title="Query-Parameter">
+    ```json
+    {
+      "api_token": "{{PIPEDRIVE_API_TOKEN}}"
+    }
+    ```
+  </Tab>
+  
+  <Tab title="Request Body Template">
+    ```json
+    {
+      "title": "{title}",
+      "value": "{value}",
+      "currency": "EUR",
+      "status": "{status}",
+      "stage_id": "{stage_id}",
+      "probability": "{probability}",
+      "expected_close_date": "{close_date}",
+      "lost_reason": "{lost_reason}",
+      "visible_to": "3",
+      "add_time": "{current_timestamp}"
+    }
+    ```
+  </Tab>
+</Tabs>
+
+### Parameter-Schema
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "deal_id": {
+      "type": "integer",
+      "description": "Pipedrive Deal-ID (aus vorheriger Suche oder bekannt)"
+    },
+    "title": {
+      "type": "string",
+      "description": "Neuer Deal-Titel (optional)"
+    },
+    "value": {
+      "type": "number",
+      "description": "Deal-Wert in Euro"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["open", "won", "lost"],
+      "description": "Deal-Status"
+    },
+    "stage_id": {
+      "type": "integer",
+      "description": "Pipeline-Stage-ID für Deal-Progression"
+    },
+    "probability": {
+      "type": "integer",
+      "description": "Abschluss-Wahrscheinlichkeit in Prozent (0-100)",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "close_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Erwartetes Abschlussdatum (YYYY-MM-DD)"
+    },
+    "lost_reason": {
+      "type": "string",
+      "description": "Grund für verlorenen Deal (nur bei status='lost')"
+    },
+    "next_activity": {
+      "type": "string",
+      "description": "Nächste geplante Aktivität"
+    },
+    "call_notes": {
+      "type": "string",
+      "description": "Notizen aus dem aktuellen Gespräch"
+    }
+  },
+  "required": ["deal_id"]
+}
+```
+
+## Praktische Anwendungsszenarien
+
+### Szenario 1: Deal-Progression während Sales-Call
+
+<Steps>
+  <Step title="Pipeline-Advancement">
+    ```yaml
+    Gesprächskontext:
+      Kunde: "Das Demo war überzeugend. Schicken Sie mir ein Angebot."
+      
+    KI: "Fantastisch! Ich aktualisiere den Deal-Status..."
+    
+    update_pipedrive_deal:
+      deal_id: 12345
+      stage_id: 3  # "Proposal Made" Stage
+      probability: 75
+      close_date: "2024-02-15"
+      call_notes: "Demo erfolgreich, Angebot angefordert. Kunde sehr interessiert. Budget bestätigt: 50k€"
+    ```
+  </Step>
+  
+  <Step title="Value-Negotiation-Tracking">
+    ```yaml
+    Preisverhandlung:
+      Kunde: "50k€ ist zu viel. Was ist bei 40k€ möglich?"
+      
+    Deal-Update:
+      value: 40000
+      stage_id: 4  # "Negotiation" Stage  
+      probability: 60  # Reduziert wegen Preisdruck
+      call_notes: "Kunde möchte Preis reduzierung von 50k auf 40k€. Verhandlung läuft."
+    ```
+  </Step>
+</Steps>
+
+### Natürliche Sprachintegration
+
+**Agent-Message**: `"Ich aktualisiere den Deal in Pipedrive..."`
+
+**Success-Template**: `"Deal wurde erfolgreich aktualisiert."`
+
+---

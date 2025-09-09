@@ -1,0 +1,306 @@
+---
+title: "Zoho CRM Integration"
+description: "Automatische Lead-Erstellung und -Management in Zoho CRM direkt während Kundengesprächem für strukturierte Sales-Prozesse"
+icon: "user-plus"
+---
+
+# Zoho CRM Integration Template
+
+Integrieren Sie Zoho CRM in Ihre Mid-Call-Tools und ermöglichen Sie es Ihrem KI-Assistenten, während Kundengesprächem automatisch qualifizierte Leads zu erstellen, zu kategorisieren und Sales-Workflows zu starten.
+
+## Überblick & Funktionen
+
+<CardGroup cols={2}>
+  <Card title="Intelligente Lead-Erstellung" icon="user-plus">
+    - Automatische Lead-Generierung aus Gespräch
+    - BANT-Qualifizierung und Lead-Scoring
+    - Industry-spezifische Kategorisierung
+    - Multi-Channel-Lead-Source-Tracking
+  </Card>
+  <Card title="Sales-Process-Automation" icon="workflow">
+    - Automatische Assignment-Rules und Territory-Management
+    - Lead-Nurturing-Workflow-Trigger
+    - Sales-Team-Benachrichtigungen
+    - CRM-Analytics und Performance-Tracking
+  </Card>
+</CardGroup>
+
+## Zoho CRM API Setup
+
+### 1. Zoho OAuth 2.0 konfigurieren
+
+<Steps>
+  <Step title="Zoho API Console">
+    - Besuchen Sie [Zoho API Console](https://api-console.zoho.eu)
+    - Erstellen Sie einen "Server-based Application" Client
+    - Client-ID und Client-Secret notieren
+  </Step>
+  
+  <Step title="OAuth-Scope konfigurieren">
+    ```yaml
+    Erforderliche Scopes:
+      - ZohoCRM.modules.leads.CREATE
+      - ZohoCRM.modules.leads.READ
+      - ZohoCRM.modules.contacts.READ (für Duplicate-Check)
+      - ZohoCRM.users.READ (für Assignment)
+    ```
+  </Step>
+  
+  <Step title="Refresh-Token generieren">
+    ```yaml
+    Initial-Authorization-Flow:
+      1. Authorization-URL aufrufen
+      2. User-Consent erteilen
+      3. Authorization-Code erhalten
+      4. Code gegen Refresh-Token tauschen
+      5. Refresh-Token für API-Calls verwenden
+    ```
+  </Step>
+</Steps>
+
+## Lead-Creation-Tool konfigurieren
+
+### Konfiguration im Famulor Interface
+
+<Tabs>
+  <Tab title="Werkzeugdetails">
+    | Feld | Wert |
+    |------|------|
+    | **Name*** | `Zoho CRM Lead erstellen` |
+    | **Beschreibung** | "Erstellt automatisch einen neuen Lead in Zoho CRM mit vollständigen Gesprächsinformationen" |
+    | **Funktionsname*** | `create_zoho_lead` |
+    | **Funktionsbeschreibung*** | "Erstellt einen Lead in Zoho CRM. Verwenden Sie dies, wenn ein potentieller Kunde Interesse zeigt oder Sie neue Business-Opportunities identifizieren." |
+    | **HTTP-Methode** | `POST` |
+    | **Timeout (ms)** | `5000` |
+    | **Endpoint*** | `https://www.zohoapis.eu/crm/v2/Leads` |
+  </Tab>
+  
+  <Tab title="Header-Konfiguration">
+    ```json
+    {
+      "Authorization": "Zoho-oauthtoken {{ZOHO_TOKEN}}",
+      "Content-Type": "application/json",
+      "User-Agent": "Famulor-MidCall-Zoho/1.0"
+    }
+    ```
+  </Tab>
+  
+  <Tab title="Request Body Template">
+    ```json
+    {
+      "data": [
+        {
+          "Company": "{company}",
+          "Last_Name": "{last_name}",
+          "First_Name": "{first_name}",
+          "Email": "{email}",
+          "Phone": "{phone}",
+          "Lead_Source": "{lead_source}",
+          "Lead_Status": "{lead_status}",
+          "Description": "{description}",
+          "Industry": "{industry}",
+          "No_of_Employees": "{employees}",
+          "Annual_Revenue": "{revenue}",
+          "Street": "{street}",
+          "City": "{city}",
+          "Zip_Code": "{zip}",
+          "Country": "{country}",
+          "Rating": "{rating}",
+          "Website": "{website}",
+          "Lead_Score": "{lead_score}",
+          "Budget": "{budget}",
+          "Timeline": "{timeline}",
+          "Pain_Points": "{pain_points}",
+          "Competitor": "{competitor}",
+          "Call_Source": "Famulor Mid-Call Tool"
+        }
+      ],
+      "trigger": ["workflow"],
+      "duplicate_check_fields": ["Email", "Phone"]
+    }
+    ```
+  </Tab>
+</Tabs>
+
+### Parameter-Schema
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "company": {
+      "type": "string",
+      "description": "Firmenname des Leads"
+    },
+    "first_name": {
+      "type": "string",
+      "description": "Vorname des Ansprechpartners"
+    },
+    "last_name": {
+      "type": "string",
+      "description": "Nachname des Ansprechpartners"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "E-Mail-Adresse"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Telefonnummer"
+    },
+    "lead_source": {
+      "type": "string",
+      "enum": ["Phone Call", "Website", "Trade Show", "Referral", "Advertisement"],
+      "description": "Quelle des Leads",
+      "default": "Phone Call"
+    },
+    "lead_status": {
+      "type": "string",
+      "enum": ["New", "Contacted", "Qualified", "Lost"],
+      "description": "Aktueller Lead-Status",
+      "default": "Contacted"
+    },
+    "description": {
+      "type": "string",
+      "description": "Detaillierte Notizen aus dem Gespräch"
+    },
+    "industry": {
+      "type": "string",
+      "description": "Branche des Unternehmens"
+    },
+    "employees": {
+      "type": "string",
+      "enum": ["1-10", "11-50", "51-200", "201-1000", "1000+"],
+      "description": "Anzahl Mitarbeiter"
+    },
+    "revenue": {
+      "type": "number",
+      "description": "Jahresumsatz in Euro"
+    },
+    "rating": {
+      "type": "string",
+      "enum": ["Hot", "Warm", "Cold"],
+      "description": "Lead-Bewertung basierend auf Gespräch",
+      "default": "Warm"
+    },
+    "lead_score": {
+      "type": "integer",
+      "description": "Berechneter Lead-Score (0-100)",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "budget": {
+      "type": "string",
+      "description": "Verfügbares oder genanntes Budget"
+    },
+    "timeline": {
+      "type": "string",
+      "description": "Zeitrahmen für Kaufentscheidung"
+    },
+    "pain_points": {
+      "type": "string",
+      "description": "Identifizierte Herausforderungen und Probleme"
+    },
+    "competitor": {
+      "type": "string",
+      "description": "Erwähnte Konkurrenten oder alternative Lösungen"
+    }
+  },
+  "required": ["last_name", "company"]
+}
+```
+
+## Praktische Anwendungsszenarien
+
+### Szenario 1: Lead-Qualifizierung während Cold-Call
+
+<Steps>
+  <Step title="Lead-Opportunity-Erkennung">
+    ```yaml
+    Cold-Call-Kontext:
+      Prospect: "Ja, wir suchen tatsächlich nach einer CRM-Lösung..."
+      
+    KI: "Perfekt! Lassen Sie mich das als Lead dokumentieren..."
+    
+    create_zoho_lead:
+      company: "Beispiel AG"
+      first_name: "Max"
+      last_name: "Mustermann" 
+      phone: "+49123456789"
+      lead_source: "Phone Call"
+      lead_status: "Contacted"
+      description: "Sucht CRM-Lösung für 50 Mitarbeiter. Aktuelles System zu langsam."
+      employees: "51-200"
+      rating: "Warm"
+      pain_points: "Performance-Probleme mit aktuellem CRM"
+    ```
+  </Step>
+  
+  <Step title="BANT-Qualifizierung-Integration">
+    ```yaml
+    Automatische-Lead-Scoring-Logic:
+      
+    Budget-Assessment:
+      "Unter 10k" → lead_score: 40
+      "10-50k" → lead_score: 70
+      "Über 50k" → lead_score: 90
+      
+    Authority-Level:
+      "CEO/Geschäftsführer" → +20 Punkte
+      "IT-Leiter" → +15 Punkte  
+      "Mitarbeiter" → +5 Punkte
+      
+    Need-Urgency:
+      "Sofort" → rating: "Hot"
+      "Dieses Jahr" → rating: "Warm"
+      "Irgendwann" → rating: "Cold"
+    ```
+  </Step>
+</Steps>
+
+### Response-Verarbeitung
+
+```json
+{
+  "data": [
+    {
+      "code": "SUCCESS",
+      "details": {
+        "Modified_Time": "2024-01-15T10:30:00+01:00",
+        "Modified_By": {
+          "name": "Famulor Integration",
+          "id": "123456789"
+        },
+        "Created_Time": "2024-01-15T10:30:00+01:00",
+        "id": "987654321098765432",
+        "Created_By": {
+          "name": "Famulor Integration",
+          "id": "123456789"
+        }
+      },
+      "message": "record added",
+      "status": "success"
+    }
+  ]
+}
+```
+
+### Natürliche Sprachintegration
+
+**Agent-Message**: `"Ich erstelle den Lead für {{company}}..."`
+
+**Success-Template**: `"Lead erstellt für {{first_name}} {{last_name}} von {{company}}. Lead-ID: {{leadId}}"`
+
+**Erweiterte Customer-Communication**:
+```yaml
+Mit Follow-up-Information:
+  "Lead wurde erstellt. Unser Sales-Team meldet sich binnen 24 Stunden 
+   mit weiteren Informationen bei Ihnen."
+
+Mit Lead-Score-Kontext:
+  "Basierend auf unserem Gespräch haben Sie einen hohen Lead-Score. 
+   Sie werden prioritär von unserem Senior-Account-Manager betreut."
+```
+
+---

@@ -45,6 +45,12 @@
     "icon": "wand-magic-sparkles",
     "color": "#6c63ff",
     "url": "automation-platform"
+  },
+  {
+    "name": "Mid-Call",
+    "icon": "webhook",
+    "color": "#0091bb",
+    "url": "automation-platform/mid-call-tools"
   }, {
     "name": "API Referenz",
     "icon": "code",
@@ -314,6 +320,8 @@
             "automation-platform/mid-call-tools/integration-templates/hubspot-deal-management",
             "automation-platform/mid-call-tools/integration-templates/hubspot-lead-erstellung",
             "automation-platform/mid-call-tools/integration-templates/salesforce-integration",
+            "automation-platform/mid-call-tools/integration-templates/pipedrive-integration",
+            "automation-platform/mid-call-tools/integration-templates/zoho-crm-integration",
             "automation-platform/mid-call-tools/integration-templates/google-sheets-integration"
           ]
         },
@@ -335,7 +343,67 @@
           "group": "Projektmanagement",
           "pages": [
             "automation-platform/mid-call-tools/integration-templates/asana-integration",
-            "automation-platform/mid-call-tools/integration-templates/notion-integration"
+            "automation-platform/mid-call-tools/integration-templates/notion-integration", 
+            "automation-platform/mid-call-tools/integration-templates/jira-integration",
+            "automation-platform/mid-call-tools/integration-templates/monday-integration"
+          ]
+        },
+        {
+          "group": "Zahlungen",
+          "pages": [
+            "automation-platform/mid-call-tools/integration-templates/stripe-integration",
+            "automation-platform/mid-call-tools/integration-templates/shopify-integration"
+          ]
+        },
+        {
+          "group": "Buchhaltung & HR",
+          "pages": [
+            "automation-platform/mid-call-tools/integration-templates/lexoffice-integration",
+            "automation-platform/mid-call-tools/integration-templates/personio-integration",
+            "automation-platform/mid-call-tools/integration-templates/datev-beleg-integration",
+            "automation-platform/mid-call-tools/integration-templates/datev-kontenumsaetze-integration",
+            "automation-platform/mid-call-tools/integration-templates/datev-mahnung-integration",
+            "automation-platform/mid-call-tools/integration-templates/zoho-books-integration"
+          ]
+        },
+        {
+          "group": "Support", 
+          "pages": [
+            "automation-platform/mid-call-tools/integration-templates/zendesk-integration",
+            "automation-platform/mid-call-tools/integration-templates/zoho-desk-integration"
+          ]
+        },
+        {
+          "group": "Logistik & Dokumente",
+          "pages": [
+            "automation-platform/mid-call-tools/integration-templates/dhl-integration",
+            "automation-platform/mid-call-tools/integration-templates/docusign-integration"
+          ]
+        },
+        {
+          "group": "Gastronomie & Food",
+          "pages": [
+            "automation-platform/mid-call-tools/integration-templates/lieferando-integration",
+            "automation-platform/mid-call-tools/integration-templates/opentable-integration"
+          ]
+        },
+        {
+          "group": "ERP & E-Commerce",
+          "pages": [
+            "automation-platform/mid-call-tools/integration-templates/sap-business-one-integration",
+            "automation-platform/mid-call-tools/integration-templates/dynamics365-integration",
+            "automation-platform/mid-call-tools/integration-templates/shopware-integration",
+            "automation-platform/mid-call-tools/integration-templates/woocommerce-integration",
+            "automation-platform/mid-call-tools/integration-templates/jtl-wawi-integration"
+          ]
+        },
+        {
+          "group": "Allgemein",
+          "pages": [
+            "automation-platform/mid-call-tools/integration-templates/wetter-integration",
+            "automation-platform/mid-call-tools/integration-templates/feiertage-integration",
+            "automation-platform/mid-call-tools/integration-templates/weltzeit-integration",
+            "automation-platform/mid-call-tools/integration-templates/api-vorlagen"
           ]
         }
       ]
