@@ -184,49 +184,49 @@ sequenceDiagram
 
 <AccordionGroup>
   <Accordion title="Workflow-Logik">
-    ```yaml
-    Workflow-Name: "Smart Lead Processing"
-    Trigger: Webhook von Mid-Call-Tool
-    
-    Schritte:
-      1. Duplicate-Check in HubSpot
-      2. Wenn neu → Lead erstellen
-      3. Wenn bekannt → Kontakt-Historie abrufen
-      4. Lead-Scoring basierend auf:
-         - Firmengröße (Clearbit/LinkedIn)
-         - Budgetangaben aus Gespräch
-         - Urgency-Level
-         - Bisherige Interaktionen
-      5. Team-Assignment basierend auf Score:
-         - >80: Enterprise Sales Team
-         - 50-80: Standard Sales Team  
-         - <50: Inside Sales/Nurturing
-      6. Follow-up-Sequence starten:
-         - E-Mail-Bestätigung an Kunde
-         - Slack-Notification an Team
-         - Task-Creation in CRM
-         - Calendar-Invite für Follow-up-Call
-    ```
+```yaml
+Workflow-Name: "Smart Lead Processing"
+Trigger: Webhook von Mid-Call-Tool
+
+Schritte:
+  1. Duplicate-Check in HubSpot
+  2. Wenn neu → Lead erstellen
+  3. Wenn bekannt → Kontakt-Historie abrufen
+  4. Lead-Scoring basierend auf:
+     - Firmengröße (Clearbit/LinkedIn)
+     - Budgetangaben aus Gespräch
+     - Urgency-Level
+     - Bisherige Interaktionen
+  5. Team-Assignment basierend auf Score:
+     - >80: Enterprise Sales Team
+     - 50-80: Standard Sales Team  
+     - <50: Inside Sales/Nurturing
+  6. Follow-up-Sequence starten:
+     - E-Mail-Bestätigung an Kunde
+     - Slack-Notification an Team
+     - Task-Creation in CRM
+     - Calendar-Invite für Follow-up-Call
+```
   </Accordion>
   
   <Accordion title="Bedingte Verzweigungen">
-    ```yaml
-    Bedingungen_im_Workflow:
-      Wenn urgency == "critical":
-        → Sofortige SMS an Sales Manager
-        → Prioritäts-Flag in CRM setzen
-        → Meeting innerhalb 4 Stunden buchen
-      
-      Wenn competitor_mentioned:
-        → Competitive Intelligence Tool triggern
-        → Battle Card an Sales-Rep senden
-        → Pricing-Strategy-Alert
-      
-      Wenn budget > 100k:
-        → Enterprise Team assignment
-        → C-Level Executive als Contact Owner
-        → Custom Demo-Environment bereitstellen
-    ```
+```yaml
+Bedingungen_im_Workflow:
+  Wenn urgency == "critical":
+    → Sofortige SMS an Sales Manager
+    → Prioritäts-Flag in CRM setzen
+    → Meeting innerhalb 4 Stunden buchen
+  
+  Wenn competitor_mentioned:
+    → Competitive Intelligence Tool triggern
+    → Battle Card an Sales-Rep senden
+    → Pricing-Strategy-Alert
+  
+  Wenn budget > 100k:
+    → Enterprise Team assignment
+    → C-Level Executive als Contact Owner
+    → Custom Demo-Environment bereitstellen
+```
   </Accordion>
 </AccordionGroup>
 

@@ -37,20 +37,20 @@ Integrieren Sie Ihre Mid-Call-Tools mit Salesforce, dem weltweit führenden CRM-
   </Step>
   
   <Step title="Connected App konfigurieren">
-    ```yaml
-    App-Details:
-      Connected App Name: "Famulor Mid-Call Tools"
-      API Name: "Famulor_Mid_Call_Tools"
-      Contact Email: ihr-admin@firma.de
-      
-    OAuth Settings:
-      Enable OAuth Settings: ✓
-      Callback URL: https://app.famulor.de/oauth/callback
-      Selected OAuth Scopes:
-        - "Access and manage your data (api)"
-        - "Perform requests on your behalf at any time (refresh_token, offline_access)"
-        - "Access your basic information (id, profile, email, address, phone)"
-    ```
+```yaml
+App-Details:
+  Connected App Name: "Famulor Mid-Call Tools"
+  API Name: "Famulor_Mid_Call_Tools"
+  Contact Email: ihr-admin@firma.de
+  
+OAuth Settings:
+  Enable OAuth Settings: ✓
+  Callback URL: https://app.famulor.de/oauth/callback
+  Selected OAuth Scopes:
+    - "Access and manage your data (api)"
+    - "Perform requests on your behalf at any time (refresh_token, offline_access)"
+    - "Access your basic information (id, profile, email, address, phone)"
+```
   </Step>
   
   <Step title="API-Credentials sichern">
@@ -61,16 +61,16 @@ Integrieren Sie Ihre Mid-Call-Tools mit Salesforce, dem weltweit führenden CRM-
   </Step>
   
   <Step title="User-Permissions setzen">
-    ```yaml
-    Profile-Permissions (für Service User):
-      - "API Enabled" 
-      - "View All Data" (oder spezifische Object-Permissions)
-      - "Modify All Data" (nur für Write-Operationen)
-      
-    Optional - IP-Restrictions:
-      - Vertrauenswürdige IP-Ranges definieren
-      - VPN-basierte Zugriffe konfigurieren
-    ```
+```yaml
+Profile-Permissions (für Service User):
+  - "API Enabled" 
+  - "View All Data" (oder spezifische Object-Permissions)
+  - "Modify All Data" (nur für Write-Operationen)
+  
+Optional - IP-Restrictions:
+  - Vertrauenswürdige IP-Ranges definieren
+  - VPN-basierte Zugriffe konfigurieren
+```
   </Step>
 </Steps>
 

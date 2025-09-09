@@ -169,46 +169,46 @@ flowchart TD
 <AccordionGroup>
   <Accordion title="Budget-Assessment">
     **Automatische Budget-Erkennung**:
-    ```yaml
-    Direktangaben:
-      "Unser Budget liegt bei 50.000€" → budget_range: "50k-60k"
-      "Wir haben etwa zehntausend Euro eingeplant" → budget_range: "10k-15k"
-    
-    Indirekte Hinweise:
-      "Wir sind ein kleines Startup" → budget_range: "under_10k"
-      "Das Budget ist nicht das Problem" → budget_range: "flexible"
-      "Wir müssen schauen..." → budget_range: "limited"
-    
-    Lead-Score-Einfluss:
-      High Budget (>50k): +25 Punkte
-      Medium Budget (10-50k): +15 Punkte  
-      Low Budget (<10k): +5 Punkte
-      Unbekannt: 0 Punkte
-    ```
+```yaml
+Direktangaben:
+  "Unser Budget liegt bei 50.000€" → budget_range: "50k-60k"
+  "Wir haben etwa zehntausend Euro eingeplant" → budget_range: "10k-15k"
+
+Indirekte Hinweise:
+  "Wir sind ein kleines Startup" → budget_range: "under_10k"
+  "Das Budget ist nicht das Problem" → budget_range: "flexible"
+  "Wir müssen schauen..." → budget_range: "limited"
+
+Lead-Score-Einfluss:
+  High Budget (>50k): +25 Punkte
+  Medium Budget (10-50k): +15 Punkte  
+  Low Budget (<10k): +5 Punkte
+  Unbekannt: 0 Punkte
+```
   </Accordion>
   
   <Accordion title="Authority-Assessment">
     **Entscheidungsbefugnis-Klassifikation**:
-    ```yaml
-    Decision Maker:
-      Indikatoren: "Ich bin der Geschäftsführer", "Das kann ich entscheiden"
-      Lead-Score: +30 Punkte
-      Tag: "decision_maker"
-    
-    Influencer:
-      Indikatoren: "Ich bin der IT-Leiter", "Ich empfehle das dann weiter"
-      Lead-Score: +20 Punkte
-      Tag: "influencer"
-    
-    Gatekeeper:
-      Indikatoren: "Ich sammle erst mal Informationen", "Das muss ich weiterleiten"
-      Lead-Score: +10 Punkte
-      Tag: "gatekeeper"
-    
-    User/Stakeholder:
-      Lead-Score: +5 Punkte
-      Tag: "stakeholder"
-    ```
+```yaml
+Decision Maker:
+  Indikatoren: "Ich bin der Geschäftsführer", "Das kann ich entscheiden"
+  Lead-Score: +30 Punkte
+  Tag: "decision_maker"
+
+Influencer:
+  Indikatoren: "Ich bin der IT-Leiter", "Ich empfehle das dann weiter"
+  Lead-Score: +20 Punkte
+  Tag: "influencer"
+
+Gatekeeper:
+  Indikatoren: "Ich sammle erst mal Informationen", "Das muss ich weiterleiten"
+  Lead-Score: +10 Punkte
+  Tag: "gatekeeper"
+
+User/Stakeholder:
+  Lead-Score: +5 Punkte
+  Tag: "stakeholder"
+```
   </Accordion>
   
   <Accordion title="Need-Analysis">

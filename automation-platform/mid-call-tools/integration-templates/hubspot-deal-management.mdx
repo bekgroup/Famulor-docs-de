@@ -314,40 +314,40 @@ flowchart TD
 <AccordionGroup>
   <Accordion title="BANT-Qualifizierung">
     **Budget-Identifikation**:
-    ```yaml
-    KI erkennt Budget-Aussagen:
-      "Unser Budget liegt bei etwa 50.000€"
-      → create_hubspot_deal mit amount: 50000
-    
-    "Wir haben noch kein festes Budget"
-      → Deal mit amount: 0, Notiz: "Budget zu klären"
-    ```
+```yaml
+KI erkennt Budget-Aussagen:
+  "Unser Budget liegt bei etwa 50.000€"
+  → create_hubspot_deal mit amount: 50000
+
+"Wir haben noch kein festes Budget"
+  → Deal mit amount: 0, Notiz: "Budget zu klären"
+```
   </Accordion>
   
   <Accordion title="Authority-Check">
     **Entscheidungsbefugnis prüfen**:
-    ```yaml
-    Entscheidungsträger identifiziert:
-      → Deal-Priority: "high"
-      → Owner: Senior Sales Rep
-    
-    Influencer/Gatekeeper:
-      → Deal-Priority: "medium" 
-      → Next Step: Decision Maker Meeting
-    ```
+```yaml
+Entscheidungsträger identifiziert:
+  → Deal-Priority: "high"
+  → Owner: Senior Sales Rep
+
+Influencer/Gatekeeper:
+  → Deal-Priority: "medium" 
+  → Next Step: Decision Maker Meeting
+```
   </Accordion>
   
   <Accordion title="Need & Timeline">
     **Bedarf und Zeitrahmen**:
-    ```yaml
-    Akuter Bedarf:
-      → closedate: +30 Tage
-      → hs_deal_priority: "high"
-    
-    Langfristige Planung:
-      → closedate: +6 Monate
-      → dealstage: "prospecting"
-    ```
+```yaml
+Akuter Bedarf:
+  → closedate: +30 Tage
+  → hs_deal_priority: "high"
+
+Langfristige Planung:
+  → closedate: +6 Monate
+  → dealstage: "prospecting"
+```
   </Accordion>
 </AccordionGroup>
 

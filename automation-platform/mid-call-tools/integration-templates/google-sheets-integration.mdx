@@ -43,14 +43,14 @@ Nutzen Sie Google Sheets als einfache, aber mächtige Datenquelle für Ihre Mid-
   </Step>
   
   <Step title="Service Account erstellen">
-    ```yaml
-    Schritte:
-      1. "APIs & Services" → "Anmeldedaten"
-      2. "+ ANMELDEDATEN ERSTELLEN" → "Dienstkonto"
-      3. Name: "Famulor-Mid-Call-Tools"
-      4. Rolle: "Editor" oder "Viewer" (je nach Bedarf)
-      5. JSON-Key herunterladen und sicher speichern
-    ```
+```yaml
+Schritte:
+  1. "APIs & Services" → "Anmeldedaten"
+  2. "+ ANMELDEDATEN ERSTELLEN" → "Dienstkonto"
+  3. Name: "Famulor-Mid-Call-Tools"
+  4. Rolle: "Editor" oder "Viewer" (je nach Bedarf)
+  5. JSON-Key herunterladen und sicher speichern
+```
   </Step>
   
   <Step title="Sheet-Berechtigungen setzen">
@@ -108,19 +108,19 @@ Nutzen Sie Google Sheets als einfache, aber mächtige Datenquelle für Ihre Mid-
   </Tab>
   
   <Tab title="Authentication">
-    ```yaml
-    Authentication Type: "OAuth 2.0" oder "Service Account"
-    
-    Service Account (empfohlen):
-      Headers:
-        Authorization: "Bearer {access_token}"
-        Content-Type: "application/json"
-    
-    OAuth 2.0 (für User-Context):
-      Headers:
-        Authorization: "Bearer {user_access_token}"
-        Content-Type: "application/json"
-    ```
+```yaml
+Authentication Type: "OAuth 2.0" oder "Service Account"
+
+Service Account (empfohlen):
+  Headers:
+    Authorization: "Bearer {access_token}"
+    Content-Type: "application/json"
+
+OAuth 2.0 (für User-Context):
+  Headers:
+    Authorization: "Bearer {user_access_token}"
+    Content-Type: "application/json"
+```
   </Tab>
 </Tabs>
 
