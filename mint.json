@@ -400,8 +400,8 @@
         {
           "group": "Allgemein",
           "pages": [
-            "automation-platform/mid-call-tools/integration-templates/wetter-integration",
             "automation-platform/mid-call-tools/integration-templates/feiertage-integration",
+            "automation-platform/mid-call-tools/integration-templates/wetter-integration",
             "automation-platform/mid-call-tools/integration-templates/weltzeit-integration",
             "automation-platform/mid-call-tools/integration-templates/api-vorlagen"
           ]
