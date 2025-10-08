@@ -1,0 +1,169 @@
+---
+title: 'GoHighLevel Terminplanung'
+description: 'Erfahren Sie, wie Sie Ihrem KI-Assistenten ermöglichen, Termine über die GoHighLevel-Integration zu planen'
+---
+
+# GoHighLevel Terminplanung
+
+Ermöglichen Sie Ihrem KI-Assistenten, Meetings und Termine nahtlos über die GoHighLevel-Integration zu planen. Diese leistungsstarke Funktion ermöglicht es Ihrer KI, Verfügbarkeiten zu prüfen und Termine direkt während Anrufen mit Ihrem bestehenden GoHighLevel-Kalendersystem zu buchen.
+
+## Voraussetzungen
+
+Bevor Sie die GoHighLevel-Integration einrichten, benötigen Sie:
+
+- Ein aktives GoHighLevel-Konto
+- Konfigurierte Kalender in Ihrer GoHighLevel-Location
+- Admin- oder entsprechende Berechtigungen zum Autorisieren von App-Verbindungen
+
+## Einrichtungsprozess
+
+### 1. GoHighLevel-Konto-Anforderungen
+
+**Konto-Einrichtung:**
+- Stellen Sie sicher, dass Sie ein aktives GoHighLevel-Konto haben
+- Überprüfen Sie, dass Ihre Kalender ordnungsgemäß in Ihrem Konto eingerichtet sind
+- Bestätigen Sie, dass Sie die erforderlichen Berechtigungen zum Verbinden externer Anwendungen haben
+
+**Kalender-Konfiguration:**
+- Erstellen oder überprüfen Sie bestehende Kalender in Ihrer GoHighLevel-Location
+- Legen Sie angemessene Verfügbarkeitszeiten und Buchungseinstellungen fest
+- Konfigurieren Sie alle erforderlichen benutzerdefinierten Felder für Termine
+
+### 2. GoHighLevel mit Ihrem Assistenten verbinden
+
+1. Navigieren Sie in Ihren KI-Assistenten-Einstellungen zum Bereich **Tools**
+2. Wählen Sie **Terminplanung** aus den verfügbaren Tools
+3. Wählen Sie **GoHighLevel** als Ihre Kalenderintegration
+4. Klicken Sie auf **Mit GoHighLevel verbinden**
+
+**OAuth-Autorisierungsprozess:**
+- Sie werden zur Autorisierungsseite von GoHighLevel weitergeleitet
+- Wählen Sie Ihr Konto aus den verfügbaren Optionen
+- Autorisieren Sie die Anwendung für den Zugriff auf Ihre Kalenderdaten
+- Sie werden zurück zu Ihren Assistenten-Einstellungen weitergeleitet
+
+<Info>
+Wenn Sie Probleme beim Verbinden mit GoHighLevel haben, versuchen Sie es mit einem Inkognito-/Privaten Browsing-Fenster, da dies Authentifizierungskonflikte lösen kann.
+</Info>
+
+### 3. Kalenderauswahl
+
+Nach erfolgreicher Verbindung:
+- Wählen Sie den spezifischen Kalender aus Ihrer GoHighLevel-Location aus
+- Ihre verfügbaren Kalender werden automatisch abgerufen und angezeigt
+- Wählen Sie den Kalender, in dem Termine gebucht werden sollen
+
+### 4. Integration testen
+
+**Wesentliche Testschritte:**
+- Führen Sie einen Testanruf mit Ihrem KI-Assistenten durch
+- Fordern Sie während des Gesprächs die Terminvereinbarung an
+- Überprüfen Sie, ob die Buchung in Ihrem GoHighLevel-Kalender erscheint
+- Prüfen Sie, ob Bestätigungsdetails entsprechend gesendet werden
+- Testen Sie verschiedene Szenarien (verfügbare/nicht verfügbare Zeiten)
+
+## Erforderliche Informationen von GoHighLevel
+
+Um die Integration abzuschließen, benötigt das System Zugriff auf:
+
+### Von Ihrem GoHighLevel-Konto:
+- **Location ID**: Wird automatisch während der OAuth-Autorisierung abgerufen
+- **Calendar IDs**: Werden aus den verfügbaren Kalendern Ihrer Location abgerufen
+- **Access Tokens**: Werden automatisch über den OAuth-Flow verwaltet
+
+### Kalenderberechtigungen:
+- **Kalenderverfügbarkeit lesen**: Um freie Zeitfenster zu überprüfen
+- **Termine erstellen**: Um neue Meetings zu buchen
+- **Auf Kalenderdetails zugreifen**: Um Kalendernamen und Einstellungen abzurufen
+
+## Integrationsfunktionen
+
+### Automatische Terminbuchung
+
+- **Echtzeit-Verfügbarkeitsprüfung**: Die KI überprüft offene Zeitfenster
+- **Sofortige Buchungsbestätigung**: Termine werden sofort in GoHighLevel erstellt
+- **Konfliktprävention**: Das System verhindert Doppelbuchungen
+- **Zeitzonen-Handhabung**: Respektiert Kalender- und Kunden-Zeitzonen
+
+### E-Mail-Anforderung für Termine
+
+<Warning>
+**Wichtig**: Um Termine zu buchen, benötigt Ihr KI-Assistent eine E-Mail-Adresse vom Kunden.
+</Warning>
+
+**Einrichtungsoptionen:**
+- **E-Mail in Eingabevariablen definieren**: Fügen Sie E-Mail als Eingabevariable in Ihren Assistenten-Einstellungen hinzu
+- **Leads mit E-Mail importieren**: Stellen Sie beim Importieren von Leads sicher, dass E-Mail-Adressen enthalten sind
+- **KI-Erfassung während des Anrufs**: Konfigurieren Sie Ihren Assistenten so, dass er während des Gesprächs nach der E-Mail fragt, falls nicht verfügbar
+
+**Beispiel Prompt-Anweisung:**
+
+```
+"Wenn der Kunde einen Termin buchen möchte und ich keine E-Mail-Adresse habe, 
+frage ihn nach seiner E-Mail-Adresse für die Buchungsbestätigung."
+```
+
+## Best Practices
+
+### Kalenderverwaltung
+
+- **Kalender aktuell halten**: Stellen Sie sicher, dass die Verfügbarkeit in GoHighLevel aktuell ist
+- **Pufferzeiten festlegen**: Konfigurieren Sie angemessene Abstände zwischen Terminen
+- **Klare Kalendernamen verwenden**: Erleichtert die Auswahl während der Einrichtung
+
+### Assistenten-Konfiguration
+
+**Kalenderkontext im System-Prompt einbeziehen**: Helfen Sie der KI, Buchungsszenarien zu verstehen
+
+**Terminvariablen definieren**: Extrahieren Sie relevante Informationen für GoHighLevel
+
+**Termindauer konfigurieren**: Geben Sie an, wie lang Termine sein sollen
+
+**Beispiel für Termindauer-Einrichtung:**
+
+Informieren Sie Ihren KI-Assistenten im System-Prompt über die Terminlängen:
+
+```
+"Verwende bei der Terminbuchung 45-Minuten-Slots. Wenn ein Kunde sagt, 
+dass er sich um 8:00 Uhr treffen möchte, setze die end_time auf 8:45 Uhr. 
+Berechne die end_time immer basierend auf der Startzeit plus 45 Minuten."
+```
+
+**Beispielszenarien:**
+- Kunde sagt: "Können wir uns um 14:00 Uhr treffen?"
+- KI bucht: 14:00 Uhr - 14:45 Uhr (45-Minuten-Slot)
+
+**Verschiedene Szenarien testen**: Unterschiedliche Zeitanfragen, Konflikte, Umbuchungen
+
+### Sicherheit & Compliance
+
+- **Token-Verwaltung**: OAuth-Tokens werden automatisch aktualisiert
+- **Datenschutz**: Nur notwendige Kalenderdaten werden abgerufen
+- **Berechtigungsumfang**: Integration verwendet minimal erforderliche Berechtigungen
+
+## Fehlerbehebung
+
+### Schnelle Lösungen:
+
+**Fehlender API-Schlüssel-Fehler:**
+- **Lösung**: Trennen und verbinden Sie Ihr GoHighLevel-Konto erneut, wählen Sie dann einen Assistenten aus und speichern Sie
+- **Schritte**: Gehen Sie zu Assistenten-Einstellungen → Terminplanung → Trennen → Erneut verbinden → Assistenten auswählen → Speichern
+
+**Verbindungsprobleme:**
+- Versuchen Sie den Inkognito-Modus für die OAuth-Autorisierung
+- Überprüfen Sie Kontoberechtigungen und Kalendereinrichtung
+
+**Kalenderprobleme:**
+- Aktualisieren Sie die Verbindung, wenn Kalender nicht erscheinen
+- Überprüfen Sie Zeitzonen und Verfügbarkeitseinstellungen
+
+## Verwandte Ressourcen
+
+<CardGroup cols={2}>
+  <Card title="Cal.com Terminplanung" icon="calendar" href="/ai-assistants/cal-com-scheduling">
+    Alternative Kalenderintegration mit Cal.com
+  </Card>
+  <Card title="Tools und Funktionen" icon="wrench" href="/ai-assistants/tools-and-functions">
+    Übersicht über alle verfügbaren Assistenten-Tools
+  </Card>
+</CardGroup>

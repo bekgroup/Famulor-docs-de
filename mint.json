@@ -122,6 +122,7 @@
         "ai-assistants/filler-audio",
         "ai-assistants/web-widget",
         "ai-assistants/cal-com-scheduling",
+        "ai-assistants/gohighlevel-scheduling",
         "ai-assistants/testing"
       ]
     },
