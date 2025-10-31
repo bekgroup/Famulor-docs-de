@@ -139,6 +139,14 @@
       ]
     },
     {
+      "group": "Custom Dashboards",
+      "icon": "chart-line",
+      "pages": [
+        "custom-dashboards/overview",
+        "custom-dashboards/widget-types"
+      ]
+    },
+    {
       "group": "Telefonnummern",
       "pages": [
         "phone-numbers/types",
