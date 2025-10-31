@@ -1,0 +1,145 @@
+---
+title: "Mid-Call-Tool abrufen"
+api: "GET /user/tools/{id}"
+description: "Ein spezifisches Mid-Call-Tool anhand der ID abrufen"
+---
+
+Dieser Endpunkt ermöglicht es Ihnen, detaillierte Informationen über ein spezifisches Mid-Call-Tool abzurufen.
+
+### Header
+
+<ParamField header="Authorization" type="string" required>
+  Bearer-Token für die Authentifizierung
+</ParamField>
+
+<ParamField header="Content-Type" type="string" required>
+  Muss `application/json` sein
+</ParamField>
+
+<ParamField header="Accept" type="string" required>
+  Muss `application/json` sein
+</ParamField>
+
+### Pfad-Parameter
+
+<ParamField path="id" type="integer" required>
+  Die eindeutige Kennung des Tools
+</ParamField>
+
+### Antwortfelder
+
+<ResponseField name="id" type="integer">
+  Die eindeutige Kennung des Tools
+</ResponseField>
+
+<ResponseField name="name" type="string">
+  Der Name des Tools (Kleinbuchstaben mit Unterstrichen)
+</ResponseField>
+
+<ResponseField name="description" type="string">
+  Detaillierte Erklärung, wann und wie die KI dieses Tool verwenden soll
+</ResponseField>
+
+<ResponseField name="endpoint" type="string">
+  Die API-Endpunkt-URL, die aufgerufen wird
+</ResponseField>
+
+<ResponseField name="method" type="string">
+  HTTP-Methode (GET, POST, PUT, PATCH, DELETE)
+</ResponseField>
+
+<ResponseField name="timeout" type="integer">
+  Request-Timeout in Sekunden (1-30)
+</ResponseField>
+
+<ResponseField name="headers" type="array">
+  HTTP-Header, die mit der Anfrage gesendet werden
+  <Expandable title="Header-Eigenschaften">
+    <ResponseField name="name" type="string">
+      Header-Name
+    </ResponseField>
+    <ResponseField name="value" type="string">
+      Header-Wert
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="schema" type="array">
+  Parameter, die die KI extrahieren und an den Endpunkt senden wird
+  <Expandable title="Schema-Eigenschaften">
+    <ResponseField name="name" type="string">
+      Parameter-Name
+    </ResponseField>
+    <ResponseField name="type" type="string">
+      Parameter-Typ (string, number, boolean)
+    </ResponseField>
+    <ResponseField name="description" type="string">
+      Beschreibung, um der KI zu helfen, diesen Parameter zu extrahieren
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="created_at" type="string">
+  ISO 8601 Zeitstempel, wann das Tool erstellt wurde
+</ResponseField>
+
+<ResponseField name="updated_at" type="string">
+  ISO 8601 Zeitstempel, wann das Tool zuletzt aktualisiert wurde
+</ResponseField>
+
+<ResponseExample>
+
+```json 200 Response
+{
+  "id": 1,
+  "name": "get_weather",
+  "description": "Use this tool to get the current weather in a specific city. Call this when the customer asks about weather conditions.",
+  "endpoint": "https://api.openweathermap.org/data/2.5/weather",
+  "method": "GET",
+  "timeout": 10,
+  "headers": [
+    {
+      "name": "Content-Type",
+      "value": "application/json"
+    },
+    {
+      "name": "Authorization",
+      "value": "Bearer sk_..."
+    }
+  ],
+  "schema": [
+    {
+      "name": "city",
+      "type": "string",
+      "description": "The city name to get weather for"
+    },
+    {
+      "name": "temperature",
+      "type": "number",
+      "description": "Current temperature value"
+    },
+    {
+      "name": "is_raining",
+      "type": "boolean",
+      "description": "Whether it is currently raining"
+    }
+  ],
+  "created_at": "2025-10-10T12:00:00.000000Z",
+  "updated_at": "2025-10-10T12:00:00.000000Z"
+}
+```
+
+```json 404 Not Found
+{
+  "message": "Tool not found"
+}
+```
+
+</ResponseExample>
+
+### Tools zu Assistenten zuweisen
+
+Um dieses Tool mit einem Assistenten zu verwenden, siehe:
+
+- **[Assistent erstellen](/api-reference/assistants/create)** - Tools mit dem `tool_ids`-Parameter zuweisen
+- **[Assistent aktualisieren](/api-reference/assistants/update)** - Tool-Zuweisungen mit dem `tool_ids`-Parameter verwalten

@@ -53,6 +53,10 @@ Dieser Endpunkt ermöglicht es Ihnen, einen neuen KI-Assistenten mit umfassenden
   Die ID einer Telefonnummer, die dem Assistenten zugewiesen werden soll (muss in den Telefonnummern des Benutzers existieren)
 </ParamField>
 
+<ParamField body="tool_ids" type="integer[]">
+  Array von Mid-Call-Tool-IDs, die dem Assistenten zugewiesen werden sollen. Jedes Element muss eine gültige Tool-ID sein, die zu Ihrem Konto gehört.
+</ParamField>
+
 <ParamField body="endpoint_type" type="string">
   Sprachaktivitätserkennung-Typ. Optionen: `vad`, `ai`
 </ParamField>
