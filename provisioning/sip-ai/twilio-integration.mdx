@@ -122,6 +122,8 @@ Wenn Sie Ihr Twilio-System mit Famulor integrieren:
         color="orange">
         Für Ihren Elastic SIP Trunk, um unsere ausgehenden Anfragen zu akzeptieren, müssen Sie entweder IP-Adressen whitelisten oder eine Authentifizierung mit Benutzername und Passwort erstellen.
         
+        **Wichtig:** Wenn Sie Benutzername und Passwort verwenden möchten, erstellen Sie diese unter **Twilio Elastic SIP Trunking > Manage > Credential Lists**. Klicken Sie dort auf "Create" und erstellen Sie einen Benutzernamen und ein Passwort.
+        
         ![Twilio New Access Control](/provisioning/sip-ai/twillio-new-access-control.jpeg)
         
         ![Twilio New Access Control Settings](/provisioning/sip-ai/twillio-new-access-control2.jpeg)
@@ -167,6 +169,33 @@ Wenn Sie Ihr Twilio-System mit Famulor integrieren:
       </Note>
       
       ![Twilio Setup Origination](/provisioning/sip-ai/twillio-setup-origination1.jpeg)
+    </Card>
+    
+    <Card
+      title="Einstellungen für eingehende Anrufe in Famulor"
+      icon="settings"
+      color="purple">
+      Nachdem Sie die Origination in Twilio eingerichtet haben, müssen Sie die entsprechenden Einstellungen in Famulor konfigurieren:
+      
+      - Gehen Sie in Ihrem Famulor-Dashboard zu "Telefonnummern" → "SIP-Trunk integrieren"
+      - Navigieren Sie zu den **"Einstellungen für eingehende Anrufe"**
+      - Wählen Sie bei **"Authentifizierungsart"** die Option **"IP-Adresse"**
+      - Fügen Sie die folgenden erlaubten IP-Adressen hinzu:
+      
+      <CodeGroup>
+        <CodeGroupItem title="Erlaubte IP-Adressen">
+          ```bash
+          54.244.51.0
+          54.244.51.1
+          54.244.51.2
+          54.244.51.3
+          54.172.60.0
+          54.172.60.1
+          54.172.60.2
+          54.172.60.3
+          ```
+        </CodeGroupItem>
+      </CodeGroup>
     </Card>
   </Step>
 
