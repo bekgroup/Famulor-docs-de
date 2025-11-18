@@ -87,7 +87,8 @@
       "pages": [
         "introduction/what-is-Famulor",
         "introduction/how-it-works",
-        "introduction/key-terminology"
+        "introduction/key-terminology",
+        "introduction/whitepaper-ki-telefonie"
       ]
     },
     {
@@ -153,7 +154,8 @@
         "phone-numbers/purchasing-and-managing",
         "phone-numbers/pricing-and-regions",
         "phone-numbers/sms-capabilities",
-        "phone-numbers/assigning-to-assistants"
+        "phone-numbers/assigning-to-assistants",
+        "phone-numbers/call-forwarding"
       ]
     },
     {
