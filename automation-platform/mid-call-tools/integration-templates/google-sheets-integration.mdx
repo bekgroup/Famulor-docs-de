@@ -1,12 +1,12 @@
 ---
 title: "Google Sheets Integration"
-description: "Mid-Call-Tool für Echtzeit-Zugriff und -Updates von Google Sheets-Daten während Kundengesprächem"
+description: "Mid-call Action für Echtzeit-Zugriff und -Updates von Google Sheets-Daten während Kundengesprächem"
 icon: "table"
 ---
 
 # Google Sheets Integration Template
 
-Nutzen Sie Google Sheets als einfache, aber mächtige Datenquelle für Ihre Mid-Call-Tools. Ideal für kleinere Teams oder spezielle Use Cases, wo komplexe CRM-Systeme überdimensioniert wären.
+Nutzen Sie Google Sheets als einfache, aber mächtige Datenquelle für Ihre Mid-call Actions. Ideal für kleinere Teams oder spezielle Use Cases, wo komplexe CRM-Systeme überdimensioniert wären.
 
 ## Überblick & Anwendungsfälle
 
@@ -47,7 +47,7 @@ Nutzen Sie Google Sheets als einfache, aber mächtige Datenquelle für Ihre Mid-
 Schritte:
   1. "APIs & Services" → "Anmeldedaten"
   2. "+ ANMELDEDATEN ERSTELLEN" → "Dienstkonto"
-  3. Name: "Famulor-Mid-Call-Tools"
+  3. Name: "Famulor-Mid-call Actions"
   4. Rolle: "Editor" oder "Viewer" (je nach Bedarf)
   5. JSON-Key herunterladen und sicher speichern
 ```
@@ -384,7 +384,7 @@ flowchart TD
 <Tabs>
   <Tab title="Automatische Berechnungen">
     ```yaml
-    Sheet-Formeln für Mid-Call-Tools:
+    Sheet-Formeln für Mid-call Actions:
       
       Lead-Score-Berechnung:
         Spalte G: =IF(E2="Hot",100,IF(E2="Warm",60,IF(E2="Cold",20,0)))
@@ -397,7 +397,7 @@ flowchart TD
       
     Verwendung im Tool:
       - Berechnete Werte automatisch verfügbar
-      - Keine separate Logik in Mid-Call-Tool nötig
+      - Keine separate Logik in Mid-call Action nötig
       - Sheets übernimmt Business-Logic
     ```
   </Tab>
@@ -618,13 +618,13 @@ flowchart TD
 <Card title="Erweiterte Integrationen" icon="link">
 Kombinieren Sie Google Sheets mit anderen Tools:
 
-- [Webhook-Automation](/automation-platform/mid-call-tools/integration-templates/webhook-automation) für komplexere Workflows
+- [Webhook-Automation](/automation-platform/mid-call-actions/integration-templates/webhook-automation) für komplexere Workflows
 - [Zapier-Integration](/automation-platform/integrations/zapier) für No-Code-Automatisierung
-- [HubSpot Integration](/automation-platform/mid-call-tools/integration-templates/hubspot-kontakt-abruf) für CRM-Upgrade
+- [HubSpot Integration](/automation-platform/mid-call-actions/integration-templates/hubspot-kontakt-abruf) für CRM-Upgrade
 </Card>
 
 <Info>
-**Performance-Tipp**: Für Teams mit >50 täglichen Mid-Call-Tool-Nutzern sollten Sie ein dediziertes CRM-System in Betracht ziehen. Google Sheets ist ideal für kleinere Teams oder spezielle Use Cases.
+**Performance-Tipp**: Für Teams mit >50 täglichen Mid-call Action-Nutzern sollten Sie ein dediziertes CRM-System in Betracht ziehen. Google Sheets ist ideal für kleinere Teams oder spezielle Use Cases.
 </Info>
 
 <Warning>

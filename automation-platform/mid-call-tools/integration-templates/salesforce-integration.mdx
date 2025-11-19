@@ -1,12 +1,12 @@
 ---
 title: "Salesforce Integration"
-description: "Enterprise-grade Mid-Call-Tools für Salesforce CRM mit umfangreichen Lead-, Contact- und Opportunity-Management-Funktionen"
+description: "Enterprise-grade Mid-call Actions für Salesforce CRM mit umfangreichen Lead-, Contact- und Opportunity-Management-Funktionen"
 icon: "salesforce"
 ---
 
 # Salesforce Integration Template
 
-Integrieren Sie Ihre Mid-Call-Tools mit Salesforce, dem weltweit führenden CRM-System. Diese Integration bietet umfangreiche Möglichkeiten für Enterprise-Workflows, komplexe Sales-Prozesse und skalierbare Customer-Relationship-Management.
+Integrieren Sie Ihre Mid-call Actions mit Salesforce, dem weltweit führenden CRM-System. Diese Integration bietet umfangreiche Möglichkeiten für Enterprise-Workflows, komplexe Sales-Prozesse und skalierbare Customer-Relationship-Management.
 
 ## Überblick & Enterprise-Features
 
@@ -39,7 +39,7 @@ Integrieren Sie Ihre Mid-Call-Tools mit Salesforce, dem weltweit führenden CRM-
   <Step title="Connected App konfigurieren">
 ```yaml
 App-Details:
-  Connected App Name: "Famulor Mid-Call Tools"
+  Connected App Name: "Famulor Mid-call Actions"
   API Name: "Famulor_Mid_Call_Tools"
   Contact Email: ihr-admin@firma.de
   
@@ -298,7 +298,7 @@ Optional - IP-Restrictions:
 
 ```mermaid
 flowchart TD
-    A[Mid-Call-Tool] --> B{Existing Contact?}
+    A[Mid-call Action] --> B{Existing Contact?}
     B -->|Yes| C[Get Contact Opportunities]
     B -->|No| D[Create Lead First]
     C --> E{Active Opps Found?}
@@ -570,7 +570,7 @@ sequenceDiagram
           - Task für First-Contact erstellen
       
       Opportunity-Stage-Change:
-        Trigger: Stage-Update via Mid-Call-Tool
+        Trigger: Stage-Update via Mid-call Action
         Actions:
           - Approval-Process für große Deals
           - Quote-Generation für Proposal-Stage
@@ -668,7 +668,7 @@ sequenceDiagram
   <Step title="Business-Impact-Tracking">
     ```yaml
     KPIs:
-      - Lead-Creation-Rate via Mid-Call-Tools
+      - Lead-Creation-Rate via Mid-call Actions
       - Conversion-Rate-Improvement  
       - Sales-Cycle-Reduction
       - Revenue-Attribution
@@ -681,9 +681,9 @@ sequenceDiagram
 <Card title="Enterprise-Integration-Patterns" icon="enterprise">
 Erweitern Sie Ihre Salesforce-Integration:
 
-- [HubSpot Integration](/automation-platform/mid-call-tools/integration-templates/hubspot-kontakt-abruf) für CRM-Vergleiche
-- [Webhook-Integration](/automation-platform/mid-call-tools/integration-templates/webhook-automation) für Multi-System-Workflows
-- [Slack Integration](/automation-platform/mid-call-tools/integration-templates/slack-integration) für Team-Benachrichtigungen
+- [HubSpot Integration](/automation-platform/mid-call-actions/integration-templates/hubspot-kontakt-abruf) für CRM-Vergleiche
+- [Webhook-Integration](/automation-platform/mid-call-actions/integration-templates/webhook-automation) für Multi-System-Workflows
+- [Slack Integration](/automation-platform/mid-call-actions/integration-templates/slack-integration) für Team-Benachrichtigungen
 </Card>
 
 <Warning>

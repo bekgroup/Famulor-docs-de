@@ -1,12 +1,12 @@
 ---
 title: "Webhook-Integration mit Famulor Automation"
-description: "Mid-Call-Tools über Webhooks mit der Famulor Automation Platform verbinden für erweiterte Workflow-Automatisierung"
+description: "Mid-call Actions über Webhooks mit der Famulor Automation Platform verbinden für erweiterte Workflow-Automatisierung"
 icon: "webhook"
 ---
 
 # Webhook-Integration mit Famulor Automation
 
-Mid-Call-Tools können nicht nur direkte API-Calls ausführen, sondern auch über Webhooks mit der Famulor Automation Platform verbunden werden. Dies ermöglicht komplexe, mehrstufige Workflows und die Nutzung aller verfügbaren Integrationen der No-Code-Plattform.
+Mid-call Actions können nicht nur direkte API-Calls ausführen, sondern auch über Webhooks mit der Famulor Automation Platform verbunden werden. Dies ermöglicht komplexe, mehrstufige Workflows und die Nutzung aller verfügbaren Integrationen der No-Code-Plattform.
 
 ## Überblick der Webhook-Integration
 
@@ -68,7 +68,7 @@ sequenceDiagram
     ```yaml
     Authorization: "Bearer FAMULOR_API_KEY"
     Content-Type: "application/json"
-    X-Webhook-Source: "mid-call-tool"
+    X-Webhook-Source: "mid-call-action"
     X-Conversation-ID: "{conversation_id}"
     ```
   </Tab>
@@ -186,7 +186,7 @@ sequenceDiagram
   <Accordion title="Workflow-Logik">
 ```yaml
 Workflow-Name: "Smart Lead Processing"
-Trigger: Webhook von Mid-Call-Tool
+Trigger: Webhook von Mid-call Action
 
 Schritte:
   1. Duplicate-Check in HubSpot
@@ -282,7 +282,7 @@ Bedingungen_im_Workflow:
 
 ```mermaid
 flowchart TD
-    A[Mid-Call-Tool Webhook] --> B{Intent Analysis}
+    A[Mid-call Action Webhook] --> B{Intent Analysis}
     B -->|Sales| C[HubSpot Deal Check]
     B -->|Support| D[Support Workflow]
     B -->|Information| E[Nurturing Workflow]
@@ -568,9 +568,9 @@ Natural_Language_Processing:
 <Card title="Integration-Beispiele" icon="code">
 Entdecken Sie praktische Webhook-Workflow-Beispiele:
 
-- [HubSpot Integration](/automation-platform/mid-call-tools/integration-templates/hubspot-kontakt-abruf) für CRM-Automatisierung
-- [Slack Integration](/automation-platform/mid-call-tools/integration-templates/slack-integration) für Team-Benachrichtigungen
-- [SendGrid Integration](/automation-platform/mid-call-tools/integration-templates/sendgrid-integration) für E-Mail-Automation
+- [HubSpot Integration](/automation-platform/mid-call-actions/integration-templates/hubspot-kontakt-abruf) für CRM-Automatisierung
+- [Slack Integration](/automation-platform/mid-call-actions/integration-templates/slack-integration) für Team-Benachrichtigungen
+- [SendGrid Integration](/automation-platform/mid-call-actions/integration-templates/sendgrid-integration) für E-Mail-Automation
 </Card>
 
 <Info>

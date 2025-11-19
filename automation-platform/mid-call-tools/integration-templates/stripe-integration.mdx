@@ -6,7 +6,7 @@ icon: "credit-card"
 
 # Stripe Integration Template
 
-Integrieren Sie Stripe-Payment-Processing in Ihre Mid-Call-Tools und ermöglichen Sie es Ihrem KI-Assistenten, während Kundengesprächem Zahlungen zu initiieren, Payment-Intents zu erstellen und Subscription-Checkouts zu starten.
+Integrieren Sie Stripe-Payment-Processing in Ihre Mid-call Actions und ermöglichen Sie es Ihrem KI-Assistenten, während Kundengesprächem Zahlungen zu initiieren, Payment-Intents zu erstellen und Subscription-Checkouts zu starten.
 
 ## Überblick & Funktionen
 
@@ -44,7 +44,7 @@ Integrieren Sie Stripe-Payment-Processing in Ihre Mid-Call-Tools und ermögliche
          - Publishable Key (pk_test_ oder pk_live_)
          - Secret Key (sk_test_ oder sk_live_)
       
-    Für Mid-Call-Tools benötigt:
+    Für Mid-call Actions benötigt:
       - Secret Key (für Server-to-Server API-Calls)
       - Test-Environment: sk_test_...
       - Production: sk_live_...
@@ -326,7 +326,7 @@ Integrieren Sie Stripe-Payment-Processing in Ihre Mid-Call-Tools und ermögliche
 <CardGroup cols={2}>
   <Card title="Sichere Payment-Handling" icon="shield-check">
     **Best Practices**:
-    - Niemals Kreditkartendaten in Mid-Call-Tools
+    - Niemals Kreditkartendaten in Mid-call Actions
     - Nur Payment-Intent-Creation, kein Direct-Charging
     - Stripe-Hosted-Checkout für sichere Eingabe
     - PCI-Level-1-Compliance durch Stripe
@@ -404,7 +404,7 @@ Stripe-Webhook-Events:
 
 
 <Warning>
-**Zahlungs-Sicherheit**: Verwenden Sie niemals Stripe-Secret-Keys in Frontend-Code. Mid-Call-Tools laufen Server-seitig und sind damit sicher für Secret-Key-Usage.
+**Zahlungs-Sicherheit**: Verwenden Sie niemals Stripe-Secret-Keys in Frontend-Code. Mid-call Actions laufen Server-seitig und sind damit sicher für Secret-Key-Usage.
 </Warning>
 
 <Info>
