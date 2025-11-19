@@ -276,7 +276,7 @@
       ]
     },
     {
-      "group": "Mid-call Actions",
+      "group": "Mid Call Tools",
       "pages": [
         "api-reference/mid-call-tools/get-tools",
         "api-reference/mid-call-tools/get-tool",
@@ -318,7 +318,7 @@
       ]
     },
     {
-      "group": "Mid-call Actions",
+      "group": "Mid-Call-Tools",
       "pages": [
         "automation-platform/mid-call-tools/was-sind-mid-call-tools",
         "automation-platform/mid-call-tools/wann-verwenden",
@@ -326,7 +326,7 @@
       ]
     },
     {
-      "group": "Mid-call Actions Integrationen",
+      "group": "Mid-Call-Tools Integrationen",
       "pages": [
         {
           "group": "Gesundheitswesen",
