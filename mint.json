@@ -223,8 +223,7 @@
       "group": "Nummern-Bereitstellung",
       "pages": [
         "provisioning/supported-countries",
-        "provisioning/compliance",
-        "provisioning/automatisches-loeschen-anrufdaten"
+        "provisioning/compliance"
       ]
     },
     {
@@ -523,6 +522,7 @@
       "group": "Rechtliche Informationen",
       "icon": "scale-balanced",
       "pages": [
+        "legal/automatisches-loeschen-anrufdaten",
         "legal/voice-cloning-legal-information",
         "legal/voice-cloning-compliance",
         "legal/voice-cloning-contracts"
