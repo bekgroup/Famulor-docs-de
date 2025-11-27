@@ -223,7 +223,8 @@
       "group": "Nummern-Bereitstellung",
       "pages": [
         "provisioning/supported-countries",
-        "provisioning/compliance"
+        "provisioning/compliance",
+        "provisioning/automatisches-loeschen-anrufdaten"
       ]
     },
     {
