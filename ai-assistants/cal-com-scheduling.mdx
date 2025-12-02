@@ -67,6 +67,64 @@ Um die Telefonnummer des Anrufers in Kalenderereignisse einzufügen:
    - Ihrem Cal.com API-Schlüssel
    - Der Ereignistyp-ID
 
+## Verfügbarkeit für mehrere Tage abrufen
+
+Um die Verfügbarkeit für mehrere Tage auf einmal abzurufen, können Sie eine benutzerdefinierte Mid-Call-Aktion erstellen. Dies ermöglicht es Ihrem KI-Assistenten, verfügbare Zeitslots über einen längeren Zeitraum zu überprüfen.
+
+### 1. Mid-Call-Aktion erstellen
+
+1. Erstellen Sie eine neue Mid-Call-Aktion in Ihren Assistenten-Einstellungen
+   <img height="400" src="/images/cal-com-mid-call-action.png" />
+   
+   Das Bild zeigt die Konfiguration der Mid-Call-Aktion mit Tool-Details, Headers und Tool-Parametern.
+
+2. Konfigurieren Sie die Aktion mit folgenden Einstellungen:
+   - **Name**: `get_calendar_slots` (oder ein anderer beschreibender Name)
+   - **Endpoint**: `https://api.cal.com/v2/slots?eventTypeId=YOUR_EVENT_ID&timeZone=YOUR_TIMEZONE`
+   - **Methode**: GET
+   - **Header**: Fügen Sie den Header `cal-api-version` mit dem Wert `2024-09-04` hinzu
+
+3. **EventTypeId finden**:
+   - Gehen Sie zu Cal.com und klicken Sie auf Ihren Ereignistyp
+   - Schauen Sie in die URL und kopieren Sie die Ereignis-ID
+   - Ersetzen Sie `YOUR_EVENT_ID` im Endpoint mit Ihrer tatsächlichen Ereignis-ID
+
+4. **Zeitzone anpassen**:
+   - Ersetzen Sie `YOUR_TIMEZONE` mit Ihrer Zeitzone (z.B. `Europe/Berlin`, `America/Denver`)
+
+5. **Parameter hinzufügen**:
+   - **Parameter 1**:
+     - Name: `start`
+     - Typ: String
+     - Beschreibung: "Start date to look up in the calendar, e.g. 2025-11-10"
+   - **Parameter 2**:
+     - Name: `end`
+     - Typ: String
+     - Beschreibung: "End date to look up in the calendar, e.g. 2025-11-17"
+
+### 2. Tool zum Assistenten hinzufügen
+
+1. Öffnen Sie Ihren Assistenten und navigieren Sie zum zweiten Tab "Prompt & Tools"
+2. Im Abschnitt "Custom mid call tools" fügen Sie das erstellte Tool hinzu
+   <img height="400" src="/images/mid-call-cal-com-multi-days.png" />
+   
+   Das Bild zeigt die Assistenten-Konfiguration mit dem zugewiesenen Tool `get_calender_slots` im Bereich "Custom mid call tools".
+3. Wählen Sie `get_calendar_slots` (oder den Namen, den Sie verwendet haben) aus der Liste aus
+
+### 3. System-Prompt konfigurieren
+
+Fügen Sie in Ihrem System-Prompt eine Anweisung hinzu, die den Assistenten anweist, die Funktion zu verwenden:
+
+```
+Führen Sie einen Funktionsaufruf mit get_calendar_slots durch, um echte verfügbare Zeitslots über mehrere Tage abzurufen
+```
+
+Oder auf Englisch:
+
+```
+Perform a function call using get_calendar_slots to retrieve true available time slots across multiple days
+```
+
 ## Best Practices
 
 - Erstellen Sie dedizierte Ereignistypen für KI-Buchungen, um ihre Nutzung zu verfolgen
