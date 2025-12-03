@@ -541,6 +541,9 @@
   "integrations": {
     "ga4": {
       "measurementId": "G-WPTBT13HB0"
+    },
+    "clarity": {
+      "projectId": "sop2kcwotx"
     }
   }
 } 
