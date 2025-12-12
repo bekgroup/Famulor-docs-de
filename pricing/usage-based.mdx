@@ -108,6 +108,10 @@ famulor.de verwendet ein **minutenbasiertes** System für die Abrechnung. Diese 
   **Nein**, es basiert auf der Gesamtanrufdauer, nicht pro Sprecher-Gleichzeitigkeit.
 - **Was, wenn jemand abhebt und sofort auflegt?**  
   Die KI könnte ein paar Sekunden registrieren; Kosten sind anteilig für die KI, aber Carrier kann auf 1 Minute aufrunden.
+- **Warum kann ich keinen Anruf starten, obwohl ich Guthaben habe? (Fehler: "Insufficient balance to cover potential call costs: insufficient_balance_for_cost")**  
+  Famulor berechnet vor dem Start eines Anrufs die **maximale mögliche Dauer** des Assistenten plus die **maximalen Carrier-Kosten**. Wenn dieser berechnete Betrag höher ist als Ihr bestehendes Guthaben, kann der Anruf nicht gestartet werden und Sie erhalten die Fehlermeldung `insufficient_balance_for_cost`. Dies stellt sicher, dass genug Guthaben für den vollständigen, maximal möglichen Anruf vorhanden ist. **Lösungen:** 
+  - Laden Sie mehr Guthaben hinzu oder aktivieren Sie Auto Top-up
+  - Passen Sie die **maximale Gesprächsdauer** in den Assistenten-Einstellungen an (verfügbar in der Assistenten-Konfigurationsseite), um den benötigten Guthabenbetrag zu reduzieren
 
 ---
 
