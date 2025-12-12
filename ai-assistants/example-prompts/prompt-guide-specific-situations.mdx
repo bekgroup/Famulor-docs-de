@@ -16,7 +16,7 @@ description: 'Spezifische Prompt-Guides und Beispiele für häufige Situationen 
   title="Verwende die Langsam sprechen Funktion"
   icon="volume-2"
   color="blue">
-  Wir nutzen die "Langsam sprechen" Funktion, um Pausen zwischen Wörtern hinzuzufügen. Für weitere Informationen siehe die Dokumentation zur Sprachsteuerbarkeit.
+  Wir nutzen die "Langsam sprechen" Funktion, um Pausen zwischen Wörtern hinzuzufügen. Für weitere Informationen siehe die <a href="/ai-assistants/example-prompts/pause-or-read-slowly">Dokumentation zur Sprachsteuerbarkeit</a>.
   Es wird empfohlen, einen Prompt als Richtlinie für den LLM zu verwenden. Dies stellt sicher, dass der Assistent konsistent mit dem korrekten Format antwortet, auch wenn Kunden die Telefonnummer überprüfen.
 </Card>
 
@@ -131,6 +131,19 @@ description: 'Spezifische Prompt-Guides und Beispiele für häufige Situationen 
 ### Beispiel für Uhrzeit-Aussprache
 
 <CodeGroup>
+  <CodeGroupItem title="Englische Uhrzeiten">
+    ```markdown
+    ## Für Uhrzeiten, Zahlen und Daten
+    
+    Für 1:00 PM, sagen Sie "One PM"
+    Für 3:30 PM, sagen Sie "Three thirty PM"
+    Für 8:45 AM, sagen Sie "Eight forty-five AM"
+    
+    Sagen Sie niemals "O'clock", stattdessen sagen Sie einfach "O-Clock"
+    Sagen Sie immer "AM" oder "PM"
+    ```
+  </CodeGroupItem>
+  
   <CodeGroupItem title="Deutsche Uhrzeiten">
     ```markdown
     ## Für Uhrzeiten
@@ -166,28 +179,64 @@ description: 'Spezifische Prompt-Guides und Beispiele für häufige Situationen 
   Manchmal müssen Sie Kunden warten lassen oder es ist keine Antwort erforderlich. Famulor hat eine spezielle Funktion dafür:
 </Card>
 
-### Beispiel für Warten lassen
+### Für nicht-reasoning Modelle
 
 <CodeGroup>
-  <CodeGroupItem title="Keine Antwort erforderlich">
+  <CodeGroupItem title="NO_RESPONSE_NEEDED verwenden">
     ```markdown
     ## Warten lassen
     
-    - Wenn der Benutzer sagt "einen Moment", antworte genau mit: "Gerne, ich warte."
-    - Verwende die Pause-Funktion, um den Anruf zu halten
-    - Kehre zurück, sobald der Benutzer wieder spricht
+    Famulor hat eine hardcodierte Stop-Sequenz im LLM: `NO_RESPONSE_NEEDED`. 
+    Wann immer diese Sequenz erkannt wird, stoppt die Antwortgenerierung.
+    
+    Sie können den LLM anweisen, nichts auszugeben, indem Sie schreiben:
+    
+    - Wenn der Benutzer sagt "einen Moment" oder "Moment bitte", antworte genau mit: "NO_RESPONSE_NEEDED"
     ```
   </CodeGroupItem>
   
-  <CodeGroupItem title="Pause-Funktion">
+  <CodeGroupItem title="Beispiel">
     ```markdown
-    ## Pause-Funktion verwenden
+    ## Beispiel-Implementierung
     
-    Für längere Wartezeiten:
-    1. Informiere den Kunden über die Wartezeit
-    2. Verwende die Pause-Funktion
-    3. Überwache den Anruf
-    4. Kehre zurück, wenn der Kunde bereit ist
+    Wenn der Kunde sagt:
+    - "einen Moment"
+    - "warte kurz"
+    - "Moment bitte"
+    
+    Dann antworte genau: "NO_RESPONSE_NEEDED"
+    
+    Die Antwortgenerierung stoppt und der Assistent wartet auf weitere Eingaben.
+    ```
+  </CodeGroupItem>
+</CodeGroup>
+
+### Für Reasoning Modelle
+
+<Warning>
+  Reasoning-Modelle wie `gpt-5` oder `gpt-5.1` unterstützen diese Funktion nicht. Sie müssen die Prompts anders gestalten, um dies zu erreichen.
+</Warning>
+
+<CodeGroup>
+  <CodeGroupItem title="Alternative für Reasoning Modelle">
+    ```markdown
+    ## Warten lassen für Reasoning Modelle
+    
+    Wenn der Benutzer sagt "einen Moment" oder ähnliches, antworte einfach nicht.
+    Reagiere nicht auf Wartesignale, sondern warte auf weitere Anweisungen.
+    ```
+  </CodeGroupItem>
+  
+  <CodeGroupItem title="Beispiel-Prompt">
+    ```markdown
+    ## Beispiel-Prompt
+    
+    Wenn der Benutzer sagt:
+    - "einen Moment"
+    - "warte kurz"
+    - "Moment bitte"
+    
+    Dann antworte NICHT. Warte einfach, bis der Benutzer weiter spricht.
     ```
   </CodeGroupItem>
 </CodeGroup>
@@ -248,6 +297,147 @@ description: 'Spezifische Prompt-Guides und Beispiele für häufige Situationen 
   Wenn Sie eine Sprache auswählen, die nicht mehrsprachig ist, wird dieser Sprachcode verwendet, um den Text zu normalisieren (z.B. wird 1 zu "eins" normalisiert, wenn Sie Deutsch verwenden).
   Wenn Sie mehrsprachig auswählen, wird die Sprache automatisch basierend auf dem generierten Text erkannt und entsprechend normalisiert.
 </Card>
+
+## Prompt Engineering Guide
+
+<Card
+  title="Best Practices für effektive Prompts"
+  icon="book-open"
+  color="blue">
+  Best Practices für das Schreiben effektiver Prompts, die zuverlässige und natürlich klingende KI-Telefonassistenten erstellen.
+</Card>
+
+### Einführung
+
+Prompt Engineering ist die Grundlage für die Erstellung effektiver KI-Telefonassistenten. Ein gut gestalteter Prompt bestimmt, wie Ihr Assistent Situationen interpretiert, auf Benutzer reagiert und Edge Cases behandelt. Dieser Guide bietet bewährte Strategien für das Schreiben von Prompts, die Assistenten zuverlässig befolgen können.
+
+<Note>
+  Dieser Guide konzentriert sich auf allgemeine Prompt-Engineering-Prinzipien. Für agentenspezifische Implementierung:
+  
+  * **Single/Multi Prompt Agents**: Wenden Sie diese Prinzipien direkt in Ihren Prompts an
+  * **Conversation Flow Agents**: Verwenden Sie diese Prinzipien innerhalb einzelner Knoten-Anweisungen
+</Note>
+
+### Best Practice 1: Verwenden Sie strukturierte Prompts
+
+Teilen Sie große Prompts in fokussierte Abschnitte auf, um die Organisation und das LLM-Verständnis zu verbessern. Dieser strukturierte Ansatz bietet mehrere Vorteile:
+
+* **Wiederverwendbarkeit**: Abschnitte können über verschiedene Agenten hinweg angepasst werden
+* **Wartbarkeit**: Einfaches Aktualisieren spezifischer Verhaltensweisen ohne Beeinflussung anderer
+* **Klarheit**: LLMs verarbeiten strukturierte Informationen genauer
+
+#### Empfohlene Prompt-Struktur
+
+```markdown
+## Identität
+
+Du bist ein freundlicher KI-Assistent für [Firmenname].
+
+Deine Rolle ist [spezifischer Zweck].
+
+Du hast Expertise in [relevanten Bereichen].
+
+## Stil-Richtlinien
+
+Sei prägnant: Halte Antworten unter 2 Sätzen, es sei denn, du erklärst komplexe Themen.
+
+Sei gesprächig: Verwende natürliche Sprache, Kontraktionen und erkenne an, was der Anrufer sagt.
+
+Sei empathisch: Zeige Verständnis für die Situation des Anrufers.
+
+## Antwort-Richtlinien
+
+Gib Daten in gesprochener Form zurück: Sage "fünfzehnten Januar" nicht "15.01".
+
+Stelle eine Frage auf einmal: Vermeide es, den Anrufer mit mehreren Fragen zu überfordern.
+
+Bestätige das Verständnis: Paraphrasiere wichtige Informationen zurück zum Anrufer.
+
+## Aufgaben-Anweisungen
+
+[Spezifische Schritte, die der Assistent befolgen soll]
+
+## Einwandbehandlung
+
+Wenn der Anrufer sagt, dass er nicht interessiert ist: "Ich verstehe. Gibt es etwas Spezifisches..."
+
+Wenn der Anrufer frustriert ist: "Ich verstehe Ihre Frustration, lassen Sie mich helfen, dies zu lösen..."
+```
+
+### Best Practice 2: Verwenden Sie Conversation Flow für komplexe Aufgaben
+
+Wenn Ihr Assistent komplexe Logik oder mehrere Tools handhaben muss, sollten Sie Conversation Flow Agents verwenden, anstatt alles in einem einzelnen Prompt zu verwalten.
+
+#### Wann zu Conversation Flow wechseln:
+
+* **Mehrere Entscheidungszweige**: Mehr als 3-4 bedingte Pfade
+* **Tool-Koordination**: Verwendung von 5+ verschiedenen Funktionen/Tools
+* **Zustandsverwaltung**: Verfolgung mehrerer Variablen während des Gesprächs
+* **Zuverlässigkeitsbedenken**: Einzelner Prompt zeigt inkonsistentes Verhalten
+
+#### Vorteile von Conversation Flow:
+
+* Jeder Knoten konzentriert sich auf eine spezifische Aufgabe
+* Deterministischer Tool-Aufruf und Übergänge
+* Einfacher zu debuggen und einzelne Schritte zu optimieren
+* Vorhersehbareres Assistentenverhalten
+
+### Best Practice 3: Explizite Tool-Aufruf-Anweisungen
+
+<Note>
+  Dieser Abschnitt gilt nur für Single/Multi Prompt Agents. Conversation Flow Agents handhaben Funktionsaufrufe deterministisch über ihre Knotenkonfiguration.
+</Note>
+
+#### Die Herausforderung
+
+LLMs haben oft Schwierigkeiten zu bestimmen, wann Tools basierend nur auf Tool-Beschreibungen aufgerufen werden sollen. Ohne explizite Anweisungen können Agenten:
+
+* Tools zu unpassenden Zeiten aufrufen
+* Tools nicht aufrufen, wenn sie benötigt werden
+* Das falsche Tool für eine Situation verwenden
+
+#### Lösung: Definieren Sie klare Trigger
+
+Geben Sie immer genaue Bedingungen für die Tool-Verwendung in Ihren Prompts an. Verweisen Sie auf Tools mit ihren genauen Namen.
+
+##### Beispiel: Kundenservice-Agent
+
+```markdown
+## Tool-Verwendungsanweisungen
+
+1. Sammle zunächst Informationen über das Problem des Kunden.
+
+2. Bestimme den Typ der Anfrage:
+
+   - Wenn der Kunde "Rückerstattung" oder "Geld zurück" erwähnt:
+
+     → Rufe die Funktion `transfer_to_support` sofort auf
+
+   - Wenn der Kunde den Bestellstatus benötigt:
+
+     → Rufe die Funktion `check_order_status` mit order_id auf
+
+   - Wenn der Kunde seine Bestellung ändern möchte:
+
+     → Rufe zuerst `check_order_status` auf
+
+     → Dann wechsle zum Änderungs-Status
+
+3. Nach dem Abrufen von Informationen:
+
+   - Fasse immer zusammen, was du gefunden hast
+
+   - Frage, ob sie zusätzliche Hilfe benötigen
+
+   - Wenn ja, bestimme die nächste angemessene Aktion
+```
+
+#### Best Practices für Tool-Anweisungen
+
+1. **Verwenden Sie Trigger-Wörter**: Listen Sie spezifische Wörter/Phrasen auf, die Tool-Aufrufe auslösen sollten
+2. **Definieren Sie Sequenzen**: Geben Sie an, wann Tools in Reihenfolge aufgerufen werden sollen
+3. **Setzen Sie Grenzen**: Klären Sie, wann bestimmte Tools NICHT aufgerufen werden sollen
+4. **Bieten Sie Kontext**: Erklären Sie, warum jedes Tool aufgerufen wird
 
 ## Praktische Beispiele für Famulor
 
@@ -329,9 +519,9 @@ description: 'Spezifische Prompt-Guides und Beispiele für häufige Situationen 
   icon="arrow-right"
   color="purple">
   
-    - Schauen Sie sich unseren **Allgemeinen Prompt Engineering Guide** an
-    - Entdecken Sie unsere **Prompt-Vorlagen**
-    - Lernen Sie mehr über **Sprachsteuerbarkeit**
+    - Schauen Sie sich unseren <a href="/ai-assistants/example-prompts/general-prompt-engineering-guide">Allgemeinen Prompt Engineering Guide</a> an
+    - Entdecken Sie unsere **Prompt-Vorlagen** im Dashboard
+    - Lernen Sie mehr über <a href="/ai-assistants/example-prompts/pause-or-read-slowly">Sprachsteuerbarkeit</a>
     - Testen Sie Ihre Prompts mit **Audio-Tests**
   
 </Card>
