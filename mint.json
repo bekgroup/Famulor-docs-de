@@ -286,6 +286,14 @@
       ]
     },
     {
+      "group": "AI Chatbot",
+      "pages": [
+        "api-reference/ai-chatbot/create-conversation",
+        "api-reference/ai-chatbot/get-conversation",
+        "api-reference/ai-chatbot/send-conversation"
+      ]
+    },
+    {
       "group": "SMS",
       "pages": [
         "api-reference/sms/send"
