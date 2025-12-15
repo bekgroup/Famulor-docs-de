@@ -216,7 +216,8 @@
         "provisioning/sip-ai/peoplefone-limitations",
         "provisioning/sip-ai/nfon-limitations",
         "provisioning/sip-ai/fonial-limitations",
-        "provisioning/sip-ai/sipgate-limitations"
+        "provisioning/sip-ai/sipgate-limitations",
+        "provisioning/sip-ai/sip-troubleshooting"
       ]
     },
     {
