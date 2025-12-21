@@ -242,17 +242,17 @@
       ]
     },
     {
-      "group": "MCP",
-      "pages": [
-        "mcp/server",
-        "mcp/client"
-      ]
-    },
-    {
       "group": "API Referenz",
       "pages": [
         "api-reference/introduction",
         "api-reference/authentication"
+      ]
+    },
+    {
+      "group": "MCP",
+      "pages": [
+        "mcp/server",
+        "mcp/client"
       ]
     },
    
