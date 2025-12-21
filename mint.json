@@ -250,6 +250,7 @@
     },
     {
       "group": "MCP",
+      "icon": "plug",
       "pages": [
         "mcp/server",
         "mcp/client"
