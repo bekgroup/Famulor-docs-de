@@ -242,13 +242,6 @@
       ]
     },
     {
-      "group": "API Referenz",
-      "pages": [
-        "api-reference/introduction",
-        "api-reference/authentication"
-      ]
-    },
-    {
       "group": "MCP",
       "icon": "plug",
       "pages": [
@@ -256,6 +249,14 @@
         "mcp/client"
       ]
     },
+    {
+      "group": "API Referenz",
+      "pages": [
+        "api-reference/introduction",
+        "api-reference/authentication"
+      ]
+    },
+   
     {
       "group": "KI-Assistants",
       "pages": [
