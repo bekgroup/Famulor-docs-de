@@ -250,12 +250,12 @@
     },
     {
       "group": "MCP",
+      "icon": "plug",
       "pages": [
         "mcp/server",
         "mcp/client"
       ]
     },
-   
     {
       "group": "KI-Assistants",
       "pages": [
