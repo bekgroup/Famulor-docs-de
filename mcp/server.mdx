@@ -228,7 +228,7 @@ npm run format
     **Parameter:**
     - `assistant_id` (erforderlich) - UUID des Assistenten, der die Konversation bearbeitet
     - `type` (optional) - Konversationstyp: 'widget' (kostenpflichtig) oder 'test' (kostenlos für Entwicklung)
-    - `variables` (optional) - Benutzerdefinierte Variablen zur Injektion in den Assistentenkontext (zugänglich über `{'{'}{'{'}variable_name{'}'}{'}'}`)
+    - `variables` (optional) - Benutzerdefinierte Variablen zur Injektion in den Assistentenkontext (zugänglich über doppelte geschweifte Klammern: variable_name)
     
     **Rückgabe:** Konversations-ID, Status und initiale Historie (wenn der Assistent eine Startnachricht hat)
     
