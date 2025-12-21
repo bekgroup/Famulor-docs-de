@@ -57,6 +57,11 @@
     "color": "#1c51fc",
     "url": "api-reference"
   }, {
+    "name": "MCP",
+    "icon": "plug",
+    "color": "#1FD5F9",
+    "url": "mcp/server"
+  }, {
     "name": "Platform Status",
     "icon": "chart-line",
     "color": "#10b981",
