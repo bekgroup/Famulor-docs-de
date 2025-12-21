@@ -1,0 +1,811 @@
+---
+title: "MCP Server"
+icon: "plug"
+description: "Model Context Protocol Server für die Famulor Voice Agent Platform"
+---
+
+# 🤖 Famulor MCP Server
+
+Ein MCP (Model Context Protocol) Server für die **Famulor Voice Agent Platform**, der KI-gestützte Telefonanrufe, Assistentenverwaltung und Anrufdatenabruf über ChatGPT und andere MCP-kompatible Clients ermöglicht.
+
+<CardGroup cols={2}>
+  <Card
+    title="GitHub Repository"
+    icon="github"
+    href="https://github.com/bekservice/Famulor-MCP"
+  >
+    Quellcode und Dokumentation
+  </Card>
+  <Card
+    title="Online MCP Server"
+    icon="globe"
+    href="https://mcp.famulor.io"
+  >
+    Gehosteter Server ohne Installation
+  </Card>
+</CardGroup>
+
+## Demo Video
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/OMQeTiBNW3Q" title="Famulor MCP Server Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+## Übersicht
+
+Dieser MCP Server bietet Zugriff auf die Famulor Voice Agent Platform und ermöglicht es Benutzern, KI-gestützte Telefonanrufe zu tätigen, Voice-Assistenten zu verwalten und Anruf-Transkripte und Aufnahmen abzurufen - alles direkt aus jedem MCP-kompatiblen Client wie ChatGPT Desktop, Claude Desktop oder anderen MCP-kompatiblen Anwendungen.
+
+### 🌐 Online MCP Server
+
+**Sie können den gehosteten MCP Server ohne lokale Installation verwenden:**
+
+- **Server URL**: [https://mcp.famulor.io](https://mcp.famulor.io)
+- **SSE Endpoint**: [https://mcp.famulor.io/sse](https://mcp.famulor.io/sse)
+- **Health Check**: [https://mcp.famulor.io/health](https://mcp.famulor.io/health)
+
+Der Server ist einsatzbereit! Für Anweisungen zur Online-Nutzung siehe die [Online Deployment Guide](https://github.com/bekservice/Famulor-MCP/blob/main/ONLINE_DEPLOYMENT.md).
+
+## Features
+
+- 📞 **Anrufe tätigen** - KI-gestützte Telefongespräche initiieren
+- 🤖 **Assistenten verwalten** - Ihre KI-Assistenten abrufen und verwalten
+- 📊 **Anrufdaten abrufen** - Transkripte, Aufnahmen und Metadaten abrufen
+- 🔒 **Sichere Authentifizierung** - API-Schlüssel-basierte Authentifizierung pro Benutzer
+
+## Voraussetzungen
+
+- **Ein MCP-kompatibler Client** wie:
+  - ChatGPT Desktop App ([Download](https://chatgpt.com/download))
+  - Claude Desktop App ([Download](https://claude.ai/download))
+  - Cursor IDE
+  - Jeder andere MCP-kompatible Client
+- Ein **Famulor API-Schlüssel** ([Hier erhalten](https://app.famulor.de/api-keys))
+
+**Hinweis:** Wenn Sie Ihren eigenen lokalen Server ausführen möchten (Option 2), benötigen Sie außerdem:
+- **Node.js** >= 20.0.0 ([Download](https://nodejs.org/))
+
+## Schnellstart
+
+### Option 1: Online MCP Server verwenden (Empfohlen - Keine Installation erforderlich)
+
+**Der einfachste Weg zum Einstieg!** Verwenden Sie unseren gehosteten MCP Server unter [https://mcp.famulor.io](https://mcp.famulor.io).
+
+#### 1. API-Schlüssel erhalten
+
+1. Gehen Sie zu [Famulor API Keys](https://app.famulor.de/api-keys)
+2. Melden Sie sich an oder erstellen Sie ein Konto
+3. Erstellen Sie einen neuen API-Schlüssel
+4. Kopieren Sie den API-Schlüssel (Sie benötigen ihn im nächsten Schritt)
+
+#### 2. MCP in Ihrem Client konfigurieren
+
+Siehe den Abschnitt [Client-spezifische Installation](#client-spezifische-installation) unten für detaillierte Anweisungen für Ihren MCP-Client (Cursor, Claude Desktop, ChatGPT Desktop, etc.).
+
+**Schnelles Beispiel für die Konfiguration:**
+
+```json
+{
+  "mcpServers": {
+    "famulor": {
+      "url": "https://mcp.famulor.io/sse",
+      "env": {
+        "FAMULOR_API_KEY": "ihr-api-schlüssel-hier"
+      }
+    }
+  }
+}
+```
+
+#### 3. MCP-Client neu starten
+
+1. Schließen Sie Ihren MCP-Client vollständig
+2. Starten Sie ihn neu
+3. Der MCP Server sollte automatisch verbunden sein
+
+#### 4. Testen!
+
+In Ihrem MCP-Client (ChatGPT, Claude, etc.) versuchen Sie zu fragen:
+- "Zeige mir meine Famulor-Assistenten"
+- "Liste meine letzten Anrufe auf"
+- "Mache einen Anruf mit Assistent [ID] an [Telefonnummer]"
+
+---
+
+### Option 2: Eigenen lokalen Server verwenden
+
+Wenn Sie den Server lokal ausführen möchten:
+
+#### 1. Repository klonen
+
+```bash
+git clone https://github.com/bekservice/Famulor-MCP.git
+cd Famulor-MCP
+```
+
+#### 2. Abhängigkeiten installieren
+
+```bash
+npm install
+```
+
+#### 3. Server bauen
+
+```bash
+npm run build
+```
+
+#### 4. API-Schlüssel erhalten
+
+1. Gehen Sie zu [Famulor API Keys](https://app.famulor.de/api-keys)
+2. Melden Sie sich an oder erstellen Sie ein Konto
+3. Erstellen Sie einen neuen API-Schlüssel
+4. Kopieren Sie den API-Schlüssel (Sie benötigen ihn im nächsten Schritt)
+
+#### 5. MCP in Ihrem Client konfigurieren
+
+Erstellen oder bearbeiten Sie die MCP-Konfigurationsdatei für Ihre Plattform und Ihren Client. Siehe den Abschnitt [Client-spezifische Installation](#client-spezifische-installation) unten für detaillierte Anweisungen.
+
+**Beispiel-Konfiguration:**
+
+```json
+{
+  "mcpServers": {
+    "famulor": {
+      "command": "node",
+      "args": [
+        "/absoluter/pfad/zu/Famulor-MCP/dist/index.js"
+      ],
+      "env": {
+        "FAMULOR_API_KEY": "ihr-api-schlüssel-hier"
+      }
+    }
+  }
+}
+```
+
+**Wichtig:**
+- Ersetzen Sie `/absoluter/pfad/zu/Famulor-MCP` mit dem tatsächlichen absoluten Pfad zu Ihrem geklonten Repository
+- Ersetzen Sie `ihr-api-schlüssel-hier` mit Ihrem tatsächlichen Famulor API-Schlüssel
+- Unter Windows verwenden Sie vorwärts Schrägstriche oder ordnungsgemäß escapte Backslashes im Pfad
+
+**Beispiel-Pfade:**
+- macOS: `/Users/benutzername/Famulor-MCP/dist/index.js`
+- Windows: `C:/Users/benutzername/Famulor-MCP/dist/index.js` oder `C:\\Users\\benutzername\\Famulor-MCP\\dist\\index.js`
+- Linux: `/home/benutzername/Famulor-MCP/dist/index.js`
+
+#### 6. MCP-Client neu starten
+
+1. Schließen Sie Ihren MCP-Client (ChatGPT Desktop, Claude Desktop, etc.) vollständig
+2. Starten Sie ihn neu
+3. Der MCP Server sollte automatisch verbunden sein
+
+#### 7. Testen!
+
+In Ihrem MCP-Client (ChatGPT, Claude, etc.) versuchen Sie zu fragen:
+- "Zeige mir meine Famulor-Assistenten"
+- "Liste meine letzten Anrufe auf"
+- "Mache einen Anruf mit Assistent [ID] an [Telefonnummer]"
+
+## Client-spezifische Installation
+
+Wählen Sie unten Ihren MCP-Client für spezifische Installationsanweisungen:
+
+### Für Claude Desktop
+
+**Wichtig:** Claude Desktop unterstützt derzeit nur lokale `command`-basierte MCP-Server-Konfigurationen. HTTP/URL-basierte Konfigurationen werden nicht unterstützt, auch nicht in der neuesten Version.
+
+#### Setup-Anweisungen
+
+1. **Konfigurationsdatei finden:**
+   - **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
+   - **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
+   - **Linux**: `~/.config/Claude/claude_desktop_config.json`
+
+2. **MCP-Server-Konfiguration hinzufügen:**
+
+   Öffnen Sie die Konfigurationsdatei und fügen Sie Folgendes zum Abschnitt `mcpServers` hinzu:
+
+   ```json
+   {
+     "mcpServers": {
+       "famulor": {
+         "command": "node",
+         "args": [
+           "/absoluter/pfad/zu/Famulor-MCP/dist/index.js"
+         ],
+         "env": {
+           "FAMULOR_API_KEY": "ihr-api-schlüssel-hier"
+         }
+       }
+     }
+   }
+   ```
+
+   **Wichtig:**
+   - Ersetzen Sie `/absoluter/pfad/zu/Famulor-MCP` mit Ihrem tatsächlichen absoluten Pfad zum Repository
+   - Ersetzen Sie `ihr-api-schlüssel-hier` mit Ihrem tatsächlichen Famulor API-Schlüssel
+   - Sie können Ihren API-Schlüssel unter [Famulor API Keys](https://app.famulor.de/api-keys) erhalten
+   - Stellen Sie sicher, dass Sie den Server gebaut haben: `npm run build`
+   - Der Pfad muss absolut sein (nicht relativ)
+
+3. **Claude Desktop vollständig neu starten**, damit die Änderungen wirksam werden.
+
+### Für Cursor
+
+#### Option 1: Online MCP Server verwenden (Empfohlen - Keine Installation erforderlich)
+
+**Globale Installation (Empfohlen):**
+
+1. Gehen Sie zu **Cursor Einstellungen** > **Tools & Integrations**
+2. Klicken Sie auf **"New MCP Server"**
+3. Dies öffnet `~/.cursor/mcp.json`
+4. Fügen Sie die folgende Konfiguration hinzu:
+
+   ```json
+   {
+     "mcpServers": {
+       "famulor": {
+         "type": "http",
+         "url": "https://mcp.famulor.io/sse",
+         "headers": {
+           "Authorization": "Bearer ihr-api-schlüssel-hier"
+         }
+       }
+     }
+   }
+   ```
+
+   **Wichtig:**
+   - Ersetzen Sie `ihr-api-schlüssel-hier` mit Ihrem tatsächlichen Famulor API-Schlüssel
+   - Der API-Schlüssel muss mit `Bearer ` im Authorization-Header versehen sein
+   - Sie können Ihren API-Schlüssel unter [Famulor API Keys](https://app.famulor.de/api-keys) erhalten
+
+5. Gehen Sie zurück zu **Einstellungen** > **MCP** und klicken Sie auf die **Aktualisieren**-Schaltfläche
+6. Der Cursor-Agent kann nun die Famulor MCP-Tools verwenden
+
+**Projekt-spezifische Installation:**
+
+1. Erstellen oder bearbeiten Sie `.cursor/mcp.json` in Ihrem Projektstammverzeichnis
+2. Fügen Sie die gleiche Konfiguration wie oben hinzu
+3. Starten Sie Cursor neu oder aktualisieren Sie die MCP-Einstellungen
+
+#### Option 2: Eigenen lokalen Server verwenden
+
+**Globale Installation (Empfohlen):**
+
+1. Gehen Sie zu **Cursor Einstellungen** > **Tools & Integrations**
+2. Klicken Sie auf **"New MCP Server"**
+3. Dies öffnet `~/.cursor/mcp.json`
+4. Fügen Sie die folgende Konfiguration hinzu:
+
+   ```json
+   {
+     "mcpServers": {
+       "famulor": {
+         "command": "node",
+         "args": [
+           "/absoluter/pfad/zu/Famulor-MCP/dist/index.js"
+         ],
+         "env": {
+           "FAMULOR_API_KEY": "ihr-api-schlüssel-hier"
+         }
+       }
+     }
+   }
+   ```
+
+5. Gehen Sie zurück zu **Einstellungen** > **MCP** und klicken Sie auf die **Aktualisieren**-Schaltfläche
+6. Der Cursor-Agent kann nun die Famulor MCP-Tools verwenden
+
+**Projekt-spezifische Installation:**
+
+1. Erstellen oder bearbeiten Sie `.cursor/mcp.json` in Ihrem Projektstammverzeichnis
+2. Fügen Sie die gleiche Konfiguration wie oben hinzu
+3. Starten Sie Cursor neu oder aktualisieren Sie die MCP-Einstellungen
+
+### Für Claude Code
+
+#### Option 1: Online MCP Server verwenden (Empfohlen - Keine Installation erforderlich)
+
+Um den Online MCP Server zu Claude Code hinzuzufügen, führen Sie diesen Befehl in Ihrem Terminal aus:
+
+```bash
+claude mcp add-json "famulor" '{"type":"http","url":"https://mcp.famulor.io/sse","headers":{"Authorization":"Bearer ihr-api-schlüssel-hier"}}'
+```
+
+**Hinweis:** 
+- Ersetzen Sie `ihr-api-schlüssel-hier` mit Ihrem tatsächlichen Famulor API-Schlüssel
+- Der API-Schlüssel muss mit `Bearer ` im Authorization-Header versehen sein
+- Sie können Ihren API-Schlüssel unter [Famulor API Keys](https://app.famulor.de/api-keys) erhalten
+
+#### Option 2: Eigenen lokalen Server verwenden
+
+Um Ihren lokalen MCP Server zu Claude Code hinzuzufügen, führen Sie diesen Befehl in Ihrem Terminal aus:
+
+```bash
+claude mcp add-json "famulor" '{"command":"node","args":["/absoluter/pfad/zu/Famulor-MCP/dist/index.js"],"env":{"FAMULOR_API_KEY":"ihr-api-schlüssel-hier"}}'
+```
+
+**Hinweis:** Ersetzen Sie `/absoluter/pfad/zu/Famulor-MCP/dist/index.js` mit Ihrem tatsächlichen Pfad und `ihr-api-schlüssel-hier` mit Ihrem tatsächlichen API-Schlüssel.
+
+Siehe die [offizielle Claude Code MCP-Dokumentation](https://docs.anthropic.com/claude/docs/mcp) für weitere Details.
+
+### Für ChatGPT Desktop App
+
+#### Option 1: Online MCP Server verwenden (Empfohlen - Keine Installation erforderlich)
+
+1. **Konfigurationsdatei finden:**
+   - **macOS**: `~/Library/Application Support/ChatGPT/mcp.json`
+   - **Windows**: `%APPDATA%\ChatGPT\mcp.json` oder `C:\Users\IhrBenutzername\AppData\Roaming\ChatGPT\mcp.json`
+   - **Linux**: `~/.config/ChatGPT/mcp.json`
+
+2. **Online MCP-Server-Konfiguration hinzufügen:**
+
+   ```json
+   {
+     "mcpServers": {
+       "famulor": {
+         "url": "https://mcp.famulor.io/sse",
+         "env": {
+           "FAMULOR_API_KEY": "ihr-api-schlüssel-hier"
+         }
+       }
+     }
+   }
+   ```
+
+3. **ChatGPT Desktop App neu starten**, damit die Änderungen wirksam werden.
+
+#### Option 2: Eigenen lokalen Server verwenden
+
+1. **Konfigurationsdatei finden:**
+   - **macOS**: `~/Library/Application Support/ChatGPT/mcp.json`
+   - **Windows**: `%APPDATA%\ChatGPT\mcp.json` oder `C:\Users\IhrBenutzername\AppData\Roaming\ChatGPT\mcp.json`
+   - **Linux**: `~/.config/ChatGPT/mcp.json`
+
+2. **MCP-Server-Konfiguration hinzufügen:**
+
+   ```json
+   {
+     "mcpServers": {
+       "famulor": {
+         "command": "node",
+         "args": [
+           "/absoluter/pfad/zu/Famulor-MCP/dist/index.js"
+         ],
+         "env": {
+           "FAMULOR_API_KEY": "ihr-api-schlüssel-hier"
+         }
+       }
+     }
+   }
+   ```
+
+3. **ChatGPT Desktop App neu starten**, damit die Änderungen wirksam werden.
+
+## Alternative: Umgebungsvariable verwenden
+
+Anstatt den API-Schlüssel in `mcp.json` einzutragen, können Sie eine Umgebungsvariable verwenden:
+
+1. Setzen Sie die Umgebungsvariable:
+   ```bash
+   export FAMULOR_API_KEY="ihr-api-schlüssel-hier"  # macOS/Linux
+   # oder
+   set FAMULOR_API_KEY=ihr-api-schlüssel-hier        # Windows CMD
+   # oder
+   $env:FAMULOR_API_KEY="ihr-api-schlüssel-hier"     # Windows PowerShell
+   ```
+
+2. Entfernen Sie den `env`-Abschnitt aus `mcp.json`:
+   ```json
+   {
+     "mcpServers": {
+       "famulor": {
+         "command": "node",
+         "args": [
+           "/absoluter/pfad/zu/Famulor-MCP/dist/index.js"
+         ]
+       }
+     }
+   }
+   ```
+
+## Entwicklung
+
+```bash
+# Entwicklung mit Hot Reload
+npm run dev
+
+# Build für Produktion
+npm run build
+
+# Produktions-Build starten
+npm start
+
+# Code linten
+npm run lint
+
+# Code formatieren
+npm run format
+```
+
+## Verfügbare Tools
+
+### Call Tools
+
+<AccordionGroup>
+  <Accordion title="make_call">
+    Tätigt einen Telefonanruf mit einem KI-Assistenten
+    
+    **Parameter:**
+    - `assistant_id` (erforderlich) - Die ID des Assistenten
+    - `phone_number` (erforderlich) - Die Telefonnummer im E.164-Format
+    - `variables` (optional) - Variablen, die an den Assistenten übergeben werden sollen
+  </Accordion>
+
+  <Accordion title="get_call">
+    Ruft Details eines bestimmten Anrufs ab
+    
+    **Parameter:**
+    - `call_id` (erforderlich) - Die ID des Anrufs
+  </Accordion>
+
+  <Accordion title="list_calls">
+    Listet alle Anrufe mit optionalen Filtern auf (paginiert)
+    
+    **Parameter:**
+    - `assistant_id` (optional) - Nach Assistenten-ID filtern
+    - `page` (optional) - Seitennummer (Standard: 1)
+    - `per_page` (optional) - Anzahl der Anrufe pro Seite (Standard: 15)
+    
+    **Rückgabe:** Paginierte Antwort mit `data`-Array, das Anrufe und Paginierungs-Metadaten enthält
+  </Accordion>
+</AccordionGroup>
+
+### Assistant Tools
+
+<AccordionGroup>
+  <Accordion title="get_assistants">
+    Ruft alle verfügbaren KI-Assistenten ab (paginiert)
+    
+    **Parameter:**
+    - `page` (optional) - Seitennummer (Standard: 1)
+    - `per_page` (optional) - Anzahl der Assistenten pro Seite (Standard: 10)
+    
+    **Rückgabe:** Paginierte Antwort mit `data`-Array, das Assistenten und Paginierungs-Metadaten enthält (`current_page`, `per_page`, `total`, `last_page`, `next_page_url`, etc.)
+  </Accordion>
+
+  <Accordion title="get_phone_numbers">
+    Ruft alle verfügbaren Telefonnummern für die Assistentenzuweisung ab
+    
+    **Parameter:**
+    - `type` (optional) - Telefonnummern nach Assistententyp filtern: 'inbound' oder 'outbound'
+    
+    **Rückgabe:** Array von verfügbaren Telefonnummern mit Details einschließlich ID, Telefonnummer, Ländercode, Typ-Label und Verfügbarkeitsstatus
+  </Accordion>
+
+  <Accordion title="get_models">
+    Ruft alle verfügbaren LLM-Modelle für die Assistentenkonfiguration ab
+    
+    **Parameter:** Keine
+    
+    **Rückgabe:** Array von verfügbaren LLM-Modellen mit ID und Name
+  </Accordion>
+
+  <Accordion title="get_voices">
+    Ruft alle verfügbaren Stimmen für die Assistentenkonfiguration ab
+    
+    **Parameter:**
+    - `mode` (optional) - Stimmen nach Assistentenmodus filtern: 'pipeline' oder 'multimodal'
+    
+    **Rückgabe:** Array von verfügbaren Stimmen mit ID, Name und Modus-Kompatibilität
+  </Accordion>
+
+  <Accordion title="get_languages">
+    Ruft alle verfügbaren Sprachen für die Assistentenkonfiguration ab
+    
+    **Parameter:** Keine
+    
+    **Rückgabe:** Array von verfügbaren Sprachen mit ID, Name und ISO 639-1 zweistelligem Sprachcode (iso_2)
+  </Accordion>
+
+  <Accordion title="update_assistant">
+    Aktualisiert die Konfiguration eines bestehenden KI-Assistenten
+    
+    **Parameter:**
+    - `id` (erforderlich) - Die eindeutige ID des zu aktualisierenden Assistenten
+    - Alle anderen Parameter sind optional - nur angegebene Felder werden aktualisiert:
+      - `assistant_name` - Assistentenname (max. 255 Zeichen)
+      - `voice_id` - Stimmen-ID (muss in verfügbaren Stimmen existieren)
+      - `language` - Sprachname (max. 100 Zeichen)
+      - `llm_model` - LLM-Modellname (max. 100 Zeichen)
+      - `calls_direction` - Anrufrichtungstyp: 'receive' oder 'make'
+      - `engine_type` - Engine-Typ: 'pipeline' oder 'multimodal'
+      - `timezone` - Zeitzone (z.B. "Europe/Berlin")
+      - `initial_message` - Erste Nachricht, die der Assistent zu Beginn des Anrufs spricht
+      - `system_prompt` - System-Prompt, der das Verhalten und die Persönlichkeit des Assistenten definiert
+      - `phone_number_id` - Telefonnummer-ID zur Zuweisung (auf null setzen, um zu entfernen)
+      - `tool_ids` - Array von Mid-Call-Aktions-IDs zur Synchronisation mit dem Assistenten
+      - `endpoint_type` - Voice Activity Detection-Typ: 'vad' oder 'ai'
+      - `endpoint_sensitivity` - Endpoint-Empfindlichkeitsstufe (0-5)
+      - `interrupt_sensitivity` - Unterbrechungsempfindlichkeitsstufe (0-5)
+      - `ambient_sound_volume` - Umgebungsgeräusch-Lautstärke (0-1)
+      - `post_call_evaluation` - Ob Post-Call-Evaluierung aktiviert werden soll
+      - `send_webhook_only_on_completed` - Ob Webhooks nur bei abgeschlossenen Anrufen gesendet werden sollen
+      - `include_recording_in_webhook` - Ob Aufnahme-URL in Webhook-Payload enthalten sein soll
+      - `is_webhook_active` - Ob Webhook-Benachrichtigungen aktiviert sind
+      - `webhook_url` - Webhook-URL für Post-Call-Benachrichtigungen (auf null setzen, um zu entfernen)
+      - `use_min_interrupt_words` - Ob die Einstellung für minimale Unterbrechungswörter verwendet werden soll
+      - `min_interrupt_words` - Minimale Anzahl von Wörtern vor erlaubter Unterbrechung (0-10)
+      - `variables` - Schlüssel-Wert-Paare von benutzerdefinierten Variablen für den Assistenten
+      - `post_call_schema` - Schema-Definition für Post-Call-Datenextraktion
+      - `end_call_tool` - End-Call-Tool-Konfiguration
+      - `llm_temperature` - LLM-Temperatur-Einstellung (0-1)
+      - `voice_stability` - Stimmen-Stabilitätseinstellung (0-1)
+      - `voice_similarity` - Stimmen-Ähnlichkeitseinstellung (0-1)
+      - `speech_speed` - Sprachgeschwindigkeits-Multiplikator (0.7-1.2)
+      - `allow_interruptions` - Ob Unterbrechungen durch Anrufer erlaubt sind
+      - `filler_audios` - Ob Filler-Audio während der Verarbeitung verwendet werden soll
+      - `re_engagement_interval` - Re-Engagement-Intervall in Sekunden (7-600)
+      - `max_call_duration` - Maximale Anrufdauer in Sekunden (20-1200)
+      - `max_silence_duration` - Maximale Stille-Dauer in Sekunden (1-120)
+      - `end_call_on_voicemail` - Ob Anruf bei Voicemail-Erkennung beendet werden soll
+      - `noise_cancellation` - Ob Rauschunterdrückung aktiviert ist
+      - `record_call` - Ob der Anruf aufgezeichnet werden soll
+      - `who_speaks_first` - Wer zuerst im Anruf spricht: 'AI assistant' oder 'Customer'
+    
+    **Rückgabe:** Erfolgsmeldung und aktualisierte Assistentendaten
+  </Accordion>
+</AccordionGroup>
+
+### Conversation Tools
+
+<AccordionGroup>
+  <Accordion title="get_conversation">
+    Ruft die vollständige Nachrichtenhistorie einer bestehenden Famulor-Konversation ab
+    
+    **Parameter:**
+    - `uuid` (erforderlich) - Die UUID der abzurufenden Konversation
+    
+    **Rückgabe:** Vollständige Konversationshistorie mit Nachrichten, Rollen und Funktionsaufrufen
+  </Accordion>
+
+  <Accordion title="create_conversation">
+    Startet eine neue Chat-Session mit einem KI-Assistenten
+    
+    **Parameter:**
+    - `assistant_id` (erforderlich) - UUID des Assistenten, der die Konversation bearbeitet
+    - `type` (optional) - Konversationstyp: 'widget' (kostenpflichtig) oder 'test' (kostenlos für Entwicklung)
+    - `variables` (optional) - Benutzerdefinierte Variablen zur Injektion in den Assistentenkontext (zugänglich über {{variable_name}})
+    
+    **Rückgabe:** Konversations-ID, Status und initiale Historie (wenn der Assistent eine Startnachricht hat)
+    
+    **Hinweis:** Widget-Konversationen sind kostenpflichtig; Test-Konversationen sind kostenlos für die Entwicklung
+  </Accordion>
+
+  <Accordion title="send_message">
+    Sendet eine Benutzernachricht an eine bestehende Konversation und erhält die Antwort des Assistenten
+    
+    **Parameter:**
+    - `uuid` (erforderlich) - UUID der bestehenden Konversation
+    - `message` (erforderlich) - Zu sendende Benutzernachricht (max. 2000 Zeichen)
+    
+    **Rückgabe:** Assistenten-Antwortnachricht und alle während der Antwort ausgeführten Funktionsaufrufe
+    
+    **Hinweis:** Widget-Konversationen kosten $0.01 pro Benutzernachricht; Test-Konversationen sind kostenlos
+  </Accordion>
+</AccordionGroup>
+
+### Campaign Tools
+
+<AccordionGroup>
+  <Accordion title="list_campaigns">
+    Listet alle Kampagnen aus dem Famulor-Konto auf
+    
+    **Parameter:** Keine
+    
+    **Rückgabe:** Array aller Kampagnen mit Details einschließlich Status, Einstellungen und Zeitplanungsinformationen
+  </Accordion>
+
+  <Accordion title="update_campaign_status">
+    Startet oder stoppt eine Kampagne im Famulor-System
+    
+    **Parameter:**
+    - `campaign_id` (erforderlich) - Die ID der zu aktualisierenden Kampagne
+    - `action` (erforderlich) - Die auszuführende Aktion: 'start' oder 'stop'
+    
+    **Rückgabe:** Erfolgsmeldung und aktualisierter Kampagnenstatus
+    
+    **Hinweis:** Das Starten einer Kampagne erfordert ausreichend Leads und Guthaben. Das Stoppen einer Kampagne bricht laufende Anrufe ab.
+  </Accordion>
+</AccordionGroup>
+
+### Lead Tools
+
+<AccordionGroup>
+  <Accordion title="list_leads">
+    Listet alle Leads für den authentifizierten Benutzer auf (paginiert)
+    
+    **Parameter:**
+    - `page` (optional) - Seitennummer (Standard: 1)
+    - `per_page` (optional) - Anzahl der Leads pro Seite (Standard: 15)
+    
+    **Rückgabe:** Paginierte Antwort mit `data`-Array, das Leads und Paginierungs-Metadaten enthält
+  </Accordion>
+
+  <Accordion title="create_lead">
+    Erstellt einen neuen Lead im Famulor-System
+    
+    **Parameter:**
+    - `phone_number` (erforderlich) - Die Telefonnummer im E.164-Format
+    - `campaign_id` (erforderlich) - Die ID der Kampagne
+    - `variables` (optional) - Array von Variablen, die an den Lead übergeben werden sollen
+    - `allow_dupplicate` (optional) - Ob doppelte Leads in einer Kampagne erlaubt sind
+    
+    **Rückgabe:** Erstellte Lead-Informationen mit ID
+    
+    **Hinweis:** Verwenden Sie `get_assistants`, um Assistenteninformationen und Variablen zu erhalten, die beim Erstellen von Leads verwendet werden können
+  </Accordion>
+
+  <Accordion title="update_lead">
+    Aktualisiert einen bestehenden Lead in Ihren Kampagnen
+    
+    **Parameter:**
+    - `id` (erforderlich) - Die ID des zu aktualisierenden Leads
+    - `campaign_id` (optional) - Die ID der Kampagne, der der Lead zugewiesen werden soll
+    - `phone_number` (optional) - Die Telefonnummer (automatisch im E.164-Format formatiert)
+    - `status` (optional) - Der Status: 'created', 'completed' oder 'reached-max-retries'
+    - `variables` (optional) - Benutzerdefinierte Variablen, die mit bestehenden Lead-Variablen zusammengeführt werden
+    
+    **Rückgabe:** Erfolgsmeldung, die bestätigt, dass der Lead aktualisiert wurde
+  </Accordion>
+</AccordionGroup>
+
+### SMS Tools
+
+<AccordionGroup>
+  <Accordion title="send_sms">
+    Sendet eine SMS-Nachricht über Ihre Telefonnummer
+    
+    **Parameter:**
+    - `from` (erforderlich) - Die ID Ihrer Telefonnummer, von der die SMS gesendet werden soll (muss SMS-fähig sein)
+    - `to` (erforderlich) - Die Telefonnummer des Empfängers im internationalen Format (z.B., "+4915123456789")
+    - `body` (erforderlich) - Der SMS-Nachrichteninhalt (max. 300 Zeichen)
+    
+    **Rückgabe:** Erfolgsmeldung und SMS-Daten einschließlich SMS-ID, Segmente, Kosten und Status
+    
+    **Hinweis:**
+    - Die Absender-Telefonnummer muss dem authentifizierten Benutzer gehören und SMS-fähig sein
+    - Ausreichendes Kontoguthaben ist erforderlich, um SMS-Kosten zu decken
+    - SMS-Kosten variieren je nach Zielland und werden pro Segment berechnet
+    - Lange Nachrichten können in mehrere Segmente aufgeteilt werden, was die Kosten erhöht
+  </Accordion>
+</AccordionGroup>
+
+### Mid-Call Tools
+
+<AccordionGroup>
+  <Accordion title="list_mid_call_tools">
+    Listet alle Mid-Call-Tools auf, die es KI-Assistenten ermöglichen, während Anrufen mit externen APIs zu interagieren
+    
+    **Parameter:** Keine
+    
+    **Rückgabe:** Array aller Mid-Call-Tools mit Details einschließlich Name, Beschreibung, Endpoint, Methode, Timeout, Headers und Schema
+  </Accordion>
+
+  <Accordion title="get_mid_call_tool">
+    Ruft detaillierte Informationen über ein bestimmtes Mid-Call-Tool ab
+    
+    **Parameter:**
+    - `id` (erforderlich) - Die eindeutige ID des Mid-Call-Tools
+    
+    **Rückgabe:** Vollständige Tool-Informationen einschließlich Konfiguration und Schema
+  </Accordion>
+
+  <Accordion title="update_mid_call_tool">
+    Aktualisiert ein bestehendes Mid-Call-Tool
+    
+    **Parameter:**
+    - `id` (erforderlich) - Die eindeutige ID des zu aktualisierenden Tools
+    - `name` (optional) - Tool-Name (nur Kleinbuchstaben und Unterstriche)
+    - `description` (optional) - Detaillierte Erklärung, wann und wie die KI dieses Tool verwenden sollte
+    - `endpoint` (optional) - Gültige URL des aufzurufenden API-Endpoints
+    - `method` (optional) - HTTP-Methode: GET, POST, PUT, PATCH oder DELETE
+    - `timeout` (optional) - Request-Timeout in Sekunden (1-30)
+    - `headers` (optional) - HTTP-Header, die mit der Anfrage gesendet werden sollen
+    - `schema` (optional) - Parameter-Schema, das die KI extrahieren und senden wird
+    
+    **Rückgabe:** Erfolgsmeldung und aktualisierte Tool-Daten
+  </Accordion>
+</AccordionGroup>
+
+## Projektstruktur
+
+```
+Famulor-MCP/
+├── src/
+│   ├── index.ts          # MCP Server Entry Point
+│   ├── server.ts         # MCP Server Setup
+│   ├── tools/            # Famulor API Tools
+│   │   ├── calls.ts      # Call Operations
+│   │   ├── assistants.ts # Assistant Operations
+│   │   ├── conversations.ts # Conversation Operations
+│   │   ├── campaigns.ts   # Campaign Operations
+│   │   ├── leads.ts       # Lead Operations
+│   │   ├── sms.ts         # SMS Operations
+│   │   ├── midCallTools.ts # Mid-Call Tools Operations
+│   │   └── index.ts      # Tools Export
+│   ├── auth/             # Authentication
+│   │   └── famulor.ts    # Famulor API Client
+│   └── types/            # TypeScript Types
+│       └── famulor.ts    # Famulor API Types
+├── dist/                 # Compiled JavaScript (generated)
+├── package.json
+├── tsconfig.json
+├── README.md
+├── QUICKSTART.md         # Quick start guide
+├── MCP_SETUP.md          # Detailed setup guide
+├── DEPLOYMENT.md          # Deployment guide
+└── ONLINE_DEPLOYMENT.md   # Online deployment guide
+```
+
+## Fehlerbehebung
+
+### Server nicht gefunden
+- Überprüfen Sie, ob der Build erfolgreich war: `npm run build`
+- Überprüfen Sie, ob `dist/index.js` existiert
+- Überprüfen Sie, ob der Pfad in `mcp.json` korrekt und absolut ist
+- Unter Windows stellen Sie sicher, dass Sie vorwärts Schrägstriche oder ordnungsgemäß escapte Backslashes verwenden
+
+### API-Schlüssel-Fehler
+- Stellen Sie sicher, dass der API-Schlüssel in `mcp.json` oder als Umgebungsvariable gesetzt ist
+- Überprüfen Sie, ob der API-Schlüssel unter [Famulor API Keys](https://app.famulor.de/api-keys) gültig ist
+- Überprüfen Sie, ob der API-Schlüssel nicht abgelaufen ist
+
+### MCP Server nicht erkannt
+- Überprüfen Sie die JSON-Syntax in Ihrer MCP-Konfigurationsdatei (verwenden Sie einen JSON-Validator)
+- Stellen Sie sicher, dass der Pfad zu `dist/index.js` absolut ist
+- Starten Sie Ihren MCP-Client vollständig neu (ChatGPT Desktop, Claude Desktop, etc.)
+- Überprüfen Sie die Logs Ihres Clients auf Fehlermeldungen
+
+### Node.js-Versionsprobleme
+- Überprüfen Sie die Node.js-Version: `node --version` (muss >= 20.0.0 sein)
+- Aktualisieren Sie Node.js bei Bedarf: [Node.js herunterladen](https://nodejs.org/)
+
+## Über MCP
+
+Dies ist ein **Model Context Protocol (MCP) Server**, der Zugriff auf die Famulor Voice Agent Platform bietet. MCP ist ein Protokoll, das es KI-Assistenten wie ChatGPT, Claude und anderen KI-Tools ermöglicht, sich sicher mit externen Datenquellen und Tools zu verbinden.
+
+Der Server stellt die Voice-Agent-Funktionen von Famulor als MCP-Tools bereit und ermöglicht es jedem MCP-kompatiblen Client (ChatGPT Desktop, Claude Desktop oder anderen MCP-Anwendungen), mit der Famulor-Plattform zu interagieren.
+
+## Sicherheit
+
+- ✅ Jeder Benutzer konfiguriert seinen eigenen API-Schlüssel
+- ✅ API-Schlüssel werden lokal in Ihrer MCP-Konfigurationsdatei gespeichert (verschlüsselt von Ihrem MCP-Client)
+- ✅ Keine API-Schlüssel werden über das Netzwerk gesendet (stdio ist lokal)
+- ❌ **Kommittieren Sie niemals Ihre MCP-Konfigurationsdatei mit API-Schlüsseln in die Versionskontrolle**
+- ❌ **Teilen Sie Ihren API-Schlüssel niemals öffentlich**
+
+## Ressourcen
+
+- 🌐 **Online MCP Server**: [https://mcp.famulor.io](https://mcp.famulor.io)
+- [Famulor Voice Agent Homepage](https://www.famulor.io)
+- [Famulor Voice Agent Platform](https://app.famulor.de)
+- [Famulor API Dokumentation](https://docs.famulor.io/api-reference/)
+- [MCP Protocol Dokumentation](https://modelcontextprotocol.io/)
+- [ChatGPT Desktop App](https://chatgpt.com/download)
+- [Claude Desktop App](https://claude.ai/download)
+- [GitHub Repository](https://github.com/bekservice/Famulor-MCP)
+
+## Beitragen
+
+Beiträge sind willkommen! Bitte zögern Sie nicht, einen Pull Request einzureichen.
+
+## Lizenz
+
+Proprietäre Lizenz - Nutzung nur für Famulor-Benutzer erlaubt
+
+Diese Software darf nur verwendet, kopiert und modifiziert werden, wenn Sie die Famulor Voice Agent Platform verwenden. Siehe [LICENSE](https://github.com/bekservice/Famulor-MCP/blob/main/LICENSE) Datei für vollständige Details.
+
+## Autor
+
+[bekservice](https://github.com/bekservice)
+
