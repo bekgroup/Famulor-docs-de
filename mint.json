@@ -240,8 +240,14 @@
       "group": "API Referenz",
       "pages": [
         "api-reference/introduction",
-        "api-reference/authentication",
-        "api-reference/mcp"
+        "api-reference/authentication"
+      ]
+    },
+    {
+      "group": "MCP",
+      "pages": [
+        "mcp/server",
+        "mcp/client"
       ]
     },
     {
