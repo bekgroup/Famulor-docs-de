@@ -1,0 +1,45 @@
+---
+title: "Benutzerinformationen abrufen"
+api: "GET https://api.famulor.de/api/user/me"
+icon: "user"
+description: "Ruft die Informationen des authentifizierten Benutzers ab"
+---
+
+Dieser Endpunkt ermöglicht es Ihnen, die Informationen des aktuell authentifizierten Benutzers abzurufen.
+
+### Antwort-Felder
+
+<ResponseField name="name" type="string">
+  Der Name des Benutzers bzw. des Unternehmens
+</ResponseField>
+
+<ResponseField name="email" type="string">
+  Die E-Mail-Adresse des Benutzers
+</ResponseField>
+
+<ResponseField name="total_balance" type="number">
+  Das aktuelle Gesamtguthaben des Benutzerkontos
+</ResponseField>
+
+<RequestExample>
+
+```bash Benutzerinformationen abrufen
+curl -X GET "https://api.famulor.de/api/user/me" \
+     -H "Authorization: Bearer YOUR_API_KEY" \
+     -H "Content-Type: application/json"
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 200 Response
+{
+  "name": "BEK Service GmbH",
+  "email": "info@bekservice.de",
+  "total_balance": 5382.67447094
+}
+```
+
+</ResponseExample>
+
