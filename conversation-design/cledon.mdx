@@ -1,0 +1,131 @@
+---
+title: "Testen der Assistenten mit Cledon"
+icon: "flask"
+description: "Erfahren Sie, wie Sie Ihre mit Famulor erstellten Voice Agents mit der Testumgebung von Cledon testen und optimieren können"
+---
+
+<iframe
+  className="w-full aspect-video rounded-xl"
+  src="https://www.youtube.com/embed/rN7mdwztEKg"
+  title="Testen der Assistenten mit Cledon"
+  frameBorder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowFullScreen
+></iframe>
+
+Erfahren Sie, wie Sie Ihre mit Famulor erstellten Voice Agents (Assistenten) mit der Testumgebung von [Cledon](https://cledon.ai/?slug=aa5976c9-02e3-4e3b-85bf-866bcae990eb) ganz einfach testen und optimieren können.
+
+## Voraussetzungen
+
+• Ein aktiver Famulor‑Account
+• Ein Famulor API‑Schlüssel (siehe unten)
+• Mindestens ein erstellter Assistent in Famulor
+• Ein Account bei Cledon
+
+---
+
+## Einrichtungsprozess
+
+### 1. Registrierung
+
+1. Erstellen Sie ein Konto auf der Cledon Testplattform.
+2. Bestätigen Sie Ihre E‑Mail und melden Sie sich an.
+3. Optional: Fügen Sie weitere Team‑Mitglieder in verschiedenen Rollen (Admin/Editor/Viewer) für kollaboratives Testen hinzu.
+
+---
+
+### 2. Integration: Famulor per API‑Key verbinden
+
+1. Navigieren Sie in Cledon zu „Integrations".
+2. Verbinden Sie ihren Famulor Account über ihren API-Key mit Cledon:
+   - Der Schlüssel wird serverseitig verschlüsselt gespeichert.
+   - Sie können den Key jederzeit rotieren oder entfernen.
+
+Hinweis: Ihren Famulor API‑Schlüssel finden/erstellen Sie im Famulor Dashboard unter Einstellungen → API‑Schlüssel (API Keys).
+
+<img src="/conversation-design/cledon/Bild 2.png" alt="Famulor API-Schlüssel Integration" />
+
+---
+
+### 3. Assistenten importieren oder manuell erstellen
+
+Sie haben zwei Optionen, um ihre Voice Agents/Assistenten in Cledon anzulegen:
+
+• **Assistenten aus Famulor importieren:**
+  1. Klicken Sie auf „Assistenten importieren".
+  2. Wählen Sie aus der Liste die gewünschten Assistenten aus Ihrem Famulor‑Tenant.
+  3. Metadaten wie Name, ID, System‑Prompt, Tool Calls und relevante Konfigurationen werden automatisch importiert.
+
+• **Manuell erstellen:**
+  1. Klicken Sie auf „Neuen Agent erstellen".
+  2. Verbinden Sie den Agenten in Cledon manuell mit Ihrem Assistenten in Famulor durch Vergeben des Namens und Angabe der Assistant ID.
+
+<img src="/conversation-design/cledon/Bild 3.png" alt="Assistenten Import oder manuelle Erstellung" />
+
+---
+
+### 4. Testcases erstellen
+
+Erstellen Sie strukturierte Testfälle, die definieren, was, wie und mit welchem Erwartungswert geprüft wird. Es gibt mehrere Wege:
+
+• **Basierend auf existierenden Famulor Calls (automatischer Import)**
+  - Importieren Sie vergangene Anruftranskripte und Ergebnisse direkt aus Famulor.
+  - Konvertieren Sie diese in wiederholbare Testcases (inkl. erwarteter Outcomes, Toocalls und Metriken).
+
+• **Basierend auf anderen Telefonie‑Transkripten (Copy & Paste)**
+  - Fügen Sie Transkript‑Text aus anderen Plattformen ein.
+  - Markieren Sie relevante Abschnitte, definieren erwartete Outcomes (z. B. „Agent fragt nach E‑Mail", „Termin wird bestätigt").
+
+• **Manuelle Erstellung**
+  - Definieren Sie manuell Szenario, Eingaben (User‑Utterances), erwartete Agent‑Antworten/Actions und Erfolgskriterien.
+
+Jeder Testcase unterstützt:
+• Eingabequelle (LLM‑Text oder Voice‑Audio)
+• Schrittsequenzen (mehrturnige Dialoge)
+• Assertions (Text‑Match, Intent‑Erkennung, Tool‑Call)
+
+Basierend auf Ihrem definierten Testcase, können Sie automatisiert mehrere Szenarien generieren, um eine Vielzahl an verschiedenen möglichen Gesprächen abzutesten.
+
+<img src="/conversation-design/cledon/Bild 4.png" alt="Testcases erstellen" />
+
+<img src="/conversation-design/cledon/Bild 5.png" alt="Szenarien generieren" />
+
+---
+
+## Testcases und Szenarien
+
+Ein Testcase testet eine Aufagabe ihres Assistenten (z.B. die Terminvergabe), während Szenarios verschiedene Ausführungen von möglichen Situationen ihrer Aufgabe abbilden (z.B. Terminvergabe: Szenario 1: Terminvergabe an einen älteren schwerhörigen Herren; Szenario 2: Terminvergabe an einen schlechtgelaunten jungen Mann).
+
+---
+
+## Testmodi
+
+Sie können in zwei Ebenen testen:
+
+• **LLM‑Ebene**
+  - Direktes Testen der Textlogik: Prompts, Tools, Entscheidungsbäume und Antwortformate.
+  - Ideal für schnelle Iteration, deterministische Checks und Prompt‑Feintuning.
+
+• **Voice‑to‑Voice**
+  - End‑to‑End‑Telefonie mit Audio: STT → LLM → TTS, inkl. Pausen, Unterbrechungen, Aussprache, Latenz.
+  - Realitätsnahes Testen von Stimmen, Akzenten, Geräuschkulisse und Timing.
+
+---
+
+## Ausführung & Reporting
+
+• Einzeltests oder Test-Suites ausführen
+• Konfigurierbare Wiederholungen und Randomisierung
+• Detaillierte Protokolle: Turn‑by‑Turn Transkript, Tool‑Calls, Variablen
+• Ergebnismetriken: Ganze einfach testen und auf einen Blick sehen wie sich Ihre Voice Agents nach einer Änderung verhalten
+
+---
+
+## Best Practices
+
+• Nutzen Sie echte Transkripte als Grundlage für Regression‑Tests.
+• Definieren Sie klare Erfolgskriterien je Use Case (z. B. „Termin erstellt" oder „Qualifizierung komplett").
+• Testen Sie mehrturnige Gespräche mit Unterbrechungen und Rückfragen.
+• Messen Sie Latenz und Fehlerrobustheit (Umgang mit Rauschen, Dialekte, Hintergrundgeräusche).
+
+Mehr Informationen hier: [Cledon](https://cledon.ai/?slug=aa5976c9-02e3-4e3b-85bf-866bcae990eb)

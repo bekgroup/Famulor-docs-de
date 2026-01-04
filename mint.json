@@ -189,7 +189,8 @@
         "conversation-design/prompt-basics",
         "conversation-design/knowledge-bases",
         "conversation-design/interruptions",
-        "conversation-design/language-support"
+        "conversation-design/language-support",
+        "conversation-design/cledon"
       ]
     },
     {
