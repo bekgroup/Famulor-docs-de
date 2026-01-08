@@ -5,12 +5,12 @@ icon: "user"
 description: "Ruft die Informationen des authentifizierten Benutzers ab"
 ---
 
-Dieser Endpunkt ermöglicht es Ihnen, die Informationen des aktuell authentifizierten Benutzers abzurufen.
+Dieser Endpunkt gibt die Profilinformationen des aktuell authentifizierten Benutzers zurück, einschließlich des Kontoguthabens.
 
 ### Antwort-Felder
 
 <ResponseField name="name" type="string">
-  Der Name des Benutzers bzw. des Unternehmens
+  Der vollständige Name des Benutzers
 </ResponseField>
 
 <ResponseField name="email" type="string">
@@ -20,6 +20,14 @@ Dieser Endpunkt ermöglicht es Ihnen, die Informationen des aktuell authentifizi
 <ResponseField name="total_balance" type="number">
   Das aktuelle Gesamtguthaben des Benutzerkontos
 </ResponseField>
+
+### Anwendungsfälle
+
+Dieser Endpunkt ist nützlich für:
+
+- **Authentifizierung überprüfen** - Bestätigen, dass der API-Schlüssel gültig ist und dem erwarteten Benutzer gehört
+- **Kontoguthaben prüfen** - Verfügbare Credits überwachen, bevor API-Aufrufe getätigt werden
+- **Benutzerinformationen anzeigen** - Den aktuellen Benutzer in der Benutzeroberfläche Ihrer Anwendung anzeigen
 
 <RequestExample>
 
