@@ -310,15 +310,46 @@
       ]
     },
     {
+      "group": "AI Replies",
+      "pages": [
+        "api-reference/ai-replies/generate-reply"
+      ]
+    },
+    {
+      "group": "Knowledgebases",
+      "pages": [
+        "api-reference/knowledgebases/list",
+        "api-reference/knowledgebases/get",
+        "api-reference/knowledgebases/create",
+        "api-reference/knowledgebases/update",
+        "api-reference/knowledgebases/delete",
+        "api-reference/knowledgebases/list-documents",
+        "api-reference/knowledgebases/get-document",
+        "api-reference/knowledgebases/create-document",
+        "api-reference/knowledgebases/update-document",
+        "api-reference/knowledgebases/delete-document"
+      ]
+    },
+    {
       "group": "SMS",
       "pages": [
         "api-reference/sms/send"
       ]
     },
     {
+      "group": "Phone Numbers",
+      "pages": [
+        "api-reference/phone-numbers/list",
+        "api-reference/phone-numbers/search",
+        "api-reference/phone-numbers/purchase",
+        "api-reference/phone-numbers/release"
+      ]
+    },
+    {
       "group": "Calls",
       "pages": [
         "api-reference/calls/list",
+        "api-reference/user/calls/get",
         "api-reference/calls/make",
         "api-reference/calls/delete"
       ]

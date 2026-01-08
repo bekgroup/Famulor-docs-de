@@ -1,0 +1,62 @@
+---
+title: "Wissensdatenbank löschen"
+api: "DELETE https://app.famulor.de/api/user/knowledgebases/{id}"
+icon: "trash"
+description: "Löscht eine Wissensdatenbank und alle ihre Dokumente"
+---
+
+Dieser Endpunkt löscht eine Wissensdatenbank und alle zugehörigen Dokumente dauerhaft. Diese Aktion kann nicht rückgängig gemacht werden.
+
+### Pfad-Parameter
+
+<ParamField path="id" type="integer" required>
+  Die eindeutige Kennung der zu löschenden Wissensdatenbank
+</ParamField>
+
+### Antwort-Felder
+
+<ResponseField name="message" type="string">
+  Erfolgsmeldung
+</ResponseField>
+
+### Was wird gelöscht
+
+Wenn Sie eine Wissensdatenbank löschen:
+
+* **Alle Dokumente** in der Wissensdatenbank werden dauerhaft gelöscht
+* **Vektor-Einbettungen** werden aus der Vektordatenbank entfernt
+* **Dokumentenspeicher-Daten** werden von externen Diensten bereinigt
+
+### Was passiert mit angehängten Assistenten
+
+Alle Assistenten, die diese Wissensdatenbank verwendet haben, haben ihre Wissensdatenbank-Referenz entfernt. Sie funktionieren weiterhin, aber ohne den Wissensdatenbank-Kontext.
+
+<Warning>
+  Diese Aktion ist unwiderruflich. Alle Dokumente und ihre verarbeiteten Inhalte werden dauerhaft gelöscht. Stellen Sie sicher, dass Sie diese Wissensdatenbank löschen möchten, bevor Sie fortfahren.
+</Warning>
+
+<RequestExample>
+
+```bash Wissensdatenbank löschen
+curl -X DELETE "https://app.famulor.de/api/user/knowledgebases/1" \
+     -H "Authorization: Bearer YOUR_API_KEY" \
+     -H "Content-Type: application/json"
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 200 Success
+{
+  "message": "Knowledgebase deleted successfully."
+}
+```
+
+```json 404 Not Found
+{
+  "error": "Knowledgebase not found."
+}
+```
+
+</ResponseExample>

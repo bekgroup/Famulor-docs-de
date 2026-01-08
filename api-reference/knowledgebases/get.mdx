@@ -1,0 +1,94 @@
+---
+title: "Wissensdatenbank abrufen"
+api: "GET https://app.famulor.de/api/user/knowledgebases/{id}"
+icon: "book-open"
+description: "Ruft Details einer bestimmten Wissensdatenbank anhand der ID ab"
+---
+
+Dieser Endpunkt gibt die Details einer bestimmten Wissensdatenbank zurück.
+
+### Pfad-Parameter
+
+<ParamField path="id" type="integer" required>
+  Die eindeutige Kennung der Wissensdatenbank
+</ParamField>
+
+### Antwort-Felder
+
+<ResponseField name="data" type="object">
+  Das Wissensdatenbank-Objekt
+  
+  <Expandable title="Wissensdatenbank-Eigenschaften">
+    <ResponseField name="id" type="integer">
+      Die eindeutige Kennung der Wissensdatenbank
+    </ResponseField>
+
+    <ResponseField name="name" type="string">
+      Der Name der Wissensdatenbank
+    </ResponseField>
+
+    <ResponseField name="description" type="string">
+      Optionale Beschreibung der Wissensdatenbank
+    </ResponseField>
+
+    <ResponseField name="status" type="string">
+      Aktueller Status: `empty`, `processing`, `active` oder `failed`
+    </ResponseField>
+
+    <ResponseField name="status_label" type="string">
+      Menschenlesbares Status-Label
+    </ResponseField>
+
+    <ResponseField name="documents_count" type="integer">
+      Anzahl der Dokumente in dieser Wissensdatenbank
+    </ResponseField>
+
+    <ResponseField name="assistants_count" type="integer">
+      Anzahl der Assistenten, die diese Wissensdatenbank verwenden
+    </ResponseField>
+
+    <ResponseField name="created_at" type="string">
+      ISO 8601 Zeitstempel der Erstellung
+    </ResponseField>
+
+    <ResponseField name="updated_at" type="string">
+      ISO 8601 Zeitstempel der letzten Aktualisierung
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<RequestExample>
+
+```bash Wissensdatenbank abrufen
+curl -X GET "https://app.famulor.de/api/user/knowledgebases/1" \
+     -H "Authorization: Bearer YOUR_API_KEY" \
+     -H "Content-Type: application/json"
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 200 Success
+{
+  "data": {
+    "id": 1,
+    "name": "Produktdokumentation",
+    "description": "Technische Dokumentation für unsere Produkte",
+    "status": "active",
+    "status_label": "Aktiv",
+    "documents_count": 5,
+    "assistants_count": 2,
+    "created_at": "2025-01-05T10:30:00.000000Z",
+    "updated_at": "2025-01-08T14:20:00.000000Z"
+  }
+}
+```
+
+```json 404 Not Found
+{
+  "error": "Knowledgebase not found."
+}
+```
+
+</ResponseExample>

@@ -1,0 +1,110 @@
+---
+title: "Wissensdatenbanken auflisten"
+api: "GET https://app.famulor.de/api/user/knowledgebases"
+icon: "book"
+description: "Ruft alle Wissensdatenbanken des authentifizierten Benutzers ab"
+---
+
+Dieser Endpunkt gibt eine Liste aller Wissensdatenbanken zurück, die mit Ihrem Konto verknüpft sind. Wissensdatenbanken werden verwendet, um Dokumente zu speichern, die Kontext und Informationen für Ihre KI-Assistenten bereitstellen.
+
+### Antwort-Felder
+
+<ResponseField name="data" type="array">
+  Array von Wissensdatenbank-Objekten
+  
+  <Expandable title="Wissensdatenbank-Eigenschaften">
+    <ResponseField name="id" type="integer">
+      Die eindeutige Kennung der Wissensdatenbank
+    </ResponseField>
+
+    <ResponseField name="name" type="string">
+      Der Name der Wissensdatenbank
+    </ResponseField>
+
+    <ResponseField name="description" type="string">
+      Optionale Beschreibung der Wissensdatenbank
+    </ResponseField>
+
+    <ResponseField name="status" type="string">
+      Aktueller Status: `empty`, `processing`, `active` oder `failed`
+    </ResponseField>
+
+    <ResponseField name="status_label" type="string">
+      Menschenlesbares Status-Label
+    </ResponseField>
+
+    <ResponseField name="documents_count" type="integer">
+      Anzahl der Dokumente in dieser Wissensdatenbank
+    </ResponseField>
+
+    <ResponseField name="assistants_count" type="integer">
+      Anzahl der Assistenten, die diese Wissensdatenbank verwenden
+    </ResponseField>
+
+    <ResponseField name="created_at" type="string">
+      ISO 8601 Zeitstempel der Erstellung
+    </ResponseField>
+
+    <ResponseField name="updated_at" type="string">
+      ISO 8601 Zeitstempel der letzten Aktualisierung
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+### Wissensdatenbank-Status
+
+| Status       | Beschreibung                               |
+| ------------ | ----------------------------------------- |
+| `empty`      | Wissensdatenbank hat keine Dokumente            |
+| `processing` | Ein oder mehrere Dokumente werden verarbeitet |
+| `active`     | Alle Dokumente sind verarbeitet und bereit     |
+| `failed`     | Ein oder mehrere Dokumente konnten nicht verarbeitet werden   |
+
+<RequestExample>
+
+```bash Alle Wissensdatenbanken abrufen
+curl -X GET "https://app.famulor.de/api/user/knowledgebases" \
+     -H "Authorization: Bearer YOUR_API_KEY" \
+     -H "Content-Type: application/json"
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 200 Success
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "Produktdokumentation",
+      "description": "Technische Dokumentation für unsere Produkte",
+      "status": "active",
+      "status_label": "Aktiv",
+      "documents_count": 5,
+      "assistants_count": 2,
+      "created_at": "2025-01-05T10:30:00.000000Z",
+      "updated_at": "2025-01-08T14:20:00.000000Z"
+    },
+    {
+      "id": 2,
+      "name": "FAQ Wissen",
+      "description": "Häufig gestellte Fragen und Antworten",
+      "status": "processing",
+      "status_label": "Wird verarbeitet",
+      "documents_count": 1,
+      "assistants_count": 0,
+      "created_at": "2025-01-08T09:00:00.000000Z",
+      "updated_at": "2025-01-08T09:05:00.000000Z"
+    }
+  ]
+}
+```
+
+```json 200 Leere Antwort
+{
+  "data": []
+}
+```
+
+</ResponseExample>

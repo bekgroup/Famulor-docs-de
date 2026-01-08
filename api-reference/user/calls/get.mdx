@@ -1,0 +1,138 @@
+---
+title: "Anruf abrufen"
+api: "GET https://app.famulor.de/api/user/calls/{id}"
+icon: "phone"
+description: "Ruft Details eines bestimmten Anrufs anhand der ID ab"
+---
+
+Dieser Endpunkt ermöglicht es Ihnen, detaillierte Informationen über einen bestimmten Anruf abzurufen, der dem authentifizierten Benutzer gehört.
+
+### Pfad-Parameter
+
+<ParamField path="id" type="integer" required>
+  Die eindeutige Kennung des Anrufs
+</ParamField>
+
+### Antwort-Felder
+
+<ResponseField name="id" type="integer">
+  Die eindeutige Kennung des Anrufs
+</ResponseField>
+
+<ResponseField name="assistant_name" type="string">
+  Der Name des Assistenten, der den Anruf bearbeitet hat
+</ResponseField>
+
+<ResponseField name="campaign_name" type="string">
+  Der Name der Kampagne, zu der dieser Anruf gehört (falls zutreffend)
+</ResponseField>
+
+<ResponseField name="type" type="string">
+  Der Typ des Anrufs (inbound, outbound oder web)
+</ResponseField>
+
+<ResponseField name="duration" type="integer">
+  Die Dauer des Anrufs in Sekunden
+</ResponseField>
+
+<ResponseField name="assistant_phone_number" type="string">
+  Die vom Assistenten verwendete Telefonnummer
+</ResponseField>
+
+<ResponseField name="client_phone_number" type="string">
+  Die Telefonnummer des Kunden
+</ResponseField>
+
+<ResponseField name="status" type="string">
+  Der aktuelle Status des Anrufs
+</ResponseField>
+
+<ResponseField name="transcript" type="string">
+  Das Transkript der Anrufkonversation
+</ResponseField>
+
+<ResponseField name="variables" type="object">
+  Während des Anrufs gesammelte Variablen
+</ResponseField>
+
+<ResponseField name="evaluation" type="object">
+  Bewertungsdaten für die Anrufleistung
+</ResponseField>
+
+<ResponseField name="webhook_response" type="object">
+  Antwort von konfigurierten Webhooks
+</ResponseField>
+
+<ResponseField name="carrier_cost" type="number">
+  Die vom Anbieter berechneten Kosten für diesen Anruf
+</ResponseField>
+
+<ResponseField name="total_cost" type="number">
+  Die Gesamtkosten des Anrufs inklusive aller Gebühren
+</ResponseField>
+
+<ResponseField name="answered_by" type="string">
+  Wer den Anruf beantwortet hat (human, machine oder unknown)
+</ResponseField>
+
+<ResponseField name="recording_url" type="string">
+  URL zur Anrufaufzeichnung (falls verfügbar und aktiviert)
+</ResponseField>
+
+<ResponseField name="created_at" type="string">
+  Datum und Uhrzeit der Anruferstellung
+</ResponseField>
+
+<ResponseField name="updated_at" type="string">
+  Datum und Uhrzeit der letzten Aktualisierung des Anrufs
+</ResponseField>
+
+<RequestExample>
+
+```bash Anruf abrufen
+curl -X GET "https://app.famulor.de/api/user/calls/123" \
+     -H "Authorization: Bearer YOUR_API_KEY" \
+     -H "Content-Type: application/json"
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 200 Response
+{
+  "id": 123,
+  "assistant_name": "Sales Assistant",
+  "campaign_name": "Q4 Outreach Campaign",
+  "type": "outbound",
+  "duration": 245,
+  "assistant_phone_number": "+1234567890",
+  "client_phone_number": "+1987654321",
+  "status": "completed",
+  "transcript": "Hello, this is Sarah from Famulor. How are you doing today?...",
+  "variables": {
+    "customer_name": "John Smith",
+    "interest_level": "high",
+    "follow_up_date": "2025-08-15"
+  },
+  "evaluation": {
+    "sentiment": "positive",
+    "outcome": "qualified_lead",
+    "score": 8.5
+  },
+  "webhook_response": {
+    "status": "success",
+    "data": {
+      "crm_contact_id": "abc123"
+    }
+  },
+  "carrier_cost": 0.02,
+  "total_cost": 0.025,
+  "answered_by": "human",
+  "recording_url": "https://awsstorage.famulor.de/calls/123.mp3",
+  "created_at": "2025-08-04 14:30:00",
+  "updated_at": "2025-08-04 14:34:05"
+}
+```
+
+</ResponseExample>

@@ -1,0 +1,116 @@
+---
+title: "Wissensdatenbank erstellen"
+api: "POST https://app.famulor.de/api/user/knowledgebases"
+icon: "plus-circle"
+description: "Erstellt eine neue Wissensdatenbank"
+---
+
+Dieser Endpunkt erstellt eine neue Wissensdatenbank. Nach der Erstellung können Sie Dokumente hinzufügen, indem Sie den [Dokument erstellen](/api-reference/knowledgebases/create-document) Endpunkt verwenden.
+
+### Request Body
+
+<ParamField body="name" type="string" required>
+  Der Name der Wissensdatenbank (max. 255 Zeichen)
+</ParamField>
+
+<ParamField body="description" type="string">
+  Optionale Beschreibung der Wissensdatenbank (max. 255 Zeichen)
+</ParamField>
+
+### Antwort-Felder
+
+<ResponseField name="message" type="string">
+  Erfolgsmeldung
+</ResponseField>
+
+<ResponseField name="data" type="object">
+  Das erstellte Wissensdatenbank-Objekt
+  
+  <Expandable title="Daten-Eigenschaften">
+    <ResponseField name="id" type="integer">
+      Die eindeutige Kennung der Wissensdatenbank
+    </ResponseField>
+
+    <ResponseField name="name" type="string">
+      Der Name der Wissensdatenbank
+    </ResponseField>
+
+    <ResponseField name="description" type="string">
+      Beschreibung der Wissensdatenbank
+    </ResponseField>
+
+    <ResponseField name="status" type="string">
+      Aktueller Status (wird `empty` für neue Wissensdatenbanken sein)
+    </ResponseField>
+
+    <ResponseField name="status_label" type="string">
+      Menschenlesbares Status-Label
+    </ResponseField>
+
+    <ResponseField name="created_at" type="string">
+      ISO 8601 Zeitstempel der Erstellung
+    </ResponseField>
+
+    <ResponseField name="updated_at" type="string">
+      ISO 8601 Zeitstempel der letzten Aktualisierung
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+### Nächste Schritte
+
+Nach der Erstellung einer Wissensdatenbank sollten Sie:
+
+1. **Dokumente hinzufügen** - Verwenden Sie den [Dokument erstellen](/api-reference/knowledgebases/create-document) Endpunkt, um Inhalte hinzuzufügen
+2. **Auf Verarbeitung warten** - Dokumente werden asynchron verarbeitet
+3. **An Assistenten anhängen** - Verwenden Sie den [Assistent aktualisieren](/api-reference/assistants/update) Endpunkt, um die Wissensdatenbank anzuhängen
+
+<RequestExample>
+
+```bash Wissensdatenbank erstellen
+curl -X POST "https://app.famulor.de/api/user/knowledgebases" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Produktdokumentation",
+    "description": "Technische Dokumentation für unsere Produkte"
+  }'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 201 Created
+{
+  "message": "Knowledgebase created successfully.",
+  "data": {
+    "id": 1,
+    "name": "Produktdokumentation",
+    "description": "Technische Dokumentation für unsere Produkte",
+    "status": "empty",
+    "status_label": "Leer",
+    "created_at": "2025-01-08T10:30:00.000000Z",
+    "updated_at": "2025-01-08T10:30:00.000000Z"
+  }
+}
+```
+
+```json 422 Validation Error
+{
+  "message": "The name field is required.",
+  "errors": {
+    "name": [
+      "The name field is required."
+    ]
+  }
+}
+```
+
+```json 500 Error
+{
+  "error": "Failed to create knowledgebase. Please try again."
+}
+```
+
+</ResponseExample>
