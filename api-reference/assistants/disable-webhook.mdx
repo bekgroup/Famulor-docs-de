@@ -49,8 +49,7 @@ Wenn der Webhook deaktiviert wird:
 - Sie können später Webhooks mit einem neuen URL über den Enable Webhook Endpunkt wieder aktivieren
 - Das Deaktivieren von Webhooks beeinflusst nicht die Anrufaufzeichnung oder Datenerfassung
 
-<RequestExample>
-
+<CodeGroup>
 ```bash Webhook deaktivieren
 curl -X POST "https://app.famulor.de/api/user/assistants/disable-webhook" \
   -H "Authorization: Bearer YOUR_API_TOKEN" \
@@ -59,8 +58,7 @@ curl -X POST "https://app.famulor.de/api/user/assistants/disable-webhook" \
     "assistant_id": 123
   }'
 ```
-
-</RequestExample>
+</CodeGroup>
 
 <ResponseExample>
 

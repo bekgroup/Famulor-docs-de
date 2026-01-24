@@ -37,8 +37,7 @@ Dieser Endpunkt aktiviert Inbound-Webhook-Benachrichtigungen für einen Assisten
   Detaillierte Validierungsfehler für jedes Feld
 </ResponseField>
 
-<RequestExample>
-
+<CodeGroup>
 ```bash Inbound-Webhook aktivieren
 curl -X POST "https://app.famulor.de/api/user/assistants/enable-inbound-webhook" \
   -H "Authorization: Bearer YOUR_API_TOKEN" \
@@ -48,8 +47,7 @@ curl -X POST "https://app.famulor.de/api/user/assistants/enable-inbound-webhook"
     "webhook_url": "https://example.com/inbound-webhook"
   }'
 ```
-
-</RequestExample>
+</CodeGroup>
 
 <ResponseExample>
 

@@ -51,8 +51,7 @@ Die API gibt ein direktes Array von verfügbaren Telefonnummern zurück:
 - Telefonnummern werden im Values-Collection-Format zurückgegeben (indiziertes Array)
 - Verwenden Sie das `id`-Feld beim Zuweisen von Telefonnummern zu Assistenten
 
-<RequestExample>
-
+<CodeGroup>
 ```bash Alle verfügbaren Telefonnummern
 curl -H "Authorization: Bearer YOUR_API_TOKEN" \
   "https://app.famulor.de/api/user/assistants/phone-numbers"
@@ -67,8 +66,7 @@ curl -H "Authorization: Bearer YOUR_API_TOKEN" \
 curl -H "Authorization: Bearer YOUR_API_TOKEN" \
   "https://app.famulor.de/api/user/assistants/phone-numbers?type=outbound"
 ```
-
-</RequestExample>
+</CodeGroup>
 
 <ResponseExample>
 
