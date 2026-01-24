@@ -1,0 +1,89 @@
+---
+title: "Webhook deaktivieren"
+api: "POST https://app.famulor.de/api/user/assistants/disable-webhook"
+icon: "ban"
+description: "Webhook-Benachrichtigungen für einen bestimmten Assistenten deaktivieren"
+---
+
+Dieser Endpunkt deaktiviert Webhook-Benachrichtigungen für einen Assistenten und stoppt alle Echtzeit-Updates über Anrufabschlüsse und Daten.
+
+### Request Body
+
+<ParamField body="assistant_id" type="integer" required>
+  Die ID des Assistenten, für den der Webhook deaktiviert werden soll
+</ParamField>
+
+### Response
+
+<ResponseField name="message" type="string">
+  Erfolgsmeldung, die bestätigt, dass der Webhook deaktiviert wurde
+</ResponseField>
+
+<ResponseField name="data" type="array">
+  Leeres Array (für zukünftige Verwendung reserviert)
+</ResponseField>
+
+### Fehler-Responses
+
+<ResponseField name="message" type="string">
+  Fehlermeldung, wenn der Assistent nicht gefunden wurde oder nicht dem authentifizierten Benutzer gehört
+</ResponseField>
+
+<ResponseField name="errors" type="object">
+  Detaillierte Validierungsfehler für jedes Feld
+</ResponseField>
+
+## Webhook-Verhalten
+
+Wenn der Webhook deaktiviert wird:
+
+- Der Assistent hört auf, HTTP POST-Requests an Ihre Webhook-URL zu senden
+- Sowohl `is_webhook_active` wird auf `false` gesetzt als auch `webhook_url` wird auf `null` gesetzt
+- Laufende Anrufe werden normal abgeschlossen, aber es werden keine Webhook-Benachrichtigungen gesendet
+- Anrufdaten sind weiterhin über die API-Endpunkte für Anrufe verfügbar
+
+## Hinweise
+
+- Der Assistent muss dem authentifizierten Benutzer gehören
+- Dies entfernt die Webhook-Konfiguration vollständig vom Assistenten
+- Sie können später Webhooks mit einem neuen URL über den Enable Webhook Endpunkt wieder aktivieren
+- Das Deaktivieren von Webhooks beeinflusst nicht die Anrufaufzeichnung oder Datenerfassung
+
+<CodeGroup>
+```bash Webhook deaktivieren
+curl -X POST "https://app.famulor.de/api/user/assistants/disable-webhook" \
+  -H "Authorization: Bearer YOUR_API_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "assistant_id": 123
+  }'
+```
+</CodeGroup>
+
+<ResponseExample>
+
+```json 200 Success
+{
+  "message": "Webhook disabled successfully",
+  "data": []
+}
+```
+
+```json 404 Not Found
+{
+  "message": "Assistant not found or does not belong to the authenticated user"
+}
+```
+
+```json 422 Validation Error
+{
+  "message": "The given data was invalid.",
+  "errors": {
+    "assistant_id": [
+      "The assistant id field is required."
+    ]
+  }
+}
+```
+
+</ResponseExample>

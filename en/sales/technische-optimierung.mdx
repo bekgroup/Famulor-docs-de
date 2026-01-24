@@ -1,0 +1,35 @@
+---
+title: "Technische Optimierung"
+icon: "wrench"
+description: "Anrufqualität, DTMF/IVR, Unterbrechungen, Stimmen & Latenz optimieren"
+---
+
+## Audio & Netzwerk
+- Stabile Bandbreite, niedrige Latenz, QoS wo möglich
+- Zielwerte: **Einweg‑Latenz ≤ 150 ms** für gute Gesprächsqualität
+- Quelle: [ITU‑T G.114 – One‑way Transmission Time](https://www.itu.int/rec/T-REC-G.114)
+
+## Assistenten‑Tuning
+- Stimme passend zum Use Case wählen (klar vs. natürlich)
+- Unterbrechungs‑Schwelle je Zielgruppe anpassen
+- Filler‑Audios nutzen, um Reaktionszeit zu verkürzen
+
+## IVR & DTMF
+- DTMF‑Tool testen (Tastenfolge, Timing)
+- RTP‑DTMF nach **RFC 4733** beachten (Out‑of‑Band)
+- Quelle: [RFC 4733 – RTP Payload for DTMF Digits](https://www.rfc-editor.org/rfc/rfc4733)
+
+<Info>
+Troubleshooting siehe: [/troubleshooting/call-quality](/troubleshooting/call-quality) · [/automation-platform/calls-related/sms-capabilities](/automation-platform/calls-related/sms-capabilities)
+</Info>
+
+## Kurzstudie: Sprachqualität & IVR
+- **Datengrundlage**: ITU‑T Empfehlungen (G.114), IETF/RFC 4733
+- **Kernaussagen**:
+  - Sprachverständlichkeit nimmt jenseits 150 ms Einweg‑Latenz messbar ab
+  - Out‑of‑Band‑DTMF ist für IVR‑Zuverlässigkeit gegenüber In‑Band vorzuziehen
+- **Limitationen**: Realnetze variieren (Jitter/Verlust); Monitoring nötig
+
+## Referenzen
+- ITU‑T G.114: https://www.itu.int/rec/T-REC-G.114
+- RFC 4733: https://www.rfc-editor.org/rfc/rfc4733

@@ -1,0 +1,148 @@
+---
+title: "Wissensdatenbank aktualisieren"
+api: "PUT https://app.famulor.de/api/user/knowledgebases/{id}"
+icon: "pencil"
+description: "Aktualisiert eine bestehende Wissensdatenbank"
+---
+
+Dieser Endpunkt aktualisiert den Namen und/oder die Beschreibung einer bestehenden Wissensdatenbank.
+
+### Pfad-Parameter
+
+<ParamField path="id" type="integer" required>
+  Die eindeutige Kennung der zu aktualisierenden Wissensdatenbank
+</ParamField>
+
+### Request Body
+
+<ParamField body="name" type="string">
+  Der neue Name für die Wissensdatenbank (max. 255 Zeichen)
+</ParamField>
+
+<ParamField body="description" type="string">
+  Die neue Beschreibung für die Wissensdatenbank (max. 255 Zeichen)
+</ParamField>
+
+### Antwort-Felder
+
+<ResponseField name="message" type="string">
+  Erfolgsmeldung
+</ResponseField>
+
+<ResponseField name="data" type="object">
+  Das aktualisierte Wissensdatenbank-Objekt
+  
+  <Expandable title="Daten-Eigenschaften">
+    <ResponseField name="id" type="integer">
+      Die eindeutige Kennung der Wissensdatenbank
+    </ResponseField>
+
+    <ResponseField name="name" type="string">
+      Der Name der Wissensdatenbank
+    </ResponseField>
+
+    <ResponseField name="description" type="string">
+      Beschreibung der Wissensdatenbank
+    </ResponseField>
+
+    <ResponseField name="status" type="string">
+      Aktueller Status
+    </ResponseField>
+
+    <ResponseField name="status_label" type="string">
+      Menschenlesbares Status-Label
+    </ResponseField>
+
+    <ResponseField name="updated_at" type="string">
+      ISO 8601 Zeitstempel der letzten Aktualisierung
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<Note>
+  Das Aktualisieren des Namens oder der Beschreibung einer Wissensdatenbank hat keinen Einfluss auf ihre Dokumente oder den Verarbeitungsstatus.
+</Note>
+
+<CodeGroup>
+```bash cURL
+curl -X PUT "https://app.famulor.de/api/user/knowledgebases/1" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Aktualisierte Produktdokumentation",
+    "description": "Aktualisierte Beschreibung für unsere technischen Dokumente"
+  }'
+```
+
+```javascript JavaScript
+const response = await fetch("https://app.famulor.de/api/user/knowledgebases/1", {
+  method: "PUT",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: "Bearer YOUR_API_KEY",
+  },
+  body: JSON.stringify({
+    name: "Aktualisierte Produktdokumentation",
+    description: "Aktualisierte Beschreibung für unsere technischen Dokumente",
+  }),
+});
+
+const data = await response.json();
+```
+
+```python Python
+import requests
+
+payload = {
+    "name": "Aktualisierte Produktdokumentation",
+    "description": "Aktualisierte Beschreibung für unsere technischen Dokumente",
+}
+
+response = requests.put(
+    "https://app.famulor.de/api/user/knowledgebases/1",
+    headers={
+        "Content-Type": "application/json",
+        "Authorization": "Bearer YOUR_API_KEY",
+    },
+    json=payload,
+    timeout=10,
+)
+
+print(response.json())
+```
+</CodeGroup>
+
+<ResponseExample>
+
+```json 200 Success
+{
+  "message": "Knowledgebase updated successfully.",
+  "data": {
+    "id": 1,
+    "name": "Aktualisierte Produktdokumentation",
+    "description": "Aktualisierte Beschreibung für unsere technischen Dokumente",
+    "status": "active",
+    "status_label": "Aktiv",
+    "updated_at": "2025-01-08T15:45:00.000000Z"
+  }
+}
+```
+
+```json 404 Not Found
+{
+  "error": "Knowledgebase not found."
+}
+```
+
+```json 422 Validation Error
+{
+  "message": "The name may not be greater than 255 characters.",
+  "errors": {
+    "name": [
+      "The name may not be greater than 255 characters."
+    ]
+  }
+}
+```
+
+</ResponseExample>

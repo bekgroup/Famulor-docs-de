@@ -1,0 +1,60 @@
+---
+title: "Lead löschen"
+api: "DELETE https://app.famulor.de/api/user/leads/{id}"
+icon: "trash"
+description: "Einen Lead aus dem Famulor-System löschen"
+---
+
+Dieser Endpunkt ermöglicht es Ihnen, einen Lead aus dem Famulor-System zu löschen.
+
+<Warning>
+Diese Aktion ist **nicht rückgängig zu machen**. Einmal gelöschte Leads können nicht wiederhergestellt werden.
+</Warning>
+
+### Pfad-Parameter
+
+<ParamField path="id" type="integer" required>
+  Die ID des zu löschenden Leads
+</ParamField>
+
+### Antwort-Felder
+
+<ResponseField name="message" type="string">
+  Die Nachricht der Antwort
+</ResponseField>
+
+### Hinweise
+
+- Der Lead muss dem authentifizierten Benutzer gehören
+- Nach dem Löschen sind alle mit dem Lead verknüpften Daten dauerhaft entfernt
+- Laufende Anrufprozesse für diesen Lead werden abgebrochen
+- Diese Aktion kann nicht rückgängig gemacht werden
+
+<CodeGroup>
+```bash cURL
+curl -X DELETE "https://app.famulor.de/api/user/leads/2466140" \
+  -H "Authorization: Bearer YOUR_API_TOKEN"
+```
+</CodeGroup>
+
+<ResponseExample>
+
+```json 200 Response
+{
+  "message": "Lead deleted successfully"
+}
+```
+
+```json 404 Response
+{
+  "message": "Lead nicht gefunden"
+}
+```
+
+```json 403 Response
+{
+  "message": "Zugriff verweigert - Lead gehört nicht dem authentifizierten Benutzer"
+}
+```
+
+</ResponseExample>

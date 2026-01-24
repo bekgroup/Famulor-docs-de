@@ -1,0 +1,55 @@
+---
+title: "Mid-call Action löschen"
+api: "DELETE /user/tools/{id}"
+description: "Ein Mid-call Action löschen"
+---
+
+Dieser Endpunkt ermöglicht es Ihnen, ein Mid-call Action dauerhaft zu löschen. Dadurch wird das Tool auch von allen Assistenten entfernt, denen es zugewiesen war.
+
+### Header
+
+<ParamField header="Authorization" type="string" required>
+  Bearer-Token für die Authentifizierung
+</ParamField>
+
+<ParamField header="Content-Type" type="string" required>
+  Muss `application/json` sein
+</ParamField>
+
+<ParamField header="Accept" type="string" required>
+  Muss `application/json` sein
+</ParamField>
+
+### Pfad-Parameter
+
+<ParamField path="id" type="integer" required>
+  Die eindeutige Kennung des zu löschenden Tools
+</ParamField>
+
+### Antwortfelder
+
+<ResponseField name="message" type="string">
+  Erfolgsmeldung, die die Löschung bestätigt
+</ResponseField>
+
+<ResponseExample>
+
+```json 200 OK
+{
+  "message": "Tool deleted successfully"
+}
+```
+
+```json 404 Not Found
+{
+  "message": "Tool not found"
+}
+```
+
+</ResponseExample>
+
+### Hinweis
+
+Wenn ein Tool gelöscht wird, wird es automatisch von allen Assistenten entfernt. Um Tool-Zuweisungen zu verwalten, ohne das Tool zu löschen, verwenden Sie:
+
+- **[Assistent aktualisieren](/api-reference/assistants/update)** - Verwenden Sie den `tool_ids`-Parameter, um Tools von bestimmten Assistenten zu entfernen

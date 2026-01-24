@@ -1,0 +1,88 @@
+---
+title: "SAP Business One Integration"
+description: "Vollständige SAP B1 Integration für Artikelverfügbarkeit, Bestellstatus und Angebotserstellung direkt während Kundengesprächem"
+icon: "database"
+---
+
+# SAP Business One Integration Template
+
+Integrieren Sie SAP Business One ERP-System in Ihre Mid-call Actions mit drei leistungsstarken Funktionen: Artikelverfügbarkeit prüfen, Bestellstatus abrufen und Angebote erstellen - perfekt für B2B-Sales und Customer-Service.
+
+## Überblick & Funktionen
+
+<CardGroup cols={3}>
+  <Card title="Artikelverfügbarkeit" icon="package">
+    - Echtzeit-Lagerbestand-Abfrage
+    - Reservierte und bestellte Mengen
+    - Multi-Lager-Übersicht
+    - Nachbestellungs-Status
+  </Card>
+  <Card title="Bestellstatus" icon="truck">
+    - Vollständige Order-Details
+    - Liefertermin-Tracking  
+    - Teillieferungs-Status
+    - Customer-Service-Integration
+  </Card>
+  <Card title="Angebot erstellen" icon="file-contract">
+    - Sofortige Quote-Generierung
+    - Customer-spezifische Preise
+    - Rabatt-Management
+    - PDF-Export und E-Mail-Versand
+  </Card>
+</CardGroup>
+
+## Tool 1: Artikelverfügbarkeit prüfen
+
+### Konfiguration im Famulor Interface
+
+<Tabs>
+  <Tab title="Werkzeugdetails">
+    | **Name*** | `SAP B1 Artikelverfügbarkeit` |
+    | **Funktionsname*** | `check_sap_item_availability` |
+    | **HTTP-Methode** | `GET` |
+    | **Endpoint*** | `https://{{SAP_B1_HOST}}/b1s/v1/Items('{item_code}')` |
+    | **Timeout (ms)** | `5000` |
+  </Tab>
+  
+  <Tab title="Query-Parameter">
+    ```json
+    {
+      "$select": "ItemCode,ItemName,QuantityOnStock,QuantityOrderedByCustomers,QuantityOrderedFromVendors"
+    }
+    ```
+  </Tab>
+</Tabs>
+
+**Success-Template**: `"{{itemName}}: {{available}} Stück verfügbar, {{reserved}} reserviert. {{#if onOrder}}{{onOrder}} Stück nachbestellt.{{/if}}"`
+
+## Tool 2: Bestellstatus abrufen
+
+### Konfiguration im Famulor Interface
+
+<Tabs>
+  <Tab title="Werkzeugdetails">
+    | **Name*** | `SAP B1 Bestellstatus` |
+    | **Funktionsname*** | `get_sap_order_status` |
+    | **HTTP-Methode** | `GET` |
+    | **Endpoint*** | `https://{{SAP_B1_HOST}}/b1s/v1/Orders({{order_id}})` |
+  </Tab>
+</Tabs>
+
+**Success-Template**: `"Bestellung {{orderNumber}} für {{customerName}}: Status {{status}}, bestellt am {{orderDate}}, Lieferung geplant: {{deliveryDate}}"`
+
+## Tool 3: Angebot erstellen
+
+### Konfiguration im Famulor Interface
+
+<Tabs>
+  <Tab title="Werkzeugdetails">
+    | **Name*** | `SAP B1 Angebot erstellen` |
+    | **Funktionsname*** | `create_sap_quotation` |
+    | **HTTP-Methode** | `POST` |
+    | **Endpoint*** | `https://{{SAP_B1_HOST}}/b1s/v1/Quotations` |
+  </Tab>
+</Tabs>
+
+**Success-Template**: `"Angebot {{docNum}} wurde erstellt. Das Angebot ist gültig bis {{valid_until}}."`
+
+---

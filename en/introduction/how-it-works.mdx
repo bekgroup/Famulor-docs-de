@@ -1,0 +1,55 @@
+---
+title: "Wie es funktioniert (Schnellübersicht)"
+icon: "diagram-project"
+description: "Verstehen Sie den technischen Ablauf, wie famulor.de Telefongespräche mit KI verarbeitet und bearbeitet"
+---
+
+famulor.de kombiniert **KI-Spracherkennung** mit **LLM-basierten Antworten**, um live Telefongespräche zu führen. Nachfolgend ist ein vereinfachter Ablauf:
+
+1. **Anrufer oder Lead wird gewählt**
+
+   - **Eingehend**: Ein Kunde wählt Ihre zugewiesene Telefonnummer.
+   - **Ausgehend**: famulor.de's System ruft eine Liste von Telefonnummern aus Ihrer Kampagne an.
+
+2. **Spracherkennung**  
+   Die KI hört zu, was die Person sagt, und transkribiert es in Echtzeit in Text.
+
+3. **LLM-Entscheidung**  
+   famulor.de verwendet ein großes Sprachmodell (LLM) und Ihren konfigurierten "System-Prompt", um eine Antwort zu formulieren oder die nächste Aktion zu entscheiden (wie die Weiterleitung des Anrufs).
+
+4. **Sprachausgabe**  
+   Die Antwort der KI wird über unsere Stimmen-Engine (ElevenLabs Stimmen) in natürlich klingende Sprache umgewandelt.
+
+5. **Ergebnis & Aktionen**
+
+   - Bei **Eingehenden Anrufen**: Die KI kann Fragen beantworten, Informationen verifizieren oder eine Nachricht entgegennehmen.
+   - Bei **Ausgehenden Anrufen**: Die KI kann ein Produkt präsentieren, Leads qualifizieren oder interessierte Anrufer an einen menschlichen Agenten weiterleiten.
+
+6. **Daten & Berichterstattung**  
+   Sie erhalten Transkripte, Anrufaufnahmen, Anrufergebnisse (wie "keine Antwort" oder "Erfolg") und die Möglichkeit, Folgeaktionen zu automatisieren.
+
+## Unterschiede: Eingehende vs. Ausgehende Anrufe
+
+- **Eingehende Anrufe**
+
+  - Anrufer wählt eine Nummer, die Sie gemietet oder integriert haben.
+  - KI geht ran, begrüßt und bearbeitet Anfragen oder leitet den Anrufer bei Bedarf weiter.
+
+- **Ausgehende Anrufe**
+  - Sie laden Leads hoch oder synchronisieren sie.
+  - KI wählt jede Nummer an, folgt Ihrem Anrufskript, leitet möglicherweise weiter, wenn der Lead interessiert ist.
+
+## Nächste Schritte
+
+<CardGroup cols={2}>
+<Card title="Wichtige Begriffe" icon="book-open" href="/introduction/key-terminology">
+Lernen Sie die wichtigsten Begriffe kennen
+</Card>
+<Card title="Grundkonzepte" icon="lightbulb" href="/getting-started/core-concepts">
+Verstehen Sie System-Prompts und Stimmen
+</Card>
+</CardGroup>
+
+<Note>
+Bereit für die Praxis? Beginnen Sie mit [Grundkonzepte](/getting-started/core-concepts) oder springen Sie direkt zur [Assistenten-Erstellung](/ai-assistants/creating-and-editing).
+</Note> 

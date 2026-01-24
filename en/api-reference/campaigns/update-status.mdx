@@ -1,0 +1,123 @@
+---
+title: "Kampagnen-Status aktualisieren"
+api: "POST https://app.famulor.de/api/user/campaigns/update-status"
+icon: "play-pause"
+description: "Eine Kampagne im Famulor-System starten oder stoppen"
+---
+
+Dieser Endpunkt ermöglicht es Ihnen, eine Kampagne im Famulor-System zu starten oder zu stoppen.
+
+### Anfrage-Body
+
+<ParamField body="campaign_id" type="integer" required>
+  Die ID der zu aktualisierenden Kampagne
+</ParamField>
+
+<ParamField body="action" type="string" required>
+  Die Aktion, die an der Kampagne ausgeführt werden soll. Muss entweder "start" oder "stop" sein
+</ParamField>
+
+### Antwort-Felder
+
+<ResponseField name="message" type="string" default="Campaign started successfully.">
+  Die Nachricht der Antwort
+</ResponseField>
+
+<ResponseField name="success" type="boolean" default="true">
+  Ob die Operation erfolgreich war
+</ResponseField>
+
+<ResponseField name="data" type="object">
+  Die Daten der Antwort
+
+  <Expandable title="Data-Eigenschaften">
+    <ResponseField name="campaign_id" type="integer">
+      Die ID der aktualisierten Kampagne
+    </ResponseField>
+
+    <ResponseField name="status" type="string" default="in-progress">
+      Der neue Status der Kampagne (z.B. "in-progress" für gestartete Kampagnen, "stopped" für gestoppte Kampagnen)
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+### Hinweise
+
+- Die Kampagne muss dem authentifizierten Benutzer gehören
+- Nur Kampagnen mit gültigem Status können gestartet oder gestoppt werden
+- Beim Starten einer Kampagne müssen ausreichend Leads vorhanden sein
+- Das Stoppen einer Kampagne bricht laufende Anrufe ab
+
+<CodeGroup>
+```json Kampagne starten
+{
+  "campaign_id": 2324,
+  "action": "start"
+}
+```
+
+```json Kampagne stoppen
+{
+  "campaign_id": 2324,
+  "action": "stop"
+}
+```
+</CodeGroup>
+
+<ResponseExample>
+
+```json 200 Kampagne gestartet
+{
+  "message": "Campaign started successfully.",
+  "success": true,
+  "data": {
+    "campaign_id": 2324,
+    "status": "in-progress"
+  }
+}
+```
+
+```json 200 Kampagne gestoppt
+{
+  "message": "Campaign stopped successfully.",
+  "success": true,
+  "data": {
+    "campaign_id": 2324,
+    "status": "stopped"
+  }
+}
+```
+
+```json 400 Ungültige Aktion
+{
+  "message": "Invalid action. Must be either 'start' or 'stop'.",
+  "success": false
+}
+```
+
+```json 404 Kampagne nicht gefunden
+{
+  "message": "Campaign not found.",
+  "success": false
+}
+```
+
+```json 403 Zugriff verweigert
+{
+  "message": "Access denied - Campaign does not belong to authenticated user.",
+  "success": false
+}
+```
+
+```json 400 Unzureichendes Guthaben
+{
+  "message": "Insufficient balance to start the campaign. Please top up your account.",
+  "success": false,
+  "data": {
+    "campaign_id": 2324,
+    "status": "draft"
+  }
+}
+```
+
+</ResponseExample>

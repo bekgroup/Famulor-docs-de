@@ -1,0 +1,50 @@
+---
+title: "Wetter-Service Integration"
+description: "Kostenlose Wetter-Abfrage über wttr.in Service für Small-Talk und lokale Information während Kundengesprächem"
+icon: "cloud-sun"
+---
+
+# Wetter-Service Integration Template
+
+Integrieren Sie kostenlosen Wetter-Service in Ihre Mid-call Actions für natürliche Gesprächsführung, lokale Kontextualisierung und professionelle Customer-Experience.
+
+## Konfiguration im Famulor Interface
+
+<Tabs>
+  <Tab title="Werkzeugdetails">
+    | **Name*** | `Wetter abrufen (wttr.in)` |
+    | **Funktionsname*** | `get_current_weather` |
+    | **HTTP-Methode** | `GET` |
+    | **Endpoint*** | `https://wttr.in/{city}` |
+    | **Timeout (ms)** | `5000` |
+  </Tab>
+  
+  <Tab title="Query-Parameter">
+    ```json
+    {
+      "format": "%l: %c %t, gefühlt %f. Wind: %w."
+    }
+    ```
+  </Tab>
+</Tabs>
+
+### Parameter-Schema
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "city": {
+      "type": "string",
+      "description": "Der Name der Stadt, z.B. 'Düsseldorf', 'München' oder 'New York'"
+    }
+  },
+  "required": ["city"]
+}
+```
+
+**Agent-Message**: `"Ich schaue jetzt das Wetter für Sie nach."`
+
+**Success-Template**: `"Lies die Ergebnisse ausgeschrieben vor, also nicht 'km/h' sondern 'Kilometer pro Stunde' und auch nicht Celsius als Zeichen, sondern ausgeschrieben: z.B. 'fünfzehn grad Celsius'."`
+
+---

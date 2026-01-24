@@ -1,0 +1,108 @@
+---
+title: "Daten weitergeben"
+icon: "wand-sparkles"
+description: "Verwenden von Daten aus vorherigen Schritten im aktuellen"
+---
+
+## Datenfluss
+
+Jeder Flow ist ein vertikales Diagramm, das **mit einem Trigger-Schritt beginnt**, gefolgt von **beliebig vielen Aktions-Schritten**.
+
+Schritte sind vertikal verbunden. Daten fließen von übergeordneten Schritten zu den untergeordneten. Untergeordnete Schritte haben Zugriff auf die Ausgabedaten der übergeordneten Schritte.
+
+## Beispiel-Schritte
+
+<video
+  width="450"
+  autoPlay
+  muted
+  loop
+  playsinline
+  src="/resources/passing-data-3steps.mp4"></video>
+
+Dieser Flow hat 3 Schritte, sie können auf Daten wie folgt zugreifen:
+
+- **Schritt 1** ist der Hauptdatenproduzent, der in den nächsten Schritten verwendet wird. Von Schritt 1 produzierte Daten werden in den Schritten 2 und 3 zugänglich sein. Einige Trigger produzieren jedoch keine Daten, wie Schedules.
+
+- **Schritt 2** kann auf von Schritt 1 produzierte Daten zugreifen. Nach der Ausführung wird dieser Schritt auch Daten produzieren, die im nächsten Schritt verwendet werden.
+
+- **Schritt 3** kann auf von den Schritten 1 und 2 produzierte Daten zugreifen, da sie seine übergeordneten Schritte sind. Dieser Schritt kann Daten produzieren, aber da er der letzte Schritt im Flow ist, können sie nicht von anderen verwendet werden.
+
+## Daten zum Einfügen Panel
+
+Um Daten aus einem vorherigen Schritt in Ihrem aktuellen Schritt zu verwenden, platzieren Sie Ihren Cursor in einem beliebigen Eingabefeld, das **Daten zum Einfügen** Panel wird erscheinen.
+
+<video
+  autoPlay
+  muted
+  loop
+  playsinline
+  src="/resources/passing-data-data-to-insert-panel.mp4"></video>
+
+Dieses Panel zeigt die zugänglichen Schritte und ihre Daten. Sie können die Datenelemente erweitern, um ihren Inhalt zu sehen, und Sie können auf die Elemente klicken, um sie in Ihr aktuelles Einstellungs-Eingabefeld einzufügen.
+
+Wenn ein Element in diesem Panel ein Caret (⌄) rechts hat, bedeutet es, dass Sie auf das Element klicken können, um seine untergeordneten Eigenschaften zu erweitern. Sie können das übergeordnete Element oder seine Eigenschaften nach Bedarf auswählen.
+
+Wenn Sie Daten aus diesem Panel einfügen, werden sie an der Cursor-Position im Eingabefeld eingefügt. Dies bedeutet, dass Sie statischen Text und dynamische Daten in jedem Feld kombinieren können.
+
+<video
+  autoPlay
+  muted
+  loop
+  playsinline
+  src="/resources/passing-data-main-insert-data-example.mp4"></video>
+
+Wir empfehlen generell, dass Sie die Elemente erweitern, bevor Sie sie einfügen, um den Typ der enthaltenen Daten zu verstehen und ob sie zum Eingabefeld passen, das Sie ausfüllen.
+
+## Schritte testen, um Daten zu generieren
+
+Wir verlangen von Ihnen, Schritte zu testen, bevor Sie auf ihre Daten zugreifen. Dieser Ansatz schützt Sie davor, die falschen Daten auszuwählen und Ihre Flows nach dem Veröffentlichen zu beschädigen.
+
+Wenn ein Schritt nicht getestet ist und Sie versuchen, auf seine Daten zuzugreifen, sehen Sie die folgende Nachricht:
+
+<img
+  width="350"
+  src="/resources/passing-data-test-step-first.png"
+  alt="Testen Sie Ihren Automatisierungsschritt zuerst"
+/>
+
+Um dies zu beheben, gehen Sie zum Schritt und verwenden Sie das "Beispieldaten generieren" Panel, um ihn zu testen. Schritte verwenden verschiedene Ansätze für Tests. Dies sind die häufigen:
+
+- **Daten laden:** Einige Trigger lassen Sie Daten aus Ihrem verbundenen Konto laden, ohne eine Aktion in diesem Konto ausführen zu müssen.
+- **Trigger testen:** Einige Trigger erfordern, dass Sie zu Ihrem verbundenen Konto gehen und den Trigger auslösen, um Beispieldaten zu generieren.
+- **Daten senden:** Webhooks erfordern, dass Sie eine Beispielanfrage an die Webhook-URL senden, um Beispieldaten zu generieren.
+- **Aktion testen:** Aktionsschritte lassen Sie die Aktion ausführen, um Beispieldaten zu generieren.
+
+Folgen Sie den Anweisungen im "Beispieldaten generieren" Panel, um zu wissen, wie Ihr Schritt getestet werden sollte. Einige Trigger lassen Sie auch Mock-Daten verwenden, die statische Beispieldaten aus dem Stück generieren. Wir empfehlen, den Schritt zu testen, anstatt Mock-Daten zu verwenden.
+
+Dies ist ein Beispiel für die Generierung von Beispieldaten für einen Trigger mit dem **Daten laden** Button:
+
+<video
+  autoPlay
+  muted
+  loop
+  playsinline
+  src="/resources/passing-data-load-data.mp4"></video>
+
+## Erweiterte Tipps
+
+### Zu dynamischen Werten wechseln
+
+Dropdowns und einige andere Eingabetypen lassen Sie keine Daten aus vorherigen Schritten auswählen. Wenn Sie dies umgehen und stattdessen Daten aus vorherigen Schritten verwenden möchten, wechseln Sie die Eingabe zu einer dynamischen mit diesem Button:
+
+<video
+  autoPlay
+  muted
+  loop
+  playsinline
+  src="/resources/passing-data-dynamic-value.mp4"></video>
+
+### Auf Daten über Pfad zugreifen
+
+Wenn Sie die Daten, die Sie suchen, im **Daten zum Einfügen** Panel nicht finden können, aber sie verwenden möchten, können Sie stattdessen einen JSON-Pfad schreiben.
+
+Verwenden Sie die folgende Syntax, um JSON-Pfade zu schreiben:
+
+`{{step_slug.path.to.property}}`
+
+Der `step_slug` kann gefunden werden, indem Sie Ihren Cursor über einen Ihrer Flow-Schritte bewegen, er wird rechts vom Schritt angezeigt. 

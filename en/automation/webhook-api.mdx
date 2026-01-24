@@ -1,0 +1,31 @@
+---
+title: "Webhook & API"
+icon: "code"
+description: "Lernen Sie, wie Sie Webhooks und die REST API für benutzerdefinierte Integrationen und Automatisierung verwenden"
+---
+
+Wenn Sie tiefere Anpassung über No-Code-Blöcke hinaus möchten, unterstützt famulor.de **Webhooks** und eine **REST API**.
+
+## 1. Webhooks
+
+- **Wann zu verwenden**: Trigger-Ereignisse in externen Systemen in dem Moment, wenn etwas in famulor.de passiert (z.B. "Anruf beendet").
+- **Konfiguration**: Setzen Sie eine Webhook-URL in Ihren Assistenten-/Kampagnen-Einstellungen oder der Automatisierungsplattform.
+- **Payload**: Enthält typischerweise Anruf-ID, Transkript, Anrufergebnis oder gesammelte Benutzerdaten.
+
+## 2. REST API
+
+- **Wichtige Funktionen**:
+
+  1. **Leads erstellen/aktualisieren**
+  2. **Kampagnen verwalten**
+
+- **Auth & Rate Limits**: Verwendet normalerweise API-Tokens. Schauen Sie in [API-Docs](/api-reference/introduction) für Details zu Endpunkten und Nutzungsquoten.
+
+## 3. Beispiel-Anwendungsfälle
+
+- **Echtzeit-CRM-Sync**: Für jeden neuen Anruf Daten an den Endpunkt Ihres CRMs posten.
+- **Benutzerdefinierte Dashboards**: Anrufdaten in Ihr eigenes Analytics-Dashboard ziehen.
+
+---
+
+**Hinweis:** Sie finden die offizielle API-Referenz in einem dedizierten Docs-Bereich oder über Ihr famulor.de Dashboard. Sichern Sie immer Ihre Tokens und testen Sie Endpunkte in einer Dev-Umgebung. 

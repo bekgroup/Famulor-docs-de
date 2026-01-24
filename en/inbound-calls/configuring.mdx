@@ -1,0 +1,65 @@
+---
+title: "Eingehenden Assistenten konfigurieren"
+icon: "sliders"
+description: "Richten Sie Ihren eingehenden KI-Assistenten mit Prompts, Stimmen und Tools für die Behandlung eingehender Anrufe ein"
+seo:
+  title: "Eingehenden KI-Assistenten konfigurieren | Famulor Setup"
+  description: "Richten Sie Ihren eingehenden KI-Assistenten mit Prompts, Stimmen und Tools für die Behandlung eingehender Anrufe ein. Schritt-für-Schritt Anleitung."
+---
+
+Ein "Eingehender Assistent" ist einfach ein KI-Assistent, der auf **eingehend**-Modus eingestellt ist. Wichtige Schritte:
+
+1. **Prompt & Stimme**
+
+   - Stellen Sie einen klaren System-Prompt bereit. Beispiel:  
+     _"Sie sind der Support Bot für Acme Inc. Begrüßen Sie höflich, fragen Sie nach dem Bedarf des Kunden und versuchen Sie, grundlegende FAQs zu beantworten."_
+   - Wählen Sie eine Stimme aus der integrierten Bibliothek oder eine geklonte Stimme.
+
+2. **Erste Nachricht**
+
+   - Die erste Zeile des Dialogs, sobald die KI abhebt.
+   - Beispiel: _"Hallo, danke für Ihren Anruf bei Acme Inc. Wie kann ich Ihnen helfen?"_
+
+3. **Tools hinzufügen (Optional)**
+
+   - **Weiterleitung**: Falls der Anrufer einen menschlichen Agenten benötigt.
+   - **Anruf beenden**: Bedingung, um den Anruf höflich zu beenden.
+   - **Terminplaner**: Falls Sie möchten, dass sie einen Termin in Ihrem Kalender buchen.
+
+4. **Anrufablauf**
+
+   - Im System-Prompt erwähnen Sie mögliche Dialoge, z.B. "Wenn sie Abrechnung erwähnen, fragen Sie nach ihrer Rechnungsnummer."
+
+5. **Speichern & Testen**
+   - Wählen Sie die eingehende Nummer von Ihrem Handy an.
+   - Bestätigen Sie, dass die KI begrüßt und entsprechend Ihren Anweisungen antwortet.
+
+---
+
+**Tipp:** Besuchen Sie die [Einstellungen Ihres Assistenten](/ai-assistants/creating-and-editing) regelmäßig, um den Gesprächsablauf zu verbessern—besonders wenn Sie häufige Auflegungen oder verpasste Informationen sehen.
+
+---
+
+## Verwandte Themen
+
+<CardGroup cols={2}>
+<Card title="Assistenten erstellen" icon="robot" href="/ai-assistants/creating-and-editing">
+Erstellen Sie Ihren ersten eingehenden Assistenten
+</Card>
+<Card title="Telefonnummer zuweisen" icon="link" href="/phone-numbers/assigning-to-assistants">
+Verbinden Sie eine Nummer mit Ihrem Assistenten
+</Card>
+</CardGroup>
+
+<CardGroup cols={2}>
+<Card title="System-Prompt optimieren" icon="pen" href="/ai-assistants/system-prompt">
+Verbessern Sie die Anweisungen für eingehende Anrufe
+</Card>
+<Card title="Anruf-Insights" icon="chart-bar" href="/inbound-calls/insights">
+Analysieren Sie die Performance eingehender Anrufe
+</Card>
+</CardGroup>
+
+<Note>
+Für erweiterte Tool-Integration siehe [Tools & Funktionen](/ai-assistants/tools-and-functions) und [Custom Mid-Call Tools](/ai-assistants/custom-mid-call-tools).
+</Note> 

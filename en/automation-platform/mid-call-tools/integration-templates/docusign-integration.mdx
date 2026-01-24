@@ -1,0 +1,287 @@
+---
+title: "DocuSign Integration"
+description: "Automatischer Versand von Dokumenten zur elektronischen Unterschrift über DocuSign direkt während Kundengesprächem"
+icon: "signature"
+---
+
+# DocuSign Integration Template
+
+Integrieren Sie DocuSign eSignature-Services in Ihre Mid-call Actions und ermöglichen Sie es Ihrem KI-Assistenten, während Kundengesprächem automatisch Verträge, Einverständniserklärungen und andere Dokumente zur elektronischen Unterschrift zu versenden.
+
+## Überblick & Funktionen
+
+<CardGroup cols={2}>
+  <Card title="Elektronische Unterschriften" icon="pen-nib">
+    - Sofortiger Versand von Dokumenten zur eSignature
+    - Template-basierte Dokument-Generierung
+    - Multi-Signer-Workflows für komplexe Verträge
+    - Rechtsgültige elektronische Unterschriften (EU eIDAS)
+  </Card>
+  <Card title="Contract-Automation" icon="file-contract">
+    - Automatische Vertragsversendung nach Deal-Abschluss
+    - Einverständniserklärungen für DSGVO-Compliance
+    - Bestellbestätigungen und Service-Agreements
+    - Integration mit CRM und Legal-Workflows
+  </Card>
+</CardGroup>
+
+## DocuSign API & Account Setup
+
+### 1. DocuSign Developer Account
+
+<Steps>
+  <Step title="DocuSign Account vorbereiten">
+    - Erstellen Sie einen DocuSign-Developer-Account
+    - Navigieren Sie zum Developer-Dashboard
+    - Notieren Sie sich Ihre Account-ID
+  </Step>
+  
+  <Step title="Integration erstellen">
+    ```yaml
+    Integration-Setup:
+      1. "Apps and Keys" → "Add App and Integration Key"
+      2. App Name: "Famulor Mid-Call Integration"
+      3. Integration Key (Client ID) notieren
+      4. Secret Key generieren und sicher speichern
+    ```
+  </Step>
+  
+  <Step title="OAuth 2.0 konfigurieren">
+    ```yaml
+    OAuth-Flow:
+      Authorization URL: https://account-d.docusign.com/oauth/auth
+      Token URL: https://account-d.docusign.com/oauth/token
+      
+    Scopes erforderlich:
+      - signature (für eSignature-Features)
+      - extended (für erweiterte API-Features)
+    ```
+  </Step>
+  
+  <Step title="Templates vorbereiten">
+    - Erstellen Sie DocuSign-Templates für häufige Dokumente
+    - Template-IDs für API-Integration dokumentieren
+    - Signing-Roles und -Fields definieren
+  </Step>
+</Steps>
+
+## DocuSign-Tool konfigurieren
+
+### Konfiguration im Famulor Interface
+
+<Tabs>
+  <Tab title="Werkzeugdetails">
+    | Feld | Wert |
+    |------|------|
+    | **Name*** | `DocuSign Dokument senden` |
+    | **Beschreibung** | "Sendet automatisch Dokumente zur elektronischen Unterschrift über DocuSign" |
+    | **Funktionsname*** | `send_docusign_envelope` |
+    | **Funktionsbeschreibung*** | "Sendet ein Dokument zur Unterschrift via DocuSign. Verwenden Sie dies für Verträge, Einverständniserklärungen oder Bestellbestätigungen nach erfolgreichen Gesprächen." |
+    | **HTTP-Methode** | `POST` |
+    | **Timeout (ms)** | `10000` |
+    | **Endpoint*** | `https://demo.docusign.net/restapi/v2.1/accounts/{account_id}/envelopes` |
+  </Tab>
+  
+  <Tab title="Header-Konfiguration">
+    ```json
+    {
+      "Authorization": "Bearer {{DOCUSIGN_TOKEN}}",
+      "Content-Type": "application/json",
+      "User-Agent": "Famulor-MidCall-DocuSign/1.0"
+    }
+    ```
+  </Tab>
+  
+  <Tab title="Request Body Template">
+    ```json
+    {
+      "emailSubject": "{email_subject}",
+      "emailBlurb": "{email_message}",
+      "templateId": "{template_id}",
+      "templateRoles": [
+        {
+          "email": "{signer_email}",
+          "name": "{signer_name}",
+          "roleName": "{role_name}",
+          "tabs": {
+            "textTabs": [
+              {
+                "tabLabel": "customer_name",
+                "value": "{signer_name}"
+              },
+              {
+                "tabLabel": "date",
+                "value": "{current_date}"
+              }
+            ]
+          }
+        }
+      ],
+      "status": "sent",
+      "customFields": {
+        "textCustomFields": [
+          {
+            "name": "source",
+            "value": "mid_call_tool"
+          },
+          {
+            "name": "call_id",
+            "value": "{call_reference}"
+          }
+        ]
+      }
+    }
+    ```
+  </Tab>
+</Tabs>
+
+### Parameter-Schema
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "account_id": {
+      "type": "string",
+      "description": "DocuSign Account-ID"
+    },
+    "email_subject": {
+      "type": "string",
+      "description": "E-Mail-Betreff für den Unterzeichner",
+      "examples": ["Bitte Vertrag unterschreiben", "Einverständniserklärung erforderlich", "Bestellbestätigung"]
+    },
+    "email_message": {
+      "type": "string",
+      "description": "Begleit-E-Mail-Text für den Unterzeichner"
+    },
+    "template_id": {
+      "type": "string",
+      "description": "DocuSign Template-ID für das zu versendende Dokument"
+    },
+    "signer_email": {
+      "type": "string",
+      "format": "email",
+      "description": "E-Mail-Adresse des Unterzeichners"
+    },
+    "signer_name": {
+      "type": "string",
+      "description": "Vollständiger Name des Unterzeichners"
+    },
+    "role_name": {
+      "type": "string",
+      "enum": ["Signer", "Approver", "Witness"],
+      "description": "Rolle des Unterzeichners im Dokument",
+      "default": "Signer"
+    },
+    "current_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Aktuelles Datum für automatische Befüllung"
+    },
+    "call_reference": {
+      "type": "string",
+      "description": "Referenz-ID des Gesprächs für Audit-Trail"
+    },
+    "urgency": {
+      "type": "string",
+      "enum": ["normal", "urgent"],
+      "description": "Dringlichkeit der Unterschrift",
+      "default": "normal"
+    }
+  },
+  "required": ["account_id", "email_subject", "template_id", "signer_email", "signer_name"]
+}
+```
+
+## Praktische Anwendungsszenarien
+
+### Szenario 1: Vertragsabschluss nach Sales-Call
+
+<Steps>
+  <Step title="Deal-Closing-Moment">
+    ```yaml
+    Sales-Context:
+      Kunde: "Ja, das Angebot nehme ich an. Wie geht es weiter?"
+      
+    KI: "Fantastisch! Ich sende Ihnen gleich den Vertrag zur elektronischen Unterschrift..."
+    
+    send_docusign_envelope:
+      email_subject: "Service-Vertrag zur Unterschrift - Beispiel AG"
+      template_id: "abc123-def456-ghi789"  # Service-Agreement-Template
+      signer_email: "max@beispiel.de"
+      signer_name: "Max Mustermann"
+      role_name: "Signer"
+    ```
+  </Step>
+  
+  <Step title="Customer-Communication">
+    ```yaml
+    KI-Response nach Envelope-Versand:
+      "Der Vertrag wurde an max@beispiel.de gesendet. 
+       Sie erhalten in wenigen Minuten eine E-Mail mit dem Unterschrifts-Link. 
+       Der Vertrag ist automatisch ausgefüllt - Sie müssen nur noch elektronisch unterschreiben."
+    
+    Follow-up-Information:
+      "Nach Ihrer Unterschrift aktivieren wir sofort alle Services 
+       und Sie erhalten eine Bestätigung sowie Ihre Zugangsdaten."
+    ```
+  </Step>
+</Steps>
+
+### Szenario 2: DSGVO-Einverständniserklärungen
+
+<AccordionGroup>
+  <Accordion title="Privacy-Consent-Management">
+    **Datenschutz-Compliance-Workflow**:
+    ```yaml
+    DSGVO-Context:
+      Neue Kundenbeziehung erfordert explizite Einwilligung
+      
+    DocuSign-Template-Types:
+      - Data-Processing-Agreement (DPA)
+      - Marketing-Communication-Consent
+      - Analytics-Tracking-Consent
+      - Third-Party-Data-Sharing-Agreement
+    
+    Automation:
+      Ohne Consent → Services nur eingeschränkt
+      Mit Consent → Vollservice-Aktivierung
+      Consent-Withdrawal → Automatic-Data-Purging
+    ```
+  </Accordion>
+  
+  <Accordion title="Multi-Language-Support">
+    ```yaml
+    Internationale-Verträge:
+      DE-Template: "template_id_german"
+      EN-Template: "template_id_english"  
+      FR-Template: "template_id_french"
+      
+    Customer-Language-Detection:
+      Aus Gespräch → Automatische Template-Auswahl
+      Fallback → English als Standard
+      
+    Legal-Compliance:
+      EU-Customers → DSGVO-konforme Templates
+      US-Customers → CCPA-konforme Templates
+      International → Standard-Legal-Templates
+    ```
+  </Accordion>
+</AccordionGroup>
+
+### DocuSign Response-Verarbeitung
+
+```json
+{
+  "envelopeId": "abc123def456-ghi789-jkl012",
+  "status": "sent",
+  "statusDateTime": "2024-01-15T10:30:00.000Z",
+  "uri": "/envelopes/abc123def456-ghi789-jkl012"
+}
+```
+
+**Natural Language Integration**:
+- **Pre-Action**: `"Ich sende das Dokument an {{signer_name}} zur Unterschrift..."`
+- **Success**: `"Dokument wurde zur Unterschrift gesendet. Envelope ID: {{response.envelopeId}}"`
+
+---

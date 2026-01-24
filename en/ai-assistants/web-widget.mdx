@@ -1,0 +1,416 @@
+---
+title: "Web Widget"
+icon: "code"
+description: "Lernen Sie, wie Sie das Famulor Chat Widget auf Ihrer Website einbetten"
+---
+
+# Web Widget
+
+<Note>
+  Das Famulor einbettbare Chat Widget ist ein produktionsreifes, anpassbares und sicheres Chat Widget für Websites. Das Widget kann über einen einzigen `<script>` Tag eingebettet werden—kein Backend-Proxy erforderlich.
+</Note>
+
+## Übersicht
+
+<Card title="Was ist das Famulor Web Widget?" color="blue">
+  Das Famulor Web Widget ermöglicht es Ihren Website-Besuchern, direkt über einen Voice-Chat-Button mit Ihrem KI-Assistenten zu interagieren. Das Widget ist vollständig anpassbar und kann nahtlos in jede Website integriert werden.
+</Card>
+
+## Zugriff auf das Web Widget
+
+<Card title="Widget konfigurieren" icon="headset" iconType="regular" color="green">
+  Sie finden die Web Widget Einstellungen hier:
+
+  1. Gehen Sie zu "Assistenten".
+  2. Wählen Sie Ihren Assistenten aus.
+  3. Klicken Sie auf "Bearbeitung".
+  4. Navigieren Sie zu "Web Widget".
+</Card>
+
+## Widget-Konfiguration
+
+<CardGroup cols={2}>
+  <Card title="Live-Vorschau" icon="eye" color="blue">
+    
+    - Sehen Sie eine Echtzeit-Vorschau Ihres Widgets.
+
+    
+    - Auto-Updates bei Änderungen.
+
+    
+    - Testen Sie die Funktionalität direkt.
+
+    
+  </Card>
+  <Card title="Anpassungsoptionen" icon="palette" color="purple">
+    
+    - Position auf der Website wählen.
+
+    
+    - Primärfarbe anpassen.
+
+    
+    - Button- und Menü-Texte bearbeiten.
+
+    
+  </Card>
+</CardGroup>
+
+## Anpassungsoptionen
+
+### 1. Allgemeine Einstellungen
+
+<Card title="Position und Farbe" icon="book-user" color="orange">
+  
+  - 
+  Position:
+
+   Wählen Sie die Position des Widgets (z.B. "Unten rechts").
+
+  
+  - 
+  Primärfarbe:
+
+   Anpassung der Widget-Farbe (z.B. #3B82F6).
+
+  
+</Card>
+
+### 2. Button-Konfiguration
+
+<CodeGroup>
+
+````text
+// Primärer Text, der auf dem Widget-Button angezeigt wird
+Need help?
+```text
+// Sekundärer Text, der unter dem Haupt-Button-Text angezeigt wird
+Start voice chat ✨
+````
+
+</CodeGroup>
+
+### 3. Menü-Konfiguration
+
+<CodeGroup>
+
+````text
+// Titel im Widget-Header
+Voice AI
+```text
+// Untertitel im Widget-Header
+Ready to help ✨
+```text
+// Titel, der angezeigt wird, wenn das Modal geöffnet wird
+Ready to chat?
+```text
+// Text auf dem Button, der das Gespräch startet
+Start Voice Chat
+```text
+// Beschreibungstext im Modal
+Click below to start your voice conversation
+````
+
+</CodeGroup>
+
+## Script-Tag Integration
+
+<Card title="Einfache Integration" icon="code" color="green">
+  Kopieren Sie den generierten Script-Tag und fügen Sie ihn in Ihre Website ein:
+</Card>
+
+### Beispiel Script-Tag
+
+```html
+<script 
+  src="https://app.famulor.de/embed.js" 
+  data-assistant-id="5c92d914-9099-4d5-8f09-096ada2ade0" 
+  data-position="right-bottom" 
+  data-color="#3B82F6" 
+  data-header-title="Voice AI" 
+  data-header-subtitle="Ready to help ✨" 
+  data-button-main-text="Need help?" 
+  data-button-sub-text="Start voice chat ✨" 
+  data-start-button-text="Start Voice Chat" 
+  data-modal-title="Ready to chat?" 
+  data-modal-description="Click below to start your voice conversation">
+</script>
+```
+
+<Warning>
+  **Verwendung:** Fügen Sie diesen Script-Tag überall in den HTML-Code Ihrer Website ein, vorzugsweise vor dem schließenden `&lt;/body&gt;`-Tag.
+</Warning>
+
+## Data-Attribute Erklärung
+
+<Card title="Verfügbare Attribute" icon="list" color="blue">
+  
+  - 
+  data-assistant-id:
+
+   Eindeutige ID Ihres Assistenten.
+
+  
+  - 
+  data-position:
+
+   Position des Widgets (z.B. "right-bottom").
+
+  
+  - 
+  data-color:
+
+   Primärfarbe des Widgets.
+
+  
+  - 
+  data-header-title:
+
+   Titel im Widget-Header.
+
+  
+  - 
+  data-header-subtitle:
+
+   Untertitel im Widget-Header.
+
+  
+  - 
+  data-button-main-text:
+
+   Haupt-Button-Text.
+
+  
+  - 
+  data-button-sub-text:
+
+   Unter-Button-Text.
+
+  
+  - 
+  data-start-button-text:
+
+   Text des Start-Buttons.
+
+  
+  - 
+  data-modal-title:
+
+   Modal-Titel.
+
+  
+  - 
+  data-modal-description:
+
+   Modal-Beschreibung.
+
+  
+</Card>
+
+## Positionierungsoptionen
+
+<CardGroup cols={1}>
+  <Card title="Verfügbare Positionen" icon="compass" color="green">
+    
+    - 
+    right-bottom:
+
+     Unten rechts
+
+    
+    - 
+    left-bottom:
+
+     Unten links
+
+    
+    - 
+    right-top:
+
+     Oben rechts
+
+    
+    - 
+    left-top:
+
+     Oben links
+
+    
+  </Card>
+  <Card title="Empfohlene Position" icon="star" color="blue">
+    
+    Unten rechts
+
+     ist die häufigste und benutzerfreundlichste Position für Chat-Widgets auf Websites.
+
+    
+  </Card>
+</CardGroup>
+
+## Anpassungstipps
+
+<Card title="Best Practices" icon="lightbulb" color="yellow">
+  
+  - 
+  Farben:
+
+   Wählen Sie eine Farbe, die zu Ihrem Branding passt.
+
+  
+  - 
+  Texte:
+
+   Verwenden Sie einladende und klare Formulierungen.
+
+  
+  - 
+  Position:
+
+   Achten Sie darauf, dass das Widget andere wichtige Elemente nicht verdeckt.
+
+  
+  - 
+  Test:
+
+   Testen Sie das Widget auf verschiedenen Geräten und Bildschirmgrößen.
+
+  
+</Card>
+
+## Integration in verschiedene Plattformen
+
+<CardGroup cols={2}>
+  <Card title="WordPress" icon="wordpress" color="blue">
+    
+    Fügen Sie den Script-Tag in den Footer Ihres Themes oder verwenden Sie ein Plugin für benutzerdefinierte Scripts.
+
+    
+  </Card>
+  <Card title="HTML/CSS Websites" icon="code" color="green">
+    
+    Fügen Sie den Script-Tag direkt vor dem schließenden `&lt;/body&gt;`-Tag in Ihre HTML-Dateien ein.
+
+    
+  </Card>
+</CardGroup>
+
+<CardGroup cols={2}>
+  <Card title="React/Vue/Angular" icon="react" color="orange">
+    
+    Integrieren Sie den Script-Tag über Ihren Package Manager oder fügen Sie ihn direkt in die `index.html` ein.
+
+    
+  </Card>
+  <Card title="CMS-Systeme" icon="cms" color="purple">
+    
+    Nutzen Sie die Script-Injection-Features Ihres CMS oder fügen Sie den Code in die Template-Dateien ein.
+
+    
+  </Card>
+</CardGroup>
+
+## Sicherheit und Performance
+
+<Card title="Produktionsbereit" icon="shield" color="green">
+  
+  - 
+  Sicher:
+
+   Alle Daten werden verschlüsselt übertragen.
+
+  
+  - 
+  Schnell:
+
+   Minimale Ladezeiten durch optimierte Scripts.
+
+  
+  - 
+  Zuverlässig:
+
+   99.9% Verfügbarkeit.
+
+  
+  - 
+  DSGVO-konform:
+
+   Entspricht deutschen Datenschutzbestimmungen.
+
+  
+</Card>
+
+## Testen des Widgets
+
+<Card title="Widget testen" icon="test-tube" color="purple">
+  
+  - 
+  Live-Vorschau nutzen:
+
+   Verwenden Sie die Vorschau im Dashboard.
+
+  
+  - 
+  Staging-Umgebung:
+
+   Testen Sie das Widget zunächst auf einer Test-Website.
+
+  
+  - 
+  Verschiedene Geräte:
+
+   Testen Sie auf Desktop, Tablet und Mobile.
+
+  
+  - 
+  Browser-Tests:
+
+   Prüfen Sie die Kompatibilität mit verschiedenen Browsern.
+
+  
+  - 
+  Funktionstest:
+
+   Starten Sie einen echten Voice-Chat zur Überprüfung.
+
+  
+</Card>
+
+## Häufige Probleme und Lösungen
+
+<Card title="Troubleshooting" icon="help-circle" color="red">
+  
+  - 
+  Widget wird nicht angezeigt:
+
+   Überprüfen Sie, ob der Script-Tag korrekt eingebettet wurde.
+
+  
+  - 
+  Farben falsch:
+
+   Stellen Sie sicher, dass der Hex-Code (#) korrekt formatiert ist.
+
+  
+  - 
+  Position passt nicht:
+
+   Verwenden Sie die verfügbaren Positionswerte.
+
+  
+  - 
+  Text wird nicht angezeigt:
+
+   Prüfen Sie die data-attribute auf Schreibfehler.
+
+  
+</Card>
+
+## Hilfe benötigt?
+
+<Tip>
+  Unser Support-Team kann Ihnen bei der Integration des Web Widgets helfen.
+</Tip>
+
+<Card title="Support kontaktieren" icon="headphones" color="blue" href="mailto:support@famulor.io">
+  Benötigen Sie Hilfe bei der Widget-Integration? Kontaktieren Sie unser Support-Team unter support@famulor.io.
+</Card>

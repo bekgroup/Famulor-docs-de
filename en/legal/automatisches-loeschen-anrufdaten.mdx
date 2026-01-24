@@ -1,0 +1,294 @@
+---
+title: "Automatisches Löschen von Anrufdaten"
+icon: "trash-clock"
+description: "DSGVO-konforme automatische Löschung von Anrufdaten nach konfigurierbaren Aufbewahrungsfristen"
+---
+
+<Warning>
+Diese Seite stellt keine Rechtsberatung dar. Prüfen Sie stets Ihren konkreten Anwendungsfall mit Rechtsbeistand und beachten Sie die geltenden gesetzlichen Aufbewahrungspflichten in Ihrem Land.
+</Warning>
+
+## Überblick
+
+Die **automatische Löschung von Anrufdaten** ist ein wichtiger Bestandteil der DSGVO-konformen Datenverwaltung. Mit dem Famulor Workflow-Template können Sie Anrufdaten und zugehörige Informationen automatisch nach einer konfigurierbaren Frist (Standard: 180 Tage) löschen lassen.
+
+<CardGroup cols={2}>
+  <Card title="DSGVO-Konformität" icon="shield-check">
+    Automatische Einhaltung von Speicherbegrenzungen gemäß Art. 5 Abs. 1 lit. e DSGVO
+  </Card>
+  <Card title="Zeitersparnis" icon="clock">
+    Keine manuelle Verwaltung von Löschfristen mehr erforderlich
+  </Card>
+  <Card title="Rechtssicherheit" icon="scale-balanced">
+    Reduziert Risiken durch versehentliche Überschreitung von Aufbewahrungsfristen
+  </Card>
+  <Card title="Flexible Konfiguration" icon="sliders">
+    Individuelle Anpassung der Aufbewahrungsdauer je nach Anwendungsfall
+  </Card>
+</CardGroup>
+
+## Was ist dieser Workflow?
+
+Der **Automatische Lösch-Workflow** ist ein vorkonfiguriertes Template für die Famulor Automatisierungsplattform, das:
+
+- **Anrufdaten** (Call Records) automatisch identifiziert
+- **Alter der Daten** berechnet (basierend auf dem Anrufdatum)
+- **Löschung durchführt**, wenn die konfigurierte Aufbewahrungsfrist überschritten wurde
+- **Täglich ausgeführt** wird, um kontinuierliche Compliance zu gewährleisten
+
+<Info>
+**Standard-Konfiguration:** Der Workflow ist standardmäßig auf 180 Tage Aufbewahrungsfrist eingestellt. Sie können diese Dauer in der Code-Node anpassen.
+</Info>
+
+## Warum automatisches Löschen wichtig ist
+
+### Rechtliche Anforderungen
+
+Die **DSGVO (Datenschutz-Grundverordnung)** verlangt in **Art. 5 Abs. 1 lit. e** die **Speicherbegrenzung**:
+
+> "Personenbezogene Daten müssen in einer Form gespeichert werden, die die Identifizierung der betroffenen Personen nur so lange ermöglicht, wie es für die Zwecke, für die die personenbezogenen Daten verarbeitet werden, erforderlich ist."
+
+<Steps>
+  <Step title="Zweckbindung">
+    Daten dürfen nur so lange gespeichert werden, wie der Verarbeitungszweck besteht
+  </Step>
+  <Step title="Datenminimierung">
+    Unnötige Datenspeicherung verstößt gegen das Prinzip der Datenminimierung
+  </Step>
+  <Step title="Löschpflicht">
+    Bei Wegfall des Zwecks oder Ablauf gesetzlicher Fristen besteht eine Löschpflicht
+  </Step>
+  <Step title="Nachweisbarkeit">
+    Automatische Prozesse dokumentieren die Einhaltung von Löschfristen
+  </Step>
+</Steps>
+
+### Praktische Vorteile
+
+<Accordion title="Risikominimierung">
+- **Bußgelder vermeiden:** Verstöße gegen die DSGVO können zu Bußgeldern von bis zu 4% des Jahresumsatzes oder 20 Mio. Euro führen
+- **Haftungsrisiken reduzieren:** Automatische Löschung verhindert versehentliche Überschreitung von Aufbewahrungsfristen
+- **Compliance-Dokumentation:** Automatisierte Prozesse schaffen nachweisbare Compliance
+</Accordion>
+
+<Accordion title="Effizienzsteigerung">
+- **Keine manuelle Verwaltung:** Automatische Ausführung spart Zeit und Ressourcen
+- **Konsistente Umsetzung:** Keine menschlichen Fehler bei der Berechnung von Löschfristen
+- **Skalierbarkeit:** Funktioniert unabhängig von der Anzahl der Anrufe
+</Accordion>
+
+<Accordion title="Datenschutz & Sicherheit">
+- **Minimale Datenspeicherung:** Reduziert Angriffsfläche für Datenschutzverletzungen
+- **Prinzip der Datenminimierung:** Nur so viele Daten wie nötig, so lange wie nötig
+- **Vertrauen der Kunden:** Zeigt proaktiven Umgang mit Datenschutz
+</Accordion>
+
+## Rechtlicher Rahmen für Telefonaufzeichnungen
+
+### DSGVO (Datenschutz-Grundverordnung)
+
+Die **DSGVO** ist die primäre Rechtsgrundlage für die Verarbeitung personenbezogener Daten in der EU:
+
+<CardGroup cols={2}>
+  <Card title="Art. 5 DSGVO" icon="gavel">
+    **Grundsätze der Verarbeitung:** Rechtmäßigkeit, Zweckbindung, Datenminimierung, Speicherbegrenzung
+  </Card>
+  <Card title="Art. 6 DSGVO" icon="scale-balanced">
+    **Rechtsgrundlagen:** Einwilligung, Vertragserfüllung, berechtigtes Interesse, gesetzliche Pflicht
+  </Card>
+  <Card title="Art. 17 DSGVO" icon="trash">
+    **Recht auf Löschung:** "Recht auf Vergessenwerden" bei Zweckentfall oder Widerruf
+  </Card>
+  <Card title="Art. 30 DSGVO" icon="clipboard-list">
+    **Verzeichnis der Verarbeitungstätigkeiten:** Dokumentation aller Datenverarbeitungen
+  </Card>
+</CardGroup>
+
+### Telekommunikationsgesetz (TKG)
+
+Das **Telekommunikationsgesetz (TKG)** regelt zusätzlich spezifische Aspekte der Telekommunikation:
+
+<Accordion title="§ 88 TKG – Datenschutz in der Telekommunikation">
+- Besondere Schutzvorschriften für Telekommunikationsdaten
+- Verbot der unbefugten Übermittlung von Verkehrsdaten
+- Speicherung nur für Abrechnungszwecke oder gesetzliche Pflichten
+</Accordion>
+
+<Accordion title="§ 100 TKG – Aufzeichnung von Telefongesprächen">
+- **Einwilligung erforderlich:** Beide Parteien müssen der Aufzeichnung zustimmen
+- **Zweckbindung:** Aufzeichnungen nur für den angegebenen Zweck nutzen
+- **Löschpflicht:** Löschung nach Wegfall des Zwecks oder gesetzlicher Frist
+</Accordion>
+
+### Nationale Gesetze
+
+<Accordion title="Deutschland">
+- **BDSG (Bundesdatenschutzgesetz):** Ergänzt die DSGVO mit nationalen Bestimmungen
+- **TMG (Telemediengesetz):** Regelt Telemedien-Dienste
+- **UWG (Gesetz gegen den unlauteren Wettbewerb):** Regelt Telefonwerbung und Einwilligungen
+</Accordion>
+
+<Accordion title="Österreich">
+- **DSG (Datenschutzgesetz):** Nationale Umsetzung der DSGVO
+- **TKG 2021:** Telekommunikationsgesetz mit strengen Einwilligungserfordernissen
+</Accordion>
+
+<Accordion title="Schweiz">
+- **nDSG (neues Datenschutzgesetz):** Seit 01.09.2023 in Kraft, ähnlich der DSGVO
+- **FADP (Federal Act on Data Protection):** Bundesgesetz über den Datenschutz
+</Accordion>
+
+### Aufbewahrungspflichten beachten
+
+<Warning>
+**Wichtig:** Bevor Sie automatische Löschfristen konfigurieren, prüfen Sie, ob für Ihre Branche oder Ihren Anwendungsfall gesetzliche **Aufbewahrungspflichten** bestehen (z.B. aus Handelsrecht, Steuerrecht, Medizinrecht).
+</Warning>
+
+<CardGroup cols={2}>
+  <Card title="Handelsrecht" icon="briefcase">
+    Handelsbücher: 10 Jahre (HGB § 257)
+  </Card>
+  <Card title="Steuerrecht" icon="receipt">
+    Steuerrelevante Belege: 10 Jahre (AO § 147)
+  </Card>
+  <Card title="Medizinrecht" icon="heart-pulse">
+    Patientenakten: 10-30 Jahre je nach Land
+  </Card>
+  <Card title="Arbeitsrecht" icon="briefcase">
+    Personalakten: 2-10 Jahre je nach Dokumenttyp
+  </Card>
+</CardGroup>
+
+## Workflow einrichten
+
+### Schritt 1: Zugriff auf die Automatisierungsplattform
+
+1. **Famulor Platform öffnen:** Navigieren Sie zu [https://app.famulor.de](https://app.famulor.de)
+2. **Anmelden:** Loggen Sie sich mit Ihren Zugangsdaten ein
+3. **Automation-Menü öffnen:** Klicken Sie im Hauptmenü auf **"Automation"**
+
+<Info>
+Stellen Sie sicher, dass Sie Zugriff auf die Automatisierungsplattform haben. Falls nicht, kontaktieren Sie den Support.
+</Info>
+
+### Schritt 2: Workflow-Template öffnen
+
+Öffnen Sie das Workflow-Template über folgenden Link:
+
+**Workflow Template:** [https://automate.famulor.de/templates/EQ2ZaUGJARERwPH4IeLoh](https://automate.famulor.de/templates/EQ2ZaUGJARERwPH4IeLoh)
+
+<Check>
+Der Link öffnet das vorkonfigurierte Template direkt in der Automatisierungsplattform.
+</Check>
+
+### Schritt 3: API-Schlüssel hinzufügen
+
+1. **API-Schlüssel abrufen:** 
+   - Navigieren Sie in der Famulor Platform zu **Einstellungen** → **API-Schlüssel**
+   - Erstellen Sie einen neuen API-Schlüssel oder verwenden Sie einen bestehenden
+   - Kopieren Sie den API-Schlüssel
+
+2. **Im Workflow einfügen:**
+   - Suchen Sie im Workflow die **API-Authentifizierung Node**
+   - Fügen Sie Ihren API-Schlüssel in das entsprechende Feld ein
+
+<Warning>
+**Sicherheit:** Bewahren Sie Ihren API-Schlüssel sicher auf und teilen Sie ihn nicht mit Dritten. Bei Verlust können Sie den Schlüssel in den Einstellungen neu generieren.
+</Warning>
+
+### Schritt 4: Aufbewahrungsfrist anpassen
+
+1. **Code-Node öffnen:** Suchen Sie die **Code-Node** im Workflow
+2. **Aufbewahrungsdauer ändern:**
+   - Standard: **180 Tage** (6 Monate)
+   - Passen Sie den Wert an Ihre Anforderungen an
+   - Beispiel: `const retentionDays = 90;` für 90 Tage
+
+<Accordion title="Empfohlene Aufbewahrungsfristen">
+- **Allgemeine Geschäftsdaten:** 90-180 Tage (DSGVO-konform)
+- **Kundenservice-Aufzeichnungen:** 30-90 Tage (nach Qualitätssicherung)
+- **Verkaufsgespräche:** 180-365 Tage (je nach Vertragslaufzeit)
+- **Compliance-Aufzeichnungen:** Prüfen Sie gesetzliche Anforderungen
+</Accordion>
+
+### Schritt 5: Workflow aktivieren
+
+1. **Workflow speichern:** Klicken Sie auf **"Speichern"**
+2. **Workflow veröffentlichen:** Klicken Sie auf **"Veröffentlichen"**
+3. **Automatische Ausführung:** Der Workflow wird täglich automatisch ausgeführt
+
+<Info>
+Der Workflow läuft im Hintergrund und überprüft täglich alle Anrufdaten. Anrufe, die älter als die konfigurierte Frist sind, werden automatisch gelöscht.
+</Info>
+
+## Was wird gelöscht?
+
+Der Workflow löscht automatisch:
+
+- **Anrufdaten** (Call Records)
+- **Zugehörige Metadaten** (Datum, Uhrzeit, Dauer)
+- **Transkriptionen** (falls vorhanden)
+- **Zugehörige Lead-Informationen** (je nach Konfiguration)
+
+<Warning>
+**Irreversibel:** Die Löschung ist endgültig und kann nicht rückgängig gemacht werden. Stellen Sie sicher, dass Sie wichtige Daten vor Ablauf der Frist exportiert haben, falls erforderlich.
+</Warning>
+
+## Best Practices
+
+<CardGroup cols={2}>
+  <Card title="Rechtliche Prüfung" icon="gavel">
+    Prüfen Sie vor der Konfiguration alle gesetzlichen Aufbewahrungspflichten für Ihre Branche
+  </Card>
+  <Card title="Dokumentation" icon="clipboard-list">
+    Dokumentieren Sie die konfigurierte Aufbewahrungsfrist in Ihrem Verzeichnis der Verarbeitungstätigkeiten
+  </Card>
+  <Card title="Regelmäßige Überprüfung" icon="magnifying-glass">
+    Überprüfen Sie regelmäßig, ob die Frist noch angemessen ist
+  </Card>
+  <Card title="Backup-Strategie" icon="floppy-disk">
+    Erwägen Sie ein Backup wichtiger Daten vor automatischer Löschung
+  </Card>
+</CardGroup>
+
+## Häufige Fragen
+
+<Accordion title="Kann ich bestimmte Anrufe von der automatischen Löschung ausschließen?">
+Ja, Sie können den Workflow anpassen, um bestimmte Anrufe basierend auf Kriterien (z.B. Tags, Kampagnen, Status) von der Löschung auszunehmen. Dies erfordert eine Anpassung der Code-Node.
+</Accordion>
+
+<Accordion title="Wie kann ich die Löschung rückgängig machen?">
+Die automatische Löschung ist endgültig. Stellen Sie sicher, dass Sie wichtige Daten vor Ablauf der Frist exportiert oder gesichert haben.
+</Accordion>
+
+<Accordion title="Wird der Workflow auch bei gesetzlichen Aufbewahrungspflichten ausgeführt?">
+Der Workflow berücksichtigt keine gesetzlichen Aufbewahrungspflichten automatisch. Sie müssen die Aufbewahrungsfrist entsprechend anpassen oder bestimmte Daten von der Löschung ausschließen.
+</Accordion>
+
+<Accordion title="Wie oft wird der Workflow ausgeführt?">
+Der Workflow wird standardmäßig täglich ausgeführt. Sie können die Häufigkeit in den Workflow-Einstellungen anpassen.
+</Accordion>
+
+## Weiterführende Informationen
+
+<CardGroup cols={2}>
+  <Card title="DSGVO-Konformität" icon="shield-check" href="/provisioning/compliance">
+    Compliance-Anforderungen für Telefonnummer-Bereitstellung
+  </Card>
+  <Card title="Datenschutz & Compliance" icon="scale-balanced" href="/sales/datenschutz-und-compliance">
+    Rechtssichere Kaltakquise im DACH-Raum
+  </Card>
+  <Card title="Automatisierungsplattform" icon="wand-magic-sparkles" href="/automation-platform/introduction">
+    Einführung in die No-Code Automatisierungsplattform
+  </Card>
+  <Card title="API-Referenz" icon="code" href="/api-reference/introduction">
+    API-Dokumentation für erweiterte Integrationen
+  </Card>
+</CardGroup>
+
+---
+
+<Info>
+**Hinweis:** Bei Fragen zur Konfiguration oder rechtlichen Anforderungen kontaktieren Sie bitte den [Famulor Support](mailto:support@famulor.io) oder konsultieren Sie einen Rechtsbeistand.
+</Info>
+

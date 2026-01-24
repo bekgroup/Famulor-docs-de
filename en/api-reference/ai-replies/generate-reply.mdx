@@ -1,0 +1,276 @@
+---
+title: "KI-Antwort generieren"
+api: "POST https://app.famulor.de/api/ai/generate-reply"
+icon: "robot"
+description: "Generiert eine KI-Antwort mit einem Assistenten basierend auf einer Kundenkennung"
+---
+
+Dieser Endpunkt erzeugt automatisch eine intelligente Antwort auf eine Kundennachricht mithilfe Ihres konfigurierten KI-Assistenten. Das System verwaltet dabei automatisch den Gesprächskontext für jeden Kunden, sodass der Assistent sich an vorherige Nachrichten erinnert und kontextbezogen antworten kann. Ideal für die Integration in externe Messaging-Plattformen, CRMs oder eigene Chat-Oberflächen.
+
+<Warning>
+**Rate Limit**: Dieser Endpunkt ist auf 5 Anfragen pro Minute pro API-Token begrenzt, um Missbrauch zu verhindern.
+</Warning>
+
+### Request Body
+
+<ParamField body="assistant_id" type="integer" required>
+  Die ID des Assistenten, der für die Antwortgenerierung verwendet werden soll. Muss zu Ihrem Konto gehören.
+</ParamField>
+
+<ParamField body="customer_identifier" type="string" required>
+  Eine eindeutige Kennung für den Kunden. Diese wird verwendet, um den Gesprächskontext über mehrere Nachrichten hinweg zu erhalten.
+  
+  **Beispiele**: Telefonnummer, E-Mail-Adresse, CRM-Kontakt-ID, Facebook-Benutzer-ID.
+  
+  **Maximale Länge**: 255 Zeichen.
+  
+  **Wichtig**: Verwenden Sie immer dasselbe Format für denselben Kunden, damit der Kontext korrekt zugeordnet wird.
+</ParamField>
+
+<ParamField body="message" type="string" required>
+  Die Nachricht des Kunden, auf die geantwortet werden soll.
+</ParamField>
+
+<ParamField body="variables" type="object" optional>
+  Optionale Kontextvariablen, die an den Assistenten übergeben werden. Diese werden mit vorhandenen Gesprächsvariablen zusammengeführt.
+  
+  Nützlich für die Übergabe von Kundendaten, Sitzungskontext oder anderen Metadaten, die die Antwort personalisieren können.
+  
+  <Expandable title="Beispiele für Variablen">
+    <ParamField body="customer_name" type="string">
+      Name des Kunden für personalisierte Ansprache
+    </ParamField>
+
+    <ParamField body="source" type="string">
+      Quelle der Nachricht (z.B. `whatsapp`, `facebook`, `sms`)
+    </ParamField>
+
+    <ParamField body="order_id" type="string">
+      Bestellnummer für Support-Anfragen
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+### Antwort-Felder
+
+<ResponseField name="success" type="boolean">
+  Gibt an, ob die Anfrage erfolgreich war
+</ResponseField>
+
+<ResponseField name="conversation_id" type="string">
+  Die UUID der Konversation. Verwenden Sie diese, um die Konversation später zu verfolgen oder darauf zu verweisen.
+</ResponseField>
+
+<ResponseField name="customer_identifier" type="string">
+  Die im Request bereitgestellte Kundenkennung
+</ResponseField>
+
+<ResponseField name="reply" type="string">
+  Die von der KI generierte Antwort auf die Kundennachricht
+</ResponseField>
+
+<ResponseField name="function_calls" type="array">
+  Array von Funktionsaufrufen, die der Assistent während der Verarbeitung der Nachricht durchgeführt hat. Leeres Array, wenn keine Funktionen aufgerufen wurden.
+  
+  <Expandable title="Function Call Objekt">
+    <ResponseField name="name" type="string">
+      Der Name der aufgerufenen Funktion
+    </ResponseField>
+
+    <ResponseField name="arguments" type="object">
+      Die an die Funktion übergebenen Argumente
+    </ResponseField>
+
+    <ResponseField name="result" type="object">
+      Das Ergebnis des Funktionsaufrufs
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="ai_disabled" type="boolean">
+  Gibt an, ob KI-Antworten für diese Konversation deaktiviert sind (z.B. aufgrund einer manuellen Übernahme)
+</ResponseField>
+
+### Fehlerantworten
+
+<ResponseField name="success" type="boolean">
+  Wird `false` sein, wenn ein Fehler auftritt
+</ResponseField>
+
+<ResponseField name="error" type="string">
+  Fehlermeldung, die beschreibt, was schiefgelaufen ist
+</ResponseField>
+
+<ResponseField name="error_code" type="string">
+  Maschinenlesbarer Fehlercode. Mögliche Werte:
+  
+  - `ASSISTANT_NOT_FOUND` - Die Assistenten-ID ist ungültig oder gehört nicht zu Ihrem Konto
+  - `INSUFFICIENT_BALANCE` - Ihr Kontoguthaben ist zu niedrig, um die Nachricht zu verarbeiten
+</ResponseField>
+
+### Anwendungsfälle
+
+#### Multi-Channel KI-Antworten
+Nutzen Sie diesen Endpunkt, um KI-Antworten zu jeder Messaging-Plattform hinzuzufügen:
+1. Empfangen Sie eine Nachricht von WhatsApp, Facebook, SMS oder einem anderen Kanal
+2. Rufen Sie diesen Endpunkt mit der Nachricht und der Kundenkennung auf
+3. Senden Sie die KI-Antwort über den ursprünglichen Kanal zurück
+
+#### CRM-Integration
+Integrieren Sie KI-Antworten in Ihr CRM oder Helpdesk-System:
+- Verwenden Sie die CRM-Kontakt-ID als `customer_identifier`
+- Übergeben Sie Kundendaten als Variablen für personalisierte Antworten
+- Die Konversation bleibt über Sitzungen hinweg erhalten, wenn dieselbe Kennung verwendet wird
+
+#### Eigene Chat-Oberflächen
+Erstellen Sie Ihre eigene Chat-Oberfläche, die von Ihrem Famulor-Assistenten angetrieben wird:
+- Generieren Sie eine eindeutige Kennung für jede Benutzersitzung
+- Senden Sie Nachrichten über diesen Endpunkt
+- Zeigen Sie die KI-Antworten in Ihrer Oberfläche an
+
+#### Konversations-Persistenz
+Konversationen werden automatisch basierend auf der Kombination aus `assistant_id` und `customer_identifier` gespeichert:
+- **Gleiche Kennung**: Nachrichten werden zur bestehenden Konversation hinzugefügt, wobei der vollständige Kontext erhalten bleibt
+- **Neue Kennung**: Eine neue Konversation wird für den Kunden erstellt
+- **Variablen-Zusammenführung**: Wenn Variablen bereitgestellt werden, werden sie mit vorhandenen Konversationsvariablen zusammengeführt
+
+### Best Practices
+
+- **Konsistente Kennungen verwenden**: Verwenden Sie immer dasselbe Format für Kundenkennungen (z.B. immer E.164 für Telefonnummern)
+- **Relevanten Kontext übergeben**: Nutzen Sie das `variables`-Feld, um Kundendaten bereitzustellen, die der KI helfen, Antworten zu personalisieren
+- **Rate Limits handhaben**: Implementieren Sie Wiederholungslogik mit exponentiellem Backoff für rate-limitierte Anfragen
+- **Konversations-IDs speichern**: Speichern Sie die zurückgegebene `conversation_id` für spätere Referenz oder Fehlerbehebung
+- **Kosten überwachen**: Verfolgen Sie die Nutzung, um Kosten zu verwalten, insbesondere bei Integrationen mit hohem Volumen
+
+<CodeGroup>
+```bash cURL
+curl -X POST "https://app.famulor.de/api/ai/generate-reply" \
+  -H "Authorization: Bearer YOUR_API_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "assistant_id": 123,
+    "customer_identifier": "+49155551234",
+    "message": "Hi, I would like to schedule an appointment",
+    "variables": {
+      "customer_name": "John Smith",
+      "source": "whatsapp"
+    }
+  }'
+```
+
+```javascript JavaScript
+const response = await fetch("https://app.famulor.de/api/ai/generate-reply", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: "Bearer YOUR_API_TOKEN",
+  },
+  body: JSON.stringify({
+    assistant_id: 123,
+    customer_identifier: "+49155551234",
+    message: "Hi, I would like to schedule an appointment",
+    variables: {
+      customer_name: "John Smith",
+      source: "whatsapp",
+    },
+  }),
+});
+
+const data = await response.json();
+```
+
+```python Python
+import requests
+
+payload = {
+    "assistant_id": 123,
+    "customer_identifier": "+49155551234",
+    "message": "Hi, I would like to schedule an appointment",
+    "variables": {
+        "customer_name": "John Smith",
+        "source": "whatsapp",
+    },
+}
+
+response = requests.post(
+    "https://app.famulor.de/api/ai/generate-reply",
+    headers={
+        "Content-Type": "application/json",
+        "Authorization": "Bearer YOUR_API_TOKEN",
+    },
+    json=payload,
+    timeout=10,
+)
+
+print(response.json())
+```
+</CodeGroup>
+
+<ResponseExample>
+
+```json 200 Success
+{
+  "success": true,
+  "conversation_id": "f3wqsa-asd23-grt4-ggg34-derf4",
+  "customer_identifier": "+49155551234",
+  "reply": "Hi John! I'd be happy to help you schedule an appointment. What day and time work best for you?",
+  "function_calls": [],
+  "ai_disabled": false
+}
+```
+
+```json 200 Success (Mit Funktionsaufrufen)
+{
+  "success": true,
+  "conversation_id": "f3wqsa-asd23-grt4-ggg34-derf4",
+  "customer_identifier": "+49155551234",
+  "reply": "I've checked our calendar and we have availability tomorrow at 2 PM and Friday at 10 AM. Which works better for you?",
+  "function_calls": [
+    {
+      "name": "check_availability",
+      "arguments": {
+        "start_date": "2025-01-08",
+        "days": 7
+      },
+      "result": {
+        "slots": ["2025-01-08 14:00", "2025-01-10 10:00"]
+      }
+    }
+  ],
+  "ai_disabled": false
+}
+```
+
+```json 404 Assistant Not Found
+{
+  "success": false,
+  "error": "Assistant not found or does not belong to you",
+  "error_code": "ASSISTANT_NOT_FOUND"
+}
+```
+
+```json 402 Insufficient Balance
+{
+  "success": false,
+  "error": "Insufficient balance. Please top up your account.",
+  "error_code": "INSUFFICIENT_BALANCE"
+}
+```
+
+```json 422 Validation Error
+{
+  "message": "The assistant id field is required.",
+  "errors": {
+    "assistant_id": ["The assistant id field is required."]
+  }
+}
+```
+
+```json 429 Rate Limited
+{
+  "message": "Too Many Attempts.",
+  "retry_after": 60
+}
+```
+
+</ResponseExample>

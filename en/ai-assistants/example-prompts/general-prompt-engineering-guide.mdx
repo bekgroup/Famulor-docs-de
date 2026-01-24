@@ -1,0 +1,125 @@
+---
+title: "Allgemeiner Prompt Engineering Guide"
+icon: "book-open"
+description: "Ein umfassender Leitfaden für das Schreiben effektiver Prompts für Ihre Famulor KI-Assistenten"
+---
+
+# Allgemeiner Prompt Engineering Guide
+
+<Note>
+  Prompt Engineering ist möglicherweise der wichtigste Teil Ihres Assistenten - es kann Ihren Assistenten zum Erfolg führen oder zum Scheitern bringen. Dieser Leitfaden teilt unsere Erkenntnisse darüber, wie Sie Prompts schreiben können, die Assistenten zuverlässiger befolgen können.
+</Note>
+
+<Warning>
+  Dieser Leitfaden ist ein Work-in-Progress und wird aktualisiert, während wir mehr lernen. Wenn Sie Vorschläge oder Feedback haben, lassen Sie es uns wissen.
+</Warning>
+
+<Tip>
+  Um einige der Prompts zu sehen, die wir erstellt haben, können Sie sich die Vorlagen im Dashboard ansehen (erstellen Sie einen neuen Assistenten und wählen Sie eine Vorlage zum Starten).
+</Tip>
+
+## Strukturierte Prompts
+
+<Card title="Warum strukturierte Prompts?" icon="layers" color="blue">
+  Beim Schreiben eines großen Prompts wie dem allgemeinen Prompt ist es eine gute Praxis, ihn in kleinere Abschnitte zu unterteilen, wobei jeder Abschnitt seinen eigenen Fokus hat, wie Identität, Stil, Richtlinien, Aufgaben und Ziele. Dies hat mehrere Vorteile:
+  
+    - **Wiederverwendbar** - Abschnitte können in anderen Prompts verwendet werden
+    - **Einfacher zu warten** - Änderungen können gezielt vorgenommen werden
+    - **Einfacher für LLMs zu verstehen** - Klare Struktur verbessert das Verständnis
+  
+</Card>
+
+## Beispiel für einen strukturierten Prompt
+
+<CodeGroup>
+
+```
+## Identität
+Du bist ein freundlicher KI-Assistent für Famulor. Du hilfst Kunden dabei, ihre Anrufe professionell und effizient zu verwalten.
+```
+
+</CodeGroup>
+
+## Für Single/Multi Prompt Agenten: Explizit schreiben, wann Tools aufgerufen werden
+
+<Note>
+  Conversation Flow Agenten handhaben Funktionsaufrufe auf deterministische Weise, daher müssen Sie sich darüber keine Sorgen machen. Der folgende Abschnitt gilt nur für Single/Multi Prompt Agenten.
+</Note>
+
+## Beispiel für explizite Tool-Aufrufe
+
+<CodeGroup>
+
+```
+## Tool-Aufrufe
+
+1. Frage, ob der Benutzer eine Rückerstattung benötigt oder nur Informationen abrufen möchte
+  - Wenn der Benutzer eine Rückerstattung benötigt, rufe die Funktion transfer_to_support auf, um den Benutzer weiter zu unterstützen
+  - Wenn der Benutzer einen Ersatz benötigt, wechsle zum Ersatz-Status
+```
+
+
+```
+## Verfügbare Tools
+
+- **kalender_buchen**: Verwende dieses Tool, um Termine zu vereinbaren
+- **kundendaten_abrufen**: Verwende dieses Tool, um Kundendaten zu suchen
+- **anruf_weiterleiten**: Verwende dieses Tool, um Anrufe weiterzuleiten
+```
+
+</CodeGroup>
+
+## Best Practices für Famulor
+
+<CardGroup cols={2}>
+  <Card title="Sprachliche Anpassung" icon="globe" color="blue">
+    
+      - Verwende deutsche Begriffe und Ausdrücke
+      - Berücksichtige deutsche Geschäftsetikette
+      - Passe den Ton an Ihre Zielgruppe an
+    
+  </Card>
+  <Card title="Technische Integration" icon="function" color="green">
+    
+      - Integriere Famulor-spezifische Tools
+      - Nutze die verfügbaren Funktionen optimal
+      - Teste Prompts mit echten Anrufen
+    
+  </Card>
+</CardGroup>
+
+## Häufige Fehler vermeiden
+
+<Card title="Was Sie vermeiden sollten" icon="ball-pile" color="red">
+  
+  - **Zu lange Prompts** - LLMs können sich in zu langen Anweisungen verlieren
+  - **Widersprüchliche Anweisungen** - Stellen Sie sicher, dass alle Teile konsistent sind
+  - **Unklare Tool-Aufrufe** - Seien Sie explizit, wann und wie Tools verwendet werden sollen
+  - **Fehlende Beispiele** - Geben Sie konkrete Beispiele für erwartetes Verhalten
+  - **Überkomplexe Logik** - Teilen Sie komplexe Aufgaben in einfachere Schritte auf
+
+  
+</Card>
+
+## Testen und Optimieren
+
+<Card title="Schritte zum Testen" icon="play" color="purple">
+  
+  - **Schritt-für-Schritt testen** - Testen Sie jeden Abschnitt einzeln
+  - **Echte Anrufe simulieren** - Verwenden Sie verschiedene Szenarien
+  - **Feedback sammeln** - Hören Sie sich die Aufzeichnungen an
+  - **Iterativ verbessern** - Passen Sie basierend auf den Ergebnissen an
+  - **Performance überwachen** - Achten Sie auf Antwortzeiten und Qualität
+
+  
+</Card>
+
+## Hilfe und Support
+
+<Tip>
+  Unser Support-Team kann Ihnen bei der Erstellung und Optimierung Ihrer Prompts helfen.
+</Tip>
+
+<Card title="Support kontaktieren" icon="headphones" color="blue" href="mailto:support@famulor.io">
+  Benötigen Sie Hilfe beim Prompt Engineering? Kontaktieren Sie unser Support-Team.
+</Card>

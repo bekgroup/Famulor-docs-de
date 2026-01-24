@@ -1,0 +1,105 @@
+---
+title: "Kampagnen erstellen & verwalten"
+icon: "bullhorn"
+description: "Schritt-für-Schritt-Anleitung zum Erstellen und Verwalten ausgehender Anrufkampagnen, einschließlich Lead-Imports und Überwachung"
+---
+
+Eine ausgehende "Kampagne" bestimmt, wann, wie und an wen Anrufe gemacht werden.
+
+## 1. Kampagne einrichten
+
+1. **Gehen Sie zu Ausgehend / Kampagnen** in Ihrem Dashboard.
+2. Klicken Sie auf **Neue Kampagne erstellen**:
+   - **Name**: z.B. "Januar-Aktion," "Zahlungserinnerung," etc.
+   - **Assistent**: welcher KI-Assistent wird diese Anrufe bearbeiten?
+   - **Fenster**: wählen Sie das Zeitfenster für die Kampagne
+
+## 2. Telefonnummer-Pool einrichten
+
+<Tip>
+**Neu:** Sie können jetzt mehrere Telefonnummern einer Kampagne zuweisen, um die Anrufannahme-Rate zu erhöhen!
+</Tip>
+
+Famulor's Telefonnummer-Pool-Feature ermöglicht es Ihnen, mehrere ausgehende Nummern für eine Kampagne zu verwenden. Das System rotiert automatisch zwischen den zugewiesenen Nummern für jeden Anruf an Ihre Leads.
+
+### Vorteile der Nummern-Rotation
+
+- **Erhöhte Anrufannahme**: Leads gehen eher ran, wenn verschiedene Nummern verwendet werden
+- **Bessere Erreichbarkeit**: Vermeiden Sie, dass eine einzelne Nummer als Spam markiert wird
+- **Maximale Flexibilität**: Nutzen Sie lokale Nummern oder verschiedene Vorwahlen
+
+### So richten Sie den Telefonnummer-Pool ein
+
+1. **Beim Erstellen der Kampagne**:
+   - Wählen Sie im Kampagnen-Konfigurationsbereich die Option "Telefonnummern"
+   - Fügen Sie mehrere Telefonnummern aus Ihrem Nummern-Pool hinzu
+   - Speichern Sie die Kampagne
+
+2. **In bestehenden Kampagnen**:
+   - Öffnen Sie die Kampagnen-Übersicht
+   - Klicken Sie auf "Bearbeiten" bei der gewünschten Kampagne
+   - Weisen Sie zusätzliche Telefonnummern zu
+   - Speichern Sie die Änderungen
+
+3. **Automatische Rotation**:
+   - Bei jedem ausgehenden Anruf wählt das System automatisch eine andere Nummer aus Ihrem Pool
+   - Die Rotation erfolgt automatisch - keine manuelle Verwaltung erforderlich
+   - In der Kampagnen-Übersicht sehen Sie alle zugewiesenen Nummern auf einen Blick
+
+<Note>
+**Wichtig:** Stellen Sie sicher, dass alle zugewiesenen Telefonnummern aktiv und für ausgehende Anrufe freigeschaltet sind.
+</Note>
+
+## 3. Leads importieren
+
+- **CSV-Datei**: Laden Sie Telefonnummern hoch (plus zusätzliche Spalten, wie Name oder Kontonummer).
+- **Google Sheets**: Verbinden Sie über die No-Code-Plattform oder direkte Integration, um Leads zu ziehen.
+- **CRM**: Einige CRMs (HubSpot, GHL, etc.) können Leads direkt an famulor.de über API oder Automatisierung senden.
+
+## 4. Anruf-Wiederholungen & Planung
+
+- **Max. Wiederholungen**: z.B. versuchen Sie jeden Lead bis zu 2 Mal, wenn sie nicht antworten.
+- **Wiederholungsintervall**: Minuten/Stunden zwischen Wiederholungen.
+- **Zeitfenster**: z.B. nur zwischen 9:00 und 18:00 Uhr lokaler Zeit anrufen, um Leads nicht zu belästigen.
+
+## 5. Überwachung & Pausieren
+
+- Sobald die Kampagne live ist, passieren Anrufe automatisch während der erlaubten Stunden.
+- Sie können die Kampagne jederzeit **pausieren** oder **stoppen**, um Ihr Skript oder die Leads-Liste zu überarbeiten.
+
+## 6. Ergebnisse analysieren
+
+- Besuchen Sie **Kampagnen-Berichte**, um zu sehen:
+  - Wie viele Anrufe beantwortet vs. keine Antwort.
+  - Anzahl erfolgreicher vs. fehlgeschlagener Anrufe.
+  - Durchschnittliche Anrufdauer, etc.
+
+---
+
+**Hinweis:** Große Kampagnen mit Tausenden von Leads können parallel laufen, da KI parallele Anrufe bearbeiten kann. Überwachen Sie Ihre Minuten-Nutzung, um unerwartete Kosten zu vermeiden.
+
+---
+
+## Nächste Schritte
+
+<CardGroup cols={2}>
+<Card title="Skripte & Prompts" icon="script" href="/outbound-calls/scripts-and-prompts">
+Optimieren Sie Ihre Anrufskripte für bessere Ergebnisse
+</Card>
+<Card title="Anrufer-ID konfigurieren" icon="id-card" href="/outbound-calls/caller-id">
+Richten Sie Ihre Anrufer-ID für Kampagnen ein
+</Card>
+</CardGroup>
+
+<CardGroup cols={2}>
+<Card title="Massen-Wählen" icon="phone-volume" href="/outbound-calls/mass-dialing">
+Verwalten Sie große Anrufvolumen effizient
+</Card>
+<Card title="Automatisierung" icon="wand-magic-sparkles" href="/automation-platform/introduction">
+Automatisieren Sie Follow-up-Aktionen nach Anrufen
+</Card>
+</CardGroup>
+
+<Note>
+Für detaillierte Kampagnenanalyse siehe auch [Kostenabrechnung](/pricing/usage-based) und [Anruf-Insights](/inbound-calls/insights).
+</Note> 

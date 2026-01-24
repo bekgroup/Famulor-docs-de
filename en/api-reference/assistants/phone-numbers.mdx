@@ -1,0 +1,111 @@
+---
+title: "Verfügbare Telefonnummern abrufen"
+api: "GET https://app.famulor.de/api/user/assistants/phone-numbers"
+icon: "phone"
+description: "Alle verfügbaren Telefonnummern für die Assistenten-Zuweisung abrufen"
+---
+
+Dieser Endpunkt gibt eine Liste der Telefonnummern zurück, die dem authentifizierten Benutzer gehören und Assistenten zugewiesen werden können, mit optionaler Filterung nach Assistenten-Typ.
+
+### Query-Parameter
+
+<ParamField query="type" type="string">
+  Telefonnummern nach Assistenten-Typ filtern. Optionen: `inbound`, `outbound`
+</ParamField>
+
+### Antwort-Felder
+
+Die API gibt ein direktes Array von verfügbaren Telefonnummern zurück:
+
+<ResponseField name="array" type="array">
+  Array der verfügbaren Telefonnummern
+
+  <Expandable title="Telefonnummer-Eigenschaften">
+    <ResponseField name="id" type="integer">
+      Die eindeutige Kennung der Telefonnummer
+    </ResponseField>
+
+    <ResponseField name="phone_number" type="string">
+      Die Telefonnummer im E.164-Format
+    </ResponseField>
+
+    <ResponseField name="country_code" type="string">
+      Der Ländercode für die Telefonnummer
+    </ResponseField>
+
+    <ResponseField name="type_label" type="string">
+      Das menschenlesbare Typ-Label für die Telefonnummer
+    </ResponseField>
+
+    <ResponseField name="is_available" type="boolean">
+      Ob die Telefonnummer für die Zuweisung verfügbar ist (nicht aktuell einem Inbound-Assistenten zugewiesen)
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+### Hinweise
+
+- Nur Telefonnummern, die dem authentifizierten Benutzer gehören, werden zurückgegeben
+- Wenn `type=inbound` angegeben wird, werden Caller-ID-Nummern und bereits zugewiesene Nummern herausgefiltert
+- Das `is_available`-Feld zeigt an, ob die Nummer einem neuen Inbound-Assistenten zugewiesen werden kann
+- Telefonnummern werden im Values-Collection-Format zurückgegeben (indiziertes Array)
+- Verwenden Sie das `id`-Feld beim Zuweisen von Telefonnummern zu Assistenten
+
+<CodeGroup>
+```bash Alle verfügbaren Telefonnummern
+curl -H "Authorization: Bearer YOUR_API_TOKEN" \
+  "https://app.famulor.de/api/user/assistants/phone-numbers"
+```
+
+```bash Nur für Inbound-Assistenten verfügbare Nummern
+curl -H "Authorization: Bearer YOUR_API_TOKEN" \
+  "https://app.famulor.de/api/user/assistants/phone-numbers?type=inbound"
+```
+
+```bash Nur für Outbound-Assistenten verfügbare Nummern
+curl -H "Authorization: Bearer YOUR_API_TOKEN" \
+  "https://app.famulor.de/api/user/assistants/phone-numbers?type=outbound"
+```
+</CodeGroup>
+
+<ResponseExample>
+
+```json 200 Response
+[
+  {
+    "id": 2103,
+    "phone_number": "+491748236179",
+    "country_code": "DE",
+    "type_label": "Caller ID",
+    "is_available": true
+  },
+  {
+    "id": 2131,
+    "phone_number": "+4915792613301",
+    "country_code": "DE",
+    "type_label": "Caller ID",
+    "is_available": true
+  }
+]
+```
+
+```json Nur Inbound-verfügbare Nummern
+[
+  {
+    "id": 2103,
+    "phone_number": "+491748236179",
+    "country_code": "DE",
+    "type_label": "Caller ID",
+    "is_available": true
+  },
+  {
+    "id": 2131,
+    "phone_number": "+4915792613301",
+    "country_code": "DE",
+    "type_label": "Caller ID",
+    "is_available": true
+  }
+]
+```
+
+</ResponseExample>

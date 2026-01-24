@@ -1,0 +1,167 @@
+---
+title: "Telefonnummer kaufen"
+api: "POST https://app.famulor.de/api/user/phone-numbers/purchase"
+icon: "shopping-cart"
+description: "Kauft eine dedizierte Telefonnummer"
+---
+
+Dieser Endpunkt ermöglicht es Ihnen, eine Telefonnummer zu kaufen, die über den [Such-Endpunkt](/api-reference/phone-numbers/search) gefunden wurde. Die Plattform übernimmt automatisch Preisgestaltung, Abrechnung und Bereitstellung.
+
+<Note>
+Sie müssen eine gültige Zahlungsmethode hinterlegt haben, bevor Sie eine Telefonnummer kaufen können. Der Kauf erstellt ein monatliches Abonnement, das automatisch verlängert wird.
+</Note>
+
+### Request Body
+
+<ParamField body="phone_number" type="string" required>
+  Die zu kaufende Telefonnummer im E.164-Format (z.B. +14155551234). Muss eine Nummer sein, die vom Such-Endpunkt zurückgegeben wurde.
+</ParamField>
+
+### Antwort-Felder
+
+<ResponseField name="message" type="string">
+  Erfolgsmeldung
+</ResponseField>
+
+<ResponseField name="data" type="object">
+  Die Details der gekauften Telefonnummer
+  
+  <Expandable title="Daten-Eigenschaften">
+    <ResponseField name="id" type="integer">
+      Die eindeutige Kennung der Telefonnummer
+    </ResponseField>
+
+    <ResponseField name="phone_number" type="string">
+      Die Telefonnummer im E.164-Format
+    </ResponseField>
+
+    <ResponseField name="country_code" type="string">
+      Der ISO-Ländercode
+    </ResponseField>
+
+    <ResponseField name="type" type="string">
+      Der Telefonnummerntyp (immer `normal` für gekaufte Nummern)
+    </ResponseField>
+
+    <ResponseField name="sms_capable" type="boolean">
+      Ob die Nummer SMS unterstützt
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+### Funktionsweise
+
+1. **Suchen** - Verwenden Sie zuerst den [Such-Endpunkt](/api-reference/phone-numbers/search), um verfügbare Nummern zu finden
+2. **Kaufen** - Übermitteln Sie die gewünschte Telefonnummer an diesen Endpunkt
+3. **Automatische Verarbeitung** - Die Plattform:
+   * Validiert, dass die Nummer noch verfügbar ist
+   * Bestimmt den korrekten Preis basierend auf dem Land
+   * Erstellt ein monatliches Abonnement auf Ihrer Zahlungsmethode
+   * Stellt die Nummer bei unserem Telefonieanbieter bereit
+   * Erstellt den Telefonnummern-Datensatz in Ihrem Konto
+
+<Warning>
+Telefonnummern-Käufe sind nicht erstattungsfähig. Das Abonnement wird fortgesetzt, bis Sie die Nummer [freigeben](/api-reference/phone-numbers/release).
+</Warning>
+
+<CodeGroup>
+```bash cURL
+curl -X POST "https://app.famulor.de/api/user/phone-numbers/purchase" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "phone_number": "+14155551234"
+  }'
+```
+
+```javascript JavaScript
+const response = await fetch(
+  "https://app.famulor.de/api/user/phone-numbers/purchase",
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer YOUR_API_KEY",
+    },
+    body: JSON.stringify({
+      phone_number: "+14155551234",
+    }),
+  }
+);
+
+const data = await response.json();
+```
+
+```python Python
+import requests
+
+payload = {
+    "phone_number": "+14155551234",
+}
+
+response = requests.post(
+    "https://app.famulor.de/api/user/phone-numbers/purchase",
+    headers={
+        "Content-Type": "application/json",
+        "Authorization": "Bearer YOUR_API_KEY",
+    },
+    json=payload,
+    timeout=10,
+)
+
+print(response.json())
+```
+</CodeGroup>
+
+<ResponseExample>
+
+```json 201 Created
+{
+  "message": "Phone number purchased successfully.",
+  "data": {
+    "id": 123,
+    "phone_number": "+14155551234",
+    "country_code": "US",
+    "type": "normal",
+    "sms_capable": true
+  }
+}
+```
+
+```json 400 Already In Use
+{
+  "error": "This phone number is already in use."
+}
+```
+
+```json 400 Not Available
+{
+  "error": "This phone number is not available for purchase. Please search for available numbers first."
+}
+```
+
+```json 402 No Payment Method
+{
+  "error": "No payment method found. Please add a payment method to your account."
+}
+```
+
+```json 402 Payment Failed
+{
+  "error": "Payment failed. Please update your payment method."
+}
+```
+
+```json 422 Invalid Format
+{
+  "error": "Unable to parse phone number. Please provide a valid E.164 format number."
+}
+```
+
+```json 500 Provider Error
+{
+  "error": "Failed to purchase phone number from provider. Please contact support."
+}
+```
+
+</ResponseExample>

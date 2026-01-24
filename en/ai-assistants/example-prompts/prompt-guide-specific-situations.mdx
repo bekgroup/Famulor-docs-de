@@ -1,0 +1,527 @@
+---
+title: 'Prompt Guide für spezifische Situationen'
+icon: 'pause'
+description: 'Spezifische Prompt-Guides und Beispiele für häufige Situationen beim Aufbau eines Sprachassistenten'
+---
+
+# Prompt Guide für spezifische Situationen
+
+<Note>
+  Hier finden Sie spezifische Prompt-Guides und Beispiele für häufige Situationen, die Sie beim Aufbau eines Sprachassistenten mit Famulor antreffen könnten.
+</Note>
+
+## Telefonnummern aussprechen
+
+<Card
+  title="Verwende die Langsam sprechen Funktion"
+  icon="volume-2"
+  color="blue">
+  Wir nutzen die "Langsam sprechen" Funktion, um Pausen zwischen Wörtern hinzuzufügen. Für weitere Informationen siehe die <a href="/ai-assistants/example-prompts/pause-or-read-slowly">Dokumentation zur Sprachsteuerbarkeit</a>.
+  Es wird empfohlen, einen Prompt als Richtlinie für den LLM zu verwenden. Dies stellt sicher, dass der Assistent konsistent mit dem korrekten Format antwortet, auch wenn Kunden die Telefonnummer überprüfen.
+</Card>
+
+### Beispiel für Telefonnummer-Aussprache
+
+<CodeGroup>
+  <CodeGroupItem title="Prompt für Telefonnummern">
+    ```markdown
+    Wenn Menschen nach Ihrer Telefonnummer fragen, Ihre Telefonnummer ist 03012345678
+
+    ## Richtlinie
+    Beim Aussprechen der Telefonnummer transformiere das Format wie folgt:
+    - Eingabeformate wie 03012345678, (030) 123-45678 oder 030-123-45678
+    - Sollte ausgesprochen werden als: "null drei null - eins zwei drei - vier fünf sechs sieben acht"
+    - Wichtig: Lassen Sie den Platz um den Bindestrich beim Sprechen nicht weg
+    ```
+  </CodeGroupItem>
+  
+  <CodeGroupItem title="Deutsche Aussprache">
+    ```markdown
+    ## Deutsche Telefonnummern
+    
+    Für deutsche Telefonnummern:
+    - 0 wird als "null" ausgesprochen
+    - Verwende Bindestriche für bessere Verständlichkeit
+    - Beispiel: 030-123-45678 → "null drei null - eins zwei drei - vier fünf sechs sieben acht"
+    ```
+  </CodeGroupItem>
+</CodeGroup>
+
+## E-Mail-Adressen buchstabieren
+
+<Card
+  title="E-Mail-Adressen korrekt aussprechen"
+  icon="mail"
+  color="green">
+  E-Mail-Adressen müssen buchstabiert werden, um Verwirrung zu vermeiden. Hier ist der korrekte Ansatz:
+</Card>
+
+### Beispiel für E-Mail-Buchstabierung
+
+<CodeGroup>
+  <CodeGroupItem title="E-Mail-Format">
+    ```markdown
+    ## Wie man buchstabiert
+    Das mögliche E-Mail-Format ist name@unternehmen.de
+    
+    Um eine E-Mail-Adresse zu buchstabieren:
+    n-a-m-e-@-u-n-t-e-r-n-e-h-m-e-n-punkt-de
+    
+    @ wird als "at" ausgesprochen
+    ```
+  </CodeGroupItem>
+  
+  <CodeGroupItem title="Deutsche E-Mail-Adressen">
+    ```markdown
+    ## Deutsche E-Mail-Adressen
+    
+    Für deutsche E-Mail-Adressen:
+    - Verwende deutsche Aussprache für Buchstaben
+    - Beispiel: info@famulor.de → "i-n-f-o-at-f-a-m-u-l-o-r-punkt-d-e"
+    - Punkt wird als "punkt" ausgesprochen
+    ```
+  </CodeGroupItem>
+</CodeGroup>
+
+## Websites aussprechen
+
+<Card
+  title="Website-URLs korrekt aussprechen"
+  icon="globe"
+  color="purple">
+  Website-URLs müssen klar und verständlich ausgesprochen werden. Hier ist der richtige Ansatz:
+</Card>
+
+### Beispiel für Website-Aussprache
+
+<CodeGroup>
+  <CodeGroupItem title="Allgemeine Richtlinien">
+    ```markdown
+    Wann immer Sie auf eine Website-URL stoßen, bitte:
+    
+    1. Identifizieren Sie jedes Segment des Domainnamens
+    2. Wenn ein Segment aus einzelnen Buchstaben besteht (z.B. "NK"), sprechen Sie jeden Buchstaben in seiner gesprochenen Form auf Deutsch aus (z.B. "N" → "en", "K" → "ka")
+    3. Wenn ein Segment ein erkennbares Wort ist (z.B. "laundry"), sprechen Sie es normal als dieses Wort aus
+    4. Sprechen Sie "punkt" vor der Angabe der Top-Level-Domain aus (z.B. "punkt de", "punkt net", "punkt org", etc.)
+    ```
+  </CodeGroupItem>
+  
+  <CodeGroupItem title="Deutsche Beispiele">
+    ```markdown
+    ## Deutsche Beispiele
+    
+    "famulor.de" → "f-a-m-u-l-o-r punkt de"
+    "testfirma.net" → "t-e-s-t-f-i-r-m-a punkt net"
+    "beispiel.org" → "b-e-i-s-p-i-e-l punkt org"
+    
+    Halten Sie sich genau an diese phonetische Aufschlüsselung, um Klarheit und korrekte Aussprache für Kunden zu gewährleisten.
+    ```
+  </CodeGroupItem>
+</CodeGroup>
+
+## Uhrzeiten aussprechen
+
+<Card
+  title="Uhrzeiten korrekt aussprechen"
+  icon="clock"
+  color="orange">
+  Uhrzeiten müssen in einem verständlichen Format ausgesprochen werden. Hier sind die Richtlinien:
+</Card>
+
+### Beispiel für Uhrzeit-Aussprache
+
+<CodeGroup>
+  <CodeGroupItem title="Englische Uhrzeiten">
+    ```markdown
+    ## Für Uhrzeiten, Zahlen und Daten
+    
+    Für 1:00 PM, sagen Sie "One PM"
+    Für 3:30 PM, sagen Sie "Three thirty PM"
+    Für 8:45 AM, sagen Sie "Eight forty-five AM"
+    
+    Sagen Sie niemals "O'clock", stattdessen sagen Sie einfach "O-Clock"
+    Sagen Sie immer "AM" oder "PM"
+    ```
+  </CodeGroupItem>
+  
+  <CodeGroupItem title="Deutsche Uhrzeiten">
+    ```markdown
+    ## Für Uhrzeiten
+    
+    Für 13:00 Uhr, sagen Sie "Dreizehn Uhr" oder "Ein Uhr nachmittags"
+    Für 15:30 Uhr, sagen Sie "Fünfzehn Uhr dreißig" oder "Drei Uhr dreißig nachmittags"
+    Für 8:45 Uhr, sagen Sie "Acht Uhr fünfundvierzig" oder "Viertel vor neun morgens"
+    
+    Verwenden Sie "morgens" für AM und "nachmittags" für PM
+    ```
+  </CodeGroupItem>
+  
+  <CodeGroupItem title="Alternative Formate">
+    ```markdown
+    ## Alternative Formate
+    
+    Sie können auch sagen:
+    - "Halb neun" für 8:30 Uhr
+    - "Viertel nach zwei" für 14:15 Uhr
+    - "Drei viertel vier" für 15:45 Uhr
+    
+    Wählen Sie das Format, das für Ihre Kunden am verständlichsten ist.
+    ```
+  </CodeGroupItem>
+</CodeGroup>
+
+## Warten lassen / Keine Antwort erforderlich
+
+<Card
+  title="Kunden warten lassen"
+  icon="pause"
+  color="yellow">
+  Manchmal müssen Sie Kunden warten lassen oder es ist keine Antwort erforderlich. Famulor hat eine spezielle Funktion dafür:
+</Card>
+
+### Für nicht-reasoning Modelle
+
+<CodeGroup>
+  <CodeGroupItem title="NO_RESPONSE_NEEDED verwenden">
+    ```markdown
+    ## Warten lassen
+    
+    Famulor hat eine hardcodierte Stop-Sequenz im LLM: `NO_RESPONSE_NEEDED`. 
+    Wann immer diese Sequenz erkannt wird, stoppt die Antwortgenerierung.
+    
+    Sie können den LLM anweisen, nichts auszugeben, indem Sie schreiben:
+    
+    - Wenn der Benutzer sagt "einen Moment" oder "Moment bitte", antworte genau mit: "NO_RESPONSE_NEEDED"
+    ```
+  </CodeGroupItem>
+  
+  <CodeGroupItem title="Beispiel">
+    ```markdown
+    ## Beispiel-Implementierung
+    
+    Wenn der Kunde sagt:
+    - "einen Moment"
+    - "warte kurz"
+    - "Moment bitte"
+    
+    Dann antworte genau: "NO_RESPONSE_NEEDED"
+    
+    Die Antwortgenerierung stoppt und der Assistent wartet auf weitere Eingaben.
+    ```
+  </CodeGroupItem>
+</CodeGroup>
+
+### Für Reasoning Modelle
+
+<Warning>
+  Reasoning-Modelle wie `gpt-5` oder `gpt-5.1` unterstützen diese Funktion nicht. Sie müssen die Prompts anders gestalten, um dies zu erreichen.
+</Warning>
+
+<CodeGroup>
+  <CodeGroupItem title="Alternative für Reasoning Modelle">
+    ```markdown
+    ## Warten lassen für Reasoning Modelle
+    
+    Wenn der Benutzer sagt "einen Moment" oder ähnliches, antworte einfach nicht.
+    Reagiere nicht auf Wartesignale, sondern warte auf weitere Anweisungen.
+    ```
+  </CodeGroupItem>
+  
+  <CodeGroupItem title="Beispiel-Prompt">
+    ```markdown
+    ## Beispiel-Prompt
+    
+    Wenn der Benutzer sagt:
+    - "einen Moment"
+    - "warte kurz"
+    - "Moment bitte"
+    
+    Dann antworte NICHT. Warte einfach, bis der Benutzer weiter spricht.
+    ```
+  </CodeGroupItem>
+</CodeGroup>
+
+## Text für Sprache normalisieren
+
+<Card
+  title="Text für Sprache normalisieren"
+  icon="type"
+  color="indigo">
+  Normalisieren Sie bestimmte Teile des Textes (Zahlen, Währung, Datum, etc.) in ihre gesprochene Form für eine konsistentere Sprachsynthese. Manchmal können TTS-Modelle nicht normalisierten Text falsch lesen.
+</Card>
+
+### Beispiel für Text-Normalisierung
+
+<CodeGroup>
+  <CodeGroupItem title="Vor der Normalisierung">
+    ```markdown
+    ## Vor der Normalisierung
+    
+    Rufen Sie meine Nummer 03012345678 am 5. Juli 2024 für die 24,12 € Zahlung an
+    ```
+  </CodeGroupItem>
+  
+  <CodeGroupItem title="Nach der Normalisierung">
+    ```markdown
+    ## Nach der Normalisierung
+    
+    Rufen Sie meine Nummer null drei null eins zwei drei vier fünf sechs sieben acht am fünften Juli zweiundzwanzig vierundzwanzig für die vierundzwanzig Euro zwölf Cent Zahlung an
+    ```
+  </CodeGroupItem>
+</CodeGroup>
+
+<Note>
+  Diese Funktion fügt dem gesamten Prozess eine kleine Latenz (~100ms) hinzu.
+</Note>
+
+## Sprachunterstützung
+
+<Card
+  title="Unterstützte Sprachen"
+  icon="globe"
+  color="teal">
+  Derzeit wird Sprachnormalisierung für folgende Sprachen unterstützt:
+  
+    - **Deutsch** - Vollständige Unterstützung
+    - **Englisch** - Vollständige Unterstützung
+    - **Spanisch** - Vollständige Unterstützung
+    - **Französisch** - Vollständige Unterstützung
+  
+  Andere Sprachen führen zu einem No-Op (Text wird nicht modifiziert) für diesen Schritt.
+</Card>
+
+<Card
+  title="Spracheinstellungen"
+  icon="settings"
+  color="blue">
+  Wenn Sie eine Sprache auswählen, die nicht mehrsprachig ist, wird dieser Sprachcode verwendet, um den Text zu normalisieren (z.B. wird 1 zu "eins" normalisiert, wenn Sie Deutsch verwenden).
+  Wenn Sie mehrsprachig auswählen, wird die Sprache automatisch basierend auf dem generierten Text erkannt und entsprechend normalisiert.
+</Card>
+
+## Prompt Engineering Guide
+
+<Card
+  title="Best Practices für effektive Prompts"
+  icon="book-open"
+  color="blue">
+  Best Practices für das Schreiben effektiver Prompts, die zuverlässige und natürlich klingende KI-Telefonassistenten erstellen.
+</Card>
+
+### Einführung
+
+Prompt Engineering ist die Grundlage für die Erstellung effektiver KI-Telefonassistenten. Ein gut gestalteter Prompt bestimmt, wie Ihr Assistent Situationen interpretiert, auf Benutzer reagiert und Edge Cases behandelt. Dieser Guide bietet bewährte Strategien für das Schreiben von Prompts, die Assistenten zuverlässig befolgen können.
+
+<Note>
+  Dieser Guide konzentriert sich auf allgemeine Prompt-Engineering-Prinzipien. Für agentenspezifische Implementierung:
+  
+  * **Single/Multi Prompt Agents**: Wenden Sie diese Prinzipien direkt in Ihren Prompts an
+  * **Conversation Flow Agents**: Verwenden Sie diese Prinzipien innerhalb einzelner Knoten-Anweisungen
+</Note>
+
+### Best Practice 1: Verwenden Sie strukturierte Prompts
+
+Teilen Sie große Prompts in fokussierte Abschnitte auf, um die Organisation und das LLM-Verständnis zu verbessern. Dieser strukturierte Ansatz bietet mehrere Vorteile:
+
+* **Wiederverwendbarkeit**: Abschnitte können über verschiedene Agenten hinweg angepasst werden
+* **Wartbarkeit**: Einfaches Aktualisieren spezifischer Verhaltensweisen ohne Beeinflussung anderer
+* **Klarheit**: LLMs verarbeiten strukturierte Informationen genauer
+
+#### Empfohlene Prompt-Struktur
+
+```markdown
+## Identität
+
+Du bist ein freundlicher KI-Assistent für [Firmenname].
+
+Deine Rolle ist [spezifischer Zweck].
+
+Du hast Expertise in [relevanten Bereichen].
+
+## Stil-Richtlinien
+
+Sei prägnant: Halte Antworten unter 2 Sätzen, es sei denn, du erklärst komplexe Themen.
+
+Sei gesprächig: Verwende natürliche Sprache, Kontraktionen und erkenne an, was der Anrufer sagt.
+
+Sei empathisch: Zeige Verständnis für die Situation des Anrufers.
+
+## Antwort-Richtlinien
+
+Gib Daten in gesprochener Form zurück: Sage "fünfzehnten Januar" nicht "15.01".
+
+Stelle eine Frage auf einmal: Vermeide es, den Anrufer mit mehreren Fragen zu überfordern.
+
+Bestätige das Verständnis: Paraphrasiere wichtige Informationen zurück zum Anrufer.
+
+## Aufgaben-Anweisungen
+
+[Spezifische Schritte, die der Assistent befolgen soll]
+
+## Einwandbehandlung
+
+Wenn der Anrufer sagt, dass er nicht interessiert ist: "Ich verstehe. Gibt es etwas Spezifisches..."
+
+Wenn der Anrufer frustriert ist: "Ich verstehe Ihre Frustration, lassen Sie mich helfen, dies zu lösen..."
+```
+
+### Best Practice 2: Verwenden Sie Conversation Flow für komplexe Aufgaben
+
+Wenn Ihr Assistent komplexe Logik oder mehrere Tools handhaben muss, sollten Sie Conversation Flow Agents verwenden, anstatt alles in einem einzelnen Prompt zu verwalten.
+
+#### Wann zu Conversation Flow wechseln:
+
+* **Mehrere Entscheidungszweige**: Mehr als 3-4 bedingte Pfade
+* **Tool-Koordination**: Verwendung von 5+ verschiedenen Funktionen/Tools
+* **Zustandsverwaltung**: Verfolgung mehrerer Variablen während des Gesprächs
+* **Zuverlässigkeitsbedenken**: Einzelner Prompt zeigt inkonsistentes Verhalten
+
+#### Vorteile von Conversation Flow:
+
+* Jeder Knoten konzentriert sich auf eine spezifische Aufgabe
+* Deterministischer Tool-Aufruf und Übergänge
+* Einfacher zu debuggen und einzelne Schritte zu optimieren
+* Vorhersehbareres Assistentenverhalten
+
+### Best Practice 3: Explizite Tool-Aufruf-Anweisungen
+
+<Note>
+  Dieser Abschnitt gilt nur für Single/Multi Prompt Agents. Conversation Flow Agents handhaben Funktionsaufrufe deterministisch über ihre Knotenkonfiguration.
+</Note>
+
+#### Die Herausforderung
+
+LLMs haben oft Schwierigkeiten zu bestimmen, wann Tools basierend nur auf Tool-Beschreibungen aufgerufen werden sollen. Ohne explizite Anweisungen können Agenten:
+
+* Tools zu unpassenden Zeiten aufrufen
+* Tools nicht aufrufen, wenn sie benötigt werden
+* Das falsche Tool für eine Situation verwenden
+
+#### Lösung: Definieren Sie klare Trigger
+
+Geben Sie immer genaue Bedingungen für die Tool-Verwendung in Ihren Prompts an. Verweisen Sie auf Tools mit ihren genauen Namen.
+
+##### Beispiel: Kundenservice-Agent
+
+```markdown
+## Tool-Verwendungsanweisungen
+
+1. Sammle zunächst Informationen über das Problem des Kunden.
+
+2. Bestimme den Typ der Anfrage:
+
+   - Wenn der Kunde "Rückerstattung" oder "Geld zurück" erwähnt:
+
+     → Rufe die Funktion `transfer_to_support` sofort auf
+
+   - Wenn der Kunde den Bestellstatus benötigt:
+
+     → Rufe die Funktion `check_order_status` mit order_id auf
+
+   - Wenn der Kunde seine Bestellung ändern möchte:
+
+     → Rufe zuerst `check_order_status` auf
+
+     → Dann wechsle zum Änderungs-Status
+
+3. Nach dem Abrufen von Informationen:
+
+   - Fasse immer zusammen, was du gefunden hast
+
+   - Frage, ob sie zusätzliche Hilfe benötigen
+
+   - Wenn ja, bestimme die nächste angemessene Aktion
+```
+
+#### Best Practices für Tool-Anweisungen
+
+1. **Verwenden Sie Trigger-Wörter**: Listen Sie spezifische Wörter/Phrasen auf, die Tool-Aufrufe auslösen sollten
+2. **Definieren Sie Sequenzen**: Geben Sie an, wann Tools in Reihenfolge aufgerufen werden sollen
+3. **Setzen Sie Grenzen**: Klären Sie, wann bestimmte Tools NICHT aufgerufen werden sollen
+4. **Bieten Sie Kontext**: Erklären Sie, warum jedes Tool aufgerufen wird
+
+## Praktische Beispiele für Famulor
+
+<Card
+  title="Famulor-spezifische Anpassungen"
+  icon="star"
+  color="red">
+  Hier sind einige spezifische Anpassungen für Famulor:
+</Card>
+
+### Beispiel für einen vollständigen Prompt
+
+<CodeGroup>
+  <CodeGroupItem title="Vollständiger Beispiel-Prompt">
+    ```markdown
+    # Famulor Assistent - Prompt für spezifische Situationen
+    
+    ## Identität
+    Du bist ein professioneller Famulor KI-Assistent, der Kunden bei Telefonanrufen unterstützt.
+    
+    ## Aussprache-Richtlinien
+    
+    ### Telefonnummern
+    - Verwende deutsche Aussprache
+    - Beispiel: 030-123-45678 → "null drei null - eins zwei drei - vier fünf sechs sieben acht"
+    
+    ### E-Mail-Adressen
+    - Buchstabiere jeden Teil
+    - Beispiel: info@famulor.de → "i-n-f-o-at-f-a-m-u-l-o-r-punkt-d-e"
+    
+    ### Websites
+    - Spreche jeden Buchstaben einzeln aus
+    - Beispiel: famulor.de → "f-a-m-u-l-o-r-punkt-d-e"
+    
+    ### Uhrzeiten
+    - Verwende deutsche Zeitformate
+    - Beispiel: 14:30 → "Vierzehn Uhr dreißig"
+    
+    ## Verhalten
+    - Sei höflich und professionell
+    - Verwende die Pause-Funktion bei Bedarf
+    - Normalisiere Zahlen und Daten für bessere Verständlichkeit
+    ```
+  </CodeGroupItem>
+</CodeGroup>
+
+## Testen und Optimieren
+
+<Card
+  title="Testen Sie Ihre Prompts"
+  icon="play"
+  color="green">
+  
+    - **Audio-Tests durchführen** - Hören Sie sich die Aussprache an
+    - **Verschiedene Szenarien testen** - Testen Sie alle spezifischen Situationen
+    - **Kundenfeedback sammeln** - Fragen Sie nach der Verständlichkeit
+    - **Iterativ verbessern** - Passen Sie basierend auf den Ergebnissen an
+  
+</Card>
+
+## Hilfe und Support
+
+<Tip>
+  Unser Support-Team kann Ihnen bei der Anpassung Ihrer Prompts für spezifische Situationen helfen.
+</Tip>
+
+<Card
+  title="Support kontaktieren"
+  icon="headphones"
+  color="blue"
+  href="mailto:support@famulor.io">
+  Benötigen Sie Hilfe bei der Anpassung Ihrer Prompts? Kontaktieren Sie unser Support-Team.
+</Card>
+
+## Nächste Schritte
+
+<Card
+  title="Weiterführende Ressourcen"
+  icon="arrow-right"
+  color="purple">
+  
+    - Schauen Sie sich unseren <a href="/ai-assistants/example-prompts/general-prompt-engineering-guide">Allgemeinen Prompt Engineering Guide</a> an
+    - Entdecken Sie unsere **Prompt-Vorlagen** im Dashboard
+    - Lernen Sie mehr über <a href="/ai-assistants/example-prompts/pause-or-read-slowly">Sprachsteuerbarkeit</a>
+    - Testen Sie Ihre Prompts mit **Audio-Tests**
+  
+</Card>

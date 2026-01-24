@@ -1,0 +1,73 @@
+---
+title: "Inbound-Webhook deaktivieren"
+api: "POST https://app.famulor.de/api/user/assistants/disable-inbound-webhook"
+icon: "ban"
+description: "Inbound-Webhook-Benachrichtigungen für einen bestimmten Assistenten deaktivieren"
+---
+
+Dieser Endpunkt deaktiviert Inbound-Webhook-Benachrichtigungen für einen Assistenten und stoppt die Zustellung von Echtzeit-Updates über abgeschlossene eingehende Anrufe und Daten.
+
+### Request Body
+
+<ParamField body="assistant_id" type="integer" required>
+  Die ID des Assistenten, für den der Webhook deaktiviert werden soll
+</ParamField>
+
+### Response
+
+<ResponseField name="message" type="string">
+  Erfolgsmeldung, die bestätigt, dass der Webhook deaktiviert wurde
+</ResponseField>
+
+<ResponseField name="data" type="array">
+  Leeres Array (für zukünftige Verwendung reserviert)
+</ResponseField>
+
+### Fehler-Responses
+
+<ResponseField name="message" type="string">
+  Fehlermeldung, wenn der Assistent nicht gefunden wurde oder nicht dem authentifizierten Benutzer gehört
+</ResponseField>
+
+<ResponseField name="errors" type="object">
+  Detaillierte Validierungsfehler für jedes Feld
+</ResponseField>
+
+<CodeGroup>
+```bash Inbound-Webhook deaktivieren
+curl -X POST "https://app.famulor.de/api/user/assistants/disable-inbound-webhook" \
+  -H "Authorization: Bearer YOUR_API_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "assistant_id": 123
+  }'
+```
+</CodeGroup>
+
+<ResponseExample>
+
+```json 200 Success
+{
+  "message": "Inbound webhook disabled successfully",
+  "data": []
+}
+```
+
+```json 404 Not Found
+{
+  "message": "Assistant not found or does not belong to the authenticated user"
+}
+```
+
+```json 422 Validation Error
+{
+  "message": "The given data was invalid.",
+  "errors": {
+    "assistant_id": [
+      "The assistant id field is required."
+    ]
+  }
+}
+```
+
+</ResponseExample>

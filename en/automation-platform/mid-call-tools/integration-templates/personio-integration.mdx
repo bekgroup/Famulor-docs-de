@@ -1,0 +1,82 @@
+---
+title: "Personio Integration"
+description: "Automatischer Zugriff auf Mitarbeiterdaten über Personio für HR-Anfragen und interne Kommunikation während Telefongesprächem"
+icon: "users"
+---
+
+# Personio Integration Template
+
+Integrieren Sie Personio HR-Management in Ihre Mid-call Actions für nahtlosen Zugriff auf Mitarbeiterdaten, Urlaubsstatus und Organisationsinformationen während interner und externer Gespräche.
+
+## Überblick & Funktionen
+
+<CardGroup cols={2}>
+  <Card title="HR-Daten-Zugriff" icon="address-book">
+    - Echtzeit-Mitarbeiterdaten-Abfrage
+    - Abteilungs- und Positionsinformationen
+    - Kontaktdaten und Erreichbarkeiten
+    - Organisationsstruktur-Navigation
+  </Card>
+  <Card title="HR-Service-Automation" icon="headset">
+    - Schnelle Mitarbeiter-Verifizierung
+    - Urlaubsstatus und Abwesenheiten
+    - Personalverwaltungs-Support
+    - Compliance und Datenschutz-Integration
+  </Card>
+</CardGroup>
+
+## Personio API Setup
+
+### Konfiguration im Famulor Interface
+
+<Tabs>
+  <Tab title="Werkzeugdetails">
+    | Feld | Wert |
+    |------|------|
+    | **Name*** | `Personio Mitarbeiter abrufen` |
+    | **Beschreibung** | "Ruft Mitarbeiterdaten aus Personio ab für HR-Support und interne Kommunikation" |
+    | **Funktionsname*** | `get_personio_employee` |
+    | **Funktionsbeschreibung*** | "Ruft Mitarbeiterdaten aus Personio ab. Verwenden Sie dies für HR-Anfragen, Mitarbeiter-Verifizierung oder interne Koordination." |
+    | **HTTP-Methode** | `GET` |
+    | **Timeout (ms)** | `5000` |
+    | **Endpoint*** | `https://api.personio.de/v1/company/employees/{employee_id}` |
+  </Tab>
+  
+  <Tab title="Header-Konfiguration">
+    ```json
+    {
+      "Authorization": "Bearer {{PERSONIO_TOKEN}}",
+      "X-Personio-Partner-ID": "{{PERSONIO_PARTNER_ID}}",
+      "Content-Type": "application/json"
+    }
+    ```
+  </Tab>
+</Tabs>
+
+### Parameter-Schema
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "employee_id": {
+      "type": "integer",
+      "description": "Personio Mitarbeiter-ID"
+    }
+  },
+  "required": ["employee_id"]
+}
+```
+
+### Response-Mapping
+
+```json
+{
+  "name": "data.attributes.first_name.value",
+  "department": "data.attributes.department.value", 
+  "position": "data.attributes.position.value",
+  "email": "data.attributes.email.value"
+}
+```
+
+---

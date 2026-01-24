@@ -1,0 +1,77 @@
+---
+title: "Zoho Desk Integration"
+description: "Automatische Support-Ticket-Erstellung in Zoho Desk für strukturiertes Customer-Service-Management"
+icon: "ticket"
+---
+
+# Zoho Desk Integration Template
+
+## Konfiguration im Famulor Interface
+
+<Tabs>
+  <Tab title="Werkzeugdetails">
+    | **Name*** | `Zoho Desk Ticket` |
+    | **Funktionsname*** | `create_zoho_ticket` |
+    | **HTTP-Methode** | `POST` |
+    | **Endpoint*** | `https://desk.zoho.eu/api/v1/tickets` |
+    | **Timeout (ms)** | `5000` |
+  </Tab>
+  
+  <Tab title="Request Body">
+    ```json
+    {
+      "subject": "{subject}",
+      "departmentId": "{department_id}",
+      "email": "{email}",
+      "phone": "{phone}",
+      "description": "{description}",
+      "priority": "{priority}",
+      "category": "{category}"
+    }
+    ```
+  </Tab>
+</Tabs>
+
+### Parameter-Schema
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "subject": {
+      "type": "string",
+      "description": "Ticket-Betreff"
+    },
+    "department_id": {
+      "type": "string",
+      "description": "Abteilungs-ID"
+    },
+    "email": {
+      "type": "string",
+      "description": "Kunden-Email"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Telefonnummer"
+    },
+    "description": {
+      "type": "string",
+      "description": "Problembeschreibung"
+    },
+    "priority": {
+      "type": "string",
+      "enum": ["Low", "Medium", "High", "Urgent"],
+      "description": "Priorität"
+    },
+    "category": {
+      "type": "string",
+      "description": "Kategorie"
+    }
+  },
+  "required": ["subject", "description", "email"]
+}
+```
+
+**Success-Template**: `"Ticket #{{ticketNumber}} erstellt: {{subject}}. Ein Agent wird sich in Kürze darum kümmern."`
+
+---

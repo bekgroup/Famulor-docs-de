@@ -1,0 +1,69 @@
+---
+title: "Lead erstellen"
+api: "POST https://app.famulor.de/api/user/lead"
+icon: "user-plus"
+description: "Einen neuen Lead im Famulor-System erstellen"
+---
+
+Dieser Endpunkt ermöglicht es Ihnen, einen neuen Lead im Famulor-System zu erstellen.
+
+### Anfrage-Body
+
+<ParamField body="phone_number" type="string" required>
+  Die Telefonnummer des Leads im E.164-Format (z.B. +1234567890)
+</ParamField>
+
+<ParamField body="campaign_id" type="integer" required>
+  Die ID der Kampagne, für die der Lead erstellt werden soll
+</ParamField>
+
+<ParamField body="variables" type="array">
+  Die Variablen, die an den Lead weitergegeben werden sollen
+</ParamField>
+
+<ParamField body="allow_dupplicate" type="boolean">
+  Ob doppelte Leads in einer Kampagne erlaubt sind.
+</ParamField>
+
+### Antwort-Felder
+
+<ResponseField name="message" type="string">
+  Die Nachricht der Antwort
+</ResponseField>
+
+<ResponseField name="data" type="object">
+  Die Daten der Antwort
+</ResponseField>
+
+<ResponseField name="data.id" type="string">
+  Die ID des Leads
+</ResponseField>
+
+<CodeGroup>
+```json Request
+{
+  "phone_number": "+1234567890",
+  "campaign_id": 1,
+  "variables": [
+    {
+      "customer_name": "John Doe",
+      "email": "john.doe@example.com"
+    }
+  ],
+  "allow_dupplicate": false
+}
+```
+</CodeGroup>
+
+<ResponseExample>
+
+```json 200 Response
+{
+  "message": "Lead erfolgreich erstellt",
+  "data": {
+    "id": "1234569"
+  }
+}
+```
+
+</ResponseExample> 

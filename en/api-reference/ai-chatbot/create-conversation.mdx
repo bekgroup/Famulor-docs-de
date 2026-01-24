@@ -1,0 +1,172 @@
+---
+title: "Conversation erstellen"
+api: "POST /conversations"
+description: "Neue Chat-Session mit einem KI-Assistenten starten"
+---
+
+Erstelle eine neue Conversation mit deinem Famulor KI-Assistenten. Über diesen Endpoint startest du eine Widget- oder Test-Conversation und erhältst den initialen Verlauf.
+
+### Request Body
+
+<ParamField body="assistant_id" type="string" required>
+  UUID des Assistenten, der die Conversation übernehmen soll
+</ParamField>
+
+<ParamField body="type" type="string" default="widget">
+  Conversation-Typ. Optionen: `widget` (kostenpflichtig) oder `test` (kostenlos für Entwicklung)
+</ParamField>
+
+<ParamField body="variables" type="object" optional>
+  Individuelle Variablen, die in den Assistenten-Kontext injiziert werden (zugreifbar via `{{variable_name}}`)
+  
+  <Expandable title="variables examples">
+    <ParamField body="customer_name" type="string">
+      Name für Begrüßung oder Personalisierung
+    </ParamField>
+
+    <ParamField body="company" type="string">
+      Firmenname für Antworten
+    </ParamField>
+
+    <ParamField body="source" type="string">
+      Traffic- oder Seitenquelle (z. B. `pricing_page`)
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+### Request Examples
+
+<CodeGroup>
+```bash cURL
+curl -X POST "https://app.famulor.de/api/conversations" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -d '{
+    "assistant_id": "550e8400-e29b-41d4-a716-446655440000",
+    "type": "widget",
+    "variables": {
+      "customer_name": "John Smith",
+      "company": "Acme Corp",
+      "source": "pricing_page"
+    }
+  }'
+```
+
+```javascript JavaScript
+const response = await fetch("https://app.famulor.de/api/conversations", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: "Bearer YOUR_API_KEY",
+  },
+  body: JSON.stringify({
+    assistant_id: "550e8400-e29b-41d4-a716-446655440000",
+    type: "widget",
+    variables: {
+      customer_name: "John Smith",
+      company: "Acme Corp",
+      source: "pricing_page",
+    },
+  }),
+});
+
+const data = await response.json();
+```
+
+```python Python
+import requests
+
+payload = {
+    "assistant_id": "550e8400-e29b-41d4-a716-446655440000",
+    "type": "widget",
+    "variables": {
+        "customer_name": "John Smith",
+        "company": "Acme Corp",
+        "source": "pricing_page",
+    },
+}
+
+response = requests.post(
+    "https://app.famulor.de/api/conversations",
+    headers={
+        "Content-Type": "application/json",
+        "Authorization": "Bearer YOUR_API_KEY",
+    },
+    json=payload,
+    timeout=10,
+)
+
+print(response.json())
+```
+</CodeGroup>
+
+### Response Fields
+
+<ResponseField name="status" type="boolean" required>
+  Zeigt an, ob die Anfrage erfolgreich war
+</ResponseField>
+
+<ResponseField name="conversation_id" type="string" required>
+  UUID der erstellten Conversation; für weitere Nachrichten nutzen
+</ResponseField>
+
+<ResponseField name="history" type="array">
+  Initialer Conversation-Verlauf. Leer, falls der Assistent keine Startnachricht hat.
+  
+  <Expandable title="history items">
+    <ResponseField name="role" type="string">
+      Nachrichtenrolle (`assistant` oder `user`)
+    </ResponseField>
+
+    <ResponseField name="content" type="string">
+      Nachrichtentext
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+### Response Examples
+
+<ResponseExample>
+
+```json 200 Success
+{
+  "status": true,
+  "conversation_id": "7c9e6679-7425-40de-944b-e07fc1f90ae7",
+  "history": [
+    {
+      "role": "assistant",
+      "content": "Hello John Smith! Welcome to Acme Corp support. How can I help you today?"
+    }
+  ]
+}
+```
+
+```json 200 Success (no initial message)
+{
+  "status": true,
+  "conversation_id": "7c9e6679-7425-40de-944b-e07fc1f90ae7",
+  "history": []
+}
+```
+
+```json 404 Assistant Not Found
+{
+  "status": false,
+  "error": "Assistant not found"
+}
+```
+
+```json 400 Insufficient Balance
+{
+  "status": false,
+  "error": "Insufficient balance. Please top up your account."
+}
+```
+
+</ResponseExample>
+
+### Notes
+
+- `type: "widget"` Conversations sind kostenpflichtig; `type: "test"` ist kostenlos für die Entwicklung.
+- Nutze aussagekräftige `variables`, um die erste Antwort des Assistenten zu personalisieren.
+- Fahre mit [`Send Message`](/api-reference/ai-chatbot/send-conversation) fort und hole den Verlauf mit [`Get Conversation`](/api-reference/ai-chatbot/get-conversation).

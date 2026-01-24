@@ -1,0 +1,113 @@
+---
+title: "Dokumente auflisten"
+api: "GET https://app.famulor.de/api/user/knowledgebases/{knowledgebaseId}/documents"
+icon: "file-lines"
+description: "Ruft alle Dokumente in einer Wissensdatenbank ab"
+---
+
+Dieser Endpunkt gibt eine Liste aller Dokumente in einer bestimmten Wissensdatenbank zurück.
+
+### Pfad-Parameter
+
+<ParamField path="knowledgebaseId" type="integer" required>
+  Die eindeutige Kennung der Wissensdatenbank
+</ParamField>
+
+### Antwort-Felder
+
+<ResponseField name="data" type="array">
+  Array von Dokument-Objekten
+  
+  <Expandable title="Dokument-Eigenschaften">
+    <ResponseField name="id" type="integer">
+      Die eindeutige Kennung des Dokuments
+    </ResponseField>
+
+    <ResponseField name="name" type="string">
+      Der Name des Dokuments
+    </ResponseField>
+
+    <ResponseField name="description" type="string">
+      Optionale Beschreibung des Dokuments
+    </ResponseField>
+
+    <ResponseField name="type" type="string">
+      Dokumenttyp: `website`, `pdf`, `txt` oder `docx`
+    </ResponseField>
+
+    <ResponseField name="type_label" type="string">
+      Menschenlesbares Typ-Label
+    </ResponseField>
+
+    <ResponseField name="status" type="string">
+      Verarbeitungsstatus: `processing`, `active` oder `failed`
+    </ResponseField>
+
+    <ResponseField name="status_label" type="string">
+      Menschenlesbares Status-Label
+    </ResponseField>
+
+    <ResponseField name="created_at" type="string">
+      ISO 8601 Zeitstempel der Erstellung
+    </ResponseField>
+
+    <ResponseField name="updated_at" type="string">
+      ISO 8601 Zeitstempel der letzten Aktualisierung
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+### Dokument-Status
+
+| Status       | Beschreibung                                                    |
+| ------------ | -------------------------------------------------------------- |
+| `processing` | Dokument wird analysiert und in die Vektordatenbank eingebettet |
+| `active`     | Dokument wurde verarbeitet und ist einsatzbereit               |
+| `failed`     | Dokumentverarbeitung fehlgeschlagen                             |
+
+<CodeGroup>
+```bash Dokumente abrufen
+curl -X GET "https://app.famulor.de/api/user/knowledgebases/1/documents" \
+     -H "Authorization: Bearer YOUR_API_KEY" \
+     -H "Content-Type: application/json"
+```
+</CodeGroup>
+
+<ResponseExample>
+
+```json 200 Success
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "Produkthandbuch",
+      "description": "Vollständiges Benutzerhandbuch für das Produkt",
+      "type": "pdf",
+      "type_label": "PDF",
+      "status": "active",
+      "status_label": "Aktiv",
+      "created_at": "2025-01-05T10:30:00.000000Z",
+      "updated_at": "2025-01-05T10:35:00.000000Z"
+    },
+    {
+      "id": 2,
+      "name": "Unternehmenswebsite",
+      "description": "Hauptinhalte der Website",
+      "type": "website",
+      "type_label": "Website",
+      "status": "processing",
+      "status_label": "Wird verarbeitet",
+      "created_at": "2025-01-08T09:00:00.000000Z",
+      "updated_at": "2025-01-08T09:00:00.000000Z"
+    }
+  ]
+}
+```
+
+```json 404 Knowledgebase Not Found
+{
+  "error": "Knowledgebase not found."
+}
+```
+
+</ResponseExample>

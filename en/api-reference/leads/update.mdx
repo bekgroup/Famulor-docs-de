@@ -1,0 +1,72 @@
+---
+title: "Lead aktualisieren"
+api: "PUT https://app.famulor.de/api/leads/{id}"
+icon: "user-pen"
+description: "Einen bestehenden Lead in Ihren Kampagnen aktualisieren"
+---
+
+Aktualisieren Sie einen Lead, indem Sie die Lead-ID und die Felder angeben, die Sie ändern möchten. Es werden nur die im Request angegebenen Felder aktualisiert.
+
+### Pfad-Parameter
+
+<ParamField path="id" type="integer" required>
+  Die ID des zu aktualisierenden Leads
+</ParamField>
+
+### Anfrage-Body
+
+<ParamField body="campaign_id" type="integer">
+  Die ID der Kampagne, der der Lead zugewiesen werden soll
+</ParamField>
+
+<ParamField body="phone_number" type="string">
+  Die Telefonnummer des Leads (wird automatisch ins E164-Format formatiert)
+</ParamField>
+
+<ParamField body="status" type="string">
+  Der Status des Leads. Muss einer der folgenden Werte sein: created, completed, reached-max-retries
+</ParamField>
+
+<ParamField body="variables" type="object">
+  Benutzerdefinierte Variablen, die mit den bestehenden Lead-Variablen zusammengeführt werden
+</ParamField>
+
+### Antwort-Felder
+
+<ResponseField name="message" type="string">
+  Erfolgsmeldung, die anzeigt, dass der Lead aktualisiert wurde
+</ResponseField>
+
+### Hinweise
+
+- Der Lead muss dem authentifizierten Benutzer gehören
+- Bei der Aktualisierung der Kampagne muss die neue Kampagne ebenfalls dem authentifizierten Benutzer gehören
+- Telefonnummern werden automatisch formatiert und validiert
+- Variablen werden mit bestehenden Variablen zusammengeführt (nicht ersetzt)
+- Nur erlaubte Felder können aktualisiert werden: campaign_id, phone_number, status, variables
+- Das Status-Feld hat eingeschränkte Werte für die Datenintegrität
+
+<CodeGroup>
+```json Request
+{
+  "campaign_id": 2,
+  "phone_number": "+1234567890",
+  "status": "completed",
+  "variables": {
+    "customer_name": "Jane Doe",
+    "email": "jane.doe@example.com",
+    "notes": "Erfolgreich kontaktiert"
+  }
+}
+```
+</CodeGroup>
+
+<ResponseExample>
+
+```json 200 Response
+{
+  "message": "Lead erfolgreich aktualisiert"
+}
+```
+
+</ResponseExample>

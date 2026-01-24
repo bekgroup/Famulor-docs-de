@@ -1,0 +1,197 @@
+---
+title: "Individuelle Dashboards"
+icon: "chart-line"
+description: "Erstellen Sie personalisierte Dashboards mit Widgets, um Ihre Anrufmetriken und Leistung zu verfolgen"
+---
+
+Individuelle Dashboards ermöglichen es Ihnen, maßgeschneiderte Analyse-Ansichten mit Drag-and-Drop-Widgets zu erstellen. Verfolgen Sie die Metriken, die für Ihr Unternehmen am wichtigsten sind, mit Statistiken, Diagrammen und Tabellen.
+
+## Was sind individuelle Dashboards?
+
+Personalisierte Analyse-Seiten, die Sie mit Widgets erstellen, die Ihre Anrufdaten anzeigen. Jedes Dashboard enthält mehrere Widgets, die verschiedene Datenansichten zeigen.
+
+<CardGroup cols={3}>
+  <Card title="Statistik-Widgets" icon="chart-simple">
+    Einzelne Metriken wie Gesamtanrufe, Durchschnittswerte oder Erfolgsraten
+  </Card>
+
+  <Card title="Diagramm-Widgets" icon="chart-line">
+    Visuelle Trends mit 8 Diagrammtypen (Linie, Balken, Kreis usw.)
+  </Card>
+
+  <Card title="Tabellen-Widgets" icon="table">
+    Detaillierte Datensätze mit benutzerdefinierten Spalten und Filtern
+  </Card>
+</CardGroup>
+
+## Schnellstart
+
+### Dashboard erstellen
+
+1. Klicken Sie auf **"Individuelles Dashboard erstellen"** in der Seitenleiste
+2. Namen eingeben (z.B. "Verkaufsleistung")
+3. Symbol auswählen
+4. Klicken Sie auf **"Dashboard erstellen"**
+
+### Widgets hinzufügen
+
+**Option 1: Vorlagen verwenden** (21 vorgefertigte Widgets)
+1. Klicken Sie auf **"Entsperren zum Anpassen"**
+2. Klicken Sie auf **"Hinzufügen"**
+3. Wählen Sie ein Vorlagen-Widget (markiert mit Emoji 📊📈📋)
+4. Klicken Sie auf **"Speichern"**
+
+**Option 2: Individuelles Widget erstellen**
+1. Klicken Sie auf **"Widgets verwalten"** → **"Neues Widget erstellen"**
+2. Typ auswählen: Statistik, Diagramm oder Tabelle
+3. Datenquelle und Optionen konfigurieren
+4. Widget speichern
+5. Zum Dashboard hinzufügen
+
+## Widget-Typen
+
+### Statistik-Widget 📊
+
+Einzelne Zahl mit optionalem Vergleich und Mini-Diagramm.
+
+**Anwendungsbeispiele:**
+- Gesamtanrufe diesen Monat
+- Durchschnittliche Anrufdauer
+- Erfolgsrate in Prozent
+
+**Wichtige Optionen:**
+- Datenquelle: anrufe, leads, kampagnen, assistenten, telefonnummern, sms
+- Aggregation: ANZAHL, SUMME, DURCHSCHNITT, MAX, MIN
+- Farbe: Primär (Blau), Erfolg (Grün), Warnung (Orange), Gefahr (Rot), Info (Cyan), Grau
+- Beschriftungs- und Beschreibungstext
+- Mini-Diagramm anzeigen (täglicher Trend)
+- Mit vorherigem Zeitraum vergleichen (prozentuale Änderung)
+- Datumsbereich: Heute, Gestern, Letzte 7/14/30/60/90 Tage, Letzte 6 Monate, Letztes Jahr
+- Bedingungen (Filter)
+
+### Diagramm-Widget 📈
+
+Visualisieren Sie Trends und Verteilungen.
+
+**Diagrammtypen:**
+- **Linie** - Trends über Zeit
+- **Balken** - Kategorien oder Zeiträume vergleichen
+- **Fläche** - Gefülltes Trenddiagramm
+- **Kreis** - Proportionen (erfordert Gruppierung)
+- **Donut** - Kreis mit mittlerem Loch (erfordert Gruppierung)
+- **Polarbereich** - Kreisförmig mit variierendem Radius (erfordert Gruppierung)
+- **Radar** - Mehrachsenvergleich
+- **Radialbalken** - Einzelner Fortschritts-/Prozentindikator
+
+**Wichtige Optionen:**
+- Datenquelle: anrufe, leads, kampagnen, assistenten, telefonnummern, sms
+- Aggregation: ANZAHL, SUMME, DURCHSCHNITT, MAX, MIN
+- Diagrammtyp: Liniendiagramm, Balkendiagramm, Flächendiagramm, Kreisdiagramm, Donut-Diagramm, Polarbereich, Radar, Radialbalken
+- Farbe: Primär (Blau), Erfolg (Grün), Warnung (Orange), Gefahr (Rot), Info (Cyan), Grau
+- Gruppierung nach Zeitraum: Stündlich, Täglich, Wöchentlich, Monatlich (für Zeitreihen)
+- Gruppierung nach Feld: status, kampagne, assistent, beliebige Spalte (für Kategorien)
+- Diagrammhöhe: 200-800px
+- Gitterlinien, Legende, Tooltips, Datenbeschriftungen, Symbolleiste anzeigen
+- Linienkurve: glatt, gerade, stufenweise
+- Linienbreite: 1-10px
+- Gradient (nur radialBar)
+- Datumsbereich: Heute, Gestern, Letzte 7/14/30/60/90 Tage, Letzte 6 Monate, Letztes Jahr
+- Bedingungen (Filter)
+
+### Tabellen-Widget 📋
+
+Detaillierte Datensätze mit sortierbaren Spalten.
+
+**Anwendungsbeispiele:**
+- Aktuelle Anrufe mit Details
+- Fehlgeschlagene Anrufe zur Überprüfung
+- Lead-Kontakthistorie
+
+**Wichtige Optionen:**
+- Datenquelle: anrufe, leads, kampagnen, assistenten, telefonnummern, sms
+- Kampagnenfilter (für Leads - aktiviert Variablenspalten)
+- Assistentenfilter (für Anrufe - aktiviert Bewertungsfeldspalten)
+- Spaltenauswahl: grundlegend, Beziehungen, Bewertungsfelder, Lead-Variablen
+- Sortieren nach: beliebige Grundspalte
+- Sortierrichtung: absteigend (neueste zuerst), aufsteigend (älteste zuerst)
+- Zeilen pro Seite: 1-100
+- Datumsbereich: Heute, Gestern, Letzte 7/14/30/60/90 Tage, Letzte 6 Monate, Letztes Jahr
+- Bedingungen (Filter)
+
+## Daten filtern
+
+Alle Widgets unterstützen leistungsstarke Filter:
+
+**Datumsbereiche:** Heute, Gestern, Letzte 7/14/30/60/90 Tage, Letzte 6 Monate, Letztes Jahr
+
+**Bedingungen:** Mehrere UND-Filter
+- Status gleich "abgeschlossen"
+- Dauer größer als 60 Sekunden
+- Assistentenname gleich "Verkaufs-Bot"
+
+**Bewertungsfelder:** Nach Post-Call-Bewertungswerten filtern
+- Spalte: Extrahierte Variablen
+- Extrahierte Variablenname: Benutzerdefinierte Variable
+- Benutzerdefinierter Variablenname: termin_gebucht
+- Operator: =
+- Variablenwert: true
+
+## Layout-Verwaltung
+
+### Bearbeitungsmodus
+
+1. Klicken Sie auf **"Entsperren zum Anpassen"**
+2. Widgets ziehen, um sie neu zu ordnen
+3. Widgets in der Größe ändern (1-12 Spalten breit)
+4. Widgets mit X-Schaltfläche entfernen
+5. Klicken Sie auf **"Speichern"**, um zu bestätigen
+6. Klicken Sie auf **"Sperren"**, um den Bearbeitungsmodus zu verlassen
+
+### Bewährte Praktiken
+
+**Widget-Größen:**
+- Statistiken: 3-4 Spalten (3-4 pro Zeile)
+- Diagramme: 6-12 Spalten
+- Tabellen: 12 Spalten (volle Breite)
+
+**Layout-Tipps:**
+- KPIs oben platzieren
+- Verwandte Metriken gruppieren
+- Tabellen unten platzieren
+
+## Häufige Anwendungsfälle
+
+### Verkaufs-Dashboard
+- Statistik: Erfolgreiche Anrufe (Filter nach Bewertungsfeld "termin_gebucht")
+- Diagramm: Täglicher Trend erfolgreicher Anrufe
+- Tabelle: Aktuelle erfolgreiche Anrufe mit Termindetails
+
+### Support-Qualität
+- Statistik: Durchschnittliche Anrufdauer
+- Diagramm: Anrufstatus-Aufschlüsselung (Kreisdiagramm)
+- Tabelle: Aktuelle Anrufe mit Bewertungsergebnissen
+
+### Kampagnenleistung
+- Statistik: Gesamte Kampagnenanrufe
+- Diagramm: Anrufe pro Kampagne (Balkendiagramm)
+- Tabelle: Leistungsstärkste Kampagnen
+
+## Problembehandlung
+
+**Widget zeigt "Keine Daten":**
+- Datumsbereich erweitern
+- Prüfen, ob Filter nicht zu restriktiv sind
+- Verifizieren, dass Sie Datensätze haben
+
+**Langsames Laden:**
+- Widget-Anzahl reduzieren (unter 20 halten)
+- Datumsbereichsfilter verwenden
+- Browser-Cache leeren
+
+**Dashboard nicht in Seitenleiste:**
+- Seite aktualisieren
+- Prüfen, ob Plan die Funktion enthält
+
+<Note>
+Für detaillierte Konfiguration siehe die einzelnen Widget-Typ-Leitfäden.
+</Note>

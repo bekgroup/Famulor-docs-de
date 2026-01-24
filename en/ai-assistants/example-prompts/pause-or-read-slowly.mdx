@@ -1,0 +1,333 @@
+---
+title: "Pause oder langsam lesen"
+icon: "pause"
+description: "Steuern Sie das Sprechtempo durch Pausen in den Antworten Ihres Assistenten"
+---
+
+# Pause oder langsam lesen
+
+<Note>
+  Steuern Sie das Sprechtempo, indem Sie Leerzeichen-Bindestriche für Pausen in den Antworten Ihres Assistenten hinzufügen.
+</Note>
+
+## Übersicht
+
+<Card title="Warum Pausen verwenden?" icon="volume-2" color="blue">
+  Obwohl Sie die allgemeine Geschwindigkeit des Audios durch Ändern der Sprachgeschwindigkeit anpassen können, möchten Sie möglicherweise das Sprechtempo Ihres Assistenten nur an bestimmten Stellen verlangsamen (z.B. beim Lesen von Telefonnummern).
+
+  Dies können Sie tun, indem Sie den LLM anweisen und Text mit Leerzeichen-Bindestrichen dazwischen generieren.
+</Card>
+
+## Grundlegende Pausen
+
+<Card title="Einfache Pausen hinzufügen" icon="gauge-circle-minus" color="green">
+  Verwenden Sie einzelne Bindestriche mit Leerzeichen davor und danach, um kurze Pausen zu erzeugen:
+</Card>
+
+### Beispiel für einfache Pausen
+
+<CodeGroup>
+
+````text
+## Einfache Pausen
+
+Die Nummer ist 2 - 1 - 3 - 4
+
+Wichtig: Die Leerzeichen um den Bindestrich (-) sind wichtig für das korrekte Pausenverhalten.
+```text
+## Deutsche Telefonnummern
+
+Meine Telefonnummer ist 0 - 3 - 0 - 1 - 2 - 3 - 4 - 5 - 6 - 7 - 8
+
+Die Postleitzahl ist 1 - 0 - 1 - 1 - 5
+
+Die Kontonummer lautet 1 - 2 - 3 - 4 - 5 - 6 - 7 - 8 - 9 - 0
+````
+
+</CodeGroup>
+
+<Warning>
+  **Wichtig:** Die Leerzeichen um den Bindestrich (`-`) sind entscheidend für das korrekte Pausenverhalten. Ohne diese Leerzeichen funktioniert die Pause nicht richtig.
+</Warning>
+
+## Längere Pausen
+
+<Card title="Längere Pausen erzeugen" icon="clock" color="orange">
+  Manchmal möchten Sie längere Pausen in das Gespräch einbauen. Dies können Sie tun, indem Sie mehrere Bindestriche zwischen den Wörtern hinzufügen.
+</Card>
+
+### Beispiel für längere Pausen
+
+<CodeGroup>
+
+````text
+## Längere Pausen
+
+Die Nummer ist 2 - - - - 1 - - - - 3
+
+// Beachten Sie die doppelten Leerzeichen zwischen den Bindestrichen
+```text
+## Deutsche Beispiele für längere Pausen
+
+Die Telefonnummer ist 0 - - - - 3 - - - - 0 - - - - 1 - - - - 2
+
+Die Postleitzahl lautet 1 - - - - 0 - - - - 1 - - - - 1 - - - - 5
+
+Die Kontonummer ist 1 - - - - 2 - - - - 3 - - - - 4 - - - - 5
+````
+
+</CodeGroup>
+
+<Note>
+  **Hinweis:** Mehrere Bindestriche mit Leerzeichen dazwischen erzeugen längere Pausen als einzelne Bindestriche.
+</Note>
+
+## Praktische Anwendungsfälle
+
+<CardGroup cols={2}>
+  <Card title="Telefonnummern" icon="phone" color="blue">
+    
+    - 
+    Verwende Pausen zwischen den Ziffern
+
+    
+    - 
+    Beispiel: 0 - 3 - 0 - 1 - 2 - 3 - 4 - 5 - 6 - 7 - 8
+
+    
+    - 
+    Hilft bei der besseren Verständlichkeit
+
+    
+  </Card>
+  <Card title="Postleitzahlen" icon="map-pin" color="green">
+    
+    - 
+    Pausen zwischen den einzelnen Ziffern
+
+    
+    - 
+    Beispiel: 1 - 0 - 1 - 1 - 5
+
+    
+    - 
+    Besonders wichtig bei deutschen PLZ
+
+    
+  </Card>
+</CardGroup>
+
+<CardGroup cols={2}>
+  <Card title="Kontonummern" icon="credit-card" color="purple">
+    
+    - 
+    Längere Pausen für bessere Verständlichkeit
+
+    
+    - 
+    Beispiel: 1 - - - - 2 - - - - 3 - - - - 4
+
+    
+    - 
+    Wichtig bei IBAN oder Kontonummern
+
+    
+  </Card>
+  <Card title="Daten und Zeiten" icon="calendar" color="orange">
+    
+    - 
+    Pausen zwischen Datum und Uhrzeit
+
+    
+    - 
+    Beispiel: 5 - Juli - 2024 - um - 14 - Uhr - 30
+
+    
+    - 
+    Hilft bei der Strukturierung von Informationen
+
+    
+  </Card>
+</CardGroup>
+
+## Prompt-Beispiele für verschiedene Situationen
+
+<CodeGroup>
+
+````text
+## Telefonnummern aussprechen
+
+Wenn Sie nach meiner Telefonnummer gefragt werden, antworten Sie:
+
+"Meine Telefonnummer ist 0 - 3 - 0 - 1 - 2 - 3 - 4 - 5 - 6 - 7 - 8"
+
+Verwenden Sie immer Pausen zwischen den Ziffern für bessere Verständlichkeit.
+```text
+## Adressen aussprechen
+
+Bei Adressen verwenden Sie Pausen für bessere Strukturierung:
+
+"Die Adresse lautet Musterstraße - 123 - 10115 - Berlin"
+
+Verwenden Sie längere Pausen zwischen den Hauptbestandteilen.
+```text
+## Wichtige Informationen betonen
+
+Bei wichtigen Informationen können Sie längere Pausen verwenden:
+
+"Ihre Bestellnummer ist - - - - 1 - - - - 2 - - - - 3 - - - - 4 - - - - 5"
+
+Dies gibt dem Kunden Zeit, die Information zu notieren.
+````
+
+</CodeGroup>
+
+## Best Practices
+
+<Card title="Empfohlene Vorgehensweise" icon="florin-sign" color="green">
+  
+  - 
+  Konsistenz:
+
+   Verwenden Sie immer das gleiche Format für ähnliche Informationen.
+
+  
+  - 
+  Leerzeichen:
+
+   Stellen Sie sicher, dass Leerzeichen um Bindestriche vorhanden sind.
+
+  
+  - 
+  Länge der Pausen:
+
+   Passen Sie die Anzahl der Bindestriche an die Wichtigkeit der Information an.
+
+  
+  - 
+  Testen:
+
+   Hören Sie sich die generierte Sprache an, um die Pausen zu überprüfen.
+
+  
+  - 
+  Benutzerfreundlichkeit:
+
+   Verwenden Sie Pausen, um die Verständlichkeit zu verbessern, nicht zu erschweren.
+
+  
+</Card>
+
+## Häufige Fehler vermeiden
+
+<Card title="Was Sie vermeiden sollten" icon="user-helmet-safety" color="red">
+  
+  - 
+  Fehlende Leerzeichen:
+
+   "-" funktioniert nicht, nur " - " funktioniert.
+
+  
+  - 
+  Zu viele Pausen:
+
+   Zu viele Bindestriche können das Sprechen unnatürlich machen.
+
+  
+  - 
+  Inkonsistente Verwendung:
+
+   Verwenden Sie das gleiche Format für ähnliche Informationen.
+
+  
+  - 
+  Fehlende Tests:
+
+   Testen Sie immer die generierte Sprache.
+
+  
+</Card>
+
+## Integration in Ihre Prompts
+
+<Card title="Wie Sie Pausen in Ihre Prompts integrieren" icon="circle-pause" color="blue">
+  1. Identifizieren Sie Stellen, an denen Pausen hilfreich wären.
+  2. Fügen Sie Bindestriche mit entsprechenden Leerzeichen hinzu.
+  3. Testen Sie die Aussprache mit Audio-Tests.
+  4. Passen Sie bei Bedarf an, falls es zu viele oder zu wenige Pausen gibt.
+  5. Dokumentieren Sie Ihre Entscheidungen für zukünftige Referenz.
+</Card>
+
+## Beispiel für einen vollständigen Prompt
+
+<CodeGroup>
+
+```text
+# Famulor Assistent - Pausen und langsames Lesen
+
+## Identität
+Du bist ein professioneller Famulor KI-Assistent, der Kunden bei Telefonanrufen unterstützt.
+
+## Pausen-Richtlinien
+
+### Telefonnummern
+- Verwende immer Pausen zwischen den Ziffern
+- Beispiel: "Meine Telefonnummer ist 0 - 3 - 0 - 1 - 2 - 3 - 4 - 5 - 6 - 7 - 8"
+
+### Wichtige Informationen
+- Verwende längere Pausen für sehr wichtige Informationen
+- Beispiel: "Ihre Bestellnummer ist - - - - 1 - - - - 2 - - - - 3"
+
+### Adressen
+- Verwende Pausen zwischen Straße, Hausnummer, PLZ und Stadt
+- Beispiel: "Die Adresse lautet Musterstraße - 123 - 10115 - Berlin"
+
+## Wichtige Regeln
+- Verwende IMMER Leerzeichen um Bindestriche: " - " nicht "-"
+- Teste die Aussprache mit Audio-Tests
+- Passe die Anzahl der Bindestriche an die Wichtigkeit an
+```
+
+</CodeGroup>
+
+## Testen und Optimieren
+
+<Card title="Testen Sie Ihre Pausen" icon="play" color="purple">
+  1. Führen Sie Audio-Tests durch und hören Sie sich die generierte Sprache an.
+  2. Überprüfen Sie die Pausen: Sind sie zu kurz, zu lang oder genau richtig?
+  3. Testen Sie die Verständlichkeit: Können Kunden die Informationen gut verstehen?
+  4. Nehmen Sie Anpassungen vor und ändern Sie die Anzahl der Bindestriche.
+  5. Prüfen Sie die Konsistenz: Verwenden Sie überall das gleiche Format?
+</Card>
+
+## Hilfe und Support
+
+<Tip>
+  Unser Support-Team kann Ihnen bei der Integration von Pausen in Ihre Prompts helfen.
+</Tip>
+
+<Card title="Support kontaktieren" icon="headphones" color="blue" href="mailto:support@famulor.io">
+  Benötigen Sie Hilfe bei der Sprachsteuerung? Kontaktieren Sie unser Support-Team.
+</Card>
+
+## Nächste Schritte
+
+<Card title="Weiterführende Ressourcen" icon="arrow-right" color="green">
+  
+  - 
+  Schauen Sie sich unseren Allgemeinen Prompt Engineering Guide an.
+
+  
+  - 
+  Entdecken Sie unseren Prompt Guide für spezifische Situationen.
+
+  
+  - 
+  Lernen Sie mehr über Sprachsteuerbarkeit.
+
+  
+  - 
+  Testen Sie Ihre Prompts mit Audio-Tests.
+
+  
+</Card>

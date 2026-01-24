@@ -1,0 +1,54 @@
+---
+title: "JTL-Wawi Integration"
+description: "Vollständige JTL-Wawi ERP-Integration für Artikelverwaltung, Auftragsabwicklung und Versandmanagement"
+icon: "boxes"
+---
+
+# JTL-Wawi Integration Template
+
+## Tool 1: Artikelabfrage
+
+### Konfiguration im Famulor Interface
+
+<Tabs>
+  <Tab title="Werkzeugdetails">
+    | **Name*** | `JTL-Wawi Artikelabfrage` |
+    | **Funktionsname*** | `get_jtl_article` |
+    | **HTTP-Methode** | `GET` |
+    | **Endpoint*** | `https://{{JTL_API_URL}}/api/v1/artikel/{article_id}` |
+  </Tab>
+</Tabs>
+
+**Success-Template**: `"{{articleName}} ({{articleNumber}}): {{stock}} Stück auf Lager, Preis: {{price}}€ netto"`
+
+## Tool 2: Auftrag anlegen
+
+### Konfiguration im Famulor Interface
+
+<Tabs>
+  <Tab title="Werkzeugdetails">
+    | **Name*** | `JTL-Wawi Auftrag anlegen` |
+    | **Funktionsname*** | `create_jtl_order` |
+    | **HTTP-Methode** | `POST` |
+    | **Endpoint*** | `https://{{JTL_API_URL}}/api/v1/auftraege` |
+  </Tab>
+</Tabs>
+
+**Success-Template**: `"Auftrag {{orderNumber}} wurde angelegt. Der Auftrag wird nun in JTL weiterverarbeitet."`
+
+## Tool 3: Versandstatus
+
+### Konfiguration im Famulor Interface
+
+<Tabs>
+  <Tab title="Werkzeugdetails">
+    | **Name*** | `JTL Versandstatus` |
+    | **Funktionsname*** | `check_jtl_shipping` |
+    | **HTTP-Methode** | `GET` |
+    | **Endpoint*** | `https://{{JTL_API_URL}}/api/v1/auftraege/{order_id}/versand` |
+  </Tab>
+</Tabs>
+
+**Success-Template**: `"Versandstatus: {{status}}. {{#if trackingNumber}}Sendungsnummer: {{trackingNumber}} ({{carrier}}), versendet am {{shippedDate}}{{/if}}"`
+
+---

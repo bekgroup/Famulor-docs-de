@@ -1,0 +1,173 @@
+---
+title: "Mid-Call-Tools auflisten"
+api: "GET /user/tools"
+description: "Alle Mid-Call-Tools abrufen"
+---
+
+Dieser Endpunkt ermöglicht es Ihnen, alle Mid-Call-Tools abzurufen. Mid-Call-Tools ermöglichen es Ihren KI-Assistenten, während eines Anrufs mit externen APIs zu interagieren.
+
+### Header
+
+<ParamField header="Authorization" type="string" required>
+  Bearer-Token für die Authentifizierung
+</ParamField>
+
+<ParamField header="Content-Type" type="string" required>
+  Muss `application/json` sein
+</ParamField>
+
+<ParamField header="Accept" type="string" required>
+  Muss `application/json` sein
+</ParamField>
+
+### Antwortfelder
+
+<ResponseField name="data" type="array">
+  Array von Mid-Call-Tools
+  <Expandable title="Eigenschaften">
+    <ResponseField name="id" type="integer">
+      Die eindeutige Kennung des Tools
+    </ResponseField>
+
+    <ResponseField name="name" type="string">
+      Der Name des Tools (Kleinbuchstaben mit Unterstrichen)
+    </ResponseField>
+
+    <ResponseField name="description" type="string">
+      Detaillierte Erklärung, wann und wie die KI dieses Tool verwenden soll
+    </ResponseField>
+
+    <ResponseField name="endpoint" type="string">
+      Die API-Endpunkt-URL, die aufgerufen wird
+    </ResponseField>
+
+    <ResponseField name="method" type="string">
+      HTTP-Methode (GET, POST, PUT, PATCH, DELETE)
+    </ResponseField>
+
+    <ResponseField name="timeout" type="integer">
+      Request-Timeout in Sekunden (1-30)
+    </ResponseField>
+
+    <ResponseField name="headers" type="array">
+      HTTP-Header, die mit der Anfrage gesendet werden
+      <Expandable title="Header-Eigenschaften">
+        <ResponseField name="name" type="string">
+          Header-Name
+        </ResponseField>
+        <ResponseField name="value" type="string">
+          Header-Wert
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+
+    <ResponseField name="schema" type="array">
+      Parameter, die die KI extrahieren und an den Endpunkt senden wird
+      <Expandable title="Schema-Eigenschaften">
+        <ResponseField name="name" type="string">
+          Parameter-Name
+        </ResponseField>
+        <ResponseField name="type" type="string">
+          Parameter-Typ (string, number, boolean)
+        </ResponseField>
+        <ResponseField name="description" type="string">
+          Beschreibung, um der KI zu helfen, diesen Parameter zu extrahieren
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+
+    <ResponseField name="created_at" type="string">
+      ISO 8601 Zeitstempel, wann das Tool erstellt wurde
+    </ResponseField>
+
+    <ResponseField name="updated_at" type="string">
+      ISO 8601 Zeitstempel, wann das Tool zuletzt aktualisiert wurde
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseExample>
+
+```json 200 Response
+[
+  {
+    "id": 1,
+    "name": "get_weather",
+    "description": "Use this tool to get the current weather in a specific city. Call this when the customer asks about weather conditions.",
+    "endpoint": "https://api.openweathermap.org/data/2.5/weather",
+    "method": "GET",
+    "timeout": 10,
+    "headers": [
+      {
+        "name": "Content-Type",
+        "value": "application/json"
+      },
+      {
+        "name": "Authorization",
+        "value": "Bearer sk_..."
+      }
+    ],
+    "schema": [
+      {
+        "name": "city",
+        "type": "string",
+        "description": "The city name to get weather for"
+      },
+      {
+        "name": "temperature",
+        "type": "number",
+        "description": "Current temperature value"
+      },
+      {
+        "name": "is_raining",
+        "type": "boolean",
+        "description": "Whether it is currently raining"
+      }
+    ],
+    "created_at": "2025-10-10T12:00:00.000000Z",
+    "updated_at": "2025-10-10T12:00:00.000000Z"
+  },
+  {
+    "id": 2,
+    "name": "send_notification",
+    "description": "Use this tool to send a notification to the customer. Call this when customer requests updates.",
+    "endpoint": "https://api.yourcompany.com/notifications/send",
+    "method": "POST",
+    "timeout": 15,
+    "headers": [
+      {
+        "name": "Content-Type",
+        "value": "application/json"
+      }
+    ],
+    "schema": [
+      {
+        "name": "message",
+        "type": "string",
+        "description": "The notification message to send"
+      },
+      {
+        "name": "priority_level",
+        "type": "number",
+        "description": "Priority level from 1 to 5"
+      },
+      {
+        "name": "send_sms",
+        "type": "boolean",
+        "description": "Whether to also send SMS notification"
+      }
+    ],
+    "created_at": "2025-10-09T14:30:00.000000Z",
+    "updated_at": "2025-10-10T09:15:00.000000Z"
+  }
+]
+```
+
+</ResponseExample>
+
+### Tools zu Assistenten zuweisen
+
+Um diese Tools mit Assistenten zu verwenden, siehe:
+
+- **[Assistent erstellen](/api-reference/assistants/create)** - Tools mit dem `tool_ids`-Parameter zuweisen
+- **[Assistent aktualisieren](/api-reference/assistants/update)** - Tool-Zuweisungen mit dem `tool_ids`-Parameter verwalten

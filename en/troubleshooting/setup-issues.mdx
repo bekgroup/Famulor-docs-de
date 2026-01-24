@@ -1,0 +1,27 @@
+---
+title: "Allgemeine Setup-Probleme"
+icon: "wrench"
+description: "Beheben Sie häufige Setup-Probleme einschließlich KI-Antwortprobleme, OTP-Verifizierung und Anmeldedatenfehler"
+---
+
+Einige häufige Fallstricke bei der ersten Konfiguration von famulor.de:
+
+## 1. KI antwortet nicht oder Anruf bricht ab
+
+- **Überprüfen Sie den System-Prompt**: Möglicherweise fehlende Anweisungen.
+- **Sprachaktivitätserkennung**: Falls zu niedrig oder hoch eingestellt, kann es zu unangenehmen Stille oder Unterbrechungen führen.
+- **Verbindung**: Falls Ihr Internet oder SIP-Trunk instabil ist, könnten Anrufe abbrechen.
+
+## 2. Kein OTP erhalten (für Caller ID-Verifizierung)
+
+- **Carrier-Blöcke**: Einige Betreiber filtern Kurzcodes oder unbekannte internationale SMS heraus.
+- **Alternativen Methode versuchen**: Fragen Sie den Support, ob Sie sich über einen kurzen Sprachanruf oder eine andere Telefonleitung verifizieren können.
+
+## 3. Anmeldedatenfehler
+
+- **SIP**: Falscher Benutzername/Passwort? Überprüfen Sie mit Ihrem PBX-Anbieter.
+- **API/Webhooks**: Stellen Sie sicher, dass Sie das richtige Token oder die richtige Endpunkt-URL kopiert haben.
+
+---
+
+**Tipp:** Schauen Sie sich Anruflogs für Fehlercodes an, falls ein Anruf fehlschlägt. Normalerweise zeigt es einen Grund wie "Nummer nicht gefunden" oder "Netzwerk nicht erreichbar". 

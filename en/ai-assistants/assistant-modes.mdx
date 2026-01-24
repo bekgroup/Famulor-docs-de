@@ -1,0 +1,125 @@
+---
+title: "Assistenten-Modi"
+icon: "bolt"
+description: "Verstehen Sie die drei Sprachgenerierungsmodi für Ihre KI-Assistenten und wann Sie jeden verwenden sollten"
+---
+
+KI-Assistenten auf Famulor können in drei verschiedenen Modi sprechen. Jeder Modus bestimmt, wie die Sprache eines Anrufers verstanden wird und wie die Antwort des Assistenten generiert wird:
+
+## Übersicht der Modi
+
+| Modus | Latenz | Sprachqualität | Beste Anwendung |
+|-------|--------|----------------|-----------------|
+| **Pipeline** | ~800 – 1500 ms (hängt von Sprache & Modell ab) | Sehr hoch | Komplexes Reasoning, dynamische Prompts, mehrsätzige Antworten |
+| **Speech-to-Speech** | ~300 – 600 ms (ultra niedrig) | Hoch | Natürlicher Dialog, kurze & reaktive Antworten |
+| **Dualplex (Beta)** | Niedrig (variiert je nach Stimme und Modell) | Sehr hoch | Schnelle Antworten mit hochwertigen/Markenstimmen (geklont) |
+
+---
+
+## 1. Pipeline
+
+**UI-Bezeichnung:** Pipeline  
+**Funktionsweise:** Speech-to-Text → LLM → Text-to-Speech  
+**Latenz:** ~800 – 1500 ms (hängt von Sprache & Modell ab)  
+**Am besten für:** Komplexes Reasoning, dynamische Prompts, mehrsätzige Antworten
+
+### Wie es funktioniert
+Der Pipeline-Modus transkribiert zuerst die Wörter des Anrufers in Text, führt diesen Text durch das Sprachmodell und konvertiert die Antwort dann zurück in Audio. Es ist ein bewährter Ansatz, der maximale Flexibilität bietet:
+
+### Vorteile
+- **Unterstützt alle Stimmen** in der Bibliothek (einschließlich benutzerdefiniert geklonter Stimmen)
+- **Bewältigt lange Antworten** oder Antworten im Absatzstil gut
+- **Ermöglicht dem LLM** Variablen einzufügen und früheren Kontext sauber zu referenzieren
+- **Maximale Kontrolle:** Vollständige Anpassung aller Verarbeitungsschritte
+- **Bewährte Technologie:** Stabile, erprobte Implementierung
+
+### Wann Pipeline wählen
+- Sie benötigen reichhaltige, mehrsätzige Antworten (z.B. Support-Anfragen, detaillierte Erklärungen)
+- Der Assistent muss über strukturierte Daten oder komplexe Prompts reasoning betreiben
+- Sie bevorzugen absolute Kontrolle über die gesprochene Stimme (Klon- oder Markenstimme)
+
+---
+
+## 2. Speech-to-Speech (Multimodal)
+
+**UI-Bezeichnung:** Speech-to-Speech  
+**Funktionsweise:** Direkte Speech-to-Speech-Generierung (keine Zwischentext)  
+**Latenz:** ~300 – 600 ms (ultra niedrig)  
+**Am besten für:** Natürlicher Dialog, kurze & reaktive Antworten
+
+### Wie es funktioniert
+Der Speech-to-Speech-Modus überspringt separate Transkription und TTS. Stattdessen verwendet er ein multimodales Modell, das direkt zuhört und spricht und dadurch einen natürlicheren Gesprächsfluss erzeugt:
+
+### Vorteile
+- **Schnelles Turn-Taking:** Anrufer erleben nahezu sofortige Antworten
+- **Generiert natürlichere Prosodie:** (Intonation, Füllwörter) nativ
+- **Unterstützt derzeit** eine begrenzte Stimmauswahl, aber mehr werden regelmäßig hinzugefügt
+- **Natürlicher Gesprächsfluss:** Behält Intonation und Emotionen bei
+
+### Wann Speech-to-Speech wählen
+- Das Gespräch muss sich flüssig anfühlen (Verkauf, Buchungsbestätigungen)
+- Ihre Antworten sind im Allgemeinen kurze Sätze oder schnelle Bestätigungen
+- Sie sind mit den systemseitig bereitgestellten Stimmoptionen für schnellere Interaktion einverstanden
+
+<Info>
+Speech-to-Speech entwickelt sich schnell weiter. Wenn Sie eine benutzerdefiniert geklonte Stimme mit niedriger Latenz benötigen, probieren Sie Dualplex aus.
+</Info>
+
+---
+
+## 3. Dualplex (Beta)
+
+**UI-Bezeichnung:** Dualplex  
+**Funktionsweise:** Multimodales STT + LLM (Speech-to-Speech) mit ElevenLabs TTS-Ausgabe  
+**Latenz:** Niedrig (variiert je nach Stimme und Modell)  
+**Am besten für:** Schnelle, natürliche Antworten mit hochwertigen/Markenstimmen (geklont)
+
+### Wie es funktioniert
+Dualplex kombiniert die Reaktionsfähigkeit von Speech-to-Speech mit den Premium-Stimmen und dem Klonen von ElevenLabs, die im Pipeline-Modus verwendet werden. Der Assistent nutzt das multimodale Modell, um den Anrufer zu verstehen und die Antwort zu planen, und rendert dann die finale Sprache über ElevenLabs für konsistente, hochauflösende Ausgabe.
+
+### Vorteile
+- **Nahezu sofortiges Turn-Taking:** Ähnlich wie Speech-to-Speech
+- **Zugang zur ElevenLabs-Stimmenbibliothek:** Einschließlich benutzerdefiniert geklonter Stimmen
+- **Ausdrucksstarke Prosodie:** Ideal für kurze bis mittellange Antworten
+- **Empfohlener Standard für die meisten Anwendungsfälle heute:** Derzeit in Beta
+
+### Wann Dualplex wählen
+- Sie möchten schnellen Dialog, benötigen aber eine Marken- oder geklonte Stimme
+- Sie wünschen sich ausdrucksstärkere Wiedergabe ohne Verzicht auf präzise Stimmauswahl
+- Sie sind mit der Nutzung neuer Funktionen vertraut, die sich noch in der Beta-Phase befinden
+
+---
+
+## Modi wechseln
+
+Sie können den Modus für jeden Assistenten unter **Assistent → Einstellungen → Voice Engine** auswählen. Testen Sie alle drei Modi, um herauszufinden, welcher die beste Balance aus Geschwindigkeit und Qualität für Ihren Anwendungsfall bietet. Dualplex ist derzeit als Beta gekennzeichnet.
+
+<Tip>
+**Pro-Tipp:** Nehmen Sie zwei Anrufe auf – einen in jedem Modus – und vergleichen Sie die wahrgenommene Latenz und das Engagement-Level des Anrufers, um zu entscheiden, welcher zu Ihrem Arbeitsablauf passt.
+</Tip>
+
+---
+
+## Nächste Schritte
+
+<CardGroup cols={2}>
+<Card title="Best Practices" icon="check" href="/ai-assistants/assistant-best-practices">
+Optimieren Sie Ihre Assistenten-Einstellungen nach Modus
+</Card>
+<Card title="Stimmauswahl" icon="microphone" href="/ai-assistants/voice-selection">
+Wählen Sie die richtige Stimme für Ihren Modus
+</Card>
+</CardGroup>
+
+<CardGroup cols={2}>
+<Card title="System-Prompt" icon="pen" href="/ai-assistants/system-prompt">
+Schreiben Sie modusoptimierte System-Prompts
+</Card>
+<Card title="Assistenten testen" icon="flask" href="/ai-assistants/testing">
+Testen Sie verschiedene Modi mit Ihrem Assistenten
+</Card>
+</CardGroup>
+
+<Note>
+Benötigen Sie Hilfe bei der Modusauswahl? Siehe [Best Practices](/ai-assistants/assistant-best-practices) für detaillierte Empfehlungen.
+</Note>

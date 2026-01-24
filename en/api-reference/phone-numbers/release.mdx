@@ -1,0 +1,114 @@
+---
+title: "Telefonnummer freigeben"
+api: "DELETE https://app.famulor.de/api/user/phone-numbers/{id}"
+icon: "trash"
+description: "Gibt eine Telefonnummer frei und kündigt ihr Abonnement"
+---
+
+Dieser Endpunkt gibt eine Telefonnummer von Ihrem Konto frei. Für dedizierte Nummern mit Abonnements wird das Abonnement gekündigt und die Nummer wird am Ende des aktuellen Abrechnungszeitraums freigegeben.
+
+### Pfad-Parameter
+
+<ParamField path="id" type="integer" required>
+  Die eindeutige Kennung der freizugebenden Telefonnummer
+</ParamField>
+
+### Antwort-Felder
+
+<ResponseField name="message" type="string">
+  Erfolgsmeldung, die den Freigabestatus angibt
+</ResponseField>
+
+### Freigabeverhalten
+
+Das Freigabeverhalten hängt vom Telefonnummerntyp ab:
+
+| Typ                   | Verhalten                                                                                                |
+| ---------------------- | ------------------------------------------------------------------------------------------------------- |
+| **Dedicated (normal)** | Abonnement wird gekündigt. Nummer bleibt bis zum Ende des Abrechnungszeitraums aktiv, dann wird sie freigegeben. |
+| **SIP**                | Wird sofort aus Ihrem Konto gelöscht.                                                                  |
+| **Caller ID**          | Wird sofort aus Ihrem Konto gelöscht und vom Telefonieanbieter entfernt.                          |
+
+<Warning>
+Sobald eine Telefonnummer freigegeben wurde, können Sie möglicherweise nicht mehr dieselbe Nummer zurückerhalten. Stellen Sie sicher, dass Sie alle Assistenten oder Kampagnen aktualisieren, die diese Nummer verwenden, bevor Sie sie freigeben.
+</Warning>
+
+### Was passiert mit zugeordneten Ressourcen
+
+Wenn Sie eine Telefonnummer freigeben:
+
+* Alle **eingehenden Assistenten**, die dieser Nummer zugeordnet sind, haben ihre Telefonnummer entfernt
+* Alle **Kampagnen**, die diese Nummer verwenden, haben sie aus ihrer Telefonnummern-Rotation entfernt
+* **Anrufhistorie** wird beibehalten und bleibt zugänglich
+
+<CodeGroup>
+```bash cURL
+curl -X DELETE "https://app.famulor.de/api/user/phone-numbers/123" \
+     -H "Authorization: Bearer YOUR_API_KEY" \
+     -H "Content-Type: application/json"
+```
+
+```javascript JavaScript
+const response = await fetch(
+  "https://app.famulor.de/api/user/phone-numbers/123",
+  {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer YOUR_API_KEY",
+    },
+  }
+);
+
+const data = await response.json();
+```
+
+```python Python
+import requests
+
+response = requests.delete(
+    "https://app.famulor.de/api/user/phone-numbers/123",
+    headers={
+        "Content-Type": "application/json",
+        "Authorization": "Bearer YOUR_API_KEY",
+    },
+    timeout=10,
+)
+
+print(response.json())
+```
+</CodeGroup>
+
+<ResponseExample>
+
+```json 200 Subscription Cancelled
+{
+  "message": "Phone number released successfully. It will be removed at the end of the billing period."
+}
+```
+
+```json 200 Immediately Deleted
+{
+  "message": "Phone number deleted successfully."
+}
+```
+
+```json 400 Already Scheduled
+{
+  "error": "Phone number is already scheduled for release."
+}
+```
+
+```json 404 Not Found
+{
+  "error": "Phone number not found."
+}
+```
+
+```json 500 Error
+{
+  "error": "Failed to release phone number. Please try again or contact support."
+}
+```
+
+</ResponseExample>

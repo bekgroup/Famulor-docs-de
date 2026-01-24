@@ -1,0 +1,58 @@
+---
+title: "Authentifizierung"
+icon: "key"
+description: "Lernen Sie, wie Sie Ihre API-Anfragen authentifizieren"
+---
+
+Die Famulor API verwendet API-Schlüssel zur Authentifizierung von Anfragen. Sie müssen Ihren API-Schlüssel im Header jeder Anfrage an die API einbeziehen.
+
+<Info>
+Für eine umfassende Anleitung mit Code-Beispielen, Sicherheits-Best-Practices und Fehlerbehebung siehe unseren [vollständigen Authentifizierungs-Leitfaden](/developers/authentication-guide).
+</Info>
+
+## API-Schlüssel erhalten
+
+Um einen API-Schlüssel zu erhalten:
+
+1. Melden Sie sich bei Ihrem Famulor-Konto an unter [https://app.famulor.de](https://app.famulor.de)
+2. Navigieren Sie zur "API-Schlüssel" Seite
+3. Klicken Sie auf den "Neuen API-Schlüssel erstellen" Button
+4. Kopieren Sie Ihren neuen API-Schlüssel und speichern Sie ihn sicher
+
+<Warning>
+  Halten Sie Ihren API-Schlüssel vertraulich und sicher. Teilen Sie ihn nicht öffentlich oder committen Sie ihn nicht in Versionskontrollsysteme.
+</Warning>
+
+## API-Schlüssel verwenden
+
+Fügen Sie Ihren API-Schlüssel in den `Authorization` Header jeder Anfrage ein:
+
+```
+Authorization: Bearer YOUR_API_KEY
+```
+
+Ersetzen Sie `YOUR_API_KEY` mit Ihrem tatsächlichen API-Schlüssel.
+
+## Beispiel-Anfrage
+
+Hier ist ein Beispiel, wie Sie den API-Schlüssel in einer cURL-Anfrage einbeziehen:
+
+```bash
+curl -X GET "https://app.famulor.de/api/user/campaigns" \
+     -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+Ersetzen Sie `YOUR_API_KEY` mit Ihrem tatsächlichen API-Schlüssel bei Anfragen.
+
+---
+
+## Weiterführende Ressourcen
+
+<CardGroup cols={2}>
+  <Card title="Vollständiger Authentifizierungs-Leitfaden" icon="book-open" href="/developers/authentication-guide">
+    Umfassende Anleitung mit Code-Beispielen, Sicherheits-Best-Practices und Fehlerbehebung
+  </Card>
+  <Card title="API-Integration-Beispiele" icon="code" href="/developers/api-integration-examples">
+    Praktische Beispiele für die Integration der Famulor API
+  </Card>
+</CardGroup> 

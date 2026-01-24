@@ -1,0 +1,146 @@
+---
+title: "Leads auflisten"
+api: "GET https://app.famulor.de/api/user/leads"
+icon: "list"
+description: "Alle Leads für den authentifizierten Benutzer auflisten"
+---
+
+Dieser Endpunkt ermöglicht es Ihnen, alle Leads aufzulisten, die dem authentifizierten Benutzer gehören.
+
+### Antwort-Felder
+
+<ResponseField name="leads" type="array">
+  Array aller Leads des Benutzers
+
+  <Expandable title="Lead-Eigenschaften">
+    <ResponseField name="id" type="integer">
+      Die ID des Leads
+    </ResponseField>
+
+    <ResponseField name="campaign_id" type="integer">
+      Die ID der Kampagne, zu der dieser Lead gehört
+    </ResponseField>
+
+    <ResponseField name="phone_number" type="string">
+      Die Telefonnummer des Leads im E.164-Format
+    </ResponseField>
+
+    <ResponseField name="variables" type="object">
+      Die dem Lead zugeordneten Variablen
+    </ResponseField>
+
+    <ResponseField name="status" type="string">
+      Der Status des Leads
+    </ResponseField>
+
+    <ResponseField name="created_at" type="string">
+      Das Erstellungsdatum des Leads
+    </ResponseField>
+
+    <ResponseField name="updated_at" type="string">
+      Das letzte Aktualisierungsdatum des Leads
+    </ResponseField>
+
+    <ResponseField name="campaign" type="object">
+      Die Kampagnen-Informationen
+
+      <Expandable title="Kampagnen-Eigenschaften">
+        <ResponseField name="id" type="integer">
+          Die ID der Kampagne
+        </ResponseField>
+
+        <ResponseField name="name" type="string">
+          Der Name der Kampagne
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+
+    <ResponseField name="secondary_contacts" type="array">
+      Array der sekundären Kontakt-Leads, die mit diesem Lead verknüpft sind
+
+      <Expandable title="Sekundäre Kontakt-Eigenschaften">
+        <ResponseField name="id" type="integer">
+          Die ID des sekundären Kontakt-Leads
+        </ResponseField>
+
+        <ResponseField name="phone_number" type="string">
+          Die Telefonnummer des sekundären Kontakts im E.164-Format
+        </ResponseField>
+
+        <ResponseField name="variables" type="object">
+          Die dem sekundären Kontakt zugeordneten Variablen
+        </ResponseField>
+
+        <ResponseField name="status" type="string">
+          Der Status des sekundären Kontakts
+        </ResponseField>
+
+        <ResponseField name="created_at" type="string">
+          Das Erstellungsdatum des sekundären Kontakts
+        </ResponseField>
+
+        <ResponseField name="updated_at" type="string">
+          Das letzte Aktualisierungsdatum des sekundären Kontakts
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseExample>
+
+```json 200 Response
+{
+  "leads": [
+    {
+      "id": 1234,
+      "campaign_id": 56,
+      "phone_number": "+1234567890",
+      "variables": {
+        "customer_name": "John Doe",
+        "email": "john.doe@example.com",
+        "company": "Beispiel GmbH"
+      },
+      "status": "created",
+      "created_at": "2024-01-15T10:30:00Z",
+      "updated_at": "2024-01-15T10:30:00Z",
+      "campaign": {
+        "id": 56,
+        "name": "Neukundenakquise Q1 2024"
+      },
+      "secondary_contacts": [
+        {
+          "id": 5678,
+          "phone_number": "+1234567891",
+          "variables": {
+            "name": "Jane Smith",
+            "role": "Entscheidungsträger"
+          },
+          "status": "created",
+          "created_at": "2024-01-15T11:00:00Z",
+          "updated_at": "2024-01-15T11:00:00Z"
+        }
+      ]
+    },
+    {
+      "id": 1235,
+      "campaign_id": 57,
+      "phone_number": "+1987654321",
+      "variables": {
+        "customer_name": "Max Mustermann",
+        "email": "max.mustermann@beispiel.de"
+      },
+      "status": "completed",
+      "created_at": "2024-01-14T09:15:00Z",
+      "updated_at": "2024-01-14T14:22:00Z",
+      "campaign": {
+        "id": 57,
+        "name": "Follow-up Kampagne"
+      },
+      "secondary_contacts": []
+    }
+  ]
+}
+```
+
+</ResponseExample>

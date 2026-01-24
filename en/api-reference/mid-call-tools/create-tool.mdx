@@ -1,0 +1,178 @@
+---
+title: "Mid-Call-Tool erstellen"
+api: "POST /user/tools"
+description: "Ein neues Mid-Call-Tool erstellen"
+---
+
+Dieser Endpunkt ermöglicht es Ihnen, ein neues Mid-Call-Tool zu erstellen, das von Ihren KI-Assistenten verwendet werden kann, um während Anrufen mit externen APIs zu interagieren.
+
+### Body-Parameter
+
+<ParamField body="name" type="string" required>
+  Tool-Name - darf nur Kleinbuchstaben und Unterstriche enthalten und muss mit einem Buchstaben beginnen (z.B. `get_weather`, `book_appointment`)
+</ParamField>
+
+<ParamField body="description" type="string" required>
+  Detaillierte Erklärung, wann und wie die KI dieses Tool verwenden soll (max. 255 Zeichen)
+</ParamField>
+
+<ParamField body="endpoint" type="string" required>
+  Gültige URL des aufzurufenden API-Endpunkts
+</ParamField>
+
+<ParamField body="method" type="string" required>
+  HTTP-Methode: `GET`, `POST`, `PUT`, `PATCH` oder `DELETE`
+</ParamField>
+
+<ParamField body="timeout" type="integer" optional>
+  Request-Timeout in Sekunden (1-30, Standard: 10)
+</ParamField>
+
+<ParamField body="headers" type="array" optional>
+  HTTP-Header, die mit der Anfrage gesendet werden sollen
+  <Expandable title="Header-Eigenschaften">
+    <ParamField body="name" type="string" required>
+      Header-Name
+    </ParamField>
+    <ParamField body="value" type="string" required>
+      Header-Wert
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField body="schema" type="array" optional>
+  Parameter, die die KI aus der Unterhaltung extrahieren und an den Endpunkt senden wird
+  <Expandable title="Schema-Eigenschaften">
+    <ParamField body="name" type="string" required>
+      Parameter-Name (2-32 Zeichen, muss mit einem Buchstaben beginnen, kann Buchstaben und Unterstriche enthalten)
+    </ParamField>
+    <ParamField body="type" type="string" required>
+      Parameter-Typ: `string`, `number` oder `boolean`
+    </ParamField>
+    <ParamField body="description" type="string" required>
+      Beschreibung, um der KI zu helfen, diesen Parameter zu extrahieren (3-255 Zeichen)
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+### Antwortfelder
+
+<ResponseField name="message" type="string">
+  Erfolgsmeldung
+</ResponseField>
+
+<ResponseField name="data" type="object">
+  Das erstellte Tool-Objekt
+  <Expandable title="Daten-Eigenschaften">
+    <ResponseField name="id" type="integer">
+      Die eindeutige Kennung des Tools
+    </ResponseField>
+
+    <ResponseField name="name" type="string">
+      Der Name des Tools
+    </ResponseField>
+
+    <ResponseField name="description" type="string">
+      Tool-Beschreibung
+    </ResponseField>
+
+    <ResponseField name="endpoint" type="string">
+      API-Endpunkt-URL
+    </ResponseField>
+
+    <ResponseField name="method" type="string">
+      HTTP-Methode
+    </ResponseField>
+
+    <ResponseField name="timeout" type="integer">
+      Request-Timeout in Sekunden
+    </ResponseField>
+
+    <ResponseField name="headers" type="array">
+      HTTP-Header
+    </ResponseField>
+
+    <ResponseField name="schema" type="array">
+      Parameter-Schema
+    </ResponseField>
+
+    <ResponseField name="created_at" type="string">
+      ISO 8601 Zeitstempel
+    </ResponseField>
+
+    <ResponseField name="updated_at" type="string">
+      ISO 8601 Zeitstempel
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseExample>
+
+```json 201 Created
+{
+  "message": "Tool created successfully",
+  "data": {
+    "id": 1,
+    "name": "check_order_status",
+    "description": "Use this tool to check the status of a customer's order.",
+    "endpoint": "https://app.famulor.de/orders/status",
+    "method": "GET",
+    "timeout": 10,
+    "headers": [
+      {
+        "name": "Content-Type",
+        "value": "application/json"
+      },
+      {
+        "name": "Authorization",
+        "value": "Bearer sk_..."
+      }
+    ],
+    "schema": [
+      {
+        "name": "order_id",
+        "type": "string",
+        "description": "The customer's order ID"
+      },
+      {
+        "name": "order_number",
+        "type": "number",
+        "description": "The numeric order number"
+      },
+      {
+        "name": "priority_order",
+        "type": "boolean",
+        "description": "Whether this is a priority order"
+      }
+    ],
+    "created_at": "2025-10-10T12:00:00.000000Z",
+    "updated_at": "2025-10-10T12:00:00.000000Z"
+  }
+}
+```
+
+```json 422 Validation Error
+{
+  "message": "The name field must contain only lowercase letters and underscores, and start with a letter.",
+  "errors": {
+    "name": [
+      "Tool name must contain only lowercase letters and underscores, and start with a letter."
+    ]
+  }
+}
+```
+
+```json 422 Plan Limit Reached
+{
+  "message": "You have reached your plan limit of 5 mid call tools. Please upgrade your plan to create more tools."
+}
+```
+
+</ResponseExample>
+
+### Tools zu Assistenten hinzufügen
+
+Nach dem Erstellen eines Tools müssen Sie es einem Assistenten zuweisen, um es während Anrufen zu verwenden. Tools werden über die Assistenten-API verwaltet:
+
+- **[Assistent erstellen](/api-reference/assistants/create)** - Verwenden Sie den `tool_ids`-Parameter, um Tools beim Erstellen eines Assistenten zuzuweisen
+- **[Assistent aktualisieren](/api-reference/assistants/update)** - Verwenden Sie den `tool_ids`-Parameter, um Tools bei einem bestehenden Assistenten hinzuzufügen, zu entfernen oder zu ersetzen

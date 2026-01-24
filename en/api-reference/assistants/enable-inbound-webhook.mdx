@@ -1,0 +1,82 @@
+---
+title: "Inbound-Webhook aktivieren"
+api: "POST https://app.famulor.de/api/user/assistants/enable-inbound-webhook"
+icon: "webhook"
+description: "Inbound-Webhook-Benachrichtigungen für einen bestimmten Assistenten aktivieren"
+---
+
+Dieser Endpunkt aktiviert Inbound-Webhook-Benachrichtigungen für einen Assistenten, sodass Sie Echtzeit-Updates über abgeschlossene eingehende Anrufe und Daten erhalten können.
+
+### Request Body
+
+<ParamField body="assistant_id" type="integer" required>
+  Die ID des Assistenten, für den der Webhook aktiviert werden soll
+</ParamField>
+
+<ParamField body="webhook_url" type="string" required>
+  Die URL, an die Webhook-Benachrichtigungen gesendet werden
+</ParamField>
+
+### Response
+
+<ResponseField name="message" type="string">
+  Erfolgsmeldung, die bestätigt, dass der Webhook aktiviert wurde
+</ResponseField>
+
+<ResponseField name="data" type="array">
+  Leeres Array (für zukünftige Verwendung reserviert)
+</ResponseField>
+
+### Fehler-Responses
+
+<ResponseField name="message" type="string">
+  Fehlermeldung, wenn der Assistent nicht gefunden wurde oder nicht dem authentifizierten Benutzer gehört
+</ResponseField>
+
+<ResponseField name="errors" type="object">
+  Detaillierte Validierungsfehler für jedes Feld
+</ResponseField>
+
+<CodeGroup>
+```bash Inbound-Webhook aktivieren
+curl -X POST "https://app.famulor.de/api/user/assistants/enable-inbound-webhook" \
+  -H "Authorization: Bearer YOUR_API_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "assistant_id": 123,
+    "webhook_url": "https://example.com/inbound-webhook"
+  }'
+```
+</CodeGroup>
+
+<ResponseExample>
+
+```json 200 Success
+{
+  "message": "Inbound webhook enabled successfully",
+  "data": []
+}
+```
+
+```json 404 Not Found
+{
+  "message": "Assistant not found or does not belong to the authenticated user"
+}
+```
+
+```json 422 Validation Error
+{
+  "message": "The given data was invalid.",
+  "errors": {
+    "assistant_id": [
+      "The assistant id field is required."
+    ],
+    "webhook_url": [
+      "The webhook url field is required.",
+      "The webhook url must be a valid URL."
+    ]
+  }
+}
+```
+
+</ResponseExample>

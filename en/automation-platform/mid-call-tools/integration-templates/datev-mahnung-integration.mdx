@@ -1,0 +1,66 @@
+---
+title: "DATEV Mahnung erstellen"
+description: "Automatische Mahnungs-Erstellung in DATEV für offene Forderungen direkt während Kundengesprächem"
+icon: "exclamation-triangle"
+---
+
+# DATEV Mahnung Integration
+
+## Konfiguration im Famulor Interface
+
+<Tabs>
+  <Tab title="Werkzeugdetails">
+    | **Name*** | `DATEV Mahnung erstellen` |
+    | **Funktionsname*** | `create_datev_dunning` |
+    | **HTTP-Methode** | `POST` |
+    | **Endpoint*** | `https://api.datev.de/data/v1/clients/{client_id}/dunnings` |
+    | **Timeout (ms)** | `5000` |
+  </Tab>
+</Tabs>
+
+### Parameter-Schema
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "client_id": {
+      "type": "string",
+      "description": "Mandantennummer"
+    },
+    "customer_number": {
+      "type": "string", 
+      "description": "Kundennummer"
+    },
+    "level": {
+      "type": "integer",
+      "enum": [1, 2, 3],
+      "description": "Mahnstufe"
+    },
+    "invoice_numbers": {
+      "type": "array",
+      "description": "Offene Rechnungsnummern"
+    },
+    "amount": {
+      "type": "number",
+      "description": "Gesamtbetrag"
+    },
+    "fee": {
+      "type": "number",
+      "description": "Mahngebühr"
+    },
+    "deadline": {
+      "type": "string",
+      "format": "date",
+      "description": "Zahlungsfrist"
+    }
+  },
+  "required": ["client_id", "customer_number", "level", "invoice_numbers"]
+}
+```
+
+**Agent-Message**: `"Ich erstelle die {{level}}. Mahnung..."`
+
+**Success-Template**: `"Mahnung {{dunningNumber}} erstellt. Zahlungsfrist: {{deadline}}. Gesamtforderung: {{amount}}€ inkl. {{fee}}€ Mahngebühr."`
+
+---

@@ -1,0 +1,137 @@
+---
+title: "Mid-call Action aktualisieren"
+api: "PUT /user/tools/{id}"
+description: "Ein bestehendes Mid-call Action aktualisieren"
+---
+
+Dieser Endpunkt ermöglicht es Ihnen, ein bestehendes Mid-call Action zu aktualisieren. Alle Felder sind optional - geben Sie nur die Felder an, die Sie aktualisieren möchten.
+
+### Pfad-Parameter
+
+<ParamField path="id" type="integer" required>
+  Die eindeutige Kennung des zu aktualisierenden Tools
+</ParamField>
+
+### Body-Parameter
+
+<ParamField body="name" type="string" optional>
+  Tool-Name - darf nur Kleinbuchstaben und Unterstriche enthalten und muss mit einem Buchstaben beginnen
+</ParamField>
+
+<ParamField body="description" type="string" optional>
+  Detaillierte Erklärung, wann und wie die KI dieses Tool verwenden soll (max. 255 Zeichen)
+</ParamField>
+
+<ParamField body="endpoint" type="string" optional>
+  Gültige URL des aufzurufenden API-Endpunkts
+</ParamField>
+
+<ParamField body="method" type="string" optional>
+  HTTP-Methode: `GET`, `POST`, `PUT`, `PATCH` oder `DELETE`
+</ParamField>
+
+<ParamField body="timeout" type="integer" optional>
+  Request-Timeout in Sekunden (1-30)
+</ParamField>
+
+<ParamField body="headers" type="array" optional>
+  HTTP-Header, die mit der Anfrage gesendet werden sollen (ersetzt bestehende Header)
+  <Expandable title="Header-Eigenschaften">
+    <ParamField body="name" type="string" required>
+      Header-Name
+    </ParamField>
+    <ParamField body="value" type="string" required>
+      Header-Wert
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField body="schema" type="array" optional>
+  Parameter-Schema (ersetzt bestehendes Schema)
+  <Expandable title="Schema-Eigenschaften">
+    <ParamField body="name" type="string" required>
+      Parameter-Name (2-32 Zeichen)
+    </ParamField>
+    <ParamField body="type" type="string" required>
+      Parameter-Typ: `string`, `number` oder `boolean`
+    </ParamField>
+    <ParamField body="description" type="string" required>
+      Parameter-Beschreibung (3-255 Zeichen)
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+### Antwortfelder
+
+<ResponseField name="message" type="string">
+  Erfolgsmeldung
+</ResponseField>
+
+<ResponseField name="data" type="object">
+  Das aktualisierte Tool-Objekt mit allen aktuellen Werten
+</ResponseField>
+
+<ResponseExample>
+
+```json 200 OK
+{
+  "message": "Tool updated successfully",
+  "data": {
+    "id": 1,
+    "name": "update_customer_info",
+    "description": "Use this tool to update customer information in the system.",
+    "endpoint": "https://api.yourcompany.com/customers/update",
+    "method": "POST",
+    "timeout": 15,
+    "headers": [
+      {
+        "name": "Content-Type",
+        "value": "application/json"
+      }
+    ],
+    "schema": [
+      {
+        "name": "customer_name",
+        "type": "string",
+        "description": "Full name of the customer"
+      },
+      {
+        "name": "customer_age",
+        "type": "number",
+        "description": "Age of the customer"
+      },
+      {
+        "name": "newsletter_subscription",
+        "type": "boolean",
+        "description": "Whether customer wants to subscribe to newsletter"
+      }
+    ],
+    "created_at": "2025-10-10T12:00:00.000000Z",
+    "updated_at": "2025-10-10T14:30:00.000000Z"
+  }
+}
+```
+
+```json 404 Not Found
+{
+  "message": "Tool not found"
+}
+```
+
+```json 422 Validation Error
+{
+  "message": "Validation failed",
+  "errors": {
+    "name": ["Tool name must contain only lowercase letters and underscores, and start with a letter."]
+  }
+}
+```
+
+</ResponseExample>
+
+### Tool-Zuweisungen verwalten
+
+Um dieses Tool zu Assistenten hinzuzufügen oder zu entfernen, verwenden Sie die Assistenten-API:
+
+- **[Assistent erstellen](/api-reference/assistants/create)** - Verwenden Sie den `tool_ids`-Parameter, um Tools beim Erstellen eines Assistenten zuzuweisen
+- **[Assistent aktualisieren](/api-reference/assistants/update)** - Verwenden Sie den `tool_ids`-Parameter, um zu verwalten, welche Tools einem Assistenten zugewiesen sind

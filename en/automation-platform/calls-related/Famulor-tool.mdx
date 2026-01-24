@@ -1,0 +1,129 @@
+---
+title: "Famulor Tool"
+icon: "phone"
+description: "Lernen Sie, wie Sie Famulor-Trigger und -Aktionen in Ihren KI-Anruf-Flows verwenden"
+---
+
+# Famulor Tool
+
+Das Famulor Tool ist die Kernkomponente, die Ihr KI-Anrufsystem mit Automatisierungs-Flows verbindet. Es ermöglicht Echtzeit-Datenaustausch zwischen Ihren KI-Assistenten und Geschäftssystemen, was personalisierte Gespräche und automatisierte Nachfolgeaktionen ermöglicht.
+
+<Note>
+  Sie finden das Famulor Tool prominent am oberen Rand der
+  Suchleiste angezeigt, wenn Sie nach Triggern oder Aktionen suchen.
+</Note>
+
+## Trigger
+
+### Anruf beendet
+
+Der "Anruf beendet" Trigger aktiviert sich sofort nach Abschluss eines KI-Anrufs und liefert umfassende Daten über die Interaktion:
+
+- Vollständiges Gesprächs-Transkript mit Zeitstempeln
+- KI-Assistent-Antworten und Entscheidungen
+- Anrufdauer und technische Metadaten
+- Kundeninformationen und Telefonnummer
+- Anrufergebnis und Sentiment-Analyse
+- Während des Gesprächs gesetzte Variablen
+
+#### Konfiguration
+
+1. Wählen Sie "Anruf beendet" als Trigger
+2. Wählen Sie spezifischen KI-Assistenten zum Überwachen
+3. Variablen-Mapping konfigurieren
+
+### Eingehender Anruf Variablen-Injection
+
+Dieser leistungsstarke Trigger aktiviert sich, bevor Ihr KI-Assistent einen eingehenden Anruf annimmt, und ermöglicht es Ihnen:
+
+- Echtzeit-Kundendaten abrufen und injizieren
+- KI-Verhalten basierend auf Kontext anpassen
+- Gesprächsparameter setzen
+- KI-Persönlichkeitsmerkmale definieren
+- Geschäftslogik-Variablen bereitstellen
+
+#### Konfiguration
+
+1. Wählen Sie "Eingehender Anruf" als Trigger
+2. Erforderliche Variablen für KI-Kontext definieren
+
+## Aktionen
+
+### Lead zu Kampagne hinzufügen
+
+![Famulor Action](/resources/Famulor-action.jpg)
+
+Diese Aktion hilft bei der Verwaltung Ihrer KI-Anrufkampagnen durch:
+
+- Erstellen neuer Leads aus externen Tools wie Sheets, Hubspot, Facebook Leads
+- Zuweisen von Leads zu spezifischen KI-Kampagnen
+- Hinzufügen von Kontext für zukünftige Anrufe
+
+#### Konfiguration
+
+1. Ziel-KI-Kampagne auswählen
+2. Kontaktdetails aus Trigger-Daten mappen
+3. Benutzerdefinierte Attribute für KI-Kontext hinzufügen
+
+### Variablen zurückgeben
+
+Diese Aktion ist entscheidend für eingehende Anrufe und gibt Kontext zurück, der in den KI-Prompt injiziert wird:
+
+- Kundenprofil und Präferenzen
+- Gesprächshistorie-Zusammenfassung
+- Geschäftsregeln und Einschränkungen
+- Benutzerdefinierte KI-Verhaltens-Flags
+- Dynamische Antwort-Templates
+
+#### Konfiguration
+
+1. Antwort-JSON strukturieren
+2. Kundendaten zu Variablen mappen
+3. KI-Gesprächsparameter setzen
+4. Timeout-Behandlung konfigurieren
+
+## Beispiel-Verwendung
+
+### Post-Anruf Lead-Management
+
+```javascript
+Trigger: KI Anruf beendet
+↓
+Gesprächs-Einblicke extrahieren
+↓
+Hubspot-Datensatz aktualisieren
+↓
+Zu Nachfolgekampagne hinzufügen, falls qualifiziert
+```
+
+### Intelligente eingehende Weiterleitung
+
+```javascript
+Trigger: Eingehender Anruf an KI
+↓
+Kundenprofil aus CRM abrufen
+↓
+Interaktionshistorie erhalten
+↓
+Bereicherten Kontext für KI-Prompt zurückgeben
+```
+
+## Best Practices
+
+1. **Variablen-Injection Performance**
+
+   - Verarbeitung unter 2 Sekunden halten
+   - Sinnvolle Standardwerte setzen
+
+2. **Datenstruktur**
+
+   - KI-Prompt-Anforderungen befolgen
+   - Alle Variablen validieren
+   - Verschachtelte Objekte klar strukturieren
+   - Benutzerdefinierte Felder dokumentieren
+
+3. **Fehlerbehandlung**
+   - Fallback-Werte bereitstellen
+   - Injection-Fehler protokollieren
+   - Antwortzeiten überwachen
+   - Fehlende Daten elegant behandeln 

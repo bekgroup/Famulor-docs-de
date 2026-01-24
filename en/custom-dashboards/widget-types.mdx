@@ -1,0 +1,611 @@
+---
+title: "Widget-Konfiguration"
+icon: "sliders"
+description: "Vollständiger Leitfaden für die Konfiguration von Statistik-, Diagramm- und Tabellen-Widgets mit allen verfügbaren Optionen"
+---
+
+Lernen Sie, wie Sie jeden Widget-Typ mit detaillierten Erklärungen aller Optionen konfigurieren.
+
+## Widgets erstellen
+
+1. Zum individuellen Dashboard navigieren
+2. Klicken Sie auf **"Widgets verwalten"** dann **"Neues Widget erstellen"**
+3. Widget-Typ auswählen
+4. 2-3 Schritte Assistent folgen
+5. Speichern und zum Dashboard hinzufügen
+
+## Statistik-Widgets
+
+Einzelne Metrik-Anzeige mit optionalem Vergleich und Trend-Diagramm.
+
+### Schritt 1: Grundlagen
+
+**Widget-Name**
+- Interne Kennung für Widget-Liste
+- Wird nicht auf dem Dashboard angezeigt
+- Beispiel: "Gesamtanrufe diesen Monat"
+
+**Datentabelle**
+- Datenquelle wählen: anrufe, leads, kampagnen, assistenten, telefonnummern, sms
+- Bestimmt verfügbare Spalten
+
+**Aggregation**
+- `COUNT` - Gesamtanzahl der Datensätze (keine Spalte erforderlich)
+- `SUM` - Summe der Werte (erfordert Spaltenauswahl)
+- `AVG` - Durchschnitt der Werte (erfordert Spaltenauswahl)
+- `MAX` - Maximalwert (erfordert Spaltenauswahl)
+- `MIN` - Minimalwert (erfordert Spaltenauswahl)
+
+**Spalte** (falls SUM/AVG/MAX/MIN ausgewählt)
+- Numerische Spalte zur Aggregation auswählen
+- Beispiel: `dauer` für durchschnittliche Anruflänge
+- Nicht erforderlich für COUNT
+
+### Schritt 2: Anzeige & Filter
+
+**Beschriftung** (erforderlich)
+- Hauptüberschrift auf dem Widget angezeigt
+- Beispiel: "Gesamtanrufe"
+
+**Beschreibung**
+- Optionaler Text unter dem Wert
+- Versteckt wenn Vergleich aktiviert
+- Beispiel: "Anrufe diesen Monat getätigt"
+
+**Farbe**
+- primär (blau), erfolg (grün), warnung (gelb), gefahr (rot), info (cyan), grau
+- Basierend auf Metriktyp wählen (grün für positiv, rot für negativ)
+
+**Mini-Diagramm anzeigen**
+- Zeigt kleines Liniendiagramm mit täglichem Trend
+- Verwendet denselben Datumsbereich wie Statistik
+
+**Mit vorherigem Zeitraum vergleichen**
+- Zeigt prozentuale Änderung vom vorherigen Zeitraum
+- Beispiel: Letzte 7 Tage vs vorherige 7 Tage
+- Zeigt "+15%" oder "-8%" mit Aufnahme-/Abnahme-Pfeil
+- Überschreibt Beschreibungsfeld
+
+**Datumsbereich**
+- Nach Erstellungsdatum filtern
+- Optionen: Heute, 1, 7, 14, 30, 60, 90, 180, 365 Tage
+
+**Bedingungen** (optional)
+- Filter hinzufügen, um Daten einzugrenzen
+- Mehrere Bedingungen mit UND verknüpft
+- Siehe Abschnitt [Daten filtern](#filtering-data)
+
+### Beispiele
+
+**Gesamtanrufe**
+```
+Aggregation: COUNT
+Tabelle: anrufe
+Beschriftung: "Gesamtanrufe"
+Beschreibung: "Letzte 30 Tage"
+Farbe: primär
+Datumsbereich: 30 Tage
+```
+
+**Durchschnittliche Anrufdauer**
+```
+Aggregation: AVG
+Tabelle: anrufe
+Spalte: dauer
+Beschriftung: "Ø Dauer"
+Farbe: info
+Mini-Diagramm anzeigen: Ja
+Datumsbereich: 30 Tage
+```
+
+**Erfolgreiche Termine**
+```
+Aggregation: COUNT
+Tabelle: anrufe
+Beschriftung: "Termine gebucht"
+Farbe: erfolg
+Vergleichen: Ja
+Datumsbereich: 7 Tage
+Bedingungen:
+  - status = abgeschlossen
+  - evaluation.termin_gebucht = true
+```
+
+## Diagramm-Widgets
+
+Visualisieren Sie Trends mit 8 Diagrammtypen.
+
+### Schritt 1: Grundlagen
+
+Wie bei Statistik-Widgets, zusätzlich:
+
+**Diagrammtyp**
+- `line` - Trends über Zeit
+- `bar` - Kategorien oder Zeiträume vergleichen
+- `area` - Gefülltes Trend-Diagramm
+- `pie` - Proportionen (erfordert Gruppierung)
+- `donut` - Kreis mit mittlerem Loch (erfordert Gruppierung)
+- `polarArea` - Kreisförmig mit variierendem Radius (erfordert Gruppierung)
+- `radar` - Mehrachsenvergleich
+- `radialBar` - Einzelner Fortschrittsindikator
+
+### Schritt 2: Anzeige & Filter
+
+**Beschriftung** (erforderlich)
+- Diagrammtitel
+
+**Beschreibung**
+- Optionaler Untertitel unter dem Diagramm
+- Beispiel: "Leistung der letzten 30 Tage"
+
+**Farbe**
+- Primärfarbe des Diagramms
+- Für Kreis/Donut verwendet mehrfarbige Palette (blau, grün, orange, rot, lila, rosa)
+
+**Datumsbereich**
+- Wie bei Statistiken
+
+**Gruppieren nach** ODER **Gruppieren nach Zeitraum** (sich gegenseitig ausschließend)
+
+**Gruppieren nach** - Kategorische Gruppierung
+- Daten nach Spaltenwerten gruppieren
+- Beispiele: Status, Kampagnen-ID, Assistentenname
+- **Erforderlich** für Kreis/Donut/Polarbereich-Diagramme
+- Optional für Balken/Radar-Diagramme
+- **Kann nicht** mit Gruppierung nach Zeitraum verwendet werden
+
+**Gruppieren nach Zeitraum** - Zeitbasierte Gruppierung
+- Nach Zeit-Buckets gruppieren
+- Optionen: Stunde, Tag, Woche, Monat
+- Verwendet für Linien/Balken/Flächen-Diagramme
+- **Kann nicht** mit Gruppieren nach verwendet werden
+
+**Bedingungen**
+- Wie bei Statistiken
+
+### Schritt 3: Erweitert (nur Diagramme)
+
+**Gitterlinien anzeigen** (nur Linie/Balken/Fläche)
+- Horizontale/vertikale Hintergrundlinien
+- Hilft beim Ablesen exakter Werte
+- Standard: Ja
+
+**Legende anzeigen**
+- Farbkodierte Beschriftungen
+- Standard: Ja für Kreis/Donut/Polarbereich, Nein für andere
+- Position: Unten im Diagramm
+
+**Tooltips anzeigen**
+- Hover-Popups mit exakten Werten
+- Standard: Ja (empfohlen)
+
+**Datenbeschriftungen anzeigen**
+- Werte direkt auf Diagrammelementen angezeigt
+- Standard: Ja für Kreis/Donut/Polarbereich, Nein für andere
+- Kann Linien-/Balkendiagramme überfüllen
+
+**Symbolleiste anzeigen** (nur Linie/Balken/Fläche)
+- Zoom- und Download-Steuerelemente
+- Standard: Nein
+
+**Linienkurve** (nur Linie/Fläche)
+- `smooth` - Gerundete Kurven (Standard, visuell ansprechend)
+- `straight` - Direkte Linien (präzise)
+- `stepline` - Stufenweise (gut für diskrete Ereignisse)
+
+**Linienbreite** (nur Linie/Balken/Fläche)
+- Dicke in Pixeln (1-10)
+- Standard: 2px
+
+**Diagrammhöhe**
+- Vertikaler Platz in Pixeln (200-800)
+- Standard: 300px
+- Höhere Diagramme besser für mehr Datenpunkte
+
+**Gradient aktivieren** (nur radialBar)
+- Farbverlaufseffekt
+- Standard: Nein
+
+**Gradientfarbe** (wenn Gradient aktiviert)
+- Endfarbe für Gradient
+- Standard: Grün (#10b981)
+
+### Diagrammtyp-Leitfaden
+
+**Liniendiagramm**
+- **Verwenden für:** Tägliche/wöchentliche Trends, kontinuierliche Daten
+- **Erfordert:** Gruppierung nach Zeitraum
+- **Beispiel:** Anrufe pro Tag letzte 30 Tage
+
+**Balkendiagramm**
+- **Verwenden für:** Kategorienvergleich, Zeiträume
+- **Kann verwenden:** Gruppieren nach (Kategorien) ODER Gruppieren nach Zeitraum (Zeit)
+- **Beispiel:** Anrufe pro Kampagne, stündliche Verteilung
+
+**Flächendiagramm**
+- **Verwenden für:** Wie Linie, betont Volumen
+- **Erfordert:** Gruppierung nach Zeitraum
+- **Beispiel:** Anrufvolumen-Trend
+
+**Kreis-/Donut-Diagramm**
+- **Verwenden für:** Proportionen, Prozentsätze
+- **Erfordert:** Gruppieren nach (NICHT Gruppieren nach Zeitraum)
+- **Beispiel:** Anrufstatus-Aufschlüsselung
+
+**Polarbereich**
+- **Verwenden für:** Wie Kreis, zeigt aber Größe durch Radius
+- **Erfordert:** Gruppieren nach
+- **Beispiel:** Kampagnenbeitrag
+
+**Radar-Diagramm**
+- **Verwenden für:** Mehrfachvariablenvergleich
+- **Erfordert:** Gruppieren nach
+- **Beispiel:** Leistung über Metriken
+
+**Radialbalken**
+- **Verwenden für:** Einzelner Prozentsatz/Fortschritt
+- **Verwendet nicht:** Gruppieren nach oder Gruppieren nach Zeitraum
+- **Beispiel:** Zielerreichung %
+
+### Beispiele
+
+**Tägliches Anrufvolumen (Linie)**
+```
+Tabelle: anrufe
+Aggregation: COUNT
+Diagrammtyp: line
+Beschriftung: "Tägliche Anrufe"
+Gruppieren nach Zeitraum: tag
+Gitter anzeigen: Ja
+Linienkurve: glatt
+Datumsbereich: 30 Tage
+```
+
+**Status-Aufschlüsselung (Kreis)**
+```
+Tabelle: anrufe
+Aggregation: COUNT
+Diagrammtyp: pie
+Beschriftung: "Anrufstatus"
+Gruppieren nach: status
+Legende anzeigen: Ja
+Datenbeschriftungen anzeigen: Ja
+Datumsbereich: 7 Tage
+```
+
+**Stündliches Muster (Balken)**
+```
+Tabelle: anrufe
+Aggregation: COUNT
+Diagrammtyp: bar
+Beschriftung: "Anrufe nach Stunde"
+Gruppieren nach Zeitraum: stunde
+Datumsbereich: 7 Tage
+```
+
+**Kampagnenvergleich (Balken)**
+```
+Tabelle: anrufe
+Aggregation: COUNT
+Diagrammtyp: bar
+Beschriftung: "Anrufe pro Kampagne"
+Gruppieren nach: campaign.name
+Datumsbereich: 30 Tage
+```
+
+## Tabellen-Widgets
+
+Zeigen detaillierte Datensätze mit benutzerdefinierten Spalten an.
+
+### Schritt 1: Grundlagen
+
+**Datentabelle**
+- Quelle wählen: anrufe, leads, kampagnen, assistenten, telefonnummern, sms
+
+**Kampagnenfilter** (nur Leads-Tabelle)
+- Kampagne auswählen um:
+  - Tabelle auf diese Kampagne zu filtern
+  - Benutzerdefinierte Variablenspalten zu aktivieren
+- Optional
+
+**Assistentenfilter** (nur Anrufe-Tabelle)
+- Assistent auswählen um:
+  - Tabelle auf diesen Assistenten zu filtern
+  - Bewertungsfeldspalten zu aktivieren
+- Optional
+
+**Spaltenauswahl**
+- Grundspalten: ID, Status, Erstellt am, usw.
+- Beziehungsspalten: Assistentenname, Kampagnenname
+- Bewertungsfelder: evaluation.{feldname} (wenn Assistent ausgewählt)
+- Lead-Variablen: variables.{variablenname} (wenn Kampagne ausgewählt)
+- Standard wenn keine ausgewählt: ID, Status, Erstellt am
+
+### Schritt 2: Anzeige & Filter
+
+**Beschriftung** (erforderlich)
+- Tabellenüberschrift
+
+**Beschreibung**
+- Optionaler Untertitel
+
+**Datumsbereich**
+- Wie bei Statistiken/Diagrammen
+
+**Sortieren nach**
+- Standard-Sortierspalte
+- Nur einfache Spalten (nicht Beziehungen)
+- Standard: created_at
+
+**Sortierrichtung**
+- desc (neueste zuerst) - Standard
+- asc (älteste zuerst)
+
+**Zeilen pro Seite**
+- Anzahl anzuzeigender Zeilen (1-100)
+- Standard: 10
+
+**Bedingungen**
+- Wie bei Statistiken/Diagrammen
+
+### Interaktive Funktionen
+
+**Klickbare Zeilen**
+- Tabellenzeilen sind klickbar
+- Verlinkt automatisch zur Detail-/Bearbeitungsseite für den Datensatz
+- Funktioniert für: Anrufe, Leads, Kampagnen, Assistenten
+
+**Live-Datumsfilter**
+- Datumsbereich direkt im Widget ändern
+- Überschreibt den konfigurierten Standard-Datumsbereich
+- Nützlich zum Erkunden verschiedener Zeiträume
+
+**Status-Filter**
+- Mehrfachauswahl-Dropdown zum Filtern nach Status
+- Verfügbar für: Anrufe, Leads, Kampagnen, Assistenten, SMS
+- Mehrere Status gleichzeitig auswählen
+
+**Textanzeige**
+- Langer Text wird automatisch bei 50 Zeichen gekürzt
+- Hover über gekürzten Text zeigt vollständigen Inhalt im Tooltip
+
+### Spaltentypen
+
+**Telefonnummer-Spalten**
+- Internationales Format (+1 555 123 4567)
+- Länderflaggen-Präfix
+- Beispiele: client_phone_number, phone_number
+
+**Status-Spalten**
+- Farbige Badges
+- Beispiele: Status-Feld in jeder Tabelle
+
+**Datums-Spalten**
+- "Vor 3 Stunden"-Format
+- Hover zeigt vollständiges Datum/Zeit
+- Beispiele: created_at, updated_at
+
+**Bewertungs-Spalten** (Anrufe-Tabelle mit Assistent)
+- Boolean-Felder: Häkchen oder X mit grünem/rotem Badge
+- Nicht-Boolean-Felder: Wert mit grauem Badge
+- Hover zeigt Feldbeschreibung
+- Format: evaluation.{feldname}
+
+**Variablen-Spalten** (Leads-Tabelle mit Kampagne)
+- Benutzerdefinierte Lead-Daten
+- Format: variables.{variablenname}
+- Beispiele: kundenname, unternehmen
+
+**Beziehungs-Spalten**
+- Zugriff auf verwandte Daten
+- Beispiele: Assistentenname, Kampagnenname
+- Nicht nach diesen sortierbar
+
+### Beispiele
+
+**Aktuelle Anrufe**
+```
+Tabelle: anrufe
+Spalten:
+  - Kunden-Telefonnummer
+  - Assistentenname
+  - Dauer
+  - Status
+  - Erstellt am
+Sortierung: Erstellt am desc
+Zeilen: 25
+Datumsbereich: 7 Tage
+```
+
+**Erfolgreiche Termine**
+```
+Tabelle: anrufe
+Assistent: [Auswählen zum Laden der Felder]
+Spalten:
+  - Kunden-Telefonnummer
+  - Assistentenname
+  - evaluation.termin_gebucht
+  - Erstellt am
+Sortierung: Erstellt am desc
+Zeilen: 50
+Datumsbereich: 30 Tage
+Bedingungen:
+  - Status = abgeschlossen
+  - Spalte: Extrahierte Variablen
+    Extrahierte Variablenname: Benutzerdefinierte Variable
+    Benutzerdefinierter Variablenname: termin_gebucht
+    Operator: =
+    Variablenwert: true
+```
+
+## Daten filtern
+
+Alle Widgets unterstützen Bedingungen zum Filtern von Daten.
+
+### Operatoren
+
+- `=` - Gleich
+- `!=` - Ungleich
+- `>` - Größer als
+- `>=` - Größer oder gleich
+- `<` - Kleiner als
+- `<=` - Kleiner oder gleich
+- `like` - Enthält Text
+- `in` - Einer von (kommagetrennt)
+- `not in` - Nicht einer von
+- `is null` - Kein Wert
+- `is not null` - Hat Wert
+
+### Grundlegendes Filtern
+
+**Status-Filter**
+```
+Spalte: Status
+Operator: =
+Wert: abgeschlossen
+```
+
+**Dauer-Filter**
+```
+Spalte: Dauer
+Operator: >
+Wert: 60
+```
+
+**Mehrere Werte**
+```
+Spalte: Status
+Operator: in
+Wert: abgeschlossen,in-bearbeitung
+```
+
+### Bewertungsfeld-Filterung
+
+Nach Post-Call-Bewertungswerten filtern.
+
+**Einrichtung:**
+1. Spalte: Extrahierte Variablen
+2. Extrahierte Variablenname: Status oder Benutzerdefinierte Variable
+3. Falls benutzerdefinierte Variable: Feldname in Benutzerdefinierter Variablenname eingeben
+4. Variablenwert: true/false für Booleans, oder beliebig + benutzerdefinierter Wert
+
+**Boolean-Beispiel - Termin gebucht**
+```
+Spalte: Extrahierte Variablen
+Extrahierte Variablenname: Benutzerdefinierte Variable
+Benutzerdefinierter Variablenname: termin_gebucht
+Operator: =
+Variablenwert: true
+```
+
+**Nicht-Boolean-Beispiel - Stimmung**
+```
+Spalte: Extrahierte Variablen
+Extrahierte Variablenname: Benutzerdefinierte Variable
+Benutzerdefinierter Variablenname: stimmung
+Operator: =
+Variablenwert: beliebig
+Benutzerdefinierter Wert: positiv
+```
+
+**Feld-Existenz prüfen**
+```
+Spalte: Extrahierte Variablen
+Extrahierte Variablenname: Benutzerdefinierte Variable
+Benutzerdefinierter Variablenname: interessiert
+Operator: =
+Variablenwert: beliebig
+```
+
+### Mehrere Bedingungen
+
+Bedingungen mit UND verknüpft:
+
+```
+Filter für erfolgreiche lange Anrufe:
+Bedingung 1:
+  - Spalte: Status
+  - Operator: =
+  - Wert: abgeschlossen
+
+Bedingung 2:
+  - Spalte: Dauer
+  - Operator: >
+  - Wert: 120
+
+Bedingung 3:
+  - Spalte: Extrahierte Variablen
+  - Extrahierte Variablenname: Benutzerdefinierte Variable
+  - Benutzerdefinierter Variablenname: termin_gebucht
+  - Operator: =
+  - Variablenwert: true
+```
+
+## Bewährte Praktiken
+
+### Widget-Benennung
+
+Verwenden Sie beschreibende interne Namen:
+- ✅ "Verkaufsanrufe - Letzte 30 Tage"
+- ✅ "Support-Dauer Durchschnitt"
+- ❌ "Widget 1"
+
+### Datumsbereiche
+
+Bereich an Anwendungsfall anpassen:
+- **Heute:** Echtzeit-Überwachung
+- **7 Tage:** Wöchentliche Leistung
+- **30 Tage:** Monatliche Trends
+- **90+ Tage:** Langzeit-Analyse
+
+### Farben
+
+Strategische Farbverwendung:
+- **Grün (Erfolg):** Positive Metriken
+- **Rot (Gefahr):** Alarm-Metriken
+- **Blau (Primär):** Neutrale Metriken
+- **Gelb (Warnung):** Aufmerksamkeit erforderlich
+- **Grau (Info):** Sekundäre Informationen
+
+### Leistung
+
+Dashboards schnell halten:
+- Datumsbereichsfilter verwenden
+- Widgets pro Dashboard unter 20 begrenzen
+- COUNT wenn möglich verwenden (schneller)
+- Sehr lange Datumsbereiche vermeiden
+
+## Problembehandlung
+
+**Widget zeigt "Keine Daten"**
+- Datumsbereich erweitern
+- Filter entfernen/anpassen
+- Verifizieren, dass Tabelle Datensätze hat
+
+**Bewertungsfelder werden nicht angezeigt**
+- Assistent in Widget-Konfiguration auswählen
+- Sicherstellen, dass Assistent Post-Call-Schema hat
+- Prüfen, ob Feldnamen übereinstimmen
+
+**Diagramm zeigt leer**
+- Kreis/Donut: Muss Gruppieren nach verwenden (nicht Zeitraum)
+- Linie/Fläche: Muss Gruppieren nach Zeitraum verwenden (nicht Kategorie)
+- Prüfen, ob Datumsbereich Daten enthält
+
+**Tabelle fehlen Spalten**
+- Beziehungsspalten benötigen verwandte Datensätze
+- Bewertungsspalten benötigen Assistentenauswahl
+- Variablenspalten benötigen Kampagnenauswahl
+
+**"Gruppieren nach erforderlich"-Fehler**
+- Kreis/Donut/Polarbereich-Diagramme MÜSSEN Gruppieren nach haben
+- Kann Gruppieren nach Zeitraum nicht mit diesen Diagrammtypen verwenden
+
+**Kann nicht nach Spalte sortieren**
+- Beziehungsspalten (mit .) nicht sortierbar
+- Bewertungsfelder nicht sortierbar
+- Grundspalten für Sortierung verwenden
+
+<Note>
+Für Dashboard-Erstellung und Layout-Verwaltung siehe [Übersicht individuelle Dashboards](/custom-dashboards/overview).
+</Note>

@@ -1,0 +1,133 @@
+---
+title: "Verfügbare Sprachen abrufen"
+api: "GET https://app.famulor.de/api/user/assistants/languages"
+icon: "language"
+description: "Alle verfügbaren Sprachen für die Assistenten-Konfiguration abrufen"
+---
+
+Dieser Endpunkt gibt eine Liste aller verfügbaren Sprachen zurück, die beim Erstellen oder Aktualisieren von Assistenten verwendet werden können.
+
+### Antwort-Felder
+
+Die API gibt ein direktes Array von verfügbaren Sprachen zurück:
+
+<ResponseField name="array" type="array">
+  Array der verfügbaren Sprachen
+
+  <Expandable title="Sprachen-Eigenschaften">
+    <ResponseField name="id" type="integer">
+      Die eindeutige Kennung der Sprache
+    </ResponseField>
+
+    <ResponseField name="name" type="string">
+      Der Anzeigename der Sprache
+    </ResponseField>
+
+    <ResponseField name="iso_2" type="string">
+      Der ISO 639-1 zweistellige Sprachcode
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+### Hinweise
+
+- Dieser Endpunkt benötigt keine Parameter
+- Verwenden Sie das `name`-Feld beim Erstellen oder Aktualisieren von Assistenten
+- Der `iso_2`-Code kann für sprachspezifische Funktionalität nützlich sein
+- Alle verfügbaren Sprachen werden in einer einzigen Anfrage zurückgegeben
+
+<CodeGroup>
+```bash cURL
+curl -H "Authorization: Bearer YOUR_API_TOKEN" \
+  "https://app.famulor.de/api/user/assistants/languages"
+```
+
+```javascript JavaScript
+const response = await fetch(
+  "https://app.famulor.de/api/user/assistants/languages",
+  {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer YOUR_API_TOKEN",
+    },
+  }
+);
+
+const data = await response.json();
+```
+
+```python Python
+import requests
+
+response = requests.get(
+    "https://app.famulor.de/api/user/assistants/languages",
+    headers={
+        "Content-Type": "application/json",
+        "Authorization": "Bearer YOUR_API_TOKEN",
+    },
+    timeout=10,
+)
+
+print(response.json())
+```
+</CodeGroup>
+
+<ResponseExample>
+
+```json 200 Response
+[
+  {
+    "id": 1,
+    "name": "English",
+    "iso_2": "en"
+  },
+  {
+    "id": 2,
+    "name": "Romanian",
+    "iso_2": "ro"
+  },
+  {
+    "id": 3,
+    "name": "French",
+    "iso_2": "fr"
+  },
+  {
+    "id": 4,
+    "name": "Spanish",
+    "iso_2": "es"
+  },
+  {
+    "id": 5,
+    "name": "German",
+    "iso_2": "de"
+  },
+  {
+    "id": 6,
+    "name": "Lithuanian",
+    "iso_2": "lt"
+  },
+  {
+    "id": 7,
+    "name": "Italian",
+    "iso_2": "it"
+  },
+  {
+    "id": 8,
+    "name": "Arabic",
+    "iso_2": "ar"
+  },
+  {
+    "id": 9,
+    "name": "Portuguese",
+    "iso_2": "pt"
+  },
+  {
+    "id": 10,
+    "name": "Danish",
+    "iso_2": "da"
+  }
+]
+```
+
+</ResponseExample>

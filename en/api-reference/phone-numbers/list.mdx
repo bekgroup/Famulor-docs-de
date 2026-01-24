@@ -1,0 +1,124 @@
+---
+title: "Telefonnummern auflisten"
+api: "GET https://app.famulor.de/api/user/phone-numbers/all"
+icon: "phone"
+description: "Ruft alle Telefonnummern des authentifizierten Benutzers ab"
+---
+
+Dieser Endpunkt gibt eine Liste aller Telefonnummern zurück, die mit Ihrem Konto verknüpft sind, einschließlich ihres Abonnementstatus und ihrer Funktionen.
+
+<Note>
+Es gibt auch einen Legacy-Endpunkt `GET /user/phone-numbers`, der nur SMS-fähige Telefonnummern mit aktiven Abonnements zurückgibt. Verwenden Sie diesen `/all` Endpunkt, wenn Sie alle Telefonnummern benötigen, unabhängig von SMS-Fähigkeit oder Abonnementstatus.
+</Note>
+
+### Antwort-Felder
+
+<ResponseField name="data" type="array">
+  Array von Telefonnummern-Objekten
+  
+  <Expandable title="Telefonnummer-Eigenschaften">
+    <ResponseField name="id" type="integer">
+      Die eindeutige Kennung der Telefonnummer
+    </ResponseField>
+
+    <ResponseField name="phone_number" type="string">
+      Die Telefonnummer im E.164-Format (z.B. +49155551234)
+    </ResponseField>
+
+    <ResponseField name="country_code" type="string">
+      Der ISO 3166-1 alpha-2 Ländercode (z.B. DE, GB, AU)
+    </ResponseField>
+
+    <ResponseField name="type" type="string">
+      Der Typ der Telefonnummer: `normal`, `sip` oder `caller_id`
+    </ResponseField>
+
+    <ResponseField name="type_label" type="string">
+      Menschenlesbares Label für den Telefonnummerntyp
+    </ResponseField>
+
+    <ResponseField name="sms_capable" type="boolean">
+      Ob die Telefonnummer SMS senden und empfangen kann
+    </ResponseField>
+
+    <ResponseField name="region" type="string">
+      Die Region, in der die Telefonnummer bereitgestellt wurde
+    </ResponseField>
+
+    <ResponseField name="has_active_subscription" type="boolean">
+      Ob die Telefonnummer ein aktives Abonnement hat
+    </ResponseField>
+
+    <ResponseField name="created_at" type="string">
+      ISO 8601 Zeitstempel, wann die Telefonnummer gekauft wurde
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<CodeGroup>
+```bash cURL
+curl -X GET "https://app.famulor.de/api/user/phone-numbers/all" \
+     -H "Authorization: Bearer YOUR_API_KEY" \
+     -H "Content-Type: application/json"
+```
+
+```javascript JavaScript
+const response = await fetch("https://app.famulor.de/api/user/phone-numbers/all", {
+  method: "GET",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: "Bearer YOUR_API_KEY",
+  },
+});
+
+const data = await response.json();
+```
+
+```python Python
+import requests
+
+response = requests.get(
+    "https://app.famulor.de/api/user/phone-numbers/all",
+    headers={
+        "Content-Type": "application/json",
+        "Authorization": "Bearer YOUR_API_KEY",
+    },
+    timeout=10,
+)
+
+print(response.json())
+```
+</CodeGroup>
+
+<ResponseExample>
+
+```json 200 Success
+{
+  "data": [
+    {
+      "id": 1,
+      "phone_number": "+49155551234",
+      "country_code": "DE",
+      "type": "normal",
+      "type_label": "Dedicated Number",
+      "sms_capable": true,
+      "region": "us1",
+      "has_active_subscription": true,
+      "created_at": "2025-01-07T10:30:00.000000Z"
+    },
+    {
+      "id": 2,
+      "phone_number": "+442071234567",
+      "country_code": "GB",
+      "type": "normal",
+      "type_label": "Dedicated Number",
+      "sms_capable": false,
+      "region": "us1",
+      "has_active_subscription": true,
+      "created_at": "2025-01-05T14:20:00.000000Z"
+    }
+  ]
+}
+```
+
+</ResponseExample>
