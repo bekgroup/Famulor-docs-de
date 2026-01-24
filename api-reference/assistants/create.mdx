@@ -231,26 +231,8 @@ Dieser Endpunkt ermöglicht es Ihnen, einen neuen KI-Assistenten mit umfassenden
 - Webhook-URL ist nur erforderlich, wenn `is_webhook_active` auf `true` gesetzt ist
 - Stimm- und Sprach-Kennungen müssen verfügbaren Optionen im System entsprechen
 
-<RequestExample>
-
-```bash Minimaler Assistent
-curl -X POST "https://app.famulor.de/api/user/assistant" \
-  -H "Authorization: Bearer YOUR_API_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "assistant_name": "Mein Verkaufs-Assistent",
-    "voice_id": 413,
-    "language": "German",
-    "llm_model": "GPT-4o",
-    "calls_direction": "make",
-    "engine_type": "pipeline",
-    "timezone": "Europe/Berlin",
-    "initial_message": "Guten Tag! Ich rufe von Famulor an.",
-    "system_prompt": "Du bist ein freundlicher Verkaufsassistent..."
-  }'
-```
-
-```bash Vollständiger Assistent
+<CodeGroup>
+```bash cURL
 curl -X POST "https://app.famulor.de/api/user/assistant" \
   -H "Authorization: Bearer YOUR_API_TOKEN" \
   -H "Content-Type: application/json" \
@@ -291,7 +273,105 @@ curl -X POST "https://app.famulor.de/api/user/assistant" \
   }'
 ```
 
-</RequestExample>
+```javascript JavaScript
+const response = await fetch("https://app.famulor.de/api/user/assistant", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: "Bearer YOUR_API_TOKEN",
+  },
+  body: JSON.stringify({
+    assistant_name: "Premium Verkaufs-Assistent",
+    voice_id: 413,
+    language: "German",
+    llm_model: "GPT-4o",
+    calls_direction: "make",
+    engine_type: "pipeline",
+    timezone: "Europe/Berlin",
+    initial_message: "Guten Tag! Ich rufe von Famulor an.",
+    system_prompt: "Du bist ein freundlicher Verkaufsassistent...",
+    phone_number_id: 2131,
+    is_webhook_active: true,
+    webhook_url: "https://example.com/webhook",
+    post_call_evaluation: true,
+    variables: {
+      company_name: "Famulor",
+      service_type: "AI-Telefonie",
+    },
+    post_call_schema: [
+      {
+        name: "customer_interested",
+        type: "bool",
+        description: "Whether the customer showed interest",
+      },
+      {
+        name: "follow_up_date",
+        type: "string",
+        description: "Preferred follow-up date",
+      },
+    ],
+    allow_interruptions: true,
+    speech_speed: 1.1,
+    max_call_duration: 600,
+    record_call: true,
+  }),
+});
+
+const data = await response.json();
+```
+
+```python Python
+import requests
+
+payload = {
+    "assistant_name": "Premium Verkaufs-Assistent",
+    "voice_id": 413,
+    "language": "German",
+    "llm_model": "GPT-4o",
+    "calls_direction": "make",
+    "engine_type": "pipeline",
+    "timezone": "Europe/Berlin",
+    "initial_message": "Guten Tag! Ich rufe von Famulor an.",
+    "system_prompt": "Du bist ein freundlicher Verkaufsassistent...",
+    "phone_number_id": 2131,
+    "is_webhook_active": True,
+    "webhook_url": "https://example.com/webhook",
+    "post_call_evaluation": True,
+    "variables": {
+        "company_name": "Famulor",
+        "service_type": "AI-Telefonie",
+    },
+    "post_call_schema": [
+        {
+            "name": "customer_interested",
+            "type": "bool",
+            "description": "Whether the customer showed interest",
+        },
+        {
+            "name": "follow_up_date",
+            "type": "string",
+            "description": "Preferred follow-up date",
+        },
+    ],
+    "allow_interruptions": True,
+    "speech_speed": 1.1,
+    "max_call_duration": 600,
+    "record_call": True,
+}
+
+response = requests.post(
+    "https://app.famulor.de/api/user/assistant",
+    headers={
+        "Content-Type": "application/json",
+        "Authorization": "Bearer YOUR_API_TOKEN",
+    },
+    json=payload,
+    timeout=10,
+)
+
+print(response.json())
+```
+</CodeGroup>
 
 <ResponseExample>
 
