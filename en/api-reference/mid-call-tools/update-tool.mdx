@@ -1,74 +1,74 @@
 ---
-title: "Mid-call Action aktualisieren"
+title: "Update mid call tool"
 api: "PUT /user/tools/{id}"
-description: "Ein bestehendes Mid-call Action aktualisieren"
+description: "Modify an existing mid-call tool"
 ---
 
-Dieser Endpunkt ermöglicht es Ihnen, ein bestehendes Mid-call Action zu aktualisieren. Alle Felder sind optional - geben Sie nur die Felder an, die Sie aktualisieren möchten.
+Update one or more fields of an existing mid-call tool. Only the fields you provide will be changed; other fields remain unchanged.
 
-### Pfad-Parameter
+### Path Parameters
 
 <ParamField path="id" type="integer" required>
-  Die eindeutige Kennung des zu aktualisierenden Tools
+  The unique identifier of the tool to update
 </ParamField>
 
-### Body-Parameter
+### Body Parameters
 
 <ParamField body="name" type="string" optional>
-  Tool-Name - darf nur Kleinbuchstaben und Unterstriche enthalten und muss mit einem Buchstaben beginnen
+  Tool name - must use only lowercase letters and underscores, starting with a letter
 </ParamField>
 
 <ParamField body="description" type="string" optional>
-  Detaillierte Erklärung, wann und wie die KI dieses Tool verwenden soll (max. 255 Zeichen)
+  Description explaining when and how the AI should use this tool (maximum 255 characters)
 </ParamField>
 
 <ParamField body="endpoint" type="string" optional>
-  Gültige URL des aufzurufenden API-Endpunkts
+  Valid URL of the API endpoint to call
 </ParamField>
 
 <ParamField body="method" type="string" optional>
-  HTTP-Methode: `GET`, `POST`, `PUT`, `PATCH` oder `DELETE`
+  HTTP method: `GET`, `POST`, `PUT`, `PATCH`, or `DELETE`
 </ParamField>
 
 <ParamField body="timeout" type="integer" optional>
-  Request-Timeout in Sekunden (1-30)
+  Request timeout in seconds (1-30)
 </ParamField>
 
 <ParamField body="headers" type="array" optional>
-  HTTP-Header, die mit der Anfrage gesendet werden sollen (ersetzt bestehende Header)
-  <Expandable title="Header-Eigenschaften">
+  HTTP headers to send with the request (replaces existing headers)
+  <Expandable title="headers properties">
     <ParamField body="name" type="string" required>
-      Header-Name
+      Header name
     </ParamField>
     <ParamField body="value" type="string" required>
-      Header-Wert
+      Header value
     </ParamField>
   </Expandable>
 </ParamField>
 
 <ParamField body="schema" type="array" optional>
-  Parameter-Schema (ersetzt bestehendes Schema)
-  <Expandable title="Schema-Eigenschaften">
+  Parameter schema (replaces existing schema)
+  <Expandable title="schema properties">
     <ParamField body="name" type="string" required>
-      Parameter-Name (2-32 Zeichen)
+      Parameter name (2-32 characters)
     </ParamField>
     <ParamField body="type" type="string" required>
-      Parameter-Typ: `string`, `number` oder `boolean`
+      Parameter type: `string`, `number`, or `boolean`
     </ParamField>
     <ParamField body="description" type="string" required>
-      Parameter-Beschreibung (3-255 Zeichen)
+      Parameter description (3-255 characters)
     </ParamField>
   </Expandable>
 </ParamField>
 
-### Antwortfelder
+### Response Fields
 
 <ResponseField name="message" type="string">
-  Erfolgsmeldung
+  Success confirmation message
 </ResponseField>
 
 <ResponseField name="data" type="object">
-  Das aktualisierte Tool-Objekt mit allen aktuellen Werten
+  The updated tool object with all current values
 </ResponseField>
 
 <ResponseExample>
@@ -129,9 +129,9 @@ Dieser Endpunkt ermöglicht es Ihnen, ein bestehendes Mid-call Action zu aktuali
 
 </ResponseExample>
 
-### Tool-Zuweisungen verwalten
+### Managing Tool Assignments
 
-Um dieses Tool zu Assistenten hinzuzufügen oder zu entfernen, verwenden Sie die Assistenten-API:
+To attach or detach this tool from assistants, use the Assistant API:
 
-- **[Assistent erstellen](/api-reference/assistants/create)** - Verwenden Sie den `tool_ids`-Parameter, um Tools beim Erstellen eines Assistenten zuzuweisen
-- **[Assistent aktualisieren](/api-reference/assistants/update)** - Verwenden Sie den `tool_ids`-Parameter, um zu verwalten, welche Tools einem Assistenten zugewiesen sind
+- **[Create Assistant](/api-reference/assistants/create-assistant)** - Use the `tool_ids` parameter to attach tools when creating an assistant
+- **[Update Assistant](/api-reference/assistants/update-assistant)** - Use the `tool_ids` parameter to manage which tools are assigned to an assistant

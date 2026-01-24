@@ -1,105 +1,69 @@
 ---
-title: "Kampagnen erstellen & verwalten"
+title: "Creating & Managing Campaigns"
 icon: "bullhorn"
-description: "Schritt-für-Schritt-Anleitung zum Erstellen und Verwalten ausgehender Anrufkampagnen, einschließlich Lead-Imports und Überwachung"
+description: "Step-by-step guide to creating and managing outbound call campaigns, including lead imports and monitoring"
 ---
 
-Eine ausgehende "Kampagne" bestimmt, wann, wie und an wen Anrufe gemacht werden.
+An outbound "campaign" determines when, how, and to whom calls are made.
 
-## 1. Kampagne einrichten
+## 1. Setup a Campaign
 
-1. **Gehen Sie zu Ausgehend / Kampagnen** in Ihrem Dashboard.
-2. Klicken Sie auf **Neue Kampagne erstellen**:
-   - **Name**: z.B. "Januar-Aktion," "Zahlungserinnerung," etc.
-   - **Assistent**: welcher KI-Assistent wird diese Anrufe bearbeiten?
-   - **Fenster**: wählen Sie das Zeitfenster für die Kampagne
+1. **Go to Outbound / Campaigns** in your dashboard.
+2. Click **Create New Campaign**:
+   - **Name**: e.g. "January Promo," "Payment Reminder," etc.
+   - **Assistant**: which AI assistant will handle these calls?
+   - **Window**: choose the time window for the campaign
+   - **Phone Numbers**: assign one or multiple phone numbers to the campaign (see Phone Number Pool below)
 
-## 2. Telefonnummer-Pool einrichten
+## 2. Phone Number Pool for Campaigns
 
-<Tip>
-**Neu:** Sie können jetzt mehrere Telefonnummern einer Kampagne zuweisen, um die Anrufannahme-Rate zu erhöhen!
-</Tip>
+**New Feature (October 12, 2025)**: You can now assign multiple phone numbers to a single campaign. The system will automatically rotate the outgoing caller ID for each call, which can significantly improve answer rates.
 
-Famulor's Telefonnummer-Pool-Feature ermöglicht es Ihnen, mehrere ausgehende Nummern für eine Kampagne zu verwenden. Das System rotiert automatisch zwischen den zugewiesenen Nummern für jeden Anruf an Ihre Leads.
+### How It Works
 
-### Vorteile der Nummern-Rotation
+- **Multiple Number Assignment**: Assign 2 or more phone numbers to any campaign
+- **Automatic Rotation**: Each call to a lead uses a different number from your pool
+- **Better Connection Rates**: Varying caller IDs increases the likelihood that recipients will answer the phone
 
-- **Erhöhte Anrufannahme**: Leads gehen eher ran, wenn verschiedene Nummern verwendet werden
-- **Bessere Erreichbarkeit**: Vermeiden Sie, dass eine einzelne Nummer als Spam markiert wird
-- **Maximale Flexibilität**: Nutzen Sie lokale Nummern oder verschiedene Vorwahlen
+### Setting Up Phone Number Pool
 
-### So richten Sie den Telefonnummer-Pool ein
+You can assign multiple phone numbers in two ways:
 
-1. **Beim Erstellen der Kampagne**:
-   - Wählen Sie im Kampagnen-Konfigurationsbereich die Option "Telefonnummern"
-   - Fügen Sie mehrere Telefonnummern aus Ihrem Nummern-Pool hinzu
-   - Speichern Sie die Kampagne
+1. **During Campaign Creation**: 
+   - When creating a new campaign, use the **Phone Numbers** field
+   - Select multiple numbers from your available pool
 
-2. **In bestehenden Kampagnen**:
-   - Öffnen Sie die Kampagnen-Übersicht
-   - Klicken Sie auf "Bearbeiten" bei der gewünschten Kampagne
-   - Weisen Sie zusätzliche Telefonnummern zu
-   - Speichern Sie die Änderungen
+2. **From Campaign Overview**: 
+   - After saving your campaign, go to the campaign overview
+   - Click **Assign Phone Numbers** or edit the campaign
+   - Select multiple numbers to add to the rotation pool
 
-3. **Automatische Rotation**:
-   - Bei jedem ausgehenden Anruf wählt das System automatisch eine andere Nummer aus Ihrem Pool
-   - Die Rotation erfolgt automatisch - keine manuelle Verwaltung erforderlich
-   - In der Kampagnen-Übersicht sehen Sie alle zugewiesenen Nummern auf einen Blick
+Once configured, the system automatically rotates through your assigned numbers for each outbound call, ensuring leads see different caller IDs throughout the campaign.
 
-<Note>
-**Wichtig:** Stellen Sie sicher, dass alle zugewiesenen Telefonnummern aktiv und für ausgehende Anrufe freigeschaltet sind.
-</Note>
+## 3. Importing Leads
 
-## 3. Leads importieren
+- **CSV File**: Upload phone numbers (plus any extra columns, like name or account number).
+- **Google Sheets**: Connect via the no-code platform or direct integration to pull leads.
+- **CRM**: Some CRMs (HubSpot, GHL, etc.) can send leads directly to famulor.de via API or automation.
 
-- **CSV-Datei**: Laden Sie Telefonnummern hoch (plus zusätzliche Spalten, wie Name oder Kontonummer).
-- **Google Sheets**: Verbinden Sie über die No-Code-Plattform oder direkte Integration, um Leads zu ziehen.
-- **CRM**: Einige CRMs (HubSpot, GHL, etc.) können Leads direkt an famulor.de über API oder Automatisierung senden.
+## 4. Call Retries & Scheduling
 
-## 4. Anruf-Wiederholungen & Planung
+- **Max Retries**: e.g., attempt each lead up to 2 times if they don't answer.
+- **Retry Interval**: minutes/hours between retries.
+- **Time Window**: e.g., only call between 9 AM and 6 PM local time to avoid inconveniencing leads.
 
-- **Max. Wiederholungen**: z.B. versuchen Sie jeden Lead bis zu 2 Mal, wenn sie nicht antworten.
-- **Wiederholungsintervall**: Minuten/Stunden zwischen Wiederholungen.
-- **Zeitfenster**: z.B. nur zwischen 9:00 und 18:00 Uhr lokaler Zeit anrufen, um Leads nicht zu belästigen.
+## 5. Monitoring & Pausing
 
-## 5. Überwachung & Pausieren
+- Once the campaign is live, calls happen automatically during the allowed hours.
+- You can **pause** or **stop** the campaign anytime to revise your script or leads list.
 
-- Sobald die Kampagne live ist, passieren Anrufe automatisch während der erlaubten Stunden.
-- Sie können die Kampagne jederzeit **pausieren** oder **stoppen**, um Ihr Skript oder die Leads-Liste zu überarbeiten.
+## 6. Analyzing Results
 
-## 6. Ergebnisse analysieren
-
-- Besuchen Sie **Kampagnen-Berichte**, um zu sehen:
-  - Wie viele Anrufe beantwortet vs. keine Antwort.
-  - Anzahl erfolgreicher vs. fehlgeschlagener Anrufe.
-  - Durchschnittliche Anrufdauer, etc.
+- Visit **Campaign Reports** to see:
+  - How many calls were answered vs. no-answer.
+  - Number of successful vs. failed calls.
+  - Average call duration, etc.
 
 ---
 
-**Hinweis:** Große Kampagnen mit Tausenden von Leads können parallel laufen, da KI parallele Anrufe bearbeiten kann. Überwachen Sie Ihre Minuten-Nutzung, um unerwartete Kosten zu vermeiden.
-
----
-
-## Nächste Schritte
-
-<CardGroup cols={2}>
-<Card title="Skripte & Prompts" icon="script" href="/outbound-calls/scripts-and-prompts">
-Optimieren Sie Ihre Anrufskripte für bessere Ergebnisse
-</Card>
-<Card title="Anrufer-ID konfigurieren" icon="id-card" href="/outbound-calls/caller-id">
-Richten Sie Ihre Anrufer-ID für Kampagnen ein
-</Card>
-</CardGroup>
-
-<CardGroup cols={2}>
-<Card title="Massen-Wählen" icon="phone-volume" href="/outbound-calls/mass-dialing">
-Verwalten Sie große Anrufvolumen effizient
-</Card>
-<Card title="Automatisierung" icon="wand-magic-sparkles" href="/automation-platform/introduction">
-Automatisieren Sie Follow-up-Aktionen nach Anrufen
-</Card>
-</CardGroup>
-
-<Note>
-Für detaillierte Kampagnenanalyse siehe auch [Kostenabrechnung](/pricing/usage-based) und [Anruf-Insights](/inbound-calls/insights).
-</Note> 
+**Note:** Large campaigns with thousands of leads can run concurrently, as AI can handle parallel calls. Watch your minute usage to avoid unexpected costs.

@@ -1,21 +1,21 @@
 ---
-title: "Nachricht senden"
+title: "Send message"
 api: "POST /conversations/{uuid}/messages"
-description: "Eine Nutzernachricht an eine bestehende Conversation senden und die Antwort des Assistenten erhalten"
+description: "Send a user message to an existing conversation and receive the assistant's response"
 ---
 
-Sende eine Nachricht an eine bestehende Famulor-Conversation und erhalte die Antwort des Assistenten inklusive aller ausgelösten Function Calls.
+Send a message to an existing Famulor conversation and receive the assistant's reply including any function calls triggered during processing.
 
 ### Path Parameters
 
 <ParamField path="uuid" type="string" required>
-  UUID der bestehenden Conversation
+  UUID of the existing conversation
 </ParamField>
 
 ### Request Body
 
 <ParamField body="message" type="string" required>
-  Zu sendende Nutzernachricht (max. 2000 Zeichen)
+  User message to send (max 2000 characters)
 </ParamField>
 
 ### Request Examples
@@ -71,27 +71,27 @@ print(response.json())
 ### Response Fields
 
 <ResponseField name="status" type="boolean" required>
-  Zeigt an, ob die Anfrage erfolgreich war
+  Indicates whether the request succeeded
 </ResponseField>
 
 <ResponseField name="message" type="string" required>
-  Antworttext des Assistenten
+  Assistant's response text
 </ResponseField>
 
 <ResponseField name="function_calls" type="array" optional>
-  Während dieser Nachricht ausgeführte Function Calls (leer, falls keine)
+  Function calls executed during this message (empty if none)
   
   <Expandable title="function call properties">
     <ResponseField name="name" type="string">
-      Funktionsname
+      Function name
     </ResponseField>
 
     <ResponseField name="arguments" type="object">
-      An die Funktion übergebene Argumente
+      Arguments passed to the function
     </ResponseField>
 
     <ResponseField name="result" type="object">
-      Rückgabewert der Funktion
+      Return value from the function
     </ResponseField>
   </Expandable>
 </ResponseField>
@@ -158,7 +158,7 @@ print(response.json())
 
 ### Notes
 
-- Widget-Conversations: 0,01 $ pro Nutzernachricht; Test-Conversations sind kostenlos.
-- Conversation-UUID speichern, um Chats später fortzusetzen.
-- Ladezustände anzeigen, da Tool Calls einige Sekunden dauern können.
-- Kombiniere mit [`Get Conversation`](/api-reference/ai-chatbot/get-conversation) für den Verlauf und [`Create Conversation`](/api-reference/ai-chatbot/create-conversation) zum Start neuer Chats.
+- Widget conversations: $0.01 per user message; test conversations are free.
+- Store the conversation UUID to resume chats later.
+- Show loading states since tool calls may take a few seconds.
+- Combine with [`Get Conversation`](/api-reference/ai-chatbot/get-conversation) for history and [`Create Conversation`](/api-reference/ai-chatbot/create-conversation) to start new chats.

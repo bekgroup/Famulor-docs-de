@@ -1,123 +1,74 @@
 ---
-title: "Verfügbare Telefonnummern suchen"
+title: "Search Available Phone Numbers"
 api: "GET https://app.famulor.de/api/user/phone-numbers/search"
 icon: "search"
-description: "Sucht nach verfügbaren Telefonnummern, die gekauft werden können"
+description: "Searches for available phone numbers that can be purchased"
 ---
 
-Dieser Endpunkt ermöglicht es Ihnen, nach verfügbaren Telefonnummern von unserem Anbieter zu suchen. Verwenden Sie die Ergebnisse, um eine Nummer zu finden, die Sie kaufen möchten.
+This endpoint allows you to search for available phone numbers from our provider. Use the results to find a number you want to purchase.
 
-### Query-Parameter
+### Query Parameters
 
 <ParamField query="country_code" type="string" default="DE">
-  Der ISO 3166-1 alpha-2 Ländercode, in dem gesucht werden soll (z.B. DE, GB, AU, CA)
+  The ISO 3166-1 alpha-2 country code to search in (e.g. DE, GB, AU, CA)
 </ParamField>
 
 <ParamField query="contains" type="string">
-  Filtert Telefonnummern, die bestimmte Ziffern enthalten (nur numerische Zeichen, maximal 10 Ziffern)
+  Filters phone numbers containing specific digits (numeric characters only, maximum 10 digits)
 </ParamField>
 
-### Antwort-Felder
+### Response Fields
 
 <ResponseField name="data" type="array">
-  Array von verfügbaren Telefonnummern
+  Array of available phone numbers
   
-  <Expandable title="Verfügbare Nummer-Eigenschaften">
+  <Expandable title="Available Number Properties">
     <ResponseField name="phone_number" type="string">
-      Die Telefonnummer im E.164-Format
+      The phone number in E.164 format
     </ResponseField>
 
     <ResponseField name="phone_number_formatted" type="string">
-      Die Telefonnummer formatiert für die Anzeige
+      The phone number formatted for display
     </ResponseField>
 
     <ResponseField name="country_code" type="string">
-      Der ISO-Ländercode
+      The ISO country code
     </ResponseField>
 
     <ResponseField name="price" type="number">
-      Monatlicher Mietpreis in USD
+      Monthly rental price in USD
     </ResponseField>
 
     <ResponseField name="stripe_price_id" type="string">
-      Die Stripe-Preis-ID für die Abrechnung
+      The Stripe price ID for billing
     </ResponseField>
 
     <ResponseField name="address_requirements" type="string">
-      Adressanforderungen für diese Nummer: `none`, `local`, `foreign` oder `inventory`
+      Address requirements for this number: `none`, `local`, `foreign` or `inventory`
     </ResponseField>
 
     <ResponseField name="sms_capable" type="boolean">
-      Ob die Nummer SMS unterstützt
+      Whether the number supports SMS
     </ResponseField>
   </Expandable>
 </ResponseField>
 
-### Unterstützte Länder
+### Supported Countries
 
-| Land | Code |
-|------|------|
-| Deutschland | DE |
-| Vereinigte Staaten | US |
-| Kanada | CA |
-| Vereinigtes Königreich | GB |
-| Australien | AU |
-| Israel | IL |
-| Polen | PL |
-| Finnland | FI |
-| Niederlande | NL |
-| Dänemark | DK |
-| Italien | IT |
+| Country          | Code |
+|------------------|------|
+| Germany          | DE   |
+| United States    | US   |
+| Canada           | CA   |
+| United Kingdom   | GB   |
+| Australia        | AU   |
+| Israel           | IL   |
+| Poland           | PL   |
+| Finland          | FI   |
+| Netherlands      | NL   |
+| Denmark          | DK   |
+| Italy            | IT   |
 
-<CodeGroup>
-```bash cURL
-curl -X GET "https://app.famulor.de/api/user/phone-numbers/search?country_code=US" \
-     -H "Authorization: Bearer YOUR_API_KEY" \
-     -H "Content-Type: application/json"
-```
-
-```bash cURL (mit Filter)
-curl -X GET "https://app.famulor.de/api/user/phone-numbers/search?country_code=DE&contains=1234" \
-     -H "Authorization: Bearer YOUR_API_KEY" \
-     -H "Content-Type: application/json"
-```
-
-```javascript JavaScript
-const response = await fetch(
-  "https://app.famulor.de/api/user/phone-numbers/search?country_code=US",
-  {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: "Bearer YOUR_API_KEY",
-    },
-  }
-);
-
-const data = await response.json();
-```
-
-```python Python
-import requests
-
-params = {
-    "country_code": "US",
-    # Optional: "contains": "1234"
-}
-
-response = requests.get(
-    "https://app.famulor.de/api/user/phone-numbers/search",
-    headers={
-        "Content-Type": "application/json",
-        "Authorization": "Bearer YOUR_API_KEY",
-    },
-    params=params,
-    timeout=10,
-)
-
-print(response.json())
-```
-</CodeGroup>
 
 <ResponseExample>
 
@@ -146,7 +97,7 @@ print(response.json())
 }
 ```
 
-```json 200 Leere Antwort
+```json 200 Empty Response
 {
   "data": []
 }

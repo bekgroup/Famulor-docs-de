@@ -1,0 +1,59 @@
+---
+title: "Make a phone call"
+api: "POST /user/make_call"
+description: "Initiate an outbound phone call with an AI assistant"
+---
+
+Use this endpoint to start an outbound phone call. Your AI assistant will automatically call the provided phone number and begin the conversation.
+
+### Request Body
+
+<ParamField body="phone_number" type="string" required>
+  Destination phone number in E.164 format (example: +1234567890)
+</ParamField>
+
+<ParamField body="assistant_id" type="integer" required>
+  The identifier of the assistant that will handle this call
+</ParamField>
+
+<ParamField body="variables" type="object" optional>
+  Dynamic data to pass to the assistant for personalization
+  
+  <Expandable title="variables properties">
+    <ParamField body="customer_name" type="string" default="<string>">
+      Customer's name for personalization
+    </ParamField>
+    
+    <ParamField body="email" type="string" default="<string>">
+      Customer's email address
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+### Response
+
+<ResponseField name="message" type="string">
+  Status message confirming call initiation
+</ResponseField>
+
+<ResponseField name="data" type="object">
+  Call metadata (may be empty on initial response)
+</ResponseField>
+
+<ResponseExample>
+
+```json 200 Response
+{
+  "message": "Call initiated successfully",
+  "data": {}
+}
+```
+
+</ResponseExample>
+
+### Notes
+
+- The assistant must be configured and active
+- Phone numbers must be in E.164 international format
+- Variables are optional but help personalize the conversation
+- Call status can be tracked using the calls listing endpoint

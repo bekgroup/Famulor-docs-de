@@ -1,94 +1,60 @@
 ---
-title: "Telefonnummern auflisten"
+title: "List Phone Numbers"
 api: "GET https://app.famulor.de/api/user/phone-numbers/all"
 icon: "phone"
-description: "Ruft alle Telefonnummern des authentifizierten Benutzers ab"
+description: "Retrieves all phone numbers of the authenticated user"
 ---
 
-Dieser Endpunkt gibt eine Liste aller Telefonnummern zurück, die mit Ihrem Konto verknüpft sind, einschließlich ihres Abonnementstatus und ihrer Funktionen.
+This endpoint returns a list of all phone numbers linked to your account, including their subscription status and capabilities.
 
 <Note>
-Es gibt auch einen Legacy-Endpunkt `GET /user/phone-numbers`, der nur SMS-fähige Telefonnummern mit aktiven Abonnements zurückgibt. Verwenden Sie diesen `/all` Endpunkt, wenn Sie alle Telefonnummern benötigen, unabhängig von SMS-Fähigkeit oder Abonnementstatus.
+There is also a legacy endpoint `GET /user/phone-numbers` that only returns SMS-capable phone numbers with active subscriptions. Use this `/all` endpoint when you need all phone numbers regardless of SMS capability or subscription status.
 </Note>
 
-### Antwort-Felder
+### Response Fields
 
 <ResponseField name="data" type="array">
-  Array von Telefonnummern-Objekten
+  Array of phone number objects
   
-  <Expandable title="Telefonnummer-Eigenschaften">
+  <Expandable title="Phone Number Properties">
     <ResponseField name="id" type="integer">
-      Die eindeutige Kennung der Telefonnummer
+      The unique identifier of the phone number
     </ResponseField>
 
     <ResponseField name="phone_number" type="string">
-      Die Telefonnummer im E.164-Format (z.B. +49155551234)
+      The phone number in E.164 format (e.g. +49155551234)
     </ResponseField>
 
     <ResponseField name="country_code" type="string">
-      Der ISO 3166-1 alpha-2 Ländercode (z.B. DE, GB, AU)
+      The ISO 3166-1 alpha-2 country code (e.g. DE, GB, AU)
     </ResponseField>
 
     <ResponseField name="type" type="string">
-      Der Typ der Telefonnummer: `normal`, `sip` oder `caller_id`
+      The type of phone number: `normal`, `sip` or `caller_id`
     </ResponseField>
 
     <ResponseField name="type_label" type="string">
-      Menschenlesbares Label für den Telefonnummerntyp
+      Human-readable label for the phone number type
     </ResponseField>
 
     <ResponseField name="sms_capable" type="boolean">
-      Ob die Telefonnummer SMS senden und empfangen kann
+      Whether the phone number can send and receive SMS
     </ResponseField>
 
     <ResponseField name="region" type="string">
-      Die Region, in der die Telefonnummer bereitgestellt wurde
+      The region where the phone number was provisioned
     </ResponseField>
 
     <ResponseField name="has_active_subscription" type="boolean">
-      Ob die Telefonnummer ein aktives Abonnement hat
+      Whether the phone number has an active subscription
     </ResponseField>
 
     <ResponseField name="created_at" type="string">
-      ISO 8601 Zeitstempel, wann die Telefonnummer gekauft wurde
+      ISO 8601 timestamp of when the phone number was purchased
     </ResponseField>
   </Expandable>
 </ResponseField>
 
-<CodeGroup>
-```bash cURL
-curl -X GET "https://app.famulor.de/api/user/phone-numbers/all" \
-     -H "Authorization: Bearer YOUR_API_KEY" \
-     -H "Content-Type: application/json"
-```
-
-```javascript JavaScript
-const response = await fetch("https://app.famulor.de/api/user/phone-numbers/all", {
-  method: "GET",
-  headers: {
-    "Content-Type": "application/json",
-    Authorization: "Bearer YOUR_API_KEY",
-  },
-});
-
-const data = await response.json();
-```
-
-```python Python
-import requests
-
-response = requests.get(
-    "https://app.famulor.de/api/user/phone-numbers/all",
-    headers={
-        "Content-Type": "application/json",
-        "Authorization": "Bearer YOUR_API_KEY",
-    },
-    timeout=10,
-)
-
-print(response.json())
-```
-</CodeGroup>
 
 <ResponseExample>
 

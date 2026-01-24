@@ -1,58 +1,42 @@
 ---
-title: "Authentifizierung"
+title: "Authentication"
 icon: "key"
-description: "Lernen Sie, wie Sie Ihre API-Anfragen authentifizieren"
+description: "Learn how to authenticate your API requests"
 ---
 
-Die Famulor API verwendet API-Schlüssel zur Authentifizierung von Anfragen. Sie müssen Ihren API-Schlüssel im Header jeder Anfrage an die API einbeziehen.
+All Famulor API endpoints require authentication via API keys. Include your API key in every request using the Authorization header.
 
-<Info>
-Für eine umfassende Anleitung mit Code-Beispielen, Sicherheits-Best-Practices und Fehlerbehebung siehe unseren [vollständigen Authentifizierungs-Leitfaden](/developers/authentication-guide).
-</Info>
+## Getting Your API Key
 
-## API-Schlüssel erhalten
+Follow these steps to create an API key:
 
-Um einen API-Schlüssel zu erhalten:
-
-1. Melden Sie sich bei Ihrem Famulor-Konto an unter [https://app.famulor.de](https://app.famulor.de)
-2. Navigieren Sie zur "API-Schlüssel" Seite
-3. Klicken Sie auf den "Neuen API-Schlüssel erstellen" Button
-4. Kopieren Sie Ihren neuen API-Schlüssel und speichern Sie ihn sicher
+1. Sign in to your account at [https://app.famulor.de](https://app.famulor.de)
+2. Go to the API Keys section
+3. Click "Create new API Key"
+4. Save your API key securely - you won't be able to view it again
 
 <Warning>
-  Halten Sie Ihren API-Schlüssel vertraulich und sicher. Teilen Sie ihn nicht öffentlich oder committen Sie ihn nicht in Versionskontrollsysteme.
+  Protect your API key like a password. Never expose it in public repositories, 
+  client-side code, or share it with unauthorized parties.
 </Warning>
 
-## API-Schlüssel verwenden
+## Authentication Header
 
-Fügen Sie Ihren API-Schlüssel in den `Authorization` Header jeder Anfrage ein:
+Add your API key to the `Authorization` header using Bearer token format:
 
 ```
 Authorization: Bearer YOUR_API_KEY
 ```
 
-Ersetzen Sie `YOUR_API_KEY` mit Ihrem tatsächlichen API-Schlüssel.
+Make sure to replace `YOUR_API_KEY` with your actual key.
 
-## Beispiel-Anfrage
+## Request Example
 
-Hier ist ein Beispiel, wie Sie den API-Schlüssel in einer cURL-Anfrage einbeziehen:
+Here's a sample cURL command showing proper authentication:
 
 ```bash
 curl -X GET "https://app.famulor.de/api/user/campaigns" \
      -H "Authorization: Bearer YOUR_API_KEY"
 ```
 
-Ersetzen Sie `YOUR_API_KEY` mit Ihrem tatsächlichen API-Schlüssel bei Anfragen.
-
----
-
-## Weiterführende Ressourcen
-
-<CardGroup cols={2}>
-  <Card title="Vollständiger Authentifizierungs-Leitfaden" icon="book-open" href="/developers/authentication-guide">
-    Umfassende Anleitung mit Code-Beispielen, Sicherheits-Best-Practices und Fehlerbehebung
-  </Card>
-  <Card title="API-Integration-Beispiele" icon="code" href="/developers/api-integration-examples">
-    Praktische Beispiele für die Integration der Famulor API
-  </Card>
-</CardGroup> 
+Remember to substitute `YOUR_API_KEY` with your real API key.

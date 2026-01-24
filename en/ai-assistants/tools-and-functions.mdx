@@ -1,62 +1,121 @@
 ---
-title: "Tools & Funktionen"
+title: "Tools & Functions"
 icon: "screwdriver-wrench"
-description: "Entdecken Sie die integrierten Tools und Funktionen, die die Fähigkeiten Ihres KI-Assistenten während Anrufen erweitern"
+description: "Explore the built-in tools and functions that enhance your AI assistant's capabilities during calls"
 ---
 
-famulor.de bietet integrierte "Tools", die Ihr KI-Assistent während eines Anrufs verwenden kann. Diese helfen Ihnen, den Gesprächsverlauf zu gestalten und Aktionen wie Anrufweiterleitung oder Terminplanung zu automatisieren.
+famulor.de offers built-in **tools** that your AI assistant can use during a call. These tools help you shape the conversation flow and automate actions like transferring calls, scheduling appointments, or ending conversations.
 
-## 1. Anruf beenden Tool
+## What are Tools?
 
-- **Zweck**: Sagt der KI, höflich das Gespräch zu beenden.
-- **Wie es funktioniert**: Sie können im System-Prompt oder in der Logik spezifizieren, zum Beispiel: "Wenn der Benutzer `auf Wiedersehen` sagt, beenden Sie den Anruf."
-- **Konfiguration**: In den Assistenten-Einstellungen können Sie alle Bedingungen definieren, die das Beenden des Anrufs auslösen sollten.
+Tools are capabilities that extend your AI assistant's functionality beyond basic conversation. They allow the assistant to:
+- Take specific actions during calls
+- Integrate with external systems
+- Control call flow and routing
+- Automate follow-up tasks
 
-## 2. Weiterleitung Tool
+## Available Tools
 
-- **Zweck**: Leitet den Anrufer vom KI-Assistenten zu einem menschlichen Agenten oder einer externen Telefonnummer weiter.
-- **Anwendungsfälle**: Warme Leads bei einem Verkaufsanruf, Eskalationen bei einem Support-Anruf, etc.
-- **Einstellungen**: In der Assistenten-Konfiguration fügen Sie die Telefonnummer oder Abteilung hinzu, an die der Anruf gehen soll, und optional eine kurze Wartemeldung.
+### 1. End Call Tool
 
-## 3. Terminplaner
+**Purpose**: Tells the AI to politely wrap up the conversation when appropriate conditions are met.
 
-- **Zweck**: Lässt die KI Ihre Kalenderverfügbarkeit überprüfen (z.B. über Cal.com oder Google Calendar) und einen Termin buchen.
-- **Typischer Ablauf**:
-  1. KI bietet Terminplanung an.
-  2. Anrufer wählt Datum/Uhrzeit.
-  3. KI bestätigt und sendet eine Bestätigung (über E-Mail oder SMS, wenn konfiguriert).
+**How It Works**: 
+- You specify in the system prompt when to end the call
+- Example: "If the user says 'goodbye' or 'thank you, that's all I need', end the call politely."
 
-## 4. No-Code Automatisierungsplattform
+**Configuration**: 
+- In the assistant's settings, define conditions that trigger the end call
+- The AI will say a closing message before ending
 
-- **Zweck**: Nach oder während Anrufen kann die KI Aktionen in der Automatisierungsplattform auslösen (wie CRM aktualisieren, E-Mail senden oder Ergebnisse in Google Sheets protokollieren).
-- **Einrichtung**: Verknüpfen Sie Ihren Assistenten mit dem "Automatisierung"-Tab, wählen Sie Trigger ("Anruf beendet," "Kunde stimmt zu," etc.) und wählen Sie die Aktion (Slack-Benachrichtigung senden oder Zeile in Sheets hinzufügen).
+**Use Cases**:
+- Customer service calls that are resolved
+- Information requests that are completed
+- Appointment confirmations
+
+### 2. Transfer Tool
+
+**Purpose**: Moves the caller from the AI assistant to a human agent or external phone number.
+
+**How It Works**:
+- AI recognizes when escalation is needed (based on your prompt)
+- Transfers the call to the configured number or department
+- Optionally plays a hold message during transfer
+
+**Configuration**:
+- Add the phone number or department in assistant settings
+- Configure a short hold message (optional)
+- Define transfer conditions in your system prompt
+
+**Use Cases**:
+- Warm leads on sales calls that need human follow-up
+- Complex support issues requiring escalation
+- Technical problems beyond AI's capabilities
+
+<Info>
+The transfer tool can route to specific departments, phone numbers, or queue systems. Configure multiple transfer options for different scenarios.
+</Info>
+
+### 3. Appointment Scheduler (Cal.com Integration)
+
+**Purpose**: Lets the AI check your calendar availability and book appointments directly during the call.
+
+**How It Works**:
+1. AI offers scheduling based on your prompt
+2. Caller selects preferred date and time
+3. AI checks availability via Cal.com or Google Calendar
+4. AI confirms the appointment and sends confirmation (email/SMS if configured)
+
+**Setup**: 
+- Connect your Cal.com account in assistant settings
+- Configure available time slots and preferences
+- Add scheduling instructions to your system prompt
+
+**Use Cases**:
+- Sales qualification calls that result in demos
+- Customer support that requires follow-up calls
+- Consultation booking
+
+Learn more: [Cal.com Scheduling Setup](/ai-assistants/cal-com-scheduling)
+
+### 4. No-Code Automation Platform Integration
+
+**Purpose**: After or during calls, the AI can trigger actions in the automation platform for post-call processing.
+
+**How It Works**:
+- Link your assistant with automation flows
+- Choose triggers like "Call Ended" or "Customer Agrees"
+- Select actions (CRM updates, emails, data logging)
+
+**Available Actions**:
+- **CRM Updates**: Update HubSpot, Salesforce contacts
+- **Data Storage**: Save to Google Sheets, databases
+- **Notifications**: Send emails, SMS, Slack messages
+- **Webhooks**: Trigger external APIs
+- **Campaign Management**: Add leads to campaigns
+
+**Setup**:
+1. Go to the "Automation" tab in your assistant settings
+2. Choose triggers (Call Ended, specific keywords, etc.)
+3. Select actions from available integrations
+4. Configure data mapping and conditions
+
+Learn more: [Automation Platform Introduction](/automation-platform/introduction)
+
+## Combining Multiple Tools
+
+Tools can be combined to create sophisticated call flows. For example:
+
+**Example Flow:**
+1. AI answers call and qualifies lead
+2. If qualified, AI schedules appointment using Cal.com tool
+3. If caller wants more info, AI transfers to sales team
+4. After call ends, automation platform updates CRM
 
 ---
 
-**Hinweis:** Tools können kombiniert werden. Zum Beispiel kann die KI einen Termin planen und dann, wenn der Anrufer mehr Informationen möchte, ihn an einen menschlichen Agenten weiterleiten.
+**Next Steps**
 
----
-
-## Verwandte Themen
-
-<CardGroup cols={2}>
-<Card title="System-Prompt" icon="pen" href="/ai-assistants/system-prompt">
-Definieren Sie, wann und wie Tools verwendet werden
-</Card>
-<Card title="Cal.com Scheduling" icon="calendar" href="/ai-assistants/cal-com-scheduling">
-Integrieren Sie Terminplanung in Ihre Anrufe
-</Card>
-</CardGroup>
-
-<CardGroup cols={2}>
-<Card title="Custom Mid-Call Tools" icon="code" href="/ai-assistants/custom-mid-call-tools">
-Erstellen Sie benutzerdefinierte Tools für spezielle Anwendungsfälle
-</Card>
-<Card title="Automatisierung" icon="wand-magic-sparkles" href="/automation-platform/introduction">
-Automatisieren Sie Follow-up-Aktionen nach Anrufen
-</Card>
-</CardGroup>
-
-<Note>
-Für erweiterte Tool-Konfiguration siehe auch [Custom Mid-Call Tools](/ai-assistants/custom-mid-call-tools) und [Webhook-Integration](/automation/webhook-api).
-</Note> 
+- Learn how to [Create and Edit Assistants](/ai-assistants/creating-and-editing)
+- Explore [System Prompt Best Practices](/ai-assistants/system-prompt) for tool integration
+- Check [Platform Guide Tools](/platform-guide/tools) for detailed tool documentation

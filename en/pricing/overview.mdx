@@ -1,90 +1,64 @@
 ---
-title: "Kostenübersicht"
+title: "Cost Overview"
 icon: "dollar-sign"
-description: "Verstehen Sie die Hauptkomponenten der famulor.de Preisgestaltung, einschließlich Anrufminuten, Nummern-Miete und optionale Gebühren"
+description: "Understand the main components of famulor.de pricing, including call minutes, number rentals, and optional fees"
 ---
 
-famulor.de verwendet ein **Guthaben/Minuten-System**, um die Nutzung für sowohl KI-Verarbeitung als auch Carrier-Netzwerkgebühren zu verfolgen. So funktioniert es:
-
----
-
-## 1. Hauptkomponenten
-
-1. **KI-Kosten**
-
-   - Abgerechnet in Bruchteilen pro Sekunde (z.B. 0,5 Minute für einen 30-Sekunden-Anruf).
-   - Rate hängt von Ihrem Plan ab (Flex, Starter, Business, Scale).
-
-2. **Carrier-Kosten**
-
-   - Die Telekom-Seite des Anrufs, generell **auf die nächste Minute aufgerundet** und in die Minutenrate Ihres Plans umgerechnet.
-   - Regionenabhängig: z.B. haben Anrufe in die USA vs. Europa vs. Asien unterschiedliche Carrier-Raten.
-
-3. **Nummern-Miete**
-
-   - Wenn Sie eine Telefonnummer mieten, gibt es eine monatliche Gebühr (z.B. €3,99 für eine Standard-US-Nummer).
-   - Wenn Ihre Region nicht aufgelistet ist, können wir eine Nummer nach Verifizierung der Dokumente benutzerdefiniert bereitstellen.
-   - Die Kosten jeder Nummer werden monatlich abgerechnet, bis sie freigegeben wird.
-
-4. **Zusätzliche Gebühren (Optional)**
-   - **SMS**: Wenn Ihre Nummer SMS-fähig ist, gelten Standard-Gebühren pro Nachricht.
-   - **Anrufbeantworter-Erkennung**: Wird als 1 Minute pro Anruf abgerechnet.
-   - **Hohes Volumen**: Potenzielle Mengenrabatte, wenn Sie monatlich Zehntausende von Minuten überschreiten.
+famulor.de uses a **credit/minute system** to track usage for both AI processing and carrier network fees. Here's how it breaks down:
 
 ---
 
-## 2. Visuelles Beispiel
+## 1. Main Components
 
-Angenommen, Sie sind im **Starter Plan** mit 100 inkludierten Minuten. Ein typischer 1-Minuten-Anruf könnte ~1,5 Minuten von Ihrem Guthaben verbrauchen, wenn die Carrier-Kosten die Hälfte der Rate Ihres Plans betragen. Das bedeutet, Sie hätten etwa 98,5 übrig. Am Ende des Abrechnungszyklus rollen ungenutzte Minuten nicht über.
+1. **AI Cost**
 
----
+   - Billed in fractional increments by the second (e.g., 0.5 minute for a 30-sec call).
+   - Rate depends on your plan (Flex, Starter, Business, Scale, etc.).
 
-## 3. Anruflogs überprüfen
+2. **Carrier Cost**
 
-- **Dashboard → Anrufhistorie**: Sehen Sie die endgültige Kostenaufschlüsselung jedes Anrufs.
-  - KI-Nutzung (Sekunden → Bruchteil einer Minute).
-  - Carrier-Nutzung (aufgerundet → Bruchteil einer Minute nach Umrechnung).
-  - Summiertes Total in "Minuten" von Ihrem inkludierten oder gekauften Guthaben abgezogen.
+   - The telecom side of the call, generally **rounded up** to the next minute and converted to your plan’s minute rate.
+   - Region-dependent: e.g., calling US vs. Europe vs. Asia has different carrier rates.
 
----
+3. **Number Rental**
 
-## 4. Überwachung & Warnungen
+   - If you rent a phone number, there's a monthly fee (e.g., €3.99 for a standard US number).
+   - If your region isn't listed, we can custom-provision a number upon verifying documents.
+   - Each number's cost is billed monthly until released.
 
-- Überwachen Sie Ihre Echtzeit-Nutzung im **Dashboard**.
-
----
-
-## 5. Alles zusammen
-
-1. **Plan wählen**: Entscheiden Sie sich für Flex, Starter, Business oder Scale—höhere Pläne haben günstigere KI-Raten pro Minute.
-2. **Nummer erwerben oder verifizieren**: Mieten Sie von famulor.de oder fügen Sie Ihre eigene als Anrufer-ID für ausgehende Anrufe hinzu.
-3. **Anrufe starten**: Eingehende oder ausgehende Nutzung zieht von Ihrem Minuten-Guthaben ab.
-4. **SMS & Extras**: Falls relevant, zieht jede Textnachricht oder erweiterte Funktion auch von Ihrem Guthaben ab oder wird separat abgerechnet.
-
-Das ist die Gesamtkostenstruktur. Für einen tieferen Blick in die Mathematik hinter der Minutenumrechnung schauen Sie sich unsere [Preisaufschlüsselung](/pricing/usage-based) Seite an.
+4. **Extra Fees (Optional)**
+   - **SMS**: If your number is SMS-capable, standard per-message fees apply.
+   - **Voicemail detection**: Billed as 1 minute per call.
+   - **High-Volume**: Potential bulk discounts if you exceed tens of thousands of minutes monthly.
 
 ---
 
-## Verwandte Themen
+## 2. Visual Example
 
-<CardGroup cols={2}>
-<Card title="Nutzungsbasierte Preise" icon="chart-line" href="/pricing/usage-based">
-Detailierte Erklärung der Minutenberechnung
-</Card>
-<Card title="Nummern-Miete" icon="phone-plus" href="/pricing/number-rentals">
-Kosten für Telefonnummern nach Regionen
-</Card>
-</CardGroup>
+Suppose you have 100 included minutes in your Starter Plan (€49/month). A typical 1-minute call might consume ~1.5 minutes from your balance if carrier cost is half your plan's rate. This means you'd have about 98.5 left. By the end of the billing cycle, any unused minutes do no rollover.
 
-<CardGroup cols={2}>
-<Card title="Abrechnung verstehen" icon="credit-card" href="/getting-started/understanding-billing">
-Grundlagen der Famulor-Abrechnung
-</Card>
-<Card title="Telefonnummern kaufen" icon="shopping-cart" href="/phone-numbers/purchasing-and-managing">
-Nummern für Ihr Konto kaufen
-</Card>
-</CardGroup>
+---
 
-<Note>
-Für Fragen zur Abrechnung oder benutzerdefinierte Pläne [kontaktieren Sie unser Support-Team](mailto:support@famulor.io).
-</Note> 
+## 3. Checking Call Logs
+
+- **Dashboard → Call History**: See each call’s final cost breakdown.
+  - AI usage (seconds → fraction of a minute).
+  - Carrier usage (rounded up → fraction of a minute after conversion).
+  - Summed total in “minutes” deducted from your included or purchased balance.
+
+---
+
+## 4. Monitoring & Alerts
+
+- Watch your real-time usage in the **dashboard**.
+
+---
+
+## 5. Putting It All Together
+
+1. **Pick a Plan**: Decide on Flex, Starter, Business, or Scale—higher plans have cheaper AI rates.
+2. **Acquire or Verify a Number**: Rent from famulor.de or add your own as caller ID for outbound.
+3. **Start Making Calls**: Inbound or outbound usage deducts from your minute balance.
+4. **SMS & Extras**: If relevant, each text or advanced feature also deducts from your balance or is billed separately.
+
+That’s the overall cost structure. For a deeper look at the math behind minute conversion, check our [Pricing Breakdown](/pricing/usage-based) page.

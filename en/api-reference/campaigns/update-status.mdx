@@ -1,62 +1,62 @@
 ---
-title: "Kampagnen-Status aktualisieren"
-api: "POST https://app.famulor.de/api/user/campaigns/update-status"
+title: "Update campaign status"
+api: "POST /user/campaigns/update-status"
 icon: "play-pause"
-description: "Eine Kampagne im Famulor-System starten oder stoppen"
+description: "Start or stop a campaign in the Famulor system"
 ---
 
-Dieser Endpunkt ermöglicht es Ihnen, eine Kampagne im Famulor-System zu starten oder zu stoppen.
+This endpoint allows you to start or stop a campaign in the Famulor system.
 
-### Anfrage-Body
+### Request Body
 
 <ParamField body="campaign_id" type="integer" required>
-  Die ID der zu aktualisierenden Kampagne
+  The ID of the campaign to update
 </ParamField>
 
 <ParamField body="action" type="string" required>
-  Die Aktion, die an der Kampagne ausgeführt werden soll. Muss entweder "start" oder "stop" sein
+  The action to perform on the campaign. Must be either "start" or "stop"
 </ParamField>
 
-### Antwort-Felder
+### Response Fields
 
 <ResponseField name="message" type="string" default="Campaign started successfully.">
-  Die Nachricht der Antwort
+  The response message
 </ResponseField>
 
 <ResponseField name="success" type="boolean" default="true">
-  Ob die Operation erfolgreich war
+  Whether the operation was successful
 </ResponseField>
 
 <ResponseField name="data" type="object">
-  Die Daten der Antwort
+  The response data
 
-  <Expandable title="Data-Eigenschaften">
+  <Expandable title="Data properties">
     <ResponseField name="campaign_id" type="integer">
-      Die ID der aktualisierten Kampagne
+      The ID of the updated campaign
     </ResponseField>
 
     <ResponseField name="status" type="string" default="in-progress">
-      Der neue Status der Kampagne (z.B. "in-progress" für gestartete Kampagnen, "stopped" für gestoppte Kampagnen)
+      The new status of the campaign (e.g. "in-progress" for started campaigns, "stopped" for stopped campaigns)
     </ResponseField>
   </Expandable>
 </ResponseField>
 
-### Hinweise
+### Notes
 
-- Die Kampagne muss dem authentifizierten Benutzer gehören
-- Nur Kampagnen mit gültigem Status können gestartet oder gestoppt werden
-- Beim Starten einer Kampagne müssen ausreichend Leads vorhanden sein
-- Das Stoppen einer Kampagne bricht laufende Anrufe ab
+- The campaign must belong to the authenticated user
+- Only campaigns with valid status can be started or stopped
+- When starting a campaign, sufficient leads must be available
+- Stopping a campaign will abort ongoing calls
 
 <CodeGroup>
-```json Kampagne starten
+```json Start campaign
 {
   "campaign_id": 2324,
   "action": "start"
 }
 ```
 
-```json Kampagne stoppen
+```json Stop campaign
 {
   "campaign_id": 2324,
   "action": "stop"
@@ -66,7 +66,7 @@ Dieser Endpunkt ermöglicht es Ihnen, eine Kampagne im Famulor-System zu starten
 
 <ResponseExample>
 
-```json 200 Kampagne gestartet
+```json 200 Campaign started
 {
   "message": "Campaign started successfully.",
   "success": true,
@@ -77,7 +77,7 @@ Dieser Endpunkt ermöglicht es Ihnen, eine Kampagne im Famulor-System zu starten
 }
 ```
 
-```json 200 Kampagne gestoppt
+```json 200 Campaign stopped
 {
   "message": "Campaign stopped successfully.",
   "success": true,
@@ -88,28 +88,28 @@ Dieser Endpunkt ermöglicht es Ihnen, eine Kampagne im Famulor-System zu starten
 }
 ```
 
-```json 400 Ungültige Aktion
+```json 400 Invalid action
 {
   "message": "Invalid action. Must be either 'start' or 'stop'.",
   "success": false
 }
 ```
 
-```json 404 Kampagne nicht gefunden
+```json 404 Campaign not found
 {
   "message": "Campaign not found.",
   "success": false
 }
 ```
 
-```json 403 Zugriff verweigert
+```json 403 Access denied
 {
   "message": "Access denied - Campaign does not belong to authenticated user.",
   "success": false
 }
 ```
 
-```json 400 Unzureichendes Guthaben
+```json 400 Insufficient balance
 {
   "message": "Insufficient balance to start the campaign. Please top up your account.",
   "success": false,

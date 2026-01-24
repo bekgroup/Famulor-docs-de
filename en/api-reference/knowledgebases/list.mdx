@@ -1,99 +1,65 @@
 ---
-title: "Wissensdatenbanken auflisten"
+title: "List Knowledge Bases"
 api: "GET https://app.famulor.de/api/user/knowledgebases"
 icon: "book"
-description: "Ruft alle Wissensdatenbanken des authentifizierten Benutzers ab"
+description: "Retrieves all knowledge bases of the authenticated user"
 ---
 
-Dieser Endpunkt gibt eine Liste aller Wissensdatenbanken zurück, die mit Ihrem Konto verknüpft sind. Wissensdatenbanken werden verwendet, um Dokumente zu speichern, die Kontext und Informationen für Ihre KI-Assistenten bereitstellen.
+This endpoint returns a list of all knowledge bases linked to your account. Knowledge bases are used to store documents that provide context and information for your AI assistants.
 
-### Antwort-Felder
+### Response Fields
 
 <ResponseField name="data" type="array">
-  Array von Wissensdatenbank-Objekten
+  Array of knowledge base objects
   
-  <Expandable title="Wissensdatenbank-Eigenschaften">
+  <Expandable title="Knowledge Base Properties">
     <ResponseField name="id" type="integer">
-      Die eindeutige Kennung der Wissensdatenbank
+      The unique identifier of the knowledge base
     </ResponseField>
 
     <ResponseField name="name" type="string">
-      Der Name der Wissensdatenbank
+      The name of the knowledge base
     </ResponseField>
 
     <ResponseField name="description" type="string">
-      Optionale Beschreibung der Wissensdatenbank
+      Optional description of the knowledge base
     </ResponseField>
 
     <ResponseField name="status" type="string">
-      Aktueller Status: `empty`, `processing`, `active` oder `failed`
+      Current status: `empty`, `processing`, `active` or `failed`
     </ResponseField>
 
     <ResponseField name="status_label" type="string">
-      Menschenlesbares Status-Label
+      Human-readable status label
     </ResponseField>
 
     <ResponseField name="documents_count" type="integer">
-      Anzahl der Dokumente in dieser Wissensdatenbank
+      Number of documents in this knowledge base
     </ResponseField>
 
     <ResponseField name="assistants_count" type="integer">
-      Anzahl der Assistenten, die diese Wissensdatenbank verwenden
+      Number of assistants using this knowledge base
     </ResponseField>
 
     <ResponseField name="created_at" type="string">
-      ISO 8601 Zeitstempel der Erstellung
+      ISO 8601 timestamp of creation
     </ResponseField>
 
     <ResponseField name="updated_at" type="string">
-      ISO 8601 Zeitstempel der letzten Aktualisierung
+      ISO 8601 timestamp of last update
     </ResponseField>
   </Expandable>
 </ResponseField>
 
-### Wissensdatenbank-Status
+### Knowledge Base Status
 
-| Status       | Beschreibung                               |
-| ------------ | ----------------------------------------- |
-| `empty`      | Wissensdatenbank hat keine Dokumente            |
-| `processing` | Ein oder mehrere Dokumente werden verarbeitet |
-| `active`     | Alle Dokumente sind verarbeitet und bereit     |
-| `failed`     | Ein oder mehrere Dokumente konnten nicht verarbeitet werden   |
+| Status       | Description                                      |
+| ------------ | ------------------------------------------------ |
+| `empty`      | Knowledge base has no documents                  |
+| `processing` | One or more documents are being processed        |
+| `active`     | All documents are processed and ready            |
+| `failed`     | One or more documents failed to process          |
 
-<CodeGroup>
-```bash cURL
-curl -X GET "https://app.famulor.de/api/user/knowledgebases" \
-     -H "Authorization: Bearer YOUR_API_KEY" \
-     -H "Content-Type: application/json"
-```
-
-```javascript JavaScript
-const response = await fetch("https://app.famulor.de/api/user/knowledgebases", {
-  method: "GET",
-  headers: {
-    "Content-Type": "application/json",
-    Authorization: "Bearer YOUR_API_KEY",
-  },
-});
-
-const data = await response.json();
-```
-
-```python Python
-import requests
-
-response = requests.get(
-    "https://app.famulor.de/api/user/knowledgebases",
-    headers={
-        "Content-Type": "application/json",
-        "Authorization": "Bearer YOUR_API_KEY",
-    },
-    timeout=10,
-)
-
-print(response.json())
-```
-</CodeGroup>
 
 <ResponseExample>
 
@@ -102,10 +68,10 @@ print(response.json())
   "data": [
     {
       "id": 1,
-      "name": "Produktdokumentation",
-      "description": "Technische Dokumentation für unsere Produkte",
+      "name": "Product Documentation",
+      "description": "Technical documentation for our products",
       "status": "active",
-      "status_label": "Aktiv",
+      "status_label": "Active",
       "documents_count": 5,
       "assistants_count": 2,
       "created_at": "2025-01-05T10:30:00.000000Z",
@@ -113,10 +79,10 @@ print(response.json())
     },
     {
       "id": 2,
-      "name": "FAQ Wissen",
-      "description": "Häufig gestellte Fragen und Antworten",
+      "name": "FAQ Knowledge",
+      "description": "Frequently asked questions and answers",
       "status": "processing",
-      "status_label": "Wird verarbeitet",
+      "status_label": "Processing",
       "documents_count": 1,
       "assistants_count": 0,
       "created_at": "2025-01-08T09:00:00.000000Z",
@@ -126,7 +92,7 @@ print(response.json())
 }
 ```
 
-```json 200 Leere Antwort
+```json 200 Empty Response
 {
   "data": []
 }

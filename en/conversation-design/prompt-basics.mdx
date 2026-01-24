@@ -1,35 +1,157 @@
 ---
-title: "Prompt-Schreibgrundlagen"
+title: "Prompt Writing Basics"
 icon: "pen-nib"
-description: "Lernen Sie, wie Sie effektive System-Prompts und erste Nachrichten für Ihre KI-Assistenten schreiben"
+description: "Learn how to write effective system prompts and initial messages for your AI assistants"
 ---
 
-famulor.de verwendet einen **System-Prompt**, um zu leiten, wie Ihr KI-Assistent mit Anrufern interagiert. Das Erstellen eines effektiven Prompts ist der Schlüssel zu flüssigeren, genaueren Telefongesprächen.
+famulor.de uses a **System Prompt** to guide how your AI assistant interacts with callers. Crafting an effective prompt is key to smoother, more accurate phone conversations.
 
-## 1. System-Prompt vs. Erste Nachricht
+## 1. System Prompt vs. Initial Message
 
-- **System-Prompt**: Gesamtanweisungen und Kontext. Beispiel:  
-  _"Sie sind der Support Bot für TechMasters Inc. Begrüßen Sie höflich, fragen Sie nach einem Namen, bearbeiten Sie grundlegende Fehlerbehebung und leiten Sie den Anruf weiter, wenn das Problem komplex ist."_
+### What is a System Prompt?
 
-- **Erste Nachricht**: Das erste, was die KI sagt, besonders für eingehende Anrufe. Beispiel:  
-  _"Danke für Ihren Anruf bei TechMasters! Wie kann ich Ihnen heute helfen?"_
+The **System Prompt** contains overall instructions and context that guide your AI assistant's behavior throughout the entire conversation. It defines:
+- The assistant's role and personality
+- How to handle different scenarios
+- What information to collect
+- When to transfer or end calls
 
-## 2. Klarheit & Struktur
+**Example System Prompt:**
+> "You are the Support Bot for TechMasters Inc. Greet politely, ask for a name, handle basic troubleshooting, and transfer the call if the issue is complex."
 
-- **Seien Sie spezifisch**: Skizzieren Sie den Hauptzweck, Tonfall und Schritte, die die KI befolgen soll.
-- **Verwenden Sie Beispiele**: Zeigen Sie Beispiel-Dialoge. _"Wenn der Benutzer sagt, er hat eine Abrechnungsfrage, fragen Sie ihn nach seiner Rechnungsnummer."_
+### What is an Initial Message?
 
-## 3. Behandlung "unbekannter" Fälle
+The **Initial Message** is the very first thing the AI says when answering a call. It's especially important for inbound calls as it sets the tone and expectations.
 
-- Wenn ein Benutzer nach etwas Off-Topic fragt, entscheiden Sie, ob die KI sollte:
-  - Eine Standardantwort geben: _"Ich bin mir nicht sicher, lassen Sie mich Sie weiterleiten…"_
-  - Mehr Details sammeln.
+**Example Initial Message:**
+> "Thank you for calling TechMasters! How can I assist you today?"
 
-## 4. Halten Sie es kurz & fokussiert
+<Info>
+The Initial Message is separate from the System Prompt. The System Prompt guides behavior, while the Initial Message is the actual greeting callers hear.
+</Info>
 
-- Ein kurzer Prompt funktioniert oft am besten; zu lange Anweisungen können die KI langsamer oder anfällig für "Halluzination" machen.
-- Wenn Sie umfangreiche Inhalte haben, erwägen Sie eine Wissensdatenbank oder teilen Sie Ihren Text mit Überschriften auf.
+## 2. How to Write Clear and Effective Prompts
+
+### Be Specific About Purpose and Tone
+
+Clearly outline the main purpose, desired tone, and step-by-step process you want the AI to follow. Avoid vague instructions.
+
+**Good Example:**
+> "You are a friendly customer service representative for XYZ Company. When a caller mentions a billing question, ask for their invoice number (format: INV-XXXXX), then look up their account status."
+
+**Bad Example:**
+> "Help customers with questions."
+
+### Use Concrete Examples
+
+Show sample dialogues and specific scenarios to guide the AI's responses.
+
+**Example:**
+> "If the user says they have a billing question, ask them for their invoice number. If they say 'I don't have it,' politely ask for their email address or phone number on file instead."
+
+### Structure Your Prompt with Clear Sections
+
+Organize your prompt with headings or numbered steps to make it easier for the AI to follow:
+
+1. **Role Definition**: Who is the assistant?
+2. **Tone Guidelines**: How should they speak?
+3. **Common Scenarios**: What situations will they handle?
+4. **Data Collection**: What information do you need?
+5. **Escalation Rules**: When to transfer or end calls?
+
+## 3. How to Handle Unknown or Off-Topic Questions
+
+When callers ask about topics not covered in your prompt, the AI needs clear instructions on how to respond.
+
+### Option 1: Default Response with Transfer
+
+Provide a polite default response and offer to transfer:
+
+**Prompt Example:**
+> "If a caller asks about something you don't know, say: 'I'm not sure about that specific question. Let me transfer you to a specialist who can help.' Then use the transfer tool."
+
+### Option 2: Gather More Information
+
+Ask follow-up questions to better understand the request:
+
+**Prompt Example:**
+> "If a caller asks about something unclear, ask: 'Could you provide a bit more detail so I can help you better?' Then try to route them based on their response."
+
+### Option 3: Reference Knowledge Base
+
+If you have a knowledge base configured, instruct the AI to search it:
+
+**Prompt Example:**
+> "For questions you're unsure about, first check the knowledge base. If no relevant information is found, politely transfer the caller to a human agent."
+
+<Tip>
+Test your prompt with edge cases by reviewing call transcripts. Adjust your instructions based on how the AI handles unexpected questions.
+</Tip>
+
+## 4. How Long Should Your Prompt Be?
+
+### Optimal Prompt Length
+
+- **Short prompts (50-200 words)**: Work best for simple use cases with clear, direct instructions
+- **Medium prompts (200-500 words)**: Good for handling multiple scenarios with structured guidelines
+- **Long prompts (500+ words)**: May slow down responses and increase "hallucination" risk
+
+### When to Use a Knowledge Base Instead
+
+If you have extensive information to share (product catalogs, detailed FAQs, company policies), use a **Knowledge Base** instead of putting everything in the system prompt:
+
+- Knowledge bases are searchable and context-aware
+- They don't slow down the AI's response time
+- They can be updated without changing the prompt
+- They handle large amounts of information more efficiently
+
+Learn more: [Knowledge Bases Guide](/conversation-design/knowledge-bases)
+
+### Best Practices for Prompt Length
+
+1. **Start Short**: Begin with a concise prompt and add details only as needed
+2. **Use Structure**: Break long prompts into clear sections with headings
+3. **Test Performance**: Monitor call latency - if responses slow down, consider moving content to a knowledge base
+4. **Review Regularly**: Remove unnecessary instructions that don't improve outcomes
+
+<Warning>
+Very long prompts (1000+ words) can cause slower response times and inconsistent behavior. Consider using knowledge bases for detailed information.
+</Warning>
 
 ---
 
-**Tipp:** Überprüfen Sie Ihre Transkripte regelmäßig, um zu sehen, wo die KI möglicherweise mehr oder weniger Anweisungen benötigt. 
+## 5. Testing and Improving Your Prompts
+
+### Review Call Transcripts Regularly
+
+Periodically review call transcripts to identify:
+- Questions the AI couldn't answer
+- Responses that don't match your brand voice
+- Scenarios where the AI got confused
+- Opportunities to add or remove instructions
+
+### Iterative Improvement Process
+
+1. **Deploy** your initial prompt
+2. **Monitor** call transcripts and analytics
+3. **Identify** patterns in failures or misunderstandings
+4. **Refine** your prompt with specific examples
+5. **Test** changes with a few calls before full rollout
+
+### Common Prompt Issues and Solutions
+
+| Issue | Solution |
+| --- | --- |
+| AI gives generic responses | Add specific examples and scenarios |
+| AI doesn't collect required data | Explicitly list what information to gather |
+| AI transfers too early/late | Define clear escalation criteria |
+| AI sounds robotic | Adjust tone instructions and add personality |
+| AI hallucinates information | Add instructions to say "I don't know" when uncertain |
+
+---
+
+**Next Steps**
+
+- Learn about [Knowledge Bases](/conversation-design/knowledge-bases) for handling extensive information
+- Explore [Interruption Handling](/conversation-design/interruptions) for natural conversations
+- Check [System Prompt Best Practices](/ai-assistants/system-prompt) for advanced techniques

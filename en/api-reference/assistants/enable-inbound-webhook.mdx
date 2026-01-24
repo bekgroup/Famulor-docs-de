@@ -1,66 +1,65 @@
 ---
-title: "Inbound-Webhook aktivieren"
-api: "POST https://app.famulor.de/api/user/assistants/enable-inbound-webhook"
-icon: "webhook"
-description: "Inbound-Webhook-Benachrichtigungen für einen bestimmten Assistenten aktivieren"
+title: "Enable assistant inbound webhook"
+api: "POST /user/assistants/enable-inbound-webhook"
+icon: "toggle-on"
+description: "Activate inbound webhook notifications for an assistant"
 ---
 
-Dieser Endpunkt aktiviert Inbound-Webhook-Benachrichtigungen für einen Assistenten, sodass Sie Echtzeit-Updates über abgeschlossene eingehende Anrufe und Daten erhalten können.
+Enable real-time webhook notifications for inbound calls. You'll receive notifications when inbound calls complete with all call data.
 
 ### Request Body
 
 <ParamField body="assistant_id" type="integer" required>
-  Die ID des Assistenten, für den der Webhook aktiviert werden soll
+  The identifier of the assistant to enable webhooks for
 </ParamField>
 
 <ParamField body="webhook_url" type="string" required>
-  Die URL, an die Webhook-Benachrichtigungen gesendet werden
+  The endpoint URL where notifications will be sent
 </ParamField>
 
 ### Response
 
 <ResponseField name="message" type="string">
-  Erfolgsmeldung, die bestätigt, dass der Webhook aktiviert wurde
+  Success confirmation message
 </ResponseField>
 
 <ResponseField name="data" type="array">
-  Leeres Array (für zukünftige Verwendung reserviert)
+  Empty array (reserved for future functionality)
 </ResponseField>
 
-### Fehler-Responses
+### Error Responses
 
-<ResponseField name="message" type="string">
-  Fehlermeldung, wenn der Assistent nicht gefunden wurde oder nicht dem authentifizierten Benutzer gehört
+<ResponseField name="404 Not Found">
+  <Expandable title="Error Response">
+    <ResponseField name="message" type="string">
+      Error when the assistant doesn't exist or belongs to another account
+    </ResponseField>
+  </Expandable>
 </ResponseField>
 
-<ResponseField name="errors" type="object">
-  Detaillierte Validierungsfehler für jedes Feld
+<ResponseField name="422 Validation Error">
+  <Expandable title="Error Response">
+    <ResponseField name="message" type="string">
+      Validation error message
+    </ResponseField>
+    <ResponseField name="errors" type="object">
+      Detailed field-level validation errors
+    </ResponseField>
+  </Expandable>
 </ResponseField>
-
-<CodeGroup>
-```bash Inbound-Webhook aktivieren
-curl -X POST "https://app.famulor.de/api/user/assistants/enable-inbound-webhook" \
-  -H "Authorization: Bearer YOUR_API_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "assistant_id": 123,
-    "webhook_url": "https://example.com/inbound-webhook"
-  }'
-```
-</CodeGroup>
 
 <ResponseExample>
 
-```json 200 Success
+```json 200 Success Response
 {
-  "message": "Inbound webhook enabled successfully",
+  "message": "Webhook enabled successfully",
   "data": []
 }
 ```
 
 ```json 404 Not Found
 {
-  "message": "Assistant not found or does not belong to the authenticated user"
+  "message": "Assistant not found"
 }
 ```
 
@@ -72,8 +71,7 @@ curl -X POST "https://app.famulor.de/api/user/assistants/enable-inbound-webhook"
       "The assistant id field is required."
     ],
     "webhook_url": [
-      "The webhook url field is required.",
-      "The webhook url must be a valid URL."
+      "The webhook url field is required."
     ]
   }
 }

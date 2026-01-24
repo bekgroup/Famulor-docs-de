@@ -1,94 +1,110 @@
 ---
-title: "KI-Verhaltensprobleme"
+title: "AI Behavior Issues"
 icon: "robot"
-description: "Beheben und optimieren Sie das Gesprächsverhalten und die Antworten Ihres KI-Assistenten"
+description: "Troubleshoot and optimize your AI assistant's conversation behavior and responses"
 ---
 
-Das Verhalten Ihrer KI kann durch eine Kombination von Engine-Einstellungen und Prompt-Anpassungen feinabgestimmt werden.
+Your AI's behavior can be fine-tuned through a combination of engine settings and prompt adjustments.
 
-## Engine-Einstellungen Auswirkung
+## Engine Settings Impact
 
-Verschiedene KI-Engine-Modi beeinflussen das Verhalten:
+Different AI engine modes affect behavior:
 
-### Schnelle Engine
+### Fast Engine
 
-- Schnelle, konversationellere Antworten
-- Kann gelegentlich Kontext verpassen
-- Beste für: Einfache Interaktionen, Verkaufsanrufe
-- Funktioniert großartig mit Füllaudio für natürlichen Fluss
+- Quick, more conversational responses
+- May occasionally miss context
+- Best for: Simple interactions, sales calls
+- Works great with Filler Audio for natural flow
 
 ### Standard Engine
 
-- Ausgewogenes Verständnis und Geschwindigkeit
-- Gut für die meisten Anwendungsfälle
-- Standard-Empfehlung für neue Assistenten
+- Balanced understanding and speed
+- Good for most use cases
+- Default recommendation for new assistants
 
-### Genaue Engine
+### Accurate Engine
 
-- Tiefes Kontextverständnis
-- Durchdachtere Antworten
-- Beste für: Komplexen Support, detaillierte Informationssammlung
-- Kann längere Pausen zwischen Antworten haben
+- Deep context understanding
+- More thoughtful responses
+- Best for: Complex support, detailed information gathering
+- May have longer pauses between responses
 
-## Häufige Probleme & Lösungen
+## Common Issues & Solutions
 
-1. **KI versteht Kontext falsch**
+### Why is the AI Misunderstanding Context?
 
-   - Wechseln Sie zur Genaue Engine
-   - Fügen Sie mehr Kontext zu Ihrem Prompt hinzu
-   - Fügen Sie Beispielgespräche hinzu
+**Symptoms:**
+- AI gives irrelevant responses
+- AI doesn't remember information mentioned earlier
+- AI asks for information already provided
 
-2. **Unnatürlicher Gesprächsfluss**
+**Solutions:**
+- Switch to **Accurate Engine** for better context understanding
+- Add more context to your system prompt
+- Include example conversations showing how to handle context
+- Use knowledge bases for complex information retrieval
 
-   - Aktivieren Sie Füllaudio für glattere Übergänge
-   - Verwenden Sie Schnelle Engine für schnelleren Hin-und-Her
-   - Fügen Sie Gesprächsbeispiele in Ihren Prompt hinzu
+<Info>
+The Accurate Engine processes more context but may have slightly longer response times. This trade-off is worth it for complex conversations.
+</Info>
 
-3. **Wiederholende Antworten**
-   - Überprüfen und aktualisieren Sie Ihren System-Prompt
-   - Fügen Sie Variationsbeispiele hinzu
-   - Erwägen Sie den Wechsel zur Standard/Genaue Engine
+### How to Fix Unnatural Conversation Flow?
 
-## Optimierungstipps
+**Symptoms:**
+- Awkward pauses between responses
+- AI interrupts callers
+- Conversation feels robotic
 
-- **Verkaufsanrufe**: Schnelle Engine + Füllaudio für Engagement
-- **Kundensupport**: Genaue Engine für bessere Problemlösung
-- **Lead-Qualifizierung**: Standard Engine für ausgewogene Leistung
+**Solutions:**
+- Enable **Filler Audio** for smoother transitions and natural pauses
+- Use **Fast Engine** for quicker back-and-forth in sales scenarios
+- Add conversation examples in your prompt showing natural dialogue
+- Adjust interruption settings to allow natural turn-taking
 
-## Änderungen testen
+### Why is the AI Giving Repetitive Responses?
 
-Nach Anpassung der Einstellungen:
+**Symptoms:**
+- AI says the same thing multiple times
+- Responses lack variety
+- AI doesn't adapt to different caller styles
 
-1. Verwenden Sie die Testanruf-Funktion
-2. Versuchen Sie verschiedene Gesprächsszenarien
-3. Überwachen Sie Anrufaufzeichnungen für Verbesserungen
+**Solutions:**
+- Review and update your system prompt with variation examples
+- Add instructions like "vary your phrasing" or "use different words for similar concepts"
+- Consider switching to **Standard** or **Accurate** engine for more nuanced responses
+- Test with different conversation scenarios to identify patterns
+
+## Optimization Tips
+
+- **Sales Calls**: Fast Engine + Filler Audio for engagement
+- **Customer Support**: Accurate Engine for better problem solving
+- **Lead Qualification**: Standard Engine for balanced performance
+
+## Testing Changes
+
+After adjusting settings:
+
+1. Use the test call feature
+2. Try different conversation scenarios
+3. Monitor call recordings for improvement
+
+## Quick Reference: Engine Selection Guide
+
+| Engine | Speed | Context Understanding | Best For |
+| --- | --- | --- | --- |
+| **Fast** | Very Fast (~300-600ms) | Basic | Sales calls, quick confirmations, simple Q&A |
+| **Standard** | Fast (~800-1200ms) | Good | Most use cases, balanced performance |
+| **Accurate** | Moderate (~1200-2000ms) | Excellent | Complex support, detailed information gathering |
 
 ---
 
-**Tipp:** Beginnen Sie mit Standard Engine und passen Sie basierend auf Ihren spezifischen Bedürfnissen und Feedback an.
+**Next Steps**
 
----
+- Learn about [System Prompt Best Practices](/ai-assistants/system-prompt) for better AI behavior
+- Explore [Voice Selection](/ai-assistants/voice-selection) to improve conversation quality
+- Check [Prompt Writing Basics](/conversation-design/prompt-basics) for effective prompt design
 
-## Verwandte Themen
-
-<CardGroup cols={2}>
-<Card title="System-Prompt optimieren" icon="pen" href="/ai-assistants/system-prompt">
-Verbessern Sie die Anweisungen für Ihren Assistenten
-</Card>
-<Card title="Best Practices" icon="check" href="/ai-assistants/assistant-best-practices">
-Optimieren Sie Engine-Einstellungen und Modi
-</Card>
-</CardGroup>
-
-<CardGroup cols={2}>
-<Card title="Assistenten testen" icon="flask" href="/ai-assistants/testing">
-Testen Sie Verhaltensänderungen systematisch
-</Card>
-<Card title="Assistenten-Modi" icon="bolt" href="/ai-assistants/assistant-modes">
-Verstehen Sie Pipeline, Speech-to-Speech und Dualplex
-</Card>
-</CardGroup>
-
-<Note>
-Bei anhaltenden Problemen [kontaktieren Sie unser Support-Team](mailto:support@famulor.io) mit spezifischen Anrufbeispielen.
-</Note> 
+<Tip>
+Start with Standard Engine and adjust based on your specific needs and feedback. Monitor call transcripts regularly to identify improvement opportunities.
+</Tip>

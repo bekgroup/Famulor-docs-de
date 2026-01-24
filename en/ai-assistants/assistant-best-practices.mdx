@@ -1,155 +1,131 @@
 ---
-title: "Best Practices für KI‑Assistenten"
+title: "Assistant Best Practices"
 icon: "check"
-description: "Kurzanleitung zum Feinabstimmen von Modus, Transcriber, Modell und weiteren Einstellungen für das beste Anruferlebnis"
+description: "Quick guide to fine-tune mode, transcriber, model, and other settings for the best call experience"
 ---
 
 <Info>
-Zuletzt aktualisiert: 1. September 2025
+Last updated: Aug. 29, 2025
 </Info>
 
-Gute Ergebnisse hängen oft von den richtigen Engine‑Einstellungen ab. Verwende diese Checkliste beim Konfigurieren eines Famulor‑Assistenten.
+Getting great results often comes down to picking the right engine settings. Use this checklist when configuring a Famulor assistant.
 
-## 1. Modus wählen
+## 1. Pick a Mode
 
-| Modus | Warum wählen? | Hinweise |
+| Mode | Why choose it? | Notes |
 | --- | --- | --- |
-| Dualplex (Beta) | Schnelles Turn‑Taking + Premium/geklonte Stimmen | Empfohlener Standard. Kombiniere mit Gemini Flash 2.0/2.5 oder GPT‑5 Realtime. |
-| Speech‑to‑Speech (Multimodal) | Schnellstes Turn‑Taking und natürlichster Gesprächsfluss | Empfohlenes Modell: GPT‑5 Realtime. |
-| Pipeline | Maximale Kontrolle über Stimme und lange Antworten | Empfohlenes Modell: GPT‑5 Mini. Wenn du Pipeline wählst, fahre unten mit dem Transcriber‑Schritt fort. |
+| Speech-to-Speech (Multimodal) | Fastest turn-taking and most natural flow | Recommended starting point. Try the Gemini 2.5 engine (beta) for the lowest latency, but note it’s experimental and may be less stable. |
+| Pipeline | Maximum control over voice and long-form replies | If you select Pipeline, continue to the Transcriber step below. |
 
-Mehr zu den Unterschieden? Siehe den Leitfaden [Assistenten‑Modi](/ai-assistants/assistant-modes).
+Want to know more about the differences? See the [Assistant Modes guide](/ai-assistants/assistant-modes).
 
 <Tip>
-Experimentiere mit allen drei Modi: Nimm dasselbe Szenario in jedem auf und vergleiche Reaktionszeit und Anruferzufriedenheit.
+Record the same scenario in both modes and compare response time and caller satisfaction.
 </Tip>
 
-## 2. Transcriber wählen (nur Pipeline)
+## 2. Choose a Transcriber (Pipeline only)
 
-| Transcriber | Genauigkeit | Latenz | Am besten geeignet für |
+| Transcriber | Accuracy | Latency | Best for |
 | --- | --- | --- | --- |
-| Azure | ⭐️⭐️⭐️⭐️ | ⏱️⏱️⏱️ (langsamer) | Wenn du die höchste Transkriptionsqualität benötigst |
-| Gladia | ⭐️⭐️⭐️ | ⏱️ (schneller) | Guter Allrounder für die meisten Sprachen |
-| Deepgram | ⭐️⭐️⭐️ | ⏱️ (schneller) | Weitere solide Wahl — teste, was für deine Sprache und dein Audio‑Setup besser funktioniert |
+| Azure | ⭐️⭐️⭐️⭐️ | ⏱️⏱️⏱️ (slower) | Highest transcription fidelity |
+| Gladia | ⭐️⭐️⭐️ | ⏱️ (faster) | Good all-rounder for most languages |
+| Deepgram | ⭐️⭐️⭐️ | ⏱️ (faster) | Solid alternative—test which performs better for your language and audio setup |
 
 <Tip>
-Verschiedene Sprachen, Akzente oder Hintergrundgeräusche können jede Engine unterschiedlich beeinflussen. Führe einen kurzen A/B‑Test durch und behalte den besten Kandidaten.
+Different languages, accents, and background noise can affect each engine differently. Run a quick A/B test and keep the best performer.
 </Tip>
 
-## 3. LLM‑Modell auswählen
+## 3. Select an LLM Model
 
-| Modell | Stärken | Abwägungen |
+| Model | Strengths | Trade-offs |
 | --- | --- | --- |
-| GPT-5 Mini | Ausgewogenes Reasoning mit niedriger Latenz | Kann langsamer sein als Realtime-Modelle für schnelle Turn-Taking |
-| GPT-5 Realtime | Entwickelt für ultra-niedrige Latenz bei Sprachwendungen | Am besten für Speech-to-Speech und Dualplex |
-| GPT-4o | Starkes Reasoning und multimodales Verständnis | Höhere Latenz |
-| Gemini Flash 2.0 / 2.5 | Ultra-schnell für Sprachwendungen in Dualplex/Multimodal | Exzellent zur Minimierung wahrgenommener Latenz |
+| GPT-4o | Smartest reasoning, handles complex prompts | Slightly higher latency and cost |
+| Gemini 2.5-Flash-Lite | Blazing-fast, still highly capable | May miss nuance in very complex tasks—test for your use case |
 
 <Tip>
-Wenn Geschwindigkeit entscheidend ist, nutze GPT‑5 Realtime (großartig für Speech-to-Speech) oder Gemini Flash 2.0/2.5 (großartig mit Dualplex). Für reicheres Reasoning nutze GPT-4o oder GPT-5 Mini und kompensiere die Latenz durch Füll-Audios.
+If speed is critical, start with Gemini 2.5-Flash-Lite. For sophisticated reasoning, use GPT-4o and offset latency by shortening replies.
 </Tip>
 
-## 4. Rauschunterdrückung
+## 4. Noise Cancellation
 
-Wenn Anrufer über Lautsprecher telefonieren oder es ruhig ist, lasse die Rauschunterdrückung AN. Wenn die Lautstärke niedrig ist oder Wörter „abgeschnitten“ klingen, schalte sie AUS, damit der Transcriber das volle Signal erhält.
+If callers are on speaker phone or in a quiet environment, keep noise cancellation ON. If your call volume is low or some words are “clipped,” turn it OFF so the transcriber gets the full waveform.
 
 <Tip>
-Wenn der Assistent dich schlecht versteht, versuche die Rauschunterdrückung auszuschalten.
+If the assistant isn’t hearing you well, try turning noise cancellation off.
 </Tip>
 
-## 5. Konversations‑Timer
+## 5. Conversation Timers
 
-| Parameter | Empfehlung | Warum |
+| Parameter | Recommended | Why |
 | --- | --- | --- |
-| Re‑engagement | ≈ 30 s | Gibt Anrufern genügend Zeit zum Nachdenken. Niedrigere Werte können aufdringlich wirken. |
-| Maximale Stille‑Dauer | ≈ 60 s | Verhindert verfrühte Auflegungen und beendet dennoch wirklich stille Anrufe. |
+| Re-engagement | ≈ 30 s | Gives callers enough time to think. Lower values can feel pushy. |
+| Max silence duration | ≈ 60 s | Prevents premature hang-ups while still ending truly silent calls. |
 
 <Info>
-Teste verschiedene Werte in echten Anrufen — zu niedrig unterbricht, zu hoch erzeugt peinliche Pausen.
+Test different values in real calls—too low can interrupt, too high leaves awkward gaps.
 </Info>
 
-## 6. Einstiegsnachricht
+## 6. Initial Message
 
-| Modus | Verwendung | Best Practice |
+| Mode | How it’s used | Best practice |
 | --- | --- | --- |
-| Pipeline | Wird exakt wie geschrieben vorgelesen (per TTS) | Formuliere die Begrüßung wörtlich: „Hallo, hier ist Alex von …“. |
-| Dualplex | Wird exakt wie geschrieben vorgelesen (über ElevenLabs TTS gerendert) | Formuliere die Begrüßung wörtlich, wähle dann deine geklonte Stimme aus. |
-| Speech‑to‑Speech | Wird vom Modell als Prompt interpretiert | Füge Anweisungen hinzu wie „Begrüße die Kundin/den Kunden und sage …“ oder stelle `sage genau:` voran, um wörtliche Ausgabe zu erzwingen. |
+| Pipeline | Read exactly as written (converted by TTS) | Write the greeting verbatim: “Hello, this is Alex from …”. |
+| Speech-to-Speech | Interpreted as a prompt by the model | Include instructions like “Greet the customer and say …” or prepend `say exactly:` to ensure literal output. |
 
-## 7. Umgebungsgeräusch
+## 7. Ambient sound
 
-Umgebungsgeräusch fügt der Stimme des Assistenten dezente Hintergrundgeräusche hinzu und ist standardmäßig aktiviert.
+Ambient sound adds subtle background noise to the assistant’s voice and is enabled by default.
 
 <Tip>
-Wenn der Assistent dich schlecht hört, deaktiviere das Umgebungsgeräusch oder reduziere die Umgebungslautstärke.
+If the assistant isn’t hearing you well, turn off ambient sound or lower the ambient volume.
 </Tip>
 
-## 8. Endpointing‑Regler
+## 8. Endpointing sliders
 
-Steuere mit dem Endpointing‑Empfindlichkeitsregler unten in den Assistenten‑Einstellungen, wann dein Assistent zu sprechen beginnt.
+Control when your assistant starts talking with the endpointing sensitivity slider at the bottom of assistant settings.
 
-| Einstellung | Wirkung | Verwenden, wenn |
+| Setting | Effect | Use when |
 | --- | --- | --- |
-| Niedrige Empfindlichkeit | Assistent antwortet schneller, nachdem die Anruferin/der Anrufer aufgehört hat zu sprechen | Du möchtest knackige, schnelle Gesprächswechsel |
-| Hohe Empfindlichkeit | Assistent wartet länger, bevor er antwortet | Anrufer geben längere, detailliertere Antworten |
+| Lower sensitivity | Assistant responds faster after caller stops speaking | You want snappy, quick-turn conversations |
+| Higher sensitivity | Assistant waits longer before responding | Callers give longer, more detailed replies |
 
 <Tip>
-Wenn dein Assistent Anruferinnen/Anrufer mitten im Satz abschneidet, erhöhe die Empfindlichkeit. Wenn Antworten träge wirken, verringere sie.
+If your assistant cuts off callers mid-sentence, increase sensitivity. If responses feel sluggish, decrease it.
 </Tip>
 
-## 9. Debugging mit dem Anruf‑Transkript
-
-Wenn du Probleme mit deinem Assistenten hast, kannst du das Anruf-Transkript zur Fehlerbehebung verwenden.
+## 9. Debug using the call transcript
 
 <Steps>
-<Step title="Anrufverlauf öffnen">
-Wechsle im Dashboard zur Seite Anrufverlauf.
+<Step title="Open Call history">
+Go to the Call history page in your dashboard.
 </Step>
 
-<Step title="Letzten Testanruf auswählen">
-Klicke auf den letzten Anruf, den du getestet hast.
+<Step title="Select your latest test call">
+Open the most recent call you placed for this assistant.
 </Step>
 
-<Step title="Transkript und Funktionsaufrufe prüfen">
-Das Anruf-Transkript wird angezeigt, einschließlich Funktionsaufrufen und deren Parametern.
+<Step title="Inspect transcript and function calls">
+Review the transcript, function calls, and parameters to identify timing or logic issues.
 
 <Check>
-Bestätige, dass der Assistent den erwarteten Modus, das Modell und die Tools gemäß deiner Konfiguration nutzt.
+Confirm the assistant is using the expected mode, model, and tools per your configuration.
 </Check>
 </Step>
 </Steps>
 
-## 10. Noch Fragen?
+## 10. Still have questions?
 
-Wenn du Fragen hast, kontaktiere unser Support‑Team unter [support@famulor.io](mailto:support@famulor.io).
-
-<Tip>
-Teste verschiedene Einstellungen mit echten Anrufen — die richtige Balance hängt von deinem Gesprächsablauf und den Verhaltensmustern der Anrufer ab.
-</Tip>
+If you need help, contact our support team via the chat widget inside the app.
 
 ---
 
-<CardGroup cols={3}>
-<Card title="System Prompts" icon="pen" href="/ai-assistants/system-prompt">
-Definieren Sie das Verhalten Ihres Assistenten
+<CardGroup cols={2}>
+<Card title="Assistant Modes" icon="bolt" href="/ai-assistants/assistant-modes">
+Understand the differences between Pipeline and Speech-to-Speech.
 </Card>
-<Card title="Stimmauswahl" icon="microphone" href="/ai-assistants/voice-selection">
-Wählen Sie die perfekte Stimme
-</Card>
-<Card title="Testing" icon="flask" href="/ai-assistants/testing">
-Testen Sie Ihren Assistenten
-</Card>
-</CardGroup>
 
-<CardGroup cols={3}>
-<Card title="Tools & Funktionen" icon="wrench" href="/ai-assistants/tools-and-functions">
-Erweitern Sie die Fähigkeiten Ihres Assistenten
-</Card>
-<Card title="Fehlerbehebung" icon="bug" href="/troubleshooting/ai-behavior">
-Beheben Sie häufige Probleme
-</Card>
-<Card title="Erste Nachricht" icon="comment" href="/ai-assistants/initial-message">
-Gestalten Sie die perfekte Begrüßung
+<Card title="Voice Selection & Cloning" icon="microphone" href="/ai-assistants/voice-selection">
+Choose a built-in voice or your custom-cloned brand voice.
 </Card>
 </CardGroup>
 

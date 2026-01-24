@@ -1,27 +1,27 @@
 ---
-title: "Allgemeine Setup-Probleme"
+title: "General Setup Issues"
 icon: "wrench"
-description: "Beheben Sie häufige Setup-Probleme einschließlich KI-Antwortprobleme, OTP-Verifizierung und Anmeldedatenfehler"
+description: "Troubleshoot common setup problems including AI response issues, OTP verification, and credential errors"
 ---
 
-Einige häufige Fallstricke bei der ersten Konfiguration von famulor.de:
+Some common pitfalls when first configuring famulor.de:
 
-## 1. KI antwortet nicht oder Anruf bricht ab
+## 1. AI Not Responding or Call Dropping
 
-- **Überprüfen Sie den System-Prompt**: Möglicherweise fehlende Anweisungen.
-- **Sprachaktivitätserkennung**: Falls zu niedrig oder hoch eingestellt, kann es zu unangenehmen Stille oder Unterbrechungen führen.
-- **Verbindung**: Falls Ihr Internet oder SIP-Trunk instabil ist, könnten Anrufe abbrechen.
+- **Check the System Prompt**: Possibly missing instructions.
+- **Voice Activity Detection**: If set too low or high, it may cause awkward silences or interruptions.
+- **Connection**: If your internet or SIP trunk is unstable, calls might drop.
 
-## 2. Kein OTP erhalten (für Caller ID-Verifizierung)
+## 2. Not Receiving OTP (for Caller ID Verification)
 
-- **Carrier-Blöcke**: Einige Betreiber filtern Kurzcodes oder unbekannte internationale SMS heraus.
-- **Alternativen Methode versuchen**: Fragen Sie den Support, ob Sie sich über einen kurzen Sprachanruf oder eine andere Telefonleitung verifizieren können.
+- **Carrier Blocks**: Some operators filter out short codes or unknown international SMS.
+- **Try Alternate Method**: Ask support if you can verify by a quick voice call or another phone line.
 
-## 3. Anmeldedatenfehler
+## 3. Credential Errors
 
-- **SIP**: Falscher Benutzername/Passwort? Überprüfen Sie mit Ihrem PBX-Anbieter.
-- **API/Webhooks**: Stellen Sie sicher, dass Sie das richtige Token oder die richtige Endpunkt-URL kopiert haben.
+- **SIP**: Wrong username/password? Double-check with your PBX provider.
+- **API/Webhooks**: Ensure you copied the correct token or endpoint URL.
 
 ---
 
-**Tipp:** Schauen Sie sich Anruflogs für Fehlercodes an, falls ein Anruf fehlschlägt. Normalerweise zeigt es einen Grund wie "Nummer nicht gefunden" oder "Netzwerk nicht erreichbar". 
+**Tip:** Look at call logs for error codes if a call fails. Usually, it'll show a reason like "Number not found" or "Network unreachable."

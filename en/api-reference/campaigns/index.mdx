@@ -1,0 +1,36 @@
+---
+title: "List campaigns"
+api: "GET /user/campaigns"
+icon: "list"
+description: "Retrieve all campaigns in your account"
+---
+
+Fetch a complete list of all campaigns you've created in your account.
+
+### Response Fields
+
+<ResponseField name="campaigns" type="array">
+  Array of campaign objects
+  <Expandable title="properties">
+    <ResponseField name="id" type="string">
+      Unique campaign identifier
+    </ResponseField>
+
+    <ResponseField name="name" type="string">
+      Campaign name
+    </ResponseField>
+
+    <ResponseField name="created_at" type="string">
+      Campaign creation date and time
+    </ResponseField>
+
+    <ResponseField name="updated_at" type="string">
+      Last modification date and time
+    </ResponseField>
+
+    <ResponseField name="status" type="string">
+      Current campaign status
+    </ResponseField>
+
+  </Expandable>
+</ResponseField>

@@ -1,117 +1,69 @@
 ---
-title: "Telefonnummer kaufen"
+title: "Purchase Phone Number"
 api: "POST https://app.famulor.de/api/user/phone-numbers/purchase"
 icon: "shopping-cart"
-description: "Kauft eine dedizierte Telefonnummer"
+description: "Purchases a dedicated phone number"
 ---
 
-Dieser Endpunkt ermöglicht es Ihnen, eine Telefonnummer zu kaufen, die über den [Such-Endpunkt](/api-reference/phone-numbers/search) gefunden wurde. Die Plattform übernimmt automatisch Preisgestaltung, Abrechnung und Bereitstellung.
+This endpoint allows you to purchase a phone number that was found via the [Search endpoint](/api-reference/phone-numbers/search). The platform automatically handles pricing, billing, and provisioning.
 
 <Note>
-Sie müssen eine gültige Zahlungsmethode hinterlegt haben, bevor Sie eine Telefonnummer kaufen können. Der Kauf erstellt ein monatliches Abonnement, das automatisch verlängert wird.
+You must have a valid payment method on file before you can purchase a phone number. The purchase creates a monthly subscription that automatically renews.
 </Note>
 
 ### Request Body
 
 <ParamField body="phone_number" type="string" required>
-  Die zu kaufende Telefonnummer im E.164-Format (z.B. +14155551234). Muss eine Nummer sein, die vom Such-Endpunkt zurückgegeben wurde.
+  The phone number to purchase in E.164 format (e.g. +14155551234). Must be a number returned by the Search endpoint.
 </ParamField>
 
-### Antwort-Felder
+### Response Fields
 
 <ResponseField name="message" type="string">
-  Erfolgsmeldung
+  Success message
 </ResponseField>
 
 <ResponseField name="data" type="object">
-  Die Details der gekauften Telefonnummer
+  The details of the purchased phone number
   
-  <Expandable title="Daten-Eigenschaften">
+  <Expandable title="Data Properties">
     <ResponseField name="id" type="integer">
-      Die eindeutige Kennung der Telefonnummer
+      The unique identifier of the phone number
     </ResponseField>
 
     <ResponseField name="phone_number" type="string">
-      Die Telefonnummer im E.164-Format
+      The phone number in E.164 format
     </ResponseField>
 
     <ResponseField name="country_code" type="string">
-      Der ISO-Ländercode
+      The ISO country code
     </ResponseField>
 
     <ResponseField name="type" type="string">
-      Der Telefonnummerntyp (immer `normal` für gekaufte Nummern)
+      The phone number type (always `normal` for purchased numbers)
     </ResponseField>
 
     <ResponseField name="sms_capable" type="boolean">
-      Ob die Nummer SMS unterstützt
+      Whether the number supports SMS
     </ResponseField>
   </Expandable>
 </ResponseField>
 
-### Funktionsweise
+### How It Works
 
-1. **Suchen** - Verwenden Sie zuerst den [Such-Endpunkt](/api-reference/phone-numbers/search), um verfügbare Nummern zu finden
-2. **Kaufen** - Übermitteln Sie die gewünschte Telefonnummer an diesen Endpunkt
-3. **Automatische Verarbeitung** - Die Plattform:
-   * Validiert, dass die Nummer noch verfügbar ist
-   * Bestimmt den korrekten Preis basierend auf dem Land
-   * Erstellt ein monatliches Abonnement auf Ihrer Zahlungsmethode
-   * Stellt die Nummer bei unserem Telefonieanbieter bereit
-   * Erstellt den Telefonnummern-Datensatz in Ihrem Konto
+1. **Search** - First use the [Search endpoint](/api-reference/phone-numbers/search) to find available numbers
+2. **Purchase** - Submit the desired phone number to this endpoint
+3. **Automatic Processing** - The platform:
+   * Validates that the number is still available
+   * Determines the correct price based on the country
+   * Creates a monthly subscription on your payment method
+   * Provisions the number with our telephony provider
+   * Creates the phone number record in your account
 
 <Warning>
-Telefonnummern-Käufe sind nicht erstattungsfähig. Das Abonnement wird fortgesetzt, bis Sie die Nummer [freigeben](/api-reference/phone-numbers/release).
+Phone number purchases are non-refundable. The subscription will continue until you [release](/api-reference/phone-numbers/release) the number.
 </Warning>
 
-<CodeGroup>
-```bash cURL
-curl -X POST "https://app.famulor.de/api/user/phone-numbers/purchase" \
-  -H "Authorization: Bearer YOUR_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "phone_number": "+14155551234"
-  }'
-```
-
-```javascript JavaScript
-const response = await fetch(
-  "https://app.famulor.de/api/user/phone-numbers/purchase",
-  {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: "Bearer YOUR_API_KEY",
-    },
-    body: JSON.stringify({
-      phone_number: "+14155551234",
-    }),
-  }
-);
-
-const data = await response.json();
-```
-
-```python Python
-import requests
-
-payload = {
-    "phone_number": "+14155551234",
-}
-
-response = requests.post(
-    "https://app.famulor.de/api/user/phone-numbers/purchase",
-    headers={
-        "Content-Type": "application/json",
-        "Authorization": "Bearer YOUR_API_KEY",
-    },
-    json=payload,
-    timeout=10,
-)
-
-print(response.json())
-```
-</CodeGroup>
 
 <ResponseExample>
 

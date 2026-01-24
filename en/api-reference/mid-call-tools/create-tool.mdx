@@ -1,107 +1,107 @@
 ---
-title: "Mid-Call-Tool erstellen"
+title: "Create mid call tool"
 api: "POST /user/tools"
-description: "Ein neues Mid-Call-Tool erstellen"
+description: "Create a new mid-call tool for AI assistant integration"
 ---
 
-Dieser Endpunkt ermöglicht es Ihnen, ein neues Mid-Call-Tool zu erstellen, das von Ihren KI-Assistenten verwendet werden kann, um während Anrufen mit externen APIs zu interagieren.
+Create a new mid-call tool that enables your AI assistants to interact with external APIs during phone conversations.
 
-### Body-Parameter
+### Body Parameters
 
 <ParamField body="name" type="string" required>
-  Tool-Name - darf nur Kleinbuchstaben und Unterstriche enthalten und muss mit einem Buchstaben beginnen (z.B. `get_weather`, `book_appointment`)
+  Tool identifier - must use only lowercase letters and underscores, starting with a letter (examples: `get_weather`, `book_appointment`)
 </ParamField>
 
 <ParamField body="description" type="string" required>
-  Detaillierte Erklärung, wann und wie die KI dieses Tool verwenden soll (max. 255 Zeichen)
+  Clear explanation of when and how the AI should use this tool (maximum 255 characters)
 </ParamField>
 
 <ParamField body="endpoint" type="string" required>
-  Gültige URL des aufzurufenden API-Endpunkts
+  Valid URL of the API endpoint to call
 </ParamField>
 
 <ParamField body="method" type="string" required>
-  HTTP-Methode: `GET`, `POST`, `PUT`, `PATCH` oder `DELETE`
+  HTTP method to use: `GET`, `POST`, `PUT`, `PATCH`, or `DELETE`
 </ParamField>
 
 <ParamField body="timeout" type="integer" optional>
-  Request-Timeout in Sekunden (1-30, Standard: 10)
+  Request timeout in seconds (range: 1-30, default: 10)
 </ParamField>
 
 <ParamField body="headers" type="array" optional>
-  HTTP-Header, die mit der Anfrage gesendet werden sollen
-  <Expandable title="Header-Eigenschaften">
+  HTTP headers to include in the request
+  <Expandable title="headers properties">
     <ParamField body="name" type="string" required>
-      Header-Name
+      Header name
     </ParamField>
     <ParamField body="value" type="string" required>
-      Header-Wert
+      Header value
     </ParamField>
   </Expandable>
 </ParamField>
 
 <ParamField body="schema" type="array" optional>
-  Parameter, die die KI aus der Unterhaltung extrahieren und an den Endpunkt senden wird
-  <Expandable title="Schema-Eigenschaften">
+  Parameters the AI will extract from conversation and send to the endpoint
+  <Expandable title="schema properties">
     <ParamField body="name" type="string" required>
-      Parameter-Name (2-32 Zeichen, muss mit einem Buchstaben beginnen, kann Buchstaben und Unterstriche enthalten)
+      Parameter identifier (2-32 characters, must start with letter, letters and underscores only)
     </ParamField>
     <ParamField body="type" type="string" required>
-      Parameter-Typ: `string`, `number` oder `boolean`
+      Parameter data type: `string`, `number`, or `boolean`
     </ParamField>
     <ParamField body="description" type="string" required>
-      Beschreibung, um der KI zu helfen, diesen Parameter zu extrahieren (3-255 Zeichen)
+      Description to guide AI on extracting this parameter (3-255 characters)
     </ParamField>
   </Expandable>
 </ParamField>
 
-### Antwortfelder
+### Response Fields
 
 <ResponseField name="message" type="string">
-  Erfolgsmeldung
+  Success confirmation message
 </ResponseField>
 
 <ResponseField name="data" type="object">
-  Das erstellte Tool-Objekt
-  <Expandable title="Daten-Eigenschaften">
+  The created tool object
+  <Expandable title="data properties">
     <ResponseField name="id" type="integer">
-      Die eindeutige Kennung des Tools
+      Unique tool identifier
     </ResponseField>
 
     <ResponseField name="name" type="string">
-      Der Name des Tools
+      Tool name
     </ResponseField>
 
     <ResponseField name="description" type="string">
-      Tool-Beschreibung
+      Tool description
     </ResponseField>
 
     <ResponseField name="endpoint" type="string">
-      API-Endpunkt-URL
+      API endpoint URL
     </ResponseField>
 
     <ResponseField name="method" type="string">
-      HTTP-Methode
+      HTTP method
     </ResponseField>
 
     <ResponseField name="timeout" type="integer">
-      Request-Timeout in Sekunden
+      Request timeout in seconds
     </ResponseField>
 
     <ResponseField name="headers" type="array">
-      HTTP-Header
+      HTTP headers configuration
     </ResponseField>
 
     <ResponseField name="schema" type="array">
-      Parameter-Schema
+      Parameter schema definition
     </ResponseField>
 
     <ResponseField name="created_at" type="string">
-      ISO 8601 Zeitstempel
+      Creation timestamp (ISO 8601)
     </ResponseField>
 
     <ResponseField name="updated_at" type="string">
-      ISO 8601 Zeitstempel
+      Last update timestamp (ISO 8601)
     </ResponseField>
   </Expandable>
 </ResponseField>
@@ -115,7 +115,7 @@ Dieser Endpunkt ermöglicht es Ihnen, ein neues Mid-Call-Tool zu erstellen, das 
     "id": 1,
     "name": "check_order_status",
     "description": "Use this tool to check the status of a customer's order.",
-    "endpoint": "https://app.famulor.de/orders/status",
+    "endpoint": "https://api.yourstore.com/orders/status",
     "method": "GET",
     "timeout": 10,
     "headers": [
@@ -170,9 +170,9 @@ Dieser Endpunkt ermöglicht es Ihnen, ein neues Mid-Call-Tool zu erstellen, das 
 
 </ResponseExample>
 
-### Tools zu Assistenten hinzufügen
+### Attaching Tools to Assistants
 
-Nach dem Erstellen eines Tools müssen Sie es einem Assistenten zuweisen, um es während Anrufen zu verwenden. Tools werden über die Assistenten-API verwaltet:
+After creating a tool, attach it to an assistant to use it during calls. Manage tool assignments through the Assistant API:
 
-- **[Assistent erstellen](/api-reference/assistants/create)** - Verwenden Sie den `tool_ids`-Parameter, um Tools beim Erstellen eines Assistenten zuzuweisen
-- **[Assistent aktualisieren](/api-reference/assistants/update)** - Verwenden Sie den `tool_ids`-Parameter, um Tools bei einem bestehenden Assistenten hinzuzufügen, zu entfernen oder zu ersetzen
+- **[Create Assistant](/api-reference/assistants/create-assistant)** - Use the `tool_ids` parameter to attach tools when creating an assistant
+- **[Update Assistant](/api-reference/assistants/update-assistant)** - Use the `tool_ids` parameter to add, remove, or replace tools on an existing assistant

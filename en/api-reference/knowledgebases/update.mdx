@@ -1,116 +1,68 @@
 ---
-title: "Wissensdatenbank aktualisieren"
+title: "Update Knowledge Base"
 api: "PUT https://app.famulor.de/api/user/knowledgebases/{id}"
 icon: "pencil"
-description: "Aktualisiert eine bestehende Wissensdatenbank"
+description: "Updates an existing knowledge base"
 ---
 
-Dieser Endpunkt aktualisiert den Namen und/oder die Beschreibung einer bestehenden Wissensdatenbank.
+This endpoint updates the name and/or description of an existing knowledge base.
 
-### Pfad-Parameter
+### Path Parameters
 
 <ParamField path="id" type="integer" required>
-  Die eindeutige Kennung der zu aktualisierenden Wissensdatenbank
+  The unique identifier of the knowledge base to update
 </ParamField>
 
 ### Request Body
 
 <ParamField body="name" type="string">
-  Der neue Name für die Wissensdatenbank (max. 255 Zeichen)
+  The new name for the knowledge base (max. 255 characters)
 </ParamField>
 
 <ParamField body="description" type="string">
-  Die neue Beschreibung für die Wissensdatenbank (max. 255 Zeichen)
+  The new description for the knowledge base (max. 255 characters)
 </ParamField>
 
-### Antwort-Felder
+### Response Fields
 
 <ResponseField name="message" type="string">
-  Erfolgsmeldung
+  Success message
 </ResponseField>
 
 <ResponseField name="data" type="object">
-  Das aktualisierte Wissensdatenbank-Objekt
+  The updated knowledge base object
   
-  <Expandable title="Daten-Eigenschaften">
+  <Expandable title="Data Properties">
     <ResponseField name="id" type="integer">
-      Die eindeutige Kennung der Wissensdatenbank
+      The unique identifier of the knowledge base
     </ResponseField>
 
     <ResponseField name="name" type="string">
-      Der Name der Wissensdatenbank
+      The name of the knowledge base
     </ResponseField>
 
     <ResponseField name="description" type="string">
-      Beschreibung der Wissensdatenbank
+      Description of the knowledge base
     </ResponseField>
 
     <ResponseField name="status" type="string">
-      Aktueller Status
+      Current status
     </ResponseField>
 
     <ResponseField name="status_label" type="string">
-      Menschenlesbares Status-Label
+      Human-readable status label
     </ResponseField>
 
     <ResponseField name="updated_at" type="string">
-      ISO 8601 Zeitstempel der letzten Aktualisierung
+      ISO 8601 timestamp of last update
     </ResponseField>
   </Expandable>
 </ResponseField>
 
 <Note>
-  Das Aktualisieren des Namens oder der Beschreibung einer Wissensdatenbank hat keinen Einfluss auf ihre Dokumente oder den Verarbeitungsstatus.
+  Updating the name or description of a knowledge base does not affect its documents or processing status.
 </Note>
 
-<CodeGroup>
-```bash cURL
-curl -X PUT "https://app.famulor.de/api/user/knowledgebases/1" \
-  -H "Authorization: Bearer YOUR_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "name": "Aktualisierte Produktdokumentation",
-    "description": "Aktualisierte Beschreibung für unsere technischen Dokumente"
-  }'
-```
-
-```javascript JavaScript
-const response = await fetch("https://app.famulor.de/api/user/knowledgebases/1", {
-  method: "PUT",
-  headers: {
-    "Content-Type": "application/json",
-    Authorization: "Bearer YOUR_API_KEY",
-  },
-  body: JSON.stringify({
-    name: "Aktualisierte Produktdokumentation",
-    description: "Aktualisierte Beschreibung für unsere technischen Dokumente",
-  }),
-});
-
-const data = await response.json();
-```
-
-```python Python
-import requests
-
-payload = {
-    "name": "Aktualisierte Produktdokumentation",
-    "description": "Aktualisierte Beschreibung für unsere technischen Dokumente",
-}
-
-response = requests.put(
-    "https://app.famulor.de/api/user/knowledgebases/1",
-    headers={
-        "Content-Type": "application/json",
-        "Authorization": "Bearer YOUR_API_KEY",
-    },
-    json=payload,
-    timeout=10,
-)
-
-print(response.json())
-```
-</CodeGroup>
 
 <ResponseExample>
 
@@ -119,10 +71,10 @@ print(response.json())
   "message": "Knowledgebase updated successfully.",
   "data": {
     "id": 1,
-    "name": "Aktualisierte Produktdokumentation",
-    "description": "Aktualisierte Beschreibung für unsere technischen Dokumente",
+    "name": "Updated Product Documentation",
+    "description": "Updated description for our technical documents",
     "status": "active",
-    "status_label": "Aktiv",
+    "status_label": "Active",
     "updated_at": "2025-01-08T15:45:00.000000Z"
   }
 }

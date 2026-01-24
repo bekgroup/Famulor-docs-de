@@ -1,68 +1,52 @@
 ---
-title: "Webhook deaktivieren"
-api: "POST https://app.famulor.de/api/user/assistants/disable-webhook"
-icon: "ban"
-description: "Webhook-Benachrichtigungen für einen bestimmten Assistenten deaktivieren"
+title: "Disable assistant webhook"
+api: "POST /user/assistants/disable-webhook"
+icon: "toggle-off"
+description: "Turn off webhook notifications for an assistant"
 ---
 
-Dieser Endpunkt deaktiviert Webhook-Benachrichtigungen für einen Assistenten und stoppt alle Echtzeit-Updates über Anrufabschlüsse und Daten.
+Disable webhook notifications for an assistant. After disabling, you'll no longer receive real-time updates about call completions.
 
 ### Request Body
 
 <ParamField body="assistant_id" type="integer" required>
-  Die ID des Assistenten, für den der Webhook deaktiviert werden soll
+  The identifier of the assistant to disable webhooks for
 </ParamField>
 
 ### Response
 
 <ResponseField name="message" type="string">
-  Erfolgsmeldung, die bestätigt, dass der Webhook deaktiviert wurde
+  Success confirmation message
 </ResponseField>
 
 <ResponseField name="data" type="array">
-  Leeres Array (für zukünftige Verwendung reserviert)
+  Empty array (reserved for future functionality)
 </ResponseField>
 
-### Fehler-Responses
+### Error Responses
 
-<ResponseField name="message" type="string">
-  Fehlermeldung, wenn der Assistent nicht gefunden wurde oder nicht dem authentifizierten Benutzer gehört
+<ResponseField name="404 Not Found">
+  <Expandable title="Error Response">
+    <ResponseField name="message" type="string">
+      Error when the assistant doesn't exist or belongs to another account
+    </ResponseField>
+  </Expandable>
 </ResponseField>
 
-<ResponseField name="errors" type="object">
-  Detaillierte Validierungsfehler für jedes Feld
+<ResponseField name="422 Validation Error">
+  <Expandable title="Error Response">
+    <ResponseField name="message" type="string">
+      Validation error message
+    </ResponseField>
+    <ResponseField name="errors" type="object">
+      Detailed field-level validation errors
+    </ResponseField>
+  </Expandable>
 </ResponseField>
-
-## Webhook-Verhalten
-
-Wenn der Webhook deaktiviert wird:
-
-- Der Assistent hört auf, HTTP POST-Requests an Ihre Webhook-URL zu senden
-- Sowohl `is_webhook_active` wird auf `false` gesetzt als auch `webhook_url` wird auf `null` gesetzt
-- Laufende Anrufe werden normal abgeschlossen, aber es werden keine Webhook-Benachrichtigungen gesendet
-- Anrufdaten sind weiterhin über die API-Endpunkte für Anrufe verfügbar
-
-## Hinweise
-
-- Der Assistent muss dem authentifizierten Benutzer gehören
-- Dies entfernt die Webhook-Konfiguration vollständig vom Assistenten
-- Sie können später Webhooks mit einem neuen URL über den Enable Webhook Endpunkt wieder aktivieren
-- Das Deaktivieren von Webhooks beeinflusst nicht die Anrufaufzeichnung oder Datenerfassung
-
-<CodeGroup>
-```bash Webhook deaktivieren
-curl -X POST "https://app.famulor.de/api/user/assistants/disable-webhook" \
-  -H "Authorization: Bearer YOUR_API_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "assistant_id": 123
-  }'
-```
-</CodeGroup>
 
 <ResponseExample>
 
-```json 200 Success
+```json 200 Success Response
 {
   "message": "Webhook disabled successfully",
   "data": []
@@ -71,7 +55,7 @@ curl -X POST "https://app.famulor.de/api/user/assistants/disable-webhook" \
 
 ```json 404 Not Found
 {
-  "message": "Assistant not found or does not belong to the authenticated user"
+  "message": "Assistant not found"
 }
 ```
 
@@ -87,3 +71,19 @@ curl -X POST "https://app.famulor.de/api/user/assistants/disable-webhook" \
 ```
 
 </ResponseExample>
+
+### Webhook Behavior
+
+When webhooks are disabled:
+
+- No more HTTP POST requests will be sent to your webhook URL
+- Both `is_webhook_active` becomes `false` and `webhook_url` is set to `null`
+- Ongoing calls will complete normally, but no notifications will be sent
+- Call data remains accessible via the API calls endpoints
+
+### Notes
+
+- The assistant must belong to your account
+- This completely removes the webhook configuration
+- You can re-enable webhooks later using the enable webhook endpoint with a new URL
+- Disabling webhooks doesn't affect call recording or data collection

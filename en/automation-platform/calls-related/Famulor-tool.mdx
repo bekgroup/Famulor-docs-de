@@ -1,129 +1,130 @@
 ---
 title: "Famulor Tool"
 icon: "phone"
-description: "Lernen Sie, wie Sie Famulor-Trigger und -Aktionen in Ihren KI-Anruf-Flows verwenden"
+description: "Learn how to use Famulor triggers and actions in your AI calling flows"
 ---
 
 # Famulor Tool
 
-Das Famulor Tool ist die Kernkomponente, die Ihr KI-Anrufsystem mit Automatisierungs-Flows verbindet. Es ermöglicht Echtzeit-Datenaustausch zwischen Ihren KI-Assistenten und Geschäftssystemen, was personalisierte Gespräche und automatisierte Nachfolgeaktionen ermöglicht.
+The Famulor tool is the core component that connects your AI calling system with automation flows. It enables real-time data exchange between your AI assistants and business systems, allowing for personalized conversations and automated follow-ups.
 
 <Note>
-  Sie finden das Famulor Tool prominent am oberen Rand der
-  Suchleiste angezeigt, wenn Sie nach Triggern oder Aktionen suchen.
+  You can find the Famulor tool prominently displayed at the top of the
+  searching sidebar when looking for either triggers or actions.
 </Note>
 
-## Trigger
+## Triggers
 
-### Anruf beendet
+### Call Ended
 
-Der "Anruf beendet" Trigger aktiviert sich sofort nach Abschluss eines KI-Anrufs und liefert umfassende Daten über die Interaktion:
 
-- Vollständiges Gesprächs-Transkript mit Zeitstempeln
-- KI-Assistent-Antworten und Entscheidungen
-- Anrufdauer und technische Metadaten
-- Kundeninformationen und Telefonnummer
-- Anrufergebnis und Sentiment-Analyse
-- Während des Gesprächs gesetzte Variablen
+The Call Ended trigger activates immediately after an AI call completes, providing comprehensive data about the interaction:
 
-#### Konfiguration
+- Complete conversation transcript with timestamps
+- AI assistant responses and decisions
+- Call duration and technical metadata
+- Customer information and phone number
+- Call outcome and sentiment analysis
+- Variables set during the conversation
 
-1. Wählen Sie "Anruf beendet" als Trigger
-2. Wählen Sie spezifischen KI-Assistenten zum Überwachen
-3. Variablen-Mapping konfigurieren
+#### Configuration
 
-### Eingehender Anruf Variablen-Injection
+1. Select "Call Ended" as your trigger
+2. Choose specific AI assistant to monitor
+3. Configure variable mapping
 
-Dieser leistungsstarke Trigger aktiviert sich, bevor Ihr KI-Assistent einen eingehenden Anruf annimmt, und ermöglicht es Ihnen:
+### Inbound Call Variable Injection
 
-- Echtzeit-Kundendaten abrufen und injizieren
-- KI-Verhalten basierend auf Kontext anpassen
-- Gesprächsparameter setzen
-- KI-Persönlichkeitsmerkmale definieren
-- Geschäftslogik-Variablen bereitstellen
+This powerful trigger activates before your AI assistant picks up an inbound call, allowing you to:
 
-#### Konfiguration
+- Fetch and inject real-time customer data
+- Customize AI behavior based on context
+- Set conversation parameters
+- Define AI personality traits
+- Provide business logic variables
 
-1. Wählen Sie "Eingehender Anruf" als Trigger
-2. Erforderliche Variablen für KI-Kontext definieren
+#### Configuration
 
-## Aktionen
+1. Select "Inbound Call" as your trigger
+2. Define required variables for AI context
 
-### Lead zu Kampagne hinzufügen
+## Actions
+
+### Add Lead to Campaign
 
 ![Famulor Action](/resources/Famulor-action.jpg)
 
-Diese Aktion hilft bei der Verwaltung Ihrer KI-Anrufkampagnen durch:
+This action helps manage your AI calling campaigns by:
 
-- Erstellen neuer Leads aus externen Tools wie Sheets, Hubspot, Facebook Leads
-- Zuweisen von Leads zu spezifischen KI-Kampagnen
-- Hinzufügen von Kontext für zukünftige Anrufe
+- Creating new leads from extenal tools like Sheets, Hubspot, Facebook leads
+- Assigning leads to specific AI campaigns
+- Adding context for future calls
 
-#### Konfiguration
+#### Configuration
 
-1. Ziel-KI-Kampagne auswählen
-2. Kontaktdetails aus Trigger-Daten mappen
-3. Benutzerdefinierte Attribute für KI-Kontext hinzufügen
+1. Select target AI campaign
+2. Map contact details from trigger data
+3. Add custom attributes for AI context
 
-### Variablen zurückgeben
+### Return Variables
 
-Diese Aktion ist entscheidend für eingehende Anrufe und gibt Kontext zurück, der in den KI-Prompt injiziert wird:
+This action is crucial for inbound calls, returning context that gets injected into the AI's prompt:
 
-- Kundenprofil und Präferenzen
-- Gesprächshistorie-Zusammenfassung
-- Geschäftsregeln und Einschränkungen
-- Benutzerdefinierte KI-Verhaltens-Flags
-- Dynamische Antwort-Templates
+- Customer profile and preferences
+- Conversation history summary
+- Business rules and constraints
+- Custom AI behavior flags
+- Dynamic response templates
 
-#### Konfiguration
+#### Configuration
 
-1. Antwort-JSON strukturieren
-2. Kundendaten zu Variablen mappen
-3. KI-Gesprächsparameter setzen
-4. Timeout-Behandlung konfigurieren
+1. Structure response JSON
+2. Map customer data to variables
+3. Set AI conversation parameters
+4. Configure timeout handling
 
-## Beispiel-Verwendung
+## Example Usage
 
-### Post-Anruf Lead-Management
+### Post-Call Lead Management
 
 ```javascript
-Trigger: KI Anruf beendet
+Trigger: AI Call Ended
 ↓
-Gesprächs-Einblicke extrahieren
+Extract conversation insights
 ↓
-Hubspot-Datensatz aktualisieren
+Update Hubspot record
 ↓
-Zu Nachfolgekampagne hinzufügen, falls qualifiziert
+Add to follow-up campaign if qualified
 ```
 
-### Intelligente eingehende Weiterleitung
+### Intelligent Inbound Routing
 
 ```javascript
-Trigger: Eingehender Anruf an KI
+Trigger: Inbound Call to AI
 ↓
-Kundenprofil aus CRM abrufen
+Fetch customer profile from CRM
 ↓
-Interaktionshistorie erhalten
+Get interaction history
 ↓
-Bereicherten Kontext für KI-Prompt zurückgeben
+Return enriched context for AI prompt
 ```
 
 ## Best Practices
 
-1. **Variablen-Injection Performance**
+1. **Variable Injection Performance**
 
-   - Verarbeitung unter 2 Sekunden halten
-   - Sinnvolle Standardwerte setzen
+   - Keep processing under 2 seconds
+   - Set sensible defaults
 
-2. **Datenstruktur**
+2. **Data Structure**
 
-   - KI-Prompt-Anforderungen befolgen
-   - Alle Variablen validieren
-   - Verschachtelte Objekte klar strukturieren
-   - Benutzerdefinierte Felder dokumentieren
+   - Follow AI prompt requirements
+   - Validate all variables
+   - Structure nested objects clearly
+   - Document custom fields
 
-3. **Fehlerbehandlung**
-   - Fallback-Werte bereitstellen
-   - Injection-Fehler protokollieren
-   - Antwortzeiten überwachen
-   - Fehlende Daten elegant behandeln 
+3. **Error Handling**
+   - Provide fallback values
+   - Log injection failures
+   - Monitor response times
+   - Handle missing data gracefully

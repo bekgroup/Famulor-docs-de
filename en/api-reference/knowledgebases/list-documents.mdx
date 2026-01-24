@@ -1,77 +1,70 @@
 ---
-title: "Dokumente auflisten"
+title: "List Documents"
 api: "GET https://app.famulor.de/api/user/knowledgebases/{knowledgebaseId}/documents"
 icon: "file-lines"
-description: "Ruft alle Dokumente in einer Wissensdatenbank ab"
+description: "Retrieves all documents in a knowledge base"
 ---
 
-Dieser Endpunkt gibt eine Liste aller Dokumente in einer bestimmten Wissensdatenbank zurück.
+This endpoint returns a list of all documents in a specific knowledge base.
 
-### Pfad-Parameter
+### Path Parameters
 
 <ParamField path="knowledgebaseId" type="integer" required>
-  Die eindeutige Kennung der Wissensdatenbank
+  The unique identifier of the knowledge base
 </ParamField>
 
-### Antwort-Felder
+### Response Fields
 
 <ResponseField name="data" type="array">
-  Array von Dokument-Objekten
+  Array of document objects
   
-  <Expandable title="Dokument-Eigenschaften">
+  <Expandable title="Document Properties">
     <ResponseField name="id" type="integer">
-      Die eindeutige Kennung des Dokuments
+      The unique identifier of the document
     </ResponseField>
 
     <ResponseField name="name" type="string">
-      Der Name des Dokuments
+      The name of the document
     </ResponseField>
 
     <ResponseField name="description" type="string">
-      Optionale Beschreibung des Dokuments
+      Optional description of the document
     </ResponseField>
 
     <ResponseField name="type" type="string">
-      Dokumenttyp: `website`, `pdf`, `txt` oder `docx`
+      Document type: `website`, `pdf`, `txt` or `docx`
     </ResponseField>
 
     <ResponseField name="type_label" type="string">
-      Menschenlesbares Typ-Label
+      Human-readable type label
     </ResponseField>
 
     <ResponseField name="status" type="string">
-      Verarbeitungsstatus: `processing`, `active` oder `failed`
+      Processing status: `processing`, `active` or `failed`
     </ResponseField>
 
     <ResponseField name="status_label" type="string">
-      Menschenlesbares Status-Label
+      Human-readable status label
     </ResponseField>
 
     <ResponseField name="created_at" type="string">
-      ISO 8601 Zeitstempel der Erstellung
+      ISO 8601 timestamp of creation
     </ResponseField>
 
     <ResponseField name="updated_at" type="string">
-      ISO 8601 Zeitstempel der letzten Aktualisierung
+      ISO 8601 timestamp of last update
     </ResponseField>
   </Expandable>
 </ResponseField>
 
-### Dokument-Status
+### Document Status
 
-| Status       | Beschreibung                                                    |
-| ------------ | -------------------------------------------------------------- |
-| `processing` | Dokument wird analysiert und in die Vektordatenbank eingebettet |
-| `active`     | Dokument wurde verarbeitet und ist einsatzbereit               |
-| `failed`     | Dokumentverarbeitung fehlgeschlagen                             |
+| Status       | Description                                                      |
+| ------------ | ---------------------------------------------------------------- |
+| `processing` | Document is being analyzed and embedded into the vector database |
+| `active`     | Document has been processed and is ready to use                  |
+| `failed`     | Document processing failed                                       |
 
-<CodeGroup>
-```bash Dokumente abrufen
-curl -X GET "https://app.famulor.de/api/user/knowledgebases/1/documents" \
-     -H "Authorization: Bearer YOUR_API_KEY" \
-     -H "Content-Type: application/json"
-```
-</CodeGroup>
 
 <ResponseExample>
 
@@ -80,23 +73,23 @@ curl -X GET "https://app.famulor.de/api/user/knowledgebases/1/documents" \
   "data": [
     {
       "id": 1,
-      "name": "Produkthandbuch",
-      "description": "Vollständiges Benutzerhandbuch für das Produkt",
+      "name": "Product Handbook",
+      "description": "Complete user manual for the product",
       "type": "pdf",
       "type_label": "PDF",
       "status": "active",
-      "status_label": "Aktiv",
+      "status_label": "Active",
       "created_at": "2025-01-05T10:30:00.000000Z",
       "updated_at": "2025-01-05T10:35:00.000000Z"
     },
     {
       "id": 2,
-      "name": "Unternehmenswebsite",
-      "description": "Hauptinhalte der Website",
+      "name": "Company Website",
+      "description": "Main website content",
       "type": "website",
       "type_label": "Website",
       "status": "processing",
-      "status_label": "Wird verarbeitet",
+      "status_label": "Processing",
       "created_at": "2025-01-08T09:00:00.000000Z",
       "updated_at": "2025-01-08T09:00:00.000000Z"
     }

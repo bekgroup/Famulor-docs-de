@@ -1,35 +1,35 @@
 ---
-title: "Conversation erstellen"
+title: "Create conversation"
 api: "POST /conversations"
-description: "Neue Chat-Session mit einem KI-Assistenten starten"
+description: "Start a new chat session with an AI assistant"
 ---
 
-Erstelle eine neue Conversation mit deinem Famulor KI-Assistenten. Über diesen Endpoint startest du eine Widget- oder Test-Conversation und erhältst den initialen Verlauf.
+Create a new conversation with your Famulor AI assistant. Use this endpoint to start a widget or test conversation and receive the initial history.
 
 ### Request Body
 
 <ParamField body="assistant_id" type="string" required>
-  UUID des Assistenten, der die Conversation übernehmen soll
+  UUID of the assistant that should handle the conversation
 </ParamField>
 
 <ParamField body="type" type="string" default="widget">
-  Conversation-Typ. Optionen: `widget` (kostenpflichtig) oder `test` (kostenlos für Entwicklung)
+  Conversation type. Options: `widget` (paid) or `test` (free for development)
 </ParamField>
 
 <ParamField body="variables" type="object" optional>
-  Individuelle Variablen, die in den Assistenten-Kontext injiziert werden (zugreifbar via `{{variable_name}}`)
+  Custom variables injected into the assistant context (accessible via `{{variable_name}}`)
   
   <Expandable title="variables examples">
     <ParamField body="customer_name" type="string">
-      Name für Begrüßung oder Personalisierung
+      Name for greeting or personalization
     </ParamField>
 
     <ParamField body="company" type="string">
-      Firmenname für Antworten
+      Company name to reference in replies
     </ParamField>
 
     <ParamField body="source" type="string">
-      Traffic- oder Seitenquelle (z. B. `pricing_page`)
+      Traffic or page source (e.g., `pricing_page`)
     </ParamField>
   </Expandable>
 </ParamField>
@@ -103,23 +103,23 @@ print(response.json())
 ### Response Fields
 
 <ResponseField name="status" type="boolean" required>
-  Zeigt an, ob die Anfrage erfolgreich war
+  Indicates whether the request succeeded
 </ResponseField>
 
 <ResponseField name="conversation_id" type="string" required>
-  UUID der erstellten Conversation; für weitere Nachrichten nutzen
+  UUID of the created conversation; use it for subsequent messages
 </ResponseField>
 
 <ResponseField name="history" type="array">
-  Initialer Conversation-Verlauf. Leer, falls der Assistent keine Startnachricht hat.
+  Initial conversation history. Empty if the assistant has no initial message.
   
   <Expandable title="history items">
     <ResponseField name="role" type="string">
-      Nachrichtenrolle (`assistant` oder `user`)
+      Message role (`assistant` or `user`)
     </ResponseField>
 
     <ResponseField name="content" type="string">
-      Nachrichtentext
+      Message text content
     </ResponseField>
   </Expandable>
 </ResponseField>
@@ -167,6 +167,6 @@ print(response.json())
 
 ### Notes
 
-- `type: "widget"` Conversations sind kostenpflichtig; `type: "test"` ist kostenlos für die Entwicklung.
-- Nutze aussagekräftige `variables`, um die erste Antwort des Assistenten zu personalisieren.
-- Fahre mit [`Send Message`](/api-reference/ai-chatbot/send-conversation) fort und hole den Verlauf mit [`Get Conversation`](/api-reference/ai-chatbot/get-conversation).
+- `type: "widget"` conversations are billed; `type: "test"` is free for development.
+- Provide meaningful `variables` to personalize the assistant's first reply.
+- Continue the chat with [`Send Message`](/api-reference/ai-chatbot/send-conversation) and fetch history with [`Get Conversation`](/api-reference/ai-chatbot/get-conversation).

@@ -1,15 +1,15 @@
 ---
-title: "Conversation abrufen"
+title: "Get conversation"
 api: "GET /conversations/{uuid}"
-description: "Kompletten Nachrichtenverlauf einer bestehenden Conversation abrufen"
+description: "Retrieve full message history for an existing conversation"
 ---
 
-Hole den vollständigen Nachrichtenverlauf einer bestehenden Famulor-Conversation. Nutze dies, um einen Chat fortzusetzen, alte Nachrichten anzuzeigen oder Interaktionen zu analysieren.
+Fetch the complete message history of an existing Famulor conversation. Use this to resume a chat, display past messages, or analyze interactions.
 
 ### Path Parameters
 
 <ParamField path="uuid" type="string" required>
-  UUID der abzurufenden Conversation
+  UUID of the conversation to retrieve
 </ParamField>
 
 ### Request Example
@@ -48,23 +48,23 @@ print(response.json())
 ### Response Fields
 
 <ResponseField name="status" type="boolean" required>
-  Zeigt an, ob die Anfrage erfolgreich war
+  Indicates whether the request succeeded
 </ResponseField>
 
 <ResponseField name="history" type="array" required>
-  Chronologische Liste der Nachrichten (älteste zuerst)
+  Chronological list of messages (oldest first)
   
   <Expandable title="history items">
     <ResponseField name="role" type="string">
-      Nachrichtenrolle (`assistant` oder `user`)
+      Message role (`assistant` or `user`)
     </ResponseField>
 
     <ResponseField name="content" type="string">
-      Nachrichtentext
+      Message text content
     </ResponseField>
 
     <ResponseField name="function_calls" type="array" optional>
-      Vom Assistenten in dieser Nachricht ausgelöste Function Calls
+      Function calls triggered by the assistant during this message
     </ResponseField>
   </Expandable>
 </ResponseField>
@@ -136,13 +136,12 @@ print(response.json())
 
 ### Use Cases
 
-- Conversations fortsetzen: Verlauf wiederherstellen, wenn Nutzer zurückkehren
-- Analytics: Dialoge für QA oder Training überprüfen
-- Integration: Transkripte in CRM- oder Support-Tools synchronisieren
+- Resume conversations: restore history when users return
+- Analytics: review dialogues for QA or training
+- Integration: sync transcripts to CRM or support tools
 
 ### Notes
 
-- Der Verlauf ist aufsteigend sortiert (älteste zuerst).
-- Function Calls erscheinen nur, wenn der Assistent während einer Nachricht Tools genutzt hat.
-- Kombiniere mit [`Create Conversation`](/api-reference/ai-chatbot/create-conversation) und [`Send Message`](/api-reference/ai-chatbot/send-conversation) für den kompletten Flow.
-
+- History is ordered oldest to newest.
+- Function calls appear only when the assistant invoked tools during a message.
+- Pair with [`Create Conversation`](/api-reference/ai-chatbot/create-conversation) and [`Send Message`](/api-reference/ai-chatbot/send-conversation) for the full flow.

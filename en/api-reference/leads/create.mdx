@@ -1,69 +1,195 @@
 ---
-title: "Lead erstellen"
-api: "POST https://app.famulor.de/api/user/lead"
-icon: "user-plus"
-description: "Einen neuen Lead im Famulor-System erstellen"
+title: "Create lead"
+api: "POST /user/lead"
+description: "Add a new lead to your campaign"
 ---
 
-Dieser Endpunkt ermöglicht es Ihnen, einen neuen Lead im Famulor-System zu erstellen.
+Use this endpoint to add a new lead entry to one of your campaigns. Leads represent potential customers that your assistants will call.
 
-### Anfrage-Body
+### Request Body
 
 <ParamField body="phone_number" type="string" required>
-  Die Telefonnummer des Leads im E.164-Format (z.B. +1234567890)
+  Contact phone number in E.164 format (example: +1234567890)
 </ParamField>
 
 <ParamField body="campaign_id" type="integer" required>
-  Die ID der Kampagne, für die der Lead erstellt werden soll
+  The campaign ID where this lead should be added
 </ParamField>
 
-<ParamField body="variables" type="array">
-  Die Variablen, die an den Lead weitergegeben werden sollen
+<ParamField body="variables" type="object" optional>
+  Custom data fields to associate with this lead
+  
+  <Expandable title="variables properties">
+    <ParamField body="customer_name" type="string" default="<string>">
+      Customer's full name
+    </ParamField>
+    
+    <ParamField body="email" type="string" default="<string>">
+      Customer's email address
+    </ParamField>
+  </Expandable>
 </ParamField>
 
-<ParamField body="allow_dupplicate" type="boolean">
-  Ob doppelte Leads in einer Kampagne erlaubt sind.
+<ParamField body="allow_dupplicate" type="boolean" optional>
+  Permit creating duplicate leads within the same campaign (default: false)
 </ParamField>
 
-### Antwort-Felder
+<ParamField body="secondary_contacts" type="array" optional>
+  Additional contact persons linked to this lead
+  
+  <Expandable title="secondary_contacts properties">
+    <ParamField body="phone_number" type="string" required>
+      Secondary contact's phone number in E.164 format
+    </ParamField>
+    
+    <ParamField body="variables" type="object" optional>
+      Custom variables for the secondary contact
+      
+      <Expandable title="variables properties">
+        <ParamField body="customer_name" type="string" default="<string>">
+          Secondary contact's name
+        </ParamField>
+        
+        <ParamField body="email" type="string" default="<string>">
+          Secondary contact's email
+        </ParamField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+### Response
 
 <ResponseField name="message" type="string">
-  Die Nachricht der Antwort
+  Success confirmation message
 </ResponseField>
 
 <ResponseField name="data" type="object">
-  Die Daten der Antwort
-</ResponseField>
+  The created lead object with all associated data
+  
+  <Expandable title="data properties">
+    <ResponseField name="id" type="integer">
+      Unique identifier for the new lead
+    </ResponseField>
+    
+    <ResponseField name="campaign_id" type="integer">
+      Campaign identifier this lead is assigned to
+    </ResponseField>
 
-<ResponseField name="data.id" type="string">
-  Die ID des Leads
-</ResponseField>
+    <ResponseField name="phone_number" type="string">
+      Lead's contact number in E.164 format
+    </ResponseField>
+    
+    <ResponseField name="variables" type="object">
+      Custom variables stored with the lead
+      
+      <Expandable title="variables properties">
+        <ResponseField name="customer_name" type="string" default="<string>">
+          Customer's name
+        </ResponseField>
+        
+        <ResponseField name="email" type="string" default="<string>">
+          Customer's email address
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+    
+    <ResponseField name="status" type="string">
+      Current lead status
+    </ResponseField>
+    
+    <ResponseField name="created_at" type="string">
+      Creation timestamp
+    </ResponseField>
+    
+    <ResponseField name="updated_at" type="string">
+      Last modification timestamp
+    </ResponseField>
 
-<CodeGroup>
-```json Request
-{
-  "phone_number": "+1234567890",
-  "campaign_id": 1,
-  "variables": [
-    {
-      "customer_name": "John Doe",
-      "email": "john.doe@example.com"
-    }
-  ],
-  "allow_dupplicate": false
-}
-```
-</CodeGroup>
+    <ResponseField name="campaign" type="object">
+      Campaign details for this lead
+      <Expandable title="campaign properties">
+        <ResponseField name="id" type="integer">
+          Campaign identifier
+        </ResponseField>
+        <ResponseField name="name" type="string">
+          Campaign name
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+
+    <ResponseField name="secondary_contacts" type="array">
+      List of secondary contacts created with this lead
+      <Expandable title="secondary_contacts properties">
+        <ResponseField name="id" type="integer">
+          Secondary contact identifier
+        </ResponseField>
+        <ResponseField name="phone_number" type="string">
+          Secondary contact phone number in E.164 format
+        </ResponseField>
+        <ResponseField name="variables" type="object">
+          Variables for the secondary contact
+        </ResponseField>
+        <ResponseField name="status" type="string">
+          Secondary contact status
+        </ResponseField>
+        <ResponseField name="created_at" type="string">
+          Secondary contact creation timestamp
+        </ResponseField>
+        <ResponseField name="updated_at" type="string">
+          Secondary contact last update timestamp
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+  </Expandable>
+</ResponseField>
 
 <ResponseExample>
 
 ```json 200 Response
 {
-  "message": "Lead erfolgreich erstellt",
+  "message": "Lead created successfully",
   "data": {
-    "id": "1234569"
+    "id": 1,
+    "campaign_id": 1,
+    "phone_number": "+1234567890",
+    "variables": {
+      "customer_name": "John Doe",
+      "email": "john.doe@example.com"
+    },
+    "status": "created",
+    "created_at": "2025-06-30 11:53:20",
+    "updated_at": "2025-06-30 11:53:20",
+    "campaign": {
+      "id": 1,
+      "name": "My new campaign"
+    },
+    "secondary_contacts": [
+      {
+        "id": 2,
+        "phone_number": "+1234567891",
+        "variables": {
+          "customer_name": "Jane Doe Secondary",
+          "email": "jane.doe.secondary@example.com"
+        },
+        "status": "created",
+        "created_at": "2025-06-30 11:53:20",
+        "updated_at": "2025-06-30 11:53:20"
+      },
+      {
+        "id": 3,
+        "phone_number": "+1234567892",
+        "variables": {
+          "customer_name": "Bob Doe Office",
+          "email": "bob.doe.office@example.com"
+        },
+        "status": "created",
+        "created_at": "2025-06-30 11:53:20",
+        "updated_at": "2025-06-30 11:53:20"
+      }
+    ]
   }
 }
 ```
 
-</ResponseExample> 
+</ResponseExample>

@@ -1,99 +1,92 @@
 ---
-title: "Anruf abrufen"
+title: "Get Call"
 api: "GET https://app.famulor.de/api/user/calls/{id}"
 icon: "phone"
-description: "Ruft Details eines bestimmten Anrufs anhand der ID ab"
+description: "Retrieves details of a specific call by ID"
 ---
 
-Dieser Endpunkt ermöglicht es Ihnen, detaillierte Informationen über einen bestimmten Anruf abzurufen, der dem authentifizierten Benutzer gehört.
+This endpoint allows you to retrieve detailed information about a specific call that belongs to the authenticated user.
 
-### Pfad-Parameter
+### Path Parameters
 
 <ParamField path="id" type="integer" required>
-  Die eindeutige Kennung des Anrufs
+  The unique identifier of the call
 </ParamField>
 
-### Antwort-Felder
+### Response Fields
 
 <ResponseField name="id" type="integer">
-  Die eindeutige Kennung des Anrufs
+  The unique identifier of the call
 </ResponseField>
 
 <ResponseField name="assistant_name" type="string">
-  Der Name des Assistenten, der den Anruf bearbeitet hat
+  The name of the assistant that handled the call
 </ResponseField>
 
 <ResponseField name="campaign_name" type="string">
-  Der Name der Kampagne, zu der dieser Anruf gehört (falls zutreffend)
+  The name of the campaign this call belongs to (if applicable)
 </ResponseField>
 
 <ResponseField name="type" type="string">
-  Der Typ des Anrufs (inbound, outbound oder web)
+  The type of call (inbound, outbound or web)
 </ResponseField>
 
 <ResponseField name="duration" type="integer">
-  Die Dauer des Anrufs in Sekunden
+  The duration of the call in seconds
 </ResponseField>
 
 <ResponseField name="assistant_phone_number" type="string">
-  Die vom Assistenten verwendete Telefonnummer
+  The phone number used by the assistant
 </ResponseField>
 
 <ResponseField name="client_phone_number" type="string">
-  Die Telefonnummer des Kunden
+  The customer's phone number
 </ResponseField>
 
 <ResponseField name="status" type="string">
-  Der aktuelle Status des Anrufs
+  The current status of the call
 </ResponseField>
 
 <ResponseField name="transcript" type="string">
-  Das Transkript der Anrufkonversation
+  The transcript of the call conversation
 </ResponseField>
 
 <ResponseField name="variables" type="object">
-  Während des Anrufs gesammelte Variablen
+  Variables collected during the call
 </ResponseField>
 
 <ResponseField name="evaluation" type="object">
-  Bewertungsdaten für die Anrufleistung
+  Evaluation data for call performance
 </ResponseField>
 
 <ResponseField name="webhook_response" type="object">
-  Antwort von konfigurierten Webhooks
+  Response from configured webhooks
 </ResponseField>
 
 <ResponseField name="carrier_cost" type="number">
-  Die vom Anbieter berechneten Kosten für diesen Anruf
+  The carrier-calculated costs for this call
 </ResponseField>
 
 <ResponseField name="total_cost" type="number">
-  Die Gesamtkosten des Anrufs inklusive aller Gebühren
+  The total cost of the call including all fees
 </ResponseField>
 
 <ResponseField name="answered_by" type="string">
-  Wer den Anruf beantwortet hat (human, machine oder unknown)
+  Who answered the call (human, machine or unknown)
 </ResponseField>
 
 <ResponseField name="recording_url" type="string">
-  URL zur Anrufaufzeichnung (falls verfügbar und aktiviert)
+  URL to the call recording (if available and enabled)
 </ResponseField>
 
 <ResponseField name="created_at" type="string">
-  Datum und Uhrzeit der Anruferstellung
+  Date and time the call was created
 </ResponseField>
 
 <ResponseField name="updated_at" type="string">
-  Datum und Uhrzeit der letzten Aktualisierung des Anrufs
+  Date and time the call was last updated
 </ResponseField>
 
-<CodeGroup>
-```bash Anruf abrufen
-curl -X GET "https://app.famulor.de/api/user/calls/123" \
-     -H "Authorization: Bearer YOUR_API_KEY" \
-     -H "Content-Type: application/json"
-```
-</CodeGroup>
 
 <ResponseExample>
 

@@ -1,125 +1,112 @@
 ---
-title: "Assistenten-Modi"
+title: "Assistant Modes"
 icon: "bolt"
-description: "Verstehen Sie die drei Sprachgenerierungsmodi für Ihre KI-Assistenten und wann Sie jeden verwenden sollten"
+description: "Understand the two voice generation modes available for your AI assistants and when to use each one"
 ---
 
-KI-Assistenten auf Famulor können in drei verschiedenen Modi sprechen. Jeder Modus bestimmt, wie die Sprache eines Anrufers verstanden wird und wie die Antwort des Assistenten generiert wird:
+Famulor AI assistants support two voice generation modes. Each mode affects how caller speech is processed and how replies are generated.
 
-## Übersicht der Modi
+<Info>
+Latency varies by language, model, and network conditions. Values below are typical ranges.
+</Info>
 
-| Modus | Latenz | Sprachqualität | Beste Anwendung |
-|-------|--------|----------------|-----------------|
-| **Pipeline** | ~800 – 1500 ms (hängt von Sprache & Modell ab) | Sehr hoch | Komplexes Reasoning, dynamische Prompts, mehrsätzige Antworten |
-| **Speech-to-Speech** | ~300 – 600 ms (ultra niedrig) | Hoch | Natürlicher Dialog, kurze & reaktive Antworten |
-| **Dualplex (Beta)** | Niedrig (variiert je nach Stimme und Modell) | Sehr hoch | Schnelle Antworten mit hochwertigen/Markenstimmen (geklont) |
+### Quick comparison
 
----
+| Mode | How it works | Typical latency | Best for | Voice options |
+| --- | --- | --- | --- | --- |
+| Pipeline | Speech-to-Text → LLM → Text-to-Speech | ~800–1500 ms | Complex reasoning, dynamic prompts, multi-sentence replies | All library voices, including custom-cloned |
+| Speech-to-Speech (Multimodal) | Direct speech-to-speech generation (no intermediate text) | ~300–600 ms | Snappy back-and-forth, short and reactive replies | Limited set; expanding over time |
 
 ## 1. Pipeline
 
-**UI-Bezeichnung:** Pipeline  
-**Funktionsweise:** Speech-to-Text → LLM → Text-to-Speech  
-**Latenz:** ~800 – 1500 ms (hängt von Sprache & Modell ab)  
-**Am besten für:** Komplexes Reasoning, dynamische Prompts, mehrsätzige Antworten
+- **Label in UI**: Pipeline
+- **How it works**: Speech-to-Text → LLM → Text-to-Speech
+- **Latency**: ~800 – 1500 ms (depends on language & model)
+- **Best for**: Complex reasoning, dynamic prompts, multi-sentence replies
 
-### Wie es funktioniert
-Der Pipeline-Modus transkribiert zuerst die Wörter des Anrufers in Text, führt diesen Text durch das Sprachmodell und konvertiert die Antwort dann zurück in Audio. Es ist ein bewährter Ansatz, der maximale Flexibilität bietet:
+Pipeline mode first transcribes the caller’s words into text, runs that text through the language model, then converts the response back to audio. It’s a flexible approach that offers maximum control:
 
-### Vorteile
-- **Unterstützt alle Stimmen** in der Bibliothek (einschließlich benutzerdefiniert geklonter Stimmen)
-- **Bewältigt lange Antworten** oder Antworten im Absatzstil gut
-- **Ermöglicht dem LLM** Variablen einzufügen und früheren Kontext sauber zu referenzieren
-- **Maximale Kontrolle:** Vollständige Anpassung aller Verarbeitungsschritte
-- **Bewährte Technologie:** Stabile, erprobte Implementierung
+- Supports all voices in the library (including custom-cloned voices).
+- Handles long-form answers or paragraph-style responses well.
+- Allows the LLM to inject variables and reference earlier context cleanly.
 
-### Wann Pipeline wählen
-- Sie benötigen reichhaltige, mehrsätzige Antworten (z.B. Support-Anfragen, detaillierte Erklärungen)
-- Der Assistent muss über strukturierte Daten oder komplexe Prompts reasoning betreiben
-- Sie bevorzugen absolute Kontrolle über die gesprochene Stimme (Klon- oder Markenstimme)
+### When to choose Pipeline
 
----
+- You need rich, multi-sentence answers (e.g., support queries, detailed explanations).
+- The assistant must reason over structured data or complex prompts.
+- You prefer absolute control of the spoken voice (clone or brand voice).
+
+<Tip>
+Use Pipeline when brand voice consistency matters or when your prompts rely on structured data lookups.
+</Tip>
 
 ## 2. Speech-to-Speech (Multimodal)
 
-**UI-Bezeichnung:** Speech-to-Speech  
-**Funktionsweise:** Direkte Speech-to-Speech-Generierung (keine Zwischentext)  
-**Latenz:** ~300 – 600 ms (ultra niedrig)  
-**Am besten für:** Natürlicher Dialog, kurze & reaktive Antworten
+- **Label in UI**: Speech-to-speech
+- **How it works**: Direct speech-to-speech generation (no intermediate text)
+- **Latency**: ~300 – 600 ms (ultra low)
+- **Best for**: Natural back-and-forth, short & reactive replies
 
-### Wie es funktioniert
-Der Speech-to-Speech-Modus überspringt separate Transkription und TTS. Stattdessen verwendet er ein multimodales Modell, das direkt zuhört und spricht und dadurch einen natürlicheren Gesprächsfluss erzeugt:
+Speech-to-speech mode skips separate transcription and TTS. Instead, it uses a multimodal model that listens and speaks directly, producing more conversational flow:
 
-### Vorteile
-- **Schnelles Turn-Taking:** Anrufer erleben nahezu sofortige Antworten
-- **Generiert natürlichere Prosodie:** (Intonation, Füllwörter) nativ
-- **Unterstützt derzeit** eine begrenzte Stimmauswahl, aber mehr werden regelmäßig hinzugefügt
-- **Natürlicher Gesprächsfluss:** Behält Intonation und Emotionen bei
+- Fast turn-taking – callers experience near-instant responses.
+- Generates more expressive prosody natively (intonation, fillers).
+- Currently supports a limited voice set, but more are added regularly.
 
-### Wann Speech-to-Speech wählen
-- Das Gespräch muss sich flüssig anfühlen (Verkauf, Buchungsbestätigungen)
-- Ihre Antworten sind im Allgemeinen kurze Sätze oder schnelle Bestätigungen
-- Sie sind mit den systemseitig bereitgestellten Stimmoptionen für schnellere Interaktion einverstanden
+### When to choose Speech-to-Speech
 
-<Info>
-Speech-to-Speech entwickelt sich schnell weiter. Wenn Sie eine benutzerdefiniert geklonte Stimme mit niedriger Latenz benötigen, probieren Sie Dualplex aus.
-</Info>
+- The conversation needs to feel snappy (sales, booking confirmations).
+- Your replies are generally short sentences or quick acknowledgements.
+- You’re okay with the system-provided voice options for faster interaction.
 
----
+<Warning>
+If you need a custom-cloned voice, long-form responses, or advanced prompt logic, prefer Pipeline.
+</Warning>
 
-## 3. Dualplex (Beta)
+## Switching modes
 
-**UI-Bezeichnung:** Dualplex  
-**Funktionsweise:** Multimodales STT + LLM (Speech-to-Speech) mit ElevenLabs TTS-Ausgabe  
-**Latenz:** Niedrig (variiert je nach Stimme und Modell)  
-**Am besten für:** Schnelle, natürliche Antworten mit hochwertigen/Markenstimmen (geklont)
+Test both modes and pick the best balance of speed and quality for your use case.
 
-### Wie es funktioniert
-Dualplex kombiniert die Reaktionsfähigkeit von Speech-to-Speech mit den Premium-Stimmen und dem Klonen von ElevenLabs, die im Pipeline-Modus verwendet werden. Der Assistent nutzt das multimodale Modell, um den Anrufer zu verstehen und die Antwort zu planen, und rendert dann die finale Sprache über ElevenLabs für konsistente, hochauflösende Ausgabe.
+<Steps>
+<Step title="Open assistant settings">
+Go to Assistant → Settings → Voice Engine for the specific assistant.
+</Step>
 
-### Vorteile
-- **Nahezu sofortiges Turn-Taking:** Ähnlich wie Speech-to-Speech
-- **Zugang zur ElevenLabs-Stimmenbibliothek:** Einschließlich benutzerdefiniert geklonter Stimmen
-- **Ausdrucksstarke Prosodie:** Ideal für kurze bis mittellange Antworten
-- **Empfohlener Standard für die meisten Anwendungsfälle heute:** Derzeit in Beta
+<Step title="Select a mode">
+Choose **Pipeline** or **Speech-to-speech** based on conversation style and latency needs.
+</Step>
 
-### Wann Dualplex wählen
-- Sie möchten schnellen Dialog, benötigen aber eine Marken- oder geklonte Stimme
-- Sie wünschen sich ausdrucksstärkere Wiedergabe ohne Verzicht auf präzise Stimmauswahl
-- Sie sind mit der Nutzung neuer Funktionen vertraut, die sich noch in der Beta-Phase befinden
+<Step title="Choose a voice (if using Pipeline)">
+Select a built-in voice or a custom-cloned voice. See: [Voice Selection & Voice Cloning](/ai-assistants/voice-selection).
+</Step>
 
----
+<Step title="Place a quick test call">
+Record two short calls—one per mode—covering your most common scenarios.
 
-## Modi wechseln
+<Check>
+Confirm acceptable latency, turn-taking, and tone consistency.
+</Check>
+</Step>
 
-Sie können den Modus für jeden Assistenten unter **Assistent → Einstellungen → Voice Engine** auswählen. Testen Sie alle drei Modi, um herauszufinden, welcher die beste Balance aus Geschwindigkeit und Qualität für Ihren Anwendungsfall bietet. Dualplex ist derzeit als Beta gekennzeichnet.
+<Step title="Decide and roll out">
+Pick the mode that best fits your flow and keep monitoring call recordings for quality.
+</Step>
+</Steps>
 
 <Tip>
-**Pro-Tipp:** Nehmen Sie zwei Anrufe auf – einen in jedem Modus – und vergleichen Sie die wahrgenommene Latenz und das Engagement-Level des Anrufers, um zu entscheiden, welcher zu Ihrem Arbeitsablauf passt.
+Record two calls—one in each mode—and compare perceived latency and engagement to decide what fits your flow.
 </Tip>
 
 ---
 
-## Nächste Schritte
-
 <CardGroup cols={2}>
-<Card title="Best Practices" icon="check" href="/ai-assistants/assistant-best-practices">
-Optimieren Sie Ihre Assistenten-Einstellungen nach Modus
+<Card title="Voice Selection & Voice Cloning" icon="microphone" href="/ai-assistants/voice-selection">
+Choose a built-in voice or use your custom-cloned brand voice.
 </Card>
-<Card title="Stimmauswahl" icon="microphone" href="/ai-assistants/voice-selection">
-Wählen Sie die richtige Stimme für Ihren Modus
+
+<Card title="System Prompts" icon="brain" href="/ai-assistants/system-prompt">
+Design effective prompts to guide reasoning and responses.
 </Card>
 </CardGroup>
 
-<CardGroup cols={2}>
-<Card title="System-Prompt" icon="pen" href="/ai-assistants/system-prompt">
-Schreiben Sie modusoptimierte System-Prompts
-</Card>
-<Card title="Assistenten testen" icon="flask" href="/ai-assistants/testing">
-Testen Sie verschiedene Modi mit Ihrem Assistenten
-</Card>
-</CardGroup>
 
-<Note>
-Benötigen Sie Hilfe bei der Modusauswahl? Siehe [Best Practices](/ai-assistants/assistant-best-practices) für detaillierte Empfehlungen.
-</Note>

@@ -1,0 +1,167 @@
+---
+title: "Send SMS"
+api: "POST /user/sms"
+description: "Send text messages using your phone numbers"
+---
+
+Send SMS messages to any phone number using your purchased Famulor phone numbers. Messages are delivered via Twilio and charges are automatically deducted from your account.
+
+### Request Body
+
+<ParamField body="from" type="integer" required>
+  Your phone number ID to send from (must support SMS functionality)
+</ParamField>
+
+<ParamField body="to" type="string" required>
+  Recipient's phone number in international format (example: +1234567890)
+</ParamField>
+
+<ParamField body="body" type="string" required>
+  Message content (maximum 300 characters)
+</ParamField>
+
+### Response
+
+<ResponseField name="message" type="string">
+  Success confirmation message
+</ResponseField>
+
+<ResponseField name="data" type="object">
+  SMS record details
+  <Expandable title="properties">
+    <ResponseField name="id" type="integer">
+      Unique SMS record identifier
+    </ResponseField>
+
+    <ResponseField name="phone_number_id" type="integer">
+      Identifier of the phone number used for sending
+    </ResponseField>
+
+    <ResponseField name="to" type="string">
+      Recipient number in E.164 format
+    </ResponseField>
+
+    <ResponseField name="body" type="string">
+      Message content that was sent
+    </ResponseField>
+
+    <ResponseField name="user_id" type="integer">
+      Account owner identifier
+    </ResponseField>
+
+    <ResponseField name="segments" type="integer">
+      Number of SMS segments used (affects billing)
+    </ResponseField>
+
+    <ResponseField name="segment_price" type="number">
+      Cost per segment
+    </ResponseField>
+
+    <ResponseField name="total_cost" type="number">
+      Total message cost (segments × segment_price)
+    </ResponseField>
+
+    <ResponseField name="status" type="string">
+      Current SMS delivery status
+    </ResponseField>
+
+    <ResponseField name="sms_sid" type="string">
+      Twilio service identifier for tracking
+    </ResponseField>
+
+    <ResponseField name="created_at" type="string">
+      SMS creation timestamp
+    </ResponseField>
+
+    <ResponseField name="updated_at" type="string">
+      Last update timestamp
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+### Error Responses
+
+<ResponseField name="400 Bad Request">
+  <Expandable title="Error Response">
+    <ResponseField name="message" type="string">
+      Error description (invalid number, low balance, etc.)
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="500 Internal Server Error">
+  <Expandable title="Error Response">
+    <ResponseField name="message" type="string">
+      Failure message
+    </ResponseField>
+    <ResponseField name="error" type="string">
+      Additional error details
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseExample>
+
+```json 201 Success Response
+{
+  "message": "SMS sent successfully",
+  "data": {
+    "id": 456,
+    "phone_number_id": 78,
+    "to": "+1234567890",
+    "body": "Hello! This is a test message from Your Company. How can we help you today?",
+    "user_id": 1,
+    "segments": 1,
+    "segment_price": 0.0075,
+    "total_cost": 0.0075,
+    "status": "sent",
+    "sms_sid": "SM1234567890abcdef1234567890abcdef",
+    "created_at": "2025-08-04 15:30:00",
+    "updated_at": "2025-08-04 15:30:02"
+  }
+}
+```
+
+```json 400 Bad Request
+{
+  "message": "From number not found"
+}
+```
+
+```json 400 Bad Request
+{
+  "message": "Invalid to phone number"
+}
+```
+
+```json 400 Bad Request
+{
+  "message": "Insufficient balance"
+}
+```
+
+```json 400 Bad Request
+{
+  "message": "From number is not SMS capable"
+}
+```
+
+```json 500 Internal Server Error
+{
+  "message": "Failed to send SMS",
+  "error": "Twilio API error details"
+}
+```
+
+</ResponseExample>
+
+### Notes
+
+- The sending number must be owned by your account
+- SMS capability must be enabled on the phone number
+- Phone number subscription must be active
+- Your account must have sufficient credits
+- Phone numbers are automatically converted to E.164 format
+- Pricing varies by destination country and is charged per segment
+- Long messages are split into multiple segments, which increases cost
+- Recipient numbers must be valid according to international phone standards

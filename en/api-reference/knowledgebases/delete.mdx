@@ -1,74 +1,40 @@
 ---
-title: "Wissensdatenbank löschen"
+title: "Delete Knowledge Base"
 api: "DELETE https://app.famulor.de/api/user/knowledgebases/{id}"
 icon: "trash"
-description: "Löscht eine Wissensdatenbank und alle ihre Dokumente"
+description: "Deletes a knowledge base and all its documents"
 ---
 
-Dieser Endpunkt löscht eine Wissensdatenbank und alle zugehörigen Dokumente dauerhaft. Diese Aktion kann nicht rückgängig gemacht werden.
+This endpoint permanently deletes a knowledge base and all associated documents. This action cannot be undone.
 
-### Pfad-Parameter
+### Path Parameters
 
 <ParamField path="id" type="integer" required>
-  Die eindeutige Kennung der zu löschenden Wissensdatenbank
+  The unique identifier of the knowledge base to delete
 </ParamField>
 
-### Antwort-Felder
+### Response Fields
 
 <ResponseField name="message" type="string">
-  Erfolgsmeldung
+  Success message
 </ResponseField>
 
-### Was wird gelöscht
+### What Gets Deleted
 
-Wenn Sie eine Wissensdatenbank löschen:
+When you delete a knowledge base:
 
-* **Alle Dokumente** in der Wissensdatenbank werden dauerhaft gelöscht
-* **Vektor-Einbettungen** werden aus der Vektordatenbank entfernt
-* **Dokumentenspeicher-Daten** werden von externen Diensten bereinigt
+* **All documents** in the knowledge base are permanently deleted
+* **Vector embeddings** are removed from the vector database
+* **Document storage data** is cleaned up from external services
 
-### Was passiert mit angehängten Assistenten
+### What Happens to Attached Assistants
 
-Alle Assistenten, die diese Wissensdatenbank verwendet haben, haben ihre Wissensdatenbank-Referenz entfernt. Sie funktionieren weiterhin, aber ohne den Wissensdatenbank-Kontext.
+All assistants that used this knowledge base will have their knowledge base reference removed. They will continue to function, but without the knowledge base context.
 
 <Warning>
-  Diese Aktion ist unwiderruflich. Alle Dokumente und ihre verarbeiteten Inhalte werden dauerhaft gelöscht. Stellen Sie sicher, dass Sie diese Wissensdatenbank löschen möchten, bevor Sie fortfahren.
+  This action is irreversible. All documents and their processed content will be permanently deleted. Make sure you want to delete this knowledge base before proceeding.
 </Warning>
 
-<CodeGroup>
-```bash cURL
-curl -X DELETE "https://app.famulor.de/api/user/knowledgebases/1" \
-     -H "Authorization: Bearer YOUR_API_KEY" \
-     -H "Content-Type: application/json"
-```
-
-```javascript JavaScript
-const response = await fetch("https://app.famulor.de/api/user/knowledgebases/1", {
-  method: "DELETE",
-  headers: {
-    "Content-Type": "application/json",
-    Authorization: "Bearer YOUR_API_KEY",
-  },
-});
-
-const data = await response.json();
-```
-
-```python Python
-import requests
-
-response = requests.delete(
-    "https://app.famulor.de/api/user/knowledgebases/1",
-    headers={
-        "Content-Type": "application/json",
-        "Authorization": "Bearer YOUR_API_KEY",
-    },
-    timeout=10,
-)
-
-print(response.json())
-```
-</CodeGroup>
 
 <ResponseExample>
 

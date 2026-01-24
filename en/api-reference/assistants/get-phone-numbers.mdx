@@ -1,0 +1,78 @@
+---
+title: "Get available phone numbers"
+api: "GET /user/assistants/phone-numbers"
+description: "Retrieve phone numbers available for assistant assignment"
+---
+
+Get a list of all phone numbers in your account that can be assigned to assistants. Optionally filter by assistant type.
+
+### Query Parameters
+
+<ParamField query="type" type="string" optional>
+  Filter phone numbers by assistant type. Options: `inbound`, `outbound`
+</ParamField>
+
+### Response Fields
+
+<ResponseField name="data" type="array">
+  Array of phone number objects
+  <Expandable title="properties">
+    <ResponseField name="id" type="integer">
+      Unique phone number identifier
+    </ResponseField>
+
+    <ResponseField name="phone_number" type="string">
+      Phone number in E.164 format
+    </ResponseField>
+
+    <ResponseField name="country_code" type="string">
+      Country code for the phone number
+    </ResponseField>
+
+    <ResponseField name="type_label" type="string">
+      Human-readable type description
+    </ResponseField>
+
+    <ResponseField name="is_available" type="boolean">
+      Whether this number is available for assignment (not currently assigned to an inbound assistant)
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseExample>
+
+```json 200 Response
+[
+  {
+    "id": 45,
+    "phone_number": "+1234567890",
+    "country_code": "US",
+    "type_label": "Normal",
+    "is_available": true
+  },
+  {
+    "id": 46,
+    "phone_number": "+1234567891",
+    "country_code": "US",
+    "type_label": "SIP",
+    "is_available": false
+  },
+  {
+    "id": 47,
+    "phone_number": "+441234567890",
+    "country_code": "GB",
+    "type_label": "Caller ID",
+    "is_available": true
+  }
+]
+```
+
+</ResponseExample>
+
+### Notes
+
+- Only phone numbers you own are returned
+- When filtering with `type=inbound`, caller ID numbers and already assigned numbers are excluded
+- The `is_available` field indicates if the number can be assigned to a new inbound assistant
+- Phone numbers are returned as an indexed array
+- Use the phone number `id` when assigning numbers to assistants

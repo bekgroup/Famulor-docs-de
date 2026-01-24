@@ -1,119 +1,113 @@
 ---
-title: "Preisaufschlüsselung"
+title: "Pricing Breakdown"
 icon: "calculator"
-description: "Detaillierte Erklärung, wie Anrufminuten berechnet und abgerechnet werden"
+description: "Detailed explanation of how call minutes are calculated and billed"
 ---
 
-# Preisaufschlüsselung
+# Pricing Breakdown
 
-famulor.de verwendet ein **minutenbasiertes** System für die Abrechnung. Diese Minuten (oder Tokens/Guthaben) werden von Ihrem Guthaben **abgezogen**, jedes Mal wenn Sie einen Anruf tätigen oder empfangen. Die tatsächlichen "Kosten pro Minute" hängen von Ihrem Plan ab, und **Carrier-Kosten** werden ebenfalls in Minuten umgerechnet. So funktioniert es:
-
----
-
-## 1. Eingehende vs. Ausgehende Anrufe
-
-- **Eingehende**: Sie verbrauchen Minuten, sobald der KI-Assistent abhebt und in einem Anruf engagiert ist.
-- **Ausgehende**: Minuten beginnen abzuziehen, sobald der Kunde den Anruf beantwortet und verbunden bleibt. Wählzeit wird nicht abgerechnet.
-
-> **Hinweis**: Ein Anruf wird als aktiv betrachtet, bis die KI oder der Benutzer auflegt, **oder** bis die Anrufbeantworter-Erkennung den Anruf beendet, falls der Anrufbeantworter des Benutzers antwortet (für ausgehende Anrufe).
+famulor.de uses a **minutes-based** system for billing. These minutes (or tokens/credits) get **deducted** from your balance each time you make or receive a call. The actual “per-minute cost” depends on your plan, and **carrier costs** are also converted into minutes. Below is how it works.
 
 ---
 
-## 2. Wie Minuten verwendet werden
+## 1. Inbound vs. Outbound Calls
 
-### a) KI-Sprechzeit
+- **Inbound**: You spend minutes as soon as the AI assistant picks up and is engaged in a call.
+- **Outbound**: Minutes start deducting once the customer answers the call and stays connected. Dial time is not billed.
 
-- Wenn Ihr KI-Assistent aktiv 1 Minute am Anruf ist, verbrauchen Sie **1 Minute** KI-Zeit.
-- Die Kosten werden **anteilig** pro Sekunde berechnet, also verwendet ein 30-Sekunden-Anruf 0,5 Minuten von Ihrem Plan (für KI-Zeit).
-
-### b) Carrier-Umrechnung
-
-- **Carrier-Kosten** (die Telekom-Netzwerkgebühr) werden ebenfalls von Ihrem Guthaben **abgezogen**, aber typischerweise **auf die nächste Minute aufgerundet**.
-- Wir konvertieren den Euro-Betrag des Carriers in Minuten zu Ihrer Plan-Rate.
-  - **Beispiel**: Wenn Ihre Carrier-Gebühr €0,05 für einen 1-Minuten-Anruf beträgt und Ihre Plan-KI-Rate €0,10/Min ist, konvertieren wir diese €0,05 zu 0,5 Minuten von Ihrem Guthaben.
-
-**Also könnte ein einzelner 1-Minuten-Anruf verbrauchen:**
-
-- **1 KI-Minute** (für den Assistenten)
-- **+ 0,5 "Carrier-Minuten"** (umgerechnet von den €0,05 des Carriers zu der Hälfte Ihrer KI-Kosten).
-- **= 1,5 Minuten insgesamt** von Ihrem Plan-Guthaben abgezogen.
+> **Note**: A call is considered active until the AI or the user hangs up, **or** until voicemail detection ends the call if the user’s voicemail answers (for outbound).
 
 ---
 
-## 3. Pro-Sekunden-Abrechnung vs. Aufrundung
+## 2. How Minutes Are Used
 
-1. **KI-Zeit**
+### a) AI Spoken Time
 
-   - **Pro Sekunde gemessen**, also sind 70 Sekunden ~1,17 Minuten KI-Nutzung.
-   - Genau von Ihrem Plan-Minuten-Guthaben abgezogen.
+- If your AI assistant is actively on the call for 1 minute, you consume **1 minute** of AI time.
+- The cost is **prorated** by the second, so a 30-second call uses 0.5 minutes from your plan (for AI time).
 
-2. **Carrier-Zeit**
-   - **Auf die nächste volle Minute aufgerundet** für die Netzwerkgebühr.
-   - Dann in einen Bruchteil Ihrer KI-Plan-Kosten umgerechnet, um zu entscheiden, wie viele "Minuten" von Ihrem Credit-Guthaben abgezogen werden.
+### b) Carrier Conversion
+
+- **Carrier cost** (the telecom network fee) is also deducted from your balance **but** is typically **rounded up** to the next minute.
+- We convert the carrier's euro amount to minutes at your plan's rate.
+  - **Example**: If your carrier charge is €0.05 for a 1-minute call, and your plan's AI rate is €0.10/min, we convert that €0.05 to 0.5 minutes from your balance.
+
+**So a single 1-minute conversation might consume:**
+
+- **1 AI minute** (for the assistant)
+- **+ 0.5 "carrier minutes"** (converted from the carrier's €0.05 to half your AI cost).
+- **= 1.5 minutes total** deducted from your plan balance.
 
 ---
 
-## 4. Inkludierte Minuten & Guthaben-Aufladung
+## 3. Per-Second Billing vs. Rounding
 
-- **Jeder Plan**: Enthält normalerweise eine monatliche Zuteilung von Minuten.
-- **Minuten aufbrauchen**: Sobald Sie die inkludierten Minuten aufbrauchen, werden **keine zusätzlichen Minuten automatisch aufgeladen**. Sie müssen manuell Guthaben hinzufügen.
-- **Guthaben hinzufügen**: Gehen Sie zu **"Guthaben hinzufügen"** (rechte Seite im Dashboard), wo Sie:
-  - **Guthaben manuell kaufen**: Kaufen Sie Guthaben in gewünschter Höhe zu Ihrer Plan-Rate
-  - **Auto Top-up aktivieren**: Aktivieren Sie die automatische Aufladung, damit Guthaben automatisch nachgeladen wird, wenn Ihr Guthaben einen bestimmten Schwellenwert erreicht
-- **Kein Übertrag**: Ungenutzte Minuten rollen normalerweise nicht in den nächsten Monat über.
+1. **AI Time**
 
-**Beispiel**
+   - **Measured per second**, so 70 seconds is ~1.17 minutes of AI usage.
+   - Deducted exactly from your plan’s minute balance.
 
-> Sie sind im **Starter Plan** mit 100 inkludierten Minuten:
+2. **Carrier Time**
+   - **Rounded to next full minute** for the network fee.
+   - Then converted into a fraction of your AI plan cost to decide how many “minutes” to deduct from your credit balance.
+
+---
+
+## 4. Included Minutes & Top-Ups
+
+- **Each Plan**: Usually includes a monthly allotment of minutes.
+- **Using Up Minutes**: Once you exceed included minutes, **additional minutes are NOT automatically charged**. You need to manually add credit to your account.
+- **Adding Credit**: Go to **"Guthaben hinzufügen"** (Add Credit) in the right sidebar of your dashboard. From there, you can either:
+  - **Purchase credit manually**: Buy additional minutes at your plan's rate whenever needed.
+  - **Enable Auto Top-up**: Activate automatic credit replenishment to ensure you never run out of minutes.
+- **No Rollover**: Unused minutes typically don't roll over to the next month.
+
+**Example**
+
+> You're on the **Starter Plan** with 100 included minutes (€49/month):
 >
-> - Wenn Sie genug Anrufe tätigen, die insgesamt 80 KI-Minuten + Carrier-Umrechnungen = 80 verwendet ergeben, haben Sie 20 übrig diesen Monat.
-> - Nächsten Monat setzen Sie auf 100 zurück. Wenn Sie 110 Minuten benötigen, müssen Sie zu **"Guthaben hinzufügen"** gehen und entweder Guthaben manuell kaufen (10 Minuten × €0,40/Min = €4,00) oder Auto Top-up aktivieren, damit dies automatisch passiert.
+> - If you make enough calls that total 80 AI minutes + carrier conversions = 80 used, you have 20 left this month.
+> - Next month, you reset to 100. If you need 110 minutes, you must manually add credit via "Guthaben hinzufügen" and purchase 10 extra minutes at €0.40/min, or enable Auto Top-up to have this done automatically.
 
 ---
 
-## 5. Mengenrabatte oder Stufen
+## 5. Volume Discounts or Tiers
 
-- Pläne variieren:
-  - **Flex**: 30 Minuten inkludiert (19 €/mo), danach €0,50/Min
-  - **Starter**: 100 Minuten inkludiert (49 €/mo), danach €0,40/Min
-  - **Business**: 600 Minuten inkludiert (199 €/mo), danach €0,15/Min
-  - **Scale**: 4000 Minuten inkludiert (999 €/mo), danach €0,11/Min
-- Hohe Volumen-Nutzung (wie 50.000+ Minuten/Monat) kann oft **Mengenrabatte** erhalten, indem Sie den Vertrieb kontaktieren.
+- Plans vary (e.g., **Flex** at €0.50/min, **Starter** at €0.40/min, **Business** at €0.15/min, **Scale** at €0.11/min).
+- High-volume usage (like 50,000+ minutes/month) can often get **bulk discounts** by contacting sales.
 
 ---
 
-## 6. Schnelle Nutzungsbeispiele
+## 6. Quick Usage Examples
 
-### Beispiel A (Ausgehender Anruf, Starter Plan)
+### Example A (Outbound Call, Starter Plan)
 
-- **KI-Rate**: €0,40/Min
-- **Anrufdauer**: 30 Sekunden → 0,5 KI-Minuten = €0,20 KI-Kosten.
-- **Carrier**: €0,01/Min, aber 30 Sekunden → 1 Minute aufgerundet → €0,01.
-  - €0,01 zu Ihrer Plan-Rate von €0,40 = 0,025 "Plan-Minuten" verwendet (Oder wenn Sie einen einfacheren Ansatz machen, €0,01 / €0,40 = 0,025 Minuten)
-- **Gesamt**: 0,5 (KI) + 0,025 (Carrier) = 0,525 Minuten von Ihrem Plan. Wenn Sie 100 inkludiert hätten, hätten Sie 99,475 übrig.
+- **AI Rate**: €0.40/min (after included 100 minutes)
+- **Call Duration**: 30 seconds → 0.5 AI minutes = €0.20 AI cost.
+- **Carrier**: €0.01/min, but 30 seconds → 1 minute rounded up → €0.01.
+  - €0.01 at your plan's €0.40 rate = 0.025 "plan minutes" used (Or if you do a simpler approach, €0.01 / €0.40 = 0.025 minutes)
+- **Total**: 0.5 (AI) + 0.025 (carrier) = 0.525 minutes from your plan. If you had 100 included, you'd have 99.475 left.
 
-### Beispiel B (Eingehender Anruf, Business Plan)
+### Example B (Inbound Call, Business Plan)
 
-- **KI-Rate**: €0,15/Min
-- **Anrufdauer**: 90 Sekunden → 1,5 KI-Minuten = €0,225 KI-Kosten.
-- **Carrier**: Angenommen, eingehende Anrufe sind €0,015/Min, aufgerundet auf 2 Minuten, wenn der Anruf 1,5 Min war. Das sind €0,03 insgesamt.
-  - €0,03 / €0,15 = 0,2 Minuten von Ihrem Plan.
-- **Gesamt**: 1,5 (KI) + 0,2 (Carrier) = 1,7 Minuten abgezogen.
+- **AI Rate**: €0.15/min (after included 600 minutes)
+- **Call Duration**: 90 seconds → 1.5 AI minutes = €0.225 AI cost.
+- **Carrier**: Suppose inbound is €0.015/min, rounding up to 2 minutes if the call was 1.5 min. That's €0.03 total.
+  - €0.03 / €0.15 = 0.2 minutes from your plan.
+- **Total**: 1.5 (AI) + 0.2 (carrier) = 1.7 minutes deducted.
 
 ---
 
 ### FAQ
 
-- **Zahle ich doppelt, wenn Benutzer + KI gleichzeitig sprechen?**  
-  **Nein**, es basiert auf der Gesamtanrufdauer, nicht pro Sprecher-Gleichzeitigkeit.
-- **Was, wenn jemand abhebt und sofort auflegt?**  
-  Die KI könnte ein paar Sekunden registrieren; Kosten sind anteilig für die KI, aber Carrier kann auf 1 Minute aufrunden.
-- **Warum kann ich keinen Anruf starten, obwohl ich Guthaben habe? (Fehler: "Insufficient balance to cover potential call costs: insufficient_balance_for_cost")**  
-  Famulor berechnet vor dem Start eines Anrufs die **maximale mögliche Dauer** des Assistenten plus die **maximalen Carrier-Kosten**. Wenn dieser berechnete Betrag höher ist als Ihr bestehendes Guthaben, kann der Anruf nicht gestartet werden und Sie erhalten die Fehlermeldung `insufficient_balance_for_cost`. Dies stellt sicher, dass genug Guthaben für den vollständigen, maximal möglichen Anruf vorhanden ist. **Lösungen:** 
-  - Laden Sie mehr Guthaben hinzu oder aktivieren Sie Auto Top-up
-  - Passen Sie die **maximale Gesprächsdauer** in den Assistenten-Einstellungen an (verfügbar in der Assistenten-Konfigurationsseite), um den benötigten Guthabenbetrag zu reduzieren
+- **Do I pay double if user + AI talk simultaneously?**  
+  **No**, it's based on total call duration, not per speaker concurrency.
+- **What if someone picks up then instantly hangs up?**  
+  The AI might register a few seconds; cost is fractional for the AI, but carrier may round up to 1 minute.
+- **I see the error "Insufficient balance to cover potential call costs: insufficient_balance_for_cost" even though I have credit - why?**  
+  Famulor calculates the required credit based on the **maximum duration time of the assistant** plus the **maximum carrier cost**. If this calculated amount is higher than your existing credit balance, the call cannot start. This pre-authorization ensures you have sufficient funds to complete the call. You can adjust the maximum conversation duration in the assistant settings page, or add more credit via **"Guthaben hinzufügen"** to proceed.
 
 ---
 
-**Fazit**  
-Alle Anrufe verbrauchen **KI-Zeit** plus **umgerechnete Carrier-Kosten** von Ihrem Plan-Minuten-Guthaben. Behalten Sie die Nutzung in Ihrem Dashboard im Auge, laden Sie nach, falls nötig, und wählen Sie den Plan, der am besten zu Ihrem Volumen passt. 
+**Bottom Line**  
+All calls burn **AI time** plus a **converted carrier cost** from your plan's minute balance. Keep track of usage in your dashboard. When you need additional minutes, manually add credit via **"Guthaben hinzufügen"** in the right sidebar, or enable Auto Top-up for automatic replenishment. Choose the plan that best suits your volume.

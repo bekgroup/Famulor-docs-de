@@ -1,0 +1,74 @@
+---
+title: "Get available voices"
+api: "GET /user/assistants/voices"
+description: "Fetch all available voice options for assistant configuration"
+---
+
+Retrieve the complete list of available voices you can use when creating or updating assistants. Optionally filter by assistant mode.
+
+### Query Parameters
+
+<ParamField query="mode" type="string" optional>
+  Filter voices by assistant mode. Valid options: `pipeline`, `multimodal`
+</ParamField>
+
+### Response Fields
+
+<ResponseField name="data" type="array">
+  Array of voice options
+  <Expandable title="properties">
+    <ResponseField name="id" type="integer">
+      Unique voice identifier
+    </ResponseField>
+
+    <ResponseField name="name" type="string">
+      Voice display name
+    </ResponseField>
+
+    <ResponseField name="mode" type="string">
+      Assistant mode compatibility (`pipeline` or `multimodal`)
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseExample>
+
+```json 200 Response
+[
+  {
+    "id": 1,
+    "name": "Sarah",
+    "mode": "pipeline"
+  },
+  {
+    "id": 2,
+    "name": "Michael",
+    "mode": "pipeline"
+  },
+  {
+    "id": 3,
+    "name": "Emma",
+    "mode": "multimodal"
+  },
+  {
+    "id": 4,
+    "name": "David",
+    "mode": "multimodal"
+  },
+  {
+    "id": 5,
+    "name": "Sophia",
+    "mode": "pipeline"
+  }
+]
+```
+
+</ResponseExample>
+
+### Notes
+
+- Use the voice `id` when creating or updating assistants
+- The `mode` field shows which assistant engine the voice supports
+- Filtering by mode helps you find compatible voices for your assistant type
+- Without a mode filter, all available voices are returned
+- Only public voices or voices belonging to your account appear in results

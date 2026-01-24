@@ -1,55 +1,45 @@
 ---
-title: "Wie es funktioniert (Schnellübersicht)"
+title: "How It Works (Quick Overview)"
 icon: "diagram-project"
-description: "Verstehen Sie den technischen Ablauf, wie famulor.de Telefongespräche mit KI verarbeitet und bearbeitet"
+description: "Understand the technical flow of how famulor.de processes and handles phone conversations using AI"
 ---
 
-famulor.de kombiniert **KI-Spracherkennung** mit **LLM-basierten Antworten**, um live Telefongespräche zu führen. Nachfolgend ist ein vereinfachter Ablauf:
+famulor.de blends **AI voice recognition** with **LLM-based replies** to conduct live phone conversations. Below is a simplified flow:
 
-1. **Anrufer oder Lead wird gewählt**
+1. **Caller or Lead is Dialed**
 
-   - **Eingehend**: Ein Kunde wählt Ihre zugewiesene Telefonnummer.
-   - **Ausgehend**: famulor.de's System ruft eine Liste von Telefonnummern aus Ihrer Kampagne an.
+   - **Inbound**: A customer dials your assigned phone number.
+   - **Outbound**: famulor.de's system calls a list of phone numbers from your campaign.
 
-2. **Spracherkennung**  
-   Die KI hört zu, was die Person sagt, und transkribiert es in Echtzeit in Text.
+2. **Speech Recognition**  
+   The AI listens to what the person says and transcribes it into text in real time.
 
-3. **LLM-Entscheidung**  
-   famulor.de verwendet ein großes Sprachmodell (LLM) und Ihren konfigurierten "System-Prompt", um eine Antwort zu formulieren oder die nächste Aktion zu entscheiden (wie die Weiterleitung des Anrufs).
+3. **LLM Decision**  
+   famulor.de uses a large language model (LLM) and your configured "system prompt" to craft a reply or decide the next action (like transferring the call).
 
-4. **Sprachausgabe**  
-   Die Antwort der KI wird über unsere Stimmen-Engine (ElevenLabs Stimmen) in natürlich klingende Sprache umgewandelt.
+4. **Voice Output**  
+   The AI's response is converted to natural-sounding speech via our voice engine (ElevenLabs voices).
 
-5. **Ergebnis & Aktionen**
+5. **Result & Actions**
 
-   - Bei **Eingehenden Anrufen**: Die KI kann Fragen beantworten, Informationen verifizieren oder eine Nachricht entgegennehmen.
-   - Bei **Ausgehenden Anrufen**: Die KI kann ein Produkt präsentieren, Leads qualifizieren oder interessierte Anrufer an einen menschlichen Agenten weiterleiten.
+   - For **Inbound**: The AI may answer questions, verify info, or take a message.
+   - For **Outbound**: The AI can pitch a product, qualify leads, or transfer interested callers to a human agent.
 
-6. **Daten & Berichterstattung**  
-   Sie erhalten Transkripte, Anrufaufnahmen, Anrufergebnisse (wie "keine Antwort" oder "Erfolg") und die Möglichkeit, Folgeaktionen zu automatisieren.
+6. **Data & Reporting**  
+   You get transcripts, call recordings, call outcomes (like "no answer" or "success"), and the ability to automate follow-up actions.
 
-## Unterschiede: Eingehende vs. Ausgehende Anrufe
+## Distinctions: Inbound vs. Outbound
 
-- **Eingehende Anrufe**
+- **Inbound**
 
-  - Anrufer wählt eine Nummer, die Sie gemietet oder integriert haben.
-  - KI geht ran, begrüßt und bearbeitet Anfragen oder leitet den Anrufer bei Bedarf weiter.
+  - Caller dials a number you rented or integrated.
+  - AI picks up, greets, and handles queries or routes the caller if needed.
 
-- **Ausgehende Anrufe**
-  - Sie laden Leads hoch oder synchronisieren sie.
-  - KI wählt jede Nummer an, folgt Ihrem Anrufskript, leitet möglicherweise weiter, wenn der Lead interessiert ist.
+- **Outbound**
+  - You upload or sync leads.
+  - AI dials each number, follows your call script, possibly transfers if the lead is interested.
 
-## Nächste Schritte
+## Next Steps
 
-<CardGroup cols={2}>
-<Card title="Wichtige Begriffe" icon="book-open" href="/introduction/key-terminology">
-Lernen Sie die wichtigsten Begriffe kennen
-</Card>
-<Card title="Grundkonzepte" icon="lightbulb" href="/getting-started/core-concepts">
-Verstehen Sie System-Prompts und Stimmen
-</Card>
-</CardGroup>
-
-<Note>
-Bereit für die Praxis? Beginnen Sie mit [Grundkonzepte](/getting-started/core-concepts) oder springen Sie direkt zur [Assistenten-Erstellung](/ai-assistants/creating-and-editing).
-</Note> 
+- Learn about [**Key Terminology**](/terminology) (like "AI Assistant," "Campaign," etc.).
+- Jump into [**Getting Started**](/getting-started) to set up your first AI assistant.

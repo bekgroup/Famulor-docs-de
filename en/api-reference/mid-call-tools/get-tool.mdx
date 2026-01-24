@@ -1,90 +1,90 @@
 ---
-title: "Mid-call Action abrufen"
+title: "Get mid call tool"
 api: "GET /user/tools/{id}"
-description: "Ein spezifisches Mid-call Action anhand der ID abrufen"
+description: "Retrieve detailed information about a specific mid-call tool"
 ---
 
-Dieser Endpunkt ermöglicht es Ihnen, detaillierte Informationen über ein spezifisches Mid-call Action abzurufen.
+Get comprehensive details about a single mid-call tool by its identifier.
 
-### Header
+### Headers
 
 <ParamField header="Authorization" type="string" required>
-  Bearer-Token für die Authentifizierung
+  Bearer token for authentication
 </ParamField>
 
 <ParamField header="Content-Type" type="string" required>
-  Muss `application/json` sein
+  Must be `application/json`
 </ParamField>
 
 <ParamField header="Accept" type="string" required>
-  Muss `application/json` sein
+  Must be `application/json`
 </ParamField>
 
-### Pfad-Parameter
+### Path Parameters
 
 <ParamField path="id" type="integer" required>
-  Die eindeutige Kennung des Tools
+  The unique identifier of the tool
 </ParamField>
 
-### Antwortfelder
+### Response Fields
 
 <ResponseField name="id" type="integer">
-  Die eindeutige Kennung des Tools
+  Unique tool identifier
 </ResponseField>
 
 <ResponseField name="name" type="string">
-  Der Name des Tools (Kleinbuchstaben mit Unterstrichen)
+  Tool name (lowercase with underscores)
 </ResponseField>
 
 <ResponseField name="description" type="string">
-  Detaillierte Erklärung, wann und wie die KI dieses Tool verwenden soll
+  Description explaining when and how the AI should use this tool
 </ResponseField>
 
 <ResponseField name="endpoint" type="string">
-  Die API-Endpunkt-URL, die aufgerufen wird
+  API endpoint URL that will be called
 </ResponseField>
 
 <ResponseField name="method" type="string">
-  HTTP-Methode (GET, POST, PUT, PATCH, DELETE)
+  HTTP method (GET, POST, PUT, PATCH, DELETE)
 </ResponseField>
 
 <ResponseField name="timeout" type="integer">
-  Request-Timeout in Sekunden (1-30)
+  Request timeout in seconds (1-30)
 </ResponseField>
 
 <ResponseField name="headers" type="array">
-  HTTP-Header, die mit der Anfrage gesendet werden
-  <Expandable title="Header-Eigenschaften">
+  HTTP headers sent with the request
+  <Expandable title="header properties">
     <ResponseField name="name" type="string">
-      Header-Name
+      Header name
     </ResponseField>
     <ResponseField name="value" type="string">
-      Header-Wert
+      Header value
     </ResponseField>
   </Expandable>
 </ResponseField>
 
 <ResponseField name="schema" type="array">
-  Parameter, die die KI extrahieren und an den Endpunkt senden wird
-  <Expandable title="Schema-Eigenschaften">
+  Parameters the AI will extract and send to the endpoint
+  <Expandable title="schema properties">
     <ResponseField name="name" type="string">
-      Parameter-Name
+      Parameter name
     </ResponseField>
     <ResponseField name="type" type="string">
-      Parameter-Typ (string, number, boolean)
+      Parameter type (string, number, boolean)
     </ResponseField>
     <ResponseField name="description" type="string">
-      Beschreibung, um der KI zu helfen, diesen Parameter zu extrahieren
+      Description helping the AI understand how to extract this parameter
     </ResponseField>
   </Expandable>
 </ResponseField>
 
 <ResponseField name="created_at" type="string">
-  ISO 8601 Zeitstempel, wann das Tool erstellt wurde
+  Tool creation timestamp (ISO 8601)
 </ResponseField>
 
 <ResponseField name="updated_at" type="string">
-  ISO 8601 Zeitstempel, wann das Tool zuletzt aktualisiert wurde
+  Tool last update timestamp (ISO 8601)
 </ResponseField>
 
 <ResponseExample>
@@ -137,9 +137,9 @@ Dieser Endpunkt ermöglicht es Ihnen, detaillierte Informationen über ein spezi
 
 </ResponseExample>
 
-### Tools zu Assistenten zuweisen
+### Assigning Tools to Assistants
 
-Um dieses Tool mit einem Assistenten zu verwenden, siehe:
+To use this tool with an assistant, see:
 
-- **[Assistent erstellen](/api-reference/assistants/create)** - Tools mit dem `tool_ids`-Parameter zuweisen
-- **[Assistent aktualisieren](/api-reference/assistants/update)** - Tool-Zuweisungen mit dem `tool_ids`-Parameter verwalten
+- **[Create Assistant](/api-reference/assistants/create-assistant)** - Attach tools using the `tool_ids` parameter
+- **[Update Assistant](/api-reference/assistants/update-assistant)** - Manage tool assignments using the `tool_ids` parameter

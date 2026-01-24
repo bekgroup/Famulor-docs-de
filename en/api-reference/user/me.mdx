@@ -1,78 +1,43 @@
 ---
-title: "Benutzerinformationen abrufen"
+title: "Get User Information"
 api: "GET https://app.famulor.de/api/user/me"
 icon: "user"
-description: "Ruft die Informationen des authentifizierten Benutzers ab"
+description: "Retrieves information of the authenticated user"
 ---
 
-Dieser Endpunkt gibt die Profilinformationen des aktuell authentifizierten Benutzers zurück, einschließlich des Kontoguthabens.
+This endpoint returns the profile information of the currently authenticated user, including account balance.
 
-### Antwort-Felder
+### Response Fields
 
 <ResponseField name="name" type="string">
-  Der vollständige Name des Benutzers
+  The full name of the user
 </ResponseField>
 
 <ResponseField name="email" type="string">
-  Die E-Mail-Adresse des Benutzers
+  The email address of the user
 </ResponseField>
 
 <ResponseField name="total_balance" type="number">
-  Das aktuelle Gesamtguthaben des Benutzerkontos
+  The current total balance of the user account
 </ResponseField>
 
-### Anwendungsfälle
+### Use Cases
 
-Dieser Endpunkt ist nützlich für:
+This endpoint is useful for:
 
-- **Authentifizierung überprüfen** - Bestätigen, dass der API-Schlüssel gültig ist und dem erwarteten Benutzer gehört
-- **Kontoguthaben prüfen** - Verfügbare Credits überwachen, bevor API-Aufrufe getätigt werden
-- **Benutzerinformationen anzeigen** - Den aktuellen Benutzer in der Benutzeroberfläche Ihrer Anwendung anzeigen
+- **Verify authentication** - Confirm that the API key is valid and belongs to the expected user
+- **Check account balance** - Monitor available credits before making API calls
+- **Display user information** - Show the current user in your application's user interface
 
-<CodeGroup>
-```bash cURL
-curl -X GET "https://app.famulor.de/api/user/me" \
-     -H "Authorization: Bearer YOUR_API_KEY" \
-     -H "Content-Type: application/json"
-```
-
-```javascript JavaScript
-const response = await fetch("https://app.famulor.de/api/user/me", {
-  method: "GET",
-  headers: {
-    "Content-Type": "application/json",
-    Authorization: "Bearer YOUR_API_KEY",
-  },
-});
-
-const data = await response.json();
-```
-
-```python Python
-import requests
-
-response = requests.get(
-    "https://app.famulor.de/api/user/me",
-    headers={
-        "Content-Type": "application/json",
-        "Authorization": "Bearer YOUR_API_KEY",
-    },
-    timeout=10,
-)
-
-print(response.json())
-```
-</CodeGroup>
 
 <ResponseExample>
 
 ```json 200 Response
 {
   "name": "Your Name",
-  "email": "example@example.de",
+  "email": "example@example.com",
   "total_balance": 100.67447094
 }
 ```
 
 </ResponseExample>
-

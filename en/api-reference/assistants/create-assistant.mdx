@@ -1,0 +1,284 @@
+---
+title: "Create assistant"
+api: "POST /user/assistant"
+description: "Create a new AI assistant with custom configuration"
+---
+
+Create a new AI assistant with full configuration options. You can customize voice, language, behavior, and many other settings.
+
+### Request Body
+
+#### Required Fields
+
+<ParamField body="assistant_name" type="string" required>
+  Assistant display name (maximum 255 characters)
+</ParamField>
+
+<ParamField body="voice_id" type="integer" required>
+  Voice identifier to use (must exist in available voices list)
+</ParamField>
+
+<ParamField body="language" type="string" required>
+  Language name for the assistant (maximum 100 characters)
+</ParamField>
+
+<ParamField body="llm_model" type="string" required>
+  Large Language Model name to use (maximum 100 characters)
+</ParamField>
+
+<ParamField body="calls_direction" type="string" required>
+  Call direction configuration. Valid options: `receive`, `make`
+</ParamField>
+
+<ParamField body="engine_type" type="string" required>
+  Engine type selection. Valid options: `pipeline`, `multimodal`
+</ParamField>
+
+<ParamField body="timezone" type="string" required>
+  Timezone setting (example: "America/New_York")
+</ParamField>
+
+<ParamField body="initial_message" type="string" required>
+  Opening message the assistant will speak at call start
+</ParamField>
+
+<ParamField body="system_prompt" type="string" required>
+  System prompt that defines the assistant's behavior, personality, and instructions
+</ParamField>
+
+#### Optional Configuration
+
+<ParamField body="phone_number_id" type="integer" optional>
+  Phone number identifier to assign (must exist in your phone numbers)
+</ParamField>
+
+<ParamField body="tool_ids" type="integer[]" optional>
+  Array of mid-call tool identifiers to attach. Each ID must be a valid tool belonging to your account.
+</ParamField>
+
+<ParamField body="endpoint_type" type="string" optional>
+  Voice activity detection method. Options: `vad`, `ai`
+</ParamField>
+
+<ParamField body="endpoint_sensitivity" type="number" optional>
+  Endpoint sensitivity level (range: 0-5)
+</ParamField>
+
+<ParamField body="interrupt_sensitivity" type="number" optional>
+  Interruption sensitivity level (range: 0-5)
+</ParamField>
+
+<ParamField body="ambient_sound_volume" type="number" optional>
+  Ambient sound volume level (range: 0-1)
+</ParamField>
+
+<ParamField body="post_call_evaluation" type="boolean" optional>
+  Enable AI-powered call evaluation after call completion
+</ParamField>
+
+<ParamField body="send_webhook_only_on_completed" type="boolean" optional>
+  Send webhooks only for successfully completed calls
+</ParamField>
+
+<ParamField body="include_recording_in_webhook" type="boolean" optional>
+  Include call recording URL in webhook payload
+</ParamField>
+
+#### Webhook Configuration
+
+<ParamField body="is_webhook_active" type="boolean" optional>
+  Enable webhook notifications
+</ParamField>
+
+<ParamField body="webhook_url" type="string" optional>
+  Webhook endpoint URL for post-call notifications (required if is_webhook_active is true)
+</ParamField>
+
+#### Interruption Settings
+
+<ParamField body="use_min_interrupt_words" type="boolean" optional>
+  Enable minimum interrupt words configuration
+</ParamField>
+
+<ParamField body="min_interrupt_words" type="integer" optional>
+  Minimum words required before interruption is allowed (range: 0-10)
+</ParamField>
+
+#### Variables and Schema
+
+<ParamField body="variables" type="object" optional>
+  Custom key-value variable pairs for the assistant
+</ParamField>
+
+<ParamField body="post_call_schema" type="array" optional>
+  Schema definition for AI data extraction after calls
+  <Expandable title="post_call_schema properties">
+    <ParamField body="post_call_schema[].name" type="string" required>
+      Schema field name (alphanumeric characters and underscores only)
+    </ParamField>
+    <ParamField body="post_call_schema[].type" type="string" required>
+      Data type. Options: `string`, `number`, `bool`
+    </ParamField>
+    <ParamField body="post_call_schema[].description" type="string" required>
+      Description explaining what this field represents
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+#### End Call Tool
+
+<ParamField body="end_call_tool.description" type="string" optional>
+  Description for end call tool functionality (maximum 500 characters)
+</ParamField>
+
+#### Voice and Speech Settings
+
+<ParamField body="llm_temperature" type="number" optional>
+  LLM temperature configuration (range: 0-1)
+</ParamField>
+
+<ParamField body="voice_stability" type="number" optional>
+  Voice stability configuration (range: 0-1)
+</ParamField>
+
+<ParamField body="voice_similarity" type="number" optional>
+  Voice similarity configuration (range: 0-1)
+</ParamField>
+
+<ParamField body="speech_speed" type="number" optional>
+  Speech speed multiplier (range: 0.7-1.2)
+</ParamField>
+
+#### Call Behavior Settings
+
+<ParamField body="allow_interruptions" type="boolean" optional>
+  Allow customers to interrupt the assistant
+</ParamField>
+
+<ParamField body="filler_audios" type="boolean" optional>
+  Use filler audio responses during processing
+</ParamField>
+
+<ParamField body="re_engagement_interval" type="integer" optional>
+  Re-engagement interval in seconds (range: 7-600)
+</ParamField>
+
+<ParamField body="max_call_duration" type="integer" optional>
+  Maximum call length in seconds (range: 20-1200)
+</ParamField>
+
+<ParamField body="max_silence_duration" type="integer" optional>
+  Maximum silence duration before re-engagement in seconds (range: 1-120)
+</ParamField>
+
+<ParamField body="end_call_on_voicemail" type="boolean" optional>
+  Automatically end call when voicemail is detected
+</ParamField>
+
+<ParamField body="noise_cancellation" type="boolean" optional>
+  Enable noise cancellation during calls
+</ParamField>
+
+<ParamField body="record_call" type="boolean" optional>
+  Record the call audio
+</ParamField>
+
+<ParamField body="who_speaks_first" type="string" optional>
+  Party that speaks first. Options: `AI assistant`, `Customer`
+</ParamField>
+
+### Response
+
+<ResponseField name="message" type="string">
+  Success confirmation message
+</ResponseField>
+
+<ResponseField name="data" type="object">
+  <Expandable title="properties">
+    <ResponseField name="id" type="integer">
+      Unique identifier of the newly created assistant
+    </ResponseField>
+
+    <ResponseField name="name" type="string">
+      Assistant name
+    </ResponseField>
+
+    <ResponseField name="status" type="string">
+      Current assistant status
+    </ResponseField>
+
+    <ResponseField name="type" type="string">
+      Assistant type (`inbound` or `outbound`)
+    </ResponseField>
+
+    <ResponseField name="mode" type="string">
+      Engine mode (`pipeline` or `multimodal`)
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+### Error Responses
+
+<ResponseField name="422 Validation Error">
+  <Expandable title="Error Response">
+    <ResponseField name="message" type="string">
+      Error message describing validation failure
+    </ResponseField>
+    <ResponseField name="errors" type="object">
+      Detailed field-level validation errors
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="500 Internal Server Error">
+  <Expandable title="Error Response">
+    <ResponseField name="message" type="string">
+      Error message indicating assistant creation failure
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseExample>
+
+```json 201 Success Response
+{
+  "message": "Assistant created successfully",
+  "data": {
+    "id": 789,
+    "name": "Sales Assistant",
+    "status": "active",
+    "type": "outbound",
+    "mode": "pipeline"
+  }
+}
+```
+
+```json 422 Validation Error
+{
+  "message": "Validation failed",
+  "errors": {
+    "assistant_name": [
+      "The assistant name field is required."
+    ],
+    "webhook_url": [
+      "The webhook url field is required when is webhook active is true."
+    ]
+  }
+}
+```
+
+```json 500 Internal Server Error
+{
+  "message": "Assistant creation failed"
+}
+```
+
+</ResponseExample>
+
+### Notes
+
+- All required fields must be provided to successfully create an assistant
+- Optional fields not specified will use default system values
+- Phone number assignment is optional, but if provided, the number must belong to your account
+- Webhook URL is mandatory when `is_webhook_active` is set to true
+- Voice and language identifiers must match available options from the system

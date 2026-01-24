@@ -1,0 +1,304 @@
+---
+title: "Update assistant"
+api: "PUT /user/assistant/{id}"
+description: "Modify an existing AI assistant's configuration"
+---
+
+Update one or more settings of an existing AI assistant. All fields are optional - only include the fields you want to modify.
+
+### Path Parameters
+
+<ParamField path="id" type="integer" required>
+  The unique identifier of the assistant to update
+</ParamField>
+
+### Request Body
+
+#### Core Fields
+
+<ParamField body="assistant_name" type="string" optional>
+  Assistant display name (maximum 255 characters)
+</ParamField>
+
+<ParamField body="voice_id" type="integer" optional>
+  Voice identifier to use (must exist in available voices list)
+</ParamField>
+
+<ParamField body="language" type="string" optional>
+  Language name for the assistant (maximum 100 characters)
+</ParamField>
+
+<ParamField body="llm_model" type="string" optional>
+  Large Language Model name to use (maximum 100 characters)
+</ParamField>
+
+<ParamField body="calls_direction" type="string" optional>
+  Call direction configuration. Options: `receive`, `make`
+</ParamField>
+
+<ParamField body="engine_type" type="string" optional>
+  Engine type selection. Options: `pipeline`, `multimodal`
+</ParamField>
+
+<ParamField body="timezone" type="string" optional>
+  Timezone setting (example: "America/New_York")
+</ParamField>
+
+<ParamField body="initial_message" type="string" optional>
+  Opening message the assistant will speak at call start
+</ParamField>
+
+<ParamField body="system_prompt" type="string" optional>
+  System prompt that defines the assistant's behavior, personality, and instructions
+</ParamField>
+
+#### Optional Configuration
+
+<ParamField body="phone_number_id" type="integer" optional>
+  Phone number identifier to assign (set to null to remove assignment)
+</ParamField>
+
+<ParamField body="tool_ids" type="integer[]" optional>
+  Array of mid-call tool identifiers to synchronize with the assistant. This replaces all existing tool assignments. Pass an empty array to remove all tools. Each ID must be a valid tool belonging to your account.
+</ParamField>
+
+<ParamField body="endpoint_type" type="string" optional>
+  Voice activity detection method. Options: `vad`, `ai`
+</ParamField>
+
+<ParamField body="endpoint_sensitivity" type="number" optional>
+  Endpoint sensitivity level (range: 0-5)
+</ParamField>
+
+<ParamField body="interrupt_sensitivity" type="number" optional>
+  Interruption sensitivity level (range: 0-5)
+</ParamField>
+
+<ParamField body="ambient_sound_volume" type="number" optional>
+  Ambient sound volume level (range: 0-1)
+</ParamField>
+
+<ParamField body="post_call_evaluation" type="boolean" optional>
+  Enable AI-powered call evaluation after call completion
+</ParamField>
+
+<ParamField body="send_webhook_only_on_completed" type="boolean" optional>
+  Send webhooks only for successfully completed calls
+</ParamField>
+
+<ParamField body="include_recording_in_webhook" type="boolean" optional>
+  Include call recording URL in webhook payload
+</ParamField>
+
+#### Webhook Configuration
+
+<ParamField body="is_webhook_active" type="boolean" optional>
+  Enable webhook notifications
+</ParamField>
+
+<ParamField body="webhook_url" type="string" optional>
+  Webhook endpoint URL for post-call notifications (can be set to null to remove)
+</ParamField>
+
+#### Interruption Settings
+
+<ParamField body="use_min_interrupt_words" type="boolean" optional>
+  Enable minimum interrupt words configuration
+</ParamField>
+
+<ParamField body="min_interrupt_words" type="integer" optional>
+  Minimum words required before interruption is allowed (range: 0-10)
+</ParamField>
+
+#### Variables and Schema
+
+<ParamField body="variables" type="object" optional>
+  Custom key-value variable pairs for the assistant
+</ParamField>
+
+<ParamField body="post_call_schema" type="array" optional>
+  Schema definition for AI data extraction after calls
+  <Expandable title="post_call_schema properties">
+    <ParamField body="post_call_schema[].name" type="string" required>
+      Schema field name (alphanumeric characters and underscores only)
+    </ParamField>
+    <ParamField body="post_call_schema[].type" type="string" required>
+      Data type. Options: `string`, `number`, `bool`
+    </ParamField>
+    <ParamField body="post_call_schema[].description" type="string" required>
+      Description explaining what this field represents
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+#### End Call Tool
+
+<ParamField body="end_call_tool.description" type="string" optional>
+  Description for end call tool functionality (maximum 500 characters)
+</ParamField>
+
+#### Voice and Speech Settings
+
+<ParamField body="llm_temperature" type="number" optional>
+  LLM temperature configuration (range: 0-1)
+</ParamField>
+
+<ParamField body="voice_stability" type="number" optional>
+  Voice stability configuration (range: 0-1)
+</ParamField>
+
+<ParamField body="voice_similarity" type="number" optional>
+  Voice similarity configuration (range: 0-1)
+</ParamField>
+
+<ParamField body="speech_speed" type="number" optional>
+  Speech speed multiplier (range: 0.7-1.2)
+</ParamField>
+
+#### Call Behavior Settings
+
+<ParamField body="allow_interruptions" type="boolean" optional>
+  Allow customers to interrupt the assistant
+</ParamField>
+
+<ParamField body="filler_audios" type="boolean" optional>
+  Use filler audio responses during processing
+</ParamField>
+
+<ParamField body="re_engagement_interval" type="integer" optional>
+  Re-engagement interval in seconds (range: 7-600)
+</ParamField>
+
+<ParamField body="max_call_duration" type="integer" optional>
+  Maximum call length in seconds (range: 20-1200)
+</ParamField>
+
+<ParamField body="max_silence_duration" type="integer" optional>
+  Maximum silence duration before re-engagement in seconds (range: 1-120)
+</ParamField>
+
+<ParamField body="end_call_on_voicemail" type="boolean" optional>
+  Automatically end call when voicemail is detected
+</ParamField>
+
+<ParamField body="noise_cancellation" type="boolean" optional>
+  Enable noise cancellation during calls
+</ParamField>
+
+<ParamField body="record_call" type="boolean" optional>
+  Record the call audio
+</ParamField>
+
+<ParamField body="who_speaks_first" type="string" optional>
+  Party that speaks first. Options: `AI assistant`, `Customer`
+</ParamField>
+
+### Response
+
+<ResponseField name="message" type="string">
+  Success confirmation message
+</ResponseField>
+
+<ResponseField name="data" type="object">
+  <Expandable title="properties">
+    <ResponseField name="id" type="integer">
+      Unique identifier of the updated assistant
+    </ResponseField>
+
+    <ResponseField name="name" type="string">
+      Assistant name
+    </ResponseField>
+
+    <ResponseField name="status" type="string">
+      Current assistant status
+    </ResponseField>
+
+    <ResponseField name="type" type="string">
+      Assistant type (`inbound` or `outbound`)
+    </ResponseField>
+
+    <ResponseField name="mode" type="string">
+      Engine mode (`pipeline` or `multimodal`)
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+### Error Responses
+
+<ResponseField name="404 Not Found">
+  <Expandable title="Error Response">
+    <ResponseField name="message" type="string">
+      Error when the assistant doesn't exist or belongs to another account
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="422 Validation Error">
+  <Expandable title="Error Response">
+    <ResponseField name="message" type="string">
+      Error message describing validation failure
+    </ResponseField>
+    <ResponseField name="errors" type="object">
+      Detailed field-level validation errors
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="500 Internal Server Error">
+  <Expandable title="Error Response">
+    <ResponseField name="message" type="string">
+      Error message indicating assistant update failure
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseExample>
+
+```json 200 Success Response
+{
+  "message": "Assistant updated successfully",
+  "data": {
+    "id": 789,
+    "name": "Updated Sales Assistant",
+    "status": "active",
+    "type": "outbound",
+    "mode": "pipeline"
+  }
+}
+```
+
+```json 404 Not Found
+{
+  "message": "Assistant not found"
+}
+```
+
+```json 422 Validation Error
+{
+  "message": "Validation failed",
+  "errors": {
+    "speech_speed": [
+      "The speech speed must be between 0.7 and 1.2."
+    ],
+    "webhook_url": [
+      "The webhook url must be a valid URL."
+    ]
+  }
+}
+```
+
+```json 500 Internal Server Error
+{
+  "message": "Assistant update failed"
+}
+```
+
+</ResponseExample>
+
+### Notes
+
+- Only the fields included in your request body will be updated
+- All validation rules are identical to assistant creation
+- To remove a phone number assignment, set `phone_number_id` to `null`
+- To disable webhooks, set `webhook_url` to `null` or `is_webhook_active` to `false`
+- The assistant must belong to your account to be updated

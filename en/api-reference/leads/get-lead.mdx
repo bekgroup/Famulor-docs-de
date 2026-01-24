@@ -1,0 +1,116 @@
+---
+title: "Get leads"
+api: "GET /user/leads"
+description: "Retrieve all leads associated with your account"
+---
+
+This endpoint returns a complete list of all leads in your account across all campaigns.
+
+### Response Fields
+
+<ResponseField name="leads" type="array">
+  Array containing all lead records
+  <Expandable title="properties">
+    <ResponseField name="id" type="integer">
+      Unique lead identifier
+    </ResponseField>
+
+    <ResponseField name="campaign_id" type="integer">
+      Identifier of the campaign this lead belongs to
+    </ResponseField>
+
+    <ResponseField name="phone_number" type="string">
+      Lead's phone number formatted as E.164
+    </ResponseField>
+
+    <ResponseField name="variables" type="object">
+      Custom attributes stored with this lead
+    </ResponseField>
+
+    <ResponseField name="status" type="string">
+      Current status of the lead
+    </ResponseField>
+
+    <ResponseField name="created_at" type="string">
+      Date and time when the lead was added
+    </ResponseField>
+
+    <ResponseField name="updated_at" type="string">
+      Date and time of last update
+    </ResponseField>
+
+    <ResponseField name="campaign" type="object">
+      Campaign information
+      <Expandable title="campaign properties">
+        <ResponseField name="id" type="integer">
+          Campaign identifier
+        </ResponseField>
+        <ResponseField name="name" type="string">
+          Campaign name
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+
+    <ResponseField name="secondary_contacts" type="array">
+      Additional contacts linked to this lead
+      <Expandable title="secondary_contacts properties">
+        <ResponseField name="id" type="integer">
+          Secondary contact identifier
+        </ResponseField>
+        <ResponseField name="phone_number" type="string">
+          Secondary contact phone number in E.164 format
+        </ResponseField>
+        <ResponseField name="variables" type="object">
+          Variables for the secondary contact
+        </ResponseField>
+        <ResponseField name="status" type="string">
+          Secondary contact status
+        </ResponseField>
+        <ResponseField name="created_at" type="string">
+          Secondary contact creation date
+        </ResponseField>
+        <ResponseField name="updated_at" type="string">
+          Secondary contact last update date
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseExample>
+
+```json 200 Response
+[
+  {
+    "id": 1,
+    "campaign_id": 1,
+    "phone_number": "+1234567890",
+    "variables": {
+      "customer_name": "John Doe",
+      "email": "john.doe@example.com"
+    },
+    "status": "created",
+    "created_at": "2025-06-30 11:18:04",
+    "updated_at": "2025-06-30 11:18:04",
+    "campaign": {
+      "id": 1,
+      "name": "My new campaign"
+    },
+    "secondary_contacts": [
+      {
+        "id": 2,
+        "phone_number": "+1234567899",
+        "variables": {
+          "customer_name": "Jane Doe Secondary",
+          "email": "jane.doe.secondary@example.com"
+        },
+        "status": "created",
+        "created_at": "2025-06-30 11:18:04",
+        "updated_at": "2025-06-30 11:18:04"
+      }
+    ]
+  }
+]
+```
+
+</ResponseExample>
