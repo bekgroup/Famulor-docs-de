@@ -144,7 +144,8 @@ Konversationen werden automatisch basierend auf der Kombination aus `assistant_i
 
 <RequestExample>
 
-```bash KI-Antwort generieren
+<CodeGroup>
+```bash cURL
 curl -X POST "https://app.famulor.de/api/ai/generate-reply" \
   -H "Authorization: Bearer YOUR_API_TOKEN" \
   -H "Content-Type: application/json" \
@@ -158,6 +159,54 @@ curl -X POST "https://app.famulor.de/api/ai/generate-reply" \
     }
   }'
 ```
+
+```javascript JavaScript
+const response = await fetch("https://app.famulor.de/api/ai/generate-reply", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: "Bearer YOUR_API_TOKEN",
+  },
+  body: JSON.stringify({
+    assistant_id: 123,
+    customer_identifier: "+49155551234",
+    message: "Hi, I would like to schedule an appointment",
+    variables: {
+      customer_name: "John Smith",
+      source: "whatsapp",
+    },
+  }),
+});
+
+const data = await response.json();
+```
+
+```python Python
+import requests
+
+payload = {
+    "assistant_id": 123,
+    "customer_identifier": "+49155551234",
+    "message": "Hi, I would like to schedule an appointment",
+    "variables": {
+        "customer_name": "John Smith",
+        "source": "whatsapp",
+    },
+}
+
+response = requests.post(
+    "https://app.famulor.de/api/ai/generate-reply",
+    headers={
+        "Content-Type": "application/json",
+        "Authorization": "Bearer YOUR_API_TOKEN",
+    },
+    json=payload,
+    timeout=10,
+)
+
+print(response.json())
+```
+</CodeGroup>
 
 </RequestExample>
 
