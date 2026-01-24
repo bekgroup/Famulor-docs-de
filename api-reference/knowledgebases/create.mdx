@@ -67,7 +67,8 @@ Nach der Erstellung einer Wissensdatenbank sollten Sie:
 
 <RequestExample>
 
-```bash Wissensdatenbank erstellen
+<CodeGroup>
+```bash cURL
 curl -X POST "https://app.famulor.de/api/user/knowledgebases" \
   -H "Authorization: Bearer YOUR_API_KEY" \
   -H "Content-Type: application/json" \
@@ -76,6 +77,44 @@ curl -X POST "https://app.famulor.de/api/user/knowledgebases" \
     "description": "Technische Dokumentation für unsere Produkte"
   }'
 ```
+
+```javascript JavaScript
+const response = await fetch("https://app.famulor.de/api/user/knowledgebases", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: "Bearer YOUR_API_KEY",
+  },
+  body: JSON.stringify({
+    name: "Produktdokumentation",
+    description: "Technische Dokumentation für unsere Produkte",
+  }),
+});
+
+const data = await response.json();
+```
+
+```python Python
+import requests
+
+payload = {
+    "name": "Produktdokumentation",
+    "description": "Technische Dokumentation für unsere Produkte",
+}
+
+response = requests.post(
+    "https://app.famulor.de/api/user/knowledgebases",
+    headers={
+        "Content-Type": "application/json",
+        "Authorization": "Bearer YOUR_API_KEY",
+    },
+    json=payload,
+    timeout=10,
+)
+
+print(response.json())
+```
+</CodeGroup>
 
 </RequestExample>
 

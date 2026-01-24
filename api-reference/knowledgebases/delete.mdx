@@ -37,11 +37,40 @@ Alle Assistenten, die diese Wissensdatenbank verwendet haben, haben ihre Wissens
 
 <RequestExample>
 
-```bash Wissensdatenbank löschen
+<CodeGroup>
+```bash cURL
 curl -X DELETE "https://app.famulor.de/api/user/knowledgebases/1" \
      -H "Authorization: Bearer YOUR_API_KEY" \
      -H "Content-Type: application/json"
 ```
+
+```javascript JavaScript
+const response = await fetch("https://app.famulor.de/api/user/knowledgebases/1", {
+  method: "DELETE",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: "Bearer YOUR_API_KEY",
+  },
+});
+
+const data = await response.json();
+```
+
+```python Python
+import requests
+
+response = requests.delete(
+    "https://app.famulor.de/api/user/knowledgebases/1",
+    headers={
+        "Content-Type": "application/json",
+        "Authorization": "Bearer YOUR_API_KEY",
+    },
+    timeout=10,
+)
+
+print(response.json())
+```
+</CodeGroup>
 
 </RequestExample>
 
