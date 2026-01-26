@@ -16,9 +16,63 @@ famulor.de bietet integrierte "Tools", die Ihr KI-Assistent während eines Anruf
 
 - **Zweck**: Leitet den Anrufer vom KI-Assistenten zu einem menschlichen Agenten oder einer externen Telefonnummer weiter.
 - **Anwendungsfälle**: Warme Leads bei einem Verkaufsanruf, Eskalationen bei einem Support-Anruf, etc.
-- **Einstellungen**: In der Assistenten-Konfiguration fügen Sie die Telefonnummer oder Abteilung hinzu, an die der Anruf gehen soll, und optional eine kurze Wartemeldung.
 
-## 3. Terminplaner
+### Warm Call Transfer (Warmanrufweiterleitung)
+
+Famulor's proprietäre Warm Transfer-Funktion ermöglicht eine professionelle Anrufweiterleitung mit vollständigem Kontext-Transfer. Der KI-Assistent setzt den Kunden in die Warteschleife, kontaktiert den Supervisor, informiert ihn über die Situation und verbindet dann beide Parteien.
+
+**Konfigurationsoptionen:**
+
+- **Supervisor Telefonnummer**: Die Telefonnummer, die für die Warm-Weiterleitung gewählt wird. Optional können Sie eine benutzerdefinierte SIP-Adresse oder interne Durchwahl aktivieren.
+- **Ausgehende Telefonnummer**: Die Telefonnummer, die verwendet wird, um den Supervisor anzurufen (muss über einen ausgehenden Trunk verfügen).
+- **Caller ID für Supervisor**: Wählen Sie, welche Telefonnummer der Supervisor beim Empfang des Anrufs sieht (z.B. Kunden-Telefonnummer).
+- **Haltemusik**: Wählen Sie die Audio-Datei, die während der Warteschleife abgespielt wird (Standard-Haltemusik oder benutzerdefiniert).
+- **Haltemusik-Lautstärke**: Lautstärkepegel für die Haltemusik (0-100%).
+- **Wann die Weiterleitung erfolgen soll**: Beschreibt, wann die KI die Warmanrufweiterleitung initiieren soll (z.B. "Transfer the call to Iman").
+- **Haltemessage**: Nachricht, die an den Anrufer gesprochen wird, bevor er in die Warteschleife gesetzt wird (z.B. "Bitte kurz bleiben, ich leite Sie weiter").
+- **Zusammenfassungsanweisungen**: Anweisungen, wie die KI den Supervisor über den Anruf informieren soll. Beinhaltet:
+  - Wer ruft an (Name, Firma falls erwähnt)
+  - Warum wurde angerufen (Ziel oder Problem)
+  - Warum wird zu diesem Zeitpunkt ein Mensch benötigt
+- **Initiale Nachricht**: Die erste Nachricht, die die KI an den Supervisor sagt, wenn er antwortet.
+- **Verbundene Nachricht**: Nachricht, die an den Anrufer gesprochen wird, nachdem der Supervisor verbunden ist (z.B. "Sie sind jetzt verbunden. Vielen Dank").
+
+**Vorteile:**
+
+✅ **Kontext erhalten**: Agenten starten nicht kalt — sie wissen bereits, was der Kunde braucht  
+🎶 **Professionelle Erfahrung**: Anrufer hören eine Warteschleifen-Nachricht + Wartemusik  
+🔁 **Erweiterte Kompatibilität**: 
+- Web-Anrufe können an echte Telefonagenten weitergeleitet werden
+- Für SIP-Trunks ohne SIP REFER funktioniert Warm Transfer durch Erstellen einer neuen SIP INVITE
+
+**Mehrere Weiterleitungsziele**: Sie können mehrere Warmanrufweiterleitungsziele hinzufügen für verschiedene Szenarien oder Abteilungen.
+
+## 3. Tastatureingabe sammeln (DTMF)
+
+- **Zweck**: Ermöglicht es der KI, Kunden aufzufordern, Ziffern auf ihrer Telefontastatur einzugeben, während das Gespräch nahtlos weiterläuft.
+- **Anwendungsfälle**: Kontonummern, PINs, Telefonnummern, Kennzeichen, Bestellcodes — besonders wenn Genauigkeit und Privatsphäre wichtig sind.
+
+**Wie es funktioniert:**
+
+- **Läuft im Hintergrund** — keine unangenehmen Pausen im Gespräch
+- **Automatisches Submit** nach konfigurierbarem Timeout (Standard 5 Sekunden)
+- **Sofortiges Submit** wenn der Benutzer die Submit-Taste (# oder *) drückt
+- **Funktioniert parallel zur Sprache**: Kunden können sprechen oder tippen
+- Die eingegebenen Ziffern erscheinen als `[Tastatureingabe: 12345]` in der Konversation
+
+**Konfigurationsoptionen:**
+
+- **Eingabe-Timeout (Sekunden)**: Sekunden, die nach der letzten Ziffer gewartet werden, bevor die Eingabe automatisch eingereicht wird (Standard: 5 Sekunden).
+- **Eingabe-Taste**: Taste, die der Kunde drückt, um seine Eingabe einzureichen. Optionen:
+  - `#` (Pfund)
+  - `*` (Stern)
+  - Die Eingabe wird auch automatisch eingereicht, nachdem der Timeout abgelaufen ist.
+
+**Verwendung im System-Prompt:**
+
+Die KI kann den Kunden auffordern, Ziffern einzugeben, z.B.: "Bitte geben Sie Ihre Kontonummer auf Ihrer Telefontastatur ein und drücken Sie die Raute-Taste."
+
+## 4. Terminplaner
 
 - **Zweck**: Lässt die KI Ihre Kalenderverfügbarkeit überprüfen (z.B. über Cal.com oder Google Calendar) und einen Termin buchen.
 - **Typischer Ablauf**:
@@ -26,7 +80,7 @@ famulor.de bietet integrierte "Tools", die Ihr KI-Assistent während eines Anruf
   2. Anrufer wählt Datum/Uhrzeit.
   3. KI bestätigt und sendet eine Bestätigung (über E-Mail oder SMS, wenn konfiguriert).
 
-## 4. No-Code Automatisierungsplattform
+## 5. No-Code Automatisierungsplattform
 
 - **Zweck**: Nach oder während Anrufen kann die KI Aktionen in der Automatisierungsplattform auslösen (wie CRM aktualisieren, E-Mail senden oder Ergebnisse in Google Sheets protokollieren).
 - **Einrichtung**: Verknüpfen Sie Ihren Assistenten mit dem "Automatisierung"-Tab, wählen Sie Trigger ("Anruf beendet," "Kunde stimmt zu," etc.) und wählen Sie die Aktion (Slack-Benachrichtigung senden oder Zeile in Sheets hinzufügen).
