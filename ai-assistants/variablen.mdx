@@ -1,0 +1,159 @@
+---
+title: "Variablen"
+icon: "code"
+description: "Lerne wie du Variablen in Famulor nutzt, um Informationen während eines Anrufs abzurufen"
+---
+
+Lerne wie du Variablen in Famulor nutzt, um Informationen während eines Anrufs abzurufen.
+
+## Was ist eine Variable?
+
+Eine Variable ist ein Datenwert, den du während eines Anrufs speichern und wiederverwenden kannst. Mit Variablen kannst du z.B. den Namen des Anrufers, die Telefonnummer oder KI-generierte Werte festhalten.
+
+## System-Variablen
+
+Famulor bietet verschiedene System-Variablen, die automatisch verfügbar sind:
+
+### Zeit- und Datumsvariablen
+
+- **`{{now}}`** - Aktuelle Zeit vom Assistenten (Datum und Uhrzeit)
+- **`{created_at}`** - Datum und Uhrzeit, wann der Anruf gestartet ist
+
+### Telefonnummern-Variablen
+
+- **`{client_phone_number}`** oder **`{customer_phone}`** - Telefonnummer des Anrufers
+- **`{assistant_phone_number}`** - Telefonnummer des Assistenten
+
+### Assistenten- und Kampagnenvariablen
+
+- **`{assistant_name}`** - Name des Assistenten
+- **`{campaign_name}`** - Name der Kampagne (bei ausgehenden Anrufen)
+
+## Call Variables
+
+Call Variables sind benutzerdefinierte Variablen, die du vor dem Anruf definieren und an den Assistenten übergeben kannst. Diese ermöglichen es dir, personalisierte Gespräche zu führen und kontextspezifische Informationen bereitzustellen.
+
+### Variable Configuration
+
+#### Variable Definition
+
+Erstelle Call Variables, um Informationen an deinen Assistenten zu übergeben, bevor der Anruf startet.
+
+**Setup-Prozess:**
+
+1. Definiere Variablennamen und Standardwerte
+2. Übergebe Werte beim Erstellen von Anrufen/Leads oder beim Importieren von Clients
+3. Variablen sind sofort in Prompts und während des Anrufs verfügbar
+4. Nutze sie für Personalisierung und Kontext
+
+**Konfiguration:**
+
+- **Variablenname**: Der Bezeichner (z.B. `customer_name`)
+- **Standardwert**: Wird verwendet, wenn kein Wert übergeben wird (z.B. "John")
+
+### Variable Usage
+
+#### Verwendung in System-Prompts
+
+So verwendest du Call Variables in deinem Assistenten:
+
+- Referenziere Variablen mit der Syntax `{variable_name}`
+- Personalisiere Gespräche dynamisch
+- Stelle kontextspezifische Informationen bereit
+
+**Beispiele:**
+
+- **`{customer_name}`** für Personalisierung ("Hallo {customer_name}")
+- **`{email}`** für Kalender-Integrationen
+- **`{account_type}`** für maßgeschneiderte Antworten
+- **`{company}`** für Geschäftskontext
+
+### Data Sources
+
+Es gibt verschiedene Möglichkeiten, Call Variables zu befüllen:
+
+#### Manuelle Eingabe
+
+- Beim Erstellen einzelner Anrufe
+- Über die Kampagnen-Lead-Erstellung
+
+#### Import-Methoden
+
+- **CSV-Import**: Importiere Leads mit Variablen-Spalten
+- **API-Integration**: Direkte Integration mit Client-Daten
+- **Direkte CRM-Synchronisation**: Verbinde dich mit deinem CRM-System
+
+#### Automatisierungsplattform-Integrationen
+
+- **GoHighLevel (GHL)**: Automatisches Abrufen von Kontaktdaten und benutzerdefinierten Feldern
+- **Google Sheets**: Import von Leads mit Variablen aus Tabellenspalten
+- **250+ beliebte Tools und Plattformen**: Nutze unsere No-Code-Plattform für Integrationen
+- **Webhooks**: Eigene Integrationen über Webhooks für benutzerdefinierte Anwendungsfälle
+
+#### Plattform-Integration
+
+- Automatisch befüllt aus Client-Profilen
+- Verbunden mit bestehenden Kundendatenbanken
+- No-Code-Automatisierungs-Workflows
+
+## Best Practices
+
+1. **Verwende aussagekräftige Variablennamen**: Nutze klare Namen wie `customer_name` statt `name1`
+2. **Definiere Standardwerte**: Stelle sicher, dass wichtige Variablen Standardwerte haben
+3. **Dokumentiere deine Variablen**: Halte fest, welche Variablen verfügbar sind und wofür sie verwendet werden
+4. **Teste deine Variablen**: Überprüfe, ob Variablen korrekt übergeben und verwendet werden
+
+## Beispiel-Verwendung
+
+### System-Prompt Beispiel
+
+```
+Du bist ein Vertriebsassistent für {company}.
+
+Hallo {customer_name}, vielen Dank für dein Interesse an unseren Dienstleistungen.
+
+Basierend auf deinem Account-Typ ({account_type}) kann ich dir folgende Optionen anbieten...
+```
+
+### Call-Erstellung mit Variablen
+
+Wenn du einen Anruf erstellst, kannst du Variablen wie folgt übergeben:
+
+```json
+{
+  "assistant_id": "123",
+  "phone_number": "+49123456789",
+  "variables": {
+    "customer_name": "Max Mustermann",
+    "company": "Muster GmbH",
+    "account_type": "Premium",
+    "email": "max@muster.de"
+  }
+}
+```
+
+---
+
+## Verwandte Themen
+
+<CardGroup cols={2}>
+<Card title="System-Prompts" icon="brain" href="/ai-assistants/system-prompt">
+Lerne, wie du Variablen in deinen System-Prompts verwendest
+</Card>
+<Card title="Tools & Funktionen" icon="screwdriver-wrench" href="/ai-assistants/tools-and-functions">
+Erweitere die Fähigkeiten deines Assistenten mit Tools
+</Card>
+</CardGroup>
+
+<CardGroup cols={2}>
+<Card title="Automatisierungsplattform" icon="wand-magic-sparkles" href="/automation-platform/introduction">
+Nutze die No-Code-Plattform für erweiterte Integrationen
+</Card>
+<Card title="API Referenz" icon="code" href="/api-reference/introduction">
+Erfahre mehr über die API-Integration
+</Card>
+</CardGroup>
+
+<Tip>
+Call Variables sind essentiell für die Personalisierung von KI-Gesprächen. Sie ermöglichen es der KI, spezifische Kundeninformationen während des Anrufs zu verwenden, was die Interaktionen relevanter und effektiver macht.
+</Tip>
