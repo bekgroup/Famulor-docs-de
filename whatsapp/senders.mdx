@@ -1,0 +1,302 @@
+---
+title: "WhatsApp-Absender"
+description: "Erstellen und verwalten Sie WhatsApp Business Absender für KI-gestütztes Messaging"
+---
+
+Ein WhatsApp-Absender ist eine bei der WhatsApp Business API registrierte Telefonnummer, die Nachrichten senden und empfangen kann. Jeder Absender ist mit einem KI-Assistenten für automatisierte Antworten verbunden.
+
+## Was ist ein WhatsApp-Absender?
+
+Ein WhatsApp-Absender ist:
+
+* Eine dedizierte Telefonnummer, die mit WhatsApp Business verbunden ist
+* Mit einem KI-Assistenten für automatisierte Antworten verknüpft
+* In der Lage, Template-Nachrichten und freie Antworten zu senden
+
+## Optionen für den Nummerntyp
+
+Beim Erstellen eines WhatsApp-Absenders können Sie zwischen zwei Arten von Telefonnummern wählen:
+
+<CardGroup cols={2}>
+  <Card title="Plattform-Nummern" icon="building">
+    Nutzen Sie über unsere Plattform erworbene Telefonnummern. Wir übernehmen die Verifizierung automatisch mithilfe von KI-gestützter Sprachverifizierung.
+
+    **Ideal für:** Unternehmen, die eine dedizierte Geschäftsleitung mit automatisierter Einrichtung wünschen
+  </Card>
+
+  <Card title="Externe Nummern" icon="mobile">
+    Nutzen Sie Ihre eigene Mobilnummer. Sie verifizieren den Besitz durch den Empfang eines SMS- oder Sprachanrufs mit einem Verifizierungscode.
+
+    **Ideal für:** Unternehmen, die eine bereits vorhandene Nummer nutzen möchten
+  </Card>
+</CardGroup>
+
+## Erstellen eines WhatsApp-Absenders
+
+Die Erstellung eines WhatsApp-Absenders beginnt mit der Wahl des Nummerntyps, gefolgt vom entsprechenden Einrichtungs-Flow.
+
+### Schritt 1: Wählen Sie Ihren Nummerntyp
+
+Navigieren Sie zu **WhatsApp-Absender** → **Absender erstellen** und wählen Sie Ihren bevorzugten Nummerntyp:
+
+* **Plattform-Nummer** — Nutzen Sie eine Nummer von unserer Plattform (automatisierte KI-Verifizierung)
+* **Externe Nummer** — Nutzen Sie Ihre eigene Mobilnummer (SMS/Sprachcode-Verifizierung)
+
+***
+
+## Einrichtung von Plattform-Nummern
+
+Wenn Sie **Plattform-Nummer** gewählt haben, folgen Sie diesen Schritten:
+
+### Schritt 2: Vorverifizierung Ihrer Telefonnummer
+
+Bevor Sie eine Verbindung zu WhatsApp herstellen, muss Ihre Telefonnummer bei Meta verifiziert werden.
+
+<Warning>
+  **Warnung zur Anrufabfangung** — Während der Verifizierung werden ALLE eingehenden Anrufe an die gewählte Telefonnummer für bis zu 5 Minuten von unserem Verifizierungssystem abgefangen.
+
+  Das bedeutet:
+
+  * Ihr normaler KI-Assistent wird während dieser Zeit KEINE Anrufe entgegennehmen
+  * Alle Anrufe gehen an einen stillen Verifizierungs-Listener
+  * Reguläre Kunden, die diese Nummer anrufen, erleben eine Dienstunterbrechung
+
+  **Führen Sie dies NICHT auf einer produktiven Telefonnummer aus, die aktiv Kundenanrufe empfängt!**
+</Warning>
+
+1. Wählen Sie eine verfügbare Telefonnummer aus (es werden nur Nummern vom Typ „Normal“ angezeigt, die noch nicht für WhatsApp verwendet werden)
+2. Geben Sie einen **Anzeigenamen** für Ihr Unternehmen ein (dieser wird den Kunden angezeigt)
+3. Fügen Sie optional Informationen zum Unternehmensprofil hinzu (Über uns, Beschreibung, Adresse, Kategorie)
+4. Klicken Sie auf **Verifizierung starten**
+
+Das System verifiziert Ihre Nummer automatisch bei Meta mittels KI-gestützter Sprachverifizierung. Dies dauert in der Regel 1-2 Minuten.
+
+### Schritt 3: Wählen Sie Ihre verifizierte Nummer
+
+Sobald die Verifizierung abgeschlossen ist:
+
+1. Sie sehen Ihre verifizierte Nummer im Abschnitt „Verifizierte Nummern bereit“
+2. Wählen Sie die Nummer aus, die Sie verbinden möchten
+3. Klicken Sie auf **Weiter zur WhatsApp-Verbindung**
+
+### Schritt 4: Mit WhatsApp Business verbinden
+
+Dieser Schritt verbindet Ihre verifizierte Nummer über den Embedded Signup Flow von Meta mit WhatsApp.
+
+<Warning>
+  **WICHTIG: Erstellen Sie ein NEUES Konto** — Während des Facebook-Anmeldeprozesses MÜSSEN Sie ein brandneues WhatsApp Business-Konto erstellen. Wählen Sie KEIN bestehendes WhatsApp Business-Konto aus – dies führt zum Fehlschlagen der Integration.
+</Warning>
+
+<Frame>
+  <img src="https://mintcdn.com/famulor/U6S7wTqiZDvZeLo7/resources/whatsapp/step-add-number.png?fit=max&auto=format&n=U6S7wTqiZDvZeLo7&q=85&s=5fdf2a220327703a71e4d5bc65859a8e" alt="Klicken Sie auf 'Neue Nummer hinzufügen' in der Meta-Anmeldung" />
+</Frame>
+
+**Schritt A: Klicken Sie auf „Neue Nummer hinzufügen“**
+
+Wenn das Meta-Popup erscheint, suchen Sie nach der Option „Neue Nummer hinzufügen“. Geben Sie die Telefonnummer NICHT manuell ein.
+
+<Frame>
+  <img src="https://mintcdn.com/famulor/U6S7wTqiZDvZeLo7/resources/whatsapp/step-select-number.png?fit=max&auto=format&n=U6S7wTqiZDvZeLo7&q=85&s=fcdc93d7d4771902f921ae381e1e7195" alt="Wählen Sie Ihre vorverifizierte Nummer aus" />
+</Frame>
+
+**Schritt B: Wählen Sie Ihre vorverifizierte Nummer aus**
+
+Wählen Sie aus dem Dropdown-Menü die Telefonnummer aus, die Sie gerade verifiziert haben. Sie wird in der Liste erscheinen, da Meta sie bereits aus dem Verifizierungsschritt kennt.
+
+Nachdem Sie Ihre Nummer ausgewählt haben, schließen Sie die verbleibenden Schritte im Flow von Facebook ab (Unternehmensverifizierung, Berechtigungen usw.) und Sie werden automatisch zurückgeleitet.
+
+***
+
+## Einrichtung externer Nummern
+
+Wenn Sie **Externe Nummer** gewählt haben, folgen Sie diesen Schritten, um Ihre eigene Mobilnummer zu verbinden.
+
+### Anforderungen vor dem Start
+
+<Info>
+  Stellen Sie sicher, dass Sie folgendes bereit haben:
+
+  * **Telefon griffbereit** — Sie müssen Ihr Telefon zur Hand haben, um einen Verifizierungscode zu empfangen
+  * **SMS oder Anrufe aktiviert** — Ihre Nummer muss SMS-Nachrichten oder Sprachanrufe empfangen können
+  * **Nicht bereits bei WhatsApp** — Diese Nummer darf nicht bei der WhatsApp- oder WhatsApp Business-App registriert sein
+  * **Facebook-Konto** — Sie benötigen ein Facebook-Konto, um die Einrichtung abzuschließen
+</Info>
+
+### Schritt 2: Geben Sie Ihre Telefonnummer ein
+
+1. Geben Sie Ihre Telefonnummer im internationalen Format ein (z. B. +49 151 12345678)
+2. Geben Sie einen **Anzeigenamen** für Ihr Unternehmen ein
+3. Klicken Sie auf **Weiter**
+
+<Tip>
+  **Format der Telefonnummer** — Geben Sie Ihre Nummer beginnend mit + und Ihrem Ländercode ein:
+
+  * Deutschland: +49 151 12345678
+  * Österreich: +43 664 1234567
+  * Schweiz: +41 79 1234567
+</Tip>
+
+### Schritt 3: Mit WhatsApp Business verbinden
+
+Klicken Sie auf **Login with Facebook**, um den Embedded Signup Flow von Meta zu öffnen. Folgen Sie diesen Schritten:
+
+<Steps>
+  <Step title="Login with Facebook">
+    Ein Popup wird geöffnet. Stellen Sie sicher, dass Popups für diese Seite erlaubt sind.
+  </Step>
+
+  <Step title="WhatsApp Business-Konto erstellen">
+    Folgen Sie den Anweisungen, um ein **neues** WhatsApp Business-Konto zu erstellen. Wählen Sie kein bestehendes aus.
+  </Step>
+
+  <Step title="Geben Sie Ihre Telefonnummer ein">
+    Geben Sie bei Aufforderung dieselbe Telefonnummer ein, die Sie in Schritt 2 angegeben haben.
+  </Step>
+
+  <Step title="Per SMS oder Sprachanruf verifizieren">
+    Sie erhalten einen 6-stelligen Code per SMS oder Sprachanruf. Geben Sie diesen ein, um Ihre Nummer zu verifizieren.
+    <Tip>Wenn Sie innerhalb von 60 Sekunden keine SMS erhalten, wählen Sie die Option Sprachanruf.</Tip>
+  </Step>
+
+  <Step title="Einrichtung abschließen">
+    Erteilen Sie die erforderlichen Berechtigungen und schließen Sie das Popup, wenn Sie fertig sind. Sie werden automatisch zurückgeleitet.
+  </Step>
+</Steps>
+
+### Fehlerbehebung für externe Nummern
+
+<AccordionGroup>
+  <Accordion title="Popup blockiert?">
+    Erlauben Sie Popups für diese Seite in Ihren Browsereinstellungen und versuchen Sie es erneut.
+  </Accordion>
+
+  <Accordion title="Verifizierungscode nicht erhalten?">
+    Warten Sie 60 Sekunden und versuchen Sie dann die Option Sprachanruf. Stellen Sie sicher, dass Ihr Telefon Empfang hat.
+  </Accordion>
+
+  <Accordion title="Nummer bereits registriert?">
+    Wenn diese Nummer bereits bei WhatsApp registriert ist, müssen Sie dieses WhatsApp-Konto zuerst löschen, bevor Sie es mit der WhatsApp Business API verwenden können.
+  </Accordion>
+
+  <Accordion title="Probleme beim Facebook-Login?">
+    Stellen Sie sicher, dass Sie im richtigen Facebook-Konto angemeldet sind, oder versuchen Sie es mit einem anderen Browser.
+  </Accordion>
+</AccordionGroup>
+
+## Absender-Status
+
+Ihr Absender kann während des Betriebs verschiedene Status haben:
+
+| Status                                                 | Beschreibung                                                       |
+| ------------------------------------------------------ | ------------------------------------------------------------------ |
+| <span style={{color: '#22c55e'}}>**Online**</span>     | Voll einsatzbereit. Sie können Nachrichten senden und empfangen.  |
+| <span style={{color: '#3b82f6'}}>**Connecting**</span> | Wird initialisiert. Dauert in der Regel einige Sekunden.           |
+| <span style={{color: '#f59e0b'}}>**Pending**</span>    | Wartet auf Verifizierung oder Genehmigung.                         |
+| <span style={{color: '#6b7280'}}>**Offline**</span>    | Manuell deaktiviert. Nachrichten können weder gesendet noch empfangen werden. |
+| <span style={{color: '#ef4444'}}>**Suspended**</span>  | Von Meta wegen Richtlinienverstößen gesperrt.                      |
+| <span style={{color: '#ef4444'}}>**Failed**</span>     | Einrichtung fehlgeschlagen. Prüfen Sie die Fehlermeldung für Details. |
+
+## Absender-Konfiguration
+
+### KI-Assistenten verbinden
+
+Sobald Ihr Absender online ist, verbinden Sie einen KI-Assistenten, um eingehende Nachrichten automatisch zu bearbeiten:
+
+1. Bearbeiten Sie Ihren WhatsApp-Absender
+2. Wählen Sie einen Assistenten aus dem Dropdown-Menü aus
+3. Aktivieren Sie den Schalter **KI Aktiviert**
+4. Speichern Sie die Änderungen
+
+Alle eingehenden Nachrichten werden nun zur Beantwortung an Ihren KI-Assistenten weitergeleitet.
+
+### Unternehmensprofil
+
+Passen Sie an, wie Ihr Unternehmen für Kunden erscheint:
+
+* **Anzeigename** — Ihr in WhatsApp angezeigter Unternehmensname
+* **Über uns** — Kurzbeschreibung (max. 139 Zeichen)
+* **Beschreibung** — Detaillierte Beschreibung Ihres Unternehmens
+* **Adresse** — Geschäftsadresse
+* **Unternehmenskategorie** — Branchenkategorie (Automobil, Medizin, Einzelhandel usw.)
+* **Logo** — Logo-Bild Ihres Unternehmens
+* **Banner** — Banner-Bild für Ihr Profil
+* **Webseiten** — Links zu Ihren Webseiten
+* **Kontaktinformationen** — Zusätzliche E-Mail- und Telefonkontakte
+
+## Qualitätsbewertung & Messaging-Limits
+
+Meta verfolgt Ihre Messaging-Qualität und passt Ihre Limits entsprechend an.
+
+### Qualitätsbewertung verstehen
+
+Ihre Qualitätsbewertung basiert auf:
+
+* Blockierraten (Kunden, die Ihre Nummer blockieren)
+* Spam-Meldungen
+* Antwortraten
+* Kundenfeedback
+
+### Messaging-Limits
+
+Neue Absender beginnen mit begrenzter Kapazität, die sich bei guter Qualität erhöht:
+
+| Stufe   | Tägliches Limit    | Wie man es erreicht                          |
+| ------- | ------------------ | -------------------------------------------- |
+| Stufe 1 | \~250 Nachrichten  | Neuer Absender                               |
+| Stufe 2 | 1.000 Nachrichten  | Qualität über 7 Tage beibehalten            |
+| Stufe 3 | 10.000 Nachrichten | Konsistent hohe Qualität                     |
+| Stufe 4 | 100.000+ Nachr.    | Qualität auf Enterprise-Niveau               |
+
+<Tip>
+  **Zuerst Qualität aufbauen** — Konzentrieren Sie sich auf qualitativ hochwertige Gespräche, bevor Sie skalieren. Senden Sie relevante, angeforderte Inhalte, um eine hohe Qualitätsbewertung zu erhalten.
+</Tip>
+
+## Best Practices
+
+### 1. Wählen Sie die richtige Nummer
+
+Wählen Sie eine Telefonnummer aus einem Land, das zu Ihrer Zielgruppe passt. Kunden interagieren eher mit lokalen oder vertrauten Vorwahlen.
+
+### 2. Richten Sie Ihren Anzeigenamen sorgfältig ein
+
+Ihr Anzeigename erscheint in den Kunden-Chats. Verwenden Sie Ihren Unternehmensnamen oder eine klare Kennung, die Kunden erkennen und der sie vertrauen.
+
+### 3. KI-Assistenten verbinden
+
+Verknüpfen Sie einen KI-Assistenten, um eingehende Nachrichten automatisch zu bearbeiten. Dies stellt sicher, dass Kunden rund um die Uhr sofortige Antworten erhalten.
+
+### 4. Templates frühzeitig erstellen
+
+Nachrichten-Templates erfordern eine Genehmigung durch Meta, die bis zu 24 Stunden dauern kann. Erstellen und übermitteln Sie Ihre Templates, bevor Sie sie benötigen.
+
+### 5. Starten Sie mit Qualitätsgesprächen
+
+Neue Absender haben Messaging-Limits, die im Laufe der Zeit steigen. Konzentrieren Sie sich darauf, den Ruf Ihres Absenders durch hochwertige Gespräche aufzubauen, bevor Sie die Menge erhöhen.
+
+## Fehlerbehebung
+
+### Verifizierung fehlgeschlagen
+
+Wenn die Verifizierung fehlschlägt, hat Meta möglicherweise Anfragen vorübergehend blockiert. Warten Sie einige Minuten, bevor Sie es erneut versuchen, oder nutzen Sie eine andere Telefonnummer.
+
+### Absender bleibt auf „Ausstehend“ (Pending)
+
+Wenn Ihr Absender länger als ein paar Minuten im Status „Ausstehend“ bleibt:
+
+1. Prüfen Sie, ob Sie den Meta-Anmeldeflow vollständig abgeschlossen haben
+2. Stellen Sie sicher, dass Sie die richtige vorverifizierte Nummer ausgewählt haben
+3. Kontaktieren Sie den Support, falls das Problem bestehen bleibt
+
+### Absender gesperrt (Suspended)
+
+Wenn Meta Ihren Absender sperrt:
+
+1. Überprüfen Sie den Grund für die Sperrung in den Absenderdetails
+2. Beheben Sie etwaige Richtlinienverstöße
+3. Kontaktieren Sie den Meta-Support für Einsprüche
+
+## Nächste Schritte
+
+* Erfahren Sie mehr über [Nachrichten-Templates](/whatsapp/templates) und den Genehmigungsprozess
+* Richten Sie [Automatisierung-Trigger](/whatsapp/automation) für WhatsApp-Gespräche ein
+* Überprüfen Sie die [KI-Assistenten-Konfiguration](/ai-assistants/what-is-ai-assistant) für optimale Antworten

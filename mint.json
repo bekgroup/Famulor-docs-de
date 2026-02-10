@@ -17,7 +17,10 @@
   },
   "locales": {
     "default": "de",
-    "supported": ["de", "en"]
+    "supported": [
+      "de",
+      "en"
+    ]
   },
   "topAnchor": {
     "name": "Plattform-Anleitung",
@@ -26,67 +29,78 @@
   "sidebar": {
     "items": "card"
   },
-  "topbarLinks": [{
-    "name": "Home",
-    "url": "https://www.famulor.io"
-  }, {
-    "name": "🇬🇧 English",
-    "url": "https://docs.famulor.io/"
-  }, {
-    "name": "Support",
-    "url": "mailto:support@famulor.io"
-  }],
+  "topbarLinks": [
+    {
+      "name": "Home",
+      "url": "https://www.famulor.io"
+    },
+    {
+      "name": "🇬🇧 English",
+      "url": "https://docs.famulor.io/"
+    },
+    {
+      "name": "Support",
+      "url": "mailto:support@famulor.io"
+    }
+  ],
   "topbarCtaButton": {
     "name": "Dashboard",
     "url": "https://app.famulor.de"
   },
-  "anchors": [{
-    "name": "No-Code Automatisierung",
-    "icon": "wand-magic-sparkles",
-    "color": "#6c63ff",
-    "url": "automation-platform"
-  },
-  {
-    "name": "Mid-Call",
-    "icon": "webhook",
-    "color": "#0091bb",
-    "url": "automation-platform/mid-call-tools"
-  }, {
-    "name": "API Referenz",
-    "icon": "code",
-    "color": "#1c51fc",
-    "url": "api-reference"
-  }, {
-    "name": "MCP",
-    "icon": "plug",
-    "color": "#1FD5F9",
-    "url": "mcp/server"
-  }, {
-    "name": "Platform Status",
-    "icon": "chart-line",
-    "color": "#10b981",
-    "url": "https://status.famulor.io/",
-    "isDefaultHidden": false
-  }, {
-    "name": "Demo buchen",
-    "icon": "calendar-days",
-    "color": "#f59e0b",
-    "url": "https://cal.com/bek-group/demotermine",
-    "isDefaultHidden": false
-  }, {
-    "name": "Updates",
-    "icon": "megaphone",
-    "color": "#1c51fc",
-    "url": "updates"
-  }],
-  "navigation": [{
+  "anchors": [
+    {
+      "name": "No-Code Automatisierung",
+      "icon": "wand-magic-sparkles",
+      "color": "#6c63ff",
+      "url": "automation-platform"
+    },
+    {
+      "name": "Mid-Call",
+      "icon": "webhook",
+      "color": "#0091bb",
+      "url": "automation-platform/mid-call-tools"
+    },
+    {
+      "name": "API Referenz",
+      "icon": "code",
+      "color": "#1c51fc",
+      "url": "api-reference"
+    },
+    {
+      "name": "MCP",
+      "icon": "plug",
+      "color": "#1FD5F9",
+      "url": "mcp/server"
+    },
+    {
+      "name": "Platform Status",
+      "icon": "chart-line",
+      "color": "#10b981",
+      "url": "https://status.famulor.io/",
+      "isDefaultHidden": false
+    },
+    {
+      "name": "Demo buchen",
+      "icon": "calendar-days",
+      "color": "#f59e0b",
+      "url": "https://cal.com/bek-group/demotermine",
+      "isDefaultHidden": false
+    },
+    {
+      "name": "Updates",
+      "icon": "megaphone",
+      "color": "#1c51fc",
+      "url": "updates"
+    }
+  ],
+  "navigation": [
+    {
       "group": "Updates",
       "icon": "megaphone",
       "pages": [
         "updates/changelog"
       ]
     },
-    
     {
       "group": "Einführung",
       "pages": [
@@ -186,6 +200,16 @@
         "outbound-calls/voicemail-handling",
         "outbound-calls/scripts-and-prompts",
         "outbound-calls/mass-dialing"
+      ]
+    },
+    {
+      "group": "WhatsApp Business",
+      "pages": [
+        "whatsapp/integration",
+        "whatsapp/senders",
+        "whatsapp/templates",
+        "whatsapp/conversations",
+        "whatsapp/automation"
       ]
     },
     {
@@ -424,7 +448,7 @@
           "group": "Projektmanagement",
           "pages": [
             "automation-platform/mid-call-tools/integration-templates/asana-integration",
-            "automation-platform/mid-call-tools/integration-templates/notion-integration", 
+            "automation-platform/mid-call-tools/integration-templates/notion-integration",
             "automation-platform/mid-call-tools/integration-templates/jira-integration",
             "automation-platform/mid-call-tools/integration-templates/monday-integration"
           ]
@@ -448,7 +472,7 @@
           ]
         },
         {
-          "group": "Support", 
+          "group": "Support",
           "pages": [
             "automation-platform/mid-call-tools/integration-templates/zendesk-integration",
             "automation-platform/mid-call-tools/integration-templates/zoho-desk-integration"
@@ -554,9 +578,9 @@
       "pages": [
         "automation-platform/integrations/famulor-integrations-database",
         "automation-platform/integrations/famulor-integrations-c-z",
-         "automation-platform/integrations/zapier",
-         "automation-platform/integrations/make-com",
-         "automation-platform/integrations/n8n"
+        "automation-platform/integrations/zapier",
+        "automation-platform/integrations/make-com",
+        "automation-platform/integrations/n8n"
       ]
     },
     {
@@ -606,4 +630,4 @@
       "projectId": "sop2kcwotx"
     }
   }
-} 
+}

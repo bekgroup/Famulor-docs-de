@@ -1,0 +1,239 @@
+---
+title: "WhatsApp-Automatisierung"
+description: "Automatisieren Sie das WhatsApp-Messaging mit Triggern und Aktionen in der Automatisierungs-Plattform"
+---
+
+Die Automatisierungs-Plattform integriert sich mit WhatsApp, damit Sie Nachrichten automatisch senden, Flows durch WhatsApp-Ereignisse auslösen und KI-Antworten programmgesteuert generieren können.
+
+## Verfügbare Aktionen
+
+### WhatsApp-Template-Nachricht senden
+
+Senden Sie eine vorab genehmigte Template-Nachricht an einen Kunden.
+
+**Anwendungsfälle:**
+
+* Bestellbestätigungen nach einem Kauf senden
+* Terminerinnerungen nach Zeitplan auslösen
+* Follow-up-Nachrichten nach Anrufen zustellen
+* Kunden erneut ansprechen, die nicht geantwortet haben
+
+**Konfiguration:**
+
+| Feld                  | Beschreibung                                              |
+| --------------------- | --------------------------------------------------------- |
+| **Absender**          | Wählen Sie Ihren WhatsApp-Absender (muss online sein)     |
+| **Template**          | Wählen Sie aus genehmigten Templates                      |
+| **Empfänger-Telefon** | Kunden-Telefonnummer (E.164 Format: +491234567890)       |
+| **Empfänger-Name**    | Optionaler Kundenname zur Personalisierung                |
+| **Variablen**         | Dynamische Werte für Template-Platzhalter                 |
+
+<Tip>
+  **E.164 Format** — Telefonnummern müssen im internationalen Format mit Ländercode vorliegen. Beispiele:
+
+  * ✅ `+4915112345678`
+  * ✅ `+436641234567`
+  * ❌ `0151/12345678`
+  * ❌ `+49 (0) 151 12345678`
+</Tip>
+
+### WhatsApp-Nachricht senden (Freitext)
+
+Senden Sie eine Freitextnachricht an einen Kunden innerhalb des 24-Stunden-Messaging-Fensters.
+
+<Warning>
+  **24-Stunden-Fenster erforderlich** — Freitextnachrichten können nur an Kunden gesendet werden, die Ihnen innerhalb der letzten 24 Stunden eine Nachricht geschickt haben. Für Kunden außerhalb dieses Fensters nutzen Sie bitte eine Template-Nachricht.
+</Warning>
+
+**Anwendungsfälle:**
+
+* Sofortiges Follow-up zu aktuellen Gesprächen
+* Zustellung zeitkritischer Informationen
+* Automatische Reaktion auf Kundenanfragen
+
+**Konfiguration:**
+
+| Feld                  | Beschreibung                                     |
+| --------------------- | ------------------------------------------------ |
+| **Absender**          | Wählen Sie Ihren WhatsApp-Absender               |
+| **Empfänger-Telefon** | Kunden-Telefonnummer (E.164 Format)              |
+| **Nachricht**         | Nachrichtentext (max. 4096 Zeichen)              |
+
+### KI-Antwort generieren
+
+Generieren Sie eine KI-Antwort mithilfe Ihres Assistenten, identifiziert durch einen externen Kunden-Identifikator.
+
+**Anwendungsfälle:**
+
+* Aufbau eigener Chat-Schnittstellen
+* Integration von WhatsApp in externe CRM-Systeme
+* Erstellung kanalübergreifender KI-Antworten
+* Verarbeitung von Nachrichten von externen Plattformen
+
+**Konfiguration:**
+
+| Feld                      | Beschreibung                                                  |
+| ------------------------- | ------------------------------------------------------------- |
+| **Assistent**             | Wählen Sie den zu verwendenden KI-Assistenten                  |
+| **Kunden-Identifikator**  | Eindeutige Kunden-ID (z. B. Telefonnummer, E-Mail, CRM-ID)    |
+| **Nachricht**             | Die Nachricht, auf die geantwortet werden soll                |
+| **Variablen**             | Optionale Kontextvariablen für den Assistenten                |
+
+**Wie es funktioniert:**
+
+1. Die Aktion findet oder erstellt ein Gespräch für den Kunden-Identifikator
+2. Die Nachricht wird an Ihren KI-Assistenten gesendet
+3. Die KI-generierte Antwort wird zurückgegeben
+4. Sie können diese Antwort dann über WhatsApp oder andere Kanäle senden
+
+## Trigger (Auslöser)
+
+### WhatsApp-Nachricht erhalten
+
+Lösen Sie einen Flow aus, wenn ein Kunde eine WhatsApp-Nachricht sendet.
+
+**Verfügbare Daten:**
+
+* Kunden-Telefonnummer
+* Nachrichtentest
+* Absender-ID
+* Zeitstempel
+* Gesprächs-ID
+
+**Beispielhafte Anwendungsfälle:**
+
+* Nachrichten in einem CRM oder einer Datenbank protokollieren
+* Benachrichtigungen an Ihr Team senden
+* Follow-up-Sequenzen auslösen
+* Kundendaten sammeln und verarbeiten
+
+### WhatsApp-Gespräch gestartet
+
+Lösen Sie einen Flow aus, wenn ein neues WhatsApp-Gespräch beginnt.
+
+**Verfügbare Daten:**
+
+* Kunden-Telefonnummer
+* Erster Nachrichtentext
+* Absenderinformationen
+* Gesprächs-ID
+
+## Beispiellose Workflows
+
+### WhatsApp-Follow-up nach Anruf
+
+Senden Sie eine WhatsApp-Template-Nachricht, nachdem ein Anruf abgeschlossen wurde:
+
+```mermaid  theme={null}
+flowchart LR
+    A[Anruf beendet Trigger] --> B[5 Minuten warten]
+    B --> C{Anrufergebnis?}
+    C -->|Interessiert| D[Sende 'Interessiert' Template]
+    C -->|Nachfassen| E[Sende 'Follow-up' Template]
+    C -->|Kein Interesse| F[Ende]
+```
+
+**Einrichtung:**
+
+1. Trigger **Anruf beendet** hinzufügen
+2. Aktion **Verzögerung** (Delay) hinzufügen (optional)
+3. **Verzweigung** (Branch) basierend auf Anrufergebnis hinzufügen
+4. Aktion **WhatsApp-Template senden** für jeden Zweig hinzufügen
+5. Template und Variablen konfigurieren
+
+### Lead-Qualifizierung via WhatsApp
+
+Qualifizieren Sie Leads durch WhatsApp-Gespräche:
+
+```mermaid  theme={null}
+flowchart LR
+    A[Formular-Einsendung] --> B[Sende WhatsApp-Template]
+    B --> C[Warte auf Antwort]
+    C --> D[KI verarbeitet Antwort]
+    D --> E[CRM aktualisieren]
+```
+
+### Flow für Terminerinnerungen
+
+Automatisierte Terminerinnerungen senden:
+
+```mermaid  theme={null}
+flowchart LR
+    A[Zeitplan-Trigger] --> B[Termine abrufen]
+    B --> C[Schleife durch Termine]
+    C --> D[Sende Erinnerungs-Template]
+    D --> E[In Tabelle protokollieren]
+```
+
+## Variablen-Mapping
+
+Wenn Sie Template-Nachrichten senden, ordnen Sie Ihre Flow-Daten den Template-Variablen zu:
+
+**Template:**
+
+```
+Hallo {{1}}, Ihr Termin mit {{2}} am {{3}} wurde bestätigt.
+
+Ort: {{4}}
+```
+
+**Variablen-Mapping:**
+
+| Template-Variable | Flow-Daten                     |
+| ----------------- | ------------------------------ |
+| `{{1}}`           | `{{trigger.customer_name}}`    |
+| `{{2}}`           | `{{trigger.agent_name}}`       |
+| `{{3}}`           | `{{trigger.appointment_date}}` |
+| `{{4}}`           | `{{trigger.location}}`         |
+
+## Fehlerbehandlung
+
+### Häufige Fehler
+
+| Fehler                             | Ursache                                         | Lösung                                               |
+| ---------------------------------- | ----------------------------------------------- | ---------------------------------------------------- |
+| **Template nicht gefunden**       | Template-ID ungültig oder nicht genehmigt       | Prüfen, ob Template genehmigt und ID korrekt ist    |
+| **Absender offline**              | WhatsApp-Absender ist nicht online              | Absenderstatus prüfen, Verbindung sicherstellen      |
+| **Ungültige Telefonnummer**       | Telefonnummer nicht im E.164-Format             | Format als +[Ländercode][Nummer] anpassen            |
+| **Außerhalb des 24-Std.-Fensters** | Versuch, Freitext außerhalb des Fensters zu senden | Nutzen Sie stattdessen eine Template-Nachricht      |
+| **Rate limited**                  | Zu viele Nachrichten gesendet                   | Verzögerungen zwischen Nachrichten einbauen          |
+
+### Strategie für erneute Versuche (Retry)
+
+Implementieren Sie bei fehlgeschlagenen Nachrichten eine Retry-Strategie:
+
+1. 1 Minute warten
+2. Aktion erneut versuchen
+3. Falls es immer noch fehlschlägt: Fehler protokollieren und Ihr Team benachrichtigen
+
+## Best Practices
+
+### 1. Immer Templates für Outbound nutzen
+
+Wenn Sie den Kontakt mit Kunden initiieren, nutzen Sie immer genehmigte Templates. Freitextnachrichten funktionieren nur innerhalb des 24-Stunden-Fensters.
+
+### 2. Opt-Out-Optionen einbeziehen
+
+Fügen Sie bei Marketing-Nachrichten Abmeldehinweise ein, um Vorschriften einzuhalten und Ihre Qualitätsbewertung hochzuhalten.
+
+### 3. Rate-Limits respektieren
+
+Senden Sie nicht zu viele Nachrichten zu schnell. Implementieren Sie angemessene Verzögerungen bei Batch-Versendungen.
+
+### 4. Fehler elegant behandeln
+
+Fügen Sie Ihren Flows immer eine Fehlerbehandlung hinzu. Protokollieren Sie Fehlschläge und informieren Sie Ihr Team bei Problemen.
+
+### 5. Zuerst mit Einzelempfängern testen
+
+Bevor Sie Massenkampagnen starten, testen Sie Ihren Flow mit einem einzelnen Empfänger, um die korrekte Funktionsweise sicherzustellen.
+
+### 6. Qualitätsbewertung überwachen
+
+Behalten Sie die Qualitätsbewertung Ihres Absenders im Auge. Pausieren Sie Kampagnen, wenn Sie eine sinkende Qualität bemerken.
+
+## Nächste Schritte
+
+* Erfahren Sie mehr über [Nachrichten-Templates](/whatsapp/templates) und deren Erstellung
+* Richten Sie [WhatsApp-Absender](/whatsapp/senders) für Ihre Telefonnummern ein
+* Erkunden Sie die [Automatisierungs-Plattform](/automation-platform/introduction) für weitere Workflow-Optionen
