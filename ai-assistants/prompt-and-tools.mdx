@@ -1,0 +1,774 @@
+---
+title: "Prompt & Tools"
+icon: "wand-magic-sparkles"
+description: "Konfigurieren Sie die Wissensdatenbank, Tools, Variablen und den System-Prompt Ihres Assistenten, um dessen Fähigkeiten und Verhalten zu definieren."
+---
+
+Konfigurieren Sie das Ziel des Assistenten und die Tools, die er während der Anrufe verwenden kann.
+
+## Wissensdatenbank
+
+Geben Sie dem Assistenten Informationen zur Verwendung als Wissensdatenbank, wenn er auf Kundenanfragen antwortet – von Website-Inhalten, Dokumenten usw.
+
+### Wissensdatenbank-Auswahl
+
+<AccordionGroup>
+  <Accordion title="Wissensdatenbank wählen" icon="book-open">
+    Wählen Sie einen Wissensdatenbank-Speicher aus, der relevante Informationen für den Assistenten enthält.
+
+    **Anforderungen:**
+
+    * Muss zuerst in Ihrem Bereich [Wissensdatenbanken](/api-reference/knowledgebases/list) erstellt werden
+    * Zeigt Status (Aktiv, In Verarbeitung usw.) und Beschreibung an
+    * Nur Ihre eigenen Wissensdatenbanken sind verfügbar
+
+    <Tip>
+      Erstellen Sie Wissensdatenbanken aus Website-Inhalten, PDFs oder benutzerdefinierten Dokumenten, um Ihrem Assistenten domänenspezifische Informationen zu geben. Für eine umfassende Anleitung zur Einrichtung, einschließlich Inhaltstypen, Verarbeitungsstatus, Website-Scraping und Fehlerbehebung, siehe den vollständigen [Wissensdatenbank-Leitfaden](/conversation-design/knowledge-bases).
+    </Tip>
+  </Accordion>
+
+  <Accordion title="Wissensdatenbank-Modus" icon="brain">
+    Wählen Sie, wie die KI die Wissensdatenbank nutzen soll.
+
+    <CardGroup cols={2}>
+      <Card title="Funktionsaufruf" icon="function">
+        **Empfohlen für die meisten Fälle**
+
+        Verwendet einen Funktionsaufruf, um nur bei Bedarf nach Informationen in der Wissensdatenbank zu suchen. Genauer und effizienter.
+      </Card>
+
+      <Card title="Prompt-Injektion" icon="syringe">
+        **Für einfache Anwendungsfälle**
+
+        Führt nach jeder Kundenaussage eine Suche durch. Genauer, kann aber ohne Füll-Audios langsamer sein.
+      </Card>
+    </CardGroup>
+
+    <Note>
+      **Modus-Verfügbarkeit:** Die Modi Speech-to-Speech und Dualplex unterstützen nur den Funktionsaufruf-Modus.
+    </Note>
+  </Accordion>
+</AccordionGroup>
+
+## Benutzerdefinierte Mid-Call-Tools
+
+Erstellen und weisen Sie Ihre eigenen benutzerdefinierten Tools zu, die die KI **während des Anrufs** mit dem Kunden verwenden kann.
+
+<CardGroup cols={2}>
+  <Card title="Eigene Tools erstellen" icon="plus" href="/ai-assistants/custom-mid-call-tools">
+    Erstellen Sie Tools, die auf Ihre spezifischen Geschäftsanforderungen zugeschnitten sind: API-Integrationen, Datenbankabfragen, benutzerdefinierte Workflows und externe Dienstaufrufe.
+  </Card>
+
+  <Card title="Assistenten zuweisen" icon="link">
+    Wählen Sie aus, welche benutzerdefinierten Tools dieser Assistent verwenden kann, mit Mehrfachauswahl, Suche nach Name/Beschreibung und Echtzeit-Zuweisung.
+
+    **Umfang:** Nur Ihre eigenen Tools sind verfügbar.
+  </Card>
+</CardGroup>
+
+<Tip>
+  Lesen Sie die [Dokumentation zu benutzerdefinierten Tools](/ai-assistants/custom-mid-call-tools) für detaillierte Anleitungen zum Erstellen und Konfigurieren benutzerdefinierter Tools.
+</Tip>
+
+## Standard-Tools
+
+Wählen Sie integrierte Tools, die die KI **während des Anrufs** mit dem Kunden verwenden kann.
+
+<AccordionGroup>
+  <Accordion title="Anruf-Weiterleitung" icon="phone-arrow-right">
+    Leiten Sie Anrufe an mehrere Zielrufnummern wie verschiedene Personen oder Abteilungen gemäß Ihrem Ablauf weiter.
+
+    **Anwendungsfälle:**
+
+    * Eskalation an menschliche Agenten
+    * Abteilungs-Routing
+    * Spezialisten-Übergaben
+
+    **Konfigurationsoptionen:**
+
+    * **Standard-Modus:** Verwenden Sie reguläre Telefonnummern (z. B. +491234567890)
+    * **Erweiterter Modus:** Verwenden Sie das SIP-URI-Format für SIP-Anbieter (z. B. sip:+491234567890@sip-server)
+
+    **Für SIP-Integrationen:**
+
+    * Stellen Sie die Weiterleitung auf den Modus „Erweitert“ ein
+    * Verwenden Sie das SIP-URI-Format: `sip:nummer@sip-server`
+    * Überprüfen Sie, ob Ihr SIP-Anbieter SIP REFER unterstützt
+    * Testen Sie verschiedene URI-Formate, falls Weiterleitungen fehlschlagen
+
+    <Note>
+      **Prompt-Anweisung:** Fügen Sie in Ihren System-Prompt etwas ein wie „Rufen Sie die Weiterleitungsfunktion auf, wenn der Benutzer wünscht, mit jemand anderem zu sprechen“, um sicherzustellen, dass die KI dieses Tool angemessen verwendet.
+    </Note>
+
+    <Tip>
+      Wenn Weiterleitungen nicht funktionieren, lesen Sie unseren [SIP-Integration-Leitfaden zur Fehlerbehebung](/provisioning/sip-ai/sip-troubleshooting) für detaillierte Lösungen.
+    </Tip>
+  </Accordion>
+
+  <Accordion title="Anruf beenden" icon="phone-slash">
+    Beendet den Anruf, wenn das Gespräch abgeschlossen ist.
+
+    **Anwendungsfälle:**
+
+    * Natürlicher Gesprächsabschluss
+    * Ziel erreicht
+    * Kundenzufriedenheit bestätigt
+
+    <Note>
+      **Prompt-Anweisung:** Wenn die KI die Funktion „Anruf beenden“ nicht automatisch aufruft, fügen Sie in Ihren System-Prompt ein: „Rufen Sie die hang_up-Funktion auf, um den Anruf zu schließen“, wenn das Gespräch beendet werden soll.
+    </Note>
+  </Accordion>
+
+  <Accordion title="DTMF-Eingabe" icon="hashtag">
+    Senden Sie ganz einfach Tastatureingaben bei ausgehenden Anrufen, um eine reibungslose Navigation durch IVR-Menüs und automatisierte Workflows zu ermöglichen. Die KI navigiert mithilfe von Tastaturtasten, wenn sie anruft und auf Eingabeaufforderungen reagiert.
+
+    **Anwendungsfälle:**
+
+    * Navigationsmenüs am Telefon
+    * Durchwahlnummern eingeben
+    * Sicherheitscodes eingeben
+    * IVR-Systemnavigation
+
+    <Note>
+      **Prompt-Anweisung:** Fügen Sie in Ihren System-Prompt Anweisungen dazu ein, wann die DTMF-Eingabe verwendet werden soll, z. B. „Verwenden Sie das send_dtmf-Tool, um durch Telefonmenüs zu navigieren, wenn dies erforderlich ist, um die richtige Person zu erreichen.“
+    </Note>
+
+    Detaillierte Informationen zu den DTMF-Fähigkeiten finden Sie unter [Tools & Funktionen](/ai-assistants/tools-and-functions#dtmf-input).
+  </Accordion>
+
+  <Accordion title="Terminplanung" icon="calendar">
+    Echtzeit-Buchung von Terminen mit Integration mehrerer Kalenderplattformen.
+
+    **Verfügbare Integrationen:**
+
+    * **Cal.com:** Vollständige Einrichtungsanleitung unter [Cal.com-Planung](/ai-assistants/cal-com-scheduling)
+    * **GoHighLevel:** Kompletter Integrationsleitfaden unter [GoHighLevel-Planung](/ai-assistants/gohighlevel-scheduling)
+    * **Calendly:** Verbinden Sie Ihr Calendly-Konto, um Termine direkt über Anrufe zu buchen
+
+    **Anwendungsfälle:**
+
+    * Termine mit Kalendern buchen
+    * Echtzeit-Verfügbarkeit prüfen
+    * Automatische Bestätigungsdetails senden
+    * Synchronisierung mit bestehenden Kalendersystemen
+
+    **Einrichtung:**
+
+    1. Wählen Sie Ihren Kalenderanbieter (Cal.com, GoHighLevel oder Calendly)
+    2. Authentifizieren Sie sich mit Ihrem Kalenderkonto
+    3. Wählen Sie den Ereignistyp/Kalender für Buchungen aus
+    4. Die KI prüft automatisch die Verfügbarkeit und bucht Termine
+
+    <Note>
+      Verfügbar, wenn die Kalenderintegration in Ihren Plattformeinstellungen aktiviert ist.
+    </Note>
+  </Accordion>
+</AccordionGroup>
+
+## Anruf-Variablen
+
+Definieren Sie Variablen, die **vor** dem Anruf übergeben und im Prompt **wie {variable_name}** verwendet werden können.
+
+### Variablen-Konfiguration
+
+<AccordionGroup>
+  <Accordion title="Variablen-Definition" icon="code">
+    Erstellen Sie Anruf-Variablen, um Informationen an Ihren Assistenten zu übergeben, bevor der Anruf beginnt.
+
+    **Einrichtungsprozess:**
+
+    * Definieren Sie Variablennamen und Standardwerte
+    * Übergeben Sie Werte beim Erstellen von Anrufen/Leads oder beim Importieren von Kunden
+    * Variablen sind sofort in Prompts und während des Anrufs verfügbar
+    * Nutzen Sie sie für Personalisierung und Kontext
+
+    **Konfiguration:**
+
+    * **Variablenname:** Der Bezeichner (z. B. `customer_name`)
+    * **Standardwert:** Wird verwendet, wenn kein Wert übergeben wird (z. B. „Kunde“)
+  </Accordion>
+
+  <Accordion title="Variablen-Nutzung" icon="code">
+    So verwenden Sie Anruf-Variablen in Ihrem Assistenten:
+
+    **In System-Prompts:**
+
+    * Referenzieren Sie Variablen mit der Syntax `{variable_name}`
+    * Personalisieren Sie Gespräche dynamisch
+    * Geben Sie kontextspezifische Informationen an
+
+    **Beispiele:**
+
+    * `{customer_name}` zur Personalisierung („Hallo {customer_name}“)
+    * `{email}` für Kalenderintegrationen
+    * `{account_type}` für maßgeschneiderte Antworten
+    * `{company}` für den geschäftlichen Kontext
+  </Accordion>
+
+  <Accordion title="Datenquellen" icon="database">
+    Möglichkeiten zum Auffüllen von Anruf-Variablen:
+
+    **Manuelle Eingabe:**
+
+    * Beim Erstellen einzelner Anrufe
+    * Durch Lead-Erstellung für Kampagnen
+
+    **Import-Methoden:**
+
+    * CSV-Import mit Variablenspalten
+    * API-Integration mit Kundendaten
+    * Direkte CRM-Synchronisierung
+
+    **Integrationen von Automatisierungsplattformen:**
+
+    * **GoHighLevel (GHL):** Kontaktdaten und benutzerdefinierte Felder automatisch abrufen
+    * **Google Sheets:** Leads mit Variablen aus Tabellenspalten importieren
+    * **Verbindung mit über 250 beliebten Tools** und Plattformen über unsere No-Code-Plattform
+    * **Jede andere Plattform** über Webhooks für benutzerdefinierte Integrationen
+  </Accordion>
+</AccordionGroup>
+
+<Note>
+  Anruf-Variablen sind entscheidend für die Personalisierung von KI-Gesprächen. Sie ermöglichen es der KI, während der Anrufe spezifische Kundeninformationen zu verwenden, was die Interaktionen relevanter und effektiver macht.
+</Note>
+
+## Konfiguration des Anrufflusses
+
+### Wer spricht zuerst?
+
+Steuern Sie, ob Ihr Assistent oder der Kunde das Gespräch einleitet.
+
+<CardGroup cols={2}>
+  <Card title="KI-Assistent" icon="robot">
+    **Standardverhalten:** Assistent beginnt das Gespräch
+
+    Die KI wird den Anrufer sofort begrüßen und den Gesprächsfluss einleiten, sobald die Verbindung steht.
+
+    **Ideal für:** Die meisten Outbound-Szenarien, Sales-Anrufe, Terminerinnerungen
+  </Card>
+
+  <Card title="Kunde" icon="user">
+    **Warten auf Kunden:** Assistent hört zuerst zu
+
+    Wenn Sie „Kunde“ wählen, wartet die KI darauf, dass der Kunde zuerst spricht, bevor sie antwortet.
+
+    **Ideal für:** Inbound-Support-Anrufe, Empfangsszenarien, reaktive Unterstützung
+  </Card>
+</CardGroup>
+
+### Erste Nachricht
+
+Konfigurieren Sie das Erste, was Ihr Assistent sagt, wenn der Anruf beginnt.
+
+<AccordionGroup>
+  <Accordion title="Text der ersten Nachricht" icon="message">
+    Schreiben Sie die Eröffnungsnachricht, die Ihr Assistent zu Beginn jedes Anrufs spricht.
+
+    **Best Practices:**
+
+    * Halten Sie sie kurz und freundlich
+    * Stellen Sie Ihr Unternehmen/den Zweck klar vor
+    * Setzen Sie Erwartungen für das Gespräch
+    * Verwenden Sie Variablen für die Personalisierung (z. B. `{customer_name}`)
+
+    **Beispiel:** „Hallo {customer_name}, hier ist Sarah von Famulor. Ich rufe an, um mich bezüglich Ihrer letzten Anfrage zu unseren Dienstleistungen zu melden. Haben Sie einen Moment Zeit zum Plaudern?“
+  </Accordion>
+
+  <Accordion title="Erste Audiodatei" icon="volume">
+    **Optional:** Laden Sie eine benutzerdefinierte Audiodatei anstelle von Text-to-Speech hoch.
+
+    **Anforderungen:**
+
+    * MP3- oder WAV-Format
+    * Klare, hochwertige Aufnahme
+    * Professionelle Stimme und Tonalität
+    * Passt zur Stimme Ihres Assistenten, falls Sie Voice-Cloning verwenden
+
+    **Vorteile:**
+
+    * Perfekte Aussprache und Lieferung
+    * Konsistente Markenstimme
+    * Professioneller erster Eindruck
+    * Keine Text-to-Speech-Latenz für die Eröffnung
+
+    <Tip>
+      Dies funktioniert am besten, wenn die KI-Stimme mit der gleichen Stimme geklont wurde, die in der ersten Audiodatei verwendet wird.
+    </Tip>
+  </Accordion>
+</AccordionGroup>
+
+<Note>
+  Siehe unseren [Leitfaden zur ersten Nachricht](/ai-assistants/initial-message) für detaillierte Best Practices und Beispiele.
+</Note>
+
+## System-Prompt
+
+Definieren Sie die Persönlichkeit, die Ziele und die Verhaltensrichtlinien des Assistenten.
+
+### Bearbeitungs-Tools
+
+Wählen Sie die Bearbeitungserfahrung, die für Sie am besten funktioniert:
+
+<CardGroup cols={2}>
+  <Card title="KI-Prompt-Editor" icon="sparkles" href="/ai-assistants/ai-prompt-editor">
+    **Chat-basierte Bearbeitung mit KI-Unterstützung**
+
+    Beschreiben Sie Änderungen in einfacher Sprache und lassen Sie die KI intelligente Modifikationen vorschlagen. Überprüfen und akzeptieren/lehnen Sie jede Änderung einzeln ab.
+
+    **Ideal für:** Schnelle Iterationen, Verbesserung bestehender Prompts, textorientierte Bearbeitung
+  </Card>
+
+  <Card title="Flow Builder" icon="share-nodes" href="/ai-assistants/flow-builder">
+    **Visueller Drag-and-Drop-Editor**
+
+    Entwerfen Sie Gesprächsabläufe, indem Sie Knoten auf einer Leinwand verbinden. Erstellen Sie Verzweigungslogik und Multi-Pfad-Entscheidungsbäume visuell.
+
+    **Ideal für:** Komplexe Anrufflüsse, strukturierte Skripte, visuelle Denker
+  </Card>
+</CardGroup>
+
+<Note>
+  Beide Tools speichern den Prompt im selben Feld – ein Wechsel zwischen ihnen ist möglich, kann jedoch Anpassungen erfordern.
+</Note>
+
+### Prompt-Konfiguration
+
+<CardGroup cols={2}>
+  <Card title="Benutzerdefinierter Prompt" icon="pencil">
+    Schreiben Sie Ihren eigenen System-Prompt von Grund auf neu
+
+    * Volle Kontrolle über das Verhalten des Assistenten
+    * Zugeschnitten auf spezifische Anwendungsfälle
+    * Markdown-Formatierung unterstützt
+  </Card>
+
+  <Card title="Vorlagen-Bibliothek" icon="folder">
+    Beginnen Sie mit vorgefertigten Vorlagen
+
+    * Mehrere Sprachen verfügbar
+    * Verschiedene Gesprächstypen
+    * Bewährte, effektive Prompts
+  </Card>
+</CardGroup>
+
+### Best Practices
+
+<AccordionGroup>
+  <Accordion title="Seien Sie spezifisch" icon="bullseye">
+    Definieren Sie die Rolle, die Ziele und die Einschränkungen des Assistenten klar.
+
+    **Einschließen:**
+
+    * Wen der Assistent repräsentiert
+    * Was er erreichen möchte
+    * Was er tun soll/nicht tun soll
+  </Accordion>
+
+  <Accordion title="Grenzen setzen" icon="shield">
+    Definieren Sie, welche Themen und Aktionen tabu sind.
+
+    **Zu berücksichtigen:**
+
+    * Datenschutzanforderungen
+    * Rechtliche Compliance
+    * Markenrichtlinien
+  </Accordion>
+
+  <Accordion title="Beispiele verwenden" icon="lightbulb">
+    Stellen Sie Beispielgespräche bereit, um das Verhalten zu steuern.
+
+    **Beispiele helfen bei:**
+
+    * Tonfall und Stil
+    * Antwortlänge
+    * Umgang mit Einwänden
+  </Accordion>
+</AccordionGroup>
+
+<Tip>
+  Siehe unseren [Leitfaden zum System-Prompt](/ai-assistants/system-prompt) für detaillierte Best Practices und Beispiele.
+</Tip>
+
+# Aktionen nach dem Anruf
+
+Extrahierten Sie Daten aus dem Anruf und senden Sie diese an eine App/einen Webhook für Automatisierungs-Workflows.
+
+## Übersicht
+
+Aktionen nach dem Anruf automatisieren:
+
+* Extrahieren strukturierter Daten aus Gesprächen mithilfe von KI
+* Senden extrahierter Variablen an Webhooks zur Automatisierung
+* Auslösen von Workflows in verbundenen Plattformen
+* Aktualisieren von CRM-Datensätzen und Datenbanken
+* Ermöglichen komplexer Automatisierungsszenarien
+
+## Variablen nach dem Anruf
+
+Definieren Sie die Variablen, die die KI aus dem Anruf extrahieren und an einen Webhook senden soll.
+
+### Variablen-Konfiguration
+
+Konfigurieren Sie, welche Informationen die KI aus jedem Gespräch extrahieren soll:
+
+<AccordionGroup>
+  <Accordion title="Variablen-Definition" icon="code">
+    Erstellen Sie Variablen, die die KI identifizieren und aus Gesprächen extrahieren soll.
+
+    **Wie die Extraktion funktioniert:**
+    Die KI analysiert das vollständige Anrufprotokoll und berücksichtigt Ihren System-Prompt-Kontext, um die angeforderten Variablen zu extrahieren. Sie versteht, was während des Anrufs besprochen wurde, und extrahiert relevante Informationen basierend auf Ihren Variablenbeschreibungen.
+
+    **Konfiguration:**
+
+    * **Name:** Variablen-Bezeichner (3-16 Zeichen, Kleinbuchstaben, alphanumerisch)
+    * **Typ:** Datentyp für den extrahierten Wert
+    * **Beschreibung:** Klare Erklärung, damit die KI versteht, was aus dem Gespräch zu extrahieren ist
+
+    **Variablentypen:**
+
+    * **String:** Textwerte (Namen, Adressen, Kommentare)
+    * **Number:** Numerische Werte (Mengen, Preise, Bewertungen)
+    * **True/False:** Boolesche Werte (Ja/Nein-Antworten, Ziel erreicht)
+  </Accordion>
+
+  <Accordion title="Standard-Variablen" icon="list">
+    Jeder Assistent enthält standardmäßig diese wesentlichen Variablen:
+
+    **Status (True/False):** Ob das Anrufziel erreicht wurde oder nicht
+
+    **Summary (String):** Zusammenfassung des Anrufs in wenigen Worten
+
+    Sie können benutzerdefinierte Variablen basierend auf Ihrem spezifischen Anwendungsfall hinzufügen.
+  </Accordion>
+
+  <Accordion title="Beispiele für Variablen" icon="lightbulb">
+    Häufige Variablen für verschiedene Szenarien:
+
+    **Verkaufsqualifizierung:**
+
+    * `budget` (Number): Budgetbereich des Kunden
+    * `decision_maker` (True/False): Ist der Anrufer der Entscheidungsträger
+    * `timeline` (String): Wann sie die Lösung benötigen
+    * `pain_points` (String): Hauptherausforderungen, die erwähnt wurden
+
+    **Terminbuchung:**
+
+    * `appointment_date` (String): Bevorzugtes Termindatum
+    * `service_type` (String): Art der angeforderten Dienstleistung
+    * `contact_method` (String): Bevorzugte Kontaktmethode
+
+    **Support-Anrufe:**
+
+    * `issue_type` (String): Kategorie des Problems
+    * `urgency_level` (Number): Prioritätsbewertung (1-10)
+    * `resolution_status` (True/False): Wurde das Problem gelöst
+  </Accordion>
+</AccordionGroup>
+
+### Extraktionsprozess
+
+<AccordionGroup>
+  <Accordion title="Wie die KI Variablen extrahiert" icon="brain">
+    Die KI nutzt anspruchsvolle Analysen, um Variablen aus Ihren Anrufen zu extrahieren:
+
+    **Datenquellen:**
+
+    * **Vollständiges Anrufprotokoll:** Alles, was sowohl von der KI als auch vom Kunden gesagt wurde
+    * **System-Prompt-Kontext:** Die Ziele und Anweisungen Ihres Assistenten helfen dabei, die Extraktion zu steuern
+    * **Variablenbeschreibungen:** Klare Beschreibungen, die Sie für jede Variable angeben
+
+    **Analysemethode:**
+
+    1. Die KI überprüft das gesamte Gesprächsprotokoll
+    2. Berücksichtigt den System-Prompt und die Anrufziele
+    3. Identifiziert relevante Informationen basierend auf Variablenbeschreibungen
+    4. Extrahiert und formatiert Daten gemäß festgelegten Typen
+    5. Validiert extrahierte Werte vor dem Senden an den Webhook
+  </Accordion>
+</AccordionGroup>
+
+### Best Practices
+
+<Warning>
+  **Variablennennung:** Verwenden Sie nur Kleinbuchstaben und alphanumerische Zeichen. Keine Leerzeichen oder Sonderzeichen außer Unterstrichen.
+</Warning>
+
+<Tip>
+  **Klare Beschreibungen:** Schreiben Sie Beschreibungen, die klar erklären, wonach die KI im Gesprächsprotokoll suchen soll. Je spezifischer und kontextbewusster, desto besser ist die Extraktionsgenauigkeit.
+</Tip>
+
+<Note>
+  **System-Prompt-Synergie:** Ihre Variablenbeschreibungen funktionieren am besten, wenn sie mit Ihren System-Prompt-Zielen übereinstimmen. Wenn Ihr Assistent auf Lead-Qualifizierung ausgelegt ist, sollten Ihre Variablen diesen Zweck widerspiegeln.
+</Note>
+
+## Webhook-Konfiguration
+
+Senden Sie eine Anfrage an eine URL, die die extrahierten Variablen an externe Systeme übermittelt.
+
+### Webhook-Einstellungen
+
+<AccordionGroup>
+  <Accordion title="Webhook-Status" icon="check">
+    **Aktiviert/Deaktiviert:** Steuern Sie, ob Webhooks nach Anrufen gesendet werden
+
+    **Standard:** Deaktiviert – Aktivieren Sie dies nur, wenn Sie einen Webhook-Endpunkt bereit haben, um Daten zu empfangen
+  </Accordion>
+
+  <Accordion title="Webhook-URL" icon="link">
+    **URL-Endpunkt:** Wohin die extrahierten Daten gesendet werden sollen
+
+    **Format:** Muss eine gültige URL sein
+
+    **Beispiel:** `https://automate.famulor.de/api/v1/webhooks/ihre-webhook-id`
+
+    **Testfunktionalität:** Die integrierte Testfunktion sendet Beispieldaten, um die Konnektivität zu überprüfen
+  </Accordion>
+
+  <Accordion title="Zustellungsoptionen" icon="gear">
+    **Webhook nur bei Abschluss senden:**
+
+    * **Ja (Standard):** Daten nur für abgeschlossene Anrufe senden
+    * **Nein:** Daten für alle Anrufe senden, unabhängig vom Abschlussstatus
+
+    **Aufzeichnung in Webhook einschließen:**
+
+    * **Ja (Standard):** Aufzeichnungs-URL in die Webhook-Payload aufnehmen
+    * **Nein:** Nur extrahierte Variablen ohne Aufzeichnungslink senden
+  </Accordion>
+</AccordionGroup>
+
+### Webhook-Payload
+
+Der Webhook erhält eine umfassende JSON-Payload mit Anrufdetails, extrahierten Variablen und Transkript. Die vollständige API-Dokumentation finden Sie unter [Post-Call-Webhook-API](/api-reference/webhooks/post-call).
+
+**Wichtige Payload-Felder:**
+
+<AccordionGroup>
+  <Accordion title="Anrufinformationen" icon="phone">
+    * **id:** Eindeutiger Anruf-Bezeichner
+    * **customer_phone:** Telefonnummer des Kunden (E.164-Format)
+    * **assistant_phone:** Telefonnummer des Assistenten
+    * **duration:** Anrufdauer in Sekunden
+    * **status:** Anrufstatus (initiiert, klingelnd, besetzt, in Arbeit, beendet, abgeschlossen, vom Kunden beendet, vom Assistenten beendet, unbeantwortet, fehlgeschlagen)
+    * **created_at/finished_at:** ISO 8601 Zeitstempel
+  </Accordion>
+
+  <Accordion title="Extrahierte Variablen" icon="code">
+    * **extracted_variables:** Von der KI extrahierte Daten basierend auf Ihrer Post-Call-Schema-Konfiguration
+    * **input_variables:** Vor dem Anruf übergebene Variablen
+    * Enthält Standard-Variablen (Status, Zusammenfassung) plus Ihre benutzerdefinierten Variablen
+  </Accordion>
+
+  <Accordion title="Gesprächsdaten" icon="message">
+    * **transcript:** Detailliertes Gesprächsprotokoll mit Zeitstempeln
+    * **formatted_transcript:** Menschenlesbares Gesprächsformat
+    * **recording_url:** URL der Anrufaufzeichnung (falls aktiviert)
+  </Accordion>
+
+  <Accordion title="Kampagnen- & Lead-Daten" icon="users">
+    * **lead:** Lead-Informationen (für Kampagnenanrufe)
+    * **campaign:** Kampagnendetails und -einstellungen
+    * Nur enthalten für Anrufe, die Teil von Kampagnen sind
+  </Accordion>
+</AccordionGroup>
+
+**Beispiel für eine Webhook-Payload:**
+
+```json
+{
+  "id": 12345,
+  "customer_phone": "+491234567890",
+  "assistant_phone": "+49987654321",
+  "duration": 125,
+  "status": "completed",
+  "extracted_variables": {
+    "status": true,
+    "summary": "Kunde an Produktdemo interessiert",
+    "lead_quality": "hoch",
+    "budget": 5000
+  },
+  "input_variables": {
+    "customer_name": "Max Mustermann",
+    "product_interest": "Pro Plan"
+  },
+  "transcript": [
+    {
+      "text": "Hallo! Hier ist Sarah von Famulor.",
+      "type": "transcript",
+      "sender": "bot",
+      "timestamp": 1756812511.315143
+    },
+    {
+      "text": "Hallo, mir geht es gut, danke.",
+      "type": "transcript", 
+      "sender": "human",
+      "timestamp": 1756812514.104436
+    }
+  ],
+  "formatted_transcript": "KI: Hallo! Hier ist Sarah von Famulor.\nKunde: Hallo, mir geht es gut, danke.",
+  "recording_url": "https://app.famulor.de/storage/recordings/call-12345.mp4",
+  "created_at": "2025-01-15T10:30:00.000000Z",
+  "finished_at": "2025-01-15T10:32:05.000000Z"
+}
+```
+
+### Webhooks testen
+
+<Tip>
+  **Vor dem Live-Gang testen:** Verwenden Sie die Schaltfläche „Testanfrage stellen“, um Beispieldaten an Ihren Webhook-Endpunkt zu senden und zu überprüfen, ob alles korrekt funktioniert.
+</Tip>
+
+**Testprozess:**
+
+1. Konfigurieren Sie Ihre Variablen und die Webhook-URL
+2. Speichern Sie Ihre Assistenten-Einstellungen
+3. Klicken Sie auf „Testanfrage stellen“
+4. Überprüfen Sie, ob Ihr Webhook-Endpunkt die Testdaten empfängt
+5. Verifizieren Sie, dass die Payload-Struktur Ihren Erwartungen entspricht
+
+## Integrationsbeispiele
+
+### Unsere Automatisierungsplattform
+
+**Primäre Integration:** Nutzen Sie unsere integrierte No-Code-Automatisierungsplattform für nahtlose Workflows:
+
+* **Direkte Webhook-Verarbeitung:** Keine externe Einrichtung erforderlich
+* **Über 250 App-Integrationen:** Verbindung zu CRM, E-Mail, Kalendern und mehr
+* **Visueller Workflow-Builder:** Erstellen Sie komplexe Automatisierungen ohne Code
+* **Echtzeit-Datensynchronisierung:** Sofortige Verarbeitung extrahierter Variablen
+* **Vorgefertigte Vorlagen:** Sofort einsatzbereite Workflows für gängige Szenarien
+
+**Häufige Automatisierungs-Workflows:**
+
+* **CRM-Updates:** Kontaktdatensätze in HubSpot, Salesforce, Pipedrive automatisch aktualisieren
+* **E-Mail-Follow-ups:** Personalisierte E-Mails basierend auf Anrufergebnissen senden
+* **Lead-Scoring:** Lead-Scores basierend auf extrahierten Variablen aktualisieren
+* **Kalenderbuchung:** Follow-up-Termine automatisch planen
+* **Team-Benachrichtigungen:** Teammitglieder über wichtige Anrufe informieren
+
+### Externe Plattformen
+
+**Jede Plattform mit Webhook-Unterstützung:**
+
+* Empfangen Sie Webhook-Daten von unserer Plattform
+* Verarbeiten Sie extrahierte Variablen in Ihren eigenen Systemen
+* Erstellen Sie benutzerdefinierte Automatisierungs-Workflows
+* Integrieren Sie jede API oder jeden Dienst, der Webhooks akzeptiert
+
+**Anwendungsfälle:**
+
+* Verbindung zu jedem CRM, jeder E-Mail-Plattform oder jedem Business-Tool
+* Daten an benutzerdefinierte Anwendungen senden
+* Workflows in Automatisierungsplattformen von Drittanbietern auslösen
+* Daten in externen Datenbanken oder Systemen speichern
+
+### Eigene Entwicklung
+
+**API-Endpunkte:** Erstellen Sie benutzerdefinierte Empfänger für Webhook-Daten
+
+**Datenbank-Integration:** Speichern Sie Anrufdaten in Ihren eigenen Systemen
+
+**Geschäftslogik:** Lösen Sie komplexe Workflows basierend auf extrahierten Variablen aus
+
+## Testen Ihres Assistenten
+
+Nachdem Sie Ihre Assistenten-Einstellungen konfiguriert haben, ist es wichtig, sie gründlich zu testen, bevor Sie sie produktiv einsetzen.
+
+### Testmethoden
+
+<AccordionGroup>
+  <Accordion title="Mit Ihrem Assistenten sprechen" icon="microphone">
+    **Web-basiertes Testen:** Verwenden Sie die Schaltfläche „Mit Ihrem Assistenten sprechen“, um direkt über Ihren Browser zu testen
+
+    **Funktionen:**
+
+    * Echtzeit-Sprachgespräch über Ihren Webbrowser
+    * Testen Sie alle Assistenten-Fähigkeiten, einschließlich Tools und Wissensdatenbank
+    * Kein Telefon erforderlich – ideal für schnelle Iterationen
+    * Sofortige Rückmeldung zu Antworten und Verhalten
+
+    **Ideal für:** Schnelles Testen während der Entwicklung und Konfiguration
+  </Accordion>
+
+  <Accordion title="Telefonanruf-Test" icon="phone">
+    **Echter Telefonanruf-Test:** Rufen Sie Ihren Assistenten von einer beliebigen Telefonnummer aus an
+
+    **Ausgehende Assistenten:**
+
+    * Wenn keine spezifische Nummer eingestellt ist: Der Assistent ruft von einer zufälligen Nummer an
+    * Wenn eine Caller ID konfiguriert ist: Der Assistent ruft von Ihrer angegebenen Nummer an
+    * Testen Sie den vollständigen Outbound-Fluss einschließlich Wählen und der ersten Nachricht
+
+    **Eingehende Assistenten:**
+
+    * Rufen Sie die zugewiesene Telefonnummer direkt an
+    * Testen Sie, wie der Assistent eingehende Anrufe bearbeitet
+    * Überprüfen Sie das Anruf-Routing und die Antwortqualität
+
+    **Ideal für:** Abschlusstests unter realen Telefonbedingungen und Audioqualität
+  </Accordion>
+</AccordionGroup>
+
+### Checkliste für Tests
+
+<Tip>
+  **Umfassendes Testen:** Testen Sie alle konfigurierten Funktionen, einschließlich Wissensdatenbank-Abfragen, Variablen-Extraktion und Webhook-Zustellung.
+</Tip>
+
+**Wesentliche Tests:**
+
+* Sprachklarheit und Reaktionsgeschwindigkeit
+* Wissensdatenbank-Integration (falls konfiguriert)
+* Tool-Funktionalität (Weiterleitung, Planung usw.)
+* Genauigkeit der Variablen-Extraktion
+* Webhook-Zustellung (überprüfen Sie, ob Ihr Endpunkt Daten empfängt)
+* Randfälle und Fehlerbehandlung
+
+## Web-Widget-Integration
+
+Konfigurieren Sie Ihren Assistenten so, dass er als Web-Widget auf Ihrer Website funktioniert, um nahtlose Kundeninteraktionen zu ermöglichen.
+
+### Widget-Konfiguration
+
+<AccordionGroup>
+  <Accordion title="Widget-Einrichtung" icon="code">
+    **Einfache Integration:** Fügen Sie Ihren KI-Assistenten mit einem einfachen Code-Snippet zu jeder Website hinzu
+
+    **Funktionen:**
+
+    * **Sprach-Chat:** Kunden können direkt mit Ihrem Assistenten sprechen
+    * **Text-Fallback:** Option für textbasierte Gespräche
+    * **Anpassbares Erscheinungsbild:** Passen Sie die Farben und das Styling an Ihre Marke an
+    * **Mobil optimiert:** Funktioniert auf allen Geräten und Bildschirmgrößen
+  </Accordion>
+
+  <Accordion title="Widget-Verhalten" icon="gear">
+    **Intelligente Interaktionen:** Das Widget passt sich Ihrer Assistenten-Konfiguration an
+
+    **Fähigkeiten:**
+
+    * Verwendet dieselbe Wissensdatenbank und dieselben Tools wie der Telefon-Assistent
+    * Unterstützt alle konfigurierten Sprachen
+    * Extrahiert dieselben Post-Call-Variablen
+    * Sendet Webhooks für Web-Gespräche
+    * Berücksichtigt denselben System-Prompt und dieselbe Persönlichkeit
+  </Accordion>
+
+  <Accordion title="Anwendungsfälle" icon="lightbulb">
+    **Gängige Anwendungen:**
+
+    **Kundensupport:** Automatisierter Support rund um die Uhr auf Ihrer Website
+    **Lead-Qualifizierung:** Qualifizieren Sie Besucher, bevor sie den Vertrieb kontaktieren
+    **Terminbuchung:** Ermöglichen Sie Besuchern die Planung direkt über das Widget
+    **FAQ-Handling:** Beantworten Sie häufig gestellte Fragen sofort
+    **Produktdemos:** Führen Sie Besucher durch Ihre Produktfunktionen
+  </Accordion>
+</AccordionGroup>
+
+<Note>
+  Detaillierte Testanleitungen und Anweisungen zur Widget-Integration finden Sie in unserer Dokumentation [Assistenten testen](/ai-assistants/testing).
+</Note>
+
+<Note>
+  Detaillierte Anleitungen und Beispiele zur Webhook-Integration finden Sie in unserer [Automatisierungs-Dokumentation](/automation/overview).
+</Note>

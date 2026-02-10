@@ -1,0 +1,236 @@
+---
+title: "KI-Prompt-Editor"
+icon: "sparkles"
+description: "Bearbeiten und verbessern Sie die Prompts Ihres Assistenten mithilfe von KI-gestützten Vorschlägen über eine Chat-Schnittstelle"
+---
+
+Der KI-Prompt-Editor ist ein intelligentes Werkzeug, mit dem Sie die Prompts Ihres KI-Assistenten in natürlicher Sprache bearbeiten und verbessern können. Anstatt Text manuell zu editieren, können Sie mit einem KI-Assistenten chatten, der Ihre Anfragen versteht und intelligente Modifikationen vorschlägt.
+
+## Übersicht
+
+Der KI-Prompt-Editor bietet:
+
+* **Konversationelle Bearbeitung** – Beschreiben Sie Änderungen in einfacher Sprache
+* **Intelligente Vorschläge** – Die KI versteht den Kontext und nimmt relevante Änderungen vor
+* **Überprüfung vor der Übernahme** – Akzeptieren oder lehnen Sie jede Änderung einzeln ab
+* **Variablenverwaltung** – Verwalten Sie Pre-Call- und Post-Call-Daten ganz einfach
+* **Vorlagenbibliothek** – Starten Sie mit bewährten Prompt-Vorlagen
+
+<Frame>
+  <img src="https://mintcdn.com/famulor/K8UKKHV-lKgli753/resources/ai-assistants/ai-prompt-editor-overview.png?fit=max&auto=format&n=K8UKKHV-lKgli753&q=85&s=cd5ee36b5dde92c29cf5e3f667a8e77f" alt="KI-Prompt-Editor Benutzeroberfläche" />
+</Frame>
+
+## Erste Schritte
+
+<Steps>
+  <Step title="Assistenten öffnen">
+    Navigieren Sie im Seitenmenü zu **Assistenten** und klicken Sie auf den Assistenten, den Sie bearbeiten möchten.
+  </Step>
+
+  <Step title="KI-Prompt-Editor finden">
+    Scrollen Sie im Bearbeitungsformular zum Abschnitt **System-Prompt** und suchen Sie den Tab **KI-Prompt-Editor**.
+  </Step>
+
+  <Step title="Editor starten">
+    Klicken Sie auf die Schaltfläche **KI-Prompt-Editor starten**. Es öffnet sich ein modales Fenster mit der Editor-Schnittstelle.
+  </Step>
+</Steps>
+
+<Note>
+  Sie müssen Ihren Assistenten mindestens einmal speichern, bevor Sie den KI-Prompt-Editor verwenden können.
+</Note>
+
+## Schnittstellen-Übersicht
+
+Der KI-Prompt-Editor besteht aus drei Hauptbereichen:
+
+### Chat-Panel (Linke Seite)
+
+Hier interagieren Sie mit der KI:
+
+* Geben Sie Ihre Anfragen in das Eingabefeld unten ein
+* Sehen Sie den Gesprächsverlauf darüber ein
+* Nutzen Sie Schnellauswahl-Chips für gängige Aktionen:
+  * **Prägnanter formulieren** – Den Prompt kürzen
+  * **Mehr Details hinzufügen** – Mit Spezifikationen erweitern
+  * **Klarheit verbessern** – Anweisungen verständlicher machen
+  * **Anweisungen hinzufügen** – Neue Verhaltensrichtlinien ergänzen
+
+### Editor-Panel (Rechte Seite)
+
+Hier wird Ihr aktueller Prompt mit zwei Tabs angezeigt:
+
+* **System-Prompt** – Die Hauptanweisungen für Ihren Assistenten
+* **Erste Nachricht** – Die Begrüßung beim Anrufstart
+
+Wechseln Sie zwischen dem **Bearbeitungsmodus** (Textfeld) und dem **Vorschaumodus** (formatierte Ansicht mit Diff-Hervorhebungen).
+
+### Seitliche Tabs
+
+* **Variablen** – Verwalten Sie Variablen für Pre-Call-Daten
+* **Post-Call** – Definieren Sie Daten, die nach dem Anruf erfasst werden sollen
+
+## Verwendung des Chats
+
+### Anfragen stellen
+
+Beschreiben Sie einfach, was Sie ändern möchten:
+
+<AccordionGroup>
+  <Accordion title="Beispiel: Tonfall freundlicher gestalten" icon="face-smile">
+    **Sie:** „Mache den Tonfall freundlicher und lockerer.“
+
+    **KI:** Die KI wird Änderungen vorschlagen, um Begrüßungen herzlicher zu gestalten, eine konversationellere Sprache zu verwenden und formelle Phrasen abzuschwächen.
+  </Accordion>
+
+  <Accordion title="Beispiel: Informationen hinzufügen" icon="plus">
+    **Sie:** „Füge Informationen zu unserer Rückgaberichtlinie hinzu – 30 Tage ohne Angabe von Gründen.“
+
+    **KI:** Die KI wird die passende Stelle in Ihrem Prompt finden und die Details zur Rückgaberichtlinie ergänzen.
+  </Accordion>
+
+  <Accordion title="Beispiel: Szenario handhaben" icon="shield-check">
+    **Sie:** „Füge Anweisungen für den Umgang mit verärgerten Kunden hinzu.“
+
+    **KI:** Die KI wird Verhaltensrichtlinien zur Deeskalation hinzufügen und festlegen, wann an einen menschlichen Mitarbeiter weitergeleitet werden soll.
+  </Accordion>
+</AccordionGroup>
+
+### Tipps für bessere Ergebnisse
+
+* **Seien Sie spezifisch** – „Erwähne einen Rabatt von 10 %“ ist besser als „Rabatt-Infos hinzufügen“.
+* **Kontext angeben** – „Wenn nach Preisen gefragt wird, erwähne...“ gibt der KI ein besseres Verständnis.
+* **Eine Änderung nach der anderen** – Teilen Sie komplexe Änderungen in mehrere Anfragen auf.
+
+## Änderungen überprüfen
+
+Wenn die KI Änderungen vorschlägt, erscheinen diese in der Diff-Ansicht:
+
+* **Grüne Hervorhebung** – Neuer Text, der hinzugefügt wird
+* **Rote Hervorhebung** – Text, der entfernt wird
+* **Blaue Hervorhebung** – Text, der modifiziert wird
+
+### Änderungen akzeptieren oder ablehnen
+
+Jede Änderung hat zwei Schaltflächen:
+
+* **✓ Akzeptieren** – Diese spezifische Änderung übernehmen
+* **✗ Ablehnen** – Diese Änderung verwerfen
+
+Sie können auch Sammelaktionen nutzen:
+
+* **Alle akzeptieren** – Alle ausstehenden Änderungen übernehmen
+* **Alle ablehnen** – Alle ausstehenden Änderungen verwerfen
+
+<Warning>
+  Überprüfen Sie Änderungen immer, bevor Sie sie akzeptieren. Die KI macht intelligente Vorschläge, aber Sie kennen Ihr Geschäft am besten.
+</Warning>
+
+<Frame>
+  <img src="https://mintcdn.com/famulor/K8UKKHV-lKgli753/resources/ai-assistants/ai-prompt-editor-diff.png?fit=max&auto=format&n=K8UKKHV-lKgli753&q=85&s=3d2c90ace19e33222f16a1d64b2705af" alt="Änderungen in der Diff-Ansicht überprüfen" />
+</Frame>
+
+## Variablen
+
+Variablen ermöglichen es Ihnen, Anrufe mit dynamischen Daten zu personalisieren.
+
+### Variablen hinzufügen
+
+1. Klicken Sie auf den Tab **Variablen**
+2. Klicken Sie auf **Variable hinzufügen**
+3. Geben Sie einen Namen ein (z. B. `customer_name`, `appointment_time`)
+4. Legen Sie einen Standardwert fest
+
+### Variablen in Prompts verwenden
+
+Geben Sie Variablen direkt in Ihrem Prompt mit geschweiften Klammern ein: `{variable_name}`
+
+**Beispiel-Prompt:**
+
+```
+Hallo {customer_name}, ich rufe von Famulor an wegen Ihres Termins am {appointment_date}.
+```
+
+## Post-Call-Schema
+
+Definieren Sie strukturierte Daten, die Sie während oder nach dem Anruf erfassen möchten.
+
+### Post-Call-Felder hinzufügen
+
+1. Klicken Sie auf den Tab **Post-Call**
+2. Klicken Sie auf **Feld hinzufügen**
+3. Konfigurieren Sie:
+   * **Name** – Feldbezeichner (z. B. `meeting_scheduled`)
+   * **Typ** – `string`, `number` oder `boolean`
+   * **Beschreibung** – Was dieses Feld erfasst
+
+### Beispiel-Felder
+
+| Name                | Typ    | Beschreibung                                |
+| ------------------- | ------- | ------------------------------------------- |
+| `meeting_scheduled` | boolean | Ob ein Termin gebucht wurde                 |
+| `interest_level`    | string  | Kundeninteresse: heiß, warm, kalt           |
+| `callback_time`     | string  | Bevorzugtes Datum/Uhrzeit für Rückruf       |
+| `objection_reason`  | string  | Hauptgrund für Ablehnung bei mangelndem Interesse |
+
+<Tip>
+  Die KI kann Post-Call-Felder basierend auf Ihrem Prompt vorschlagen. Fragen Sie einfach: „Welche Daten sollte ich aus diesen Anrufen erfassen?“
+</Tip>
+
+<Frame>
+  <img src="https://mintcdn.com/famulor/K8UKKHV-lKgli753/resources/ai-assistants/ai-prompt-editor-postcall.png?fit=max&auto=format&n=K8UKKHV-lKgli753&q=85&s=d8829b7146b60f2ce0899c09d1bf689f" alt="Konfiguration von Post-Call-Feldern" />
+</Frame>
+
+## Vorlagen
+
+Wenn Sie den KI-Prompt-Editor zum ersten Mal öffnen, können Sie mit einer Vorlage beginnen:
+
+* **Mit bestehendem fortfahren** – Behalten Sie Ihren aktuellen Prompt bei
+* **Von vorne beginnen** – Starten Sie mit einem leeren Prompt
+* **Mit Vorlage starten** – Wählen Sie aus vorgefertigten Prompt-Vorlagen
+
+Vorlagen sind nach Anwendungsfällen organisiert:
+
+* Sales-Anrufe
+* Kundensupport
+* Terminplanung
+* Umfragen und Feedback
+* Lead-Qualifizierung
+
+<Frame>
+  <img src="https://mintcdn.com/famulor/K8UKKHV-lKgli753/resources/ai-assistants/ai-prompt-editor-templates.png?fit=max&auto=format&n=K8UKKHV-lKgli753&q=85&s=dc72e66c2fbe53bdf08e572e0c0d00c7" alt="Vorlagenauswahl-Bildschirm" />
+</Frame>
+
+## Speichern Ihrer Arbeit
+
+Klicken Sie auf die Schaltfläche **Speichern** oben rechts, um alle Änderungen an Ihrem Assistenten zu speichern.
+
+<Note>
+  Der Editor erkennt automatisch nicht gespeicherte Änderungen. Wenn Sie versuchen zu schließen, ohne zu speichern, werden Sie aufgefordert, zu speichern oder zu verwerfen.
+</Note>
+
+## Best Practices
+
+<CardGroup cols={2}>
+  <Card title="Mit Vorlagen starten" icon="layer-group">
+    Vorlagen bieten bewährte Ausgangspunkte. Passen Sie diese an, anstatt bei Null anzufangen.
+  </Card>
+
+  <Card title="Schrittweise iterieren" icon="repeat">
+    Nehmen Sie kleine Änderungen vor, testen Sie diese und verfeinern Sie sie. Überarbeiten Sie nicht alles auf einmal.
+  </Card>
+
+  <Card title="Jede Änderung prüfen" icon="magnifying-glass">
+    Die KI ist hilfreich, aber nicht perfekt. Überprüfen Sie Vorschläge immer, bevor Sie sie akzeptieren.
+  </Card>
+
+  <Card title="Nach der Bearbeitung testen" icon="phone">
+    Führen Sie nach Änderungen Testanrufe durch, um sicherzustellen, dass sich der Assistent wie erwartet verhält.
+  </Card>
+</CardGroup>
+
+## Verwandte Ressourcen
+
+* [Leitfaden für System-Prompts](/ai-assistants/system-prompt) – Vertiefung in das Schreiben von Prompts
+* [Flow Builder](/ai-assistants/flow-builder) – Visuelle Alternative für das Konversationsdesign
+* [Assistenten testen](/ai-assistants/testing) – So testen Sie Ihre Änderungen

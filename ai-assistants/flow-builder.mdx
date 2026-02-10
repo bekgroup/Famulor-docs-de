@@ -1,0 +1,360 @@
+---
+title: "Flow Builder"
+icon: "share-nodes"
+description: "Entwerfen Sie Gesprächsabläufe visuell mit einer intuitiven Drag-and-Drop-Schnittstelle"
+---
+
+Der Flow Builder ist ein visueller Drag-and-Drop-Editor für Konversationsflüsse, mit dem Sie Skripte für KI-Assistenten entwerfen können, ohne Code schreiben zu müssen. Erstellen Sie mehrstufige Gesprächsabläufe, indem Sie Knoten verbinden, die verschiedene Aktionen und Entscheidungspunkte darstellen.
+
+## Übersicht
+
+Der Flow Builder bietet:
+
+* **Visuelles Design** – Ziehen und Ablegen von Knoten auf einer Leinwand
+* **Mehrere Knotentypen** – Nachrichten, Prompts, Aktionen und mehr
+* **Verzweigungslogik** – Erstellen Sie unterschiedliche Pfade basierend auf Antworten
+* **Einstellungs-Panel** – Konfigurieren Sie die Persönlichkeit und das Verhalten des Agenten
+* **Import/Export** – Speichern und teilen Sie Flows als JSON-Dateien
+
+<Frame>
+  <img src="https://mintcdn.com/famulors/K8UKKHV-lKgli753/resources/ai-assistants/flow-builder-overview.png?fit=max&auto=format&n=K8UKKHV-lKgli753&q=85&s=877800da7a260a7612a8a4b0298f8e39" alt="Flow Builder Benutzeroberfläche" />
+</Frame>
+
+## Wann man den Flow Builder verwendet
+
+<CardGroup cols={2}>
+  <Card title="Nutzen Sie den Flow Builder für" icon="check">
+    * Strukturierte Gesprächsskripte
+    * Multi-Pfad-Entscheidungsbäume
+    * Komplexe Anrufflüsse mit Verzweigungen
+    * Visuelle Denker, die Diagramme bevorzugen
+  </Card>
+
+  <Card title="Nutzen Sie den klassischen Editor für" icon="pen">
+    * Einfache, lineare Konversationen
+    * Hochdynamische KI-Antworten
+    * Schnelle Prompt-Iterationen
+    * Textorientierte Bearbeitung
+  </Card>
+</CardGroup>
+
+## Erste Schritte
+
+<Steps>
+  <Step title="Assistenten öffnen">
+    Navigieren Sie zu **Assistenten** und klicken Sie auf den Assistenten, den Sie bearbeiten möchten.
+  </Step>
+
+  <Step title="Flow Builder finden">
+    Scrollen Sie im Bearbeitungsformular zum Abschnitt **System-Prompt** und klicken Sie auf den Tab **Flow Builder**.
+  </Step>
+
+  <Step title="Flow Builder starten">
+    Klicken Sie auf **Flow Builder starten**. Ein Vollbild-Editor wird geöffnet.
+  </Step>
+
+  <Step title="Wählen Sie den Startmodus">
+    * **Mit bestehendem fortfahren** – Bearbeiten Sie Ihren aktuellen Flow
+    * **Von vorne beginnen** – Starten Sie mit nur einem Start-Knoten
+    * **Mit Vorlage starten** – Laden Sie eine vorgefertigte Flow-Vorlage
+  </Step>
+</Steps>
+
+## Schnittstellen-Übersicht
+
+### Leinwand-Bereich (Mitte)
+
+Der Hauptarbeitsbereich, in dem Sie Ihren Flow aufbauen:
+
+* **Knoten** – Ziehen, um sie neu zu positionieren
+* **Verbindungen** – Linien, die den Fluss zwischen den Knoten zeigen
+* **Gitterhintergrund** – Hilft bei der Ausrichtung
+* **Zoom-Steuerung** – Vergrößern/Verkleinern und an Ansicht anpassen
+* **Verschieben** – Klicken und ziehen Sie auf einer leeren Stelle, um sich zu bewegen
+
+### Untere Symbolleiste
+
+Schnellaktionen zur Verwaltung Ihres Flows:
+
+| Schaltfläche      | Aktion                                      |
+| ----------------- | ------------------------------------------- |
+| ⚡ Auto Layout    | Knoten automatisch ordentlich anordnen       |
+| 📋 Duplizieren    | Ausgewählten Knoten kopieren                |
+| 🗑️ Löschen       | Ausgewählten Knoten oder Verbindung entfernen |
+| **+ Knoten hinzufügen** | Einen neuen Knoten zur Leinwand hinzufügen |
+
+### Einstellungs-Panel (Rechte Seite)
+
+Konfigurieren Sie die Persönlichkeit und das Verhalten Ihres Assistenten:
+
+* **Agenten-Name** – Der Name, den Ihre KI verwenden wird
+* **Agenten-Typ** – Vertrieb, Support, Umfrage usw.
+* **Sprache** – Gesprochene Sprache für Anrufe
+* **Durchsetzungsvermögen** – Wie hartnäckig die KI sein soll
+* **Humor** – Grad des Humors in den Antworten
+* **Variablen** – Pre-Call-Datenfelder
+* **Post-Call-Felder** – Daten, die nach den Anrufen erfasst werden sollen
+
+## Knotentypen
+
+Der Flow Builder verfügt über 5 Knotentypen, die jeweils einen spezifischen Zweck erfüllen:
+
+<Frame>
+  <img src="https://mintcdn.com/famulors/K8UKKHV-lKgli753/resources/ai-assistants/flow-builder-nodes.png?fit=max&auto=format&n=K8UKKHV-lKgli753&q=85&s=f9d2b247078e4a1229accfa5631fff65" alt="Flow Builder Knotentypen" />
+</Frame>
+
+### Start-Knoten (Grün)
+
+<Card title="Start-Knoten" icon="play" color="#22c55e">
+  Der Einstiegspunkt jeder Konversation. Jeder Flow muss genau einen Start-Knoten haben.
+
+  **Eigenschaften:**
+
+  * **Begrüßung** – Die erste Nachricht, wenn der Anruf beginnt
+
+  **Beispiel:** „Hallo, hier ist Sarah von Famulor. Wie geht es Ihnen heute?“
+</Card>
+
+### Sprechen-Knoten (Blau)
+
+<Card title="Sprechen-Knoten" icon="volume-high" color="#3b82f6">
+  Gibt eine vorformulierte Nachricht genau wie angegeben aus. Verwenden Sie diesen Knoten, wenn Sie einen präzisen Wortlaut benötigen.
+
+  **Eigenschaften:**
+
+  * **Text** – Die exakte Nachricht, die gesprochen werden soll
+  * **Ergebnisse (Outcomes)** – Unterschiedliche Pfade basierend auf der Kundenantwort
+
+  **Beispiel:** „Wir bieten derzeit einen zeitlich begrenzten Rabatt von 20 % auf alle Pläne an. Möchten Sie mehr erfahren?“
+</Card>
+
+### Prompt-Knoten (Lila)
+
+<Card title="Prompt-Knoten" icon="message" color="#a855f7">
+  Gibt der KI Anweisungen, wie sie antworten soll. Flexibler als Sprechen-Knoten – die KI generiert kontextbezogene Antworten.
+
+  **Eigenschaften:**
+
+  * **Prompt** – Anweisungen für die KI
+  * **Ergebnisse (Outcomes)** – Unterschiedliche Pfade basierend auf Antwortkategorien
+
+  **Beispiel-Prompt:** „Frage den Kunden nach seinem aktuellen Versicherungsschutz. Sei gesprächig und empathisch. Achte auf Erwähnungen der Familiengröße, Budgetbedenken oder den Zeitplan.“
+</Card>
+
+### Aktions-Knoten (Orange)
+
+<Card title="Aktions-Knoten" icon="bolt" color="#f97316">
+  Führt während des Anrufs spezielle Aktionen aus.
+
+  **Aktionstypen:**
+
+  * **Anrufweiterleitung** – An eine andere Nummer weiterleiten
+  * **Termin buchen** – Über einen verbundenen Kalender planen
+  * **Benutzerdefinierte Aktion** – Ein benutzerdefiniertes Mid-Call-Tool auslösen
+
+  **Beispiel:** Weiterleitung an das Vertriebsteam unter +49-555-123-4567, wenn der Kunde zum Kauf bereit ist.
+</Card>
+
+### Ende-Knoten (Rot)
+
+<Card title="Ende-Knoten" icon="phone-slash" color="#ef4444">
+  Beendet den Anruf oder leitet an ein anderes Ziel weiter.
+
+  **Endetypen:**
+
+  * **Anruf beenden** – Auflegen mit einer Abschlussnachricht
+  * **Anruf weiterleiten** – An eine Telefonnummer weiterleiten
+  * **Agenten-Transfer** – Übergabe an einen anderen Assistenten
+
+  **Beispiel-Abschluss:** „Vielen Dank für Ihre Zeit heute. Einen schönen Tag noch!“
+</Card>
+
+## Mit Knoten arbeiten
+
+### Knoten hinzufügen
+
+1. Klicken Sie in der unteren Symbolleiste auf **+ Knoten hinzufügen**.
+2. Wählen Sie den Knotentyp aus dem Dropdown-Menü aus.
+3. Der Knoten erscheint auf der Leinwand.
+4. Ziehen Sie ihn an die gewünschte Position.
+
+### Knoten verbinden
+
+1. Bewegen Sie den Mauszeiger über die untere Kante eines Knotens, um den **Ausgangspunkt** (kleiner Kreis) zu sehen.
+2. Klicken und ziehen Sie vom Ausgangspunkt weg.
+3. Verbinden Sie ihn mit dem **Eingangspunkt** eines anderen Knotens (obere Kante).
+4. Lassen Sie los, um die Verbindung zu erstellen.
+
+### Knoten bearbeiten
+
+1. Klicken Sie auf einen beliebigen Knoten, um ihn auszuwählen.
+2. Die Eigenschaften des Knotens erscheinen in einem Panel.
+3. Bearbeiten Sie den Text, den Prompt oder die Einstellungen.
+4. Änderungen werden automatisch auf der Leinwand gespeichert.
+
+### Knoten löschen
+
+* Wählen Sie einen Knoten aus und drücken Sie die **Entwickentaste (Del)** oder
+* Wählen Sie einen Knoten aus und klicken Sie auf die Schaltfläche 🗑️ in der Symbolleiste.
+
+<Warning>
+  Der Start-Knoten kann nicht gelöscht werden. Jeder Flow muss einen Start-Knoten haben.
+</Warning>
+
+## Ergebnisse (Mehrere Pfade)
+
+Sprechen- und Prompt-Knoten können mehrere **Ergebnisse (Outcomes)** haben – unterschiedliche Pfade, je nachdem, wie der Kunde antwortet.
+
+### Ergebnisse hinzufügen
+
+1. Wählen Sie einen Sprechen- oder Prompt-Knoten aus.
+2. Suchen Sie im Eigenschaften-Panel nach **Ergebnisse**.
+3. Klicken Sie auf **Ergebnis hinzufügen**.
+4. Benennen Sie das Ergebnis (z. B. „Interessiert“, „Nicht interessiert“, „Wünscht Rückruf“).
+
+### Ergebnisse verbinden
+
+Jedes Ergebnis erscheint als farbiger Punkt am unteren Rand des Knotens. Verbinden Sie jedes Ergebnis mit einem anderen Zielknoten, um eine Verzweigungslogik zu erstellen.
+
+<Frame>
+  <img src="https://mintcdn.com/famulors/K8UKKHV-lKgli753/resources/ai-assistants/flow-builder-branching.png?fit=max&auto=format&n=K8UKKHV-lKgli753&q=85&s=932916045af243724c9cc36934ceadb8" alt="Konversationsverzweigung mit Ergebnissen" />
+</Frame>
+
+**Beispiel-Flow:**
+
+```
+[Start] → [Frage nach Interesse]
+              ↓
+         [Prompt: „Frage, ob interessiert“]
+              ↓
+    ┌─────────┼─────────┐
+    ↓         ↓         ↓
+[Interessiert] [Vielleicht] [Nicht interessiert]
+    ↓         ↓         ↓
+[Demo buchen] [Info senden] [Danken & Beenden]
+```
+
+## Einstellungs-Panel
+
+<Frame>
+  <img src="https://mintcdn.com/famulors/K8UKKHV-lKgli753/resources/ai-assistants/flow-builder-settings.png?fit=max&auto=format&n=K8UKKHV-lKgli753&q=85&s=36683cf1b665ac9e6631f60720cc2192" alt="Flow Builder Einstellungs-Panel" />
+</Frame>
+
+### Agentenidentität
+
+| Einstellung     | Beschreibung                                            |
+| --------------- | ------------------------------------------------------- |
+| **Agenten-Name**| Name, den die KI verwendet, um sich vorzustellen         |
+| **Agenten-Typ** | Voreingestellte Persönlichkeit: Vertrieb, Support usw.  |
+| **Sprache**     | Primärsprache für die Konversation                      |
+
+### Persönlichkeit
+
+| Einstellung           | Optionen                       | Beschreibung                       |
+| --------------------- | ------------------------------ | ---------------------------------- |
+| **Durchsetzungsvermögen** | Niedrig / Mittel / Hoch        | Wie beharrlich die KI ist           |
+| **Humor**             | Aus / Niedrig / Mittel / Hoch  | Grad des Humors in den Antworten   |
+
+### Variablen
+
+Fügen Sie Pre-Call-Daten hinzu, die in Ihren Nachrichten verwendet werden können:
+
+1. Klicken Sie auf **Variable hinzufügen**.
+2. Geben Sie einen **Namen** ein (z. B. `product_interest`).
+3. Legen Sie einen **Standardwert** fest.
+
+Verwenden Sie Variablen in Nachrichten mit geschweiften Klammern: `{variable_name}`
+
+**Beispiel:** „Hallo {customer_name}, ich sehe, Sie haben sich für unser {product_interest} interessiert.“
+
+### Post-Call-Felder
+
+Definieren Sie Daten, die aus Anrufen extrahiert werden sollen:
+
+1. Klicken Sie auf **Feld hinzufügen**.
+2. Geben Sie **Name**, **Typ** und **Beschreibung** ein.
+3. Die KI wird versuchen, diese Felder basierend auf dem Gespräch auszufüllen.
+
+**Typen:** `string`, `number`, `boolean`
+
+## Import/Export
+
+### Ihren Flow exportieren
+
+1. Öffnen Sie das Einstellungs-Panel.
+2. Scrollen Sie nach unten.
+3. Klicken Sie auf **JSON exportieren**.
+4. Speichern Sie die `.json`-Datei.
+
+### Einen Flow importieren
+
+1. Klicken Sie in den Einstellungen auf **JSON importieren**.
+2. Wählen Sie Ihre `.json`-Datei aus.
+3. Der Flow wird auf der Leinwand geladen.
+
+<Tip>
+  Exportieren Sie Ihre Flows regelmäßig als Backups. Auf diese Weise können Sie Flows auch mit Teammitgliedern teilen.
+</Tip>
+
+## Voicemail-Einstellungen
+
+Konfigurieren Sie, was passiert, wenn eine Voicemail erkannt wird:
+
+* **Voicemail-Nachricht** – Nachricht, die hinterlassen wird, wenn die Mailbox abhebt
+* **Anruf bei Voicemail beenden** – Umschalten, um bei einer Voicemail automatisch aufzulegen
+
+## Speichern Ihres Flows
+
+Klicken Sie auf die Schaltfläche **Speichern** in der oberen rechten Ecke, um Ihren Flow im Assistenten zu speichern.
+
+<Note>
+  Der Flow wird als JSON im System-Prompt-Feld Ihres Assistenten gespeichert. Wenn Sie zum klassischen Editor wechseln, sehen Sie die rohen JSON-Daten.
+</Note>
+
+## Best Practices
+
+<CardGroup cols={2}>
+  <Card title="Einfach anfangen" icon="seedling">
+    Beginnen Sie mit einem einfachen Flow und fügen Sie schrittweise Komplexität hinzu. Testen Sie bei jedem Schritt.
+  </Card>
+
+  <Card title="Prompt-Knoten nutzen" icon="brain">
+    Prompt-Knoten geben der KI Flexibilität. Nutzen Sie sie für dynamische, kontextbezogene Antworten.
+  </Card>
+
+  <Card title="Ergebnisse planen" icon="diagram-project">
+    Skizzieren Sie vor dem Aufbau die Hauptpfade: positive, negative und neutrale Antworten.
+  </Card>
+
+  <Card title="Gründlich testen" icon="vial">
+    Führen Sie Testanrufe durch, die alle Pfade abdecken. Verifizieren Sie, dass jedes Ergebnis zum richtigen Ziel führt.
+  </Card>
+</CardGroup>
+
+## Fehlerbehebung
+
+<AccordionGroup>
+  <Accordion title="Knoten lassen sich nicht verbinden">
+    * Stellen Sie sicher, dass Sie von einem **Ausgangspunkt** (unten) zu einem **Eingangspunkt** (oben) ziehen.
+    * Prüfen Sie, ob Sie eine kreisförmige Verbindung erstellen.
+    * Der Start-Knoten hat nur einen Ausgang, der Ende-Knoten nur einen Eingang.
+  </Accordion>
+
+  <Accordion title="Flow wird nicht gespeichert">
+    * Überprüfen Sie Ihre Internetverbindung.
+    * Stellen Sie sicher, dass Sie mindestens einen Knoten (außer Start) haben.
+    * Suchen Sie nach Validierungsfehlern im Einstellungs-Panel.
+  </Accordion>
+
+  <Accordion title="KI folgt dem Flow nicht">
+    * Verwenden Sie Sprechen-Knoten für exakte Wortlautanforderungen.
+    * Machen Sie die Anweisungen im Prompt-Knoten spezifischer.
+    * Überprüfen Sie, ob die Ergebnisse klar definiert und verbunden sind.
+  </Accordion>
+</AccordionGroup>
+
+## Verwandte Ressourcen
+
+* [KI-Prompt-Editor](/ai-assistants/ai-prompt-editor) – Chat-basierte Alternative zur Prompt-Bearbeitung
+* [Leitfaden für System-Prompts](/ai-assistants/system-prompt) – Verständnis der Prompt-Grundlagen
+* [Assistenten testen](/ai-assistants/testing) – So testen Sie Ihre Flows

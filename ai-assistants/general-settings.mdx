@@ -1,0 +1,298 @@
+---
+title: "Allgemeine Assistenten‑Einstellungen"
+icon: "gear"
+description: "Grundkonfiguration für Famulor KI‑Assistenten – Rufrichtung, Nummern, Stimmen, Sprache, Audio und Schutzmechanismen."
+---
+
+<Info>
+Diese Seite führt dich Schritt für Schritt durch die wichtigsten Grundeinstellungen deines Famulor KI‑Assistenten – von der Rufrichtung bis zu den erweiterten Parametern.
+</Info>
+
+## Schnellstart
+
+So richtest du deinen ersten Famulor Assistenten ein:
+
+1. **Rufrichtung wählen:** Eingehend (Anrufe annehmen) oder ausgehend (Anrufe starten).
+2. **Assistenten‑Namen vergeben:** Interner Name wie „Support‑Assistent“ oder „Sales‑Qualifier“.
+3. **Telefonnummern konfigurieren:** Plattformnummern, SIP‑Nummern oder nur eine bestätigte Absender‑Nummer (Caller ID) zuweisen.
+4. **Stimme & Sprache wählen:** Integrierte Stimmen nutzen oder eine eigene Stimme klonen.
+5. **Erweiterte Einstellungen anpassen:** Modell, Zeiten, Audio‑Parameter und Schutzmechanismen feinjustieren.
+
+<Tip>
+  Teste jede Änderung mit einem kurzen Testanruf oder einer kleinen Kampagne, um sicherzugehen, dass sich der Assistent wie gewünscht verhält.
+</Tip>
+
+<Note>
+  Gehe die Abschnitte dieser Seite der Reihe nach durch. Jede Einstellung beschreibt, was sie bewirkt und wie du sie in Famulor sinnvoll einsetzt.
+</Note>
+
+## Rufrichtung & Grundsetup
+
+### Assistenten‑Typ
+
+Lege fest, ob dein Assistent **eingehende** oder **ausgehende** Anrufe bearbeitet. Diese Wahl entscheidet, welche Nummern‑ und Routing‑Optionen in Famulor sichtbar sind.
+
+- **Eingehend (Anrufe empfangen):** Dein Assistent nimmt Anrufe von Kundinnen und Kunden entgegen, z. B. als digitale Telefonzentrale oder Support‑Hotline.
+- **Ausgehend (Anrufe starten):** Dein Assistent ruft Leads oder Bestandskundschaft aktiv an, z. B. für Qualifizierung, Follow‑ups oder Terminbestätigungen.
+
+### Assistenten‑Name
+
+Vergib einen klaren, beschreibenden Namen, der Zweck und Einsatzbereich widerspiegelt, zum Beispiel:
+
+- „Lead‑Qualifizierung Outbound B2B“
+- „Kundensupport Level 1“
+- „Terminbuchung Praxis Dr. Müller“
+
+Ein konsistentes Namensschema hilft deinem Team dabei, Assistenten in der Famulor Oberfläche schnell zuzuordnen.
+
+## Telefonnummern‑Konfiguration
+
+Dein Assistent benötigt mindestens eine zugewiesene Rufnummer, um im Telefonnetz erreichbar zu sein oder Anrufe zu starten.
+
+### Für ausgehende Assistenten
+
+Du kannst folgende Optionen nutzen:
+
+- **Plattformnummern:** Direkt über Famulor gebuchte Nummern, ideal für schnelle Einrichtung ohne eigene Telefonanlage.
+- **SIP‑Nummern:** Einbindung deiner bestehenden VoIP‑ oder PBX‑Infrastruktur über SIP‑Trunks.
+- **Nur Caller ID:** Eine bestehende Firmennummer wird verifiziert und ausschließlich als angezeigte Absender‑Nummer bei ausgehenden Anrufen verwendet.
+
+### Für eingehende Assistenten
+
+Hier kommen in der Regel zum Einsatz:
+
+- **Plattformnummern:** Du leitest Kundinnen und Kunden direkt auf eine von Famulor bereitgestellte Nummer.
+- **SIP‑Nummern:** Du verknüpfst deine bestehende Telefonanlage mit Famulor und leitest Anrufe an den Assistenten weiter.
+
+**Wichtig:** Reine Caller‑ID‑Nummern können keine eingehenden Anrufe annehmen. Sie dienen nur als sichtbare Absender‑Nummer bei ausgehenden Gesprächen.
+
+### Kostenüberblick
+
+- **Plattformnummern:** Monatliche Grundgebühr pro Nummer, zusätzlich nutzungsbasierte Minutenpreise.
+- **SIP‑Integration:** In der Regel keine monatliche Gebühr seitens Famulor, es fallen nur Minutenkosten für die KI‑Verarbeitung an.
+- **Caller ID:** Keine eigenen Monatsgebühren, es gelten die Minutenpreise für ausgehende Gespräche.
+
+Wenn du Details zu Preisen, Regionen und Typen benötigst, orientiere dich an den Bereichen „Telefonnummern“ und „Kosten & Preise“ in der Dokumentation.
+
+## Engine‑Typ (Sprachverarbeitungs‑Modus)
+
+Bestimme, wie dein Famulor Assistent Sprache verarbeitet und Antworten erzeugt. Die Wahl des Modus beeinflusst Latenz, Natürlichkeit und Konfigurationsmöglichkeiten.
+
+### Pipeline‑Modus
+
+Klassische Kette aus Spracherkennung → Sprachmodell → Sprachausgabe.
+
+**Geeignet für:**
+
+- Komplexes Reasoning und lange Antworten
+- Präzise Kontrolle über Stimmen, Transcriber und Modelle
+- Szenarien mit vielen Tools und Integrationen
+
+### Speech‑to‑Speech‑Modus
+
+Direkte Sprach‑zu‑Sprach‑Verarbeitung ohne sichtbaren Zwischentext.
+
+**Geeignet für:**
+
+- Sehr natürliche Gespräche
+- Schnellste Turn‑Taking‑Erlebnisse
+- Einfache Use‑Cases mit Fokus auf Gesprächsfluss
+
+### Dualplex‑Modus (Beta)
+
+Kombiniert schnelle multimodale Verarbeitung mit hochwertigen Stimmen.
+
+**Geeignet für:**
+
+- Standard‑Use‑Cases mit Fokus auf Performance und Qualität
+- Empfohlene Voreinstellung für viele Famulor Assistenten
+
+## Sprach‑Konfiguration
+
+### Primäre Sprache
+
+Lege fest, in welcher Sprache der Assistent primär spricht und hört. Diese Einstellung wirkt sich aus auf:
+
+- Erkennungsgüte der Spracheingaben
+- Verfügbare Stimmen und Akzente
+- Standard‑Füllphrasen
+- Auswahl des passenden Modells
+
+### Sekundäre Sprachen
+
+Optional kann dein Assistent zusätzliche Sprachen verstehen und sprechen.
+
+**Typische Anwendungsfälle:**
+
+- Mehrsprachiger Kundensupport
+- Internationale Unternehmen mit Standorten in mehreren Ländern
+- Kundengespräche, die zwischen Sprachen wechseln
+
+Der Assistent erkennt üblicherweise automatisch, in welcher Sprache die andere Person spricht, und antwortet entsprechend.
+
+## TTS‑Anbieter & Stimmauswahl
+
+### TTS‑Anbieter
+
+Im Pipeline‑ und Dualplex‑Modus kannst du den Text‑zu‑Sprache‑Anbieter wählen. Übliche Optionen sind:
+
+- **Hochwertige Premium‑Stimmen** mit vielen Akzenten
+- **Schnelle, latenzarme Stimmen** für reaktive Gespräche
+
+### Stimmoptionen
+
+Es gibt drei Wege zur idealen Assistenten‑Stimme:
+
+1. **Vorhandene Stimmen nutzen**
+   - Vorgefertigte professionelle Stimmen
+   - Unterschiedliche Akzente und Sprechstile
+   - Verschiedene Gender‑ und Tonalitätsvarianten
+
+2. **Eigene Stimme klonen**
+   - Du lädst Sprachaufnahmen einer Sprecherin oder eines Sprechers hoch.
+   - Je nach Anbieter gelten Mindestlängen und Qualitätsanforderungen (eine Person, wenig Hintergrundgeräusche).
+   - Nach der Verarbeitung kannst du die Stimme direkt im Assistenten auswählen.
+
+3. **Brand‑Stimme abstimmen**
+   - Stimme so wählen und konfigurieren, dass sie zu deiner Marke passt (formell, locker, freundlich, sachlich).
+   - Einheitliche Stimme über mehrere Assistenten hinweg schafft Wiedererkennungswert für deine Marke.
+
+## Zeitzonen‑Einstellungen
+
+### Zeitzone
+
+Die Zeitzone deines Assistenten steuert:
+
+- Zeitangaben in Gesprächen („heute“, „morgen“, Uhrzeiten)
+- Terminplanungs‑Logik
+- Zeitstempel in Anrufprotokollen und Auswertungen
+
+**Empfehlung:** Wähle die Zeitzone deines Hauptstandorts oder der Mehrheit deiner Kundschaft. So sind alle Verweise auf Uhrzeiten konsistent.
+
+## Audio‑Optimierung
+
+### Umgebungsgeräusche
+
+Optional kannst du ein dezentes Hintergrundgeräusch unter die Stimme mischen, etwa ein leichtes Büro‑Ambiente.
+
+- **Vorteil:** Wirkt natürlicher und kaschiert minimale Verarbeitungszeiten.
+- **Achte darauf:** Zu laute Umgebungsgeräusche können die Spracherkennung beeinträchtigen.
+
+<Tip>
+  Wenn der Assistent Kundinnen und Kunden schlecht versteht, reduziere die Umgebungslautstärke oder deaktiviere sie vollständig.
+</Tip>
+
+### Füll‑Audio
+
+Füll‑Audios sind kurze Bestätigungslaute und Phrasen wie „mhm“, „okay“, „verstehe“, die während der Verarbeitung eingespielt werden.
+
+**Vorteile:**
+
+- Verhindern unnatürliche Sprechpausen
+- Halten Anrufende im Gespräch und reduzieren Abbrüche
+- Lassen den Assistenten aufmerksamer wirken
+
+Famulor stellt für jede unterstützte Sprache passende Standard‑Füllphrasen bereit. Du kannst diese pro Kategorie (positiv, neutral, fragend etc.) anpassen, um sie deiner Markenstimme anzunähern.
+
+<Note>
+  In den meisten Szenarien lohnt es sich, Füll‑Audio standardmäßig zu aktivieren. Passe Formulierungen und Häufigkeit anhand realer Anrufe an.
+</Note>
+
+## Erweiterte Einstellungen
+
+### LLM‑Modell
+
+Wähle das Sprachmodell passend zu deinem Modus und Use‑Case:
+
+- Modelle mit **niedriger Latenz** für besonders schnelle Gespräche.
+- Modelle mit **starkem Reasoning** für komplexe Logik und lange Antworten.
+
+**Praxis‑Tipp:**
+
+- Wenn Reaktionsgeschwindigkeit entscheidend ist (z. B. Support‑Hotline oder Outbound‑Kampagnen), priorisiere schnelle Modelle.
+- Für komplexe Entscheidungen (z. B. mehrstufige Qualifizierung, aufwändige Beratung) setze auf Modelle mit besserem Reasoning und kompensiere die Latenz durch Füll‑Audio.
+
+### LLM‑Temperatur
+
+**Bereich:** 0,0 – 1,0 &nbsp;|&nbsp; **Standard:** 0,1
+
+Die Temperatur steuert, wie „kreativ“ und variantenreich Antworten sind:
+
+- **Niedrig (0,0–0,3):** Stabil, wiederholbar, ideal für Business‑ und Funktionsaufrufe.
+- **Höher (0,7–1,0):** Freier, kreativer, z. B. für lockerere Gespräche.
+
+<Note>
+  Für viele Famulor Assistenten ist eine niedrige Temperatur empfehlenswert, damit der Assistent verlässlich und markenkonform antwortet.
+</Note>
+
+### Dauer‑ und Timing‑Einstellungen
+
+Steuere Gesprächsdauer, Wartezeiten und Stillstand, um Kosten und Nutzererlebnis auszubalancieren:
+
+- **Re‑Engagement‑Intervall:** Nach wie vielen Sekunden ohne Antwort der Assistent erneut nachfragt.
+- **Re‑Engagement‑Prompt:** Optionale Formulierung, wie der Assistent nach Stille nachhakt (z. B. „Sind Sie noch dran?“ in höflicher Variante).
+- **Maximale Gesprächsdauer:** Obergrenze für die Gesamtdauer eines Anrufs, um Kosten zu kontrollieren.
+- **Maximale Stille‑Dauer:** Zeit, nach der das Gespräch bei ausbleibender Antwort beendet wird.
+- **Klingeldauer:** Wie lange das Telefon klingelt, bevor der Anruf als unbeantwortet gilt (hilfreich, um Voicemail zu vermeiden).
+
+<Tip>
+  Starte mit moderaten Standardwerten und passe sie anhand echter Gespräche an. Höhere Grenzwerte erhöhen Kosten, zu niedrige Werte können das Gespräch zu früh abbrechen.
+</Tip>
+
+### Schutz‑ und Qualitätseinstellungen
+
+Diese Optionen helfen dir, Gesprächsqualität und Kosten im Griff zu behalten:
+
+- **Rauschunterdrückung:** Filtert Hintergrundgeräusche der Anrufenden. Deaktiviere sie, wenn Stimmen „abgeschnitten“ wirken.
+- **Auf Voicemail beenden:** Bei erkannten Anrufbeantwortern wird der Anruf automatisch beendet, um unnötige Kosten zu vermeiden.
+- **Voicemail‑Nachricht:** Optional kann der Assistent eine kurze Nachricht hinterlassen (etwa Name, Unternehmen, Rückrufbitte).
+- **Anrufe aufzeichnen:** Zeichnet Gespräche zur Qualitätssicherung und Analyse auf – denke an lokale Vorgaben und Einwilligungen.
+- **Maximale Anfangsstille:** Beendet den Anruf, wenn am Anfang niemand spricht (z. B. wenn doch nur die Mailbox abhebt).
+
+## Synthesizer‑Einstellungen
+
+In Pipeline‑ und Dualplex‑Modus kannst du die Stimmparameter deines Assistenten feinjustieren.
+
+### Stimmmodulation
+
+- **Emotionale Modulation:** Aktiviert, passt der Assistent Tonfall und Betonung an Kontext und Gesprächssituation an.
+- **Stabilität:** Steuert, wie konstant die Stimme klingt – niedrige Werte sind lebendiger, hohe Werte ruhiger und gleichmäßiger.
+- **Stimmähnlichkeit:** Relevant bei geklonten Stimmen – regelt, wie nah die Ausgabe an der Originalstimme liegt.
+- **Sprechgeschwindigkeit:** Bestimme, ob der Assistent eher langsam, normal oder zügig spricht, je nach Zielgruppe.
+
+<Tip>
+  Für komplexe Inhalte oder ältere Zielgruppen lohnt sich eine etwas langsamere Sprechgeschwindigkeit. Für kurze, operative Gespräche kannst du schneller sprechen lassen.
+</Tip>
+
+## Transcriber‑Einstellungen
+
+Im Pipeline‑Modus wählst du den Spracherkennungs‑Dienst und das Endpointing‑Verhalten.
+
+### Transcriber‑Auswahl
+
+Typischerweise stehen dir mehrere Anbieter mit unterschiedlichen Stärken zur Verfügung:
+
+- Anbieter mit **maximaler Genauigkeit** für kritische Fachgespräche.
+- Anbieter mit **sehr niedriger Latenz** für reaktive Dialoge.
+
+Teste für deine Sprache, Akzente und typische Umgebungsgeräusche, welcher Dienst in Famulor am zuverlässigsten arbeitet.
+
+### Endpointing & Unterbrechungen
+
+Endpointing regelt, wann der Assistent aufhört zuzuhören und mit Sprechen beginnt:
+
+- **Endpoint‑Empfindlichkeit:** Wie lange nach dem letzten Wort gewartet wird, bevor der Assistent antwortet.
+- **Unterbrechungs‑Empfindlichkeit:** Wie leicht der Assistent stoppt, wenn die anrufende Person ihm ins Wort fällt.
+- **Mindestanzahl an Wörtern für Unterbrechung:** Verhindert, dass zufällige Hintergrundgeräusche das Gespräch unterbrechen.
+- **Turn‑Detection‑Schwelle (bei multimodalen Modi):** Steuert, wie schnell der Assistent erkennt, dass die andere Person fertig ist.
+
+<Tip>
+  Beginne mit den Voreinstellungen in Famulor und optimiere erst nach echten Testanrufen: Wenn der Assistent zu früh ins Wort fällt, erhöhe die Empfindlichkeit. Wenn er träge reagiert, reduziere sie.
+</Tip>
+
+---
+
+<Note>
+  Sobald diese Grundeinstellungen sauber konfiguriert sind, kannst du dich im nächsten Schritt auf System‑Prompt, erste Nachricht, Tools, Variablen und Integrationen konzentrieren, um deinen Famulor Assistenten perfekt auf deinen Anwendungsfall zuzuschneiden.
+</Note>
+
