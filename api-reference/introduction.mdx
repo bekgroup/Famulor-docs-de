@@ -12,4 +12,29 @@ Alle API-Anfragen sollten an die folgende Basis-URL gesendet werden:
 
 ```
 https://app.famulor.de/api
-``` 
+```
+
+## Kommende Funktionen
+
+Wir arbeiten kontinuierlich an der Erweiterung unserer API. Hier sind die Funktionen, die in Kürze verfügbar sein werden:
+
+### 1. Stimmen-Vorschau & erweiterte Metadaten
+Wir werden für jede Stimme eine `preview_url` sowie zusätzliche Metadaten wie Akzent, Alter und `synthesizer_provider_id` bereitstellen. Dies ermöglicht es Ihnen, Stimmen besser zu filtern und Ihren Benutzern eine Vorschau der Stimmen direkt in Ihrer Anwendung zu ermöglichen.
+
+### 2. Warm Transfer via API
+Wir führen `warm_call_transfer` als neuen Tool-Typ ein. Dieser wird umfangreiche Konfigurationsmöglichkeiten bieten, darunter:
+`supervisor_phone`, `outbound_phone_id`, `caller_id_mode`, `hold_music`, `hold_message`, `summary_instructions` und mehr.
+
+### 3. Tastatureingaben erfassen (Collect Keypad)
+Diese Funktion wird zusammen mit dem Warm Transfer veröffentlicht und ermöglicht es, Benutzereingaben über das Tastenfeld (DTMF) während eines Anrufs zu erfassen und zu verarbeiten.
+
+### 4. Endpunkte für Provider-Auflistung
+Um die Konfiguration von Synthesizern (TTS) und Transcribern (STT) zu vereinfachen, werden wir dedizierte Endpunkte hinzufügen:
+- `GET /assistants/synthesizer-providers` (nach Sprache filterbar)
+- `GET /assistants/transcriber-providers` (nach Sprache filterbar)
+
+### 5. Individuelle Filler-Konfiguration
+Anstatt nur globale An/Aus-Optionen für Füllgeräusche (Fillers) zu haben, werden wir das Feld `filler_config` freigeben. Damit können Sie eigene Füller-Profile für verschiedene Kategorien (positiv, negativ, Frage, neutral) pro Assistent definieren.
+
+### 6. SIP-Trunk Import (End-to-End)
+Wir planen die Einführung von API-Endpunkten für das Onboarding eigener SIP-Trunks inklusive der Konfiguration von SIP-Zugangsdaten, Adressen und Proxy-Einstellungen. Bis zur Fertigstellung erfolgt die Einrichtung eigener Trunks weiterhin manuell über unser Admin-Panel.
