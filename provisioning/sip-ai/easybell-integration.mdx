@@ -81,6 +81,31 @@ Wenn Sie Ihr Easybell-System mit Famulor integrieren:
   </Card>
 </CardGroup>
 
+## Funktionsweise im Detail
+
+Eingehende und ausgehende Anrufe laufen über Easybell (SIP-Trunk oder Cloud Telefonanlage) und werden von Famulor an Ihren KI-Assistenten angebunden. Das folgende Diagramm zeigt den Ablauf eines **eingehenden Anrufs**:
+
+```mermaid theme={null}
+sequenceDiagram
+    participant K as Kunde
+    participant E as Easybell
+    participant F as Famulor
+    participant A as KI-Assistent
+
+    K->>E: Anruf an Ihre Easybell-Nummer
+    E->>F: SIP-Anruf (FQDN / erlaubte IPs)
+    F->>A: Anruf an zugewiesenen Assistenten
+    A->>F: Sprachantwort (Echtzeit)
+    F->>E: Medienstrom (RTP/SRTP)
+    E->>K: Gespräch mit KI-Assistent
+    Note over K,A: Kunde und KI-Assistent im Dialog
+    A->>F: Optional: Weiterleitung, Tool-Aufruf
+    F->>E: Weiterleitung z. B. an Nebenstelle
+    E->>K: Verbindung zu Mitarbeiter
+```
+
+**Kurz erklärt:** Der Kunde wählt Ihre bei Easybell hinterlegte Nummer. Easybell leitet den Anruf an die bei Famulor konfigurierte SIP-Adresse weiter (nach Prüfung der erlaubten IPs). Famulor schaltet Ihren KI-Assistenten dazu; Sprache wird in Echtzeit verarbeitet. Bei Bedarf kann der Assistent den Anruf an eine interne Nebenstelle (z. B. Cloud Telefonanlage) weiterleiten.
+
 ## Freigegebene IPs für eingehende Anrufe
 
 Damit eingehende Anrufe von Easybell zu Famulor funktionieren, müssen die Easybell-IP-Adressen bei Famulor freigegeben werden. Tragen Sie diese in der SIP-Trunk-Konfiguration unter **Eingehende Telefonie** als erlaubte IP-Adressen ein.
