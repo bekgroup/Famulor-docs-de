@@ -1,12 +1,12 @@
 ---
 title: 'Easybell-Integration'
-description: 'Verbinden Sie Ihr Easybell-Telefonsystem mit Famulor über SIP-Trunking'
+description: 'Verbinden Sie Ihr Easybell-Telefonsystem mit Famulor über SIP-Trunking oder die Cloud Telefonanlage'
 ---
 
 # Easybell-Integration
 
 <Note>
-  Eine Schritt-für-Schritt-Anleitung zur Verbindung Ihres Easybell-Telefonsystems mit Famulor über SIP-Trunking.
+  Schritt-für-Schritt-Anleitung zur Verbindung Ihres Easybell-Telefonsystems mit Famulor: per **SIP-Trunk** oder über die **Easybell Cloud Telefonanlage** (FQDN in Pro enthalten).
 </Note>
 
 <CardGroup cols={2}>
@@ -81,17 +81,36 @@ Wenn Sie Ihr Easybell-System mit Famulor integrieren:
   </Card>
 </CardGroup>
 
+## Freigegebene IPs für eingehende Anrufe
+
+Damit eingehende Anrufe von Easybell zu Famulor funktionieren, müssen die Easybell-IP-Adressen bei Famulor freigegeben werden. Tragen Sie diese in der SIP-Trunk-Konfiguration unter **Eingehende Telefonie** als erlaubte IP-Adressen ein.
+
+**Für TCP und UDP:**
+
+- 195.52.221.151
+- 195.185.214.173
+- 195.52.221.142
+
+**Für TLS:**
+
+- 212.172.204.95
+- 212.172.58.207
+
+<Note>
+  Wenn Sie die **Easybell Cloud Telefonanlage** nutzen, gelten andere IP-Adressen – siehe Abschnitt „Famulor mit Easybell Cloud Telefonanlage“.
+</Note>
+
 ## Einrichtung Ihrer Easybell-Integration
 
 <Steps>
-  <Step title="Feature anfordern">
+  <Step title="Feature anfordern (nur bei SIP-Trunk)">
     <Card
       title="SIP Trunking FQDN Feature"
       icon="mail"
       color="red">
-      **Wichtig:** Da das Produkt im Easybell-Kundenportal aktuell noch nicht buchbar ist, muss dies über eine E-Mail an 'support@easybell.de' mit der Easybell-Kundennummer angefragt werden.
+      **Wichtig:** Bei Nutzung des **SIP-Trunks** muss das FQDN-Feature bei Easybell angefragt werden. Da das Produkt im Easybell-Kundenportal aktuell noch nicht buchbar ist, senden Sie eine E-Mail an support@easybell.de mit Ihrer Easybell-Kundennummer.
       <Note>
-        **Aktueller Preis August 2025: 10€ / Monat**
+        **Aktueller Preis August 2025: 10€ / Monat.** Wenn Sie die **Easybell Cloud Telefonanlage Pro** nutzen, ist die FQDN-Funktion bereits enthalten – siehe Abschnitt „Famulor mit Easybell Cloud Telefonanlage“.
       </Note>
       <CodeGroup>
         <CodeGroupItem title="E-Mail-Vorlage">
@@ -106,24 +125,41 @@ Wenn Sie Ihr Easybell-System mit Famulor integrieren:
       </CodeGroup>
     </Card>
   </Step>
-  <Step title="Nummer mit Easybell verbinden">
+  <Step title="Einrichtung in Famulor">
+    **Famulor (famulor.de):**
+    - Melden Sie sich auf [famulor.de](https://famulor.de) an.
+    - Gehen Sie im Reiter **„Deine Telefonnummern“** auf **„SIP-Trunk integrieren“**.
+
+    <img src="/images/easybell/easybell-1.png" alt="Famulor: Deine Telefonnummern – SIP-Trunk integrieren" />
+
+    - Unter **SIP-Trunk-Konfiguration** tragen Sie **Benutzername**, **Passwort** und die Einstellungen für **ausgehende Telefonie** ein (z. B. SIP-Adresse z. B. voip.easybell.de, Rufnummernformat).
+
+    <img src="/images/easybell/easybell-2.png" alt="SIP-Trunk: Authentifizierung und ausgehende Telefonie" />
+
+    - Unter **Eingehende Telefonie** geben Sie die erlaubten Easybell-IP-Adressen ein (siehe Abschnitt „Freigegebene IPs für eingehende Anrufe“). Die angezeigte **„Unsere SIP-Adresse“** wird später im Easybell-Kundenportal benötigt.
+
+    <img src="/images/easybell/easybell-3.png" alt="Eingehende Telefonie: SIP-Adresse und erlaubte IPs" />
+
+    - Bestätigen Sie die Konfiguration. Anschließend können Sie einen **KI-Assistenten** anlegen und der Rufnummer zuordnen.
+
+    <img src="/images/easybell/easybell-4.png" alt="Assistent bearbeiten: Anrufrichtung, Name, Telefonnummer" />
+  </Step>
+  <Step title="Einrichtung im Easybell-Kundenportal (SIP-Trunk)">
     <Card
-      title="Domain konfigurieren"
+      title="Domain eintragen"
       icon="link"
       color="blue">
-      **Im Easybell-Kundenportal muss folgende Domain hinterlegt werden:**
+      Im Easybell-Kundenportal muss die **Famulor-SIP-Adresse** als Domain bzw. Anrufziel hinterlegt werden (ohne <code>sip:</code>). Diese Adresse steht in Famulor unter **Telefonnummern → SIP-Trunk integrieren → Eingehende Telefonie** als „Unsere SIP-Adresse“.
       <CodeGroup>
-        <CodeGroupItem title="Famulor Domain">
+        <CodeGroupItem title="Beispiel">
         ```bash
-        ihre-unique-id.sip.livekit.cloud
+        5wed79aeavr.sip.livekit.cloud
         ```
         </CodeGroupItem>
       </CodeGroup>
+      UDP, TCP und TLS werden unterstützt.
       <Note>
-        **Wichtig:** Die spezifische Famulor SIP-Adresse finden Sie in Ihrem Famulor-Dashboard unter "Telefonnummern" → "SIP-Trunk integrieren" → "Unsere SIP-Adresse".
-      </Note>
-      <Note>
-        Weitere Informationen finden Sie in der <a href="https://www.easybell.de/hilfe/fragen/fragen-zum-telefonanschluss/antwort/sip-trunk-authentifizierung-per-fqdn-domain-einrichten/" target="_blank">Easybell-Hilfe</a>.
+        Weitere Details: <a href="https://www.easybell.de/hilfe/fragen/fragen-zum-telefonanschluss/antwort/sip-trunk-authentifizierung-per-fqdn-domain-einrichten/" target="_blank">Easybell-Hilfe SIP-Trunk FQDN</a>.
       </Note>
     </Card>
   </Step>
@@ -161,6 +197,59 @@ Wenn Sie Ihr Easybell-System mit Famulor integrieren:
     </Card>
   </Step>
 </Steps>
+
+## Famulor mit Easybell Cloud Telefonanlage
+
+Famulor funktioniert auch mit der **Easybell Cloud Telefonanlage**. Die FQDN-Funktion ist in der **Cloud Telefonanlage Pro** automatisch enthalten – die separate SIP-Trunk-FQDN-Option wird dann nicht mehr benötigt. Die Einrichtung bei Easybell ist weitgehend identisch zur Konfiguration eines SIP-Trunks; bei Nutzung der Cloud Telefonanlage müssen jedoch **andere IP-Adressen** bei Famulor freigegeben werden (siehe unten).
+
+### Einstellungen in der Cloud Telefonanlage
+
+<Steps>
+  <Step title="Cloud Telefonanlage aufrufen">
+    Melden Sie sich im [Easybell-Kundenportal](https://www.easybell.de) an. Gehen Sie zu **„Telefonfunktionen“** und wählen Sie **„Cloud Telefonanlage“**. Es öffnet sich die Startseite Ihrer Cloud-Telefonanlage.
+
+    <img src="/images/easybell/easybell-5.png" alt="Easybell Dashboard – Cloud Telefonanlage verwalten" />
+  </Step>
+  <Step title="Neue FQDN-Nebenstelle anlegen">
+    Klicken Sie bei **„Nebenstellen und Rufgruppen“** auf **„+ Hinzufügen“**. Wählen Sie als **Nebenstellenart** die Option **„FQDN-Anbindung“**. Unter **„Eingehende Telefonie“** richten Sie ein, unter welcher Rufnummer und Durchwahl Ihr Dienst (Famulor) später erreichbar ist.
+
+    <img src="/images/easybell/easybell-6.png" alt="Nebenstellenart FQDN-Anbindung auswählen" />
+    <img src="/images/easybell/easybell-7.png" alt="Eingehende Telefonie: Rufnummer und Durchwahl" />
+  </Step>
+  <Step title="FQDN-Anbindung einrichten">
+    Geben Sie die **SIP-URI des Dienstes** ein, die Sie in Famulor unter **Telefonnummern → SIP-Integration → Eingehende Anrufe** als „Unsere SIP-Adresse“ finden. Den Teil <code>sip:</code> lassen Sie bitte weg.
+    **Beispiel:** <code>ihre-unique-id.sip.livekit.cloud</code>
+  </Step>
+  <Step title="Interne Weiterleitung über FQDN-Nebenstellen aktivieren">
+    In der **Pro-Edition** der Cloud Telefonanlage können Anrufe von einer FQDN-Nebenstelle (z. B. vom Famulor-KI-Assistenten) an interne Nebenstellen weitergeleitet werden.
+
+    **4.1 Option aktivieren:** Öffnen Sie die Einstellungen der FQDN-Nebenstelle und aktivieren Sie die Checkbox **„Weiterleitung zulassen“**.
+
+    <img src="/images/easybell/easybell-8.png" alt="FQDN-Nebenstelle: Weiterleitung zulassen aktivieren" />
+
+    **4.2 Wichtige Rahmenbedingungen:**
+    - Es werden nur **interne** Weiterleitungen innerhalb der Cloud Telefonanlage akzeptiert.
+    - Weiterleitungen auf externe Rufnummern (z. B. Mobilfunk, Festnetz außerhalb der Anlage) bleiben blockiert.
+    - Die Funktion steht nur in der **Cloud Telefonanlage Pro** zur Verfügung.
+  </Step>
+</Steps>
+
+### Weiterleitung in Famulor konfigurieren
+
+In Famulor legen Sie unter **Tools** eine **Kalt-** oder **Warm-Weiterleitung** an und verknüpfen sie im Prompt. Weiterleitungen zu anderen Nebenstellen werden als Typ **„SIP“** (nicht „Rufnummer“) angelegt. Als **SIP-URL** verwenden Sie die interne Kurzwahl im Format **Nebenstelle@easybell**, z. B. <code>200@easybell</code>.
+
+- Das **„@easybell“** ist erforderlich.
+- Der Teil nach dem @-Zeichen wird technisch ignoriert, erscheint aber im Anruf-Transkript.
+
+<img src="/images/easybell/easybell-9.png" alt="Famulor: Benutzerdefinierte SIP-Weiterleitung z. B. 200@easybell" />
+
+### Freigegebene IPs bei Nutzung der Cloud Telefonanlage
+
+Wenn Sie die **Easybell Cloud Telefonanlage** nutzen, müssen in Famulor unter **Eingehende Telefonie** folgende IP-Adressen als erlaubt eingetragen werden:
+
+- 62.144.211.104
+- 195.52.221.134
+- 195.52.221.137
 
 ## Wichtige Hinweise
 
