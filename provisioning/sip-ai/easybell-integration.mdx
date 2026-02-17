@@ -177,11 +177,23 @@ Eingehenden Anruf testen und prüfen, ob der KI-Assistent antwortet und ggf. Wei
 
 ## Häufige Probleme
 
-| Problem | Lösung |
-|--------|--------|
-| FQDN-Feature nicht verfügbar (SIP-Trunk) | E-Mail an support@easybell.de mit Kundennummer; auf Bestätigung warten. |
-| Anrufe kommen nicht an | Erlaubte IPs in Famulor prüfen (je nach Weg: SIP-Trunk- oder Cloud-IPs). E.164 mit „+“ prüfen. |
-| Falsche Domain | Keine Leerzeichen, ohne `sip:` – nur die Adresse aus Famulor übernehmen. |
+<AccordionGroup>
+  <Accordion title="FQDN-Feature nicht verfügbar (SIP-Trunk)" icon="envelope">
+    Das SIP Trunking FQDN Feature muss bei Easybell angefragt werden. Senden Sie eine E-Mail an **support@easybell.de** mit Ihrer **Easybell-Kundennummer** und der Bitte um Freischaltung für Famulor. Die Aktivierung kann einige Tage dauern.
+  </Accordion>
+
+  <Accordion title="Anrufe kommen nicht an" icon="phone-x">
+    Prüfen Sie: **Erlaubte IP-Adressen** in Famulor unter „Eingehende Telefonie“ (je nach Weg SIP-Trunk- oder Cloud-IPs eintragen). Stellen Sie in Easybell das Rufnummernformat **E.164 mit führendem „+“** ein.
+  </Accordion>
+
+  <Accordion title="Falsche oder unbekannte Domain" icon="server">
+    Tragen Sie die **genaue SIP-Adresse** aus Famulor ein („Unsere SIP-Adresse“ unter Telefonnummern → SIP-Trunk integrieren). **Ohne** `sip:` davor, **ohne** Leerzeichen – nur den angezeigten Wert übernehmen (z. B. `… .sip.livekit.cloud`).
+  </Accordion>
+
+  <Accordion title="Weiterleitung an Nebenstelle funktioniert nicht (Cloud Telefonanlage)" icon="phone-arrow-right">
+    Nur in der **Cloud Telefonanlage Pro** und nur für **interne** Nebenstellen. In der FQDN-Nebenstelle die Option **„Weiterleitung zulassen“** aktivieren. In Famulor den Weiterleitungstyp **„SIP“** und die SIP-URL im Format **Nebenstelle@easybell** (z. B. `200@easybell`) verwenden.
+  </Accordion>
+</AccordionGroup>
 
 ## Hilfe
 
