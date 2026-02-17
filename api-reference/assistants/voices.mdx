@@ -5,22 +5,22 @@ icon: "microphone"
 description: "Alle verfügbaren Stimmen für die Assistenten-Konfiguration abrufen"
 ---
 
-Dieser Endpunkt gibt eine Liste aller verfügbaren Stimmen zurück, die beim Erstellen oder Aktualisieren von Assistenten verwendet werden können, mit optionaler Filterung nach Assistenten-Modus.
+Dieser Endpunkt gibt eine Liste aller verfügbaren Stimmen zurück, die beim Erstellen oder Aktualisieren von Assistenten verwendet werden können, mit optionaler Filterung nach Assistenten-Modus und Sprache.
 
 ### Query-Parameter
 
 <ParamField query="mode" type="string">
-  Stimmen nach Assistenten-Modus filtern. Optionen: `pipeline`, `multimodal`
+  Stimmen nach Assistenten-Modus filtern. Optionen: `pipeline`, `multimodal`, `dualplex`
+</ParamField>
+
+<ParamField query="language_id" type="integer">
+  Stimmen nach Sprach-ID filtern. Verwenden Sie den Endpunkt [Sprachen abrufen](/api-reference/assistants/languages), um verfügbare Sprach-IDs zu erhalten.
 </ParamField>
 
 ### Antwort-Felder
 
-Die API gibt ein direktes Array von verfügbaren Stimmen zurück:
-
-<ResponseField name="array" type="array">
-  Array der verfügbaren Stimmen
-
-  <Expandable title="Stimmen-Eigenschaften">
+<ResponseField name="data" type="array">
+  <Expandable title="Eigenschaften">
     <ResponseField name="id" type="integer">
       Die eindeutige Kennung der Stimme
     </ResponseField>
@@ -29,92 +29,45 @@ Die API gibt ein direktes Array von verfügbaren Stimmen zurück:
       Der Anzeigename der Stimme
     </ResponseField>
 
-    <ResponseField name="mode" type="string">
-      Der Assistenten-Modus, mit dem diese Stimme kompatibel ist (pipeline oder multimodal)
+    <ResponseField name="language_id" type="integer">
+      Die Sprach-ID, der diese Stimme zugeordnet ist
+    </ResponseField>
+
+    <ResponseField name="gender" type="string">
+      Das Geschlecht der Stimme (male/female)
     </ResponseField>
   </Expandable>
 </ResponseField>
 
+<ResponseExample>
+  ```json 200 Antwort theme={null}
+  [
+    {
+      "id": 1,
+      "name": "Alloy",
+      "language_id": 1,
+      "gender": "female"
+    },
+    {
+      "id": 2,
+      "name": "Echo",
+      "language_id": 1,
+      "gender": "male"
+    },
+    {
+      "id": 3,
+      "name": "Coral",
+      "language_id": null,
+      "gender": "female"
+    }
+  ]
+  ```
+</ResponseExample>
+
 ### Hinweise
 
-- Verwenden Sie das `id`-Feld beim Erstellen oder Aktualisieren von Assistenten
-- Das `mode`-Feld zeigt an, mit welcher Assistenten-Engine die Stimme kompatibel ist
-- Filtern Sie nach Modus, um nur Stimmen zu erhalten, die mit Ihrem gewünschten Assistenten-Typ kompatibel sind
-- Wenn kein Modus-Filter angegeben wird, werden alle verfügbaren Stimmen zurückgegeben
-- Nur Stimmen, die öffentlich sind oder dem authentifizierten Benutzer gehören, werden zurückgegeben
-
-<CodeGroup>
-```bash Alle verfügbaren Stimmen
-curl -H "Authorization: Bearer YOUR_API_TOKEN" \
-  "https://app.famulor.de/api/user/assistants/voices"
-```
-
-```bash Nur Pipeline-Stimmen
-curl -H "Authorization: Bearer YOUR_API_TOKEN" \
-  "https://app.famulor.de/api/user/assistants/voices?mode=pipeline"
-```
-
-```bash Nur Multimodal-Stimmen
-curl -H "Authorization: Bearer YOUR_API_TOKEN" \
-  "https://app.famulor.de/api/user/assistants/voices?mode=multimodal"
-```
-</CodeGroup>
-
-<ResponseExample>
-
-```json 200 Response
-[
-  {
-    "id": 1,
-    "name": "Antonia",
-    "mode": "pipeline"
-  },
-  {
-    "id": 2,
-    "name": "Corina Ioana",
-    "mode": "pipeline"
-  },
-  {
-    "id": 413,
-    "name": "Peter Hartlapp - Voiceactor (Werbesprecher und Moderator)",
-    "mode": "pipeline"
-  },
-  {
-    "id": 578,
-    "name": "Alloy",
-    "mode": "multimodal"
-  },
-  {
-    "id": 579,
-    "name": "Ash",
-    "mode": "multimodal"
-  },
-  {
-    "id": 580,
-    "name": "Coral",
-    "mode": "multimodal"
-  }
-]
-```
-
-```json Pipeline-Stimmen nur
-[
-  {
-    "id": 1,
-    "name": "Antonia",
-    "mode": "pipeline"
-  },
-  {
-    "id": 2,
-    "name": "Corina Ioana",
-    "mode": "pipeline"
-  },
-  {
-    "id": 413,
-    "name": "Peter Hartlapp - Voiceactor (Werbesprecher und Moderator)",
-    "mode": "pipeline"
-  }
-]
-```
-
-</ResponseExample>
+* Verwenden Sie das `id`-Feld als `voice_id` beim Erstellen oder Aktualisieren von Assistenten
+* Filtern Sie nach `mode`, um nur Stimmen zu erhalten, die mit Ihrem gewünschten Assistenten-Typ kompatibel sind
+* Filtern Sie nach `language_id`, um Stimmen für eine bestimmte Sprache zu erhalten
+* Wenn keine Filter angegeben werden, werden alle verfügbaren Stimmen zurückgegeben
+* Nur Stimmen, die öffentlich sind oder dem authentifizierten Benutzer gehören, werden zurückgegeben

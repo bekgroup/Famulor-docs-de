@@ -1,89 +1,72 @@
 ---
-title: "Verfügbare LLM-Modelle abrufen"
+title: "Verfügbare Modelle abrufen"
 api: "GET https://app.famulor.de/api/user/assistants/models"
 icon: "brain-circuit"
-description: "Alle verfügbaren LLM-Modelle für die Assistenten-Konfiguration abrufen"
+description: "Verfügbare KI-Modelle für die Assistenten-Konfiguration abrufen"
 ---
 
-Dieser Endpunkt gibt eine Liste aller verfügbaren Large Language Models (LLMs) zurück, die beim Erstellen oder Aktualisieren von Assistenten verwendet werden können.
+Dieser Endpunkt gibt eine Liste der verfügbaren KI-Modelle zurück, die beim Erstellen oder Aktualisieren von Assistenten verwendet werden können.
+
+### Query-Parameter
+
+<ParamField query="type" type="string" default="llm">
+  Der Typ der abzurufenden Modelle, basierend auf dem Engine-Modus:
+
+  * `llm` - LLM-Modelle für den Modus **pipeline** (Standard)
+  * `multimodal` - Multimodale Modelle für den Modus **multimodal**
+  * `dualplex` - Multimodale Modelle für den Modus **dualplex**
+</ParamField>
 
 ### Antwort-Felder
 
-Die API gibt ein direktes Array von verfügbaren LLM-Modellen zurück:
-
-<ResponseField name="array" type="array">
-  Array der verfügbaren LLM-Modelle
-
-  <Expandable title="LLM-Modell-Eigenschaften">
+<ResponseField name="data" type="array">
+  <Expandable title="Eigenschaften">
     <ResponseField name="id" type="integer">
-      Die eindeutige Kennung des LLM-Modells
+      Die eindeutige Kennung des Modells
     </ResponseField>
 
     <ResponseField name="name" type="string">
-      Der Anzeigename des LLM-Modells
+      Der Anzeigename des Modells
+    </ResponseField>
+
+    <ResponseField name="code" type="string">
+      Der interne Code (nur für multimodal/dualplex Modelle)
     </ResponseField>
   </Expandable>
 </ResponseField>
 
+<ResponseExample>
+  ```json LLM Modelle (type=llm) theme={null}
+  [
+    {
+      "id": 1,
+      "name": "GPT-4o-mini"
+    },
+    {
+      "id": 2,
+      "name": "GPT-4.1-mini"
+    }
+  ]
+  ```
+
+  ```json Multimodal/Dualplex Modelle (type=multimodal oder type=dualplex) theme={null}
+  [
+    {
+      "id": 1,
+      "name": "GPT-4o",
+      "code": "gpt-4o-realtime"
+    },
+    {
+      "id": 4,
+      "name": "GPT Realtime",
+      "code": "gpt-realtime"
+    }
+  ]
+  ```
+</ResponseExample>
+
 ### Hinweise
 
-- Dieser Endpunkt benötigt keine Parameter
-- Verwenden Sie das `name`-Feld beim Erstellen oder Aktualisieren von Assistenten
-- Alle verfügbaren LLM-Modelle werden in einer einzigen Anfrage zurückgegeben
-- Verschiedene Modelle können unterschiedliche Fähigkeiten, Leistung und Kostenmerkmale haben
-
-<CodeGroup>
-```bash Verfügbare LLM-Modelle abrufen
-curl -H "Authorization: Bearer YOUR_API_TOKEN" \
-  "https://app.famulor.de/api/user/assistants/models"
-```
-</CodeGroup>
-
-<ResponseExample>
-
-```json 200 Response
-[
-  {
-    "id": 1,
-    "name": "GPT-4o-mini"
-  },
-  {
-    "id": 2,
-    "name": "GPT-4.1-mini"
-  },
-  {
-    "id": 3,
-    "name": "GPT-4.1-nano"
-  },
-  {
-    "id": 4,
-    "name": "Llama 3.3 70B"
-  },
-  {
-    "id": 5,
-    "name": "Llama 4 Scout 17B"
-  },
-  {
-    "id": 6,
-    "name": "Llama 4 Maverick 17B"
-  },
-  {
-    "id": 7,
-    "name": "GPT-4o"
-  },
-  {
-    "id": 8,
-    "name": "GPT-4.1"
-  },
-  {
-    "id": 9,
-    "name": "Gemini 2.5 Pro"
-  },
-  {
-    "id": 10,
-    "name": "Gemini 2.5 Flash"
-  }
-]
-```
-
-</ResponseExample>
+* Wenn kein `type`-Parameter angegeben wird, werden standardmäßig LLM-Modelle zurückgegeben
+* Verwenden Sie das Feld `llm_model_id`, wenn Sie **pipeline** Assistenten erstellen
+* Verwenden Sie das Feld `multimodal_model_id`, wenn Sie **multimodal** oder **dualplex** Assistenten erstellen
