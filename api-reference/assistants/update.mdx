@@ -17,54 +17,240 @@ Dieser Endpunkt ermöglicht es Ihnen, die Konfiguration eines bestehenden KI-Ass
 
 #### Kernfelder
 
-<ParamField body="assistant_name" type="string">
+<ParamField body="name" type="string">
   Der Name des Assistenten (max. 255 Zeichen)
 </ParamField>
 
 <ParamField body="voice_id" type="integer">
-  Die Stimmen-ID für den Assistenten (muss in verfügbaren Stimmen existieren)
+  Die zu verwendende Stimmen-ID für den Assistenten. Verwenden Sie den Endpunkt [Stimmen abrufen](/api-reference/assistants/voices) mit dem Parameter `mode`, um kompatible Stimmen für Ihren Engine-Modus zu erhalten.
 </ParamField>
 
-<ParamField body="language" type="string">
-  Der Sprachname für den Assistenten (max. 100 Zeichen)
+<ParamField body="language_id" type="integer">
+  Die Sprach-ID für den Assistenten. Verwenden Sie den Endpunkt [Sprachen abrufen](/api-reference/assistants/languages), um verfügbare Sprachen zu erhalten.
 </ParamField>
 
-<ParamField body="llm_model" type="string">
-  Der Name des zu verwendenden LLM-Modells (max. 100 Zeichen)
+<ParamField body="type" type="string">
+  Der Assistenten-Typ. Optionen: `inbound`, `outbound`
 </ParamField>
 
-<ParamField body="calls_direction" type="string">
-  Der Anrufrichtungstyp. Optionen: `receive`, `make`
-</ParamField>
+<ParamField body="mode" type="string">
+  Der Engine-Modus. Optionen: `pipeline`, `multimodal`, `dualplex`
 
-<ParamField body="engine_type" type="string">
-  Der zu verwendende Engine-Typ. Optionen: `pipeline`, `multimodal`
+  <Warning>
+    Das Ändern des Modus setzt modusspezifische Einstellungen auf die Standardwerte für den neuen Modus zurück.
+  </Warning>
 </ParamField>
 
 <ParamField body="timezone" type="string">
-  Die Zeitzone für den Assistenten (z.B. "Europe/Berlin")
+  Die Zeitzone für den Assistenten (z. B. "Europe/Berlin", "America/New_York")
 </ParamField>
 
 <ParamField body="initial_message" type="string">
-  Die erste Nachricht, die der Assistent beim Anrufstart sprechen wird
+  Die erste Nachricht, die der Assistent beim Anrufstart sprechen wird (max. 200 Zeichen)
 </ParamField>
 
 <ParamField body="system_prompt" type="string">
   Der System-Prompt, der das Verhalten und die Persönlichkeit des Assistenten definiert
 </ParamField>
 
-#### Optionale Konfiguration
+#### Modusspezifische Felder
+
+<ParamField body="llm_model_id" type="integer">
+  Die zu verwendende LLM-Modell-ID. Gilt nur für den Modus `pipeline`.
+
+  Verwenden Sie den Endpunkt [Modelle abrufen](/api-reference/assistants/models), um verfügbare Modelle zu erhalten.
+</ParamField>
+
+<ParamField body="multimodal_model_id" type="integer">
+  Die multimodale Modell-ID. Gilt nur für die Modi `multimodal` und `dualplex`.
+
+  Verwenden Sie den Endpunkt [Modelle abrufen](/api-reference/assistants/models), um verfügbare multimodale Modelle zu erhalten.
+</ParamField>
+
+<ParamField body="chat_llm_fallback_id" type="integer">
+  Fallback-LLM-Modell-ID für Tool-Aufrufe in den Modi multimodal/dualplex. Auf `null` setzen zum Entfernen.
+</ParamField>
+
+<ParamField body="turn_detection_threshold" type="number">
+  Empfindlichkeit der Sprecherwechselerkennung für multimodal/dualplex Modi (0-1). Auf `null` setzen für Automatik.
+</ParamField>
+
+#### Sekundärsprachen
+
+<ParamField body="secondary_language_ids" type="integer[]">
+  Array mit zusätzlichen Sprach-IDs, die der Assistent sprechen kann. Ersetzt bestehende Sekundärsprachen. Übergeben Sie ein leeres Array `[]`, um alle Sekundärsprachen zu entfernen.
+
+  ```json  theme={null}
+  "secondary_language_ids": [2, 3, 4]
+  ```
+</ParamField>
+
+#### Knowledgebase-Einstellungen
+
+<ParamField body="knowledgebase_id" type="integer">
+  Die ID der zu verknüpfenden Knowledgebase. Auf `null` setzen zum Entfernen.
+</ParamField>
+
+<ParamField body="knowledgebase_mode" type="string">
+  Wie die Knowledgebase verwendet werden soll. Optionen:
+
+  * `function_call` - KI nutzt eine Funktion zur Suche (erforderlich für multimodal/dualplex)
+  * `prompt` - Wissen wird in den Prompt injiziert (nur pipeline)
+</ParamField>
+
+#### Telefonnummer
 
 <ParamField body="phone_number_id" type="integer">
-  Die ID einer Telefonnummer, die dem Assistenten zugewiesen werden soll (auf null setzen zum Entfernen)
+  Die ID einer zuzuweisenden Telefonnummer. Auf `null` setzen zum Aufheben der Zuweisung. Muss zu Ihrem Konto gehören.
+
+  <Warning>
+    Für `inbound` Assistenten kann die Telefonnummer kein Caller-ID-Typ sein und darf nicht bereits einem anderen Inbound-Assistenten zugewiesen sein.
+  </Warning>
 </ParamField>
+
+#### Benutzerdefinierte Mid-Call Tools
 
 <ParamField body="tool_ids" type="integer[]">
-  Array von Mid-call Action-IDs zur Synchronisierung mit dem Assistenten. Ersetzt alle bestehenden Tool-Zuweisungen. Übergeben Sie ein leeres Array, um alle Tools zu entfernen. Jedes Element muss eine gültige Tool-ID sein, die zu Ihrem Konto gehört.
+  Array von benutzerdefinierten Mid-Call Tool-IDs zur Synchronisierung. **Ersetzt alle bestehenden Tool-Zuweisungen.** Übergeben Sie ein leeres Array `[]`, um alle Tools zu entfernen. Jedes Tool muss zu Ihrem Konto gehören.
+
+  ```json  theme={null}
+  "tool_ids": [1, 5, 12]
+  ```
 </ParamField>
 
+#### Integrierte Tools
+
+<ParamField body="tools" type="array">
+  Array von integrierten Tools. **Ersetzt alle bestehenden integrierten Tools.** Übergeben Sie ein leeres Array `[]`, um alle Tools zu entfernen.
+
+  <Expandable title="Tool-Typen">
+    **call_transfer** - Den Anruf an eine andere Telefonnummer weiterleiten
+
+    * `phone_number` (erforderlich): Telefonnummer für die Weiterleitung
+    * `description`: Wann der Anruf weitergeleitet werden soll
+    * `custom`: Wenn wahr, kann die KI die Weiterleitungsnummer dynamisch bestimmen
+    * `timezone`: Zeitzone für die Erreichbarkeit der Weiterleitung
+
+    **end_call** - Den Anruf programmgesteuert beenden
+
+    * `description`: Wann die KI den Anruf beenden soll
+
+    **dtmf_input** - DTMF-Töne senden (Tastatureingabe)
+
+    * `description`: Wann DTMF-Eingabe verwendet werden soll (für IVR-Navigation)
+
+    **calendar_integration** - Termine über Cal.com planen
+
+    * `calcom_api_key` (erforderlich): Ihr Cal.com API-Schlüssel
+    * `calcom_event_slug` (erforderlich): Der Event-Typ-Slug
+  </Expandable>
+
+  ```json  theme={null}
+  "tools": [
+    {"type": "dtmf_input", "description": "IVR bei Bedarf navigieren"},
+    {"type": "end_call", "description": "Anruf beenden wenn fertig"}
+  ]
+  ```
+</ParamField>
+
+#### Sprach- und TTS-Einstellungen
+
+<ParamField body="tts_emotion_enabled" type="boolean">
+  Ob emotionale Text-to-Speech-Synthese aktiviert werden soll
+</ParamField>
+
+<ParamField body="voice_stability" type="number">
+  Stimm-Stabilität-Einstellung (0-1). Höher = konsistentere Stimme
+</ParamField>
+
+<ParamField body="voice_similarity" type="number">
+  Stimm-Ähnlichkeit-Einstellung (0-1). Höher = näher an der Originalstimme
+</ParamField>
+
+<ParamField body="speech_speed" type="number">
+  Sprechgeschwindigkeits-Multiplikator (0.7-1.2)
+</ParamField>
+
+<ParamField body="llm_temperature" type="number">
+  LLM-Temperatur-Einstellung (0-1). Niedriger = deterministischer
+</ParamField>
+
+<ParamField body="synthesizer_provider_id" type="integer">
+  Benutzerdefinierte TTS-Provider-ID. Auf `null` setzen, um den Sprachstandard zu verwenden.
+</ParamField>
+
+<ParamField body="transcriber_provider_id" type="integer">
+  Benutzerdefinierte STT-Provider-ID. Nur Pipeline-Modus. Auf `null` setzen, um den Sprachstandard zu verwenden.
+</ParamField>
+
+#### Anrufverhalten-Einstellungen
+
+<ParamField body="allow_interruptions" type="boolean">
+  Ob Unterbrechungen durch den Anrufer erlaubt werden sollen.
+
+  <Warning>Kann für die Modi `multimodal` und `dualplex` nicht deaktiviert werden.</Warning>
+</ParamField>
+
+<ParamField body="fillers" type="boolean">
+  Ob Füller-Audio während der Verarbeitung verwendet werden soll.
+
+  <Warning>Nur für den Modus `pipeline` verfügbar.</Warning>
+</ParamField>
+
+<ParamField body="record" type="boolean">
+  Ob der Anruf aufgezeichnet werden soll
+</ParamField>
+
+<ParamField body="enable_noise_cancellation" type="boolean">
+  Ob Geräuschunterdrückung aktiviert werden soll
+</ParamField>
+
+<ParamField body="wait_for_customer" type="boolean">
+  Wenn wahr, wartet der Assistent darauf, dass der Kunde zuerst spricht
+</ParamField>
+
+#### Timing-Einstellungen
+
+<ParamField body="max_duration" type="integer">
+  Maximale Anrufdauer in Sekunden (20-1200)
+</ParamField>
+
+<ParamField body="max_silence_duration" type="integer">
+  Maximale Dauer der Stille vor erneutem Engagement in Sekunden (1-360)
+</ParamField>
+
+<ParamField body="max_initial_silence_duration" type="integer">
+  Maximale Stille zu Beginn des Anrufs vor dem Beenden (1-120 Sekunden). Auf `null` setzen zum Deaktivieren.
+</ParamField>
+
+<ParamField body="ringing_time" type="integer">
+  Maximale Klingelzeit vor dem Abbruch (1-60 Sekunden)
+</ParamField>
+
+#### Re-Engagement-Einstellungen
+
+<ParamField body="reengagement_interval" type="integer">
+  Intervall für erneutes Engagement in Sekunden (7-600)
+</ParamField>
+
+<ParamField body="reengagement_prompt" type="string">
+  Benutzerdefinierter Prompt für Re-Engagement-Nachrichten (max. 1000 Zeichen). Auf `null` setzen, um den Standard zu verwenden.
+</ParamField>
+
+#### Voicemail-Einstellungen
+
+<ParamField body="end_call_on_voicemail" type="boolean">
+  Ob der Anruf beendet werden soll, wenn eine Mailbox erkannt wird
+</ParamField>
+
+<ParamField body="voice_mail_message" type="string">
+  Nachricht, die auf der Mailbox hinterlassen werden soll, bevor aufgelegt wird (max. 1000 Zeichen). Auf `null` setzen zum Deaktivieren.
+</ParamField>
+
+#### Endpunkterkennung
+
 <ParamField body="endpoint_type" type="string">
-  Sprachaktivitätserkennung-Typ. Optionen: `vad`, `ai`
+  Typ der Sprachaktivitätserkennung. Optionen: `vad`, `ai`
 </ParamField>
 
 <ParamField body="endpoint_sensitivity" type="number">
@@ -75,20 +261,18 @@ Dieser Endpunkt ermöglicht es Ihnen, die Konfiguration eines bestehenden KI-Ass
   Unterbrechungs-Sensibilitätslevel (0-5)
 </ParamField>
 
+<ParamField body="min_interrupt_words" type="integer">
+  Mindestanzahl an Wörtern, bevor eine Unterbrechung zulässig ist (0-10). Auf `null` setzen zum Deaktivieren.
+</ParamField>
+
+#### Ambiente-Sound
+
+<ParamField body="ambient_sound" type="string">
+  Hintergrund-Ambiente-Sound. Optionen: `off`, `office`, `city`, `forest`, `crowded_room`, `cafe`, `nature`
+</ParamField>
+
 <ParamField body="ambient_sound_volume" type="number">
-  Ambiente-Sound-Lautstärke (0-1)
-</ParamField>
-
-<ParamField body="post_call_evaluation" type="boolean">
-  Ob Post-Call-Evaluation aktiviert werden soll
-</ParamField>
-
-<ParamField body="send_webhook_only_on_completed" type="boolean">
-  Ob Webhooks nur bei abgeschlossenen Anrufen gesendet werden sollen
-</ParamField>
-
-<ParamField body="include_recording_in_webhook" type="boolean">
-  Ob Aufzeichnungs-URL in Webhook-Payload eingeschlossen werden soll
+  Lautstärke des Ambiente-Sounds (0-1)
 </ParamField>
 
 #### Webhook-Konfiguration
@@ -98,115 +282,122 @@ Dieser Endpunkt ermöglicht es Ihnen, die Konfiguration eines bestehenden KI-Ass
 </ParamField>
 
 <ParamField body="webhook_url" type="string">
-  Die Webhook-URL für Post-Call-Benachrichtigungen (kann auf null gesetzt werden zum Entfernen)
+  Die Webhook-URL für Post-Call-Benachrichtigungen. Auf `null` setzen zum Entfernen.
 </ParamField>
 
-#### Unterbrechungseinstellungen
-
-<ParamField body="use_min_interrupt_words" type="boolean">
-  Ob die Mindest-Unterbrechungswörter-Einstellung verwendet werden soll
+<ParamField body="send_webhook_only_on_completed" type="boolean">
+  Ob Webhooks nur bei erfolgreich abgeschlossenen Anrufen gesendet werden sollen (nicht bei fehlgeschlagenen/keine-Antwort)
 </ParamField>
 
-<ParamField body="min_interrupt_words" type="integer">
-  Mindestanzahl von Wörtern vor erlaubter Unterbrechung (0-10)
+<ParamField body="include_recording_in_webhook" type="boolean">
+  Ob die Aufzeichnungs-URL in der Webhook-Payload enthalten sein soll
 </ParamField>
 
-#### Variablen und Schema
+#### Post-Call-Evaluation
 
-<ParamField body="variables" type="object">
-  Schlüssel-Wert-Paare von benutzerdefinierten Variablen für den Assistenten
+<ParamField body="post_call_evaluation" type="boolean">
+  Ob die KI-basierte Post-Call-Evaluation aktiviert werden soll
 </ParamField>
 
 <ParamField body="post_call_schema" type="array">
-  Schema-Definition für Post-Call-Datenextraktion
+  Schema-Definition für die Extraktion von Post-Call-Daten. Ersetzt das bestehende Schema.
 
   <Expandable title="post_call_schema Eigenschaften">
-    <ParamField body="post_call_schema[].name" type="string" required>
-      Der Name des Schema-Feldes (nur alphanumerisch und Unterstriche)
+    <ParamField body="name" type="string" required>
+      Feldname (3-16 Zeichen, kleingeschrieben, nur alphanumerisch und Unterstriche)
     </ParamField>
 
-    <ParamField body="post_call_schema[].type" type="string" required>
-      Der Datentyp. Optionen: `string`, `number`, `bool`
+    <ParamField body="type" type="string" required>
+      Datentyp. Optionen: `string`, `number`, `bool`
     </ParamField>
 
-    <ParamField body="post_call_schema[].description" type="string" required>
-      Beschreibung dessen, was dieses Feld repräsentiert
+    <ParamField body="description" type="string" required>
+      Beschreibung dessen, was dieses Feld repräsentiert (3-255 Zeichen)
     </ParamField>
   </Expandable>
 </ParamField>
 
-#### End Call Tool
+#### Variablen
 
-<ParamField body="end_call_tool.description" type="string">
-  Beschreibung für die End Call Tool-Funktionalität (max. 500 Zeichen)
+<ParamField body="variables" type="object">
+  Schlüssel-Wert-Paare für benutzerdefinierte Variablen. **Ersetzt alle bestehenden Variablen.**
+
+  ```json  theme={null}
+  "variables": {
+    "company_name": "Acme Corp",
+    "product": "Premium Widget"
+  }
+  ```
 </ParamField>
 
-#### Stimme und Sprache
+***
 
-<ParamField body="llm_temperature" type="number">
-  LLM-Temperatur-Einstellung (0-1)
-</ParamField>
+## Beispiel-Requests
 
-<ParamField body="voice_stability" type="number">
-  Stimm-Stabilität-Einstellung (0-1)
-</ParamField>
+### Grundlegende Einstellungen aktualisieren
 
-<ParamField body="voice_similarity" type="number">
-  Stimm-Ähnlichkeit-Einstellung (0-1)
-</ParamField>
+```json  theme={null}
+{
+  "name": "Aktualisierter Assistenten-Name",
+  "initial_message": "Hallo! Wie kann ich Ihnen heute helfen?",
+  "max_duration": 900
+}
+```
 
-<ParamField body="speech_speed" type="number">
-  Sprechgeschwindigkeits-Multiplikator (0.7-1.2)
-</ParamField>
+### In multimodalen Modus wechseln
 
-#### Anrufverhalten
+```json  theme={null}
+{
+  "mode": "multimodal",
+  "voice_id": 41,
+  "multimodal_model_id": 1,
+  "chat_llm_fallback_id": 2,
+  "knowledgebase_mode": "function_call"
+}
+```
 
-<ParamField body="allow_interruptions" type="boolean">
-  Ob Unterbrechungen durch den Anrufer erlaubt werden sollen
-</ParamField>
+### Tools und Knowledgebase aktualisieren
 
-<ParamField body="filler_audios" type="boolean">
-  Ob Füller-Audio während der Verarbeitung verwendet werden soll
-</ParamField>
+```json  theme={null}
+{
+  "tool_ids": [1, 5, 12],
+  "knowledgebase_id": 3,
+  "knowledgebase_mode": "prompt"
+}
+```
 
-<ParamField body="re_engagement_interval" type="integer">
-  Re-Engagement-Intervall in Sekunden (7-600)
-</ParamField>
+### Re-Engagement und Voicemail aktualisieren
 
-<ParamField body="max_call_duration" type="integer">
-  Maximale Anrufdauer in Sekunden (20-1200)
-</ParamField>
+```json  theme={null}
+{
+  "reengagement_interval": 15,
+  "reengagement_prompt": "Sind Sie noch da? Ich bin hier, um zu helfen.",
+  "end_call_on_voicemail": true,
+  "voice_mail_message": "Hallo, bitte rufen Sie uns bei Gelegenheit zurück."
+}
+```
 
-<ParamField body="max_silence_duration" type="integer">
-  Maximale Stillstand-Dauer in Sekunden (1-120)
-</ParamField>
+### Optionale Einstellungen entfernen
 
-<ParamField body="end_call_on_voicemail" type="boolean">
-  Ob Anruf bei Voicemail-Erkennung beendet werden soll
-</ParamField>
+```json  theme={null}
+{
+  "phone_number_id": null,
+  "webhook_url": null,
+  "tool_ids": [],
+  "secondary_language_ids": []
+}
+```
 
-<ParamField body="noise_cancellation" type="boolean">
-  Ob Geräuschunterdrückung aktiviert werden soll
-</ParamField>
+***
 
-<ParamField body="record_call" type="boolean">
-  Ob der Anruf aufgezeichnet werden soll
-</ParamField>
-
-<ParamField body="who_speaks_first" type="string">
-  Wer zuerst im Anruf spricht. Optionen: `AI assistant`, `Customer`
-</ParamField>
-
-### Response
+## Antwort
 
 <ResponseField name="message" type="string">
-  Erfolgsmeldung, die die Assistenten-Aktualisierung bestätigt
+  Erfolgsmeldung zur Bestätigung der Assistenten-Aktualisierung
 </ResponseField>
 
 <ResponseField name="data" type="object">
-  Daten des aktualisierten Assistenten
-
-  <Expandable title="Daten-Eigenschaften">
+  <Expandable title="Eigenschaften">
     <ResponseField name="id" type="integer">
       Die eindeutige Kennung des aktualisierten Assistenten
     </ResponseField>
@@ -220,144 +411,56 @@ Dieser Endpunkt ermöglicht es Ihnen, die Konfiguration eines bestehenden KI-Ass
     </ResponseField>
 
     <ResponseField name="type" type="string">
-      Der Typ des Assistenten (inbound oder outbound)
+      Der Typ (`inbound` oder `outbound`)
     </ResponseField>
 
     <ResponseField name="mode" type="string">
-      Der Engine-Modus (pipeline oder multimodal)
+      Der Engine-Modus (`pipeline`, `multimodal` oder `dualplex`)
     </ResponseField>
   </Expandable>
 </ResponseField>
 
-### Hinweise
-
-- Nur die Felder, die Sie im Request Body angeben, werden aktualisiert
-- Alle Validierungsregeln gelten genauso wie beim Erstellen eines Assistenten
-- Um eine Telefonnummer-Zuweisung zu entfernen, setzen Sie `phone_number_id` auf `null`
-- Um Webhook zu deaktivieren, setzen Sie `webhook_url` auf `null` oder `is_webhook_active` auf `false`
-- Der Assistent muss dem authentifizierten Benutzer gehören, um aktualisiert zu werden
-
-<CodeGroup>
-```bash cURL
-curl -X PUT "https://app.famulor.de/api/user/assistant/123" \
-  -H "Authorization: Bearer YOUR_API_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "assistant_name": "Neuer Assistent Name",
-    "initial_message": "Hallo! Wie kann ich Ihnen heute helfen?",
-    "voice_id": 413,
-    "language": "German",
-    "llm_model": "GPT-4o",
-    "system_prompt": "Du bist ein hilfsfreundlicher Assistent...",
-    "webhook_url": "https://example.com/webhook",
-    "is_webhook_active": true,
-    "post_call_evaluation": true,
-    "variables": {
-      "company_name": "Famulor",
-      "service_type": "AI-Telefonie"
-    }
-  }'
-```
-
-```javascript JavaScript
-const response = await fetch("https://app.famulor.de/api/user/assistant/123", {
-  method: "PUT",
-  headers: {
-    "Content-Type": "application/json",
-    Authorization: "Bearer YOUR_API_TOKEN",
-  },
-  body: JSON.stringify({
-    assistant_name: "Neuer Assistent Name",
-    initial_message: "Hallo! Wie kann ich Ihnen heute helfen?",
-    voice_id: 413,
-    language: "German",
-    llm_model: "GPT-4o",
-    system_prompt: "Du bist ein hilfsfreundlicher Assistent...",
-    webhook_url: "https://example.com/webhook",
-    is_webhook_active: true,
-    post_call_evaluation: true,
-    variables: {
-      company_name: "Famulor",
-      service_type: "AI-Telefonie",
-    },
-  }),
-});
-
-const data = await response.json();
-```
-
-```python Python
-import requests
-
-payload = {
-    "assistant_name": "Neuer Assistent Name",
-    "initial_message": "Hallo! Wie kann ich Ihnen heute helfen?",
-    "voice_id": 413,
-    "language": "German",
-    "llm_model": "GPT-4o",
-    "system_prompt": "Du bist ein hilfsfreundlicher Assistent...",
-    "webhook_url": "https://example.com/webhook",
-    "is_webhook_active": True,
-    "post_call_evaluation": True,
-    "variables": {
-        "company_name": "Famulor",
-        "service_type": "AI-Telefonie",
-    },
-}
-
-response = requests.put(
-    "https://app.famulor.de/api/user/assistant/123",
-    headers={
-        "Content-Type": "application/json",
-        "Authorization": "Bearer YOUR_API_TOKEN",
-    },
-    json=payload,
-    timeout=10,
-)
-
-print(response.json())
-```
-</CodeGroup>
-
 <ResponseExample>
-
-```json 200 Success
-{
-  "message": "Assistant updated successfully",
-  "data": {
-    "id": 123,
-    "name": "Neuer Assistent Name",
-    "status": "active",
-    "type": "outbound",
-    "mode": "pipeline"
+  ```json 200 Erfolgreiche Antwort theme={null}
+  {
+    "message": "Assistent erfolgreich aktualisiert",
+    "data": {
+      "id": 789,
+      "name": "Aktualisierter Sales-Assistent",
+      "status": "active",
+      "type": "outbound",
+      "mode": "pipeline"
+    }
   }
-}
-```
+  ```
 
-```json 404 Not Found
-{
-  "message": "Assistant not found or does not belong to the authenticated user"
-}
-```
-
-```json 422 Validation Error
-{
-  "message": "The given data was invalid.",
-  "errors": {
-    "voice_id": [
-      "The selected voice id is invalid."
-    ],
-    "speech_speed": [
-      "The speech speed must be between 0.7 and 1.2."
-    ]
+  ```json 404 Nicht gefunden theme={null}
+  {
+    "message": "Assistent nicht gefunden"
   }
-}
-```
+  ```
 
-```json 500 Internal Server Error
-{
-  "message": "Assistant update failed"
-}
-```
-
+  ```json 422 Validierungsfehler theme={null}
+  {
+    "message": "Validierung fehlgeschlagen",
+    "errors": {
+      "speech_speed": ["Die Sprechgeschwindigkeit muss zwischen 0,7 und 1,2 liegen."],
+      "voice_id": ["Die gewählte Stimme ist nicht mit dem gewählten Engine-Typ kompatibel."],
+      "allow_interruptions": ["Unterbrechungen können im multimodalen oder Dualplex-Modus nicht deaktiviert werden."]
+    }
+  }
+  ```
 </ResponseExample>
+
+***
+
+## Hinweise
+
+* Nur die Felder, die Sie im Request Body angeben, werden aktualisiert
+* Um optionale Felder zu entfernen, setzen Sie diese explizit auf `null`
+* Um Arrays zu leeren (Tools, Sekundärsprachen), übergeben Sie ein leeres Array `[]`
+* Der Assistent muss dem authentifizierten Benutzer gehören
+* Verwenden Sie den Endpunkt [Stimmen abrufen](/api-reference/assistants/voices) mit dem Parameter `mode`, um kompatible Stimmen zu erhalten
+* Für multimodal/dualplex Modi muss `knowledgebase_mode` auf `function_call` gesetzt sein
+* In den Modi multimodal/dualplex können Unterbrechungen (`allow_interruptions`) nicht deaktiviert werden
+* Ein Moduswechsel setzt modusspezifische Einstellungen (LLM-Modell, multimodales Modell, Provider) zurück
