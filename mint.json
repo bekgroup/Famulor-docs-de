@@ -333,6 +333,7 @@
     {
       "group": "AI Chatbot",
       "pages": [
+        "api-reference/conversations/list",
         "api-reference/ai-chatbot/create-conversation",
         "api-reference/ai-chatbot/get-conversation",
         "api-reference/ai-chatbot/send-conversation"
