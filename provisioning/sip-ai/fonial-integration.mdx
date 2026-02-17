@@ -1,0 +1,102 @@
+---
+title: 'Fonial-Integration'
+description: 'Verbinden Sie Ihr Fonial-Trunking mit Famulor über FQDN'
+---
+
+# Fonial-Integration
+
+<Note>
+  **Fonial unterstützt FQDN.** Sie können Ihren Fonial SIP-Trunk mit Famulor verbinden und Ihre Rufnummern mit einem KI-Assistenten nutzen. Folgen Sie der Schritt-für-Schritt-Anleitung unten.
+</Note>
+
+Die Einrichtung gliedert sich in **Famulor** (SIP-Trunk anlegen, SIP-Adresse und erlaubte IPs) und **Fonial** (SIP-Benutzer anlegen, Rufnummern zuweisen, Anrufziel/FQDN eintragen). Technische Grundlagen von Fonial (E.164, OPTIONS, IP-Adressen) finden Sie in den [Allgemeinen Einrichtungshinweisen zum fonial Trunking](https://www.fonial.de/hilfe/trunking/konfiguration-der-telefonanlagen/allgemeine-einrichtungshinweise).
+
+---
+
+## Schritt 1: In Famulor einrichten
+
+1. Auf [famulor.de](https://famulor.de) einloggen.
+2. Unter **„Deine Telefonnummern“** auf **„SIP-Trunk integrieren“** klicken.
+3. **SIP-Trunk-Konfiguration** ausfüllen:
+   - **Authentifizierung:** Benutzername und Passwort (diese erhalten Sie in Schritt 2 aus dem Fonial-Kundenkonto).
+   - **Ausgehende Telefonie:** SIP-Server/Adresse und Rufnummernformat gemäß Fonial (E.164 mit „+“).
+   - **Eingehende Telefonie:** Die **erlaubten IP-Adressen** von Fonial eintragen (siehe [Fonial Fact-Sheet](https://www.fonial.de/hilfe/trunking/konfiguration-der-telefonanlagen/allgemeine-einrichtungshinweise) – Abschnitt „IP-Adressen“). Die angezeigte **„Unsere SIP-Adresse“** notieren – wird in Fonial als FQDN/Anrufziel benötigt.
+4. Konfiguration bestätigen und einen **KI-Assistenten** anlegen sowie der Rufnummer zuordnen.
+
+<Note>
+  Die **IP-Adressen** der Fonial-Server finden Sie im [Fonial Fact-Sheet](https://www.fonial.de/hilfe/trunking/konfiguration-der-telefonanlagen/allgemeine-einrichtungshinweise) (Abschnitt 12). Diese müssen in Famulor unter „Eingehende Telefonie“ als erlaubte IPs eingetragen werden, damit eingehende Anrufe von Fonial bei Famulor ankommen.
+</Note>
+
+---
+
+## Schritt 2: Bei Fonial – SIP-Benutzer anlegen
+
+Der SIP-Benutzer ist der Dreh- und Angelpunkt für die Einrichtung: Mit seinen Daten verbinden Sie später Famulor (bzw. Ihr Anrufziel) mit dem Fonial-Trunk. Ohne SIP-Benutzer keine Rufnummernzuweisung.
+
+**Quelle:** [SIP-Benutzer anlegen](https://www.fonial.de/hilfe/trunking/einrichtung-trunking/sip-benutzer-anlegen) in der fonial Hilfe.
+
+1. Im **fonial Kundenkonto** zum Menüpunkt **„SIP-Benutzer“** wechseln und darauf klicken.
+
+<img src="/images/fonial/fonial-sip-1.png" alt="Fonial: Menü SIP-Benutzer" />
+
+2. Rechts oberhalb der Tabelle auf **„Neuen SIP-Benutzer anlegen“** klicken.
+
+<img src="/images/fonial/fonial-sip-2.png" alt="Fonial: Neuen SIP-Benutzer anlegen" />
+
+3. Im Dialog einen **Namen** für den SIP-Benutzer eintragen (z. B. Bezeichnung der Anlage/des Standorts oder „Famulor“). Anschließend auf **„Speichern“** klicken.
+
+<img src="/images/fonial/fonial-sip-3.png" alt="Fonial: Name des SIP-Benutzers eintragen und speichern" />
+
+4. Der neue SIP-Benutzer erscheint in der Tabelle; der Status ist zunächst **„Offline“**, bis die SIP-Daten in der Gegenstelle (z. B. Famulor/FQDN) eingetragen sind.
+
+<img src="/images/fonial/fonial-sip-4.png" alt="Fonial: SIP-Benutzer in der Übersicht, Status Offline" />
+
+5. Über das **Benutzer-/Zahnrad-Symbol** die **SIP-Benutzerdaten** öffnen: **Benutzername**, **Passwort** und **Server-URL**. Diese Daten in Famulor in der SIP-Trunk-Konfiguration eintragen (Authentifizierung und ggf. ausgehende Telefonie).
+
+<img src="/images/fonial/fonial-sip-5.png" alt="Fonial: SIP-Benutzerdaten – Benutzername, Passwort, Server-URL" />
+
+---
+
+## Schritt 3: Bei Fonial – Rufnummern zuweisen
+
+Rufnummern müssen dem angelegten SIP-Benutzer zugeordnet werden, damit Anrufe auf diese Nummern an Ihr konfiguriertes Anrufziel (Famulor) geroutet werden.
+
+**Quelle:** [Rufnummern zuweisen](https://www.fonial.de/hilfe/trunking/einrichtung-trunking/rufnummernzuweisung) in der fonial Hilfe.
+
+1. Im Kundenkonto unter **„Rufnummern“** die gewünschte Rufnummer auswählen (Haken setzen). Anschließend auf **„SIP-Benutzer zuordnen“** klicken (bzw. „Zuordnung zu SIP-Benutzer aufheben“, wenn Sie eine Zuweisung ändern möchten).
+
+<img src="/images/fonial/fonial-ruf-1.png" alt="Fonial: Rufnummer auswählen und SIP-Benutzer zuordnen" />
+
+2. Im Dropdown den **SIP-Benutzer** auswählen (z. B. den in Schritt 2 angelegten) und auf **„Speichern“** klicken.
+
+<img src="/images/fonial/fonial-ruf-2.png" alt="Fonial: SIP-Benutzer auswählen und speichern" />
+
+3. Nach korrekter Konfiguration der Gegenstelle (Famulor mit FQDN/Anrufziel und SIP-Daten) wechselt der Status des SIP-Benutzers auf **„Online“**.
+
+<img src="/images/fonial/fonial-ruf-3.png" alt="Fonial: Erfolgreiche Zuweisung, Status Online" />
+
+---
+
+## Schritt 4: FQDN / Anrufziel in Fonial eintragen
+
+Tragen Sie bei Fonial als **Anrufziel** (FQDN) die **Famulor-SIP-Adresse** ein, die Sie in Famulor unter „Telefonnummern → SIP-Trunk integrieren → Eingehende Telefonie“ als **„Unsere SIP-Adresse“** sehen. Das Präfix `sip:` weglassen, nur die Domain angeben (z. B. `ihre-id.sip.livekit.cloud`).
+
+Wo genau Sie die FQDN in Ihrem Fonial-Kundenkonto eintragen, hängt von der aktuellen Oberfläche ab – bei Fragen dazu wenden Sie sich an den [Fonial-Support](https://www.fonial.de) oder nutzen Sie die [fonial Trunking-Hilfe](https://www.fonial.de/hilfe/trunking/einrichtung-trunking).
+
+---
+
+## Wichtige Hinweise (basierend auf dem Fonial Fact-Sheet)
+
+- **Rufnummernformat:** Fonial nutzt **E.164** (international mit „+“, z. B. +49 221 66966966). In Famulor und in Ihrer Konfiguration ebenfalls E.164 verwenden.
+- **OPTIONS-Pakete:** Die Gegenstelle (Famulor) muss OPTIONS-Anfragen von Fonial mit **200 OK** beantworten, sonst gilt die Anlage als offline und Anrufe werden nicht durchgestellt.
+- **Sprachcodecs:** G.711, G.711a, G.711μ; Fonial empfiehlt G.722. DTMF gemäß RFC 2833.
+
+Weitere Details: [Allgemeine Einrichtungshinweise zum fonial Trunking](https://www.fonial.de/hilfe/trunking/konfiguration-der-telefonanlagen/allgemeine-einrichtungshinweise).
+
+---
+
+## Hilfe
+
+<Tip>
+  Bei der Einrichtung unterstützt Sie unser Support: [support@famulor.io](mailto:support@famulor.io). Für Fonial-spezifische Fragen (SIP-Benutzer, Rufnummern, Kundenkonto): [fonial Hilfebereich](https://www.fonial.de/hilfe/trunking/einrichtung-trunking).
+</Tip>

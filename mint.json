@@ -245,6 +245,7 @@
         "provisioning/sip-ai/zadarma-integration",
         "provisioning/sip-ai/3cx-integration",
         "provisioning/sip-ai/easybell-integration",
+        "provisioning/sip-ai/fonial-integration",
         "provisioning/sip-ai/telnyx-integration",
         "provisioning/sip-ai/vonage-integration",
         "provisioning/sip-ai/placetel-limitations",
