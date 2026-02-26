@@ -1,0 +1,61 @@
+---
+title: "Transcriber-Provider abrufen"
+api: "GET https://app.famulor.de/api/user/assistants/transcriber-providers"
+icon: "mic"
+description: "Verfügbare STT- (Speech-to-Text-) Transcriber-Provider abrufen"
+---
+
+Dieser Endpunkt gibt eine Liste verfügbarer Transcriber-Provider zurück, die beim Erstellen oder Aktualisieren von Assistenten verwendet werden können. Verwenden Sie die zurückgegebene `id` als `transcriber_provider_id` bei der Assistenten-Konfiguration.
+
+### Query-Parameter
+
+<ParamField query="language_id" type="integer">
+  Provider nach Sprachunterstützung filtern. Es werden nur Provider zurückgegeben, die die angegebene Sprache unterstützen. Verwenden Sie den Endpunkt [Sprachen abrufen](/api-reference/assistants/languages), um verfügbare Sprach-IDs zu erhalten.
+</ParamField>
+
+### Antwort-Felder
+
+<ResponseField name="data" type="array">
+  <Expandable title="Eigenschaften">
+    <ResponseField name="id" type="integer">
+      Die eindeutige Kennung des Providers. Verwenden Sie diese als `transcriber_provider_id` beim Erstellen oder Aktualisieren von Assistenten.
+    </ResponseField>
+
+    <ResponseField name="name" type="string">
+      Der Anzeigename des Providers (z.B. "Deepgram", "Azure", "Gladia")
+    </ResponseField>
+
+    <ResponseField name="code" type="string">
+      Der interne Code des Providers
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseExample>
+  ```json 200 Antwort theme={null}
+  [
+    {
+      "id": 1,
+      "name": "Deepgram",
+      "code": "deepgram"
+    },
+    {
+      "id": 2,
+      "name": "Azure",
+      "code": "azure"
+    },
+    {
+      "id": 3,
+      "name": "Gladia",
+      "code": "gladia"
+    }
+  ]
+  ```
+</ResponseExample>
+
+### Hinweise
+
+* Ohne Angabe von `language_id` werden alle Provider zurückgegeben
+* Nicht jeder Provider unterstützt alle Sprachen – nutzen Sie den Filter `language_id` für kompatible Provider
+* Transcriber-Provider sind nur für den Modus `pipeline` relevant (die Modi `multimodal` und `dualplex` verarbeiten STT intern)
+* Wenn Sie beim Erstellen eines Assistenten `transcriber_provider_id` nicht setzen, wird der Standard-Provider der Sprache verwendet

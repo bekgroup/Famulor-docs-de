@@ -128,12 +128,29 @@ Die API unterstützt drei Engine-Modi mit unterschiedlichen Fähigkeiten:
   <Expandable title="Tool-Typen">
     **call\_transfer** - Den Anruf an eine andere Telefonnummer weiterleiten
 
-    * `phone_number` (required): Zielnummer (z.B. "+1234567890")
+    * `phone_number` (erforderlich): Zielnummer (z.B. "+1234567890")
     * `description`: Wann weitergeleitet werden soll
     * `custom`: Wenn true, kann die KI die Transfer-Nummer dynamisch bestimmen
     * `timezone`: Zeitzone für Verfügbarkeiten
+    * `warm_transfer`: Nachricht an den Kunden vor der Weiterleitung (Standard: `false`)
+    * `warm_transfer_message`: Prompt, was die KI vor der Weiterleitung sagen soll (z.B. „Sagen Sie dem Kunden, dass der Anruf weitergeleitet wird.“)
 
-    **end\_call** - Den Anruf programmatisch beenden
+    **warm\_call\_transfer** - Warm-Transfer mit Supervisor-Briefing
+
+    * `supervisor_phone` (erforderlich): Telefonnummer für den Warm-Transfer (z.B. "+14155552001"). Bei `custom_sip` stattdessen SIP-Adresse oder interne Durchwahl.
+    * `outbound_phone_id` (erforderlich): ID der Telefonnummer, mit der der Supervisor angerufen wird. Siehe [Telefonnummern abrufen](/api-reference/assistants/phone-numbers).
+    * `description` (erforderlich): **Wann transferieren** – wann die KI den Warm-Transfer auslösen soll (z.B. „An einen menschlichen Ansprechpartner weiterleiten, wenn der Kunde mit einer echten Person sprechen möchte.“)
+    * `custom_sip`: Custom-SIP-Adresse oder interne Durchwahl statt Telefonnummer (Standard: `false`)
+    * `caller_id_mode`: Welche Nummer der Supervisor sieht. Optionen: `outbound_number` (Standard), `customer_number`, `custom`
+    * `custom_caller_id`: Eigene Nummer für den Supervisor. Nur bei `caller_id_mode: custom`.
+    * `hold_music`: Wartemusik. Optionen: `hold_music` (Standard), `none`
+    * `hold_music_volume`: Lautstärke der Wartemusik 0–100 (Standard: `80`)
+    * `hold_message`: Ansage an den Anrufer vor dem Halten (Standard: „Bitte warten Sie, während ich Sie mit einem Ansprechpartner verbinde.“)
+    * `summary_instructions`: Anweisung, wie die KI den Supervisor einweisen soll (Standard: Wer ruft an, warum, warum Mensch nötig – 2–3 Sätze.)
+    * `briefing_initial_message`: Erste Ansage der KI an den Supervisor (Standard: „Hallo! Ich habe einen Anrufer, der Unterstützung braucht. Darf ich die Situation kurz schildern?“)
+    * `connected_message`: Ansage an den Anrufer nach Verbindung mit dem Supervisor (Standard: „Sie sind jetzt mit einem Ansprechpartner verbunden.“)
+
+    **end\_call** - Den Anruf programmgesteuert beenden
 
     * `description`: Wann die KI den Anruf beenden soll
 
@@ -141,10 +158,19 @@ Die API unterstützt drei Engine-Modi mit unterschiedlichen Fähigkeiten:
 
     * `description`: Wann DTMF genutzt werden soll (z.B. IVR-Navigation)
 
-    **calendar\_integration** - Termine via Cal.com buchen
+    **collect\_keypad** - Tastatureingabe vom Anrufer erfassen
 
-    * `calcom_api_key` (required): Ihr Cal.com API Key
-    * `calcom_event_slug` (required): Event-Type Slug
+    * `timeout`: Wartezeit in Sekunden, 1–30 (Standard: 5)
+    * `stop_key`: Taste zum Beenden. Optionen: `#` (Standard), `*`
+
+    **calendar\_integration** - Termine über Cal.com planen
+
+    * `calcom_api_key` (erforderlich): Ihr Cal.com API-Schlüssel
+    * `calcom_event_slug` (erforderlich): Event-Typ-Slug von Cal.com
+    * `calcom_team_slug`: Team-Slug, wenn der Event zu einem Cal.com-Team gehört
+    * `calcom_endpoint`: API-Region. Optionen: `us` (Standard – `https://api.cal.com`), `eu` (`https://api.cal.eu`), `custom` (nutzt `calcom_custom_endpoint`)
+    * `calcom_custom_endpoint`: Eigene Cal.com API-URL. Nur bei `calcom_endpoint: custom` (z.B. `https://my-calcom-instance.com`).
+    * `calcom_booking_fields`: Array benutzerdefinierter Buchungsfelder. Pro Feld: `slug`, `type`, `label`, optional `required`, `options` für Select.
     * `description`: Wann Terminbuchung angeboten werden soll
   </Expandable>
 
@@ -156,8 +182,23 @@ Die API unterstützt drei Engine-Modi mit unterschiedlichen Fähigkeiten:
       "description": "Weiterleiten, wenn der Kunde menschlichen Support wünscht"
     },
     {
-      "type": "dtmf_input",
-      "description": "IVR-Menüs bei Bedarf navigieren"
+      "type": "warm_call_transfer",
+      "supervisor_phone": "+1234567891",
+      "outbound_phone_id": 7,
+      "description": "An einen menschlichen Ansprechpartner weiterleiten, wenn der Kunde mit einer echten Person sprechen möchte.",
+      "custom_sip": false,
+      "caller_id_mode": "outbound_number",
+      "hold_music": "hold_music",
+      "hold_music_volume": 80,
+      "hold_message": "Bitte warten Sie, während ich Sie mit einem Ansprechpartner verbinde.",
+      "summary_instructions": "Kurz aus Ihrer Sicht: Wer ruft an, warum, warum wird ein Mensch benötigt. 2–3 Sätze.",
+      "briefing_initial_message": "Hallo! Ich habe einen Anrufer, der Unterstützung braucht. Darf ich die Situation kurz schildern?",
+      "connected_message": "Sie sind jetzt mit einem Ansprechpartner verbunden."
+    },
+    {
+      "type": "collect_keypad",
+      "timeout": 5,
+      "stop_key": "#"
     },
     {
       "type": "end_call",
@@ -190,11 +231,11 @@ Die API unterstützt drei Engine-Modi mit unterschiedlichen Fähigkeiten:
 </ParamField>
 
 <ParamField body="synthesizer_provider_id" type="integer">
-  Custom TTS Provider-ID. Wenn nicht gesetzt, wird anhand der Sprache automatisch ausgewählt.
+  Custom TTS Provider-ID. Wenn nicht gesetzt, wird anhand der Sprache automatisch ausgewählt. Siehe [Synthesizer-Provider abrufen](/api-reference/assistants/synthesizer-providers).
 </ParamField>
 
 <ParamField body="transcriber_provider_id" type="integer">
-  Custom STT Provider-ID. Wenn nicht gesetzt, wird anhand der Sprache automatisch ausgewählt. Nur `pipeline`.
+  Custom STT Provider-ID. Wenn nicht gesetzt, wird anhand der Sprache automatisch ausgewählt. Nur `pipeline`. Siehe [Transcriber-Provider abrufen](/api-reference/assistants/transcriber-providers).
 </ParamField>
 
 ### Call-Behavior-Einstellungen
@@ -209,6 +250,24 @@ Die API unterstützt drei Engine-Modi mit unterschiedlichen Fähigkeiten:
   Ob Filler-Audio während der Verarbeitung verwendet werden soll (z.B. "äh", "einen Moment").
 
   <Warning>Nur verfügbar im Modus `pipeline`.</Warning>
+</ParamField>
+
+<ParamField body="filler_config" type="object">
+  Benutzerdefinierte Füller-Profile pro Kategorie. Wenn nicht angegeben, werden sprachabhängige Standardwerte verwendet. Jede Kategorie ist ein Array kurzer Phrasen.
+
+  * `positive`: Füller für zustimmende Antworten (z.B. "Super!", "Perfekt!")
+  * `negative`: Füller für ablehnende/neutrale Antworten (z.B. "Hmm.", "Mhm.")
+  * `question`: Füller beim Verarbeiten einer Frage (z.B. "Hmm.", "Einen Moment.")
+  * `neutral`: Füller für neutrale Bestätigungen (z.B. "Ok.", "Verstanden.")
+
+  ```json  theme={null}
+  "filler_config": {
+    "positive": ["Super!", "Perfekt!", "Sehr gut!"],
+    "negative": ["Hmm.", "Verstehe.", "Okay."],
+    "question": ["Gute Frage.", "Einen Moment.", "Lass mich nachschauen."],
+    "neutral": ["Ok.", "Verstanden.", "Notiert."]
+  }
+  ```
 </ParamField>
 
 <ParamField body="record" type="boolean" default="false">
@@ -354,6 +413,20 @@ Die API unterstützt drei Engine-Modi mit unterschiedlichen Fähigkeiten:
   ```
 </ParamField>
 
+### Conversation-Ended-Einstellungen
+
+<ParamField body="conversation_inactivity_timeout" type="integer" default="30">
+  Minuten Chat-Inaktivität, bis die Konversation als beendet gilt (1–1440)
+</ParamField>
+
+<ParamField body="conversation_ended_retrigger" type="boolean" default="false">
+  Ob die Konversation nach Inaktivitäts-Ende erneut gestartet werden kann
+</ParamField>
+
+<ParamField body="conversation_ended_webhook_url" type="string">
+  Webhook-URL, die beim Ende einer Chat-Konversation wegen Inaktivität aufgerufen wird. Getrennt vom Anruf-Webhook.
+</ParamField>
+
 ---
 
 ## Beispiel-Requests
@@ -375,10 +448,31 @@ Die API unterstützt drei Engine-Modi mit unterschiedlichen Fähigkeiten:
   "knowledgebase_id": 1,
   "knowledgebase_mode": "prompt",
   "fillers": true,
+  "filler_config": {
+    "positive": ["Super!", "Perfekt!", "Sehr gut!"],
+    "negative": ["Hmm.", "Verstehe."],
+    "question": ["Gute Frage.", "Einen Moment."],
+    "neutral": ["Ok.", "Notiert.", "Verstanden."]
+  },
   "tool_ids": [1, 5],
   "tools": [
-    {"type": "end_call", "description": "Beende den Anruf, wenn der Kunde zufrieden ist"},
-    {"type": "call_transfer", "phone_number": "+1234567890", "description": "Weiterleiten an Support"}
+    {"type": "end_call", "description": "Anruf beenden, wenn der Kunde zufrieden ist"},
+    {"type": "call_transfer", "phone_number": "+1234567890", "description": "Weiterleiten an Support"},
+    {
+      "type": "warm_call_transfer",
+      "supervisor_phone": "+1234567891",
+      "outbound_phone_id": 7,
+      "description": "An einen menschlichen Ansprechpartner weiterleiten, wenn der Kunde mit einer echten Person sprechen möchte.",
+      "custom_sip": false,
+      "caller_id_mode": "outbound_number",
+      "hold_music": "hold_music",
+      "hold_music_volume": 80,
+      "hold_message": "Bitte warten Sie, während ich Sie mit einem Ansprechpartner verbinde.",
+      "summary_instructions": "Kurz aus Ihrer Sicht: Wer ruft an, warum, warum wird ein Mensch benötigt. 2–3 Sätze.",
+      "briefing_initial_message": "Hallo! Ich habe einen Anrufer, der Unterstützung braucht. Darf ich die Situation kurz schildern?",
+      "connected_message": "Sie sind jetzt mit einem Ansprechpartner verbunden."
+    },
+    {"type": "collect_keypad", "timeout": 5, "stop_key": "#"}
   ],
   "reengagement_interval": 20,
   "reengagement_prompt": "Sind Sie noch dran?"

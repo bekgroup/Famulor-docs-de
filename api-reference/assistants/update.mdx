@@ -5,7 +5,7 @@ icon: "pen-to-square"
 description: "Die Konfiguration eines bestehenden KI-Assistenten aktualisieren"
 ---
 
-Dieser Endpunkt ermöglicht es Ihnen, die Konfiguration eines bestehenden KI-Assistenten zu aktualisieren. Alle Felder sind optional - geben Sie nur die Felder an, die Sie aktualisieren möchten.
+Dieser Endpunkt ermöglicht es Ihnen, die Konfiguration eines bestehenden KI-Assistenten zu aktualisieren. Alle Felder sind optional – es werden nur die angegebenen Felder aktualisiert. Für ausführliche Feldbeschreibungen und Optionen siehe [Assistent erstellen](/api-reference/assistants/create).
 
 ### Path Parameter
 
@@ -124,30 +124,72 @@ Dieser Endpunkt ermöglicht es Ihnen, die Konfiguration eines bestehenden KI-Ass
   Array von integrierten Tools. **Ersetzt alle bestehenden integrierten Tools.** Übergeben Sie ein leeres Array `[]`, um alle Tools zu entfernen.
 
   <Expandable title="Tool-Typen">
-    **call_transfer** - Den Anruf an eine andere Telefonnummer weiterleiten
+    **call\_transfer** - Den Anruf an eine andere Telefonnummer weiterleiten
 
     * `phone_number` (erforderlich): Telefonnummer für die Weiterleitung
     * `description`: Wann der Anruf weitergeleitet werden soll
     * `custom`: Wenn wahr, kann die KI die Weiterleitungsnummer dynamisch bestimmen
     * `timezone`: Zeitzone für die Erreichbarkeit der Weiterleitung
+    * `warm_transfer`: Nachricht an den Kunden vor der Weiterleitung (Standard: `false`)
+    * `warm_transfer_message`: Prompt, was die KI vor der Weiterleitung sagen soll (z. B. „Sagen Sie dem Kunden, dass der Anruf weitergeleitet wird.“)
 
-    **end_call** - Den Anruf programmgesteuert beenden
+    **warm\_call\_transfer** - Warm-Transfer mit Supervisor-Briefing
+
+    * `supervisor_phone` (erforderlich): Telefonnummer für den Warm-Transfer (z. B. "+14155552001"). Bei `custom_sip` stattdessen SIP-Adresse oder interne Durchwahl.
+    * `outbound_phone_id` (erforderlich): ID der Telefonnummer, mit der der Supervisor angerufen wird. Siehe [Telefonnummern abrufen](/api-reference/assistants/phone-numbers).
+    * `description` (erforderlich): **Wann transferieren** – wann die KI den Warm-Transfer auslösen soll (z. B. „An einen menschlichen Ansprechpartner weiterleiten, wenn der Kunde mit einer echten Person sprechen möchte.“)
+    * `custom_sip`: Custom-SIP-Adresse oder interne Durchwahl statt Telefonnummer (Standard: `false`)
+    * `caller_id_mode`: Welche Nummer der Supervisor sieht. Optionen: `outbound_number` (Standard), `customer_number`, `custom`
+    * `custom_caller_id`: Eigene Nummer für den Supervisor. Nur bei `caller_id_mode: custom`.
+    * `hold_music`: Wartemusik. Optionen: `hold_music` (Standard), `none`
+    * `hold_music_volume`: Lautstärke der Wartemusik 0–100 (Standard: `80`)
+    * `hold_message`: Ansage an den Anrufer vor dem Halten (Standard: „Bitte warten Sie, während ich Sie mit einem Ansprechpartner verbinde.“)
+    * `summary_instructions`: Anweisung, wie die KI den Supervisor einweisen soll (Standard-Kurzfassung: Wer ruft an, warum, warum Mensch nötig.)
+    * `briefing_initial_message`: Erste Ansage der KI an den Supervisor (Standard: „Hallo! Ich habe einen Anrufer, der Unterstützung braucht. Darf ich die Situation kurz schildern?“)
+    * `connected_message`: Ansage an den Anrufer nach Verbindung mit dem Supervisor (Standard: „Sie sind jetzt mit einem Ansprechpartner verbunden.“)
+
+    **end\_call** - Den Anruf programmgesteuert beenden
 
     * `description`: Wann die KI den Anruf beenden soll
 
-    **dtmf_input** - DTMF-Töne senden (Tastatureingabe)
+    **dtmf\_input** - DTMF-Töne senden (Tastatureingabe)
 
-    * `description`: Wann DTMF-Eingabe verwendet werden soll (für IVR-Navigation)
+    * `description`: Wann DTMF-Eingabe verwendet werden soll (z. B. IVR-Navigation)
 
-    **calendar_integration** - Termine über Cal.com planen
+    **collect\_keypad** - Tastatureingabe vom Anrufer erfassen
+
+    * `timeout`: Wartezeit in Sekunden, 1–30 (Standard: 5)
+    * `stop_key`: Taste zum Beenden. Optionen: `#` (Standard), `*`
+
+    **calendar\_integration** - Termine über Cal.com planen
 
     * `calcom_api_key` (erforderlich): Ihr Cal.com API-Schlüssel
-    * `calcom_event_slug` (erforderlich): Der Event-Typ-Slug
+    * `calcom_event_slug` (erforderlich): Event-Typ-Slug von Cal.com
+    * `calcom_team_slug`: Team-Slug, wenn der Event zu einem Cal.com-Team gehört
+    * `calcom_endpoint`: API-Region. Optionen: `us` (Standard – `https://api.cal.com`), `eu` (`https://api.cal.eu`), `custom` (nutzt `calcom_custom_endpoint`)
+    * `calcom_custom_endpoint`: Eigene Cal.com API-URL. Nur bei `calcom_endpoint: custom` (z. B. `https://my-calcom-instance.com`).
+    * `calcom_booking_fields`: Array benutzerdefinierter Buchungsfelder. Pro Feld: `slug`, `type`, `label`, optional `required`, `options` für Select.
+    * `description`: Wann Terminbuchung angeboten werden soll
   </Expandable>
 
   ```json  theme={null}
   "tools": [
     {"type": "dtmf_input", "description": "IVR bei Bedarf navigieren"},
+    {
+      "type": "warm_call_transfer",
+      "supervisor_phone": "+1234567890",
+      "outbound_phone_id": 7,
+      "description": "An einen menschlichen Ansprechpartner weiterleiten, wenn der Kunde mit einer echten Person sprechen möchte.",
+      "custom_sip": false,
+      "caller_id_mode": "outbound_number",
+      "hold_music": "hold_music",
+      "hold_music_volume": 80,
+      "hold_message": "Bitte warten Sie, während ich Sie mit einem Ansprechpartner verbinde.",
+      "summary_instructions": "Kurz aus Ihrer Sicht: Wer ruft an, warum, warum wird ein Mensch benötigt. 2–3 Sätze.",
+      "briefing_initial_message": "Hallo! Ich habe einen Anrufer, der Unterstützung braucht. Darf ich die Situation kurz schildern?",
+      "connected_message": "Sie sind jetzt mit einem Ansprechpartner verbunden."
+    },
+    {"type": "collect_keypad", "timeout": 5, "stop_key": "#"},
     {"type": "end_call", "description": "Anruf beenden wenn fertig"}
   ]
   ```
@@ -176,11 +218,11 @@ Dieser Endpunkt ermöglicht es Ihnen, die Konfiguration eines bestehenden KI-Ass
 </ParamField>
 
 <ParamField body="synthesizer_provider_id" type="integer">
-  Benutzerdefinierte TTS-Provider-ID. Auf `null` setzen, um den Sprachstandard zu verwenden.
+  Benutzerdefinierte TTS-Provider-ID. Auf `null` setzen, um den Sprachstandard zu verwenden. Siehe [Synthesizer-Provider abrufen](/api-reference/assistants/synthesizer-providers).
 </ParamField>
 
 <ParamField body="transcriber_provider_id" type="integer">
-  Benutzerdefinierte STT-Provider-ID. Nur Pipeline-Modus. Auf `null` setzen, um den Sprachstandard zu verwenden.
+  Benutzerdefinierte STT-Provider-ID. Nur Pipeline-Modus. Auf `null` setzen, um den Sprachstandard zu verwenden. Siehe [Transcriber-Provider abrufen](/api-reference/assistants/transcriber-providers).
 </ParamField>
 
 #### Anrufverhalten-Einstellungen
@@ -195,6 +237,24 @@ Dieser Endpunkt ermöglicht es Ihnen, die Konfiguration eines bestehenden KI-Ass
   Ob Füller-Audio während der Verarbeitung verwendet werden soll.
 
   <Warning>Nur für den Modus `pipeline` verfügbar.</Warning>
+</ParamField>
+
+<ParamField body="filler_config" type="object">
+  Benutzerdefinierte Füller-Profile pro Kategorie. Ersetzt die bestehende Füller-Konfiguration. Jede Kategorie ist ein Array kurzer Phrasen.
+
+  * `positive`: Füller für zustimmende Antworten
+  * `negative`: Füller für ablehnende/neutrale Antworten
+  * `question`: Füller beim Verarbeiten einer Frage
+  * `neutral`: Füller für neutrale Bestätigungen
+
+  ```json  theme={null}
+  "filler_config": {
+    "positive": ["Super!", "Perfekt!"],
+    "negative": ["Hmm.", "Verstehe."],
+    "question": ["Gute Frage.", "Einen Moment."],
+    "neutral": ["Ok.", "Notiert."]
+  }
+  ```
 </ParamField>
 
 <ParamField body="record" type="boolean">

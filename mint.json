@@ -299,6 +299,8 @@
         "api-reference/assistants/languages",
         "api-reference/assistants/voices",
         "api-reference/assistants/models",
+        "api-reference/assistants/synthesizer-providers",
+        "api-reference/assistants/transcriber-providers",
         "api-reference/assistants/phone-numbers",
         "api-reference/assistants/enable-inbound-webhook",
         "api-reference/assistants/disable-inbound-webhook",
