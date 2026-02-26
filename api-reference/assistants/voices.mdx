@@ -36,6 +36,22 @@ Dieser Endpunkt gibt eine Liste aller verfügbaren Stimmen zurück, die beim Ers
     <ResponseField name="gender" type="string">
       Das Geschlecht der Stimme (male/female)
     </ResponseField>
+
+    <ResponseField name="preview_url" type="string">
+      URL zu einem Audio-Beispiel der Stimme. Kann verwendet werden, um Nutzern eine Vorschau der Stimme zu ermöglichen, bevor sie ausgewählt wird.
+    </ResponseField>
+
+    <ResponseField name="accent" type="string">
+      Der Akzent der Stimme (z.B. „American“, „British“). Kann `null` sein.
+    </ResponseField>
+
+    <ResponseField name="age" type="string">
+      Die Alterskategorie der Stimme (z.B. „Young“, „Middle aged“). Kann `null` sein.
+    </ResponseField>
+
+    <ResponseField name="synthesizer_provider_id" type="integer">
+      Die TTS-Provider-ID, zu der diese Stimme gehört. Verwenden Sie den Endpunkt [Synthesizer-Provider abrufen](/api-reference/assistants/synthesizer-providers), um Providernamen aufzulösen. Kann `null` sein.
+    </ResponseField>
   </Expandable>
 </ResponseField>
 
@@ -46,19 +62,31 @@ Dieser Endpunkt gibt eine Liste aller verfügbaren Stimmen zurück, die beim Ers
       "id": 1,
       "name": "Alloy",
       "language_id": 1,
-      "gender": "female"
+      "gender": "female",
+      "preview_url": "https://cdn.openai.com/API/voice-previews/alloy.flac",
+      "accent": null,
+      "age": "Middle aged",
+      "synthesizer_provider_id": null
     },
     {
-      "id": 2,
-      "name": "Echo",
+      "id": 10,
+      "name": "Zephyr",
       "language_id": 1,
-      "gender": "male"
+      "gender": "female",
+      "preview_url": "https://gstatic.com/aistudio/voices/samples/Zephyr.wav",
+      "accent": null,
+      "age": "Middle aged",
+      "synthesizer_provider_id": 1
     },
     {
-      "id": 3,
-      "name": "Coral",
-      "language_id": null,
-      "gender": "female"
+      "id": 11,
+      "name": "Puck",
+      "language_id": 1,
+      "gender": "male",
+      "preview_url": "https://gstatic.com/aistudio/voices/samples/Puck.wav",
+      "accent": null,
+      "age": "Middle aged",
+      "synthesizer_provider_id": 1
     }
   ]
   ```
