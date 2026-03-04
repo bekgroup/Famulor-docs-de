@@ -1,0 +1,132 @@
+
+---
+title: "WhatsApp-Sender abrufen"
+api: "GET https://app.famulor.de/api/user/whatsapp/senders"
+icon: "whatsapp"
+description: "Alle WhatsApp Business Sender (Absendernummern) Ihres Famulor-Kontos abrufen"
+---
+
+# WhatsApp-Sender abrufen
+
+> Alle WhatsApp Business Absendernummern für den authentifizierten Famulor-Benutzer auflisten
+
+Dieser Endpunkt gibt eine Liste der WhatsApp Business Sender (Telefonnummern) zurück, die in Ihrem Famulor-Konto konfiguriert sind. Verwenden Sie diesen Endpunkt, um Sender-IDs zu erhalten, die Sie zum Versenden von Nachrichten benötigen.
+
+### Query-Parameter
+
+<ParamField query="status" type="string" optional>
+  Sender nach Status filtern. Standard: `online`. Verwenden Sie `all`, um alle Sender unabhängig vom Status zurückzugeben.
+</ParamField>
+
+### Antwort-Felder
+
+<ResponseField name="data" type="array">
+  <Expandable title="Sender-Objekt Eigenschaften">
+    <ResponseField name="id" type="integer">
+      Die eindeutige Kennung des WhatsApp-Senders. Verwenden Sie diese ID beim Versenden von Nachrichten.
+    </ResponseField>
+
+    <ResponseField name="phone_number" type="string">
+      Die Telefonnummer des Senders im E.164-Format (z.B. `+14155551234`)
+    </ResponseField>
+
+    <ResponseField name="display_name" type="string">
+      Der WhatsApp Business Anzeigename (Firmenname, der Empfängern angezeigt wird)
+    </ResponseField>
+
+    <ResponseField name="status" type="string">
+      Der aktuelle Status des Senders: `online` oder `offline`
+    </ResponseField>
+
+    <ResponseField name="quality_rating" type="string">
+      Die von Meta vergebene Qualitätsbewertung für diesen Sender: `GREEN`, `YELLOW` oder `RED`
+    </ResponseField>
+
+    <ResponseField name="messaging_limit" type="integer">
+      Aktuelles Messaging-Limit (Anzahl eindeutiger Empfänger pro 24 Stunden). `null` bedeutet unbegrenzt.
+    </ResponseField>
+
+    <ResponseField name="messaging_limit_formatted" type="string">
+      Menschlich lesbares Messaging-Limit (z.B. `1,000 / 24hr`, `10,000 / 24hr` oder `Unlimited`)
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<RequestExample>
+  ```bash cURL theme={null}
+  curl -X GET "https://app.famulor.de/api/user/whatsapp/senders" \
+    -H "Authorization: Bearer YOUR_API_KEY"
+  ```
+
+  ```bash Filter all senders theme={null}
+  curl -X GET "https://app.famulor.de/api/user/whatsapp/senders?status=all" \
+    -H "Authorization: Bearer YOUR_API_KEY"
+  ```
+
+  ```javascript JavaScript theme={null}
+  const response = await fetch(
+    'https://app.famulor.de/api/user/whatsapp/senders',
+    {
+      headers: {
+        'Authorization': 'Bearer YOUR_API_KEY'
+      }
+    }
+  );
+
+  const data = await response.json();
+  console.log(data.data); // Array of senders
+  ```
+
+  ```python Python theme={null}
+  import requests
+
+  response = requests.get(
+      'https://app.famulor.de/api/user/whatsapp/senders',
+      headers={'Authorization': 'Bearer YOUR_API_KEY'}
+  )
+
+  senders = response.json()['data']
+  for sender in senders:
+      print(f"{sender['display_name']}: {sender['phone_number']}")
+  ```
+</RequestExample>
+
+<ResponseExample>
+  ```json 200 Response theme={null}
+  {
+    "data": [
+      {
+        "id": 12,
+        "phone_number": "+14155551234",
+        "display_name": "Acme Corp Support",
+        "status": "online",
+        "quality_rating": "GREEN",
+        "messaging_limit": 10000,
+        "messaging_limit_formatted": "10,000 / 24hr"
+      },
+      {
+        "id": 15,
+        "phone_number": "+442071234567",
+        "display_name": "Acme Corp Sales",
+        "status": "online",
+        "quality_rating": "GREEN",
+        "messaging_limit": null,
+        "messaging_limit_formatted": "Unlimited"
+      }
+    ]
+  }
+  ```
+
+  ```json 200 Empty Response theme={null}
+  {
+    "data": []
+  }
+  ```
+</ResponseExample>
+
+### Notes
+
+* Only senders with status `online` are returned by default. Use `?status=all` to include offline senders.
+* Sender status is synced with Meta every 5 minutes automatically.
+* The `id` field is what you need to pass as `sender_id` when sending messages.
+* Quality rating affects your messaging limits. A `RED` rating may restrict your ability to send messages.

@@ -1,0 +1,256 @@
+
+---
+title: "WhatsApp-Template-Nachricht senden"
+api: "POST https://app.famulor.de/api/user/whatsapp/send"
+icon: "whatsapp"
+description: "WhatsApp-Template-Nachrichten über Famulor versenden"
+---
+
+# WhatsApp-Template-Nachricht senden
+
+> Eine WhatsApp-Nachricht mit einem freigegebenen Template senden
+
+Dieser Endpunkt sendet eine WhatsApp-Nachricht mithilfe eines vorab freigegebenen Templates. Template-Nachrichten sind erforderlich, um eine Konversation mit einem Nutzer erstmals zu starten oder um ihn außerhalb des 24-Stunden-Messaging-Fensters zu kontaktieren.
+
+<Note>
+  This endpoint is rate-limited to **5 requests per second** per user.
+</Note>
+
+### Anfrage-Body
+
+<ParamField body="sender_id" type="integer" required>
+  Die ID des WhatsApp-Senders, von dem gesendet werden soll (erhalten über [WhatsApp-Sender abrufen](/api-reference/whatsapp/get-senders))
+</ParamField>
+
+<ParamField body="template_id" type="integer" required>
+  Die ID des zu verwendenden Nachrichtentemplates (erhalten über [WhatsApp-Templates abrufen](/api-reference/whatsapp/get-templates))
+</ParamField>
+
+<ParamField body="recipient_phone" type="string" required>
+  Die Telefonnummer des Empfängers im internationalen Format (z.B. `+1234567890`)
+</ParamField>
+
+<ParamField body="recipient_name" type="string">
+  Der Name des Empfängers, max. 255 Zeichen (für Konversations-Tracking und CRM-Zwecke)
+</ParamField>
+
+<ParamField body="variables" type="object">
+  Key-Value-Paare für Template-Variablen. Keys müssen den Variablennamen aus dem Template entsprechen. Wenn das Template Variablen `{{1}}`, `{{2}}` usw. hat, geben Sie sie als `{\"1\": \"value1\", \"2\": \"value2\"}` oder mit den benannten Keys aus dem `variables`-Array des Templates an.
+
+  <Expandable title="Example variables">
+    <ParamField body="1" type="string">
+      Wert für die erste Template-Variable
+    </ParamField>
+
+    <ParamField body="2" type="string">
+      Wert für die zweite Template-Variable
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+### Antwort-Felder
+
+<ResponseField name="success" type="boolean">
+  Ob die Nachricht erfolgreich gesendet wurde
+</ResponseField>
+
+<ResponseField name="conversation_id" type="integer">
+  Die ID der (neuen oder bestehenden) Konversation, die mit dieser Nachricht verknüpft ist
+</ResponseField>
+
+<ResponseField name="message_id" type="integer">
+  Die ID des Konversations-Nachrichteneintrags
+</ResponseField>
+
+<ResponseField name="whatsapp_message_id" type="integer">
+  Die ID des WhatsApp-Nachrichteneintrags
+</ResponseField>
+
+<ResponseField name="message_sid" type="string">
+  Die Twilio Message SID zur Sendungsverfolgung
+</ResponseField>
+
+<ResponseField name="status" type="string">
+  Der initiale Zustellstatus der Nachricht (z.B. `queued`, `sent`)
+</ResponseField>
+
+### Fehler-Antworten
+
+<ResponseField name="402 Insufficient Balance">
+  <Expandable title="Error Response">
+    <ResponseField name="success" type="boolean">`false`</ResponseField>
+    <ResponseField name="error" type="string">`Insufficient balance. Please top up your account.`</ResponseField>
+    <ResponseField name="error_code" type="string">`INSUFFICIENT_BALANCE`</ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="404 Not Found">
+  <Expandable title="Error Response">
+    <ResponseField name="success" type="boolean">`false`</ResponseField>
+    <ResponseField name="error" type="string">`Sender not found or does not belong to you` or `Template not found or does not belong to this sender`</ResponseField>
+    <ResponseField name="error_code" type="string">`SENDER_NOT_FOUND` or `TEMPLATE_NOT_FOUND`</ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="422 Unprocessable Entity">
+  <Expandable title="Error Response">
+    <ResponseField name="success" type="boolean">`false`</ResponseField>
+    <ResponseField name="error" type="string">Detailed error message</ResponseField>
+
+    <ResponseField name="error_code" type="string">
+      One of: `SENDER_OFFLINE`, `TEMPLATE_NOT_APPROVED`, `TEMPLATE_NOT_SYNCED`, `TEMPLATE_MISMATCH`, `NO_ASSISTANT_CONFIGURED`, `INVALID_PHONE`, `MESSAGING_LIMIT_UNAVAILABLE`, `VOICE_CALL_LIMIT_NOT_MET`, `TWILIO_ERROR_{code}`, `UNKNOWN_ERROR`
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<RequestExample>
+  ```bash cURL theme={null}
+  curl -X POST "https://app.famulor.de/api/user/whatsapp/send" \
+    -H "Authorization: Bearer YOUR_API_KEY" \
+    -H "Content-Type: application/json" \
+    -d '{
+      "sender_id": 12,
+      "template_id": 45,
+      "recipient_phone": "+1234567890",
+      "recipient_name": "John Doe",
+      "variables": {
+        "1": "John",
+        "2": "January 15, 2026",
+        "3": "2:00 PM"
+      }
+    }'
+  ```
+
+  ```bash Template without variables theme={null}
+  curl -X POST "https://app.famulor.de/api/user/whatsapp/send" \
+    -H "Authorization: Bearer YOUR_API_KEY" \
+    -H "Content-Type: application/json" \
+    -d '{
+      "sender_id": 12,
+      "template_id": 46,
+      "recipient_phone": "+1234567890"
+    }'
+  ```
+
+  ```javascript JavaScript theme={null}
+  const response = await fetch(
+    'https://app.famulor.de/api/user/whatsapp/send',
+    {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer YOUR_API_KEY',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        sender_id: 12,
+        template_id: 45,
+        recipient_phone: '+1234567890',
+        recipient_name: 'John Doe',
+        variables: {
+          '1': 'John',
+          '2': 'January 15, 2026',
+          '3': '2:00 PM'
+        }
+      })
+    }
+  );
+
+  const data = await response.json();
+  console.log(data);
+  ```
+
+  ```python Python theme={null}
+  import requests
+
+  response = requests.post(
+      'https://app.famulor.de/api/user/whatsapp/send',
+      headers={
+          'Authorization': 'Bearer YOUR_API_KEY',
+          'Content-Type': 'application/json'
+      },
+      json={
+          'sender_id': 12,
+          'template_id': 45,
+          'recipient_phone': '+1234567890',
+          'recipient_name': 'John Doe',
+          'variables': {
+              '1': 'John',
+              '2': 'January 15, 2026',
+              '3': '2:00 PM'
+          }
+      }
+  )
+
+  print(response.json())
+  ```
+</RequestExample>
+
+<ResponseExample>
+  ```json 200 Success theme={null}
+  {
+    "success": true,
+    "conversation_id": 1234,
+    "message_id": 567,
+    "whatsapp_message_id": 890,
+    "message_sid": "SMxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "status": "queued"
+  }
+  ```
+
+  ```json 402 Insufficient Balance theme={null}
+  {
+    "success": false,
+    "error": "Insufficient balance. Please top up your account.",
+    "error_code": "INSUFFICIENT_BALANCE"
+  }
+  ```
+
+  ```json 404 Sender Not Found theme={null}
+  {
+    "success": false,
+    "error": "Sender not found or does not belong to you",
+    "error_code": "SENDER_NOT_FOUND"
+  }
+  ```
+
+  ```json 404 Template Not Found theme={null}
+  {
+    "success": false,
+    "error": "Template not found or does not belong to this sender",
+    "error_code": "TEMPLATE_NOT_FOUND"
+  }
+  ```
+
+  ```json 422 Template Not Approved theme={null}
+  {
+    "success": false,
+    "error": "Template is not approved. Current status: pending",
+    "error_code": "TEMPLATE_NOT_APPROVED"
+  }
+  ```
+
+  ```json 422 Invalid Phone theme={null}
+  {
+    "success": false,
+    "error": "Invalid phone number format. Use E.164 format (e.g., +14155551234).",
+    "error_code": "INVALID_PHONE"
+  }
+  ```
+
+  ```json 422 Sender Offline theme={null}
+  {
+    "success": false,
+    "error": "Sender is not online. Current status: Offline",
+    "error_code": "SENDER_OFFLINE"
+  }
+  ```
+</ResponseExample>
+
+### Notes
+
+* Template messages must use **approved** templates. Templates with `pending` or `rejected` status will fail.
+* The sender must be `online`. Offline senders cannot send messages.
+* Message costs are automatically deducted from your account balance (credits for tenant users, minutes for direct users).
+* After sending a template message, a 24-hour messaging window opens. During this window, you can send [freeform messages](/api-reference/whatsapp/send-freeform) without needing a template.
+* If a conversation already exists with the recipient, the message is added to the existing conversation.
+* Rate limit: 5 requests per second per user.

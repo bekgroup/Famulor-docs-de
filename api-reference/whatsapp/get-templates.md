@@ -1,0 +1,168 @@
+
+---
+title: "WhatsApp-Templates abrufen"
+api: "GET https://app.famulor.de/api/user/whatsapp/senders/{senderId}/templates"
+icon: "whatsapp"
+description: "Verfügbare WhatsApp-Nachrichtentemplates für einen bestimmten Famulor-Sender abrufen"
+---
+
+# WhatsApp-Templates abrufen
+
+> WhatsApp-Nachrichtentemplates für einen bestimmten Sender auflisten
+
+Dieser Endpunkt gibt alle Nachrichtentemplates zurück, die einem bestimmten WhatsApp-Sender zugeordnet sind. Templates sind erforderlich, um Konversationen zu starten oder Empfänger außerhalb des 24-Stunden-Fensters zu kontaktieren.
+
+### Pfad-Parameter
+
+<ParamField path="senderId" type="integer" required>
+  Die ID des WhatsApp-Senders (erhalten über den Endpunkt [WhatsApp-Sender abrufen](/api-reference/whatsapp/get-senders))
+</ParamField>
+
+### Query-Parameter
+
+<ParamField query="status" type="string" optional>
+  Templates nach Freigabestatus filtern. Standard: `approved`. Verwenden Sie `all`, um alle Templates unabhängig vom Status zurückzugeben.
+</ParamField>
+
+### Antwort-Felder
+
+<ResponseField name="data" type="array">
+  <Expandable title="Template-Objekt Eigenschaften">
+    <ResponseField name="id" type="integer">
+      Die eindeutige Kennung des Templates. Verwenden Sie diese beim Versenden von Template-Nachrichten.
+    </ResponseField>
+
+    <ResponseField name="name" type="string">
+      Der bei Meta registrierte Template-Name (z.B. `order_confirmation`, `appointment_reminder`)
+    </ResponseField>
+
+    <ResponseField name="language" type="string">
+      Der Sprachcode des Templates (z.B. `en`, `es`, `pt_BR`)
+    </ResponseField>
+
+    <ResponseField name="category" type="string">
+      Die Template-Kategorie: `marketing`, `utility` oder `authentication`
+    </ResponseField>
+
+    <ResponseField name="status" type="string">
+      Der Freigabestatus: `approved`, `pending` oder `rejected`
+    </ResponseField>
+
+    <ResponseField name="body_text" type="string">
+      Der Template-Text, mit Platzhaltern als `{{1}}`, `{{2}}` usw.
+    </ResponseField>
+
+    <ResponseField name="variables" type="array">
+      Liste der für das Template definierten Variablennamen. Leeres Array, wenn das Template keine Variablen besitzt.
+    </ResponseField>
+
+    <ResponseField name="has_variables" type="boolean">
+      Ob beim Versenden Variablen bereitgestellt werden müssen
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+### Error Responses
+
+<ResponseField name="404 Not Found">
+  <Expandable title="Error Response">
+    <ResponseField name="success" type="boolean">
+      `false`
+    </ResponseField>
+
+    <ResponseField name="error" type="string">
+      `Sender not found`
+    </ResponseField>
+
+    <ResponseField name="error_code" type="string">
+      `SENDER_NOT_FOUND`
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<RequestExample>
+  ```bash cURL theme={null}
+  curl -X GET "https://app.famulor.de/api/user/whatsapp/senders/12/templates" \
+    -H "Authorization: Bearer YOUR_API_KEY"
+  ```
+
+  ```bash All templates (including pending/rejected) theme={null}
+  curl -X GET "https://app.famulor.de/api/user/whatsapp/senders/12/templates?status=all" \
+    -H "Authorization: Bearer YOUR_API_KEY"
+  ```
+
+  ```javascript JavaScript theme={null}
+  const senderId = 12;
+
+  const response = await fetch(
+    `https://app.famulor.de/api/user/whatsapp/senders/${senderId}/templates`,
+    {
+      headers: {
+        'Authorization': 'Bearer YOUR_API_KEY'
+      }
+    }
+  );
+
+  const data = await response.json();
+  console.log(data.data); // Array of templates
+  ```
+
+  ```python Python theme={null}
+  import requests
+
+  sender_id = 12
+
+  response = requests.get(
+      f'https://app.famulor.de/api/user/whatsapp/senders/{sender_id}/templates',
+      headers={'Authorization': 'Bearer YOUR_API_KEY'}
+  )
+
+  templates = response.json()['data']
+  for template in templates:
+      print(f"{template['name']} ({template['language']}): {template['body_text']}")
+  ```
+</RequestExample>
+
+<ResponseExample>
+  ```json 200 Response theme={null}
+  {
+    "data": [
+      {
+        "id": 45,
+        "name": "appointment_reminder",
+        "language": "en",
+        "category": "utility",
+        "status": "approved",
+        "body_text": "Hi {{1}}, this is a reminder for your appointment on {{2}} at {{3}}. Reply YES to confirm or NO to reschedule.",
+        "variables": ["customer_name", "date", "time"],
+        "has_variables": true
+      },
+      {
+        "id": 46,
+        "name": "welcome_message",
+        "language": "en",
+        "category": "marketing",
+        "status": "approved",
+        "body_text": "Welcome to Acme Corp! We're excited to have you. How can we help you today?",
+        "variables": [],
+        "has_variables": false
+      }
+    ]
+  }
+  ```
+
+  ```json 404 Sender Not Found theme={null}
+  {
+    "success": false,
+    "error": "Sender not found",
+    "error_code": "SENDER_NOT_FOUND"
+  }
+  ```
+</ResponseExample>
+
+### Notes
+
+* Only `approved` templates are returned by default. Templates with `pending` or `rejected` status cannot be used to send messages.
+* Template approval status is synced with Meta every 4 hours automatically.
+* Variables in `body_text` are shown as `{{1}}`, `{{2}}`, etc. The `variables` array provides human-readable names for each placeholder.
+* Templates are required when messaging a user for the first time or outside the 24-hour messaging window.

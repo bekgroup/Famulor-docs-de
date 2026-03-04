@@ -370,6 +370,16 @@
       ]
     },
     {
+      "group": "WhatsApp",
+      "pages": [
+        "api-reference/whatsapp/get-senders",
+        "api-reference/whatsapp/get-templates",
+        "api-reference/whatsapp/send-template",
+        "api-reference/whatsapp/send-freeform",
+        "api-reference/whatsapp/session-status"
+      ]
+    },
+    {
       "group": "Phone Numbers",
       "pages": [
         "api-reference/phone-numbers/list",
