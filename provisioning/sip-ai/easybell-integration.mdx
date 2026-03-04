@@ -104,6 +104,19 @@ Im Easybell-Kundenportal die **Famulor-SIP-Adresse** als Anrufziel/Domain eintra
 
 UDP, TCP und TLS werden unterstützt. Für das **Rufnummernformat** E.164 **mit** führendem „+“ wählen.
 
+#### Authentifizierung per FQDN im Modus „Trunk“
+
+Wenn Sie bei Easybell im Modus **„Trunk“** arbeiten, richten Sie die Authentifizierung wie folgt ein:
+
+- **Authentifizierung durch:** `vollqualifizierter Domainname (FQDN)` auswählen.  
+- **FQDN:** exakt den Wert eintragen, der in Famulor unter **„Unsere SIP-Adresse“** angezeigt wird (ohne `sip:` davor).  
+- **SRTP nutzen:** **deaktiviert** lassen (Häkchen darf **nicht** gesetzt sein).  
+
+Die Konfiguration sieht dann z. B. wie im folgenden Screenshot aus:
+
+<img src="./trusteip-FQDN-de.png" alt="Easybell Trusted IP Einstellungen mit Authentifizierung per FQDN (SRTP deaktiviert)" />
+
+
 <Note>
   Details: [Easybell-Hilfe SIP-Trunk FQDN](https://www.easybell.de/hilfe/fragen/fragen-zum-telefonanschluss/antwort/sip-trunk-authentifizierung-per-fqdn-domain-einrichten/).
 </Note>
