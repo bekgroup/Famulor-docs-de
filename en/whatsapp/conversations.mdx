@@ -1,185 +1,184 @@
 ---
-title: "WhatsApp-Chats"
-description: "Verfolgen und verwalten Sie KI-gestützte WhatsApp-Chats mit Kunden"
+title: "WhatsApp Chats"
+description: "Track and manage AI-powered WhatsApp chats with customers"
 ---
 
+WhatsApp chats are recorded along with your other conversations. This allows you to view the message history, monitor AI performance, and manage customer interactions.
 
-WhatsApp-Chats werden zusammen mit Ihren anderen Konversationen erfasst. So können Sie den Nachrichtenverlauf einsehen, die KI-Leistung überwachen und die Kundeninteraktionen verwalten.
+## Viewing WhatsApp Chats
 
-## WhatsApp-Chats anzeigen
+WhatsApp chats appear in your **Chats** section (Conversations) with a “WhatsApp” badge.
 
-WhatsApp-Chats erscheinen in Ihrem Bereich **Chats** (Conversations) mit einem „WhatsApp“-Badge.
+Each conversation includes:
 
-Jedes Gespräch enthält:
+* The complete message history
+* The customer's phone number
+* The connected AI assistant
+* Timestamps for all messages
+* Cost and usage metrics
 
-* Den vollständigen Nachrichtenverlauf
-* Die Telefonnummer des Kunden
-* Den verbundenen KI-Assistenten
-* Zeitstempel für alle Nachrichten
-* Kosten- und Nutzungsmetriken
+## Chat Types
 
-## Chats-Typen
+| Type                                                  | Description                                       |
+| ----------------------------------------------------- | ------------------------------------------------ |
+| <span style={{color: '#22c55e'}}>**WhatsApp**</span>   | Chats conducted via WhatsApp                      |
+| <span style={{color: '#8b5cf6'}}>**Web Widget**</span> | Chats through the website widget                   |
+| <span style={{color: '#f97316'}}>**Test**</span>       | Test chats from the dashboard                      |
 
-| Typ                                                   | Beschreibung                                      |
-| ----------------------------------------------------- | ------------------------------------------------- |
-| <span style={{color: '#22c55e'}}>**WhatsApp**</span>   | Chats über WhatsApp                               |
-| <span style={{color: '#8b5cf6'}}>**Web Widget**</span> | Chats über das Website-Widget                     |
-| <span style={{color: '#f97316'}}>**Test**</span>       | Testchats aus dem Dashboard                       |
+## How WhatsApp Chats Work
 
-## Wie WhatsApp-Chats funktionieren
+### Customer Initiates Contact
 
-### Kunde initiiert den Kontakt
+1. The customer sends a message to your WhatsApp number  
+2. The system creates a new conversation or finds an existing one  
+3. The message is forwarded to your AI assistant  
+4. The AI generates a response and sends it  
+5. The 24-hour messaging window opens  
 
-1. Der Kunde sendet eine Nachricht an Ihre WhatsApp-Nummer
-2. Das System erstellt ein neues Gespräch oder findet ein bestehendes
-3. Die Nachricht wird an Ihren KI-Assistenten geleitet
-4. Die KI generiert eine Antwort und sendet sie ab
-5. Das 24-Stunden-Messaging-Fenster öffnet sich
+### Within the 24-Hour Window
 
-### Innerhalb des 24-Stunden-Fensters
+* The AI automatically replies to every message  
+* Free-form responses are allowed  
+* The conversation continues naturally  
 
-* Die KI antwortet automatisch auf jede Nachricht
-* Freie Antworten sind erlaubt
-* Das Gespräch wird natürlich fortgesetzt
+### After 24 Hours
 
-### Nach 24 Stunden
+* The customer must send a message again to reopen the window  
+* You can send template messages to re-engage the customer  
+* The AI remains ready to respond once the customer replies  
 
-* Der Kunde muss erneut schreiben, um das Fenster wieder zu öffnen
-* Sie können Template-Nachrichten senden, um den Kunden erneut anzusprechen
-* Die KI bleibt bereit zu antworten, sobald der Kunde reagiert
+## Chat Features
 
-## Chats-Funktionen
+### Message History
 
-### Nachrichtenverlauf
+View the entire exchange between customer and AI:
 
-Sehen Sie den vollständigen Austausch zwischen Kunde und KI ein:
+* Incoming customer messages  
+* Outgoing AI responses  
+* Timestamps for each message  
+* Function calls made during the conversation  
 
-* Eingehende Kundennachrichten
-* Ausgehende KI-Antworten
-* Zeitstempel für jede Nachricht
-* Funktionsaufrufe, die während des Gesprächs getätigt wurden
+### Conversation Variables
 
-### Gesprächsvariablen
+Variables collected or set throughout the conversation:
 
-Variablen, die während des Gesprächs gesammelt oder gesetzt wurden:
+* Customer identifier  
+* Data extracted by the AI  
+* Context passed from automation flows  
 
-* Kunden-Identifikator
-* Von der KI extrahierte Daten
-* Aus Automatisierungs-Flows übergebener Kontext
+### Cost Tracking
 
-### Kostenverfolgung
+Each conversation records:
 
-Jedes Gespräch erfasst:
+* Total number of messages  
+* Cost per message  
+* Total cost of the conversation  
 
-* Gesamtzahl der Nachrichten
-* Kosten pro Nachricht
-* Gesamtkosten des Gesprächs
+## Managing Chats
 
-## Verwaltung von Chats
+### Chat Filters
 
-### Chatsfilter
+Filter your chat list by:
 
-Filtern Sie Ihre Chatsliste nach:
+* Type (WhatsApp, Web Widget, Test)  
+* Assistant  
+* Date range  
+* Customer identifier  
 
-* Typ (WhatsApp, Web Widget, Test)
-* Assistent
-* Datumsbereich
-* Kunden-Identifikator
+### Export Chat Data
 
-### Chatsdaten exportieren
+Export chat data for analysis:
 
-Exportieren Sie Chatsdaten zur Analyse:
+1. Go to "Chats"  
+2. Apply filters as needed  
+3. Use the export options to download the data  
 
-1. Navigieren Sie zu „Chats“
-2. Wenden Sie Filter nach Bedarf an
-3. Nutzen Sie die Exportoptionen, um die Daten herunterzuladen
+## AI Assistant Behavior
 
-## Verhalten des KI-Assistenten
+Your AI assistant handles chats according to its configuration:
 
-Ihr KI-Assistent bearbeitet Chats basierend auf seiner Konfiguration:
+### System Prompt
 
-### System-Prompt
-
-Derselbe System-Prompt, der für Sprachanrufe und Web-Widgets verwendet wird, gilt auch für Chats. Stellen Sie sicher, dass Ihr Prompt gut für die textbasierte Kommunikation funktioniert.
+The same system prompt used for voice calls and web widgets also applies to chats. Ensure your prompt works well for text-based communication.
 
 <Tip>
-  **Textfreundliche Prompts** — Für Assistenten, die sowohl Sprache als auch WhatsApp bearbeiten, sollten Sie Anweisungen zur Textformatierung (z. B. Verwendung von Aufzählungspunkten und kürzeren Absätzen) in den Prompt aufnehmen.
+  **Text-friendly Prompts** — For assistants handling both voice and WhatsApp, include instructions on text formatting (e.g., use of bullet points and shorter paragraphs) in the prompt.
 </Tip>
 
-### Tools und Funktionen
+### Tools and Functions
 
-Die KI kann während Chats Tools aufrufen:
+The AI can invoke tools during chats:
 
-* Informationen in Datenbanken nachschlagen
-* Termine planen
-* An einen menschlichen Mitarbeiter übergeben
-* Daten sammeln und validieren
+* Query information from databases  
+* Schedule appointments  
+* Transfer to a human agent  
+* Collect and validate data  
 
-### Wissensdatenbanken
+### Knowledge Bases
 
-Die Wissensdatenbanken Ihres Assistenten stehen für Chats zur Verfügung. So kann die KI Fragen mithilfe Ihrer hochgeladenen Inhalte beantworten.
+Your assistant’s knowledge bases are available for chats, enabling the AI to answer questions using your uploaded content.
 
 ## Best Practices
 
-### 1. Chats regelmäßig überprüfen
+### 1. Review Chats Regularly
 
-Überwachen Sie die KI-Antworten, um die Qualität sicherzustellen. Achten Sie auf:
+Monitor AI responses to ensure quality. Watch for:
 
-* Richtige Informationen
-* Angemessenen Tonfall
-* Erfolgreiche Zielerreichung
-* Signale für Kundenzufriedenheit
+* Accurate information  
+* Appropriate tone  
+* Successful goal achievement  
+* Signs of customer satisfaction  
 
-### 2. Ihre KI trainieren
+### 2. Train Your AI
 
-Nutzen Sie Erkenntnisse aus den Chats, um Ihren Assistenten zu verbessern:
+Use insights from chats to improve your assistant:
 
-* Identifizieren Sie häufige Fragen
-* Aktualisieren Sie Wissensdatenbanken
-* Verfeinern Sie System-Prompts
-* Fügen Sie fehlende Tools oder Funktionen hinzu
+* Identify common questions  
+* Update knowledge bases  
+* Refine system prompts  
+* Add missing tools or functions  
 
-### 3. Antwortzeiten überwachen
+### 3. Monitor Response Times
 
-WhatsApp-Nutzer erwarten schnelle Antworten. Überwachen Sie:
+WhatsApp users expect quick replies. Track:
 
-* KI-Antwortlatenz
-* Jegliche Verzögerungen oder Timeouts
-* Fehlgeschlagene Nachrichtenzustellungen
+* AI response latency  
+* Any delays or timeouts  
+* Failed message deliveries  
 
-### 4. Eskalationen handhaben
+### 4. Handle Escalations
 
-Konfigurieren Sie Eskalationspfade für komplexe Probleme:
+Set up escalation paths for complex issues:
 
-* Tool zur Übergabe an menschliche Mitarbeiter
-* Sammeln von Rückrufinformationen
-* Planung von Follow-up-Anrufen
+* Tool for handing off to human agents  
+* Collecting callback information  
+* Scheduling follow-up calls  
 
-## Chats-Metriken
+## Chat Metrics
 
-Verfolgen Sie wichtige Kennzahlen für Ihre Chats:
+Track key metrics for your chats:
 
-| Metrik                             | Beschreibung                                              |
-| ---------------------------------- | --------------------------------------------------------- |
-| **Gesamtzahl der Chats**           | Anzahl der eindeutigen Chats                              |
-| **Nachrichten pro Chat**           | Durchschnittliche Nachrichtenanzahl                       |
-| **Antwortrate**                    | Prozentsatz der Nachrichten mit KI-Antworten              |
-| **Durchschnittliche Antwortzeit**  | Zeit zwischen Kundennachricht und KI-Antwort              |
-| **Kosten pro Chat**                | Durchschnittliche Kosten inklusive KI-Nutzung             |
+| Metric                            | Description                                               |
+| -------------------------------- | --------------------------------------------------------- |
+| **Total number of chats**         | Number of unique chats                                    |
+| **Messages per chat**             | Average number of messages per chat                       |
+| **Response rate**                 | Percentage of messages with AI responses                  |
+| **Average response time**         | Time between customer message and AI response             |
+| **Cost per chat**                 | Average cost including AI usage                            |
 
-## Integration mit anderen Kanälen
+## Integration with Other Channels
 
-WhatsApp-Chats existieren neben Ihren anderen Kommunikationskanälen:
+WhatsApp chats coexist alongside your other communication channels:
 
-* **Telefonanrufe**: Sprachgespräche, die separat erfasst werden
-* **Web-Widget**: Textgespräche von Ihrer Website
-* **API-Gespräche**: Programmgesteuerte Chat-Sitzungen
+* **Phone calls**: voice calls logged separately  
+* **Web Widget**: text chats from your website  
+* **API Conversations**: programmatic chat sessions  
 
-Alle Chats-Typen nutzen denselben KI-Assistenten und bieten so eine konsistente Erfahrung über alle Kanäle hinweg.
+All chat types use the same AI assistant, providing a consistent experience across channels.
 
-## Nächste Schritte
+## Next Steps
 
-* Erfahren Sie mehr über [WhatsApp-Absender](/en/whatsapp/senders) und die Konfiguration
-* Richten Sie [Nachrichten-Templates](/en/whatsapp/templates) für Outbound-Messaging ein
-* Konfigurieren Sie die [Automatisierung](/en/whatsapp/automation) für WhatsApp-Workflows
-* Überprüfen Sie die [KI-Assistenten-Einstellungen](/ai-assistants/settings/prompt-and-tools) für optimale Antworten
+* Learn more about [WhatsApp Senders](/whatsapp/senders) and configuration  
+* Set up [Message Templates](/whatsapp/templates) for outbound messaging  
+* Configure [Automation](/whatsapp/automation) for WhatsApp workflows  
+* Review [AI Assistant Settings](/ai-assistants/settings/prompt-and-tools) to optimize responses

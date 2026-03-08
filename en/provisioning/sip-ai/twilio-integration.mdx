@@ -1,30 +1,30 @@
 ---
 title: "Twilio Integration"
-description: "Schritt-für-Schritt-Anleitung zur Verbindung Ihres Twilio-Kontos über SIP-Trunking"
+description: "Step-by-step guide to connecting your Twilio account via SIP trunking"
 ---
 
 
-## Schritt 1: Elastic SIP Trunking erstellen
+## Step 1: Create Elastic SIP Trunking
 
-1. Erstellen Sie den Trunk, geben Sie ihm einen Namen und konfigurieren Sie die allgemeinen Einstellungen
+1. Create the trunk, give it a name, and configure the general settings
    <Frame>
      <img
        src="/resources/twillio-create-elastic-sip1.jpeg"
-       alt="Elastic SIP Trunking erstellen"
+       alt="Create Elastic SIP Trunking"
      />
    </Frame>
 
-2. Termination einrichten (für ausgehende Anrufe)
+2. Set up Termination (for outgoing calls)
 
-- Die Termination-SIP-URI ist hier wichtig, da wir sie in späteren Schritten verwenden werden. Sie sollten eine lokalisierte Termination-URI verwenden, die sich in Ihrer Nähe befindet. Sie können Ihre lokalisierten URIs in der Twilio-Konsole anzeigen.
+- The termination SIP URI is important here, as we will use it in later steps. You should use a localized termination URI that is close to you. You can view your localized URIs in the Twilio Console.
     <Frame>
       <img
         src="/resources/twillio-setup-termination1.jpeg"
-        alt="Termination einrichten"
+        alt="Set up Termination"
       />
     </Frame>
 
-- Damit Ihr Elastic SIP Trunk unsere ausgehenden Anfragen akzeptiert, müssen Sie entweder IP-Adressen auf die Whitelist setzen oder eine Authentifizierung mit Benutzername und Passwort erstellen.
+- To have your Elastic SIP Trunk accept our outgoing requests, you need to either whitelist IP addresses or create authentication with username and password.
 
 {/* - If you opt for the auth route, you need to specify the username and password in the next step when importing the number to Famulor.
    <Frame>
@@ -34,119 +34,119 @@ description: "Schritt-für-Schritt-Anleitung zur Verbindung Ihres Twilio-Kontos 
      />
    </Frame> */}
 
-- Da der Famulor SIP-Server derzeit keine statische IP hat, müssen Sie bei Verwendung der IP-Route alle IP-Adressen wie folgt auf die Whitelist setzen:
+- Since the Famulor SIP server currently does not have a static IP, if you are using the IP route you must whitelist all IP addresses as follows:
 
    <Frame>
      <img
        src="/resources/twillio-new-access-control.jpeg"
-       alt="Twilio Zugangskontrolle erstellen"
+       alt="Create Twilio Access Control"
      />
    </Frame>
 
     <Frame>
      <img
        src="/resources/twillio-new-access-control2.jpeg"
-       alt="Twilio Zugangskontrolle"
+       alt="Twilio Access Control"
      />
    </Frame>
 
-3. Origination einrichten (für eingehende Anrufe)
+3. Set up Origination (for incoming calls)
 
-- Hier geben Sie die Famulor SIP-Server-Adresse als Origination-SIP-URI an: ```sip:XXX.sip.livekit.cloud ``` 
+- Here you enter the Famulor SIP server address as the Origination SIP URI: ```sip:XXX.sip.livekit.cloud``` 
 
     <Frame>
       <img
         src="/resources/twillio-setup-origination1.jpeg"
-        alt="Origination einrichten"
+        alt="Set up Origination"
       />
     </Frame>
 
-## Schritt 2: Nummern zum Elastic SIP Trunk hinzufügen
+## Step 2: Add numbers to the Elastic SIP Trunk
 
-Sie haben den Elastic SIP Trunk erstellt. Jetzt müssen Sie Nummern kaufen oder bestehende Nummern zu diesem Trunk hinzufügen.
+You have created the Elastic SIP Trunk. Now you need to buy numbers or add existing numbers to this trunk.
 
    <Frame>
      <img
        src="/resources/twillio-move-numbers1.jpeg"
-       alt="Nummern zum Elastic SIP Trunk hinzufügen"
+       alt="Add numbers to Elastic SIP Trunk"
      />
    </Frame>
 
-## Schritt 3: Nummern in Famulor importieren
+## Step 3: Import numbers into Famulor
 
-Nachdem die Nummer mit Ihrem Elastic SIP Trunking eingerichtet ist, müssen Sie die Nummer in Famulor importieren, damit wir wissen, wie der Anruf weitergeleitet werden soll.
+Once the number is set up with your Elastic SIP Trunking, you need to import the number into Famulor so we know how to route the call.
 
-1. Öffnen Sie Ihr Famulor.ai Dashboard
-2. Navigieren Sie zu **Ihre Telefonnummern**
-3. Klicken Sie auf "SIP Trunk integrieren"
+1. Open your Famulor.ai dashboard  
+2. Navigate to **Your Phone Numbers**  
+3. Click on "Integrate SIP Trunk"
 
    <Frame>
      <img
        src="/resources/twillio-import-famulor-sip1.png"
-       alt="Nummern in Famulor importieren"
+       alt="Import numbers into Famulor"
      />
    </Frame>
-4. Geben Sie Ihre Daten entsprechend Ihrem Integrationstyp ein 
+4. Enter your data according to your integration type
 ```
-Telefonnummer: z.B. +49 831 555 0123
-Benutzername: Ihr Nebenstellen-Benutzername
-Passwort: Ihr Nebenstellen-Passwort
+Phone number: e.g. +49 831 555 0123
+Username: Your extension username
+Password: Your extension password
 ```
    
       <Frame>
      <img
        src="/resources/twillio-credential-settings.png"
-       alt="Nummern in Famulor importieren"
+       alt="Import numbers into Famulor"
      />
    </Frame>
    
    <Frame>
      <img
        src="/resources/twillio-famulor-auth-integration.png"
-       alt="Geben Sie Ihre Daten entsprechend Ihrem Integrationstyp ein"
+       alt="Enter your data according to your integration type"
      />
    </Frame>
 
 
 
-5. Hier geben Sie die Termination-SIP-URI ein, die Sie in Schritt 1 eingerichtet haben.
+5. Here you enter the termination SIP URI you set up in step 1.
 ```
-Server-Adresse: z.B. xxx.pstn.twillio.com
+Server address: e.g. xxx.pstn.twilio.com
 ```
 
    <Frame>
      <img
        src="/resources/twillio-outbound-settings.png"
-       alt="Twilio Nummer über SIP verbinden"
+       alt="Connect Twilio number via SIP"
      />
    </Frame>
 
-6. Wählen Sie hier den Autorisierungstyp, den Sie in Schritt 2 gewählt haben. 
+6. Choose the authorization type you selected in step 2. 
 
 {/* - If you opted for auth route select Username and password.
 
    <Frame>
      <img
        src="/resources/twillio-famulor-credentials-auth-type.png"
-       alt="Twillio Famulor Credentials Auth Type"
+       alt="Twilio Famulor Credentials Auth Type"
      />
    </Frame> */}
 
-- Wenn Sie die IP-Option gewählt haben, fügen Sie die IPs hinzu: 
+- If you chose the IP option, add the IPs:
 ```
 54.244.51.0
-  54.244.51.1  
-  54.244.51.2
-  54.244.51.3
+54.244.51.1  
+54.244.51.2
+54.244.51.3
 54.172.60.0
-  54.172.60.1
-  54.172.60.2
-  54.172.60.3
+54.172.60.1
+54.172.60.2
+54.172.60.3
 ```
    <Frame>
      <img
        src="/resources/twillio-famulor-credentials-ip-type1.png"
-       alt="Twilio Famulor IP-Typ Zugangsdaten"
+       alt="Twilio Famulor IP-type credentials"
      />
    </Frame> 
 
@@ -158,63 +158,63 @@ Server-Adresse: z.B. xxx.pstn.twillio.com
    </Frame> 
    
    
-7. Wählen Sie das Land aus, in dem sich Ihr SIP Trunk befindet. 
+7. Select the country where your SIP Trunk is located.
 
     <Frame>
       <img
         src="/resources/twillio-famulor-sip-country.png"
-        alt="Twilio Famulor SIP Land"
+        alt="Twilio Famulor SIP Country"
       />
     </Frame>
 
-## Schritt 4: Einrichtung überprüfen
+## Step 4: Verify setup
 
-Nach der Konfiguration:
+After configuration:
 
-1. Führen Sie einen Testanruf zu Ihrer Nummer/Nebenstelle durch
-2. Überprüfen Sie, dass der KI-Assistent antwortet
-3. Nutzen Sie die Testanruf-Funktion, um ausgehende Anrufe zu verifizieren
+1. Place a test call to your number/extension  
+2. Verify that the AI assistant answers  
+3. Use the test call feature to verify outgoing calls  
 
-## Sicherheitsanforderungen
+## Security requirements
 
-Ihre SIP-Zugangsdaten müssen sicher sein:
+Your SIP credentials must be secure:
 
-- **Benutzername**: Ihre Nebenstellennummer oder vom Provider bereitgestellter Benutzername
-- **Das Passwort muss enthalten**:
-  - 12 oder mehr Zeichen
-  - Zahlen
-  - Groß- und Kleinbuchstaben
-  - Sonderzeichen empfohlen
-## Häufige Probleme
+- **Username**: Your extension number or username provided by your provider  
+- **The password must include**:
+  - 12 or more characters  
+  - Numbers  
+  - Uppercase and lowercase letters  
+  - Special characters recommended  
+## Common issues
 
 <AccordionGroup>
-  <Accordion title="Nach der Verbindung funktionieren eingehende Anrufe, aber ausgehende nicht?">
-    - Überprüfen Sie Ihre Termination-SIP-URI: Falls ein Leerzeichen enthalten ist, entfernen Sie dieses bitte. Verwenden Sie außerdem eine lokalisierte Termination-URI, die sich in Ihrer Region befindet. Weitere Informationen finden Sie in dieser [Dokumentation](https://www.twilio.com/docs/global-infrastructure/localized-uris/termination).
-    - Überprüfen Sie Ihren Benutzernamen und Ihre Zugangsdaten: Stellen Sie sicher, dass Sie den richtigen Benutzernamen und die richtigen Zugangsdaten eingegeben haben, die in diesem Dialog angezeigt werden. Beachten Sie, dass der Benutzername nicht der Anzeigename ist, der in der Zugangsdatenliste erscheint. Der Anzeigename unterscheidet sich vom Benutzernamen - überprüfen Sie dies, falls Sie unterschiedliche Namen vergeben haben.
+  <Accordion title="Incoming calls work after connection but outgoing calls do not?">
+    - Check your Termination SIP URI: If it contains a space, please remove it. Also, use a localized termination URI close to your region. For more info, see this [documentation](https://www.twilio.com/docs/global-infrastructure/localized-uris/termination).  
+    - Verify your username and credentials: Make sure you entered the correct username and credentials shown in this dialog. Note that the username is not the display name in the credentials list. The display name is different from the username — verify if you have assigned different names.
     
     <Frame>
      <img
        src="/resources/twillio-outbound-not-work.png"
-       alt="Twilio ausgehende Anrufe funktionieren nicht"
+       alt="Twilio outgoing calls not working"
      />
    </Frame>
   </Accordion>
 
 {" "}
 
-<Accordion title="Wie richte ich Anrufe in internationale Länder ein?">
-- Suchen Sie nach "geo", um die Einstellung "Voice Geographic Permissions" zu finden.  
+<Accordion title="How do I set up calls to international countries?">
+- Search for "geo" to find the "Voice Geographic Permissions" setting.  
     <Frame>
      <img
        src="/resources/twillio-setup-dialing-international.png"
-       alt="Twilio internationale Anrufe einrichten"
+       alt="Set up international calls in Twilio"
      />
    </Frame>
-- Wählen Sie "Elastic SIP Trunking" im Auswahlmenü und wählen Sie die Länder aus, die Sie anrufen möchten. 
+- Select "Elastic SIP Trunking" in the dropdown menu and choose the countries you want to call. 
     <Frame>
      <img
        src="/resources/twillio-choose-elastic-sip-trunking.png"
-       alt="Twilio Elastic SIP Trunking wählen"
+       alt="Select Twilio Elastic SIP Trunking"
      />
    </Frame>
 
@@ -225,5 +225,5 @@ Ihre SIP-Zugangsdaten müssen sicher sein:
 ---
 
 <Note>
-  Benötigen Sie Hilfe bei der Einrichtung? Unser Support-Team ist darauf spezialisiert, Kunden bei der Integration ihrer Telefonsysteme zu unterstützen. Wir begleiten Sie durch den gesamten Prozess und stellen eine reibungslose Einrichtung mit Ihrer spezifischen Telefonanlage sicher.
+  Need help with setup? Our support team specializes in assisting customers with integrating their phone systems. We guide you through the entire process to ensure a smooth configuration with your specific telephony setup.
 </Note>

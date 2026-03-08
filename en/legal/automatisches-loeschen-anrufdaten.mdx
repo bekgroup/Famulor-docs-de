@@ -1,295 +1,293 @@
 ---
-title: "Automatisches Löschen von Anrufdaten"
+title: "Automatic Deletion of Call Data"
 icon: "trash"
-description: "DSGVO-konforme automatische Löschung von Anrufdaten nach konfigurierbaren Aufbewahrungsfristen"
+description: "GDPR-compliant automatic deletion of call data after configurable retention periods"
 ---
 
-
 <Warning>
-Diese Seite stellt keine Rechtsberatung dar. Prüfen Sie stets Ihren konkreten Anwendungsfall mit Rechtsbeistand und beachten Sie die geltenden gesetzlichen Aufbewahrungspflichten in Ihrem Land.
+This page does not constitute legal advice. Always review your specific use case with legal counsel and observe the applicable statutory retention requirements in your country.
 </Warning>
 
-## Überblick
+## Overview
 
-Die **automatische Löschung von Anrufdaten** ist ein wichtiger Bestandteil der DSGVO-konformen Datenverwaltung. Mit dem Famulor Workflow-Template können Sie Anrufdaten und zugehörige Informationen automatisch nach einer konfigurierbaren Frist (Standard: 180 Tage) löschen lassen.
+**Automatic deletion of call data** is an important part of GDPR-compliant data management. With the Famulor workflow template, you can have call data and related information automatically deleted after a configurable retention period (default: 180 days).
 
 <CardGroup cols={2}>
-  <Card title="DSGVO-Konformität" icon="shield-halved">
-    Automatische Einhaltung von Speicherbegrenzungen gemäß Art. 5 Abs. 1 lit. e DSGVO
+  <Card title="GDPR Compliance" icon="shield-halved">
+    Automatic enforcement of storage limitations according to Art. 5 para. 1 lit. e GDPR
   </Card>
-  <Card title="Zeitersparnis" icon="clock">
-    Keine manuelle Verwaltung von Löschfristen mehr erforderlich
+  <Card title="Time Savings" icon="clock">
+    No more manual management of deletion periods required
   </Card>
-  <Card title="Rechtssicherheit" icon="scale-balanced">
-    Reduziert Risiken durch versehentliche Überschreitung von Aufbewahrungsfristen
+  <Card title="Legal Security" icon="scale-balanced">
+    Reduces risks from accidental overruns of retention periods
   </Card>
-  <Card title="Flexible Konfiguration" icon="sliders">
-    Individuelle Anpassung der Aufbewahrungsdauer je nach Anwendungsfall
+  <Card title="Flexible Configuration" icon="sliders">
+    Individual adjustment of retention duration depending on use case
   </Card>
 </CardGroup>
 
-## Was ist dieser Workflow?
+## What is this Workflow?
 
-Der **Automatische Lösch-Workflow** ist ein vorkonfiguriertes Template für die Famulor Automatisierungsplattform, das:
+The **Automatic Deletion Workflow** is a preconfigured template for the Famulor automation platform that:
 
-- **Anrufdaten** (Call Records) automatisch identifiziert
-- **Alter der Daten** berechnet (basierend auf dem Anrufdatum)
-- **Löschung durchführt**, wenn die konfigurierte Aufbewahrungsfrist überschritten wurde
-- **Täglich ausgeführt** wird, um kontinuierliche Compliance zu gewährleisten
+- **Automatically identifies call data** (call records)
+- **Calculates the age** of the data (based on call date)
+- **Performs deletion** when the configured retention period has been exceeded
+- **Runs daily** to ensure ongoing compliance
 
 <Info>
-**Standard-Konfiguration:** Der Workflow ist standardmäßig auf 180 Tage Aufbewahrungsfrist eingestellt. Sie können diese Dauer in der Code-Node anpassen.
+**Default configuration:** The workflow is set to a 180-day retention period by default. You can adjust this duration in the code node.
 </Info>
 
-## Warum automatisches Löschen wichtig ist
+## Why Automatic Deletion is Important
 
-### Rechtliche Anforderungen
+### Legal Requirements
 
-Die **DSGVO (Datenschutz-Grundverordnung)** verlangt in **Art. 5 Abs. 1 lit. e** die **Speicherbegrenzung**:
+The **GDPR (General Data Protection Regulation)** requires **storage limitation** in **Art. 5 para. 1 lit. e**:
 
-> "Personenbezogene Daten müssen in einer Form gespeichert werden, die die Identifizierung der betroffenen Personen nur so lange ermöglicht, wie es für die Zwecke, für die die personenbezogenen Daten verarbeitet werden, erforderlich ist."
+> "Personal data must be kept in a form which permits identification of data subjects for no longer than is necessary for the purposes for which the personal data are processed."
 
 <Steps>
-  <Step title="Zweckbindung">
-    Daten dürfen nur so lange gespeichert werden, wie der Verarbeitungszweck besteht
+  <Step title="Purpose Limitation">
+    Data may only be stored as long as the processing purpose exists
   </Step>
-  <Step title="Datenminimierung">
-    Unnötige Datenspeicherung verstößt gegen das Prinzip der Datenminimierung
+  <Step title="Data Minimization">
+    Unnecessary data storage violates the principle of data minimization
   </Step>
-  <Step title="Löschpflicht">
-    Bei Wegfall des Zwecks oder Ablauf gesetzlicher Fristen besteht eine Löschpflicht
+  <Step title="Deletion Obligation">
+    Deletion is required when the purpose ceases or legal deadlines expire
   </Step>
-  <Step title="Nachweisbarkeit">
-    Automatische Prozesse dokumentieren die Einhaltung von Löschfristen
+  <Step title="Proof of Compliance">
+    Automated processes document adherence to deletion deadlines
   </Step>
 </Steps>
 
-### Praktische Vorteile
+### Practical Advantages
 
-<Accordion title="Risikominimierung">
-- **Bußgelder vermeiden:** Verstöße gegen die DSGVO können zu Bußgeldern von bis zu 4% des Jahresumsatzes oder 20 Mio. Euro führen
-- **Haftungsrisiken reduzieren:** Automatische Löschung verhindert versehentliche Überschreitung von Aufbewahrungsfristen
-- **Compliance-Dokumentation:** Automatisierte Prozesse schaffen nachweisbare Compliance
+<Accordion title="Risk Reduction">
+- **Avoid fines:** GDPR violations can result in fines up to 4% of annual revenue or €20 million
+- **Reduce liability risks:** Automatic deletion prevents accidental breach of retention periods
+- **Compliance documentation:** Automated processes create verifiable compliance evidence
 </Accordion>
 
-<Accordion title="Effizienzsteigerung">
-- **Keine manuelle Verwaltung:** Automatische Ausführung spart Zeit und Ressourcen
-- **Konsistente Umsetzung:** Keine menschlichen Fehler bei der Berechnung von Löschfristen
-- **Skalierbarkeit:** Funktioniert unabhängig von der Anzahl der Anrufe
+<Accordion title="Efficiency Gains">
+- **No manual management:** Automatic execution saves time and resources
+- **Consistent enforcement:** No human errors in calculating deletion deadlines
+- **Scalability:** Works independently of the number of calls
 </Accordion>
 
-<Accordion title="Datenschutz & Sicherheit">
-- **Minimale Datenspeicherung:** Reduziert Angriffsfläche für Datenschutzverletzungen
-- **Prinzip der Datenminimierung:** Nur so viele Daten wie nötig, so lange wie nötig
-- **Vertrauen der Kunden:** Zeigt proaktiven Umgang mit Datenschutz
+<Accordion title="Privacy & Security">
+- **Minimal data storage:** Reduces attack surface for data breaches
+- **Data minimization principle:** Only as much data as necessary, only as long as needed
+- **Customer trust:** Demonstrates proactive data protection practices
 </Accordion>
 
-## Rechtlicher Rahmen für Telefonaufzeichnungen
+## Legal Framework for Telephone Recordings
 
-### DSGVO (Datenschutz-Grundverordnung)
+### GDPR (General Data Protection Regulation)
 
-Die **DSGVO** ist die primäre Rechtsgrundlage für die Verarbeitung personenbezogener Daten in der EU:
+The **GDPR** is the primary legal basis for processing personal data in the EU:
 
 <CardGroup cols={2}>
-  <Card title="Art. 5 DSGVO" icon="gavel">
-    **Grundsätze der Verarbeitung:** Rechtmäßigkeit, Zweckbindung, Datenminimierung, Speicherbegrenzung
+  <Card title="Art. 5 GDPR" icon="gavel">
+    **Processing principles:** Lawfulness, purpose limitation, data minimization, storage limitation
   </Card>
-  <Card title="Art. 6 DSGVO" icon="scale-balanced">
-    **Rechtsgrundlagen:** Einwilligung, Vertragserfüllung, berechtigtes Interesse, gesetzliche Pflicht
+  <Card title="Art. 6 GDPR" icon="scale-balanced">
+    **Legal bases:** Consent, contract performance, legitimate interest, legal obligation
   </Card>
-  <Card title="Art. 17 DSGVO" icon="trash">
-    **Recht auf Löschung:** "Recht auf Vergessenwerden" bei Zweckentfall oder Widerruf
+  <Card title="Art. 17 GDPR" icon="trash">
+    **Right to erasure:** "Right to be forgotten" when purpose ends or consent is withdrawn
   </Card>
-  <Card title="Art. 30 DSGVO" icon="clipboard-list">
-    **Verzeichnis der Verarbeitungstätigkeiten:** Dokumentation aller Datenverarbeitungen
+  <Card title="Art. 30 GDPR" icon="clipboard-list">
+    **Record of processing activities:** Documentation of all data processing
   </Card>
 </CardGroup>
 
-### Telekommunikationsgesetz (TKG)
+### Telecommunications Act (TKG)
 
-Das **Telekommunikationsgesetz (TKG)** regelt zusätzlich spezifische Aspekte der Telekommunikation:
+The **Telecommunications Act (TKG)** also regulates specific aspects of telecommunications:
 
-<Accordion title="§ 88 TKG – Datenschutz in der Telekommunikation">
-- Besondere Schutzvorschriften für Telekommunikationsdaten
-- Verbot der unbefugten Übermittlung von Verkehrsdaten
-- Speicherung nur für Abrechnungszwecke oder gesetzliche Pflichten
+<Accordion title="§ 88 TKG – Data Protection in Telecommunications">
+- Special protections for telecommunications data
+- Prohibition of unauthorized transmission of traffic data
+- Storage only for billing purposes or statutory obligations
 </Accordion>
 
-<Accordion title="§ 100 TKG – Aufzeichnung von Telefongesprächen">
-- **Einwilligung erforderlich:** Beide Parteien müssen der Aufzeichnung zustimmen
-- **Zweckbindung:** Aufzeichnungen nur für den angegebenen Zweck nutzen
-- **Löschpflicht:** Löschung nach Wegfall des Zwecks oder gesetzlicher Frist
+<Accordion title="§ 100 TKG – Recording Telephone Conversations">
+- **Consent required:** Both parties must agree to recording
+- **Purpose limitation:** Recordings may only be used for the specified purpose
+- **Deletion obligation:** Deletion after purpose ceases or legal deadlines expire
 </Accordion>
 
-### Nationale Gesetze
+### National Laws
 
-<Accordion title="Deutschland">
-- **BDSG (Bundesdatenschutzgesetz):** Ergänzt die DSGVO mit nationalen Bestimmungen
-- **TMG (Telemediengesetz):** Regelt Telemedien-Dienste
-- **UWG (Gesetz gegen den unlauteren Wettbewerb):** Regelt Telefonwerbung und Einwilligungen
+<Accordion title="Germany">
+- **BDSG (Federal Data Protection Act):** Supplements GDPR with national provisions
+- **TMG (Telemedia Act):** Regulates telemedia services
+- **UWG (Unfair Competition Act):** Regulates telephone marketing and consents
 </Accordion>
 
-<Accordion title="Österreich">
-- **DSG (Datenschutzgesetz):** Nationale Umsetzung der DSGVO
-- **TKG 2021:** Telekommunikationsgesetz mit strengen Einwilligungserfordernissen
+<Accordion title="Austria">
+- **DSG (Data Protection Act):** National GDPR implementation
+- **TKG 2021:** Telecommunications Act with strict consent requirements
 </Accordion>
 
-<Accordion title="Schweiz">
-- **nDSG (neues Datenschutzgesetz):** Seit 01.09.2023 in Kraft, ähnlich der DSGVO
-- **FADP (Federal Act on Data Protection):** Bundesgesetz über den Datenschutz
+<Accordion title="Switzerland">
+- **nDSG (new Data Protection Act):** In force since 01.09.2023, similar to GDPR
+- **FADP (Federal Act on Data Protection):** Federal data protection law
 </Accordion>
 
-### Aufbewahrungspflichten beachten
+### Observe Retention Obligations
 
 <Warning>
-**Wichtig:** Bevor Sie automatische Löschfristen konfigurieren, prüfen Sie, ob für Ihre Branche oder Ihren Anwendungsfall gesetzliche **Aufbewahrungspflichten** bestehen (z.B. aus Handelsrecht, Steuerrecht, Medizinrecht).
+**Important:** Before configuring automatic deletion periods, verify whether your industry or use case is subject to statutory **retention obligations** (e.g. under commercial law, tax law, medical law).
 </Warning>
 
 <CardGroup cols={2}>
-  <Card title="Handelsrecht" icon="briefcase">
-    Handelsbücher: 10 Jahre (HGB § 257)
+  <Card title="Commercial Law" icon="briefcase">
+    Commercial books: 10 years (HGB § 257)
   </Card>
-  <Card title="Steuerrecht" icon="receipt">
-    Steuerrelevante Belege: 10 Jahre (AO § 147)
+  <Card title="Tax Law" icon="receipt">
+    Tax-relevant records: 10 years (AO § 147)
   </Card>
-  <Card title="Medizinrecht" icon="heart-pulse">
-    Patientenakten: 10-30 Jahre je nach Land
+  <Card title="Medical Law" icon="heart-pulse">
+    Patient records: 10–30 years depending on country
   </Card>
-  <Card title="Arbeitsrecht" icon="briefcase">
-    Personalakten: 2-10 Jahre je nach Dokumenttyp
+  <Card title="Labor Law" icon="briefcase">
+    Personnel files: 2–10 years depending on document type
   </Card>
 </CardGroup>
 
-## Workflow einrichten
+## Setting Up the Workflow
 
-### Schritt 1: Zugriff auf die Automatisierungsplattform
+### Step 1: Access the Automation Platform
 
-1. **Famulor Platform öffnen:** Navigieren Sie zu [https://app.famulor.de](https://app.famulor.de)
-2. **Anmelden:** Loggen Sie sich mit Ihren Zugangsdaten ein
-3. **Automation-Menü öffnen:** Klicken Sie im Hauptmenü auf **"Automation"**
+1. **Open Famulor Platform:** Navigate to [https://app.famulor.de](https://app.famulor.de)
+2. **Log in:** Sign in with your credentials
+3. **Open Automation menu:** Click on **"Automation"** in the main menu
 
 <Info>
-Stellen Sie sicher, dass Sie Zugriff auf die Automatisierungsplattform haben. Falls nicht, kontaktieren Sie den Support.
+Make sure you have access to the automation platform. If not, contact support.
 </Info>
 
-### Schritt 2: Workflow-Template öffnen
+### Step 2: Open the Workflow Template
 
-Öffnen Sie das Workflow-Template über folgenden Link:
+Open the workflow template via the following link:
 
 **Workflow Template:** [https://automate.famulor.de/templates/EQ2ZaUGJARERwPH4IeLoh](https://automate.famulor.de/templates/EQ2ZaUGJARERwPH4IeLoh)
 
 <Check>
-Der Link öffnet das vorkonfigurierte Template direkt in der Automatisierungsplattform.
+The link opens the preconfigured template directly in the automation platform.
 </Check>
 
-### Schritt 3: API-Schlüssel hinzufügen
+### Step 3: Add API Key
 
-1. **API-Schlüssel abrufen:** 
-   - Navigieren Sie in der Famulor Platform zu **Einstellungen** → **API-Schlüssel**
-   - Erstellen Sie einen neuen API-Schlüssel oder verwenden Sie einen bestehenden
-   - Kopieren Sie den API-Schlüssel
+1. **Retrieve API key:** 
+   - In the Famulor Platform, go to **Settings** → **API Keys**
+   - Create a new API key or use an existing one
+   - Copy the API key
 
-2. **Im Workflow einfügen:**
-   - Suchen Sie im Workflow die **API-Authentifizierung Node**
-   - Fügen Sie Ihren API-Schlüssel in das entsprechende Feld ein
+2. **Insert into workflow:**
+   - Find the **API authentication node** in the workflow
+   - Paste your API key into the designated field
 
 <Warning>
-**Sicherheit:** Bewahren Sie Ihren API-Schlüssel sicher auf und teilen Sie ihn nicht mit Dritten. Bei Verlust können Sie den Schlüssel in den Einstellungen neu generieren.
+**Security:** Keep your API key secure and do not share it with third parties. You can regenerate the key in settings if lost.
 </Warning>
 
-### Schritt 4: Aufbewahrungsfrist anpassen
+### Step 4: Adjust Retention Period
 
-1. **Code-Node öffnen:** Suchen Sie die **Code-Node** im Workflow
-2. **Aufbewahrungsdauer ändern:**
-   - Standard: **180 Tage** (6 Monate)
-   - Passen Sie den Wert an Ihre Anforderungen an
-   - Beispiel: `const retentionDays = 90;` für 90 Tage
+1. **Open code node:** Locate the **code node** in the workflow
+2. **Change retention duration:**
+   - Default: **180 days** (6 months)
+   - Adjust the value according to your requirements
+   - Example: `const retentionDays = 90;` for 90 days
 
-<Accordion title="Empfohlene Aufbewahrungsfristen">
-- **Allgemeine Geschäftsdaten:** 90-180 Tage (DSGVO-konform)
-- **Kundenservice-Aufzeichnungen:** 30-90 Tage (nach Qualitätssicherung)
-- **Verkaufsgespräche:** 180-365 Tage (je nach Vertragslaufzeit)
-- **Compliance-Aufzeichnungen:** Prüfen Sie gesetzliche Anforderungen
+<Accordion title="Recommended Retention Periods">
+- **General business data:** 90–180 days (GDPR compliant)
+- **Customer service records:** 30–90 days (post quality assurance)
+- **Sales calls:** 180–365 days (depending on contract duration)
+- **Compliance records:** Check statutory requirements
 </Accordion>
 
-### Schritt 5: Workflow aktivieren
+### Step 5: Activate Workflow
 
-1. **Workflow speichern:** Klicken Sie auf **"Speichern"**
-2. **Workflow veröffentlichen:** Klicken Sie auf **"Veröffentlichen"**
-3. **Automatische Ausführung:** Der Workflow wird täglich automatisch ausgeführt
+1. **Save workflow:** Click **"Save"**
+2. **Publish workflow:** Click **"Publish"**
+3. **Automatic execution:** The workflow runs automatically every day
 
 <Info>
-Der Workflow läuft im Hintergrund und überprüft täglich alle Anrufdaten. Anrufe, die älter als die konfigurierte Frist sind, werden automatisch gelöscht.
+The workflow runs in the background and checks all call data daily. Calls older than the configured retention period are deleted automatically.
 </Info>
 
-## Was wird gelöscht?
+## What Gets Deleted?
 
-Der Workflow löscht automatisch:
+The workflow automatically deletes:
 
-- **Anrufdaten** (Call Records)
-- **Zugehörige Metadaten** (Datum, Uhrzeit, Dauer)
-- **Transkriptionen** (falls vorhanden)
-- **Zugehörige Lead-Informationen** (je nach Konfiguration)
+- **Call data** (call records)
+- **Associated metadata** (date, time, duration)
+- **Transcriptions** (if available)
+- **Related lead information** (depending on configuration)
 
 <Warning>
-**Irreversibel:** Die Löschung ist endgültig und kann nicht rückgängig gemacht werden. Stellen Sie sicher, dass Sie wichtige Daten vor Ablauf der Frist exportiert haben, falls erforderlich.
+**Irreversible:** Deletion is permanent and cannot be undone. Ensure important data is exported before the retention period expires if needed.
 </Warning>
 
 ## Best Practices
 
 <CardGroup cols={2}>
-  <Card title="Rechtliche Prüfung" icon="gavel">
-    Prüfen Sie vor der Konfiguration alle gesetzlichen Aufbewahrungspflichten für Ihre Branche
+  <Card title="Legal Review" icon="gavel">
+    Verify all statutory retention obligations for your industry before configuring
   </Card>
-  <Card title="Dokumentation" icon="clipboard-list">
-    Dokumentieren Sie die konfigurierte Aufbewahrungsfrist in Ihrem Verzeichnis der Verarbeitungstätigkeiten
+  <Card title="Documentation" icon="clipboard-list">
+    Document the configured retention period in your record of processing activities
   </Card>
-  <Card title="Regelmäßige Überprüfung" icon="magnifying-glass">
-    Überprüfen Sie regelmäßig, ob die Frist noch angemessen ist
+  <Card title="Regular Review" icon="magnifying-glass">
+    Regularly check if the retention period is still appropriate
   </Card>
-  <Card title="Backup-Strategie" icon="floppy-disk">
-    Erwägen Sie ein Backup wichtiger Daten vor automatischer Löschung
+  <Card title="Backup Strategy" icon="floppy-disk">
+    Consider backing up important data before automatic deletion
   </Card>
 </CardGroup>
 
-## Häufige Fragen
+## Frequently Asked Questions
 
-<Accordion title="Kann ich bestimmte Anrufe von der automatischen Löschung ausschließen?">
-Ja, Sie können den Workflow anpassen, um bestimmte Anrufe basierend auf Kriterien (z.B. Tags, Kampagnen, Status) von der Löschung auszunehmen. Dies erfordert eine Anpassung der Code-Node.
+<Accordion title="Can I exclude certain calls from automatic deletion?">
+Yes, you can customize the workflow to exclude certain calls based on criteria (e.g., tags, campaigns, status). This requires adjusting the code node.
 </Accordion>
 
-<Accordion title="Wie kann ich die Löschung rückgängig machen?">
-Die automatische Löschung ist endgültig. Stellen Sie sicher, dass Sie wichtige Daten vor Ablauf der Frist exportiert oder gesichert haben.
+<Accordion title="Can I undo the deletion?">
+Automatic deletion is final. Make sure important data is exported or backed up before the retention period expires.
 </Accordion>
 
-<Accordion title="Wird der Workflow auch bei gesetzlichen Aufbewahrungspflichten ausgeführt?">
-Der Workflow berücksichtigt keine gesetzlichen Aufbewahrungspflichten automatisch. Sie müssen die Aufbewahrungsfrist entsprechend anpassen oder bestimmte Daten von der Löschung ausschließen.
+<Accordion title="Does the workflow consider statutory retention obligations?">
+The workflow does not automatically take statutory retention obligations into account. You must adjust the retention period accordingly or exclude specific data from deletion.
 </Accordion>
 
-<Accordion title="Wie oft wird der Workflow ausgeführt?">
-Der Workflow wird standardmäßig täglich ausgeführt. Sie können die Häufigkeit in den Workflow-Einstellungen anpassen.
+<Accordion title="How often does the workflow run?">
+By default, the workflow runs daily. You can adjust the frequency in the workflow settings.
 </Accordion>
 
-## Weiterführende Informationen
+## Further Information
 
 <CardGroup cols={2}>
-  <Card title="DSGVO-Konformität" icon="shield-halved" href="/en/provisioning/compliance">
-    Compliance-Anforderungen für Telefonnummer-Bereitstellung
+  <Card title="GDPR Compliance" icon="shield-halved" href="/provisioning/compliance">
+    Compliance requirements for phone number provisioning
   </Card>
-  <Card title="Datenschutz & Compliance" icon="scale-balanced" href="/en/sales/datenschutz-und-compliance">
-    Rechtssichere Kaltakquise im DACH-Raum
+  <Card title="Data Protection & Compliance" icon="scale-balanced" href="/sales/datenschutz-und-compliance">
+    Legally compliant cold calling in the DACH region
   </Card>
-  <Card title="Automatisierungsplattform" icon="wand-magic-sparkles" href="/en/automation-platform/introduction">
-    Einführung in die No-Code Automatisierungsplattform
+  <Card title="Automation Platform" icon="wand-magic-sparkles" href="/automation-platform/introduction">
+    Introduction to the no-code automation platform
   </Card>
-  <Card title="API-Referenz" icon="code" href="/en/api-reference/introduction">
-    API-Dokumentation für erweiterte Integrationen
+  <Card title="API Reference" icon="code" href="/api-reference/introduction">
+    API documentation for advanced integrations
   </Card>
 </CardGroup>
 
 ---
 
 <Info>
-**Hinweis:** Bei Fragen zur Konfiguration oder rechtlichen Anforderungen kontaktieren Sie bitte den [Famulor Support](mailto:support@famulor.io) oder konsultieren Sie einen Rechtsbeistand.
+**Note:** For questions about configuration or legal requirements, please contact [Famulor Support](mailto:support@famulor.io) or consult legal counsel.
 </Info>
-

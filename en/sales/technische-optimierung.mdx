@@ -1,36 +1,36 @@
 ---
-title: "Technische Optimierung"
+title: "Technical Optimization"
 icon: "wrench"
-description: "Anrufqualität, DTMF/IVR, Unterbrechungen, Stimmen & Latenz optimieren"
+description: "Optimize call quality, DTMF/IVR, interruptions, voices & latency"
 ---
 
 
-## Audio & Netzwerk
-- Stabile Bandbreite, niedrige Latenz, QoS wo möglich
-- Zielwerte: **Einweg‑Latenz ≤ 150 ms** für gute Gesprächsqualität
-- Quelle: [ITU‑T G.114 – One‑way Transmission Time](https://www.itu.int/rec/T-REC-G.114)
+## Audio & Network
+- Stable bandwidth, low latency, QoS where possible
+- Target values: **One-way latency ≤ 150 ms** for good call quality
+- Source: [ITU‑T G.114 – One-way Transmission Time](https://www.itu.int/rec/T-REC-G.114)
 
-## Assistenten‑Tuning
-- Stimme passend zum Use Case wählen (klar vs. natürlich)
-- Unterbrechungs‑Schwelle je Zielgruppe anpassen
-- Filler‑Audios nutzen, um Reaktionszeit zu verkürzen
+## Assistant Tuning
+- Choose a voice suited to the use case (clear vs. natural)
+- Adjust interruption threshold based on the target audience
+- Use filler audios to reduce response time
 
 ## IVR & DTMF
-- DTMF‑Tool testen (Tastenfolge, Timing)
-- RTP‑DTMF nach **RFC 4733** beachten (Out‑of‑Band)
-- Quelle: [RFC 4733 – RTP Payload for DTMF Digits](https://www.rfc-editor.org/rfc/rfc4733)
+- Test the DTMF tool (key sequences, timing)
+- Follow RTP-DTMF according to **RFC 4733** (Out-of-Band)
+- Source: [RFC 4733 – RTP Payload for DTMF Digits](https://www.rfc-editor.org/rfc/rfc4733)
 
 <Info>
-Troubleshooting siehe: [/troubleshooting/call-quality](/en/troubleshooting/call-quality) · [/automation-platform/calls-related/sms-capabilities](/en/automation-platform/calls-related/sms-capabilities)
+Troubleshooting see: [/troubleshooting/call-quality](/troubleshooting/call-quality) · [/automation-platform/calls-related/sms-capabilities](/automation-platform/calls-related/sms-capabilities)
 </Info>
 
-## Kurzstudie: Sprachqualität & IVR
-- **Datengrundlage**: ITU‑T Empfehlungen (G.114), IETF/RFC 4733
-- **Kernaussagen**:
-  - Sprachverständlichkeit nimmt jenseits 150 ms Einweg‑Latenz messbar ab
-  - Out‑of‑Band‑DTMF ist für IVR‑Zuverlässigkeit gegenüber In‑Band vorzuziehen
-- **Limitationen**: Realnetze variieren (Jitter/Verlust); Monitoring nötig
+## Brief Study: Voice Quality & IVR
+- **Data basis**: ITU-T recommendations (G.114), IETF/RFC 4733
+- **Key points**:
+  - Speech intelligibility decreases measurably beyond 150 ms one-way latency
+  - Out-of-band DTMF is preferred over in-band for IVR reliability
+- **Limitations**: Real networks vary (jitter/loss); monitoring required
 
-## Referenzen
-- ITU‑T G.114: https://www.itu.int/rec/T-REC-G.114
+## References
+- ITU-T G.114: https://www.itu.int/rec/T-REC-G.114
 - RFC 4733: https://www.rfc-editor.org/rfc/rfc4733

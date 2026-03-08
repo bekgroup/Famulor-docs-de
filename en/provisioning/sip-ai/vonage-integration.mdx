@@ -1,220 +1,220 @@
 ---
 title: 'Vonage Integration'
-description: 'Eine Schritt-für-Schritt-Anleitung zur Verbindung mit Ihrem Vonage-Konto über SIP-Trunking'
+description: 'A step-by-step guide to connecting your Vonage account via SIP trunking'
 ---
 
 
 # Vonage Integration
 
 <Note>
-  Eine Schritt-für-Schritt-Anleitung zur Verbindung mit Ihrem Vonage-Konto über SIP-Trunking mit Famulor.
+  A step-by-step guide to connecting your Vonage account via SIP trunking with Famulor.
 </Note>
 
-## Übersicht
+## Overview
 
 <Card
-  title="Was ist Vonage?"
+  title="What is Vonage?"
   icon="building"
   color="blue">
-  Vonage ist ein führender Anbieter für Cloud-Kommunikationslösungen. Mit der SIP-Trunking-Integration können Sie Ihre bestehenden Vonage-Telefonnummern mit Famulor verbinden und von der KI-gestützten Anrufverwaltung profitieren.
+  Vonage is a leading provider of cloud communication solutions. With the SIP trunking integration, you can connect your existing Vonage phone numbers with Famulor and benefit from AI-powered call management.
 </Card>
 
-## Schritt 1: Elastic SIP Trunking erstellen
+## Step 1: Create Elastic SIP Trunking
 
 <Card
-  title="SIP-Trunk in Vonage einrichten"
+  title="Set up SIP trunk in Vonage"
   icon="gear"
   color="green">
   
-    - Navigieren Sie zum **SIP-Bereich** im Vonage-Dashboard
-    - Wählen Sie **"Other"** als Anbieter aus
-    - Folgen Sie den Anweisungen Schritt für Schritt
+    - Navigate to the **SIP section** in the Vonage dashboard
+    - Select **"Other"** as provider
+    - Follow the step-by-step instructions
   
 </Card>
 
-### Termination einrichten (für ausgehende Anrufe)
+### Configure Termination (for outgoing calls)
 
 <Card
-  title="Wichtige Informationen notieren"
+  title="Note important information"
   icon="edit"
   color="orange">
-  Bei der Einrichtung der Termination (ausgehende Anrufe) sind folgende Informationen wichtig:
+  When setting up termination (outgoing calls), the following information is important:
   
     - **Termination SIP URI**
-    - **Benutzername**
-    - **Passwort**
+    - **Username**
+    - **Password**
   
-  **Wichtig:** Notieren Sie sich diese Informationen, da Sie sie in den späteren Schritten benötigen werden.
+  **Important:** Note down this information as you will need it in later steps.
 </Card>
 
-### Origination einrichten (für eingehende Anrufe)
+### Configure Origination (for incoming calls)
 
 <Card
-  title="Famulor SIP-Server konfigurieren"
+  title="Configure Famulor SIP server"
   icon="server"
   color="purple">
-  Hier geben Sie die Famulor SIP-Server-Adresse als Origination SIP URI an:
+  Here, enter the Famulor SIP server address as the Origination SIP URI:
   <CodeGroup>
-    <CodeGroupItem title="SIP-Server">
+    <CodeGroupItem title="SIP Server">
       ```bash
-      sip:ihre-unique-id.sip.livekit.cloud
+      sip:your-unique-id.sip.livekit.cloud
       ```
     </CodeGroupItem>
   </CodeGroup>
   
   <Note>
-    **Wichtig:** Die spezifische Famulor SIP-Adresse finden Sie in Ihrem Famulor-Dashboard unter "Telefonnummern" → "SIP-Trunk integrieren" → "Unsere SIP-Adresse".
+    **Important:** The specific Famulor SIP address can be found in your Famulor dashboard under "Phone Numbers" → "Integrate SIP Trunk" → "Our SIP Address".
   </Note>
 </Card>
 
-## Schritt 2: Nummern zu Elastic SIP Trunking verschieben
+## Step 2: Move numbers to Elastic SIP Trunking
 
 <Card
-  title="Nummern verknüpfen"
+  title="Link numbers"
   icon="phone"
   color="blue">
-  Nachdem Sie den Elastic SIP-Trunk erstellt haben, müssen Sie:
+  After creating the Elastic SIP trunk, you need to:
   
-    - Neue Nummern kaufen **ODER**
-    - Bestehende Nummern mit diesem Trunk verknüpfen
+    - Purchase new numbers **OR**
+    - Link existing numbers to this trunk
   
 </Card>
 
-## Schritt 3: Nummern in Famulor importieren
+## Step 3: Import numbers into Famulor
 
 <Card
-  title="Integration in Famulor abschließen"
+  title="Complete integration in Famulor"
   icon="download"
   color="green">
-  Jetzt, da die Nummer mit Ihrem Elastic SIP-Trunking eingerichtet ist, müssen Sie sie in Famulor importieren, damit wir wissen, wie wir die Anrufe routen können.
+  Now that the number is configured with your Elastic SIP trunking, you need to import it into Famulor so that we know how to route the calls.
 </Card>
 
-### Benötigte Informationen
+### Required information
 
 <Card
-  title="Vonage-Daten eingeben"
+  title="Enter Vonage data"
   icon="database"
   color="red">
-  Geben Sie hier die folgenden Informationen ein, die Sie in Schritt 1 eingerichtet haben:
+  Enter the following information you set up in Step 1:
   
-    - **Termination SIP URI** aus Schritt 1
-    - **Benutzername** aus Schritt 1
-    - **Passwort** aus Schritt 1
+    - **Termination SIP URI** from Step 1
+    - **Username** from Step 1
+    - **Password** from Step 1
   
 </Card>
 
-### Programmgesteuerter Import
+### Programmatic import
 
 <Card
-  title="API-Import verfügbar"
+  title="API import available"
   icon="code"
   color="indigo">
-  Sie können Nummern auch programmgesteuert über die **Import Number API** importieren.
+  You can also import numbers programmatically via the **Import Number API**.
 </Card>
 
-## Nach dem Import
+## After the import
 
 <Card
-  title="Vollständige Funktionalität"
+  title="Full functionality"
   icon="check-circle"
   color="green">
-  Sobald die Nummer importiert ist, können Sie:
+  Once the number is imported, you can:
   
-    - Anrufe mit dieser Nummer tätigen und empfangen
-    - Die Nummer wird in Ihrem Dashboard angezeigt
-    - Sie können Assistenten an die Nummer binden
-    - Direkt vom Dashboard aus Anrufe tätigen
+    - Make and receive calls with this number
+    - See the number in your dashboard
+    - Bind assistants to the number
+    - Make calls directly from the dashboard
   
 </Card>
 
 <Card
-  title="Weiterführende Informationen"
+  title="Additional information"
   icon="book-open"
   color="blue">
-  Schauen Sie sich den **Anruf-Guide** an, um zu lernen, wie Sie Anrufe tätigen können.
+  Check out the **Call Guide** to learn how to make calls.
 </Card>
 
-## Technische Details
+## Technical details
 
 <CardGroup cols={2}>
   <Card
-    title="SIP-Protokoll"
+    title="SIP Protocol"
     icon="gear"
     color="blue">
     
-      - Verwendet Standard SIP-Trunking
-      - Unterstützt eingehende und ausgehende Anrufe
-      - Vollständige Integration mit Famulor
+      - Uses standard SIP trunking
+      - Supports incoming and outgoing calls
+      - Fully integrated with Famulor
     
   </Card>
   
   <Card
-    title="Authentifizierung"
+    title="Authentication"
     icon="shield"
     color="green">
     
-      - Benutzername/Passwort-basierte Authentifizierung
-      - Sichere Verbindung über SIP
-      - Verschlüsselte Kommunikation
+      - Username/password-based authentication
+      - Secure connection via SIP
+      - Encrypted communication
     
   </Card>
 </CardGroup>
 
-## Häufige Probleme und Lösungen
+## Common issues and solutions
 
 <Card
   title="Troubleshooting"
   icon="circle-question"
   color="orange">
   
-    - **Verbindungsprobleme:** Überprüfen Sie die SIP-URI und Anmeldedaten
-    - **Anrufe funktionieren nicht:** Stellen Sie sicher, dass der Trunk aktiviert ist
-    - **Eingehende Anrufe fehlen:** Überprüfen Sie die Origination-Einstellungen
-    - **Ausgehende Anrufe fehlen:** Überprüfen Sie die Termination-Einstellungen
+    - **Connection issues:** Check the SIP URI and login credentials
+    - **Calls not working:** Make sure the trunk is enabled
+    - **Missing incoming calls:** Verify the origination settings
+    - **Missing outgoing calls:** Verify the termination settings
   
 </Card>
 
-## Einrichtung in Famulor
+## Setup in Famulor
 
 <Card
-  title="Schritte zur Einrichtung"
+  title="Setup steps"
   icon="gear"
   color="purple">
   
-    - Gehen Sie zu **Telefonnummern** → **SIP-Trunk integrieren**
-    - Wählen Sie **"Vonage"** als Anbieter
-    - Geben Sie die **Termination SIP URI** ein
-    - Geben Sie den **Benutzernamen** ein
-    - Geben Sie das **Passwort** ein
-    - Klicken Sie auf **"Speichern"**
-    - Testen Sie die Verbindung mit einem Anruf
+    - Go to **Phone Numbers** → **Integrate SIP Trunk**
+    - Select **"Vonage"** as provider
+    - Enter the **Termination SIP URI**
+    - Enter the **Username**
+    - Enter the **Password**
+    - Click **"Save"**
+    - Test the connection by placing a call
   
 </Card>
 
-## Hilfe benötigt?
+## Need help?
 
 <Tip>
-  Unser Support-Team kann Ihnen bei der Einrichtung der Vonage-Integration helfen.
+  Our support team can assist you with setting up the Vonage integration.
 </Tip>
 
 <Card
-  title="Support kontaktieren"
+  title="Contact support"
   icon="headphones"
   color="blue"
   href="mailto:support@famulor.io">
-  Benötigen Sie Hilfe bei der Vonage-Integration? Kontaktieren Sie unser Support-Team.
+  Need help with the Vonage integration? Contact our support team.
 </Card>
 
-## Nächste Schritte
+## Next steps
 
 <Card
-  title="Weiterführende Ressourcen"
+  title="Further resources"
   icon="arrow-right"
   color="green">
   
-    - Lernen Sie mehr über **SIP-Integration**
-    - Entdecken Sie andere **Telefonie-Anbieter**
-    - Testen Sie Ihre Integration mit **Anruf-Tests**
-    - Konfigurieren Sie **KI-Assistenten** für Ihre Nummern
+    - Learn more about **SIP integration**
+    - Explore other **telephony providers**
+    - Test your integration with **call tests**
+    - Configure **AI assistants** for your numbers
   
 </Card>

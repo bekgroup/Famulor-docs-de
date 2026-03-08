@@ -1,143 +1,143 @@
 ---
 title: "WhatsApp Business Integration"
-description: "Verbinden Sie Ihre KI-Assistenten mit WhatsApp Business für automatisierte textbasierte Kundenkommunikation"
+description: "Connect your AI assistants with WhatsApp Business for automated text-based customer communication"
 ---
 
 
-> Verbinden Sie Ihre KI-Assistenten mit WhatsApp Business für automatisierte textbasierte Kundenkommunikation
+> Connect your AI assistants with WhatsApp Business for automated text-based customer communication
 
 <Note>
-  **Neu: Externe Nummern** — Sie können jetzt Ihre eigene Mobilnummer zu WhatsApp bringen! Nutzen Sie Plattform-Nummern oder verbinden Sie Ihre bestehende Mobilnummer mit SMS/Sprach-Verifizierung.
+  **New: External Numbers** — You can now bring your own mobile number to WhatsApp! Use platform numbers or link your existing mobile number with SMS/voice verification.
 </Note>
 
-## Was ist die WhatsApp Business Integration?
+## What is the WhatsApp Business Integration?
 
-Die WhatsApp Business Integration ermöglicht es Ihnen, Ihre KI-Assistenten mit WhatsApp zu verbinden. Dies ermöglicht automatisierte textbasierte Gespräche mit Kunden über die weltweit beliebteste Messaging-Plattform.
+The WhatsApp Business Integration allows you to connect your AI assistants to WhatsApp. This enables automated text-based conversations with customers through the world's most popular messaging platform.
 
-Mit dieser Integration können Sie:
+With this integration, you can:
 
-* **Kunden-Nachrichten empfangen** und automatisch mit KI antworten
-* **Template-Nachrichten senden**, um Gespräche zu beginnen oder Kunden erneut anzusprechen
-* **KI-gestützte Antworten** für 24/7 Kundensupport nutzen
-* **Automatisierungs-Flows auslösen**, basierend auf WhatsApp-Gesprächen
-* **Alle Gespräche verfolgen** in Ihrem Dashboard
+* **Receive customer messages** and automatically respond with AI
+* **Send template messages** to start conversations or re-engage customers
+* Use **AI-powered replies** for 24/7 customer support
+* **Trigger automation flows** based on WhatsApp conversations
+* **Track all conversations** in your dashboard
 
-## Wie es funktioniert
+## How it works
 
 ```mermaid  theme={null}
 flowchart LR
-    A[Kunde] -->|Sendet WhatsApp Nachricht| B[Ihr WhatsApp Absender]
-    B -->|Routet zu| C[KI-Assistent]
-    C -->|Generiert Antwort| B
-    B -->|Antwortet| A
+    A[Customer] -->|Sends WhatsApp message| B[Your WhatsApp Sender]
+    B -->|Routes to| C[AI Assistant]
+    C -->|Generates reply| B
+    B -->|Responds| A
 ```
 
-1. **Erstellen Sie einen WhatsApp-Absender** mit einer Plattform-Nummer oder Ihrer eigenen externen Nummer
-2. **Verbinden Sie einen KI-Assistenten**, um eingehende Nachrichten automatisch zu bearbeiten
-3. **Erstellen Sie Nachrichten-Templates** für Outbound-Gespräche (von Meta erforderlich)
-4. **Kunden schreiben Ihnen** und erhalten sofort KI-basierte Antworten
+1. **Create a WhatsApp sender** with a platform number or your own external number
+2. **Connect an AI assistant** to automatically handle incoming messages
+3. **Create message templates** for outbound conversations (required by Meta)
+4. **Customers message you** and receive instant AI-powered replies
 
-## Kernkomponenten
+## Core Components
 
 <CardGroup cols={2}>
-  <Card title="WhatsApp-Absender" icon="phone" href="/en/whatsapp/senders">
-    Telefonnummern, die für WhatsApp Business Messaging registriert sind
+  <Card title="WhatsApp Senders" icon="phone" href="/whatsapp/senders">
+    Phone numbers registered for WhatsApp Business Messaging
   </Card>
 
-  <Card title="Nachrichten-Templates" icon="file-lines" href="/en/whatsapp/templates">
-    Vorab genehmigte Nachrichtenformate für geschäftlich initiierte Gespräche
+  <Card title="Message Templates" icon="file-lines" href="/whatsapp/templates">
+    Pre-approved message formats for business-initiated conversations
   </Card>
 
-  <Card title="KI-Konversationen" icon="robot" href="/en/whatsapp/conversations">
-    KI-gestützte automatisierte Antworten auf Kunden-Nachrichten
+  <Card title="AI Conversations" icon="robot" href="/whatsapp/conversations">
+    AI-powered automated responses to customer messages
   </Card>
 
-  <Card title="Automatisierung" icon="bolt" href="/en/whatsapp/automation">
-    Flows auslösen und Nachrichten über die Automatisierungs-Plattform senden
+  <Card title="Automation" icon="bolt" href="/whatsapp/automation">
+    Trigger flows and send messages via the automation platform
   </Card>
 </CardGroup>
 
-## WhatsApp Business Regeln verstehen
+## Understanding WhatsApp Business Rules
 
-WhatsApp hat spezifische Regeln für Business-Messaging, die Sie verstehen müssen:
+WhatsApp has specific rules for business messaging that you need to understand:
 
-### Das 24-Stunden-Messaging-Fenster
+### The 24-hour Messaging Window
 
 <Info>
-  Wenn ein Kunde Ihnen eine Nachricht sendet, öffnet sich ein **24-Stunden-Fenster**, in dem Sie freie Nachrichten senden können. Nachdem dieses Fenster geschlossen ist, müssen Sie ein **genehmigtes Template** verwenden, um den Kunden erneut anzusprechen.
+  When a customer sends you a message, a **24-hour window** opens during which you can send freeform messages. After this window closes, you must use an **approved template** to re-engage the customer.
 </Info>
 
-* **Innerhalb von 24 Stunden**: Senden Sie jede Nachricht direkt
-* **Nach 24 Stunden**: Muss eine vorab genehmigte Template-Nachricht verwendet werden
+* **Within 24 hours**: Send any message directly
+* **After 24 hours**: You must use a pre-approved template message
 
-### Template-Nachrichten
+### Template Messages
 
-Template-Nachrichten sind vorab genehmigte Nachrichtenformate, die erforderlich sind für:
+Template messages are pre-approved message formats required for:
 
-* Das Starten neuer Gespräche mit Kunden
-* Das erneute Ansprechen von Kunden nach Ablauf des 24-Stunden-Fensters
-* Das Senden von Benachrichtigungen, Updates oder Marketing-Nachrichten
+* Starting new conversations with customers
+* Re-engaging customers after the 24-hour window expires
+* Sending notifications, updates, or marketing messages
 
-Templates müssen zur Genehmigung bei Meta eingereicht werden (dauert in der Regel Minuten bis 24 Stunden).
+Templates must be submitted to Meta for approval (usually takes minutes up to 24 hours).
 
-### Qualitätsbewertung & Limits
+### Quality Rating & Limits
 
-Meta überwacht Ihre Messaging-Qualität. Neue Absender beginnen mit begrenzter Kapazität, die sich erhöht, wenn Sie eine gute Qualität beibehalten:
+Meta monitors your messaging quality. New senders start with limited capacity, which increases as you maintain good quality:
 
-| Qualitätsstufe | Tägliches Nachrichten-Limit |
-| -------------- | --------------------------- |
-| Neuer Absender | \~250 Nachrichten           |
-| Niedrig        | 1.000 Nachrichten           |
-| Mittel         | 10.000 Nachrichten          |
-| Hoch           | 100.000+ Nachrichten        |
+| Quality Level  | Daily Message Limit           |
+| -------------- | -----------------------------|
+| New Sender     | ~250 messages                |
+| Low            | 1,000 messages               |
+| Medium         | 10,000 messages              |
+| High           | 100,000+ messages            |
 
 <Warning>
-  Hohe Blockierraten oder Spam-Meldungen senken Ihre Qualitätsbewertung und reduzieren Ihre Messaging-Limits. Senden Sie immer relevante, angeforderte Inhalte.
+  High block rates or spam reports lower your quality rating and reduce your messaging limits. Always send relevant, requested content.
 </Warning>
 
-## Unterstützte Funktionen
+## Supported Features
 
-### Was wird unterstützt
+### What is supported
 
-* **Plattform-Nummern** — Nutzen Sie über unsere Plattform erworbene Nummern mit automatisierter KI-Verifizierung
-* **Externe Nummern** — Bringen Sie Ihre eigene Mobilnummer mit und verifizieren Sie diese per SMS oder Sprachanruf
-* KI-gestützte automatisierte Antworten
-* Template-Nachrichten (Utility, Marketing, Authentifizierung)
-* Voice Call Request Templates (Anforderung der Erlaubnis zum Anruf via WhatsApp)
-* Gesprächsverlauf und Tracking
-* Integration der Automatisierungs-Plattform
+* **Platform Numbers** — Use numbers acquired through our platform with automated AI verification
+* **External Numbers** — Bring your own mobile number and verify it via SMS or voice call
+* AI-powered automated replies
+* Template messages (utility, marketing, authentication)
+* Voice Call Request Templates (requesting permission to call via WhatsApp)
+* Conversation history and tracking
+* Integration with the automation platform
 
-### Demnächst verfügbar
+### Coming soon
 
-* Medien-Anhänge (Bilder, Dokumente, Audio)
-* WhatsApp-Sprachanrufe
+* Media attachments (images, documents, audio)
+* WhatsApp voice calls
 
-## Erste Schritte
+## Getting Started
 
 <Steps>
-  <Step title="Wählen Sie Ihren Nummerntyp">
-    Entscheiden Sie, ob Sie eine **Plattform-Nummer** (von uns erworben) oder Ihre eigene **externe Mobilnummer** verwenden möchten. Externe Nummern müssen SMS oder Sprachanrufe zur Verifizierung empfangen können.
+  <Step title="Choose your number type">
+    Decide whether to use a **platform number** (purchased from us) or your own **external mobile number**. External numbers must be able to receive SMS or voice calls for verification.
   </Step>
 
-  <Step title="WhatsApp-Absender erstellen">
-    Navigieren Sie zu **WhatsApp-Absender** und folgen Sie dem Einrichtungs-Assistenten, um Ihre Nummer mit WhatsApp Business zu verbinden.
+  <Step title="Create a WhatsApp sender">
+    Go to **WhatsApp Senders** and follow the setup wizard to connect your number to WhatsApp Business.
   </Step>
 
-  <Step title="KI-Assistent verbinden">
-    Verknüpfen Sie einen KI-Assistenten, um automatisch auf eingehende Nachrichten zu antworten.
+  <Step title="Connect AI assistant">
+    Link an AI assistant to automatically reply to incoming messages.
   </Step>
 
-  <Step title="Templates erstellen">
-    Richten Sie Nachrichten-Templates für Outbound-Gespräche ein und warten Sie auf die Genehmigung durch Meta.
+  <Step title="Create templates">
+    Set up message templates for outbound conversations and await Meta's approval.
   </Step>
 
-  <Step title="Messaging starten">
-    Ihr WhatsApp-Absender ist bereit! Kunden können Ihnen Nachrichten senden und erhalten KI-gestützte Antworten.
+  <Step title="Start messaging">
+    Your WhatsApp sender is ready! Customers can message you and receive AI-powered replies.
   </Step>
 </Steps>
 
-## Nächste Schritte
+## Next Steps
 
-* Erfahren Sie, wie Sie [WhatsApp-Absender erstellen](/en/whatsapp/senders)
-* [Nachrichten-Templates](/en/whatsapp/templates) und den Genehmigungsprozess verstehen
-* [Automatisierungs-Trigger](/en/whatsapp/automation) für WhatsApp einrichten
+* Learn how to [create WhatsApp Senders](/whatsapp/senders)
+* Understand [Message Templates](/whatsapp/templates) and the approval process
+* Set up [automation triggers](/whatsapp/automation) for WhatsApp

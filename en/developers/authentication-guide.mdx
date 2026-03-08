@@ -1,63 +1,62 @@
 ---
-title: "Authentifizierungs-Leitfaden"
+title: "Authentication Guide"
 icon: "key"
-description: "Vollständiger Leitfaden zur API-Authentifizierung für Entwickler"
+description: "Complete guide to API authentication for developers"
 ---
 
+# Authentication for Developers
 
-# Authentifizierung für Entwickler
-
-Dieser Leitfaden zeigt Ihnen, wie Sie Ihre Famulor API-Anfragen korrekt authentifizieren und dabei Best Practices für Sicherheit und Fehlerbehebung befolgen.
+This guide shows you how to properly authenticate your Famulor API requests while following best practices for security and troubleshooting.
 
 <Info>
-Für eine schnelle Referenz siehe unsere [grundlegende Authentifizierungsseite](/en/api-reference/authentication) in der API-Referenz.
+For a quick reference, see our [basic authentication page](/api-reference/authentication) in the API reference.
 </Info>
 
-## Überblick
+## Overview
 
-Die Famulor API verwendet **Bearer Token-Authentifizierung** mit API-Schlüsseln. Jeder API-Aufruf muss einen gültigen API-Schlüssel im `Authorization` Header enthalten.
+The Famulor API uses **Bearer token authentication** with API keys. Every API call must include a valid API key in the `Authorization` header.
 
-## API-Schlüssel erhalten
+## Getting an API Key
 
 <Steps>
-  <Step title="Dashboard öffnen">
-    Melden Sie sich bei Ihrem Famulor-Konto an unter [https://app.famulor.de](https://app.famulor.de)
+  <Step title="Open Dashboard">
+    Log in to your Famulor account at [https://app.famulor.de](https://app.famulor.de)
   </Step>
-  <Step title="API-Schlüssel Seite">
-    Navigieren Sie zur **\"API-Schlüssel\"** Seite in Ihrem Dashboard
+  <Step title="API Keys Page">
+    Navigate to the **"API Keys"** page in your dashboard
   </Step>
-  <Step title="Schlüssel erstellen">
-    Klicken Sie auf **\"Neuen API-Schlüssel erstellen\"**
+  <Step title="Create Key">
+    Click **"Create new API key"**
   </Step>
-  <Step title="Sicher speichern">
-    Kopieren Sie den Schlüssel sofort und speichern Sie ihn sicher ab - er wird nur einmal angezeigt
+  <Step title="Save Securely">
+    Copy the key immediately and store it securely — it will only be shown once
   </Step>
 </Steps>
 
 <Warning>
-**Wichtige Sicherheitshinweise:**
-- Halten Sie Ihren API-Schlüssel vertraulich und sicher
-- Teilen Sie ihn niemals öffentlich oder in Code-Repositories
-- Rotieren Sie Schlüssel regelmäßig (empfohlen: alle 90 Tage)
-- Verwenden Sie Umgebungsvariablen für die Speicherung
+**Important Security Notes:**
+- Keep your API key confidential and secure
+- Never share it publicly or in code repositories
+- Rotate keys regularly (recommended: every 90 days)
+- Use environment variables to store keys
 </Warning>
 
-## API-Schlüssel verwenden
+## Using the API Key
 
-### Standard-Authentifizierung
+### Standard Authentication
 
-Fügen Sie Ihren API-Schlüssel in den `Authorization` Header jeder Anfrage ein:
+Include your API key in the `Authorization` header of every request:
 
 ```
 Authorization: Bearer YOUR_API_KEY
 ```
 
-### Code-Beispiele
+### Code Examples
 
 <CodeGroup>
 
 ```javascript JavaScript/Node.js
-// Umgebungsvariable verwenden
+// Use environment variable
 const API_KEY = process.env.FAMULOR_API_KEY;
 
 const response = await fetch('https://app.famulor.de/api/user/assistants', {
@@ -75,7 +74,7 @@ const data = await response.json();
 import os
 import requests
 
-# Umgebungsvariable verwenden
+# Use environment variable
 API_KEY = os.getenv('FAMULOR_API_KEY')
 
 headers = {
@@ -93,7 +92,7 @@ data = response.json()
 
 ```php PHP
 <?php
-// Umgebungsvariable verwenden
+// Use environment variable
 $apiKey = getenv('FAMULOR_API_KEY');
 
 $headers = [
@@ -113,23 +112,23 @@ curl_close($ch);
 ```
 
 ```bash cURL
-# Umgebungsvariable setzen
-export FAMULOR_API_KEY=\"your_actual_api_key_here\"
+# Set environment variable
+export FAMULOR_API_KEY="your_actual_api_key_here"
 
-# API-Aufruf
-curl -X GET \"https://app.famulor.de/api/user/assistants\" \\
-     -H \"Authorization: Bearer $FAMULOR_API_KEY\" \\
-     -H \"Content-Type: application/json\"
+# API call
+curl -X GET "https://app.famulor.de/api/user/assistants" \
+     -H "Authorization: Bearer $FAMULOR_API_KEY" \
+     -H "Content-Type: application/json"
 ```
 
 </CodeGroup>
 
-## Umgebungsvariablen Setup
+## Setting Up Environment Variables
 
-### Lokal (.env Datei)
+### Local (.env file)
 
 ```bash
-# .env Datei
+# .env file
 FAMULOR_API_KEY=your_actual_api_key_here
 ```
 
@@ -156,12 +155,12 @@ docker run -e FAMULOR_API_KEY=your_actual_api_key_here your-app
 
 </CodeGroup>
 
-## Authentifizierungs-Fehlerbehandlung
+## Authentication Error Handling
 
-### Häufige Fehler und Lösungen
+### Common Errors and Solutions
 
 <AccordionGroup>
-  <Accordion title="401 Unauthorized - Ungültiger API-Schlüssel">
+  <Accordion title="401 Unauthorized - Invalid API Key">
     ```json
     {
       "error": "Invalid API key",
@@ -169,14 +168,14 @@ docker run -e FAMULOR_API_KEY=your_actual_api_key_here your-app
     }
     ```
     
-    **Lösungen:**
-    - Überprüfen Sie, ob der API-Schlüssel korrekt kopiert wurde
-    - Stellen Sie sicher, dass keine Leerzeichen vor/nach dem Schlüssel stehen
-    - Prüfen Sie, ob der Schlüssel noch gültig ist (nicht abgelaufen)
-    - Erstellen Sie bei Bedarf einen neuen API-Schlüssel
+    **Solutions:**
+    - Verify the API key was copied correctly
+    - Ensure there are no leading/trailing spaces
+    - Check if the key is still valid (not expired)
+    - Generate a new API key if needed
   </Accordion>
 
-  <Accordion title="403 Forbidden - Fehlende Berechtigung">
+  <Accordion title="403 Forbidden - Insufficient Permissions">
     ```json
     {
       "error": "Insufficient permissions",
@@ -184,10 +183,10 @@ docker run -e FAMULOR_API_KEY=your_actual_api_key_here your-app
     }
     ```
     
-    **Lösungen:**
-    - Überprüfen Sie die Berechtigungen Ihres API-Schlüssels
-    - Kontaktieren Sie den Support, falls erweiterte Berechtigungen benötigt werden
-    - Stellen Sie sicher, dass Sie auf die richtige Ressource zugreifen
+    **Solutions:**
+    - Check the permissions of your API key
+    - Contact support if you need elevated permissions
+    - Ensure you are accessing the correct resource
   </Accordion>
 
   <Accordion title="Missing Authorization Header">
@@ -198,16 +197,16 @@ docker run -e FAMULOR_API_KEY=your_actual_api_key_here your-app
     }
     ```
     
-    **Lösungen:**
-    - Stellen Sie sicher, dass der `Authorization` Header gesetzt ist
-    - Prüfen Sie die Schreibweise: `Authorization: Bearer YOUR_API_KEY`
-    - Überprüfen Sie, ob der Header in Ihrem HTTP-Client korrekt konfiguriert ist
+    **Solutions:**
+    - Make sure the `Authorization` header is set
+    - Check the spelling: `Authorization: Bearer YOUR_API_KEY`
+    - Verify your HTTP client is configured to include it
   </Accordion>
 </AccordionGroup>
 
-## Authentifizierung testen
+## Testing Authentication
 
-### Einfacher Test-Aufruf
+### Simple Test Call
 
 ```bash
 curl -X GET "https://app.famulor.de/api/user/assistants" \
@@ -215,44 +214,44 @@ curl -X GET "https://app.famulor.de/api/user/assistants" \
      -H "Content-Type: application/json"
 ```
 
-### Erwartete Antwort
+### Expected Response
 
 ```json
 {
   "assistants": [
     {
       "id": 123,
-      "name": "Mein Assistent",
+      "name": "My Assistant",
       "created_at": "2024-01-15T10:30:00Z"
     }
   ]
 }
 ```
 
-## Best Practices für Sicherheit
+## Security Best Practices
 
-### ✅ Empfohlene Praktiken
+### ✅ Recommended Practices
 
-- **Umgebungsvariablen** für API-Schlüssel verwenden
-- **HTTPS** für alle API-Aufrufe nutzen  
-- **Schlüsselrotation** regelmäßig durchführen
-- **Minimale Berechtigungen** anwenden
-- **Logging** von API-Aufrufen ohne Schlüssel-Preisgabe
+- Use **environment variables** for API keys
+- Use **HTTPS** for all API calls  
+- Rotate **keys regularly**
+- Apply **least privilege** permissions
+- Log API calls without exposing keys
 
-### ❌ Vermeiden Sie
+### ❌ Avoid
 
-- API-Schlüssel im Code hart codieren
-- Schlüssel in Versionskontrollsysteme committen
-- Schlüssel über unsichere Kanäle übertragen
-- Schlüssel in Client-seitigem JavaScript verwenden
-- Schlüssel in URL-Parametern übertragen
+- Hardcoding API keys in code
+- Committing keys to version control
+- Transmitting keys over insecure channels
+- Using keys in client-side JavaScript
+- Passing keys via URL parameters
 
 ## Rate Limiting
 
-Die Famulor API implementiert Rate Limiting zum Schutz der Infrastruktur:
+The Famulor API implements rate limiting to protect the infrastructure:
 
-- **Standard-Limit**: 100 Anfragen pro Minute
-- **Burst-Limit**: 20 Anfragen pro 10 Sekunden
+- **Standard limit**: 100 requests per minute
+- **Burst limit**: 20 requests per 10 seconds
 
 ### Rate Limit Headers
 
@@ -262,7 +261,7 @@ X-RateLimit-Remaining: 95
 X-RateLimit-Reset: 1640995200
 ```
 
-### Rate Limit überschritten
+### Rate Limit Exceeded
 
 ```json
 {
@@ -272,23 +271,23 @@ X-RateLimit-Reset: 1640995200
 }
 ```
 
-## Nächste Schritte
+## Next Steps
 
 <CardGroup cols={2}>
-  <Card title="Ersten Anruf tätigen" icon="phone" href="/en/api-reference/calls/make">
-    Lernen Sie, wie Sie API-Aufrufe für Voice Agents implementieren
+  <Card title="Make Your First Call" icon="phone" href="/api-reference/calls/make">
+    Learn how to implement API calls for voice agents
   </Card>
-  <Card title="Webhook-Integration" icon="link" href="/en/api-reference/webhooks/post-call">
-    Post-Call-Datenverarbeitung einrichten
+  <Card title="Webhook Integration" icon="link" href="/api-reference/webhooks/post-call">
+    Set up post-call data processing
   </Card>
-  <Card title="Automatisierungsplattform" icon="wand-magic-sparkles" href="/en/automation-platform/introduction">
-    No-Code-Alternative zur direkten API-Nutzung
+  <Card title="Automation Platform" icon="wand-magic-sparkles" href="/automation-platform/introduction">
+    No-code alternative to direct API use
   </Card>
-  <Card title="API Referenz" icon="book" href="/en/api-reference/introduction">
-    Vollständige API-Dokumentation
+  <Card title="API Reference" icon="book" href="/api-reference/introduction">
+    Complete API documentation
   </Card>
 </CardGroup>
 
 <Tip>
-Beginnen Sie mit einem einfachen Test-Aufruf, um sicherzustellen, dass Ihre Authentifizierung korrekt funktioniert, bevor Sie komplexere Integrationen implementieren.
+Start with a simple test call to ensure your authentication works correctly before implementing more complex integrations.
 </Tip>

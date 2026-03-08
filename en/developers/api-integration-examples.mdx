@@ -1,19 +1,19 @@
 ---
-title: "API-Integration Beispiele"
+title: "API Integration Examples"
 icon: "code-branch"
-description: "Praktische Beispiele für die Integration der Famulor API in verschiedene Anwendungen"
+description: "Practical examples for integrating the Famulor API into various applications"
 ---
 
 
-# API-Integration Beispiele
+# API Integration Examples
 
-Dieses Handbuch zeigt Ihnen praktische Implementierungsbeispiele für häufige Anwendungsfälle der Famulor API.
+This guide shows you practical implementation examples for common use cases of the Famulor API.
 
-## Grundlegende Integration
+## Basic Integration
 
-### Assistenten auflisten
+### Listing Assistants
 
-Bevor Sie Anrufe tätigen, listen Sie verfügbare Assistenten auf:
+Before making calls, list available assistants:
 
 <CodeGroup>
 
@@ -34,10 +34,10 @@ async function getAssistants() {
   return assistants;
 }
 
-// Verwendung
+// Usage
 getAssistants()
-  .then(assistants => console.log('Verfügbare Assistenten:', assistants))
-  .catch(error => console.error('Fehler:', error));
+  .then(assistants => console.log('Available assistants:', assistants))
+  .catch(error => console.error('Error:', error));
 ```
 
 ```python Python
@@ -46,7 +46,7 @@ import os
 from typing import Dict, List
 
 def get_assistants() -> List[Dict]:
-    """Hole alle verfügbaren Assistenten"""
+    """Fetch all available assistants"""
     api_key = os.getenv('FAMULOR_API_KEY')
     
     response = requests.get(
@@ -57,24 +57,24 @@ def get_assistants() -> List[Dict]:
         }
     )
     
-    response.raise_for_status()  # Wirft Exception bei HTTP-Fehler
+    response.raise_for_status()  # Raises exception on HTTP error
     return response.json()
 
-# Verwendung
+# Usage
 try:
     assistants = get_assistants()
-    print(f"Gefunden: {len(assistants)} Assistenten")
+    print(f"Found: {len(assistants)} assistants")
     for assistant in assistants:
         print(f"- {assistant['name']} (ID: {assistant['id']})")
 except requests.exceptions.RequestException as e:
-    print(f"API-Fehler: {e}")
+    print(f"API error: {e}")
 ```
 
 </CodeGroup>
 
-## Anruf-Integration
+## Call Integration
 
-### Einfacher Anruf
+### Simple Call
 
 <CodeGroup>
 
@@ -102,17 +102,17 @@ async function makeCall(phoneNumber, assistantId, variables = {}) {
   return result;
 }
 
-// Beispiel-Verwendung
+// Example usage
 makeCall('+4915123456789', 123, {
   customer_name: 'Max Mustermann',
   email: 'max@example.com',
   appointment_time: '2024-03-15 14:00'
 })
 .then(result => {
-  console.log('Anruf erfolgreich gestartet:', result.call_id);
+  console.log('Call started successfully:', result.call_id);
   console.log('Status:', result.status);
 })
-.catch(error => console.error('Fehler:', error.message));
+.catch(error => console.error('Error:', error.message));
 ```
 
 ```python Python
@@ -121,7 +121,7 @@ import json
 from typing import Dict, Optional
 
 def make_call(phone_number: str, assistant_id: int, variables: Optional[Dict] = None) -> Dict:
-    """Tätige einen Anruf mit dem Famulor API"""
+    """Make a call using the Famulor API"""
     api_key = os.getenv('FAMULOR_API_KEY')
     
     payload = {
@@ -145,7 +145,7 @@ def make_call(phone_number: str, assistant_id: int, variables: Optional[Dict] = 
     
     return response.json()
 
-# Beispiel-Verwendung
+# Example usage
 try:
     result = make_call(
         phone_number='+4915123456789',
@@ -155,19 +155,19 @@ try:
             'email': 'max@example.com'
         }
     )
-    print(f"Anruf gestartet - Call ID: {result['call_id']}")
+    print(f"Call started - Call ID: {result['call_id']}")
 except Exception as e:
-    print(f"Fehler beim Anruf: {e}")
+    print(f"Error making call: {e}")
 ```
 
 </CodeGroup>
 
-## CRM-Integration Beispiele
+## CRM Integration Examples
 
 ### HubSpot Integration
 
 ```javascript
-// HubSpot-Kontakt zu Famulor-Anruf
+// HubSpot contact to Famulor call
 class HubSpotFamulor {
   constructor(hubspotToken, famularToken) {
     this.hubspotToken = hubspotToken;
@@ -198,14 +198,14 @@ class HubSpotFamulor {
 
   async callHubSpotContact(email, assistantId) {
     try {
-      // 1. HubSpot Kontakt abrufen
+      // 1. Retrieve HubSpot contact
       const contact = await this.getHubSpotContact(email);
       
       if (!contact) {
-        throw new Error('Kontakt nicht in HubSpot gefunden');
+        throw new Error('Contact not found in HubSpot');
       }
 
-      // 2. Famulor Anruf mit HubSpot-Daten
+      // 2. Famulor call with HubSpot data
       const callResult = await fetch('https://app.famulor.de/api/user/make_call', {
         method: 'POST',
         headers: {
@@ -225,17 +225,17 @@ class HubSpotFamulor {
       });
 
       const result = await callResult.json();
-      console.log('Anruf gestartet für HubSpot-Kontakt:', result.call_id);
+      console.log('Call started for HubSpot contact:', result.call_id);
       
       return result;
     } catch (error) {
-      console.error('CRM-Integration Fehler:', error);
+      console.error('CRM integration error:', error);
       throw error;
     }
   }
 }
 
-// Verwendung
+// Usage
 const integration = new HubSpotFamulor(
   process.env.HUBSPOT_TOKEN,
   process.env.FAMULOR_API_KEY
@@ -260,17 +260,17 @@ class SalesforceFamulor:
         self.famulor_key = famulor_key
     
     def call_salesforce_lead(self, lead_id: str, assistant_id: int):
-        """Rufe Salesforce Lead mit Famulor an"""
+        """Call Salesforce lead with Famulor"""
         try:
-            # 1. Lead-Daten aus Salesforce abrufen
+            # 1. Fetch lead data from Salesforce
             lead = self.sf.Lead.get(lead_id)
             
-            # 2. Telefonnummer validieren
+            # 2. Validate phone number
             phone = lead['Phone']
             if not phone:
-                raise ValueError("Lead hat keine Telefonnummer")
+                raise ValueError("Lead has no phone number")
             
-            # 3. Famulor-Anruf tätigen
+            # 3. Make Famulor call
             payload = {
                 'phone_number': phone,
                 'assistant_id': assistant_id,
@@ -294,18 +294,18 @@ class SalesforceFamulor:
             
             result = response.json()
             
-            # 4. Salesforce mit Anruf-ID aktualisieren
+            # 4. Update Salesforce with call ID
             self.sf.Lead.update(lead_id, {
-                'Description': f"Famulor Anruf gestartet - Call ID: {result['call_id']}"
+                'Description': f"Famulor call started - Call ID: {result['call_id']}"
             })
             
             return result
             
         except Exception as e:
-            print(f"Salesforce Integration Fehler: {e}")
+            print(f"Salesforce integration error: {e}")
             raise
 
-# Verwendung
+# Usage
 integration = SalesforceFamulor(
     sf_username='user@company.com',
     sf_password='password',
@@ -316,7 +316,7 @@ integration = SalesforceFamulor(
 integration.call_salesforce_lead('00Q1234567890ABC', 123)
 ```
 
-## Web-Anwendung Integration
+## Web Application Integration
 
 ### React Component
 
@@ -331,21 +331,21 @@ const FamuloreCallComponent = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [callResult, setCallResult] = useState(null);
 
-  // Assistenten laden beim Komponenten-Mount
+  // Load assistants on component mount
   useEffect(() => {
     fetchAssistants();
   }, []);
 
   const fetchAssistants = async () => {
     try {
-      const response = await fetch('/api/famulor/assistants'); // Backend-Proxy
+      const response = await fetch('/api/famulor/assistants'); // Backend proxy
       const data = await response.json();
       setAssistants(data);
       if (data.length > 0) {
         setSelectedAssistant(data[0].id);
       }
     } catch (error) {
-      console.error('Fehler beim Laden der Assistenten:', error);
+      console.error('Error loading assistants:', error);
     }
   };
 
@@ -374,22 +374,22 @@ const FamuloreCallComponent = () => {
       if (response.ok) {
         setCallResult({
           success: true,
-          message: `Anruf erfolgreich gestartet! Call ID: ${result.call_id}`,
+          message: `Call started successfully! Call ID: ${result.call_id}`,
           callId: result.call_id
         });
-        // Formular zurücksetzen
+        // Reset form
         setPhoneNumber('');
         setCustomerName('');
       } else {
         setCallResult({
           success: false,
-          message: result.message || 'Fehler beim Anruf'
+          message: result.message || 'Error making call'
         });
       }
     } catch (error) {
       setCallResult({
         success: false,
-        message: 'Netzwerkfehler: ' + error.message
+        message: 'Network error: ' + error.message
       });
     } finally {
       setIsLoading(false);
@@ -398,18 +398,18 @@ const FamuloreCallComponent = () => {
 
   return (
     <div className="famulor-call-component">
-      <h2>Voice Agent Anruf starten</h2>
+      <h2>Start Voice Agent Call</h2>
       
       <form onSubmit={handleCall}>
         <div className="form-group">
-          <label htmlFor="assistant">KI-Assistent:</label>
+          <label htmlFor="assistant">AI Assistant:</label>
           <select
             id="assistant"
             value={selectedAssistant}
             onChange={(e) => setSelectedAssistant(e.target.value)}
             required
           >
-            <option value="">Assistent auswählen...</option>
+            <option value="">Select an assistant...</option>
             {assistants.map(assistant => (
               <option key={assistant.id} value={assistant.id}>
                 {assistant.name}
@@ -419,7 +419,7 @@ const FamuloreCallComponent = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="phone">Telefonnummer:</label>
+          <label htmlFor="phone">Phone Number:</label>
           <input
             type="tel"
             id="phone"
@@ -431,7 +431,7 @@ const FamuloreCallComponent = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="name">Kundenname:</label>
+          <label htmlFor="name">Customer Name:</label>
           <input
             type="text"
             id="name"
@@ -446,7 +446,7 @@ const FamuloreCallComponent = () => {
           disabled={isLoading || !selectedAssistant}
           className="call-button"
         >
-          {isLoading ? 'Anruf wird gestartet...' : 'Anruf starten'}
+          {isLoading ? 'Calling...' : 'Start Call'}
         </button>
       </form>
 
@@ -455,7 +455,7 @@ const FamuloreCallComponent = () => {
           <p>{callResult.message}</p>
           {callResult.success && (
             <p>
-              <small>Call-ID: {callResult.callId}</small>
+              <small>Call ID: {callResult.callId}</small>
             </p>
           )}
         </div>
@@ -467,14 +467,14 @@ const FamuloreCallComponent = () => {
 export default FamuloreCallComponent;
 ```
 
-### Backend API-Proxy (Express.js)
+### Backend API Proxy (Express.js)
 
 ```javascript
-// Backend-Proxy für sichere API-Aufrufe
+// Backend proxy for secure API calls
 const express = require('express');
 const router = express.Router();
 
-// Assistenten abrufen
+// Fetch assistants
 router.get('/assistants', async (req, res) => {
   try {
     const response = await fetch('https://app.famulor.de/api/user/assistants', {
@@ -495,15 +495,15 @@ router.get('/assistants', async (req, res) => {
   }
 });
 
-// Anruf tätigen
+// Make a call
 router.post('/make-call', async (req, res) => {
   try {
     const { phone_number, assistant_id, variables } = req.body;
 
-    // Input-Validierung
+    // Input validation
     if (!phone_number || !assistant_id) {
       return res.status(400).json({
-        error: 'phone_number und assistant_id sind erforderlich'
+        error: 'phone_number and assistant_id are required'
       });
     }
 
@@ -535,7 +535,7 @@ router.post('/make-call', async (req, res) => {
 module.exports = router;
 ```
 
-## Fehlerbehandlung und Retry-Logik
+## Error Handling and Retry Logic
 
 ```javascript
 class FamuloreApiClient {
@@ -543,7 +543,7 @@ class FamuloreApiClient {
     this.apiKey = apiKey;
     this.baseUrl = 'https://app.famulor.de/api';
     this.maxRetries = 3;
-    this.retryDelay = 1000; // 1 Sekunde
+    this.retryDelay = 1000; // 1 second
   }
 
   async makeRequest(endpoint, options = {}) {
@@ -563,10 +563,10 @@ class FamuloreApiClient {
       try {
         const response = await fetch(url, requestOptions);
         
-        // Rate Limiting behandeln
+        // Handle rate limiting
         if (response.status === 429) {
           const retryAfter = response.headers.get('Retry-After') || this.retryDelay / 1000;
-          console.log(`Rate limit erreicht, warte ${retryAfter} Sekunden...`);
+          console.log(`Rate limit reached, waiting ${retryAfter} seconds...`);
           await this.sleep(retryAfter * 1000);
           continue;
         }
@@ -579,7 +579,7 @@ class FamuloreApiClient {
 
         return data;
       } catch (error) {
-        console.log(`Versuch ${attempt}/${this.maxRetries} fehlgeschlagen:`, error.message);
+        console.log(`Attempt ${attempt}/${this.maxRetries} failed:`, error.message);
         
         if (attempt === this.maxRetries) {
           throw error;
@@ -596,7 +596,7 @@ class FamuloreApiClient {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-  // API-Methoden
+  // API methods
   async getAssistants() {
     return this.makeRequest('/user/assistants');
   }
@@ -617,7 +617,7 @@ class FamuloreApiClient {
   }
 }
 
-// Verwendung mit Fehlerbehandlung
+// Usage with error handling
 const client = new FamuloreApiClient(process.env.FAMULOR_API_KEY);
 
 async function robustCall() {
@@ -625,15 +625,15 @@ async function robustCall() {
     const result = await client.makeCall('+4915123456789', 123, {
       customer_name: 'Test Kunde'
     });
-    console.log('Anruf erfolgreich:', result.call_id);
+    console.log('Call successful:', result.call_id);
   } catch (error) {
-    console.error('Finaler Fehler nach allen Versuchen:', error.message);
-    // Hier könnte eine Notification, Logging, etc. stattfinden
+    console.error('Final error after all attempts:', error.message);
+    // Notification, logging, etc. could happen here
   }
 }
 ```
 
-## Batch-Verarbeitung
+## Batch Processing
 
 ```python
 import asyncio
@@ -659,8 +659,8 @@ class BatchCallProcessor:
 
     async def make_single_call(self, phone_number: str, assistant_id: int, 
                               variables: Dict = None, semaphore=None):
-        """Einzelnen Anruf asynchron tätigen"""
-        async with semaphore:  # Rate Limiting
+        """Make a single call asynchronously"""
+        async with semaphore:  # Rate limiting
             try:
                 payload = {
                     'phone_number': phone_number,
@@ -697,7 +697,7 @@ class BatchCallProcessor:
 
     async def process_batch_calls(self, call_list: List[Dict], 
                                  concurrent_limit: int = 5):
-        """Batch von Anrufen verarbeiten"""
+        """Process a batch of calls"""
         semaphore = asyncio.Semaphore(concurrent_limit)
         
         tasks = []
@@ -715,7 +715,7 @@ class BatchCallProcessor:
 
     @classmethod
     def from_csv(cls, csv_file: str, assistant_id: int, api_key: str):
-        """CSV-Datei in Anruf-Liste konvertieren"""
+        """Convert CSV file into call list"""
         call_list = []
         
         with open(csv_file, 'r', encoding='utf-8') as file:
@@ -734,48 +734,48 @@ class BatchCallProcessor:
         
         return call_list
 
-# Verwendungsbeispiel
+# Example usage
 async def main():
     api_key = os.getenv('FAMULOR_API_KEY')
     
-    # CSV-Daten laden
+    # Load CSV data
     call_list = BatchCallProcessor.from_csv('leads.csv', assistant_id=123, api_key=api_key)
     
-    # Batch-Verarbeitung
+    # Batch processing
     async with BatchCallProcessor(api_key) as processor:
         results = await processor.process_batch_calls(call_list, concurrent_limit=3)
         
-        # Ergebnisse auswerten
+        # Evaluate results
         success_count = sum(1 for r in results if r['status'] == 'success')
         error_count = len(results) - success_count
         
-        print(f"Verarbeitung abgeschlossen:")
-        print(f"✅ Erfolgreich: {success_count}")
-        print(f"❌ Fehler: {error_count}")
+        print(f"Processing complete:")
+        print(f"✅ Successful: {success_count}")
+        print(f"❌ Errors: {error_count}")
         
-        # Fehler-Details
+        # Error details
         for result in results:
             if result['status'] == 'error':
-                print(f"Fehler für {result['phone_number']}: {result['error']}")
+                print(f"Error for {result['phone_number']}: {result['error']}")
 
-# Ausführung
+# Run
 if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-## Nächste Schritte
+## Next Steps
 
 <CardGroup cols={2}>
-  <Card title="Webhook-Integration" icon="link" href="/en/api-reference/webhooks/post-call">
-    Post-Call-Datenverarbeitung automatisieren
+  <Card title="Webhook Integration" icon="link" href="/api-reference/webhooks/post-call">
+    Automate post-call data processing
   </Card>
-  <Card title="Automatisierungsplattform" icon="wand-magic-sparkles" href="/en/automation-platform/introduction">
-    No-Code-Alternative für komplexe Workflows
+  <Card title="Automation Platform" icon="wand-magic-sparkles" href="/automation-platform/introduction">
+    No-code alternative for complex workflows
   </Card>
-  <Card title="API Referenz" icon="book" href="/en/api-reference/introduction">
-    Vollständige API-Dokumentation
+  <Card title="API Reference" icon="book" href="/api-reference/introduction">
+    Complete API documentation
   </Card>
-  <Card title="Best Practices" icon="lightbulb" href="/en/developers/authentication-guide">
-    Sicherheit und Optimierung
+  <Card title="Best Practices" icon="lightbulb" href="/developers/authentication-guide">
+    Security and optimization
   </Card>
 </CardGroup>

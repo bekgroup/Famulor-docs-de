@@ -1,127 +1,127 @@
 ---
-title: "Was sind Mid-call Actions?"
-description: "Verstehen Sie, was Mid-call Actions sind und wie sie Ihre KI-Assistenten während aktiver Telefonate erweitern"
+title: "What Are Mid-call Actions?"
+description: "Understand what Mid-call Actions are and how they extend your AI assistants during active phone calls"
 icon: "wand-magic-sparkles"
 ---
 
 
-# Was sind Mid-call Actions?
+# What Are Mid-call Actions?
 
-Mid-call Actions sind spezialisierte Funktionen, die während aktiver Telefongespräche ausgeführt werden und Ihrem KI-Assistenten ermöglichen, in Echtzeit auf externe Systeme und Datenquellen zuzugreifen. Diese Tools transformieren statische Gesprächsführung in dynamische, datengesteuerte Interaktionen.
+Mid-call Actions are specialized functions executed during active phone calls that enable your AI assistant to access external systems and data sources in real time. These tools transform static conversation management into dynamic, data-driven interactions.
 
-## Definition und Kernfunktionen
+## Definition and Core Features
 
 <CardGroup cols={2}>
-  <Card title="Echtzeit-Datenintegration" icon="database">
-    Zugriff auf Kunden- und Unternehmensdaten während des laufenden Gesprächs
+  <Card title="Real-Time Data Integration" icon="database">
+    Access to customer and company data during the ongoing conversation
   </Card>
-  <Card title="API-basierte Konnektivität" icon="plug">
-    Nahtlose Integration mit CRM-Systemen, Datenbanken und externen Services
+  <Card title="API-Based Connectivity" icon="plug">
+    Seamless integration with CRM systems, databases, and external services
   </Card>
-  <Card title="Kontext-sensitive Verarbeitung" icon="brain">
-    Automatische Extraktion und Verarbeitung von Gesprächsparametern
+  <Card title="Context-Sensitive Processing" icon="brain">
+    Automatic extraction and processing of conversation parameters
   </Card>
-  <Card title="Dynamische Gesprächsanpassung" icon="comments">
-    Personalisierung der Antworten basierend auf abgerufenen Daten
+  <Card title="Dynamic Conversation Adjustment" icon="comments">
+    Personalization of responses based on retrieved data
   </Card>
 </CardGroup>
 
-## Funktionsweise im Detail
+## How It Works in Detail
 
 ```mermaid
 sequenceDiagram
-    participant K as Kunde
-    participant A as KI-Assistant
+    participant K as Customer
+    participant A as AI Assistant
     participant T as Mid-call Action
-    participant S as Externes System
+    participant S as External System
     
-    K->>A: "Meine E-Mail ist max@beispiel.de"
-    A->>T: Extrahiere E-Mail & rufe Kundendaten ab
-    T->>S: API-Request mit E-Mail-Parameter
-    S-->>T: Kundendaten (Name, Bestellhistorie, etc.)
-    T-->>A: Strukturierte Kundendaten
-    A->>K: "Hallo Max Mustermann, ich sehe Ihre letzte Bestellung vom 15.01..."
+    K->>A: "My email is max@example.com"
+    A->>T: Extract email & fetch customer data
+    T->>S: API request with email parameter
+    S-->>T: Customer data (name, order history, etc.)
+    T-->>A: Structured customer data
+    A->>K: "Hello Max Mustermann, I see your last order from 01/15..."
 ```
 
-## Vorteile und Mehrwert
+## Benefits and Added Value
 
-### Für das Kundenerlebnis
+### For the Customer Experience
 
 <AccordionGroup>
-  <Accordion title="Personalisierte Interaktionen">
-    - **Sofortige Kundenerkennung**: "Ich sehe, Sie sind Max Mustermann von der Beispiel GmbH..."
-    - **Kontextbezogene Antworten**: Berücksichtigung der Kundenhistorie und -präferenzen  
-    - **Proaktive Problemlösung**: Zugriff auf Support-Tickets und bekannte Probleme
+  <Accordion title="Personalized Interactions">
+    - **Instant Customer Recognition**: "I see you are Max Mustermann from Beispiel GmbH..."
+    - **Contextual Responses**: Considering customer history and preferences  
+    - **Proactive Problem Solving**: Access to support tickets and known issues
   </Accordion>
   
-  <Accordion title="Reduzierte Wartezeiten">
-    - **Eliminierung von Rückfragen**: Automatischer Zugriff auf relevante Informationen
-    - **Verkürzte Gesprächsdauer**: Effiziente Datenabfrage ohne manuelle Suche
-    - **First-Call-Resolution**: Lösung von Anfragen im ersten Gespräch
+  <Accordion title="Reduced Waiting Times">
+    - **Elimination of Follow-Up Questions**: Automatic access to relevant information
+    - **Shorter Call Duration**: Efficient data retrieval without manual searching
+    - **First-Call Resolution**: Resolving inquiries in the first call
   </Accordion>
   
-  <Accordion title="Konsistente Service-Qualität">
-    - **Standardisierte Datenzugriffe**: Immer aktuelle und vollständige Informationen
-    - **24/7-Verfügbarkeit**: Rund-um-die-Uhr-Zugriff auf alle Kundendaten
-    - **Fehlerreduktion**: Minimierung manueller Eingabefehler
+  <Accordion title="Consistent Service Quality">
+    - **Standardized Data Access**: Always up-to-date and complete information
+    - **24/7 Availability**: Round-the-clock access to all customer data
+    - **Error Reduction**: Minimization of manual input errors
   </Accordion>
 </AccordionGroup>
 
-### Für Ihr Unternehmen
+### For Your Company
 
 <CardGroup cols={3}>
-  <Card title="Effizienzsteigerung" icon="rocket">
-    Automatisierung wiederkehrender Datenabfragen und -verarbeitungen
+  <Card title="Increased Efficiency" icon="rocket">
+    Automation of recurring data queries and processing
   </Card>
-  <Card title="Kostenreduktion" icon="coins">
-    Weniger Personalaufwand durch automatisierte Informationsbeschaffung
+  <Card title="Cost Reduction" icon="coins">
+    Reduced personnel effort through automated information retrieval
   </Card>
-  <Card title="Datenqualität" icon="shield-halved">
-    Immer aktuelle Daten direkt aus den Quellsystemen
+  <Card title="Data Quality" icon="shield-halved">
+    Always current data directly from source systems
   </Card>
 </CardGroup>
 
-## Typische Anwendungsszenarien
+## Typical Use Cases
 
-### Kundenservice & Support
+### Customer Service & Support
 
-| Szenario | Mid-call Action Aktion | Kundenvorteil |
-|----------|---------------------|---------------|
-| **Kontoabfrage** | Abruf der Kontodaten über Kunden-ID | Sofortige Bereitstellung des Kontostands |
-| **Bestellstatus** | Prüfung der Bestellhistorie und Lieferstatus | Echzeit-Updates ohne Wartezeit |
-| **Ticket-Verfolgung** | Zugriff auf Support-Ticket-System | Aktueller Status und nächste Schritte |
-| **Produktverfügbarkeit** | Lagerbestandsabfrage | Sofortige Auskunft über Verfügbarkeit |
+| Scenario           | Mid-call Action              | Customer Benefit                        |
+|--------------------|-----------------------------|---------------------------------------|
+| **Account Inquiry** | Retrieve account data via customer ID | Immediate availability of account balance |
+| **Order Status**    | Check order history and delivery status | Real-time updates without wait time    |
+| **Ticket Tracking** | Access support ticket system | Current status and next steps          |
+| **Product Availability** | Query inventory stock     | Instant information about availability |
 
-### Vertrieb & Leadqualifizierung
+### Sales & Lead Qualification
 
 <Tabs>
-  <Tab title="Leadbewertung">
+  <Tab title="Lead Scoring">
     ```yaml
-    Prozess:
-      1. Automatische Firmendatenabfrage bei Nennung des Unternehmens
-      2. Bewertung basierend auf Größe, Branche, Budget
-      3. Dynamische Gesprächsführung je nach Lead-Score
-      4. Automatische CRM-Aktualisierung mit Gesprächsnotizen
+    Process:
+      1. Automatic company data lookup upon company mention
+      2. Scoring based on size, industry, budget
+      3. Dynamic conversation flow depending on lead score
+      4. Automatic CRM update with call notes
     ```
   </Tab>
   
-  <Tab title="Terminbuchung">
+  <Tab title="Appointment Scheduling">
     ```yaml
     Workflow:
-      1. Verfügbarkeitscheck im Kalendersystem
-      2. Automatische Terminvorschläge basierend auf Präferenzen
-      3. Sofortige Buchungsbestätigung
-      4. E-Mail-Versand mit Termininformationen
+      1. Availability check in calendar system
+      2. Automatic appointment suggestions based on preferences
+      3. Immediate booking confirmation
+      4. Email dispatch with appointment details
     ```
   </Tab>
   
-  <Tab title="Preisabfrage">
+  <Tab title="Price Inquiry">
     ```yaml
-    Dynamik:
-      1. Produktkonfigurator-Integration
-      2. Kundensegment-spezifische Preisberechnung  
-      3. Rabatt- und Aktionsberücksichtigung
-      4. Sofortige Angebotserstellung
+    Dynamics:
+      1. Product configurator integration
+      2. Customer segment-specific pricing calculation  
+      3. Consideration of discounts and promotions
+      4. Instant offer creation
     ```
   </Tab>
 </Tabs>
@@ -130,181 +130,181 @@ sequenceDiagram
 
 ```mermaid
 flowchart TD
-    A[Kunde äußert Terminwunsch] --> B{Kalender-Tool}
-    B --> C[Verfügbarkeitscheck]
-    C --> D[Freie Termine gefunden?]
-    D -->|Ja| E[Terminvorschläge]
-    D -->|Nein| F[Alternative Zeiträume]
-    E --> G[Kunde wählt Termin]
+    A[Customer expresses appointment request] --> B{Calendar Tool}
+    B --> C[Availability check]
+    C --> D[Available slots found?]
+    D -->|Yes| E[Appointment suggestions]
+    D -->|No| F[Alternative dates]
+    E --> G[Customer selects appointment]
     F --> G
-    G --> H[Automatische Buchung]
-    H --> I[E-Mail-Bestätigung]
-    H --> J[CRM-Aktualisierung]
+    G --> H[Automatic booking]
+    H --> I[Email confirmation]
+    H --> J[CRM update]
 ```
 
-## Technische Grundlagen
+## Technical Foundations
 
-### Integration-Architectures
+### Integration Architectures
 
-Mid-call Actions bieten zwei Haupt-Integrationsmöglichkeiten:
+Mid-call Actions offer two main integration approaches:
 
 <CardGroup cols={2}>
-  <Card title="Direkte API-Integration" icon="globe">
-    - Standard HTTP/REST-APIs für einfache Datenabfragen
-    - JSON-Datenformat für strukturierten Austausch
-    - Sichere Authentifizierung über API-Keys oder OAuth
-    - Ideal für 1:1-Operationen (Kontakt abrufen, Status prüfen)
+  <Card title="Direct API Integration" icon="globe">
+    - Standard HTTP/REST APIs for simple data queries
+    - JSON data format for structured exchange
+    - Secure authentication via API keys or OAuth
+    - Ideal for 1:1 operations (fetch contact, check status)
   </Card>
-  <Card title="Webhook-Integration mit Famulor Automation" icon="link">
-    - Komplexe Multi-System-Workflows möglich
-    - Bedingte Logik und Geschäftsregeln
-    - Zeitverzögerte Aktionen und Follow-ups
-    - Ideal für Prozess-Automatisierung und Datenorchestrierung
+  <Card title="Webhook Integration with Famulor Automation" icon="link">
+    - Complex multi-system workflows possible
+    - Conditional logic and business rules
+    - Time-delayed actions and follow-ups
+    - Ideal for process automation and data orchestration
   </Card>
 </CardGroup>
 
-### Echtzeit-Verarbeitung
+### Real-Time Processing
 
 <AccordionGroup>
-  <Accordion title="Performance-Features">
-    - Timeout-Management für schnelle Reaktionszeiten
-    - Asynchrone Datenverarbeitung 
-    - Fehlerbehandlung und Fallback-Mechanismen
-    - Caching für optimierte Performance
+  <Accordion title="Performance Features">
+    - Timeout management for quick response times
+    - Asynchronous data processing
+    - Error handling and fallback mechanisms
+    - Caching for optimized performance
   </Accordion>
   
-  <Accordion title="Webhook-Vorteile">
-    - **Multi-System-Integration**: Ein Workflow kann mehrere APIs und Services orchestrieren
-    - **Geschäftslogik**: Implementierung komplexer Entscheidungsbäume
-    - **Skalierbarkeit**: Automatische Lastverteilung und Retry-Mechanismen
-    - **No-Code-Konfiguration**: Workflows über visuelle Oberfläche erstellen
+  <Accordion title="Webhook Benefits">
+    - **Multi-System Integration**: One workflow can orchestrate multiple APIs and services
+    - **Business Logic**: Implementation of complex decision trees
+    - **Scalability**: Automatic load balancing and retry mechanisms
+    - **No-Code Configuration**: Create workflows via visual interface
   </Accordion>
 </AccordionGroup>
 
-### Unterstützte Integrationen
+### Supported Integrations
 
 <AccordionGroup>
-  <Accordion title="CRM-Systeme">
-    - **HubSpot**: Kontakte, Deals, Unternehmen, Tickets
-    - **Salesforce**: Leads, Opportunities, Accounts, Cases  
-    - **Pipedrive**: Personen, Organisationen, Deals, Aktivitäten
-    - **Customizable**: Jedes System mit REST-API
+  <Accordion title="CRM Systems">
+    - **HubSpot**: Contacts, deals, companies, tickets
+    - **Salesforce**: Leads, opportunities, accounts, cases  
+    - **Pipedrive**: People, organizations, deals, activities
+    - **Customizable**: Any system with REST API
   </Accordion>
   
   <Accordion title="Business Applications">
-    - **Google Sheets**: Datenabfrage und -aktualisierung
-    - **Microsoft Excel**: Online-Tabellen und -Berichte
-    - **Notion**: Datenbanken und Dokumentenmanagement
-    - **Airtable**: Strukturierte Datenbanken
+    - **Google Sheets**: Data retrieval and updates
+    - **Microsoft Excel**: Online spreadsheets and reports
+    - **Notion**: Databases and document management
+    - **Airtable**: Structured databases
   </Accordion>
   
-  <Accordion title="Kommunikations-Tools">
-    - **Slack**: Nachrichten und Benachrichtigungen
-    - **Microsoft Teams**: Chat und Dateiaustausch
-    - **WhatsApp Business**: Messaging-Integration
-    - **E-Mail-Services**: Automatisierter E-Mail-Versand
+  <Accordion title="Communication Tools">
+    - **Slack**: Messages and notifications
+    - **Microsoft Teams**: Chat and file exchange
+    - **WhatsApp Business**: Messaging integration
+    - **Email Services**: Automated email sending
   </Accordion>
   
   <Accordion title="Specialized Services">
-    - **Kalendersysteme**: Terminbuchung und -verwaltung
-    - **Zahlungssysteme**: Transaktionsstatus und -historie
-    - **Inventar-Management**: Lagerbestände und Verfügbarkeit
-    - **Custom APIs**: Maßgeschneiderte Geschäftslogik
+    - **Calendar Systems**: Appointment booking and management
+    - **Payment Systems**: Transaction status and history
+    - **Inventory Management**: Stock levels and availability
+    - **Custom APIs**: Tailored business logic
   </Accordion>
 </AccordionGroup>
 
-## Sicherheit und Datenschutz
+## Security and Data Protection
 
 <Warning>
-**Wichtiger Hinweis zur Datensicherheit**: Mid-call Actions verarbeiten sensible Kundendaten in Echtzeit. Stellen Sie sicher, dass alle integrierten Systeme den geltenden Datenschutzbestimmungen (DSGVO) entsprechen.
+**Important Note on Data Security**: Mid-call Actions process sensitive customer data in real time. Ensure that all integrated systems comply with applicable data protection regulations (GDPR).
 </Warning>
 
-### Best Practices für sichere Implementierung
+### Best Practices for Secure Implementation
 
 <Steps>
-  <Step title="API-Authentifizierung">
-    - Verwendung von sicheren API-Keys oder OAuth 2.0
-    - Regelmäßige Rotation von Zugangsdaten
-    - Minimale Berechtigungen (Principle of Least Privilege)
+  <Step title="API Authentication">
+    - Use secure API keys or OAuth 2.0
+    - Regular rotation of credentials
+    - Minimal permissions (Principle of Least Privilege)
   </Step>
   
-  <Step title="Datenminimierung">
-    - Abruf nur der tatsächlich benötigten Informationen
-    - Keine dauerhafte Speicherung sensibler Daten
-    - Automatische Datenbereinigung nach Gesprächsende
+  <Step title="Data Minimization">
+    - Retrieve only the information actually needed
+    - No permanent storage of sensitive data
+    - Automatic data cleanup after call ends
   </Step>
   
-  <Step title="Übertragungssicherheit">
-    - Ausschließlich verschlüsselte HTTPS-Verbindungen
-    - Validierung von SSL-Zertifikaten
-    - Schutz vor Man-in-the-Middle-Angriffen
+  <Step title="Transmission Security">
+    - Only encrypted HTTPS connections
+    - Validation of SSL certificates
+    - Protection against man-in-the-middle attacks
   </Step>
   
   <Step title="Error Handling">
-    - Graceful Degradation bei API-Ausfällen
-    - Keine Preisgabe sensibler Informationen in Fehlermeldungen
-    - Logging und Monitoring für Sicherheitsaudits
+    - Graceful degradation on API failures
+    - No exposure of sensitive info in error messages
+    - Logging and monitoring for security audits
   </Step>
 </Steps>
 
-## Performance und Optimierung
+## Performance and Optimization
 
-### Reaktionszeit-Optimierung
+### Response Time Optimization
 
-| Parameter | Empfohlener Wert | Kritischer Wert |
-|-----------|------------------|-----------------|
-| **API-Timeout** | 5 Sekunden | 10 Sekunden |
-| **Datenübertragung** | < 2 MB | < 5 MB |
-| **Verarbeitungszeit** | < 1 Sekunde | < 3 Sekunden |
-| **Fallback-Zeit** | < 500ms | < 1 Sekunde |
+| Parameter           | Recommended Value | Critical Value      |
+|---------------------|-------------------|--------------------|
+| **API Timeout**      | 5 seconds         | 10 seconds         |
+| **Data Transfer**    | < 2 MB            | < 5 MB             |
+| **Processing Time**  | < 1 second        | < 3 seconds        |
+| **Fallback Time**    | < 500 ms          | < 1 second         |
 
-### Caching-Strategien
+### Caching Strategies
 
 <Tabs>
-  <Tab title="Session-Cache">
+  <Tab title="Session Cache">
     ```yaml
-    Zweck: Wiederverwendung von Daten innerhalb eines Gesprächs
-    Dauer: Bis Gesprächsende
-    Anwendung: Kundendaten, Produktkataloge
-    Vorteil: Reduzierte API-Calls, bessere Performance
+    Purpose: Reuse of data within a conversation
+    Duration: Until call ends
+    Use Case: Customer data, product catalogs
+    Benefit: Reduced API calls, improved performance
     ```
   </Tab>
   
   <Tab title="Time-based Cache">  
     ```yaml
-    Zweck: Temporäre Speicherung häufig abgerufener Daten
-    Dauer: 5-15 Minuten
-    Anwendung: Lagerbestände, Preislisten
-    Vorteil: Aktualität bei geringerer Serverlast
+    Purpose: Temporary storage of frequently requested data
+    Duration: 5-15 minutes
+    Use Case: Inventory levels, price lists
+    Benefit: Freshness with reduced server load
     ```
   </Tab>
   
   <Tab title="Smart Invalidation">
     ```yaml
-    Zweck: Intelligent Caches basierend auf Datenänderungen
-    Trigger: Webhook-Benachrichtigungen
-    Anwendung: CRM-Updates, Bestellstatusänderungen  
-    Vorteil: Optimale Balance zwischen Performance und Aktualität
+    Purpose: Intelligent caching based on data changes
+    Trigger: Webhook notifications
+    Use Case: CRM updates, order status changes  
+    Benefit: Optimal balance between performance and freshness
     ```
   </Tab>
 </Tabs>
 
-## Nächste Schritte
+## Next Steps
 
 <CardGroup cols={3}>
-  <Card title="Integration Templates ansehen" icon="clone" href="/automation-platform/mid-call-actions/integration-templates/hubspot-kontakt-abruf">
-    Erkunden Sie vorgefertigte Templates für beliebte CRM-Systeme und Services
+  <Card title="View Integration Templates" icon="clone" href="/automation-platform/mid-call-actions/integration-templates/hubspot-kontakt-abruf">
+    Explore pre-built templates for popular CRM systems and services
   </Card>
-  <Card title="Webhook-Automation" icon="link" href="/automation-platform/mid-call-actions/integration-templates/webhook-automation">
-    Entdecken Sie komplexe Multi-System-Workflows über die Famulor Automation Platform
+  <Card title="Webhook Automation" icon="link" href="/automation-platform/mid-call-actions/integration-templates/webhook-automation">
+    Discover complex multi-system workflows through the Famulor Automation Platform
   </Card>
-  <Card title="Eigene Tools erstellen" icon="code" href="/automation-platform/mid-call-actions/custom-api-integration">
-    Lernen Sie, wie Sie maßgeschneiderte Mid-call Actions für Ihre spezifischen Anforderungen entwickeln
+  <Card title="Build Your Own Tools" icon="code" href="/automation-platform/mid-call-actions/custom-api-integration">
+    Learn how to develop custom Mid-call Actions for your specific needs
   </Card>
 </CardGroup>
 
 ---
 
 <Info>
-**Tipp**: Beginnen Sie mit einfachen Read-Only-Integrationen (z.B. Kontaktdatenabfrage) bevor Sie komplexere Write-Operationen (z.B. Lead-Erstellung) implementieren.
+**Tip**: Start with simple read-only integrations (e.g., contact data retrieval) before implementing more complex write operations (e.g., lead creation).
 </Info>
