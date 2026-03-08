@@ -279,10 +279,21 @@
                 "group": "Legal Information",
                 "icon": "scale-balanced",
                 "pages": [
+                  "en/legal/data-retention",
                   "en/legal/automatisches-loeschen-anrufdaten",
                   "en/legal/voice-cloning-legal-information",
                   "en/legal/voice-cloning-compliance",
                   "en/legal/voice-cloning-contracts"
+                ]
+              },
+              {
+                "group": "Support",
+                "icon": "users",
+                "pages": [
+                  "en/support",
+                  "en/enterprise",
+                  "en/glossary",
+                  "en/faq"
                 ]
               }
             ]
@@ -954,10 +965,21 @@
                 "group": "Rechtliche Informationen",
                 "icon": "scale-balanced",
                 "pages": [
+                  "de/legal/data-retention",
                   "de/legal/automatisches-loeschen-anrufdaten",
                   "de/legal/voice-cloning-legal-information",
                   "de/legal/voice-cloning-compliance",
                   "de/legal/voice-cloning-contracts"
+                ]
+              },
+              {
+                "group": "Support",
+                "icon": "users",
+                "pages": [
+                  "de/support",
+                  "de/enterprise",
+                  "de/glossary",
+                  "de/faq"
                 ]
               }
             ]
@@ -1397,6 +1419,10 @@
       {
         "label": "Updates",
         "href": "/en/updates/changelog"
+      },
+      {
+        "label": "Support",
+        "href": "/en/support"
       }
     ],
     "primary": {

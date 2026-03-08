@@ -1,0 +1,97 @@
+---
+title: "Calendly Issues"
+icon: "calendar-days"
+description: "Troubleshoot common Calendly integration issues"
+---
+
+> Troubleshoot common Calendly integration issues
+
+Solutions for common Calendly integration problems.
+
+## Connection Issues
+
+### OAuth Authorization Fails
+
+**Problem:** Unable to connect Calendly account
+
+**Solution:**
+
+- Try connecting in an incognito/private browser window
+- Verify you have admin access to your Calendly account
+- Check that third-party app permissions are enabled in Calendly
+
+### Events Not Loading
+
+**Problem:** Event dropdown is empty after connecting
+
+**Solution:**
+
+- Click **"Load Events"** button to fetch event types
+- Wait for the sync to complete (may take a few seconds)
+- Refresh the page if events still don't appear
+- Verify you have active event types in your Calendly account
+
+## Booking Failures
+
+### Location Kind Error
+
+**Problem:** "Failed to book appointment: Specified location kind is not configured for this event type"
+
+**Cause:** Your Calendly event type location doesn't match what the voice assistant uses when booking.
+
+**Solution:**
+
+1. Log in to [Calendly](https://calendly.com)
+2. Go to **Event Types** and open the event type linked to your assistant
+3. Click **Edit**
+4. Scroll to **Location**
+5. Set location to one of these options:
+- **Custom** (safest option)
+- **Phone Call -> Inbound call**
+- If multiple locations are enabled, ensure **Custom** is included
+6. Save the event type
+7. Try booking again through the assistant
+
+<Warning>
+If your event type is set to video-only locations (Google Meet, Zoom, Microsoft Teams), bookings can fail because the voice assistant does not generate meeting links. Use "Custom" or add it as an option.
+</Warning>
+
+### Booking Time Zone Issues
+
+**Problem:** Appointments scheduled at wrong time
+
+**Solution:**
+
+- Check the time zone in your Calendly event settings
+- Verify the assistant time zone is configured correctly
+- Test with specific time mentions during a call
+
+## Testing Issues
+
+### Web Call Bookings Fail
+
+**Problem:** Bookings work inconsistently with web calls
+
+**Solution:**
+
+- Use real phone calls for testing (not web calls)
+- Web calls may not pass the phone variable correctly
+- When using web calls, provide phone in international format with `+` prefix (for example, `+1 555-123-4567`)
+
+## Getting Help
+
+If issues persist:
+
+1. Check call transcripts for booking attempts
+2. Verify the event type appears correctly in your Calendly dashboard
+3. Test with a simple phone call booking
+4. Contact support with:
+- Error message screenshot
+- Calendly event type settings screenshot (especially Location)
+- Call transcript showing the booking attempt
+
+## Related Docs
+
+- [Assistant Prompt & Tools](/en/ai-assistants/prompt-and-tools)
+- [Assistant Testing](/en/ai-assistants/testing)
+- [Support](/en/support)
