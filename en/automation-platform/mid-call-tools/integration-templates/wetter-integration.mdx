@@ -1,35 +1,34 @@
 ---
-title: "Wetter-Service Integration"
-description: "Kostenlose Wetter-Abfrage über wttr.in Service für Small-Talk und lokale Information während Kundengesprächem"
+title: "Weather Service Integration"
+description: "Free weather query using the wttr.in service for small talk and local information during customer conversations"
 icon: "cloud-sun"
 ---
 
+# Weather Service Integration Template
 
-# Wetter-Service Integration Template
+Integrate free weather service into your mid-call actions for natural conversation flow, local contextualization, and professional customer experience.
 
-Integrieren Sie kostenlosen Wetter-Service in Ihre Mid-call Actions für natürliche Gesprächsführung, lokale Kontextualisierung und professionelle Customer-Experience.
-
-## Konfiguration im Famulor Interface
+## Configuration in the Famulor Interface
 
 <Tabs>
-  <Tab title="Werkzeugdetails">
-    | **Name*** | `Wetter abrufen (wttr.in)` |
-    | **Funktionsname*** | `get_current_weather` |
-    | **HTTP-Methode** | `GET` |
+  <Tab title="Tool Details">
+    | **Name*** | `Get Weather (wttr.in)` |
+    | **Function Name*** | `get_current_weather` |
+    | **HTTP Method** | `GET` |
     | **Endpoint*** | `https://wttr.in/{city}` |
     | **Timeout (ms)** | `5000` |
   </Tab>
   
-  <Tab title="Query-Parameter">
+  <Tab title="Query Parameters">
     ```json
     {
-      "format": "%l: %c %t, gefühlt %f. Wind: %w."
+      "format": "%l: %c %t, feels like %f. Wind: %w."
     }
     ```
   </Tab>
 </Tabs>
 
-### Parameter-Schema
+### Parameter Schema
 
 ```json
 {
@@ -37,15 +36,15 @@ Integrieren Sie kostenlosen Wetter-Service in Ihre Mid-call Actions für natürl
   "properties": {
     "city": {
       "type": "string",
-      "description": "Der Name der Stadt, z.B. 'Düsseldorf', 'München' oder 'New York'"
+      "description": "The name of the city, e.g., 'Düsseldorf', 'Munich', or 'New York'"
     }
   },
   "required": ["city"]
 }
 ```
 
-**Agent-Message**: `"Ich schaue jetzt das Wetter für Sie nach."`
+**Agent Message**: `"I am now checking the weather for you."`
 
-**Success-Template**: `"Lies die Ergebnisse ausgeschrieben vor, also nicht 'km/h' sondern 'Kilometer pro Stunde' und auch nicht Celsius als Zeichen, sondern ausgeschrieben: z.B. 'fünfzehn grad Celsius'."`
+**Success Template**: `"Read the results aloud in full words, e.g. say 'kilometers per hour' instead of 'km/h' and spell out Celsius as a word, for example 'fifteen degrees Celsius'."`
 
 ---

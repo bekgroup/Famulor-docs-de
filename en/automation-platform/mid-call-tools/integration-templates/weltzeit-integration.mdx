@@ -1,25 +1,25 @@
 ---
-title: "Weltzeit-Service Integration"
-description: "Kostenlose Zeitzone-Abfrage für internationale Kommunikation und Meeting-Planung"
+title: "World Time Service Integration"
+description: "Free timezone lookup for international communication and meeting scheduling"
 icon: "clock"
 ---
 
 
-# Weltzeit-Service Integration Template
+# World Time Service Integration Template
 
-## Konfiguration im Famulor Interface
+## Configuration in the Famulor Interface
 
 <Tabs>
-  <Tab title="Werkzeugdetails">
+  <Tab title="Tool Details">
     | **Name*** | `Weltzeit abfragen` |
-    | **Funktionsname*** | `get_world_time` |
-    | **HTTP-Methode** | `GET` |
+    | **Function Name*** | `get_world_time` |
+    | **HTTP Method** | `GET` |
     | **Endpoint*** | `http://worldtimeapi.org/api/timezone/{timezone}` |
     | **Timeout (ms)** | `5000` |
   </Tab>
 </Tabs>
 
-### Parameter-Schema
+### Parameter Schema
 
 ```json
 {
@@ -27,15 +27,15 @@ icon: "clock"
   "properties": {
     "timezone": {
       "type": "string",
-      "description": "Zeitzone (z.B. 'Europe/Berlin', 'America/New_York')"
+      "description": "Timezone (e.g. 'Europe/Berlin', 'America/New_York')"
     }
   },
   "required": ["timezone"]
 }
 ```
 
-**Agent-Message**: `"Ich schaue nach der aktuellen Zeit in {{timezone}}..."`
+**Agent Message**: `"Looking up the current time in {{timezone}}..."`
 
-**Success-Template**: `"Aktuelle Zeit in {{timezone}}: {{response.datetime}}"`
+**Success Template**: `"Current time in {{timezone}}: {{response.datetime}}"`
 
 ---

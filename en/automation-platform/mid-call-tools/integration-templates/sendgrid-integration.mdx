@@ -1,98 +1,97 @@
 ---
 title: "SendGrid Integration"
-description: "Automatisches Versenden von E-Mails über SendGrid direkt während Kundengesprächem für professionelle E-Mail-Kommunikation"
+description: "Automated email sending via SendGrid directly during customer calls for professional email communication"
 icon: "envelope"
 ---
 
-
 # SendGrid Integration Template
 
-Integrieren Sie SendGrid E-Mail-Versand in Ihre Mid-call Actions und ermöglichen Sie es Ihrem KI-Assistenten, während Kundengesprächem automatisch personalisierte E-Mails zu versenden - ideal für Follow-ups, Bestätigungen und Marketing-Kommunikation.
+Integrate SendGrid email sending into your Mid-call Actions and enable your AI assistant to automatically send personalized emails during customer calls—ideal for follow-ups, confirmations, and marketing communication.
 
-## Überblick & Funktionen
+## Overview & Features
 
 <CardGroup cols={2}>
-  <Card title="Professioneller E-Mail-Versand" icon="paper-plane">
-    - Sofortiger E-Mail-Versand während des Gesprächs
-    - Personalisierte Templates und Inhalte
-    - Zustellbarkeits-Optimierung durch SendGrid
-    - DSGVO-konforme E-Mail-Kommunikation
+  <Card title="Professional Email Sending" icon="paper-plane">
+    - Instant email sending during the call  
+    - Personalized templates and content  
+    - Deliverability optimization via SendGrid  
+    - GDPR-compliant email communication  
   </Card>
-  <Card title="Marketing-Automation" icon="chart-line">
-    - Automatische Follow-up-E-Mails
-    - Lead-Nurturing-Sequenzen
-    - Event-basierte Trigger-E-Mails
-    - A/B-Testing und Analytics-Integration
+  <Card title="Marketing Automation" icon="chart-line">
+    - Automatic follow-up emails  
+    - Lead nurturing sequences  
+    - Event-based trigger emails  
+    - A/B testing and analytics integration  
   </Card>
 </CardGroup>
 
 ## SendGrid Account & API Setup
 
-### 1. SendGrid Account vorbereiten
+### 1. Prepare SendGrid Account
 
 <Steps>
-  <Step title="SendGrid Account erstellen">
-    - Registrieren Sie sich bei [SendGrid](https://sendgrid.com)
-    - Wählen Sie einen passenden Plan (Free Plan für bis zu 100 E-Mails/Tag)
-    - Verifizieren Sie Ihre E-Mail-Adresse und Account
+  <Step title="Create SendGrid Account">
+    - Sign up at [SendGrid](https://sendgrid.com)  
+    - Choose an appropriate plan (Free Plan for up to 100 emails/day)  
+    - Verify your email address and account  
   </Step>
   
   <Step title="Sender Authentication">
     ```yaml
-    Domain-Authentifizierung (empfohlen):
+    Domain Authentication (recommended):
       1. "Settings" → "Sender Authentication"
-      2. "Authenticate Your Domain" klicken
-      3. DNS-Einträge bei Ihrem Domain-Provider hinzufügen
-      4. Verifizierung abwarten (kann bis 24h dauern)
+      2. Click "Authenticate Your Domain"
+      3. Add DNS records at your domain provider
+      4. Wait for verification (can take up to 24h)
       
-    Single Sender Verification (schnell):
-      1. "Settings" → "Sender Authentication" 
-      2. "Verify a Single Sender" wählen
-      3. Absender-E-Mail und -Details eingeben
-      4. Bestätigungs-E-Mail überprüfen
+    Single Sender Verification (quick):
+      1. "Settings" → "Sender Authentication"
+      2. Select "Verify a Single Sender"
+      3. Enter sender email and details
+      4. Confirm verification email
     ```
   </Step>
   
-  <Step title="API Key generieren">
+  <Step title="Generate API Key">
     ```yaml
-    API-Key-Erstellung:
+    API Key Creation:
       1. "Settings" → "API Keys"
-      2. "Create API Key" klicken
+      2. Click "Create API Key"
       3. Name: "Famulor Mid-Call Integration"
-      4. Permissions: "Full Access" oder "Restricted Access"
+      4. Permissions: "Full Access" or "Restricted Access"
       
-    Restricted Access (empfohlen):
+    Restricted Access (recommended):
       - Mail Send: Full Access
-      - Stats: Read Access (optional für Analytics)
+      - Stats: Read Access (optional for analytics)
       - Suppressions: Read Access (optional)
     ```
   </Step>
   
-  <Step title="API Key sichern">
-    - API Key kopieren (beginnt mit "SG.")
-    - Sicher speichern - wird als {{SENDGRID_API_KEY}} verwendet
-    - Test-E-Mail über API senden zur Validierung
+  <Step title="Secure the API Key">
+    - Copy the API key (starts with "SG.")  
+    - Store it securely - this will be used as {{SENDGRID_API_KEY}}  
+    - Send a test email via the API for validation  
   </Step>
 </Steps>
 
-## Mid-call Action konfigurieren
+## Configure Mid-call Action
 
-### Konfiguration im Famulor Interface
+### Configuration in the Famulor Interface
 
 <Tabs>
-  <Tab title="Werkzeugdetails">
-    | Feld | Wert |
-    |------|------|
+  <Tab title="Tool Details">
+    | Field | Value |
+    |-------|-------|
     | **Name*** | `SendGrid E-Mail versenden` |
-    | **Beschreibung** | "Versendet professionelle E-Mails über SendGrid für Follow-ups, Bestätigungen und Marketing-Kommunikation" |
-    | **Funktionsname*** | `send_sendgrid_email` |
-    | **Funktionsbeschreibung*** | "Versendet eine E-Mail über SendGrid. Verwenden Sie dies für sofortige Bestätigungen, Follow-up-E-Mails oder wichtige Informationsübermittlung nach dem Gespräch." |
-    | **HTTP-Methode** | `POST` |
+    | **Description** | "Sends professional emails via SendGrid for follow-ups, confirmations, and marketing communication" |
+    | **Function Name*** | `send_sendgrid_email` |
+    | **Function Description*** | "Sends an email via SendGrid. Use this for immediate confirmations, follow-up emails, or important information delivery after the call." |
+    | **HTTP Method** | `POST` |
     | **Timeout (ms)** | `10000` |
     | **Endpoint*** | `https://api.sendgrid.com/v3/mail/send` |
   </Tab>
   
-  <Tab title="Header-Konfiguration">
+  <Tab title="Header Configuration">
     ```json
     {
       "Authorization": "Bearer {{SENDGRID_API_KEY}}",
@@ -141,7 +140,7 @@ Integrieren Sie SendGrid E-Mail-Versand in Ihre Mid-call Actions und ermögliche
   </Tab>
 </Tabs>
 
-### Parameter-Schema
+### Parameter Schema
 
 ```json
 {
@@ -150,143 +149,143 @@ Integrieren Sie SendGrid E-Mail-Versand in Ihre Mid-call Actions und ermögliche
     "to_email": {
       "type": "string",
       "format": "email",
-      "description": "E-Mail-Adresse des Empfängers"
+      "description": "Recipient's email address"
     },
     "to_name": {
       "type": "string",
-      "description": "Name des Empfängers (wird für Personalisierung verwendet)"
+      "description": "Recipient's name (used for personalization)"
     },
     "subject": {
       "type": "string",
-      "description": "E-Mail-Betreff",
-      "examples": ["Vielen Dank für Ihr Gespräch", "Ihre angeforderten Informationen", "Follow-up zu unserem Termin"]
+      "description": "Email subject",
+      "examples": ["Thank you for your call", "Your requested information", "Follow-up on our appointment"]
     },
     "content": {
       "type": "string",
-      "description": "E-Mail-Inhalt (HTML und Plain Text möglich)"
+      "description": "Email content (HTML and plain text possible)"
     },
     "from_email": {
       "type": "string",
-      "format": "email", 
-      "description": "Absender-E-Mail (muss authentifiziert sein)"
+      "format": "email",
+      "description": "Sender email (must be authenticated)"
     },
     "from_name": {
       "type": "string",
-      "description": "Name des Absenders",
-      "default": "Ihr Famulor-Team"
+      "description": "Sender’s name",
+      "default": "Your Famulor Team"
     },
     "template_id": {
       "type": "string",
-      "description": "SendGrid Dynamic Template ID (optional für vorgefertigte Templates)"
+      "description": "SendGrid dynamic template ID (optional for pre-built templates)"
     },
     "company_name": {
       "type": "string",
-      "description": "Firmenname für Template-Personalisierung (optional)"
+      "description": "Company name for template personalization (optional)"
     },
     "call_summary": {
       "type": "string",
-      "description": "Zusammenfassung des Gesprächs für E-Mail-Inhalt (optional)"
+      "description": "Call summary for email content (optional)"
     }
   },
   "required": ["to_email", "subject", "content", "from_email"]
 }
 ```
 
-## Praktische Anwendungsszenarien
+## Practical Use Cases
 
-### Szenario 1: Sofortige Follow-up-E-Mail
+### Scenario 1: Instant Follow-up Email
 
 <Steps>
-  <Step title="Gespräch-Kontext erfassen">
+  <Step title="Capture Call Context">
     ```yaml
-    Während des Gesprächs:
-      Kunde: "Können Sie mir die Preisliste per E-Mail senden?"
-      
-    KI-Assistent: "Gerne! Ich sende Ihnen sofort unsere aktuelle Preisliste."
-    
-    → Automatischer E-Mail-Versand mit Preisliste als Anhang
+    During the call:
+      Customer: "Can you send me the price list by email?"
+
+    AI assistant: "Sure! I will send you our current price list immediately."
+
+    → Automatic email sending with price list as attachment
     ```
   </Step>
   
-  <Step title="Personalisierte E-Mail-Generierung">
+  <Step title="Personalized Email Generation">
     ```yaml
-    E-Mail-Template:
-      Betreff: "Ihre angeforderte Preisliste - {company_name}"
-      
-      Inhalt:
-      "Hallo {to_name},
-      
-      vielen Dank für das informative Gespräch eben. 
-      Wie besprochen, sende ich Ihnen hiermit unsere aktuelle Preisliste.
-      
-      Falls Sie weitere Fragen haben, melden Sie sich gerne.
-      
-      Mit freundlichen Grüßen,
+    Email Template:
+      Subject: "Your requested price list - {company_name}"
+
+      Content:
+      "Hello {to_name},
+
+      Thank you for the informative conversation earlier.
+      As discussed, here is our current price list.
+
+      If you have any further questions, please feel free to contact me.
+
+      Best regards,
       {from_name}"
     ```
   </Step>
 </Steps>
 
-### Szenario 2: Lead-Nurturing-Automation
+### Scenario 2: Lead Nurturing Automation
 
 <AccordionGroup>
-  <Accordion title="Qualifizierte Leads">
-    **Automatische Nurturing-Sequenz**:
+  <Accordion title="Qualified Leads">
+    **Automated nurturing sequence**:
     ```yaml
-    Lead-Score > 70:
-      E-Mail 1: Sofortige Bestätigung + Firmenbroschüre
-      E-Mail 2: Case Studies relevanter Kunden (nach 2 Stunden)
-      E-Mail 3: Persönliches Angebot (nach 24 Stunden)
-      
-    Template-Personalisierung:
-      - Branche-spezifische Inhalte
-      - Erwähnte Pain Points aus dem Gespräch
-      - Individueller Ansprechpartner
+    Lead score > 70:
+      Email 1: Immediate confirmation + company brochure
+      Email 2: Case studies of relevant customers (after 2 hours)
+      Email 3: Personal offer (after 24 hours)
+
+    Template personalization:
+      - Industry-specific content
+      - Mentioned pain points from the call
+      - Dedicated contact person
     ```
   </Accordion>
   
-  <Accordion title="Interessierte Prospects">
-    **Informative Follow-up-Serie**:
+  <Accordion title="Interested Prospects">
+    **Informative follow-up series**:
     ```yaml
-    Lead-Score 40-70:
-      E-Mail 1: Gesprächszusammenfassung + nächste Schritte
-      E-Mail 2: Relevante Blog-Artikel (nach 3 Tagen)
-      E-Mail 3: Webinar-Einladung (nach 1 Woche)
-      
-    Content-Strategie:
-      - Educational Content vor Sales-Pitch
-      - Vertrauen aufbauen durch Expertise
-      - Sanfte Lead-Weiterqualifizierung
+    Lead score 40-70:
+      Email 1: Call summary + next steps
+      Email 2: Relevant blog articles (after 3 days)
+      Email 3: Webinar invite (after 1 week)
+
+    Content strategy:
+      - Educational content before sales pitch
+      - Build trust through expertise
+      - Gentle lead qualification
     ```
   </Accordion>
 </AccordionGroup>
 
-### Szenario 3: Transaktions-E-Mails
+### Scenario 3: Transactional Emails
 
 ```mermaid
 flowchart TD
-    A[Kundenanruf] --> B{E-Mail-Trigger?}
-    B -->|Demo angefragt| C[Demo-Bestätigung senden]
-    B -->|Preise erfragt| D[Preisliste senden]
-    B -->|Support-Ticket| E[Ticket-Bestätigung]
-    B -->|Termin vereinbart| F[Kalender-Einladung]
+    A[Customer Call] --> B{Email Trigger?}
+    B -->|Requested Demo| C[Send Demo Confirmation]
+    B -->|Asked for Prices| D[Send Price List]
+    B -->|Support Ticket| E[Ticket Confirmation]
+    B -->|Appointment Set| F[Calendar Invitation]
     
     C --> G[SendGrid API Call]
     D --> G
     E --> G
     F --> G
     
-    G --> H{E-Mail erfolgreich?}
-    H -->|Ja| I[Bestätigung an Kunde]
-    H -->|Nein| J[Fallback-Benachrichtigung]
+    G --> H{Email Successful?}
+    H -->|Yes| I[Confirm to Customer]
+    H -->|No| J[Fallback Notification]
     
-    I --> K[CRM-Update: E-Mail gesendet]
-    J --> L[Manuelle Nachverfolgung]
+    I --> K[CRM Update: Email Sent]
+    J --> L[Manual Follow-up]
 ```
 
-## Response-Verarbeitung
+## Response Handling
 
-### Erfolgreiche E-Mail-Sendung
+### Successful Email Sending
 
 ```json
 {
@@ -296,56 +295,54 @@ flowchart TD
 }
 ```
 
-### Natürliche Sprachintegration
+### Natural Language Integration
 
 <AccordionGroup>
-  <Accordion title="Agent-Nachrichten vor Versand">
-    **Template**: `"Ich versende die E-Mail an {{to_email}}..."`
-    
-    **Kontextuelle Beispiele**:
+  <Accordion title="Agent Messages Before Sending">
+    **Template**: `"I am sending the email to {{to_email}}..."`
+
+    **Contextual Examples**:
     ```yaml
-    Preisliste:
-      "Ich sende Ihnen sofort die Preisliste an max@beispiel.de..."
-    
-    Demo-Bestätigung:
-      "Ich schicke Ihnen die Demo-Details per E-Mail..."
-    
+    Price List:
+      "I am sending the price list to max@example.com right now..."
+
+    Demo Confirmation:
+      "I am emailing you the demo details..."
+
     Follow-up:
-      "Sie erhalten in Kürze eine Zusammenfassung unseres Gesprächs..."
+      "You will receive a summary of our conversation shortly..."
     ```
   </Accordion>
   
-  <Accordion title="Erfolgsbestätigungen">
-    **Standard-Template**: `"E-Mail wurde erfolgreich versendet."`
-    
-    **Erweiterte Bestätigungen**:
+  <Accordion title="Success Confirmations">
+    **Standard template**: `"The email has been sent successfully."`
+
+    **Enhanced confirmations**:
     ```yaml
-    Mit Tracking:
-      "E-Mail wurde versendet. Sie erhalten eine Benachrichtigung, 
-       wenn die E-Mail geöffnet wird."
-    
-    Mit nächsten Schritten:
-      "E-Mail ist unterwegs. Ich empfehle ein Follow-up in 2-3 Tagen, 
-       falls keine Antwort kommt."
-    
-    Mit Template-Info:
-      "Personalisierte Preisliste wurde an {to_name} gesendet."
+    With tracking:
+      "Email sent. You will be notified when the email is opened."
+
+    With next steps:
+      "Email is on its way. I recommend a follow-up in 2-3 days if no response is received."
+
+    With template info:
+      "Personalized price list has been sent to {to_name}."
     ```
   </Accordion>
 </AccordionGroup>
 
-## Erweiterte SendGrid-Features
+## Advanced SendGrid Features
 
 ### Dynamic Templates
 
 <Tabs>
-  <Tab title="Template-Erstellung">
+  <Tab title="Template Creation">
     ```yaml
-    SendGrid-Template-Setup:
+    SendGrid Template Setup:
       1. "Email API" → "Dynamic Templates"
       2. "Create a Dynamic Template"
-      3. Template-Name: "Mid-Call Follow-up"
-      4. Template-Design mit Variablen:
+      3. Template name: "Mid-Call Follow-up"
+      4. Template design with variables:
          - {{customer_name}}
          - {{company_name}} 
          - {{call_summary}}
@@ -353,7 +350,7 @@ flowchart TD
     ```
   </Tab>
   
-  <Tab title="Template-Integration">
+  <Tab title="Template Integration">
     ```json
     {
       "template_id": "d-abc123def456ghi789",
@@ -376,245 +373,242 @@ flowchart TD
   </Tab>
 </Tabs>
 
-### E-Mail-Analytics Integration
+### Email Analytics Integration
 
 <AccordionGroup>
-  <Accordion title="Tracking & Metriken">
+  <Accordion title="Tracking & Metrics">
     ```yaml
-    SendGrid-Analytics:
-      Opens: Wann und wie oft E-Mail geöffnet wurde
-      Clicks: Link-Klicks und Engagement
-      Bounces: Unzustellbare E-Mails
-      Spam Reports: Spam-Beschwerden
-      Unsubscribes: Abmeldungen
+    SendGrid Analytics:
+      Opens: When and how often the email was opened
+      Clicks: Link clicks and engagement
+      Bounces: Undeliverable emails
+      Spam Reports: Spam complaints
+      Unsubscribes: Unsubscriptions
       
-    CRM-Integration:
-      - E-Mail-Öffnung → Lead-Score +5
-      - Link-Klick → Lead-Score +10  
-      - Bounce → E-Mail-Status aktualisieren
-      - Spam → Kontakt aus Listen entfernen
+    CRM Integration:
+      - Email open → +5 lead score
+      - Link click → +10 lead score  
+      - Bounce → Update email status
+      - Spam → Remove contact from lists
     ```
   </Accordion>
   
-  <Accordion title="Webhook-Events">
+  <Accordion title="Webhook Events">
     ```json
     {
       "sg_event_id": "abc123",
       "sg_message_id": "message_id_from_response",
       "event": "open",
-      "email": "max@beispiel.de",
+      "email": "max@example.com",
       "timestamp": 1640995800,
       "useragent": "Mozilla/5.0...",
       "ip": "192.168.1.1"
     }
     ```
-    
-    **Webhook-URL**: `https://your-api.com/sendgrid-webhook`
-    **Events**: delivered, open, click, bounce, dropped, spamreport
+
+    **Webhook URL**: `https://your-api.com/sendgrid-webhook`  
+    **Events**: delivered, open, click, bounce, dropped, spamreport  
   </Accordion>
 </AccordionGroup>
 
-## Compliance & Datenschutz
+## Compliance & Data Protection
 
-### DSGVO-Konformität
+### GDPR Compliance
 
 <CardGroup cols={2}>
-  <Card title="Einverständnis-Management" icon="shield-halved">
-    **Vor E-Mail-Versand prüfen**:
-    - Explizite Einverständniserklärung
-    - Opt-in-Status validieren
-    - Zweckbindung beachten
-    - Widerrufsrecht informieren
+  <Card title="Consent Management" icon="shield-halved">
+    **Check before sending emails**:
+    - Explicit consent declaration  
+    - Validate opt-in status  
+    - Observe purpose limitation  
+    - Inform about right of withdrawal  
   </Card>
-  <Card title="Datenminimierung" icon="lock">
-    **Best Practices**:
-    - Nur notwendige Personalisierung
-    - Keine sensiblen Daten in E-Mails
-    - Automatische Löschung nach Retention-Period
-    - Pseudonymisierung wo möglich
+  <Card title="Data Minimization" icon="lock">
+    **Best practices**:
+    - Only necessary personalization  
+    - No sensitive data in emails  
+    - Automatic deletion after retention period  
+    - Pseudonymization where possible  
   </Card>
 </CardGroup>
 
 ### Suppression Management
 
 ```yaml
-Bounce-Handling:
-  Hard Bounces: Automatisch zur Suppression-Liste
-  Soft Bounces: Nach 3 Versuchen supprimieren
-  Invalid E-Mails: Sofortige Suppression
-  
-Unsubscribe-Management:
-  Global Unsubscribes: Alle E-Mails blockieren
-  Group Unsubscribes: Nur spezifische Kategorien
-  Resubscribe-Handling: Double-Opt-In erforderlich
+Bounce Handling:
+  Hard bounces: Automatically added to suppression list
+  Soft bounces: Suppress after 3 attempts
+  Invalid emails: Immediate suppression
+
+Unsubscribe Management:
+  Global unsubscribes: Block all emails
+  Group unsubscribes: Block specific categories only
+  Resubscribe handling: Double opt-in required
 ```
 
-## Fehlerbehandlung
+## Error Handling
 
-### Häufige API-Fehler
+### Common API Errors
 
 <AccordionGroup>
   <Accordion title="Authentication Error (401)">
     ```yaml
-    Ursache: Ungültiger oder abgelaufener API-Key
-    
-    SendGrid-Response:
+    Cause: Invalid or expired API key
+
+    SendGrid Response:
       "errors": [{
         "message": "The provided authorization grant is invalid",
         "field": null,
         "help": null
       }]
-    
-    Fallback: "Die E-Mail konnte nicht versendet werden. 
-              Ich dokumentiere die Anfrage für manuelle Nachbearbeitung."
-    
-    Lösung: API-Key überprüfen und erneuern
+
+    Fallback: "The email could not be sent. Logging the request for manual follow-up."
+
+    Solution: Check and renew API key
     ```
   </Accordion>
   
   <Accordion title="Invalid From Address (400)">
     ```yaml
-    Ursache: Absender-E-Mail nicht authentifiziert
-    
-    SendGrid-Response:
+    Cause: Sender email not authenticated
+
+    SendGrid Response:
       "errors": [{
         "message": "The from address does not match a verified Sender Identity",
         "field": "from.email",
         "help": "https://sendgrid.com/docs/User_Guide/Settings/Sender_authentication.html"
       }]
-    
+
     Graceful Handling:
-      "E-Mail-Konfiguration wird überprüft. 
-       Die Informationen werden Ihnen alternativ zugesendet."
+      "Email configuration is being checked. The information will be sent to you alternatively."
     ```
   </Accordion>
   
   <Accordion title="Rate Limiting (429)">
     ```yaml
-    SendGrid-Limits:
-      Free Plan: 100 E-Mails/Tag
-      Essentials: 40.000 E-Mails/Monat
-      Pro: 1.5M E-Mails/Monat
-    
-    Retry-Strategie:
-      - Exponential Backoff: 1s, 2s, 4s, 8s
-      - Max 3 Retry-Versuche
-      - Queue-System für Peak-Zeiten
-    
-    Business-Continuity:
-      "E-Mail-Versand ist temporär ausgelastet. 
-       Die E-Mail wird in den nächsten Minuten nachgesendet."
+    SendGrid Limits:
+      Free Plan: 100 emails/day
+      Essentials: 40,000 emails/month
+      Pro: 1.5 million emails/month
+
+    Retry Strategy:
+      - Exponential backoff: 1s, 2s, 4s, 8s
+      - Max 3 retry attempts
+      - Queue system for peak times
+
+    Business Continuity:
+      "Email sending is temporarily overloaded. The email will be resent within the next few minutes."
     ```
   </Accordion>
 </AccordionGroup>
 
 ## Performance & Monitoring
 
-### E-Mail-Delivery-Metriken
+### Email Delivery Metrics
 
-| Metrik | Zielwert | Kritischer Wert |
-|--------|----------|-----------------|
-| **Delivery Rate** | &gt;98% | &lt;95% |
-| **Open Rate** | &gt;25% | &lt;15% |
-| **Click-through Rate** | &gt;5% | &lt;2% |
-| **Bounce Rate** | &lt;2% | &gt;5% |
-| **Spam Rate** | &lt;0.1% | &gt;0.5% |
+| Metric                  | Target Value | Critical Value |
+|-------------------------|--------------|----------------|
+| **Delivery Rate**       | &gt;98%       | &lt;95%        |
+| **Open Rate**           | &gt;25%       | &lt;15%        |
+| **Click-through Rate**  | &gt;5%        | &lt;2%         |
+| **Bounce Rate**         | &lt;2%        | &gt;5%         |
+| **Spam Rate**           | &lt;0.1%      | &gt;0.5%       |
 
 ### Business Impact Analytics
 
 <Steps>
-  <Step title="Engagement-Tracking">
+  <Step title="Engagement Tracking">
     ```yaml
-    Key-Metriken:
-      - E-Mail-to-Meeting-Conversion
-      - Follow-up-Response-Rate  
-      - Lead-Scoring-Impact
-      - Customer-Journey-Progression
+    Key Metrics:
+      - Email-to-meeting conversion
+      - Follow-up response rate  
+      - Lead scoring impact
+      - Customer journey progression
     ```
   </Step>
   
-  <Step title="ROI-Messung">
+  <Step title="ROI Measurement">
     ```yaml
-    Revenue-Attribution:
-      - Mid-Call-E-Mail → Demo-Buchung
-      - Follow-up → Deal-Abschluss
-      - Nurturing → Lead-Qualifizierung
-      - Template-Performance-Vergleich
+    Revenue Attribution:
+      - Mid-call email → demo booking
+      - Follow-up → deal closing
+      - Nurturing → lead qualification
+      - Template performance comparison
     ```
   </Step>
 </Steps>
 
-## Integration mit CRM-Systemen
+## Integration with CRM Systems
 
-### HubSpot-Integration
+### HubSpot Integration
 
 ```mermaid
 sequenceDiagram
-    participant C as Kunde
-    participant AI as KI-Assistant
+    participant C as Customer
+    participant AI as AI Assistant
     participant SG as SendGrid
     participant HS as HubSpot
     
-    C->>AI: "Senden Sie mir die Infos per E-Mail"
-    AI->>HS: Kontakt-Informationen abrufen
-    HS-->>AI: E-Mail, Name, Präferenzen
-    AI->>SG: Personalisierte E-Mail senden
-    SG-->>AI: E-Mail erfolgreich (Message-ID)
-    AI->>HS: E-Mail-Activity protokollieren
-    AI->>C: "E-Mail wurde versendet"
-    
-    Note over SG: E-Mail-Tracking aktiviert
-    SG->>HS: Webhook bei E-Mail-Öffnung
+    C->>AI: "Please send me the info by email"
+    AI->>HS: Retrieve contact information
+    HS-->>AI: Email, name, preferences
+    AI->>SG: Send personalized email
+    SG-->>AI: Email sent successfully (Message-ID)
+    AI->>HS: Log email activity
+    AI->>C: "The email has been sent"
+
+    Note over SG: Email tracking enabled
+    SG->>HS: Webhook on email open
 ```
 
 ## Best Practices
 
-### E-Mail-Content-Optimierung
+### Email Content Optimization
 
 <CardGroup cols={2}>
   <Card title="Subject Line Optimization" icon="bullseye">
     **Effective Patterns**:
-    - Personalisierung: "[Firma] - Ihre Anfrage"
-    - Dringlichkeit: "Zeitlich begrenzt: ..."
-    - Nutzen: "Sparen Sie 30% mit..."
-    - Frage: "Haben Sie 5 Minuten für...?"
+    - Personalization: "[Company] - Your request"
+    - Urgency: "Limited time offer: ..."
+    - Benefit: "Save 30% with..."
+    - Question: "Do you have 5 minutes for...?"
   </Card>
-  <Card title="Content-Struktur" icon="list">
-    **Template-Aufbau**:
-    - Persönliche Anrede
-    - Bezug zum Gespräch
-    - Hauptinformation/CTA
-    - Nächste Schritte
-    - Kontaktinformationen
+  <Card title="Content Structure" icon="list">
+    **Template layout**:
+    - Personal greeting  
+    - Reference to the conversation  
+    - Main information / call to action  
+    - Next steps  
+    - Contact information  
   </Card>
 </CardGroup>
 
-### Automation-Strategien
+### Automation Strategies
 
 <AccordionGroup>
-  <Accordion title="Trigger-basierte E-Mails">
+  <Accordion title="Trigger-based Emails">
     ```yaml
-    Lead-Status-Änderungen:
-      "Cold" → "Warm": Welcome-Serie starten
-      "Warm" → "Hot": Sales-Team benachrichtigen
-      "Hot" → "Qualified": Demo-Scheduling-E-Mail
-      
-    Verhaltens-Trigger:
-      Preisabfrage → Pricing-Guide senden
-      Demo-Interesse → Kalendar-Link senden
-      Konkurrent erwähnt → Battle-Card-E-Mail
+    Lead status changes:
+      "Cold" → "Warm": Start welcome series
+      "Warm" → "Hot": Notify sales team
+      "Hot" → "Qualified": Send demo scheduling email
+
+    Behavioral triggers:
+      Price inquiry → Send pricing guide
+      Demo interest → Send calendar link
+      Competitor mention → Send battle-card email
     ```
   </Accordion>
   
-  <Accordion title="Zeitbasierte Sequenzen">
+  <Accordion title="Time-based Sequences">
     ```yaml
-    Follow-up-Zeitplan:
-      Sofort: Bestätigungs-E-Mail
-      +2 Stunden: Zusätzliche Ressourcen
-      +24 Stunden: Persönliches Angebot
-      +3 Tage: Check-in-E-Mail
-      +1 Woche: Case Study
-      +2 Wochen: Letzte Follow-up mit Incentive
+    Follow-up schedule:
+      Immediately: Confirmation email
+      +2 hours: Additional resources
+      +24 hours: Personal offer
+      +3 days: Check-in email
+      +1 week: Case study
+      +2 weeks: Final follow-up with incentive
     ```
   </Accordion>
 </AccordionGroup>
@@ -622,9 +616,9 @@ sequenceDiagram
 ---
 
 <Warning>
-**DSGVO-Compliance**: Stellen Sie sicher, dass Sie für alle E-Mail-Sendungen eine rechtsgültige Einverständniserklärung haben und alle Datenschutzbestimmungen einhalten.
+**GDPR Compliance**: Ensure you have legally valid consent for all email sends and comply with all data protection regulations.
 </Warning>
 
 <Info>
-**Performance-Tipp**: Verwenden Sie SendGrid Dynamic Templates für konsistente Formatierung und bessere Personalisierung. Test Sie verschiedene Subject Lines für optimale Open Rates.
+**Performance Tip**: Use SendGrid Dynamic Templates for consistent formatting and better personalization. Test different subject lines to optimize open rates.
 </Info>

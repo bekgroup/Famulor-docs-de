@@ -1,98 +1,97 @@
 ---
 title: "Shopify Integration"
-description: "Echtzeit-Zugriff auf Shopify-Bestellungen und E-Commerce-Daten direkt während Kundengesprächem für optimalen Customer-Service"
+description: "Real-time access to Shopify orders and e-commerce data directly during customer calls for optimal customer service"
 icon: "shopify"
 ---
 
-
 # Shopify Integration Template
 
-Integrieren Sie Shopify E-Commerce-Plattform in Ihre Mid-call Actions und ermöglichen Sie es Ihrem KI-Assistenten, während Kundengesprächem Bestelldetails abzurufen, Versandstatus zu prüfen und Order-Management zu betreiben.
+Integrate the Shopify e-commerce platform into your Mid-call Actions and enable your AI assistant to retrieve order details, check shipping status, and perform order management during customer conversations.
 
-## Überblick & Funktionen
+## Overview & Features
 
 <CardGroup cols={2}>
-  <Card title="Order-Management" icon="box">
-    - Echtzeit-Zugriff auf Bestelldetails und -status
-    - Versand- und Fulfillment-Tracking
-    - Customer-Information und Order-History
-    - Inventory und Product-Availability-Checks
+  <Card title="Order Management" icon="box">
+    - Real-time access to order details and status
+    - Shipping and fulfillment tracking
+    - Customer information and order history
+    - Inventory and product availability checks
   </Card>
-  <Card title="Customer-Service-Excellence" icon="headset">
-    - Sofortige Bestellstatus-Updates
-    - Retouren- und Refund-Management
-    - Upselling und Cross-Selling-Opportunities
-    - Proaktive Problem-Resolution
+  <Card title="Customer Service Excellence" icon="headset">
+    - Instant order status updates
+    - Returns and refund management
+    - Upselling and cross-selling opportunities
+    - Proactive problem resolution
   </Card>
 </CardGroup>
 
 ## Shopify Admin API Setup
 
-### 1. Shopify App & API-Zugang
+### 1. Shopify App & API Access
 
 <Steps>
-  <Step title="Private App erstellen">
-    - Melden Sie sich als Admin in Ihrem Shopify-Shop an
-    - Navigieren Sie zu "Apps" → "App and sales channel settings"
-    - Klicken Sie auf "Develop apps" → "Create an app"
-    - App-Name: "Famulor Mid-Call Integration"
+  <Step title="Create Private App">
+    - Log in as admin to your Shopify store
+    - Navigate to "Apps" → "App and sales channel settings"
+    - Click "Develop apps" → "Create an app"
+    - App name: "Famulor Mid-Call Integration"
   </Step>
   
-  <Step title="Admin API-Berechtigungen">
+  <Step title="Admin API Permissions">
     ```yaml
-    Erforderliche API-Scopes:
+    Required API scopes:
       Orders:
-        - read_orders (für Bestelldetails)
-        - write_orders (für Order-Updates)
+        - read_orders (for order details)
+        - write_orders (for order updates)
       
       Customers:
-        - read_customers (für Customer-Info)
+        - read_customers (for customer info)
         
       Products:
-        - read_products (für Produktdetails)
+        - read_products (for product details)
         
-    Optional für erweiterte Features:
-      - read_inventory (Lagerbestände)
-      - read_fulfillments (Versanddetails)
-      - read_shipping (Versandoptionen)
+    Optional for advanced features:
+      - read_inventory (inventory levels)
+      - read_fulfillments (shipping details)
+      - read_shipping (shipping options)
     ```
   </Step>
   
-  <Step title="Access Token generieren">
+  <Step title="Generate Access Token">
     ```yaml
-    Token-Generation:
+    Token generation:
       1. "Admin API access token" → "Install app"
-      2. Access Token kopieren (sehr lang)
-      3. Token sicher speichern als {{SHOPIFY_ACCESS_TOKEN}}
-      4. Store-Name notieren als {{SHOPIFY_STORE}} (ohne .myshopify.com)
+      2. Copy the access token (very long)
+      3. Store the token securely as {{SHOPIFY_ACCESS_TOKEN}}
+      4. Note the store name as {{SHOPIFY_STORE}} (without .myshopify.com)
     ```
   </Step>
   
-  <Step title="API-Version & Endpoints">
-    - Aktuelle API-Version verwenden: `2024-01`
-    - Base-URL: `https://store-name.myshopify.com/admin/api/2024-01/`
-    - Rate-Limits beachten: 2 Calls/Sekunde (Standard-Plan)
+  <Step title="API Version & Endpoints">
+    - Use the current API version: `2024-01`
+    - Base URL: `https://store-name.myshopify.com/admin/api/2024-01/`
+    - Observe rate limits: 2 calls/second (standard plan)
   </Step>
 </Steps>
 
-## Mid-call Action konfigurieren
+## Configure Mid-call Action
 
-### Konfiguration im Famulor Interface
+### Configuration in the Famulor Interface
 
 <Tabs>
-  <Tab title="Werkzeugdetails">
-    | Feld | Wert |
-    |------|------|
+  <Tab title="Tool Details">
+    | Field | Value |
+    |-------|-------|
     | **Name*** | `Shopify Bestellung abrufen` |
-    | **Beschreibung** | "Ruft detaillierte Bestellinformationen aus Shopify ab für Customer-Service und Order-Management" |
-    | **Funktionsname*** | `get_shopify_order` |
-    | **Funktionsbeschreibung*** | "Ruft Details einer Bestellung aus Shopify ab. Verwenden Sie dies, wenn Kunden nach Bestellstatus, Versandinfos oder Produktdetails ihrer Bestellung fragen." |
-    | **HTTP-Methode** | `GET` |
+    | **Description** | "Fetches detailed order information from Shopify for customer service and order management" |
+    | **Function Name*** | `get_shopify_order` |
+    | **Function Description*** | "Retrieves details of an order from Shopify. Use this when customers ask about order status, shipping info, or product details of their orders." |
+    | **HTTP Method** | `GET` |
     | **Timeout (ms)** | `5000` |
     | **Endpoint*** | `https://{{SHOPIFY_STORE}}.myshopify.com/admin/api/2024-01/orders/{order_id}.json` |
   </Tab>
   
-  <Tab title="Header-Konfiguration">
+  <Tab title="Header Configuration">
     ```json
     {
       "X-Shopify-Access-Token": "{{SHOPIFY_ACCESS_TOKEN}}",
@@ -102,7 +101,7 @@ Integrieren Sie Shopify E-Commerce-Plattform in Ihre Mid-call Actions und ermög
   </Tab>
 </Tabs>
 
-### Erweiterte Parameter-Schema
+### Advanced Parameter Schema
 
 ```json
 {
@@ -110,17 +109,17 @@ Integrieren Sie Shopify E-Commerce-Plattform in Ihre Mid-call Actions und ermög
   "properties": {
     "order_id": {
       "type": "string",
-      "description": "Shopify Order ID oder Order Name",
+      "description": "Shopify order ID or order name",
       "examples": ["12345678", "#1001", "1234567890123"]
     },
     "include_fulfillments": {
       "type": "boolean",
-      "description": "Fulfillment-Details einbeziehen?",
+      "description": "Include fulfillment details?",
       "default": true
     },
     "include_transactions": {
       "type": "boolean", 
-      "description": "Payment-Transaction-Details einbeziehen?",
+      "description": "Include payment transaction details?",
       "default": false
     }
   },
@@ -128,89 +127,89 @@ Integrieren Sie Shopify E-Commerce-Plattform in Ihre Mid-call Actions und ermög
 }
 ```
 
-## Praktische Anwendungsszenarien
+## Practical Use Cases
 
-### Szenario 1: Bestellstatus-Inquiry
+### Scenario 1: Order Status Inquiry
 
 <AccordionGroup>
-  <Accordion title="Standard-Bestellabfrage">
-    **Typisches Customer-Service-Gespräch**:
+  <Accordion title="Standard Order Query">
+    **Typical customer service conversation**:
     ```yaml
-    Kunde: "Wo ist meine Bestellung #1001?"
+    Customer: "Where is my order #1001?"
     
-    KI: "Ich suche die Bestellung #1001..."
+    AI: "I am looking up order #1001..."
     
     get_shopify_order:
       order_id: "1001"
     
-    Response-Integration:
-      "Ihre Bestellung #1001 für 149,99€ wurde am 12. Januar versandt. 
-       Die Sendung enthält 2 Artikel und sollte morgen bei Ihnen ankommen. 
-       Die Tracking-Nummer ist DHL123456789."
+    Response integration:
+      "Your order #1001 for €149.99 was shipped on January 12th. 
+       The shipment contains 2 items and should arrive tomorrow. 
+       The tracking number is DHL123456789."
     ```
   </Accordion>
   
-  <Accordion title="Problem-Resolution">
-    **Verzögerte Lieferung**:
+  <Accordion title="Problem Resolution">
+    **Delayed Delivery**:
     ```yaml
-    Shopify-Response-Analysis:
+    Shopify response analysis:
       fulfillment_status: "unfulfilled"
       days_since_order: 5
       expected_shipping: "1-2 business days"
       
-    Proaktive-Communication:
-      "Ich sehe, Ihre Bestellung verzögert sich. Das tut mir leid! 
-       Normalerweise versenden wir binnen 1-2 Werktagen. 
-       Ich eskaliere das an unser Fulfillment-Team und Sie erhalten 
-       heute noch ein Update."
+    Proactive communication:
+      "I see your order is delayed. I'm sorry about that! 
+       We usually ship within 1-2 business days. 
+       I am escalating this to our fulfillment team and you will 
+       get an update today."
     
-    Automatic-Actions:
-      - Fulfillment-Team-Benachrichtigung
-      - Customer-Compensation-Workflow
-      - Shipping-Delay-Analysis für Process-Improvement
+    Automatic actions:
+      - Notify fulfillment team
+      - Trigger customer compensation workflow
+      - Shipping delay analysis for process improvement
     ```
   </Accordion>
 </AccordionGroup>
 
-### Szenario 2: Upselling & Cross-Selling
+### Scenario 2: Upselling & Cross-Selling
 
 <Tabs>
-  <Tab title="Order-History-Analysis">
+  <Tab title="Order History Analysis">
     ```yaml
-    Customer-Purchase-Pattern:
+    Customer purchase pattern:
       
-    Historical-Orders-Analysis:
-      - Frequently-bought-together-Products
-      - Average-Order-Value-Trends
-      - Seasonal-Purchase-Patterns
-      - Category-Preferences
+    Historical orders analysis:
+      - Frequently bought together products
+      - Average order value trends
+      - Seasonal purchase patterns
+      - Category preferences
     
-    Real-time-Recommendations:
-      Wenn Customer fragt nach Bestellung:
-        "Ihre Bestellung für den Laptop-Stand kommt morgen an. 
-         Übrigens - viele Kunden kaufen dazu auch unser ergonomisches 
-         Maus-Pad. Interessiert Sie das?"
+    Real-time recommendations:
+      When customer asks about order:
+        "Your order for the laptop stand arrives tomorrow. 
+         By the way, many customers also buy our ergonomic 
+         mouse pad. Are you interested?"
     ```
   </Tab>
   
-  <Tab title="Inventory-Based-Offers">
+  <Tab title="Inventory-Based Offers">
     ```yaml
-    Stock-Level-Integration:
+    Stock level integration:
       
-    Wenn Produkt-Inventar niedrig:
-      "Ihr bestelltes Modell ist sehr beliebt und fast ausverkauft. 
-       Falls Sie weitere benötigen, sollten wir das heute bestellen."
+    When product inventory is low:
+      "Your ordered model is very popular and almost sold out. 
+       If you need more, we should order today."
     
-    Wenn Related-Products verfügbar:
-      "Zu Ihrer Bestellung passen diese Ergänzungen perfekt: 
-       [Produktname] ist gerade im Angebot - 20% Rabatt bis Wochenende."
+    When related products are available:
+      "These accessories perfectly complement your order: 
+       [Product Name] is on sale now - 20% off until the weekend."
     ```
   </Tab>
 </Tabs>
 
-## Shopify Response-Verarbeitung
+## Shopify Response Processing
 
-### Vollständige Order-Response
+### Full Order Response
 
 ```json
 {
@@ -239,14 +238,14 @@ Integrieren Sie Shopify E-Commerce-Plattform in Ihre Mid-call Actions und ermög
       "first_name": "Max",
       "last_name": "Mustermann", 
       "address1": "Musterstraße 123",
-      "city": "München",
+      "city": "Munich",
       "zip": "80331",
       "country": "Germany"
     },
     "line_items": [
       {
         "id": 123456,
-        "title": "Ergonomischer Laptop-Stand",
+        "title": "Ergonomic Laptop Stand",
         "quantity": 1,
         "price": "124.99",
         "sku": "STAND-ERG-001"
@@ -265,94 +264,94 @@ Integrieren Sie Shopify E-Commerce-Plattform in Ihre Mid-call Actions und ermög
 }
 ```
 
-### Natürliche Sprach-Response
+### Natural Language Response
 
 <AccordionGroup>
-  <Accordion title="Comprehensive Order-Summary">
-    **Template**: `"Bestellung {{order_number}} für {{customer_name}}, Gesamtbetrag: {{total}}, Status: {{status}}"`
+  <Accordion title="Comprehensive Order Summary">
+    **Template**: `"Order {{order_number}} for {{customer_name}}, total amount: {{total}}, status: {{status}}"`
     
-    **Erweiterte Customer-Communication**:
+    **Enhanced Customer Communication**:
     ```yaml
-    Vollständige Information:
-      "Hallo Herr {{customer_name}}! Ihre Bestellung {{order_number}} 
-       für {{total}}€ wurde {{#if fulfillment_status}}bereits versandt{{else}}vorbereitet{{/if}}.
+    Full information:
+      "Hello Mr. {{customer_name}}! Your order {{order_number}} 
+       for €{{total}} has {{#if fulfillment_status}}already shipped{{else}}been prepared{{/if}}.
        
        {{#if tracking_number}}
-       Die Sendung kommt mit DHL und hat die Tracking-Nummer {{tracking_number}}.
+       The shipment is with DHL and has the tracking number {{tracking_number}}.
        {{/if}}
        
        {{#if financial_status == 'paid'}}
-       Die Zahlung ist bestätigt.
+       The payment has been confirmed.
        {{else}}
-       Die Zahlung wird noch bearbeitet.
+       The payment is still being processed.
        {{/if}}"
     ```
   </Accordion>
   
-  <Accordion title="Problem-Solving-Integration">
+  <Accordion title="Problem-Solving Integration">
     ```yaml
-    Context-Aware-Responses:
+    Context-aware responses:
       
-    Wenn fulfillment_status == "unfulfilled":
-      "Ihre Bestellung wird gerade für den Versand vorbereitet. 
-       Bei unserem aktuellen Auftragsvolumen dauert das 1-2 Werktage."
+    If fulfillment_status == "unfulfilled":
+      "Your order is currently being prepared for shipping. 
+       Given current order volumes, this takes about 1-2 business days."
       
-    Wenn days_since_order > 5 UND status == "unfulfilled":
-      "Das dauert ungewöhnlich lange. Ich prüfe sofort, 
-       was los ist und Sie erhalten innerhalb einer Stunde ein Update."
+    If days_since_order > 5 AND status == "unfulfilled":
+      "This is taking unusually long. I will check immediately 
+       what's going on and you will receive an update within an hour."
       
-    Wenn customer.orders_count > 10:
-      "Als treuer Kunde mit {{orders_count}} Bestellungen haben Sie 
-       natürlich Priorität. Wie kann ich Ihnen helfen?"
+    If customer.orders_count > 10:
+      "As a loyal customer with {{orders_count}} orders, you of course 
+       have priority. How can I assist you today?"
     ```
   </Accordion>
 </AccordionGroup>
 
 ## Performance & Analytics
 
-### E-Commerce-Service-KPIs
+### E-Commerce Service KPIs
 
-| Metrik | Beschreibung | Zielwert |
-|--------|-------------|----------|
-| **Order Lookup Success Rate** | % erfolgreicher Shopify-Abfragen | &gt;98% |
-| **Customer Service Resolution** | % sofort gelöste Bestellanfragen | &gt;85% |
-| **Cross-sell Conversion** | % zusätzlicher Käufe durch Mid-Call-Offers | &gt;12% |
-| **Customer Satisfaction** | Rating nach Order-Service-Calls | &gt;4.7/5 |
+| Metric | Description | Target |
+|--------|-------------|---------|
+| **Order Lookup Success Rate** | % of successful Shopify queries | >98% |
+| **Customer Service Resolution** | % of order inquiries resolved immediately | >85% |
+| **Cross-sell Conversion** | % of additional purchases via mid-call offers | >12% |
+| **Customer Satisfaction** | Rating after order service calls | >4.7/5 |
 
 ## Advanced Shopify Features
 
-### Multi-Store-Management
+### Multi-Store Management
 
 <AccordionGroup>
   <Accordion title="Shopify Plus Features">
     ```yaml
-    Multi-Store-Configuration:
+    Multi-store configuration:
       
-    Regional-Stores:
-      EU-Store: "shop-eu.myshopify.com"
-      US-Store: "shop-us.myshopify.com" 
-      UK-Store: "shop-uk.myshopify.com"
+    Regional stores:
+      EU Store: "shop-eu.myshopify.com"
+      US Store: "shop-us.myshopify.com" 
+      UK Store: "shop-uk.myshopify.com"
       
-    Automatic-Store-Detection:
-      - Customer-Phone-Number → Region-Detection
-      - Order-ID-Pattern → Store-Identification
-      - Currency-Preference → Store-Routing
+    Automatic store detection:
+      - Customer phone number → region detection
+      - Order ID pattern → store identification
+      - Currency preference → store routing
     ```
   </Accordion>
   
-  <Accordion title="B2B-Features für Shopify Plus">
+  <Accordion title="B2B Features for Shopify Plus">
     ```yaml
-    B2B-Order-Features:
-      - Company-Account-Management
-      - Bulk-Order-Tracking
-      - Custom-Pricing-Tiers
-      - Purchase-Order-Numbers
+    B2B order features:
+      - Company account management
+      - Bulk order tracking
+      - Custom pricing tiers
+      - Purchase order numbers
       
-    Integration-Enhancements:
-      - Company-Name in Customer-Communication
-      - Bulk-Discount-Calculations
-      - B2B-specific Order-Status-Messages
-      - Account-Manager-Assignment-Logic
+    Integration enhancements:
+      - Include company name in customer communication
+      - Bulk discount calculations
+      - B2B-specific order status messages
+      - Account manager assignment logic
     ```
   </Accordion>
 </AccordionGroup>
@@ -360,9 +359,9 @@ Integrieren Sie Shopify E-Commerce-Plattform in Ihre Mid-call Actions und ermög
 ---
 
 <Warning>
-**API-Rate-Limits**: Shopify API hat strenge Rate-Limits (2 calls/Sekunde Standard, 4 calls/Sekunde Shopify Plus). Implementieren Sie intelligentes Caching für häufig abgefragte Orders.
+**API Rate Limits**: The Shopify API enforces strict rate limits (2 calls/second standard, 4 calls/second Shopify Plus). Implement smart caching for frequently queried orders.
 </Warning>
 
 <Info>
-**Customer-Service-Tipp**: Nutzen Sie die Customer-Total-Spent und Orders-Count aus der API für personalisierte Ansprache und VIP-Treatment-Entscheidungen.
+**Customer Service Tip**: Use the customer total spent and orders count from the API for personalized communication and VIP treatment decisions.
 </Info>

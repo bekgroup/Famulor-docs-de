@@ -1,49 +1,48 @@
 ---
 title: "OpenTable Integration"
-description: "Automatische Restaurant-Reservierungen über OpenTable direkt während Kundengesprächem für nahtlose Tischbuchungs-Services"
+description: "Automatic restaurant reservations via OpenTable directly during customer calls for seamless table booking services"
 icon: "calendar-check"
 ---
 
-
 # OpenTable Integration Template
 
-Integrieren Sie OpenTable-Reservierungssystem in Ihre Mid-call Actions mit zwei mächtigen Funktionen: Verfügbarkeit prüfen und Tischreservierungen erstellen - perfekt für Concierge-Services und Restaurant-Empfehlungen.
+Integrate the OpenTable reservation system into your Mid-call Actions with two powerful features: Check Availability and Create Reservations – perfect for concierge services and restaurant recommendations.
 
-## Überblick & Funktionen
+## Overview & Features
 
 <CardGroup cols={2}>
-  <Card title="Verfügbarkeit prüfen" icon="search">
-    - Echtzeit-Tischverfügbarkeit abfragen
-    - Flexible Zeitfenster-Suche (±2 Stunden)
-    - Gruppengröße und Sonderwünsche berücksichtigen
-    - Premium-Restaurant-Netzwerk-Zugang
+  <Card title="Check Availability" icon="search">
+    - Query real-time table availability  
+    - Flexible time window search (±2 hours)  
+    - Consider party size and special requests  
+    - Access to a premium restaurant network  
   </Card>
-  <Card title="Reservierung erstellen" icon="calendar-plus">
-    - Sofortige Tischbuchung während des Gesprächs
-    - Automatische Bestätigungs-E-Mails
-    - Sonderwünsche und Anlass-Dokumentation
-    - Integration mit Kalender- und CRM-Systemen
+  <Card title="Create Reservation" icon="calendar-plus">
+    - Instant table booking during the call  
+    - Automatic confirmation emails  
+    - Documentation of special requests and occasion  
+    - Integration with calendar and CRM systems  
   </Card>
 </CardGroup>
 
-## Tool 1: Verfügbarkeit prüfen
+## Tool 1: Check Availability
 
-### Konfiguration im Famulor Interface
+### Configuration in the Famulor Interface
 
 <Tabs>
-  <Tab title="Werkzeugdetails">
-    | Feld | Wert |
-    |------|------|
+  <Tab title="Tool Details">
+    | Field | Value |
+    |-------|-------|
     | **Name*** | `OpenTable Verfügbarkeit prüfen` |
-    | **Beschreibung** | "Prüft verfügbare Tischzeiten in Restaurants für Reservierungsanfragen" |
-    | **Funktionsname*** | `check_opentable_availability` |
-    | **Funktionsbeschreibung*** | "Sucht verfügbare Reservierungszeiten. Verwenden Sie dies, wenn ein Kunde nach freien Tischen oder Reservierungsmöglichkeiten fragt." |
-    | **HTTP-Methode** | `GET` |
+    | **Description** | "Checks available table times in restaurants for reservation requests" |
+    | **Function Name*** | `check_opentable_availability` |
+    | **Function Description*** | "Searches for available reservation times. Use this when a customer asks about free tables or reservation options." |
+    | **HTTP Method** | `GET` |
     | **Timeout (ms)** | `3000` |
     | **Endpoint*** | `https://platform.opentable.com/api/v2/availability` |
   </Tab>
   
-  <Tab title="Query-Parameter">
+  <Tab title="Query Parameters">
     ```json
     {
       "restaurant_id": "{restaurant_id}",
@@ -57,7 +56,7 @@ Integrieren Sie OpenTable-Reservierungssystem in Ihre Mid-call Actions mit zwei 
   </Tab>
 </Tabs>
 
-### Parameter-Schema für Verfügbarkeit
+### Parameter Schema for Availability
 
 ```json
 {
@@ -65,22 +64,22 @@ Integrieren Sie OpenTable-Reservierungssystem in Ihre Mid-call Actions mit zwei 
   "properties": {
     "restaurant_id": {
       "type": "string",
-      "description": "OpenTable Restaurant-ID"
+      "description": "OpenTable restaurant ID"
     },
     "party_size": {
       "type": "integer",
-      "description": "Anzahl Personen",
+      "description": "Number of guests",
       "minimum": 1,
       "maximum": 20
     },
     "date": {
       "type": "string",
       "format": "date",
-      "description": "Gewünschtes Datum (YYYY-MM-DD)"
+      "description": "Desired date (YYYY-MM-DD)"
     },
     "time": {
       "type": "string",
-      "description": "Gewünschte Uhrzeit (HH:MM)",
+      "description": "Desired time (HH:MM)",
       "pattern": "^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$"
     }
   },
@@ -88,19 +87,19 @@ Integrieren Sie OpenTable-Reservierungssystem in Ihre Mid-call Actions mit zwei 
 }
 ```
 
-**Agent-Message**: `"Ich prüfe die Verfügbarkeit für {{party_size}} Personen am {{date}}..."`
+**Agent Message**: `"Checking availability for {{party_size}} guests on {{date}}..."`
 
-**Success-Template**: `"Verfügbare Zeiten im {{restaurantName}}: {{availableSlots[0].time}}, {{availableSlots[1].time}} und {{availableSlots[2].time}}"`
+**Success Template**: `"Available times at {{restaurantName}}: {{availableSlots[0].time}}, {{availableSlots[1].time}}, and {{availableSlots[2].time}}"`
 
-## Tool 2: Reservierung erstellen
+## Tool 2: Create Reservation
 
-### Konfiguration im Famulor Interface
+### Configuration in the Famulor Interface
 
 <Tabs>
-  <Tab title="Werkzeugdetails">
+  <Tab title="Tool Details">
     | **Name*** | `OpenTable Reservierung erstellen` |
-    | **Funktionsname*** | `create_opentable_reservation` |
-    | **HTTP-Methode** | `POST` |
+    | **Function Name*** | `create_opentable_reservation` |
+    | **HTTP Method** | `POST` |
     | **Endpoint*** | `https://platform.opentable.com/api/v2/reservations` |
     | **Timeout (ms)** | `5000` |
   </Tab>
@@ -125,7 +124,7 @@ Integrieren Sie OpenTable-Reservierungssystem in Ihre Mid-call Actions mit zwei 
   </Tab>
 </Tabs>
 
-### Parameter-Schema für Reservierung
+### Parameter Schema for Reservation
 
 ```json
 {
@@ -133,60 +132,60 @@ Integrieren Sie OpenTable-Reservierungssystem in Ihre Mid-call Actions mit zwei 
   "properties": {
     "restaurant_id": {
       "type": "string",
-      "description": "Restaurant-ID von OpenTable"
+      "description": "OpenTable restaurant ID"
     },
     "availability_token": {
-      "type": "string", 
-      "description": "Token von der Verfügbarkeitsprüfung"
+      "type": "string",
+      "description": "Token from the availability check"
     },
     "party_size": {
       "type": "integer",
-      "description": "Anzahl Personen"
+      "description": "Number of guests"
     },
     "date_time": {
       "type": "string",
-      "description": "Datum und Zeit der Reservierung"
+      "description": "Date and time of the reservation"
     },
     "first_name": {
       "type": "string",
-      "description": "Vorname des Gastes"
+      "description": "Guest's first name"
     },
     "last_name": {
       "type": "string",
-      "description": "Nachname des Gastes"
+      "description": "Guest's last name"
     },
     "email": {
       "type": "string",
       "format": "email",
-      "description": "E-Mail-Adresse für Bestätigung"
+      "description": "Email address for confirmation"
     },
     "phone": {
       "type": "string",
-      "description": "Telefonnummer für Restaurant-Kontakt"
+      "description": "Phone number for restaurant contact"
     },
     "special_requests": {
       "type": "string",
-      "description": "Sonderwünsche (Allergie, Terrasse, etc.)"
+      "description": "Special requests (allergies, terrace, etc.)"
     },
     "occasion": {
       "type": "string",
       "enum": ["birthday", "anniversary", "business", "date_night"],
-      "description": "Anlass der Reservierung"
+      "description": "Occasion for the reservation"
     }
   },
   "required": ["restaurant_id", "availability_token", "party_size", "date_time", "first_name", "last_name", "phone"]
 }
 ```
 
-**Success-Template**: `"Reservierung bestätigt! Bestätigungsnummer: {{confirmationNumber}}. Sie erhalten eine Bestätigung per E-Mail."`
+**Success Template**: `"Reservation confirmed! Confirmation number: {{confirmationNumber}}. You will receive a confirmation via email."`
 
-## Kompletter Workflow-Beispiel
+## Complete Workflow Example
 
 ```mermaid
 flowchart TD
-    A[Kunde möchte Essen bestellen] --> B{Service-Typ?}
-    B -->|Restaurant-Reservierung| C[OpenTable-Workflow]
-    B -->|Lieferung| D[Lieferando-Workflow]
+    A[Customer wants to order food] --> B{Service Type?}
+    B -->|Restaurant Reservation| C[OpenTable Workflow]
+    B -->|Delivery| D[Lieferando Workflow]
     
     C --> E[check_opentable_availability]
     E --> F[create_opentable_reservation]
@@ -195,49 +194,49 @@ flowchart TD
     G --> H[get_lieferando_menu]
     H --> I[create_lieferando_order]
     
-    F --> J[Reservierung bestätigt]
-    I --> K[Bestellung aufgegeben]
+    F --> J[Reservation confirmed]
+    I --> K[Order placed]
 ```
 
-### Praktisches Gesprächsbeispiel
+### Practical Conversation Example
 
 <AccordionGroup>
-  <Accordion title="Lieferando-Bestellung komplett">
-    **Kunde**: "Ich hätte gerne Pizza geliefert nach München 80331"
+  <Accordion title="Complete Lieferando Order">
+    **Customer**: "I would like to have pizza delivered to Munich 80331"
     
-    **KI**: "Ich suche Pizza-Restaurants in 80331..."
+    **AI**: "Searching for pizza restaurants in 80331..."
     
     *→ `search_lieferando_restaurants`*
     
-    **KI**: "Ich habe 8 Pizza-Restaurants gefunden. Mario's Pizzeria hat 4.7 Sterne und 25 Minuten Lieferzeit. Soll ich die Speisekarte zeigen?"
+    **AI**: "I found 8 pizza restaurants. Mario’s Pizzeria has 4.7 stars and a 25-minute delivery time. Should I show the menu?"
     
-    **Kunde**: "Ja, gerne!"
+    **Customer**: "Yes, please!"
     
     *→ `get_lieferando_menu`*
     
-    **KI**: "Mario's hat 12 Pizza-Kategorien. Die Margherita kostet 9,50€, Pizza Salami 11,90€. Was darf es sein?"
+    **AI**: "Mario’s has 12 pizza categories. The Margherita costs €9.50, Pizza Salami €11.90. What would you like?"
     
-    **Kunde**: "Eine Pizza Salami bitte, Lieferung an Musterstraße 15"
+    **Customer**: "One Pizza Salami, please, delivered to Musterstraße 15"
     
     *→ `create_lieferando_order`*
     
-    **KI**: "Bestellung erfolgreich! Bestellnummer: LI-2024-456. Lieferzeit: 30 Minuten. Gesamtbetrag: 13,40€ inkl. Lieferkosten."
+    **AI**: "Order successful! Order number: LI-2024-456. Delivery time: 30 minutes. Total amount: €13.40 including delivery."
   </Accordion>
   
-  <Accordion title="OpenTable-Reservierung">
-    **Kunde**: "Können Sie mir einen Tisch im Ritz für heute Abend reservieren?"
+  <Accordion title="OpenTable Reservation">
+    **Customer**: "Can you book me a table at the Ritz for tonight?"
     
-    **KI**: "Ich prüfe die Verfügbarkeit für heute Abend im Ritz..."
+    **AI**: "Checking availability for tonight at the Ritz..."
     
     *→ `check_opentable_availability`*
     
-    **KI**: "Verfügbare Zeiten im Hotel Ritz Restaurant: 19:00, 19:30 und 21:15. Für wie viele Personen?"
+    **AI**: "Available times at the Hotel Ritz restaurant: 19:00, 19:30, and 21:15. For how many guests?"
     
-    **Kunde**: "2 Personen um 19:30 wäre perfekt"
+    **Customer**: "2 people at 19:30 would be perfect"
     
     *→ `create_opentable_reservation`*
     
-    **KI**: "Reservierung bestätigt! Bestätigungsnummer: OT-789123. Sie haben einen Tisch für 2 Personen heute um 19:30 im Ritz."
+    **AI**: "Reservation confirmed! Confirmation number: OT-789123. You have a table for 2 guests tonight at 19:30 at the Ritz."
   </Accordion>
 </AccordionGroup>
 

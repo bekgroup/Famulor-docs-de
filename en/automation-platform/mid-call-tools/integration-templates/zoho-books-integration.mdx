@@ -1,19 +1,18 @@
 ---
 title: "Zoho Books Integration"
-description: "Automatische Rechnungserstellung in Zoho Books für internationale Buchhaltung und Multi-Currency-Management"
+description: "Automatic invoice creation in Zoho Books for international accounting and multi-currency management"
 icon: "book"
 ---
 
-
 # Zoho Books Integration Template
 
-## Konfiguration im Famulor Interface
+## Configuration in the Famulor Interface
 
 <Tabs>
-  <Tab title="Werkzeugdetails">
-    | **Name*** | `Zoho Books Rechnung` |
-    | **Funktionsname*** | `create_zoho_invoice` |
-    | **HTTP-Methode** | `POST` |
+  <Tab title="Tool Details">
+    | **Name*** | `Zoho Books Invoice` |
+    | **Function Name*** | `create_zoho_invoice` |
+    | **HTTP Method** | `POST` |
     | **Endpoint*** | `https://books.zoho.eu/api/v3/invoices` |
     | **Timeout (ms)** | `5000` |
   </Tab>
@@ -39,7 +38,7 @@ icon: "book"
   </Tab>
 </Tabs>
 
-### Parameter-Schema
+### Parameter Schema
 
 ```json
 {
@@ -47,35 +46,35 @@ icon: "book"
   "properties": {
     "customer_id": {
       "type": "string",
-      "description": "Kunden-ID"
+      "description": "Customer ID"
     },
     "invoice_date": {
       "type": "string",
       "format": "date",
-      "description": "Rechnungsdatum"
+      "description": "Invoice date"
     },
     "due_date": {
       "type": "string",
       "format": "date",
-      "description": "Fälligkeitsdatum"
+      "description": "Due date"
     },
     "description": {
       "type": "string",
-      "description": "Leistungsbeschreibung"
+      "description": "Service description"
     },
     "quantity": {
       "type": "number",
-      "description": "Menge"
+      "description": "Quantity"
     },
     "rate": {
       "type": "number",
-      "description": "Einzelpreis"
+      "description": "Unit price"
     }
   },
   "required": ["customer_id", "invoice_date"]
 }
 ```
 
-**Success-Template**: `"Rechnung {{invoiceNumber}} erstellt. Betrag: {{total}}€, fällig am {{due_date}}"`
+**Success Template**: `"Invoice {{invoiceNumber}} created. Amount: {{total}}€, due on {{due_date}}"`
 
 ---

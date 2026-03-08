@@ -1,66 +1,65 @@
 ---
-title: "Webhook-Integration mit Famulor Automation"
-description: "Mid-call Actions über Webhooks mit der Famulor Automation Platform verbinden für erweiterte Workflow-Automatisierung"
+title: "Webhook Integration with Famulor Automation"
+description: "Connect mid-call actions via webhooks to the Famulor Automation Platform for advanced workflow automation"
 icon: "link"
 ---
 
+# Webhook Integration with Famulor Automation
 
-# Webhook-Integration mit Famulor Automation
+Mid-call actions can not only execute direct API calls but can also be connected via webhooks to the Famulor Automation Platform. This enables complex, multi-step workflows and the use of all available integrations on the no-code platform.
 
-Mid-call Actions können nicht nur direkte API-Calls ausführen, sondern auch über Webhooks mit der Famulor Automation Platform verbunden werden. Dies ermöglicht komplexe, mehrstufige Workflows und die Nutzung aller verfügbaren Integrationen der No-Code-Plattform.
-
-## Überblick der Webhook-Integration
+## Overview of the Webhook Integration
 
 <CardGroup cols={2}>
-  <Card title="Direkte API vs. Webhook" icon="code-branch">
-    **Direkter API-Call**: Einfache 1:1 Datenabfrage oder -übertragung
+  <Card title="Direct API vs. Webhook" icon="code-branch">
+    **Direct API Call**: Simple 1:1 data query or transmission
     
-    **Webhook-Integration**: Komplexe Workflows mit mehreren Systemen, Datenverarbeitung und Geschäftslogik
+    **Webhook Integration**: Complex workflows involving multiple systems, data processing, and business logic
   </Card>
-  <Card title="Erweiterte Möglichkeiten" icon="magic">
-    - Multi-System-Integrationen in einem Workflow
-    - Bedingte Logik und Entscheidungsbäume
-    - Datenaufbereitung und -transformation
-    - Zeitverzögerte Aktionen und Follow-ups
+  <Card title="Advanced Capabilities" icon="magic">
+    - Multi-system integrations within one workflow
+    - Conditional logic and decision trees
+    - Data preparation and transformation
+    - Time-delayed actions and follow-ups
   </Card>
 </CardGroup>
 
-## Funktionsweise
+## How It Works
 
 ```mermaid
 sequenceDiagram
-    participant K as Kunde
-    participant A as KI-Assistant
-    participant W as Webhook-Tool
+    participant K as Customer
+    participant A as AI Assistant
+    participant W as Webhook Tool
     participant F as Famulor Automation
     participant CRM as CRM System
-    participant E as E-Mail Service
+    participant E as Email Service
     participant S as Slack
     
-    K->>A: "Meine E-Mail ist max@beispiel.de"
+    K->>A: "My email is max@example.com"
     A->>W: trigger_automation_webhook
     W->>F: POST /webhook/automation-flow
-    F->>CRM: Kontakt in HubSpot suchen
-    CRM-->>F: Kontaktdaten zurückgeben
-    F->>E: Willkommens-E-Mail senden
-    F->>S: Sales-Team benachrichtigen
-    F->>F: Follow-up-Task für morgen planen
-    F-->>W: Workflow-Status + Ergebnisse
-    W-->>A: Strukturierte Antwortdaten
-    A->>K: "Hallo Max! Ich habe alles für Sie eingerichtet..."
+    F->>CRM: Search contact in HubSpot
+    CRM-->>F: Return contact data
+    F->>E: Send welcome email
+    F->>S: Notify sales team
+    F->>F: Schedule follow-up task for tomorrow
+    F-->>W: Workflow status + results
+    W-->>A: Structured response data
+    A->>K: "Hello Max! I've set everything up for you..."
 ```
 
-## Webhook-Tool konfigurieren
+## Configuring the Webhook Tool
 
-### 1. Basis-Konfiguration
+### 1. Basic Configuration
 
 <Tabs>
-  <Tab title="Tool-Setup">
-    | Parameter | Wert |
-    |-----------|------|
-    | **Funktionsname** | `trigger_famulor_automation` |
-    | **Beschreibung** | "Startet einen Famulor Automation-Workflow mit Gesprächsdaten als Input. Verwenden Sie dies für komplexe Multi-System-Operationen." |
-    | **HTTP-Methode** | `POST` |
+  <Tab title="Tool Setup">
+    | Parameter | Value |
+    |-----------|-------|
+    | **Function name** | `trigger_famulor_automation` |
+    | **Description** | "Starts a Famulor Automation workflow using call data as input. Use this for complex multi-system operations." |
+    | **HTTP Method** | `POST` |
     | **URL** | `https://app.famulor.de/api/webhook/automation/{flow_id}` |
     | **Timeout** | `15000ms` |
   </Tab>
@@ -105,7 +104,7 @@ sequenceDiagram
 }
 ```
 
-### 3. Parameter-Schema
+### 3. Parameter Schema
 
 ```json
 {
@@ -113,120 +112,120 @@ sequenceDiagram
   "properties": {
     "flow_id": {
       "type": "string",
-      "description": "ID des Famulor Automation Workflows, der ausgeführt werden soll"
+      "description": "ID of the Famulor Automation workflow to execute"
     },
     "email": {
       "type": "string",
       "format": "email",
-      "description": "E-Mail-Adresse des Kunden"
+      "description": "Customer's email address"
     },
     "phone": {
-      "type": "string", 
-      "description": "Telefonnummer des Kunden"
+      "type": "string",
+      "description": "Customer's phone number"
     },
     "full_name": {
       "type": "string",
-      "description": "Vollständiger Name des Kunden"
+      "description": "Customer's full name"
     },
     "company": {
       "type": "string",
-      "description": "Firmenname des Kunden"
+      "description": "Customer's company name"
     },
     "summary": {
       "type": "string",
-      "description": "Zusammenfassung der wichtigsten Gesprächspunkte"
+      "description": "Summary of key conversation points"
     },
     "intent": {
       "type": "string",
       "enum": ["support", "sales", "information", "complaint", "partnership"],
-      "description": "Erkannte Gesprächsabsicht"
+      "description": "Detected conversation intent"
     },
     "urgency": {
       "type": "string",
       "enum": ["low", "medium", "high", "critical"],
-      "description": "Dringlichkeitsstufe basierend auf Gesprächsinhalt"
+      "description": "Urgency level based on conversation content"
     },
     "calculated_priority": {
       "type": "string",
       "enum": ["low", "medium", "high"],
-      "description": "Berechnete Priorität für Follow-up-Aktionen"
+      "description": "Calculated priority for follow-up actions"
     },
     "team_assignment": {
       "type": "string",
       "enum": ["sales", "support", "success", "technical"],
-      "description": "Empfohlenes Team für Follow-up"
+      "description": "Recommended team for follow-up"
     },
     "budget_info": {
       "type": "string",
-      "description": "Erwähnte Budget-Informationen"
+      "description": "Mentioned budget information"
     },
     "timeline": {
-      "type": "string", 
-      "description": "Genannter Zeitrahmen oder Deadline"
+      "type": "string",
+      "description": "Mentioned timeframe or deadline"
     },
     "pain_points": {
       "type": "array",
       "items": {"type": "string"},
-      "description": "Array der identifizierten Pain Points"
+      "description": "Array of identified pain points"
     },
     "competitors": {
       "type": "array",
       "items": {"type": "string"},
-      "description": "Erwähnte Konkurrenten oder alternative Lösungen"
+      "description": "Mentioned competitors or alternative solutions"
     }
   },
   "required": ["flow_id", "email", "summary", "intent"]
 }
 ```
 
-## Praxisbeispiele für Webhook-Workflows
+## Practical Examples of Webhook Workflows
 
-### 1. Lead-Qualifizierung & -Routing
+### 1. Lead Qualification & Routing
 
 <AccordionGroup>
-  <Accordion title="Workflow-Logik">
+  <Accordion title="Workflow Logic">
 ```yaml
-Workflow-Name: "Smart Lead Processing"
-Trigger: Webhook von Mid-call Action
+Workflow Name: "Smart Lead Processing"
+Trigger: Webhook from Mid-call Action
 
-Schritte:
-  1. Duplicate-Check in HubSpot
-  2. Wenn neu → Lead erstellen
-  3. Wenn bekannt → Kontakt-Historie abrufen
-  4. Lead-Scoring basierend auf:
-     - Firmengröße (Clearbit/LinkedIn)
-     - Budgetangaben aus Gespräch
-     - Urgency-Level
-     - Bisherige Interaktionen
-  5. Team-Assignment basierend auf Score:
-     - &gt;80: Enterprise Sales Team
+Steps:
+  1. Duplicate check in HubSpot
+  2. If new → create lead
+  3. If known → retrieve contact history
+  4. Lead scoring based on:
+     - Company size (Clearbit/LinkedIn)
+     - Budget info from conversation
+     - Urgency level
+     - Previous interactions
+  5. Team assignment based on score:
+     - >80: Enterprise Sales Team
      - 50-80: Standard Sales Team  
-     - &lt;50: Inside Sales/Nurturing
-  6. Follow-up-Sequence starten:
-     - E-Mail-Bestätigung an Kunde
-     - Slack-Notification an Team
-     - Task-Creation in CRM
-     - Calendar-Invite für Follow-up-Call
+     - <50: Inside Sales/Nurturing
+  6. Start follow-up sequence:
+     - Confirmation email to customer
+     - Slack notification to team
+     - Task creation in CRM
+     - Calendar invite for follow-up call
 ```
   </Accordion>
   
-  <Accordion title="Bedingte Verzweigungen">
+  <Accordion title="Conditional Branching">
 ```yaml
-Bedingungen_im_Workflow:
-  Wenn urgency == "critical":
-    → Sofortige SMS an Sales Manager
-    → Prioritäts-Flag in CRM setzen
-    → Meeting innerhalb 4 Stunden buchen
+Workflow_Conditions:
+  If urgency == "critical":
+    → Immediate SMS to sales manager
+    → Set priority flag in CRM
+    → Schedule meeting within 4 hours
   
-  Wenn competitor_mentioned:
-    → Competitive Intelligence Tool triggern
-    → Battle Card an Sales-Rep senden
-    → Pricing-Strategy-Alert
+  If competitor_mentioned:
+    → Trigger competitive intelligence tool
+    → Send battle card to sales rep
+    → Alert pricing strategy team
   
-  Wenn budget > 100k:
-    → Enterprise Team assignment
-    → C-Level Executive als Contact Owner
-    → Custom Demo-Environment bereitstellen
+  If budget > 100k:
+    → Assign to enterprise team
+    → Set C-level executive as contact owner
+    → Provide custom demo environment
 ```
   </Accordion>
 </AccordionGroup>
@@ -234,47 +233,47 @@ Bedingungen_im_Workflow:
 ### 2. Customer Success Automation
 
 <Tabs>
-  <Tab title="Support-Ticket-Workflow">
+  <Tab title="Support Ticket Workflow">
     ```yaml
     Trigger: intent == "support"
     
-    Workflow-Steps:
-      1. HubSpot-Ticket erstellen
-      2. Ähnliche Tickets suchen (Knowledge Base)
-      3. Wenn FAQ-Lösung existiert:
-         → Automated Response E-Mail
-         → Ticket als "self-service" markieren
-      4. Wenn komplex:
-         → Technical Team assignment
-         → SLA-Timer starten
-         → Kunden-Benachrichtigung über Response-Zeit
-      5. Integration mit:
-         → Jira (für Bug-Tracking)
-         → Confluence (Knowledge Base Update)
-         → Slack (Team-Communication)
+    Workflow Steps:
+      1. Create HubSpot ticket
+      2. Search similar tickets (knowledge base)
+      3. If FAQ solution exists:
+         → Automated response email
+         → Mark ticket as "self-service"
+      4. If complex:
+         → Assign technical team
+         → Start SLA timer
+         → Notify customer about response time
+      5. Integrations with:
+         → Jira (for bug tracking)
+         → Confluence (knowledge base updates)
+         → Slack (team communication)
     ```
   </Tab>
   
-  <Tab title="Onboarding-Automation">
+  <Tab title="Onboarding Automation">
     ```yaml
     Trigger: intent == "onboarding"
     
-    Multi-System-Integration:
+    Multi-System Integration:
       1. Customer Success Platform:
-         → Onboarding-Plan erstellen
-         → Success Manager zuweisen
-      2. E-Mail-Marketing:
-         → Welcome-Serie starten
-         → Resource-E-Mails senden
+         → Create onboarding plan
+         → Assign success manager
+      2. Email Marketing:
+         → Start welcome series
+         → Send resource emails
       3. Learning Management:
-         → Training-Account erstellen
-         → Kurse zuweisen
+         → Create training account
+         → Assign courses
       4. Calendar:
-         → Kickoff-Meeting buchen
-         → Check-in-Termine setzen
-      5. CRM-Updates:
-         → Customer Journey Stage
-         → Health Score initialisieren
+         → Book kickoff meeting
+         → Schedule check-in appointments
+      5. CRM Updates:
+         → Update customer journey stage
+         → Initialize health score
     ```
   </Tab>
 </Tabs>
@@ -306,64 +305,64 @@ flowchart TD
     N --> P[Marketing Automation]
 ```
 
-## Erweiterte Webhook-Konfigurationen
+## Advanced Webhook Configurations
 
-### Multi-Workflow-Orchestration
+### Multi-Workflow Orchestration
 
 <AccordionGroup>
-  <Accordion title="Parallel-Workflows">
+  <Accordion title="Parallel Workflows">
     ```yaml
-    Haupt-Workflow: "Customer Intake Processing"
+    Main Workflow: "Customer Intake Processing"
     
-    Parallel_ausgeführte_Sub-Workflows:
-      1. CRM_Processing:
-         - Lead/Contact Creation
-         - Deal Management
-         - Activity Logging
+    Parallel Executed Sub-Workflows:
+      1. CRM Processing:
+         - Lead/contact creation
+         - Deal management
+         - Activity logging
       
-      2. Communication_Automation:
-         - E-Mail Sequences
-         - SMS Notifications
-         - Slack Updates
+      2. Communication Automation:
+         - Email sequences
+         - SMS notifications
+         - Slack updates
       
-      3. Data_Enrichment:
-         - Company Information (Clearbit)
-         - Social Media Profiles
-         - Technographic Data
+      3. Data Enrichment:
+         - Company information (Clearbit)
+         - Social media profiles
+         - Technographic data
       
-      4. Compliance_Processing:
-         - DSGVO Consent Management
-         - Data Retention Policies  
-         - Audit Trail Creation
+      4. Compliance Processing:
+         - GDPR consent management
+         - Data retention policies  
+         - Audit trail creation
     ```
   </Accordion>
   
-  <Accordion title="Sequential-Workflows mit Approval">
+  <Accordion title="Sequential Workflows with Approval">
     ```yaml
-    Workflow: "High-Value-Lead-Processing"
+    Workflow: "High-Value Lead Processing"
     
     Sequence:
-      1. Initial_Processing:
-         - Lead erstellen
-         - Basic Enrichment
-         - Score berechnen
+      1. Initial Processing:
+         - Create lead
+         - Basic enrichment
+         - Calculate score
       
-      2. Approval_Gate:
-         Wenn Lead-Score > 90:
-           → Manager Approval erforderlich
-           → Hold bis Approval
-         Sonst:
-           → Direct Processing
+      2. Approval Gate:
+         If lead score > 90:
+           → Manager approval required
+           → Hold until approval
+         Else:
+           → Direct processing
       
-      3. Post_Approval:
-         - Enterprise Team Assignment
-         - Premium Onboarding initiieren
-         - Executive Sponsor definieren
+      3. Post Approval:
+         - Assign enterprise team
+         - Initiate premium onboarding
+         - Define executive sponsor
       
-      4. Follow_up:
-         - 24h Check-in
-         - Weekly Status Updates
-         - Quarterly Business Reviews planen
+      4. Follow-up:
+         - 24h check-in
+         - Weekly status updates
+         - Plan quarterly business reviews
     ```
   </Accordion>
 </AccordionGroup>
@@ -371,52 +370,52 @@ flowchart TD
 ### Error Handling & Retry Logic
 
 <Tabs>
-  <Tab title="Retry-Mechanismen">
+  <Tab title="Retry Mechanisms">
     ```yaml
-    Retry-Konfiguration:
-      Max_Retries: 3
-      Backoff_Strategy: exponential
-      Initial_Delay: 2s
-      Max_Delay: 30s
+    Retry Configuration:
+      Max retries: 3
+      Backoff strategy: exponential
+      Initial delay: 2s
+      Max delay: 30s
       
-    Retry-Bedingungen:
-      - HTTP 429 (Rate Limiting)
-      - HTTP 502/503 (Service Unavailable)
-      - Timeout Errors
-      - Network Connection Issues
+    Retry Conditions:
+      - HTTP 429 (rate limiting)
+      - HTTP 502/503 (service unavailable)
+      - Timeout errors
+      - Network connection issues
     
-    Fallback_bei_Final_Failure:
-      - Error-Notification an Admin
-      - Fallback auf einfachen Direct API Call
-      - Manual Processing Queue
+    Fallback on final failure:
+      - Error notification to admin
+      - Fallback to simple direct API call
+      - Manual processing queue
     ```
   </Tab>
   
   <Tab title="Partial Failure Handling">
     ```yaml
-    Workflow_mit_Fehlerbehandlung:
-      Step_1_CRM_Update:
-        Success: Continue to Step 2
-        Failure: Log Error, Continue with Fallback
+    Workflow with error handling:
+      Step 1 CRM update:
+        Success: Continue to step 2
+        Failure: Log error, continue with fallback
       
-      Step_2_Email_Send:
-        Success: Continue to Step 3
-        Failure: Retry 2x, dann Skip
+      Step 2 Email send:
+        Success: Continue to step 3
+        Failure: Retry 2x, then skip
       
-      Step_3_Slack_Notification:
-        Success: Workflow Complete
-        Failure: Log Warning, Complete Anyway
+      Step 3 Slack notification:
+        Success: Workflow complete
+        Failure: Log warning, complete anyway
     
-    Compensation_Actions:
-      Wenn kritische Steps fehlschlagen:
-        → Alternative Notification Methods
-        → Manual Task Creation
-        → Admin Escalation
+    Compensation actions:
+      If critical steps fail:
+        → Alternative notification methods
+        → Manual task creation
+        → Admin escalation
     ```
   </Tab>
 </Tabs>
 
-## Response-Verarbeitung
+## Response Processing
 
 ### Webhook Response Format
 
@@ -430,7 +429,7 @@ flowchart TD
     "lead_created": {
       "hubspot_contact_id": "12345",
       "lead_score": 85,
-      "assigned_owner": "sales@beispiel.de"
+      "assigned_owner": "sales@example.com"
     },
     "notifications_sent": {
       "email_confirmation": "sent",
@@ -440,7 +439,7 @@ flowchart TD
     "follow_up_scheduled": {
       "task_id": "task_98765",
       "due_date": "2024-01-16T10:00:00Z",
-      "assigned_to": "max.sales@beispiel.de"
+      "assigned_to": "max.sales@example.com"
     }
   },
   "errors": [],
@@ -450,134 +449,131 @@ flowchart TD
 }
 ```
 
-### KI-Integration der Webhook-Results
+### AI Integration of Webhook Results
 
 ```yaml
 Natural_Language_Processing:
   Success_Response:
-    "Perfekt! Ich habe Ihre Anfrage bearbeitet und ein Follow-up 
-     für morgen um 10 Uhr eingeplant. Mein Kollege Max wird 
-     sich bei Ihnen melden."
+    "Perfect! I have processed your request and scheduled a follow-up 
+     for tomorrow at 10 am. My colleague Max will get in touch with you."
   
   Partial_Success:
-    "Alles ist eingerichtet. Es gab einen kleinen technischen 
-     Hinweis mit dem SMS-Service, aber die E-Mail-Bestätigung 
-     haben Sie erhalten."
+    "Everything is set up. There was a minor technical note regarding the SMS service, 
+     but you have received the email confirmation."
   
   Warning_Handling:
-    "Ihre Anfrage wurde erfolgreich verarbeitet. Sollten Sie 
-     nicht innerhalb der nächsten Stunde eine Bestätigung 
-     erhalten, melden Sie sich gerne."
+    "Your request was processed successfully. If you do not receive confirmation 
+     within the next hour, please feel free to contact us."
 ```
 
 ## Performance & Monitoring
 
-### Webhook-Performance-Metriken
+### Webhook Performance Metrics
 
-| Metrik | Zielwert | Kritischer Wert |
-|--------|----------|-----------------|
-| **Execution Time** | &lt;5 Sekunden | &gt;15 Sekunden |
-| **Success Rate** | &gt;95% | &lt;85% |
-| **Retry Rate** | &lt;10% | &gt;25% |
-| **Partial Success Rate** | &gt;98% | &lt;90% |
+| Metric                  | Target Value | Critical Value |
+|-------------------------|--------------|----------------|
+| **Execution Time**       | < 5 seconds  | > 15 seconds   |
+| **Success Rate**         | > 95%        | < 85%          |
+| **Retry Rate**           | < 10%        | > 25%          |
+| **Partial Success Rate** | > 98%        | < 90%          |
 
 ### Monitoring & Alerting
 
 <Steps>
   <Step title="Real-time Monitoring">
     ```yaml
-    Dashboard-Metriken:
-      - Webhook-Erfolgsrate
-      - Durchschnittliche Execution Time
-      - Error-Rate nach Workflow-Type
-      - Queue-Größe bei High Load
+    Dashboard Metrics:
+      - Webhook success rate
+      - Average execution time
+      - Error rate by workflow type
+      - Queue size under high load
     ```
   </Step>
   
-  <Step title="Alerting-Rules">
+  <Step title="Alerting Rules">
     ```yaml
-    Kritische_Alerts:
-      - Success Rate &lt;90% über 5 Minuten
-      - Execution Time &gt;10s für &gt;10 Requests
-      - Error Rate &gt;20% über 2 Minuten
+    Critical Alerts:
+      - Success rate < 90% over 5 minutes
+      - Execution time > 10s for > 10 requests
+      - Error rate > 20% over 2 minutes
     
-    Warning_Alerts:
-      - Queue-Größe &gt;50 Pending
-      - Retry-Rate &gt;15%
-      - einzelne Workflow-Failures
+    Warning Alerts:
+      - Queue size > 50 pending
+      - Retry rate > 15%
+      - Individual workflow failures
     ```
   </Step>
 </Steps>
 
 ## Best Practices
 
-### Workflow-Design
+### Workflow Design
 
 <CardGroup cols={2}>
-  <Card title="Idempotenz sicherstellen" icon="shield">
-    - Workflows können mehrfach ausgeführt werden
-    - Duplicate-Checks implementieren
-    - State-Management für Retry-Szenarien
-    - Transaktionale Operationen verwenden
+  <Card title="Ensure Idempotency" icon="shield">
+    - Workflows can be executed multiple times
+    - Implement duplicate checks
+    - State management for retry scenarios
+    - Use transactional operations
   </Card>
-  <Card title="Performance-Optimierung" icon="rocket">
-    - Parallel ausführbare Steps identifizieren
-    - Timeout-Werte angemessen setzen
-    - Unnötige API-Calls vermeiden
-    - Caching für häufige Abfragen nutzen
+  <Card title="Performance Optimization" icon="rocket">
+    - Identify steps that can be executed in parallel
+    - Set appropriate timeout values
+    - Avoid unnecessary API calls
+    - Use caching for frequent queries
   </Card>
 </CardGroup>
 
 ### Security Considerations
 
 <AccordionGroup>
-  <Accordion title="Webhook-Sicherheit">
+  <Accordion title="Webhook Security">
     ```yaml
     Authentication:
-      - Bearer Token für Famulor API
-      - Webhook-Signatur-Verification
-      - IP-Whitelisting für Webhook-Endpoints
-      - Rate-Limiting für Webhook-Calls
+      - Bearer token for Famulor API
+      - Webhook signature verification
+      - IP whitelisting for webhook endpoints
+      - Rate limiting for webhook calls
     
-    Data_Protection:
-      - Sensitive Daten nicht in URL-Parametern
-      - HTTPS für alle Webhook-Calls
-      - Payload-Verschlüsselung bei Bedarf
-      - Automatic PII-Redaction in Logs
+    Data Protection:
+      - Avoid sensitive data in URL parameters
+      - Use HTTPS for all webhook calls
+      - Payload encryption if needed
+      - Automatic PII redaction in logs
     ```
   </Accordion>
   
   <Accordion title="Compliance & Auditability">
     ```yaml
-    Audit_Trail:
-      - Alle Webhook-Executions loggen
-      - Data-Processing-Nachweise
-      - User-Consent-Tracking
-      - Retention-Policy-Compliance
+    Audit Trail:
+      - Log all webhook executions
+      - Data processing evidence
+      - User consent tracking
+      - Retention policy compliance
     
-    DSGVO_Considerations:
-      - Right-to-Deletion unterstützen
-      - Data-Minimization-Principles
-      - Purpose-Limitation beachten
-      - Cross-Border-Transfer-Controls
+    GDPR Considerations:
+      - Support right to deletion
+      - Follow data minimization principles
+      - Observe purpose limitation
+      - Control cross-border data transfers
     ```
   </Accordion>
 </AccordionGroup>
 
 ---
 
-<Card title="Integration-Beispiele" icon="code">
-Entdecken Sie praktische Webhook-Workflow-Beispiele:
+<Card title="Integration Examples" icon="code">
+Discover practical webhook workflow examples:
 
-- [HubSpot Integration](/automation-platform/mid-call-actions/integration-templates/hubspot-kontakt-abruf) für CRM-Automatisierung
-- [Slack Integration](/automation-platform/mid-call-actions/integration-templates/slack-integration) für Team-Benachrichtigungen
-- [SendGrid Integration](/automation-platform/mid-call-actions/integration-templates/sendgrid-integration) für E-Mail-Automation
+- [HubSpot Integration](/automation-platform/mid-call-actions/integration-templates/hubspot-kontakt-abruf) for CRM automation  
+- [Slack Integration](/automation-platform/mid-call-actions/integration-templates/slack-integration) for team notifications  
+- [SendGrid Integration](/automation-platform/mid-call-actions/integration-templates/sendgrid-integration) for email automation  
 </Card>
 
 <Info>
-**Tipp**: Beginnen Sie mit einfachen Webhook-Workflows und erweitern Sie schrittweise. Die Famulor Automation Platform bietet umfangreiche Debugging-Tools, um Workflow-Executions zu verfolgen und zu optimieren.
+**Tip**: Start with simple webhook workflows and expand gradually. The Famulor Automation Platform offers comprehensive debugging tools to track and optimize workflow executions.
 </Info>
 
 <Warning>
-**Wichtiger Hinweis**: Webhook-Workflows können komplexe Geschäftsprozesse automatisieren. Testen Sie alle Workflows ausführlich in einer Staging-Umgebung, bevor Sie sie in der Produktion einsetzen.
+**Important Notice**: Webhook workflows can automate complex business processes. Thoroughly test all workflows in a staging environment before deploying them in production.
 </Warning>
