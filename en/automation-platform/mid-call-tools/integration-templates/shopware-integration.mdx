@@ -1,40 +1,39 @@
 ---
 title: "Shopware Integration"
-description: "Shopware 6 E-Commerce-Integration für Produktsuche und Bestellungsmanagement während Kundengesprächem"
+description: "Shopware 6 e-commerce integration for product search and order management during customer conversations"
 icon: "store"
 ---
 
-
 # Shopware Integration Template
 
-## Tool 1: Produktsuche
+## Tool 1: Product Search
 
-### Konfiguration im Famulor Interface
+### Configuration in the Famulor Interface
 
 <Tabs>
-  <Tab title="Werkzeugdetails">
+  <Tab title="Tool Details">
     | **Name*** | `Shopware Produktsuche` |
-    | **Funktionsname*** | `search_shopware_products` |
-    | **HTTP-Methode** | `POST` |
+    | **Function Name*** | `search_shopware_products` |
+    | **HTTP Method** | `POST` |
     | **Endpoint*** | `https://{{SHOPWARE_URL}}/api/search/product` |
   </Tab>
 </Tabs>
 
-**Success-Template**: `"Ich habe {{total}} Produkte gefunden. {{products[0].name}}: {{products[0].price[0].gross}}€, {{products[0].availableStock}} Stück verfügbar."`
+**Success Template**: `"I found {{total}} products. {{products[0].name}}: €{{products[0].price[0].gross}}, {{products[0].availableStock}} units available."`
 
-## Tool 2: Bestellung anlegen
+## Tool 2: Create Order
 
-### Konfiguration im Famulor Interface
+### Configuration in the Famulor Interface
 
 <Tabs>
-  <Tab title="Werkzeugdetails">
+  <Tab title="Tool Details">
     | **Name*** | `Shopware Bestellung anlegen` |
-    | **Funktionsname*** | `create_shopware_order` |
-    | **HTTP-Methode** | `POST` |
+    | **Function Name*** | `create_shopware_order` |
+    | **HTTP Method** | `POST` |
     | **Endpoint*** | `https://{{SHOPWARE_URL}}/api/order` |
   </Tab>
 </Tabs>
 
-**Success-Template**: `"Bestellung {{orderNumber}} wurde erfolgreich angelegt. Der Kunde erhält eine Bestätigung an {{customer_email}}."`
+**Success Template**: `"Order {{orderNumber}} has been successfully created. The customer will receive a confirmation at {{customer_email}}."`
 
 ---

@@ -1,49 +1,49 @@
 ---
 title: "Personio Integration"
-description: "Automatischer Zugriff auf Mitarbeiterdaten über Personio für HR-Anfragen und interne Kommunikation während Telefongesprächem"
+description: "Automatic access to employee data via Personio for HR inquiries and internal communication during phone calls"
 icon: "users"
 ---
 
 
 # Personio Integration Template
 
-Integrieren Sie Personio HR-Management in Ihre Mid-call Actions für nahtlosen Zugriff auf Mitarbeiterdaten, Urlaubsstatus und Organisationsinformationen während interner und externer Gespräche.
+Integrate Personio HR management into your Mid-call Actions for seamless access to employee data, leave status, and organizational information during internal and external calls.
 
-## Überblick & Funktionen
+## Overview & Features
 
 <CardGroup cols={2}>
-  <Card title="HR-Daten-Zugriff" icon="address-book">
-    - Echtzeit-Mitarbeiterdaten-Abfrage
-    - Abteilungs- und Positionsinformationen
-    - Kontaktdaten und Erreichbarkeiten
-    - Organisationsstruktur-Navigation
+  <Card title="HR Data Access" icon="address-book">
+    - Real-time employee data queries
+    - Department and position information
+    - Contact details and availability
+    - Organizational structure navigation
   </Card>
-  <Card title="HR-Service-Automation" icon="headset">
-    - Schnelle Mitarbeiter-Verifizierung
-    - Urlaubsstatus und Abwesenheiten
-    - Personalverwaltungs-Support
-    - Compliance und Datenschutz-Integration
+  <Card title="HR Service Automation" icon="headset">
+    - Quick employee verification
+    - Leave status and absences
+    - HR support assistance
+    - Compliance and data protection integration
   </Card>
 </CardGroup>
 
 ## Personio API Setup
 
-### Konfiguration im Famulor Interface
+### Configuration in the Famulor Interface
 
 <Tabs>
-  <Tab title="Werkzeugdetails">
-    | Feld | Wert |
-    |------|------|
+  <Tab title="Tool Details">
+    | Field | Value |
+    |-------|-------|
     | **Name*** | `Personio Mitarbeiter abrufen` |
-    | **Beschreibung** | "Ruft Mitarbeiterdaten aus Personio ab für HR-Support und interne Kommunikation" |
-    | **Funktionsname*** | `get_personio_employee` |
-    | **Funktionsbeschreibung*** | "Ruft Mitarbeiterdaten aus Personio ab. Verwenden Sie dies für HR-Anfragen, Mitarbeiter-Verifizierung oder interne Koordination." |
-    | **HTTP-Methode** | `GET` |
+    | **Description** | "Retrieves employee data from Personio for HR support and internal communication" |
+    | **Function Name*** | `get_personio_employee` |
+    | **Function Description*** | "Retrieves employee data from Personio. Use this for HR inquiries, employee verification, or internal coordination." |
+    | **HTTP Method** | `GET` |
     | **Timeout (ms)** | `5000` |
     | **Endpoint*** | `https://api.personio.de/v1/company/employees/{employee_id}` |
   </Tab>
   
-  <Tab title="Header-Konfiguration">
+  <Tab title="Header Configuration">
     ```json
     {
       "Authorization": "Bearer {{PERSONIO_TOKEN}}",
@@ -54,7 +54,7 @@ Integrieren Sie Personio HR-Management in Ihre Mid-call Actions für nahtlosen Z
   </Tab>
 </Tabs>
 
-### Parameter-Schema
+### Parameter Schema
 
 ```json
 {
@@ -62,14 +62,14 @@ Integrieren Sie Personio HR-Management in Ihre Mid-call Actions für nahtlosen Z
   "properties": {
     "employee_id": {
       "type": "integer",
-      "description": "Personio Mitarbeiter-ID"
+      "description": "Personio employee ID"
     }
   },
   "required": ["employee_id"]
 }
 ```
 
-### Response-Mapping
+### Response Mapping
 
 ```json
 {

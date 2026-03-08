@@ -1,93 +1,92 @@
 ---
 title: "Notion Integration"
-description: "Automatische Seiten-Erstellung in Notion-Databases direkt während Kundengesprächem für strukturiertes Knowledge-Management und Dokumentation"
+description: "Automatic page creation in Notion databases directly during customer conversations for structured knowledge management and documentation"
 ---
-
 
 # Notion Integration Template
 
-Integrieren Sie Notion-Page-Creation in Ihre Mid-call Actions und ermöglichen Sie es Ihrem KI-Assistenten, während Kundengesprächem automatisch strukturierte Dokumentationen, Meeting-Notes und Knowledge-Base-Einträge in Ihren Notion-Workspaces zu erstellen.
+Integrate Notion page creation into your Mid-call Actions and enable your AI assistant to automatically generate structured documentation, meeting notes, and knowledge base entries in your Notion workspaces during customer conversations.
 
-## Überblick & Funktionen
+## Overview & Features
 
 <CardGroup cols={2}>
-  <Card title="Strukturierte Dokumentation" icon="file-text">
-    - Automatische Meeting-Notes und Gesprächsprotokolle
-    - Intelligente Database-Zuordnung basierend auf Kontext
-    - Rich-Text-Formatierung mit Notion-Blocks
-    - Verknüpfung mit bestehenden Notion-Pages und Templates
+  <Card title="Structured Documentation" icon="file-text">
+    - Automatic meeting notes and conversation transcripts  
+    - Intelligent database assignment based on context  
+    - Rich-text formatting using Notion blocks  
+    - Linking with existing Notion pages and templates  
   </Card>
-  <Card title="Knowledge-Management" icon="brain">
-    - Customer-Knowledge-Base-Aufbau
-    - Automatische FAQ-Dokumentation
-    - Projekt-Dokumentation und Status-Updates
-    - Team-Wiki-Erweiterung aus Live-Gesprächen
+  <Card title="Knowledge Management" icon="brain">
+    - Building a customer knowledge base  
+    - Automated FAQ documentation  
+    - Project documentation and status updates  
+    - Team wiki enhancement from live conversations  
   </Card>
 </CardGroup>
 
 ## Notion API & Integration Setup
 
-### 1. Notion Integration erstellen
+### 1. Create Notion Integration
 
 <Steps>
-  <Step title="Notion Integration registrieren">
-    - Gehen Sie zu [notion.so/my-integrations](https://www.notion.so/my-integrations)
-    - Klicken Sie auf "Create new integration"
-    - Name: "Famulor Mid-call Actions"
-    - Associated Workspace wählen
+  <Step title="Register Notion Integration">
+    - Go to [notion.so/my-integrations](https://www.notion.so/my-integrations)  
+    - Click "Create new integration"  
+    - Name: "Famulor Mid-call Actions"  
+    - Select the associated workspace  
   </Step>
   
-  <Step title="Integration Token generieren">
+  <Step title="Generate Integration Token">
     ```yaml
-    Token-Setup:
-      1. Integration-Details ausfüllen
-      2. "Submit" klicken
-      3. Internal Integration Token kopieren
-      4. Token sicher speichern (beginnt mit "secret_")
+    Token Setup:
+      1. Fill in integration details  
+      2. Click "Submit"  
+      3. Copy the Internal Integration Token  
+      4. Store the token securely (starts with "secret_")  
     ```
   </Step>
   
-  <Step title="Database-Berechtigungen setzen">
+  <Step title="Set Database Permissions">
     ```yaml
-    Für jede relevante Notion-Database:
-      1. Database öffnen
-      2. "..." → "Add connections" 
-      3. "Famulor Mid-call Actions" Integration wählen
-      4. "Confirm" klicken
+    For each relevant Notion database:  
+      1. Open the database  
+      2. Click "..." → "Add connections"  
+      3. Select the "Famulor Mid-call Actions" integration  
+      4. Click "Confirm"  
       
-    Wiederholen für:
-      - Customer-Database
-      - Meeting-Notes-Database  
-      - Support-Tickets-Database
-      - Project-Documentation-Database
+    Repeat for:  
+      - Customer Database  
+      - Meeting Notes Database  
+      - Support Tickets Database  
+      - Project Documentation Database  
     ```
   </Step>
   
-  <Step title="Database-IDs sammeln">
-    - Database-URLs kopieren: `notion.so/workspace/database_id?v=view_id`
-    - Database-ID extrahieren (32-stelliger Code)
-    - IDs für Tool-Konfiguration dokumentieren
+  <Step title="Collect Database IDs">
+    - Copy the database URLs: `notion.so/workspace/database_id?v=view_id`  
+    - Extract the database ID (32-character code)  
+    - Document the IDs for tool configuration  
   </Step>
 </Steps>
 
-## Mid-call Action konfigurieren
+## Configure Mid-call Action
 
-### Konfiguration im Famulor Interface
+### Configuration in Famulor Interface
 
 <Tabs>
-  <Tab title="Werkzeugdetails">
-    | Feld | Wert |
-    |------|------|
+  <Tab title="Tool Details">
+    | Field | Value |
+    |------|-------|
     | **Name*** | `Notion Seite erstellen` |
-    | **Beschreibung** | "Erstellt automatisch strukturierte Dokumentationen und Meeting-Notes in Notion-Databases" |
-    | **Funktionsname*** | `create_notion_page` |
-    | **Funktionsbeschreibung*** | "Erstellt eine neue Seite in einer Notion-Database. Verwenden Sie dies für Meeting-Protokolle, Kundendokumentation oder Projekt-Updates basierend auf Gesprächsinhalten." |
-    | **HTTP-Methode** | `POST` |
+    | **Description** | "Automatically creates structured documentation and meeting notes in Notion databases" |
+    | **Function Name*** | `create_notion_page` |
+    | **Function Description*** | "Creates a new page in a Notion database. Use this for meeting minutes, customer documentation, or project updates based on conversation content." |
+    | **HTTP Method** | `POST` |
     | **Timeout (ms)** | `5000` |
     | **Endpoint*** | `https://api.notion.com/v1/pages` |
   </Tab>
   
-  <Tab title="Header-Konfiguration">
+  <Tab title="Header Configuration">
     ```json
     {
       "Authorization": "Bearer {{NOTION_TOKEN}}",
@@ -148,7 +147,7 @@ Integrieren Sie Notion-Page-Creation in Ihre Mid-call Actions und ermöglichen S
               {
                 "type": "text",
                 "text": {
-                  "content": "Gesprächsprotokoll"
+                  "content": "Conversation Transcript"
                 }
               }
             ]
@@ -174,7 +173,7 @@ Integrieren Sie Notion-Page-Creation in Ihre Mid-call Actions und ermöglichen S
   </Tab>
 </Tabs>
 
-### Parameter-Schema
+### Parameter Schema
 
 ```json
 {
@@ -182,203 +181,203 @@ Integrieren Sie Notion-Page-Creation in Ihre Mid-call Actions und ermöglichen S
   "properties": {
     "database_id": {
       "type": "string",
-      "description": "Notion Database-ID (32-stelliger Code aus der Database-URL)",
+      "description": "Notion database ID (32-character code from the database URL)",
       "pattern": "^[a-f0-9]{32}$"
     },
     "title": {
       "type": "string",
-      "description": "Titel der Notion-Seite",
-      "examples": ["Meeting mit Beispiel AG - 15.01.2024", "Support-Case: API-Integration-Problem", "Partnership-Gespräch: Tech-Alliance"]
+      "description": "Title of the Notion page",
+      "examples": ["Meeting with Example Corp - 2024-01-15", "Support Case: API Integration Issue", "Partnership Meeting: Tech Alliance"]
     },
     "status": {
       "type": "string",
-      "enum": ["Neu", "In Bearbeitung", "Review", "Abgeschlossen", "Archiviert"],
-      "description": "Status der Seite/des Eintrags",
-      "default": "Neu"
+      "enum": ["New", "In Progress", "Review", "Completed", "Archived"],
+      "description": "Status of the page/entry",
+      "default": "New"
     },
     "date": {
       "type": "string",
       "format": "date",
-      "description": "Datum des Gesprächs oder der Erstellung (YYYY-MM-DD)"
+      "description": "Date of the conversation or creation (YYYY-MM-DD)"
     },
     "content": {
       "type": "string",
-      "description": "Hauptinhalt der Seite - Gesprächsprotokoll, Details, Action Items"
+      "description": "Main content of the page - conversation transcript, details, action items"
     },
     "customer_name": {
       "type": "string",
-      "description": "Name des Kunden/Unternehmens für Kategorisierung"
+      "description": "Name of the customer/company for categorization"
     },
     "priority": {
       "type": "string",
-      "enum": ["Niedrig", "Normal", "Hoch", "Kritisch"],
-      "description": "Prioritätsstufe basierend auf Gesprächsinhalt",
+      "enum": ["Low", "Normal", "High", "Critical"],
+      "description": "Priority level based on conversation content",
       "default": "Normal"
     },
     "tags": {
       "type": "array",
       "items": {"type": "string"},
-      "description": "Tags für bessere Categorisierung und Suche"
+      "description": "Tags for better categorization and search"
     },
     "assignee": {
       "type": "string",
-      "description": "Verantwortliche Person (wird als Rich Text eingetragen)"
+      "description": "Responsible person (added as rich text)"
     }
   },
   "required": ["database_id", "title", "content"]
 }
 ```
 
-## Praktische Anwendungsszenarien
+## Practical Use Cases
 
-### Szenario 1: Meeting-Protokoll-Automatisierung
+### Scenario 1: Meeting Minutes Automation
 
 <Steps>
-  <Step title="Live-Meeting-Documentation">
+  <Step title="Live Meeting Documentation">
     ```yaml
-    Während Sales-Call mit Kunde:
+    During sales call with customer:
       
-    KI sammelt Informationen:
-      - Teilnehmer und Rollen
-      - Diskutierte Topics
-      - Getroffene Entscheidungen
-      - Action Items mit Verantwortlichkeiten
-      - Nächste Schritte und Timelines
+    AI gathers information:
+      - Participants and roles  
+      - Discussed topics  
+      - Decisions made  
+      - Action items with responsibilities  
+      - Next steps and timelines  
     ```
   </Step>
   
-  <Step title="Strukturierte Page-Creation">
+  <Step title="Structured Page Creation">
     ```yaml
-    Notion-Page-Template:
+    Notion page template:
       
-    Title: "Sales Meeting: Beispiel AG - CRM-Evaluation (15.01.2024)"
+    Title: "Sales Meeting: Example Corp - CRM Evaluation (2024-01-15)"
     
     Content:
-    "## Teilnehmer
-    **Kunde:** Max Mustermann (CEO, Beispiel AG)
-    **Unser Team:** Anna Sales (Account Manager)
+    "## Participants  
+    **Customer:** Max Mustermann (CEO, Example Corp)  
+    **Our Team:** Anna Sales (Account Manager)  
     
-    ## Agenda & Diskussion
-    - CRM-Anforderungen: 500 User, DSGVO-konform
-    - Budget-Discussion: €50k approved for Q1
-    - Integration-Needs: Existing ERP-System (SAP)
+    ## Agenda & Discussion  
+    - CRM requirements: 500 users, GDPR compliant  
+    - Budget discussion: €50k approved for Q1  
+    - Integration needs: Existing ERP system (SAP)  
     
-    ## Entscheidungen
-    ✅ Demo scheduled for next Thursday 14:00
-    ✅ Technical Deep-Dive with IT-Team required
-    ⏳ Proposal deadline: End of week
+    ## Decisions  
+    ✅ Demo scheduled for next Thursday at 14:00  
+    ✅ Technical deep-dive with IT team required  
+    ⏳ Proposal deadline: end of week  
     
-    ## Action Items
-    - [ ] Anna: Technical specs zusammenstellen (bis Mi.)
-    - [ ] Max: IT-Team für Demo koordinieren
-    - [ ] Anna: SAP-Integration-Proposal vorbereiten
+    ## Action Items  
+    - [ ] Anna: Compile technical specs (by Wed)  
+    - [ ] Max: Coordinate IT team for demo  
+    - [ ] Anna: Prepare SAP integration proposal  
     
-    ## Next Steps
-    1. Demo-Termin: 18.01.2024 14:00
-    2. Proposal-Versand: bis 19.01.2024
-    3. Entscheidung erwartet: Ende Januar"
+    ## Next Steps  
+    1. Demo date: 2024-01-18 14:00  
+    2. Proposal submission: by 2024-01-19  
+    3. Decision expected: end of January"
     ```
   </Step>
 </Steps>
 
-### Szenario 2: Customer-Knowledge-Base
+### Scenario 2: Customer Knowledge Base
 
 <AccordionGroup>
-  <Accordion title="Automatische Kundendokumentation">
-    **Customer-Database-Entry**:
+  <Accordion title="Automated Customer Documentation">
+    **Customer Database Entry**:  
     ```yaml
     Database: "Customer Knowledge Base"
     
-    Properties:
-      Company: "Beispiel AG"
-      Industry: "Manufacturing"
-      Size: "500+ Employees"
-      Tech Stack: "SAP ERP, Custom CRM"
-      Decision Maker: "Max Mustermann (CEO)"
-      Budget Range: "€50-100k"
-      Timeline: "Q1 2024"
+    Properties:  
+      Company: "Example Corp"  
+      Industry: "Manufacturing"  
+      Size: "500+ Employees"  
+      Tech Stack: "SAP ERP, Custom CRM"  
+      Decision Maker: "Max Mustermann (CEO)"  
+      Budget Range: "€50-100k"  
+      Timeline: "Q1 2024"  
       
-    Content:
-    "## Firmenübersicht
-    Beispiel AG ist ein etablierter Mittelständler im Manufacturing-Bereich mit 500+ Mitarbeitern.
+    Content:  
+    "## Company Overview  
+    Example Corp is an established mid-sized manufacturing company with 500+ employees.  
     
-    ## Tech-Environment  
-    - ERP: SAP (seit 5 Jahren)
-    - CRM: Legacy Custom Solution (Performance-Probleme)
-    - Integration-Needs: API-basiert, Real-time Sync
+    ## Tech Environment  
+    - ERP: SAP (5 years)  
+    - CRM: Legacy custom solution (performance issues)  
+    - Integration needs: API-based, real-time sync  
     
-    ## Entscheidungsprozess
-    - Primary Decision Maker: Max Mustermann (CEO)
-    - Technical Stakeholder: IT-Leiter (noch zu identifizieren)
-    - Timeline: Q1 2024 Implementation
+    ## Decision Process  
+    - Primary decision maker: Max Mustermann (CEO)  
+    - Technical stakeholder: IT manager (to be identified)  
+    - Timeline: Q1 2024 implementation  
     
-    ## Conversation History
-    15.01.2024: Erstes Gespräch, Demo vereinbart
-    [Automatisch erweitert bei weiteren Gesprächen]"
+    ## Conversation History  
+    2024-01-15: Initial conversation, demo scheduled  
+    [Automatically expanded on further conversations]"
     ```
   </Accordion>
   
-  <Accordion title="Support-Case-Documentation">
-    **Support-Tickets-Database**:
+  <Accordion title="Support Case Documentation">
+    **Support Tickets Database**:  
     ```yaml
-    Automatische-Case-Creation:
+    Automatic case creation:
       
-    Title: "API-Gateway Ausfall - Beispiel AG"
-    Status: "Kritisch"
-    Customer: "Beispiel AG"
-    Reported By: "Max Mustermann"
-    Priority: "Hoch"
+    Title: "API Gateway Outage - Example Corp"  
+    Status: "Critical"  
+    Customer: "Example Corp"  
+    Reported by: "Max Mustermann"  
+    Priority: "High"  
     
-    Structured-Content:
-    "## Problem Description
-    API-Gateway nicht erreichbar seit 14:00 Uhr heute.
+    Structured Content:
+    "## Problem Description  
+    API gateway unreachable since 14:00 today.  
     
-    ## Impact Assessment
-    - Affected Systems: Produktions-API
-    - Business Impact: Complete Service Outage
-    - Estimated Revenue Loss: €5k/hour
+    ## Impact Assessment  
+    - Affected systems: Production API  
+    - Business impact: Complete service outage  
+    - Estimated revenue loss: €5k/hour  
     
-    ## Technical Details
-    - Error Messages: 503 Service Unavailable
-    - Affected Endpoints: /api/v1/*
-    - Last Working: 13:45 Uhr
+    ## Technical Details  
+    - Error messages: 503 Service Unavailable  
+    - Affected endpoints: /api/v1/*  
+    - Last working: 13:45  
     
-    ## Resolution Steps
-    1. [ ] Infrastructure-Team benachrichtigen
-    2. [ ] Load-Balancer-Status prüfen  
-    3. [ ] Backup-Systems aktivieren
-    4. [ ] Customer-Communication-Update"
+    ## Resolution Steps  
+    1. [ ] Notify infrastructure team  
+    2. [ ] Check load balancer status  
+    3. [ ] Activate backup systems  
+    4. [ ] Provide customer communication update"
     ```
   </Accordion>
 </AccordionGroup>
 
-### Szenario 3: Project-Documentation
+### Scenario 3: Project Documentation
 
 ```mermaid
 flowchart TD
-    A[Projekt-Gespräch] --> B{Dokumentationstyp?}
-    B -->|Requirements| C[Requirements-Database]
-    B -->|Status-Update| D[Project-Updates-Database]
-    B -->|Issue-Tracking| E[Issues-Database]
-    B -->|Meeting-Notes| F[Meetings-Database]
+    A[Project Conversation] --> B{Documentation Type?}
+    B -->|Requirements| C[Requirements Database]
+    B -->|Status Update| D[Project Updates Database]
+    B -->|Issue Tracking| E[Issues Database]
+    B -->|Meeting Notes| F[Meetings Database]
     
     C --> G[create_notion_page]
     D --> G
     E --> G  
     F --> G
     
-    G --> H[Strukturierte Notion-Page]
-    H --> I[Team-Notification via Properties]
-    I --> J[Automatic-Linking zu Related-Pages]
+    G --> H[Structured Notion Page]
+    H --> I[Team Notification via Properties]
+    I --> J[Automatic Linking to Related Pages]
     
     J --> K{Follow-up required?}
-    K -->|Ja| L[Task-Creation in verknüpftem System]
-    K -->|Nein| M[Documentation Complete]
+    K -->|Yes| L[Task Creation in linked system]
+    K -->|No| M[Documentation Complete]
 ```
 
-## Response-Verarbeitung
+## Response Handling
 
-### Erfolgreiche Page-Creation
+### Successful Page Creation
 
 ```json
 {
@@ -403,7 +402,7 @@ flowchart TD
         {
           "type": "text",
           "text": {
-            "content": "Meeting mit Beispiel AG - 15.01.2024"
+            "content": "Meeting with Example Corp - 2024-01-15"
           }
         }
       ]
@@ -412,113 +411,113 @@ flowchart TD
       "id": "status-id",
       "type": "select", 
       "select": {
-        "id": "status-neu-id",
-        "name": "Neu",
+        "id": "status-new-id",
+        "name": "New",
         "color": "blue"
       }
     }
   },
-  "url": "https://www.notion.so/Meeting-mit-Beispiel-AG-abc123def456"
+  "url": "https://www.notion.so/Meeting-with-Example-Corp-abc123def456"
 }
 ```
 
-### Natürliche Sprachintegration
+### Natural Language Integration
 
 <AccordionGroup>
-  <Accordion title="Agent-Nachrichten vor API-Aufruf">
-    **Template**: `"Ich erstelle eine neue Seite '{{title}}' in Notion..."`
+  <Accordion title="Agent Messages Before API Call">
+    **Template**: `"Creating a new page '{{title}}' in Notion..."`
     
-    **Kontextuelle Beispiele**:
+    **Contextual examples**:  
     ```yaml
-    Meeting-Protokoll:
-      "Ich dokumentiere unser Gespräch in Notion..."
+    Meeting Notes:
+      "Documenting our conversation in Notion..."
     
-    Customer-Profile:
-      "Ich lege eine Kundendokumentation in unserer Knowledge-Base an..."
+    Customer Profile:
+      "Creating customer documentation in our knowledge base..."
     
-    Project-Update:
-      "Ich erstelle ein Projekt-Update in Notion für das Team..."
+    Project Update:
+      "Generating a project update in Notion for the team..."
     ```
   </Accordion>
   
-  <Accordion title="Erfolgsbestätigungen">
-    **Standard-Template**: `"Notion-Seite wurde erfolgreich erstellt."`
+  <Accordion title="Success Confirmations">
+    **Standard template**: `"Notion page was created successfully."`
     
-    **Erweiterte Bestätigungen**:
+    **Enhanced confirmations**:  
     ```yaml
-    Mit Team-Kontext:
-      "Dokumentation wurde erstellt und das Team kann sie einsehen."
+    With team context:
+      "Documentation created and the team has access."  
     
-    Mit Verlinkung:
-      "Meeting-Protokoll ist in Notion verfügbar - Ihr Team wurde benachrichtigt."
+    With linking:
+      "Meeting notes are available in Notion – your team has been notified."  
     
-    Mit Follow-up:
-      "Kundenprofil wurde in unserer Knowledge-Base angelegt. 
-       Das Account-Team kann es für zukünftige Gespräche verwenden."
+    With follow-up:
+      "Customer profile was created in our knowledge base.  
+       The account team can reference it for future calls."
     ```
   </Accordion>
 </AccordionGroup>
 
-## Erweiterte Notion-Features
+## Advanced Notion Features
 
-### Database-Templates & Properties
+### Database Templates & Properties
 
 <AccordionGroup>
-  <Accordion title="Customer-Database-Schema">
+  <Accordion title="Customer Database Schema">
     ```yaml
-    Properties-Configuration:
+    Properties configuration:
       
-    Name: Title field (automatically created)
-    Company Size: Select (Startup/SMB/Enterprise)
-    Industry: Multi-select (Tech/Healthcare/Finance/...)
-    Status: Select (Lead/Prospect/Customer/Churned)
-    Last Contact: Date
-    Revenue Potential: Number (€)
-    Assigned To: Person
-    Tags: Multi-select
-    Notes: Rich text
+    Name: Title field (auto-created)  
+    Company Size: Select (Startup/SMB/Enterprise)  
+    Industry: Multi-select (Tech/Healthcare/Finance/…)  
+    Status: Select (Lead/Prospect/Customer/Churned)  
+    Last Contact: Date  
+    Revenue Potential: Number (€)  
+    Assigned To: Person  
+    Tags: Multi-select  
+    Notes: Rich text  
     
-    Custom-Views:
-      - Hot Prospects (Status=Prospect, Revenue>50k)
-      - Needs Follow-up (Last Contact >7 days ago)
-      - Enterprise Accounts (Company Size=Enterprise)
+    Custom views:
+      - Hot Prospects (Status=Prospect, Revenue>50k)  
+      - Needs Follow-up (Last Contact >7 days ago)  
+      - Enterprise Accounts (Company Size=Enterprise)  
     ```
   </Accordion>
   
-  <Accordion title="Project-Documentation-Schema">
+  <Accordion title="Project Documentation Schema">
     ```yaml
-    Properties für Projekt-Tracking:
+    Properties for project tracking:
       
-    Project Name: Title
-    Client: Relation (to Customer Database)
-    Project Phase: Select (Planning/Development/Testing/Delivery)
-    Start Date: Date
+    Project Name: Title  
+    Client: Relation (to Customer Database)  
+    Project Phase: Select (Planning/Development/Testing/Delivery)  
+    Start Date: Date  
     Due Date: Date  
-    Budget: Number
-    Team Lead: Person
-    Status: Select (On Track/At Risk/Blocked/Complete)
-    Risk Level: Select (Low/Medium/High)
+    Budget: Number  
+    Team Lead: Person  
+    Status: Select (On Track/At Risk/Blocked/Complete)  
+    Risk Level: Select (Low/Medium/High)  
     
-    Block-Content-Template:
-      ## Projektziele
-      {project_objectives}
+    Block content template:
+      ## Project Objectives  
+      {project_objectives}  
       
-      ## Aktuelle Phase
-      {current_phase_details}
+      ## Current Phase  
+      {current_phase_details}  
       
-      ## Nächste Schritte
-      {action_items}
+      ## Next Steps  
+      {action_items}  
       
-      ## Risiken & Herausforderungen
+      ## Risks & Challenges  
       {identified_risks}
     ```
   </Accordion>
 </AccordionGroup>
 
-### Rich-Text-Block-Management
+### Rich Text Block Management
 
 <Tabs>
-  <Tab title="Gesprächsprotokoll-Struktur">
+  <Tab title="Conversation Transcript Structure">
     ```json
     {
       "children": [
@@ -526,14 +525,14 @@ flowchart TD
           "object": "block",
           "type": "heading_1",
           "heading_1": {
-            "rich_text": [{"type": "text", "text": {"content": "Gespräch mit {customer_name}"}}]
+            "rich_text": [{"type": "text", "text": {"content": "Conversation with {customer_name}"}}]
           }
         },
         {
           "object": "block",
           "type": "callout",
           "callout": {
-            "rich_text": [{"type": "text", "text": {"content": "📞 Live Call - {date} {time}"}}],
+            "rich_text": [{"type": "text", "text": {"content": "📞 Live call - {date} {time}"}}],
             "icon": {"emoji": "📞"},
             "color": "blue_background"
           }
@@ -557,7 +556,7 @@ flowchart TD
     ```
   </Tab>
   
-  <Tab title="Action-Items-Template">
+  <Tab title="Action Items Template">
     ```json
     {
       "object": "block",
@@ -583,177 +582,176 @@ flowchart TD
   </Tab>
 </Tabs>
 
-## Integration mit anderen Systemen
+## Integration with Other Systems
 
-### CRM-Dokumentation-Sync
+### CRM Documentation Sync
 
 <AccordionGroup>
-  <Accordion title="HubSpot-Notion-Workflow">
+  <Accordion title="HubSpot-Notion Workflow">
     ```yaml
-    Bidirectional-Sync-Pattern:
+    Bidirectional sync pattern:
       
-    1. Mid-call Action erstellt Notion-Page
-    2. Notion-Page-URL wird in HubSpot-Contact als Note hinzugefügt
-    3. HubSpot-Updates triggern Notion-Page-Updates
-    4. Notion-Comments werden als HubSpot-Activities geloggt
+    1. Mid-call Action creates Notion page  
+    2. Notion page URL is added as a note on the HubSpot contact  
+    3. HubSpot updates trigger Notion page updates  
+    4. Notion comments are logged as HubSpot activities  
     
-    Implementation:
-      - Notion Database mit HubSpot-Contact-ID-Property
-      - Webhook-Integration für bidirectionale Updates
-      - Conflict-Resolution bei simultanen Änderungen
+    Implementation:  
+      - Notion database with HubSpot contact ID property  
+      - Webhook integration for bidirectional updates  
+      - Conflict resolution for simultaneous changes  
     ```
   </Accordion>
   
-  <Accordion title="Asana-Notion-Integration">
+  <Accordion title="Asana-Notion Integration">
     ```yaml
-    Task-Documentation-Workflow:
+    Task documentation workflow:
       
-    1. create_asana_task für Action Items
-    2. create_notion_page für detaillierte Dokumentation
-    3. Asana-Task verlinkt auf Notion-Page
-    4. Notion-Page referenziert Asana-Task-ID
+    1. create_asana_task for action items  
+    2. create_notion_page for detailed documentation  
+    3. Asana task links to Notion page  
+    4. Notion page references Asana task ID  
     
-    Cross-Platform-Benefits:
-      - Asana: Task-Tracking und Deadlines
-      - Notion: Rich Documentation und Context
-      - Team: Vollständige Transparenz und Nachverfolgbarkeit
+    Cross-platform benefits:  
+      - Asana: task tracking and deadlines  
+      - Notion: rich documentation and context  
+      - Team: full transparency and traceability  
     ```
   </Accordion>
 </AccordionGroup>
 
 ## Performance & Monitoring
 
-### Notion-spezifische Metriken
+### Notion-specific Metrics
 
-| Metrik | Beschreibung | Zielwert |
-|--------|-------------|----------|
-| **Page Creation Success Rate** | % erfolgreich erstellter Notion-Pages | &gt;98% |
-| **Content Quality Score** | Vollständigkeit und Struktur der Dokumentation | &gt;85% |
-| **Team Engagement Rate** | % der Pages mit Team-Interaktionen | &gt;70% |
-| **Documentation Findability** | % der Pages die via Suche gefunden werden | &gt;90% |
+| Metric | Description | Target |
+|--------|-------------|--------|
+| **Page Creation Success Rate** | % of successfully created Notion pages | >98% |
+| **Content Quality Score** | Completeness and structure of documentation | >85% |
+| **Team Engagement Rate** | % of pages with team interactions | >70% |
+| **Documentation Findability** | % of pages found via search | >90% |
 
-### Knowledge-Management-Analytics
+### Knowledge Management Analytics
 
 <Steps>
-  <Step title="Content-Utilization tracking">
+  <Step title="Content Utilization Tracking">
     ```yaml
-    Metriken:
-      - Page-Views nach Creation
-      - Comment-Activity von Team-Mitgliedern
-      - Internal-Link-Clicks zwischen Pages
-      - Search-Query-Performance
+    Metrics:
+      - Page views after creation  
+      - Comment activity by team members  
+      - Internal link clicks between pages  
+      - Search query performance  
     ```
   </Step>
   
-  <Step title="Business-Impact-Messung">
+  <Step title="Business Impact Measurement">
     ```yaml
-    Knowledge-Base-ROI:
-      - Reduzierte Meeting-Vorbereitung-Zeit
-      - Weniger "Information-nicht-verfügbar"-Situationen  
-      - Verbesserte Customer-Onboarding-Effizienz
-      - Höhere Team-Alignment-Scores
+    Knowledge base ROI:
+      - Reduced meeting prep time  
+      - Fewer "information not available" situations  
+      - Improved customer onboarding efficiency  
+      - Higher team alignment scores  
     ```
   </Step>
 </Steps>
 
-## Fehlerbehandlung
+## Error Handling
 
-### Häufige Notion-API-Probleme
+### Common Notion API Issues
 
 <AccordionGroup>
-  <Accordion title="Database nicht gefunden (404)">
+  <Accordion title="Database Not Found (404)">
     ```yaml
-    Ursache: Database-ID falsch oder Integration hat keine Berechtigung
+    Cause: Incorrect database ID or integration lacks permission
     
-    Notion-Error:
+    Notion error:
       "object": "error",
       "status": 404,
       "code": "object_not_found",
       "message": "Could not find database"
     
     Fallback:
-      "Die Dokumentation konnte nicht in der spezifizierten Database erstellt werden. 
-       Ich erstelle eine alternative Dokumentation."
+      "Documentation could not be created in the specified database.  
+       Creating alternative documentation instead."
     
     Resolution:
-      - Database-ID validieren
-      - Integration-Permissions prüfen
-      - Fallback auf Default-Database
+      - Validate database ID  
+      - Check integration permissions  
+      - Fallback to default database  
     ```
   </Accordion>
   
   <Accordion title="Invalid Properties (400)">
     ```yaml
-    Häufige-Property-Errors:
-      - Select-Wert existiert nicht in Database-Options
-      - Date-Format ungültig
-      - Required-Properties fehlen
-      - Property-Type-Mismatch
+    Common property errors:
+      - Select value not in database options  
+      - Invalid date format  
+      - Missing required properties  
+      - Property type mismatch
     
-    Graceful-Handling:
-      - Property-Defaults verwenden
-      - Ungültige Werte als Rich-Text speichern
-      - Page trotzdem erstellen (mit Warnings)
+    Graceful handling:
+      - Use property defaults  
+      - Store invalid values as rich text  
+      - Still create page (with warnings)
       
-    Error-Recovery:
-      "Dokumentation wurde mit Standard-Werten erstellt. 
-       Das Team kann Details manuell anpassen."
+    Error recovery:
+      "Documentation was created with default values.  
+       Team can manually adjust details."
     ```
   </Accordion>
   
   <Accordion title="Rate Limiting (429)">
     ```yaml
-    Notion-Limits:
-      - 3 Requests pro Sekunde
-      - Burst-Capacity: 10 Requests
-      - Content-Limits: 100 Blocks per Request
+    Notion limits:
+      - 3 requests per second  
+      - Burst capacity: 10 requests  
+      - Content limits: 100 blocks per request
     
-    Retry-Strategy:
-      - Jitter-basierter Backoff
-      - Content-Splitting bei großen Pages
-      - Priority-Queue für kritische Dokumentation
+    Retry strategy:
+      - Jitter-based backoff  
+      - Content splitting for large pages  
+      - Priority queue for critical documentation
     
-    User-Experience:
-      "Die Dokumentation wird erstellt - bei umfangreichen Inhalten 
-       kann das einen Moment dauern."
+    User experience:
+      "Documentation is being created – extensive content may take a moment."
     ```
   </Accordion>
 </AccordionGroup>
 
 ## Advanced Use Cases
 
-### Template-basierte Page-Creation
+### Template-based Page Creation
 
 <Tabs>
-  <Tab title="Meeting-Types-Templates">
+  <Tab title="Meeting Types Templates">
     ```yaml
-    Sales-Meeting-Template:
-      Blocks: [Teilnehmer, Agenda, Budget, Timeline, Next Steps]
+    Sales Meeting Template:
+      Blocks: [Participants, Agenda, Budget, Timeline, Next Steps]
       Properties: [Company, Deal Size, Close Date, Assigned Sales Rep]
       
-    Support-Case-Template:
+    Support Case Template:
       Blocks: [Problem, Impact, Technical Details, Resolution]
       Properties: [Severity, Customer Tier, SLA, Assigned Engineer]
       
-    Partnership-Meeting-Template:
+    Partnership Meeting Template:
       Blocks: [Partnership Type, Mutual Benefits, Timeline, Legal]
       Properties: [Partner Category, Revenue Potential, Contract Type]
     ```
   </Tab>
   
-  <Tab title="Content-AI-Enhancement">
+  <Tab title="Content AI Enhancement">
     ```yaml
-    KI-gestützte Content-Erweiterung:
+    AI-driven content enhancement:
       
-    1. Basis-Gespräch-Transkriktion
-    2. KI extrahiert Struktur-Elemente:
-       - Key Decisions
-       - Action Items  
-       - Risks & Challenges
-       - Success Criteria
-    3. Automatische Notion-Block-Generierung
-    4. Template-basierte Formatierung
-    5. Cross-Reference zu bestehenden Pages
+    1. Base conversation transcription  
+    2. AI extracts structural elements:  
+       - Key decisions  
+       - Action items  
+       - Risks & challenges  
+       - Success criteria  
+    3. Automatic Notion block generation  
+    4. Template-based formatting  
+    5. Cross-reference to existing pages  
     ```
   </Tab>
 </Tabs>
@@ -761,9 +759,9 @@ flowchart TD
 ---
 
 <Warning>
-**Database-Schema**: Stellen Sie sicher, dass Ihre Notion-Database-Properties mit den Parameter-Schema-Definitionen übereinstimmen. Änderungen am Database-Schema erfordern Updates der Tool-Konfiguration.
+**Database Schema**: Ensure your Notion database properties match the parameter schema definitions. Changes to the database schema require updates to the tool configuration.
 </Warning>
 
 <Info>
-**Collaboration-Tipp**: Verwenden Sie Notion-Comments und @-Mentions in den automatisch erstellten Pages um Team-Diskussionen zu fördern und Follow-up-Actions zu koordinieren.
+**Collaboration Tip**: Use Notion comments and @-mentions in automatically created pages to encourage team discussions and coordinate follow-up actions.
 </Info>

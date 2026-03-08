@@ -1,91 +1,90 @@
 ---
 title: "Microsoft Teams Integration"
-description: "Automatisierte Team-Benachrichtigungen über Microsoft Teams direkt während Kundengesprächem für optimale Enterprise-Kommunikation"
+description: "Automated team notifications via Microsoft Teams directly during customer calls for optimal enterprise communication"
 icon: "microsoft"
 ---
 
-
 # Microsoft Teams Integration Template
 
-Integrieren Sie Microsoft Teams Messaging in Ihre Mid-call Actions und ermöglichen Sie es Ihrem KI-Assistenten, während Kundengesprächem automatisch Nachrichten und Updates an Teams-Channels zu senden - perfekt für Enterprise-Umgebungen.
+Integrate Microsoft Teams messaging into your Mid-call Actions and enable your AI assistant to automatically send messages and updates to Teams channels during customer calls – perfect for enterprise environments.
 
-## Überblick & Funktionen
+## Overview & Features
 
 <CardGroup cols={2}>
-  <Card title="Enterprise-Team-Kommunikation" icon="building">
-    - Automatische Benachrichtigungen an Teams-Channels
-    - Rich-Card-Formatierung für professionelle Darstellung
-    - Integration in bestehende Microsoft 365 Workflows
-    - Compliance-konforme Unternehmens-Kommunikation
+  <Card title="Enterprise Team Communication" icon="building">
+    - Automatic notifications to Teams channels  
+    - Rich card formatting for professional presentation  
+    - Integration into existing Microsoft 365 workflows  
+    - Compliance-compliant corporate communication
   </Card>
   <Card title="Adaptive Cards & Webhooks" icon="link">
-    - Webhook-basierte Integration (keine App-Installation nötig)
-    - Adaptive Cards für interaktive Nachrichten
-    - Farbkodierung für Prioritäten und Kategorien
-    - Links zu SharePoint, Power BI und anderen MS-Tools
+    - Webhook-based integration (no app installation required)  
+    - Adaptive Cards for interactive messages  
+    - Color coding for priorities and categories  
+    - Links to SharePoint, Power BI, and other MS tools
   </Card>
 </CardGroup>
 
 ## Teams Webhook Setup
 
-### 1. Incoming Webhook erstellen
+### 1. Create Incoming Webhook
 
 <Steps>
-  <Step title="Teams-Channel vorbereiten">
-    - Öffnen Sie Microsoft Teams
-    - Navigieren Sie zum gewünschten Channel (z.B. "Sales", "Support")
-    - Klicken Sie auf "..." (Mehr Optionen) neben dem Channel-Namen
+  <Step title="Prepare Teams Channel">
+    - Open Microsoft Teams  
+    - Navigate to the desired channel (e.g., "Sales", "Support")  
+    - Click "..." (More Options) next to the channel name
   </Step>
   
-  <Step title="Webhook konfigurieren">
+  <Step title="Configure Webhook">
     ```yaml
-    Webhook-Setup:
-      1. "Connectors" → "Configure" wählen
-      2. Nach "Incoming Webhook" suchen
-      3. "Add" → "Configure" klicken
-      4. Webhook-Details eingeben:
-         - Name: "Famulor Mid-Call Integration"
-         - Bild: Famulor Logo (optional)
-         - Beschreibung: "Automatische Benachrichtigungen aus Kundengesprächem"
+    Webhook Setup:
+      1. Select "Connectors" → "Configure"  
+      2. Search for "Incoming Webhook"  
+      3. Click "Add" → "Configure"  
+      4. Enter webhook details:  
+         - Name: "Famulor Mid-Call Integration"  
+         - Image: Famulor logo (optional)  
+         - Description: "Automated notifications from customer calls"
     ```
   </Step>
   
-  <Step title="Webhook-URL sichern">
+  <Step title="Secure Webhook URL">
     ```yaml
-    Nach der Konfiguration:
-      1. Webhook-URL kopieren (sehr lang, beginnt mit https://...)
-      2. URL sicher speichern - wird als {{TEAMS_WEBHOOK_URL}} verwendet
-      3. Test-Nachricht senden zur Validierung
-      
+    After configuration:  
+      1. Copy the webhook URL (very long, starts with https://...)  
+      2. Store URL securely – this will be used as {{TEAMS_WEBHOOK_URL}}  
+      3. Send a test message to validate  
+
     Format: https://outlook.office.com/webhook/abc.../IncomingWebhook/def.../ghi...
     ```
   </Step>
   
-  <Step title="Berechtigungen validieren">
-    - Webhook funktioniert für alle Channel-Mitglieder
-    - Keine zusätzlichen App-Berechtigungen nötig
-    - Nachrichten erscheinen als "Famulor Mid-Call Integration"
+  <Step title="Validate Permissions">
+    - Webhook works for all channel members  
+    - No additional app permissions required  
+    - Messages appear as "Famulor Mid-Call Integration"
   </Step>
 </Steps>
 
-## Mid-call Action konfigurieren
+## Configure Mid-call Action
 
-### Konfiguration im Famulor Interface
+### Configuration in Famulor Interface
 
 <Tabs>
-  <Tab title="Werkzeugdetails">
-    | Feld | Wert |
-    |------|------|
-    | **Name*** | `Microsoft Teams Nachricht` |
-    | **Beschreibung** | "Sendet automatisch formatierte Nachrichten an Microsoft Teams-Channels für Enterprise-Team-Koordination" |
-    | **Funktionsname*** | `send_teams_message` |
-    | **Funktionsbeschreibung*** | "Sendet eine Nachricht an einen Teams-Channel via Webhook. Verwenden Sie dies für wichtige Business-Updates, Lead-Benachrichtigungen oder Support-Eskalationen." |
-    | **HTTP-Methode** | `POST` |
+  <Tab title="Tool Details">
+    | Field | Value |
+    |-------|-------|
+    | **Name*** | `Microsoft Teams Message` |
+    | **Description** | "Automatically sends formatted messages to Microsoft Teams channels for enterprise team coordination" |
+    | **Function Name*** | `send_teams_message` |
+    | **Function Description*** | "Sends a message to a Teams channel via webhook. Use this for important business updates, lead notifications, or support escalations." |
+    | **HTTP Method** | `POST` |
     | **Timeout (ms)** | `5000` |
     | **Endpoint*** | `{{TEAMS_WEBHOOK_URL}}` |
   </Tab>
   
-  <Tab title="Header-Konfiguration">
+  <Tab title="Header Configuration">
     ```json
     {
       "Content-Type": "application/json",
@@ -93,7 +92,7 @@ Integrieren Sie Microsoft Teams Messaging in Ihre Mid-call Actions und ermöglic
     }
     ```
     
-    <Info>**Hinweis**: Teams Webhooks benötigen keine Authorization-Header - die URL selbst dient als Authentifizierung.</Info>
+    <Info>**Note**: Teams webhooks do not require an Authorization header — the URL itself serves as authentication.</Info>
   </Tab>
   
   <Tab title="Request Body Template">
@@ -108,14 +107,14 @@ Integrieren Sie Microsoft Teams Messaging in Ihre Mid-call Actions und ermöglic
       "sections": [
         {
           "activityTitle": "Famulor Mid-Call Assistant",
-          "activitySubtitle": "Live-Gespräch Update",
+          "activitySubtitle": "Live Call Update",
           "facts": [
             {
-              "name": "Zeit:",
+              "name": "Time:",
               "value": "{timestamp}"
             },
             {
-              "name": "Typ:",
+              "name": "Type:",
               "value": "{call_type}"
             }
           ]
@@ -126,7 +125,7 @@ Integrieren Sie Microsoft Teams Messaging in Ihre Mid-call Actions und ermöglic
   </Tab>
 </Tabs>
 
-### Parameter-Schema
+### Parameter Schema
 
 ```json
 {
@@ -134,34 +133,34 @@ Integrieren Sie Microsoft Teams Messaging in Ihre Mid-call Actions und ermöglic
   "properties": {
     "title": {
       "type": "string",
-      "description": "Nachrichtentitel (wird prominent angezeigt)",
-      "examples": ["Neuer qualifizierter Lead", "Support-Eskalation", "Deal Update"]
+      "description": "Message title (displayed prominently)",
+      "examples": ["New Qualified Lead", "Support Escalation", "Deal Update"]
     },
     "message": {
-      "type": "string", 
-      "description": "Hauptinhalt der Nachricht (unterstützt Markdown-Formatierung)"
+      "type": "string",
+      "description": "Main content of the message (supports Markdown formatting)"
     },
     "color": {
       "type": "string",
-      "description": "Theme-Farbe als Hex-Code für visuelle Kategorisierung",
+      "description": "Theme color as hex code for visual categorization",
       "default": "0078D4",
       "examples": ["0078D4", "28A745", "DC3545", "FFC107"]
     },
     "call_type": {
       "type": "string",
       "enum": ["Sales", "Support", "Partnership", "General"],
-      "description": "Art des Gesprächs für Kategorisierung",
+      "description": "Type of call for categorization",
       "default": "General"
     },
     "priority": {
       "type": "string",
       "enum": ["Low", "Normal", "High", "Critical"],
-      "description": "Prioritätsstufe für Farbkodierung",
+      "description": "Priority level for color coding",
       "default": "Normal"
     },
     "timestamp": {
       "type": "string",
-      "description": "Zeitstempel des Gesprächs (wird automatisch generiert)",
+      "description": "Timestamp of the call (automatically generated)",
       "format": "date-time"
     }
   },
@@ -169,44 +168,44 @@ Integrieren Sie Microsoft Teams Messaging in Ihre Mid-call Actions und ermöglic
 }
 ```
 
-## Praktische Anwendungsszenarien
+## Practical Use Cases
 
-### Szenario 1: Sales-Lead-Benachrichtigung
+### Scenario 1: Sales Lead Notification
 
 <AccordionGroup>
-  <Accordion title="Enterprise-Lead-Alert">
-    **MessageCard-Template für High-Value-Lead**:
+  <Accordion title="Enterprise Lead Alert">
+    **MessageCard template for high-value lead**:
     ```json
     {
       "@type": "MessageCard",
       "@context": "https://schema.org/extensions",
-      "title": "🎯 Neuer Enterprise-Lead",
-      "summary": "Qualifizierter Lead mit hohem Potenzial",
-      "text": "Ein neuer qualifizierter Lead wurde während des Live-Gesprächs identifiziert.",
+      "title": "🎯 New Enterprise Lead",
+      "summary": "Qualified lead with high potential",
+      "text": "A new qualified lead was identified during the live call.",
       "themeColor": "28A745",
       "sections": [
         {
-          "activityTitle": "Lead-Details",
-          "activitySubtitle": "Sofortige Bearbeitung empfohlen",
+          "activityTitle": "Lead Details",
+          "activitySubtitle": "Immediate follow-up recommended",
           "facts": [
-            {"name": "Kontakt:", "value": "Max Mustermann"},
-            {"name": "Unternehmen:", "value": "Beispiel AG"},
-            {"name": "E-Mail:", "value": "max@beispiel.de"},
-            {"name": "Lead-Score:", "value": "92/100"},
-            {"name": "Geschätztes Volumen:", "value": "€150.000"},
-            {"name": "Zeitrahmen:", "value": "Q1 2024"}
+            {"name": "Contact:", "value": "Max Mustermann"},
+            {"name": "Company:", "value": "Example AG"},
+            {"name": "Email:", "value": "max@example.com"},
+            {"name": "Lead Score:", "value": "92/100"},
+            {"name": "Estimated Volume:", "value": "€150,000"},
+            {"name": "Timeframe:", "value": "Q1 2024"}
           ]
         }
       ],
       "potentialAction": [
         {
           "@type": "OpenUri",
-          "name": "CRM öffnen",
+          "name": "Open CRM",
           "targets": [{"os": "default", "uri": "https://your-crm.com/leads/12345"}]
         },
         {
           "@type": "HttpPOST",
-          "name": "Lead übernehmen",
+          "name": "Claim Lead",
           "target": "https://your-api.com/leads/claim/12345"
         }
       ]
@@ -214,67 +213,67 @@ Integrieren Sie Microsoft Teams Messaging in Ihre Mid-call Actions und ermöglic
     ```
   </Accordion>
   
-  <Accordion title="Prioritäts-basierte Farbkodierung">
+  <Accordion title="Priority-based Color Coding">
     ```yaml
-    Farbschema für verschiedene Prioritäten:
+    Color scheme for different priorities:
       
-      Critical (Kritisch):
-        Farbe: "DC3545" (Rot)
-        Beispiel: System-Ausfall, Großkunden-Beschwerde
+      Critical:
+        Color: "DC3545" (Red)
+        Example: System outage, major customer complaint
         
-      High (Hoch):
-        Farbe: "FF6B00" (Orange) 
-        Beispiel: Hot Lead >100k€, Eskalation Manager
+      High:
+        Color: "FF6B00" (Orange) 
+        Example: Hot lead >100k€, escalation to manager
         
       Normal:
-        Farbe: "0078D4" (Microsoft Blau)
-        Beispiel: Standard-Leads, Info-Updates
+        Color: "0078D4" (Microsoft Blue)
+        Example: Standard leads, info updates
         
       Success:
-        Farbe: "28A745" (Grün)
-        Beispiel: Deal closed, Problem gelöst
+        Color: "28A745" (Green)
+        Example: Deal closed, problem resolved
     ```
   </Accordion>
 </AccordionGroup>
 
-### Szenario 2: Support-Ticket-Eskalation
+### Scenario 2: Support Ticket Escalation
 
 <Tabs>
-  <Tab title="Kritischer Support-Fall">
+  <Tab title="Critical Support Case">
     ```json
     {
       "@type": "MessageCard",
       "@context": "https://schema.org/extensions", 
-      "title": "🚨 Kritisches Support-Ticket",
-      "summary": "Sofortige Aufmerksamkeit erforderlich",
-      "text": "Ein kritisches Problem wurde während des Kundengesprächs gemeldet und erfordert sofortige Bearbeitung.",
+      "title": "🚨 Critical Support Ticket",
+      "summary": "Immediate attention required",
+      "text": "A critical issue was reported during the customer call and requires immediate resolution.",
       "themeColor": "DC3545",
       "sections": [
         {
-          "activityTitle": "Problem-Details",
-          "activitySubtitle": "SLA: 1 Stunde Response-Zeit",
+          "activityTitle": "Problem Details",
+          "activitySubtitle": "SLA: 1 hour response time",
           "facts": [
-            {"name": "Kunde:", "value": "Beispiel AG"},
-            {"name": "Kontakt:", "value": "Max Mustermann"},
-            {"name": "Problem:", "value": "API-Gateway nicht erreichbar"},
-            {"name": "Betroffene Services:", "value": "Produktionsumgebung"},
-            {"name": "Geschätzte Ausfallzeit:", "value": "30 Minuten"},
-            {"name": "Business Impact:", "value": "Hoch - Revenue-kritisch"}
+            {"name": "Customer:", "value": "Example AG"},
+            {"name": "Contact:", "value": "Max Mustermann"},
+            {"name": "Issue:", "value": "API Gateway unreachable"},
+            {"name": "Affected Services:", "value": "Production environment"},
+            {"name": "Estimated Downtime:", "value": "30 minutes"},
+            {"name": "Business Impact:", "value": "High - revenue critical"}
           ]
         },
         {
-          "activityTitle": "Nächste Schritte",
+          "activityTitle": "Next Steps",
           "facts": [
-            {"name": "Zugewiesen an:", "value": "@DevOps-Team"},
-            {"name": "Ticket-ID:", "value": "#SUP-2024-0123"},
-            {"name": "Priorität:", "value": "P1 - Kritisch"}
+            {"name": "Assigned to:", "value": "@DevOps-Team"},
+            {"name": "Ticket ID:", "value": "#SUP-2024-0123"},
+            {"name": "Priority:", "value": "P1 - Critical"}
           ]
         }
       ],
       "potentialAction": [
         {
           "@type": "OpenUri",
-          "name": "Ticket öffnen", 
+          "name": "Open Ticket", 
           "targets": [{"os": "default", "uri": "https://support.company.com/tickets/SUP-2024-0123"}]
         }
       ]
@@ -282,101 +281,101 @@ Integrieren Sie Microsoft Teams Messaging in Ihre Mid-call Actions und ermöglic
     ```
   </Tab>
   
-  <Tab title="Automatische Team-Mentions">
+  <Tab title="Automatic Team Mentions">
     ```yaml
-    Teams-Mention-Integration:
+    Teams mention integration:
       
-    In MessageCard-Text:
-      "text": "<at>DevOps Team</at> - Sofortige Aufmerksamkeit erforderlich!"
+    In MessageCard text:
+      "text": "<at>DevOps Team</at> - Immediate attention required!"
       
-    Erweiterte Mentions:
-      - Benutzer: "<at>Max Mustermann</at>"
-      - Teams: "<at>Support-Team</at>" 
+    Advanced mentions:
+      - User: "<at>Max Mustermann</at>"
+      - Teams: "<at>Support Team</at>" 
       - Channel: "<at>Channel Name</at>"
       
-    Hinweis: Teams-Webhooks unterstützen @mentions in MessageCards begrenzt
+    Note: Teams webhooks have limited support for @mentions in MessageCards
     ```
   </Tab>
 </Tabs>
 
-### Szenario 3: Business-Intelligence-Updates
+### Scenario 3: Business Intelligence Updates
 
 ```mermaid
 flowchart TD
-    A[Kundenanruf] --> B{Gesprächstyp?}
-    B -->|Sales| C[Lead-Qualifikation]
-    B -->|Support| D[Problem-Assessment] 
-    B -->|Upsell| E[Opportunity-Erkennung]
+    A[Customer Call] --> B{Call Type?}
+    B -->|Sales| C[Lead Qualification]
+    B -->|Support| D[Problem Assessment] 
+    B -->|Upsell| E[Opportunity Detection]
     
-    C --> F{Lead-Score?}
-    F -->|>80| G[Teams: Hot-Leads Channel]
+    C --> F{Lead Score?}
+    F -->|>80| G[Teams: Hot Leads Channel]
     F -->|50-80| H[Teams: Sales Channel]
     F -->|<50| I[Teams: Nurturing Channel]
     
     D --> J{Severity?}
-    J -->|Critical| K[Teams: Support-Critical + Management]
-    J -->|High| L[Teams: Support-Team]
-    J -->|Normal| M[Teams: Support-Queue]
+    J -->|Critical| K[Teams: Support Critical + Management]
+    J -->|High| L[Teams: Support Team]
+    J -->|Normal| M[Teams: Support Queue]
     
-    E --> N[Teams: Account-Management Channel]
+    E --> N[Teams: Account Management Channel]
     
-    G --> O[MessageCard mit Lead-Details]
+    G --> O[MessageCard with Lead Details]
     H --> O
     I --> O
-    K --> P[MessageCard mit SLA-Timer]
+    K --> P[MessageCard with SLA Timer]
     L --> P
     M --> P
-    N --> Q[MessageCard mit Upsell-Opportunity]
+    N --> Q[MessageCard with Upsell Opportunity]
 ```
 
-## Response-Verarbeitung & Erfolg
+## Response Handling & Success
 
-### Erfolgreiche Nachricht
+### Successful Message
 
 ```
-Status: 200 OK
-Body: "1" (Teams antwortet nur mit "1" bei Erfolg)
+Status: 200 OK  
+Body: "1" (Teams only responds with "1" on success)
 ```
 
-### Natürliche Sprachintegration
+### Natural Language Integration
 
 <AccordionGroup>
-  <Accordion title="Agent-Nachrichten vor API-Aufruf">
-    **Template**: `"Ich sende die Information an Microsoft Teams..."`
+  <Accordion title="Agent Messages before API Call">
+    **Template**: `"I am sending the information to Microsoft Teams..."`
     
-    **Kontextuelle Beispiele**:
+    **Contextual Examples**:
     ```yaml
-    Bei Sales-Lead:
-      "Ich informiere das Sales-Team über diesen qualifizierten Lead..."
+    For Sales Lead:
+      "I am informing the sales team about this qualified lead..."
     
-    Bei Support-Issue:
-      "Ich eskaliere das Problem an das Support-Team in Microsoft Teams..."
+    For Support Issue:
+      "I am escalating the issue to the support team in Microsoft Teams..."
     
-    Bei Partnership-Anfrage:
-      "Ich leite die Partnership-Anfrage an das Business Development Team weiter..."
+    For Partnership Inquiry:
+      "I am forwarding the partnership inquiry to the business development team..."
     ```
   </Accordion>
   
-  <Accordion title="Erfolgsbestätigungen">
-    **Template**: `"Nachricht wurde an Teams gesendet."`
+  <Accordion title="Success Confirmations">
+    **Template**: `"Message has been sent to Teams."`
     
-    **Erweiterte Bestätigungen**:
+    **Extended confirmations**:
     ```yaml
-    Mit Priorität:
-      "Kritische Benachrichtigung wurde an das Team gesendet."
+    With Priority:
+      "Critical notification has been sent to the team."
     
-    Mit Follow-up:
-      "Das Team wurde benachrichtigt und wird sich innerhalb von [SLA-Zeit] melden."
+    With Follow-up:
+      "The team has been notified and will respond within [SLA time]."
     
-    Mit Action Items:
-      "Teams-Benachrichtigung gesendet - das Team kann direkt vom Chat aus reagieren."
+    With Action Items:
+      "Teams notification sent – the team can respond directly from the chat."
     ```
   </Accordion>
 </AccordionGroup>
 
-## Erweiterte MessageCard-Features
+## Advanced MessageCard Features
 
-### Interaktive Elemente
+### Interactive Elements
 
 <AccordionGroup>
   <Accordion title="Action Buttons">
@@ -385,32 +384,32 @@ Body: "1" (Teams antwortet nur mit "1" bei Erfolg)
       "potentialAction": [
         {
           "@type": "OpenUri",
-          "name": "CRM öffnen",
+          "name": "Open CRM",
           "targets": [
             {"os": "default", "uri": "https://crm.company.com/lead/12345"}
           ]
         },
         {
           "@type": "HttpPOST", 
-          "name": "Lead übernehmen",
+          "name": "Claim Lead",
           "target": "https://api.company.com/leads/claim",
           "body": "{\"lead_id\": \"12345\", \"user\": \"{{user}}\"}"
         },
         {
           "@type": "ActionCard",
-          "name": "Notiz hinzufügen",
+          "name": "Add Note",
           "inputs": [
             {
               "@type": "TextInput",
               "id": "note",
-              "title": "Ihre Notiz",
+              "title": "Your note",
               "isMultiline": true
             }
           ],
           "actions": [
             {
               "@type": "HttpPOST",
-              "name": "Speichern",
+              "name": "Save",
               "target": "https://api.company.com/leads/note"
             }
           ]
@@ -420,26 +419,26 @@ Body: "1" (Teams antwortet nur mit "1" bei Erfolg)
     ```
   </Accordion>
   
-  <Accordion title="Multi-Section-Layout">
+  <Accordion title="Multi-Section Layout">
     ```json
     {
       "sections": [
         {
-          "activityTitle": "Lead-Informationen",
-          "activitySubtitle": "Primäre Kontaktdaten",
+          "activityTitle": "Lead Information",
+          "activitySubtitle": "Primary contact details",
           "activityImage": "https://company.com/images/lead-icon.png",
           "facts": [
             {"name": "Name:", "value": "Max Mustermann"},
-            {"name": "Firma:", "value": "Beispiel AG"}
+            {"name": "Company:", "value": "Example AG"}
           ]
         },
         {
-          "activityTitle": "Qualifikation",
-          "activitySubtitle": "BANT-Bewertung",
+          "activityTitle": "Qualification",
+          "activitySubtitle": "BANT assessment",
           "facts": [
-            {"name": "Budget:", "value": "€100k+ bestätigt"},
-            {"name": "Authority:", "value": "Entscheidungsbefugnis"},
-            {"name": "Need:", "value": "Akuter Bedarf"},
+            {"name": "Budget:", "value": "€100k+ confirmed"},
+            {"name": "Authority:", "value": "Decision maker"},
+            {"name": "Need:", "value": "Immediate"},
             {"name": "Timeline:", "value": "Q1 2024"}
           ]
         }
@@ -454,13 +453,13 @@ Body: "1" (Teams antwortet nur mit "1" bei Erfolg)
 ### SharePoint & Power BI Links
 
 <Tabs>
-  <Tab title="SharePoint-Dokumente">
+  <Tab title="SharePoint Documents">
     ```json
     {
       "potentialAction": [
         {
           "@type": "OpenUri",
-          "name": "Sales-Unterlagen öffnen",
+          "name": "Open Sales Documents",
           "targets": [
             {
               "os": "default", 
@@ -470,7 +469,7 @@ Body: "1" (Teams antwortet nur mit "1" bei Erfolg)
         },
         {
           "@type": "OpenUri", 
-          "name": "Kundenhistorie",
+          "name": "Customer History",
           "targets": [
             {
               "os": "default",
@@ -485,126 +484,126 @@ Body: "1" (Teams antwortet nur mit "1" bei Erfolg)
   
   <Tab title="Power BI Dashboards">
     ```yaml
-    Dashboard-Integration:
-      Sales-Performance: "https://app.powerbi.com/groups/.../reports/sales-dashboard"
-      Support-Metrics: "https://app.powerbi.com/groups/.../reports/support-metrics"
-      Customer-Analytics: "https://app.powerbi.com/groups/.../reports/customer-insights"
+    Dashboard Integration:
+      Sales Performance: "https://app.powerbi.com/groups/.../reports/sales-dashboard"
+      Support Metrics: "https://app.powerbi.com/groups/.../reports/support-metrics"
+      Customer Analytics: "https://app.powerbi.com/groups/.../reports/customer-insights"
     
-    Dynamic-Links basierend auf call_type:
-      Sales → Sales-Dashboard
-      Support → Support-Metrics
-      Partnership → Business-Development-Dashboard
+    Dynamic links based on call_type:
+      Sales → Sales Dashboard
+      Support → Support Metrics
+      Partnership → Business Development Dashboard
     ```
   </Tab>
 </Tabs>
 
-## Fehlerbehandlung & Troubleshooting
+## Error Handling & Troubleshooting
 
-### Häufige Probleme
+### Common Issues
 
 <AccordionGroup>
-  <Accordion title="Webhook URL ungültig (400 Bad Request)">
+  <Accordion title="Invalid Webhook URL (400 Bad Request)">
     ```yaml
-    Ursachen:
-      - Webhook wurde deaktiviert oder gelöscht
-      - Falsche URL-Formatierung
-      - Expired Webhook-Konfiguration
+    Causes:
+      - Webhook disabled or deleted  
+      - Incorrect URL formatting  
+      - Expired webhook configuration
     
-    Lösungsschritte:
-      1. Teams-Channel prüfen
-      2. Webhook-Konfiguration erneuern  
-      3. Neue URL in Tool-Konfiguration aktualisieren
+    Troubleshooting:
+      1. Verify Teams channel  
+      2. Reconfigure webhook  
+      3. Update URL in tool configuration
       
-    Fallback-Nachricht:
-      "Die Teams-Benachrichtigung konnte nicht zugestellt werden. 
-       Das Team wird manuell informiert."
+    Fallback message:
+      "Teams notification could not be delivered.  
+       The team will be informed manually."
     ```
   </Accordion>
   
-  <Accordion title="MessageCard-Format-Fehler">
+  <Accordion title="MessageCard Format Errors">
     ```yaml
-    Häufige Formatfehler:
-      - Ungültiges JSON
-      - Fehlende @type oder @context
-      - Zu lange title/text-Felder
-      - Ungültige Action-Definitionen
+    Common format issues:
+      - Invalid JSON  
+      - Missing @type or @context  
+      - Title/text fields too long  
+      - Invalid action definitions
     
     Debugging:
-      - MessageCard-Validator verwenden
-      - Payload-Größe prüfen (max 28KB)
-      - Spezialzeichen escapen
+      - Use MessageCard validator  
+      - Check payload size (max 28KB)  
+      - Escape special characters
     
     Fallback:
-      Einfache Text-Nachricht ohne erweiterte Features
+      Plain text message without advanced features
     ```
   </Accordion>
 </AccordionGroup>
 
 ## Performance & Monitoring
 
-### Teams-spezifische Metriken
+### Teams-Specific Metrics
 
-| Metrik | Beschreibung | Zielwert |
-|--------|-------------|----------|
-| **Webhook Success Rate** | % erfolgreich zugestellter Nachrichten | &gt;99.5% |
-| **Message Delivery Time** | Zeit bis Nachricht in Teams erscheint | &lt;2 Sekunden |
-| **Action Button Usage** | % der Nachrichten mit Button-Interaktion | &gt;60% |
-| **Webhook Uptime** | Verfügbarkeit der Webhook-Endpoints | &gt;99.9% |
+| Metric                  | Description                            | Target Value |
+|-------------------------|------------------------------------|--------------|
+| **Webhook Success Rate** | % of successfully delivered messages | >99.5%       |
+| **Message Delivery Time**| Time until message appears in Teams | <2 seconds   |
+| **Action Button Usage**  | % of messages with button interaction| >60%         |
+| **Webhook Uptime**       | Availability of webhook endpoints    | >99.9%       |
 
 ### Business Impact Tracking
 
 <Steps>
-  <Step title="Reaktionszeiten messen">
+  <Step title="Measure Response Times">
     ```yaml
     KPIs:
-      - Zeit bis zur ersten Team-Reaktion auf Alert
-      - Durchschnittliche Problem-Lösungszeit
-      - Lead-Response-Zeit nach Teams-Benachrichtigung
+      - Time to first team reaction on alert  
+      - Average problem resolution time  
+      - Lead response time after Teams notification
     ```
   </Step>
   
-  <Step title="Engagement-Analyse">
+  <Step title="Engagement Analysis">
     ```yaml
-    Metriken:
-      - Anzahl Button-Clicks pro MessageCard-Typ
-      - Häufigste Action-Types
-      - Team-Member-Participation-Rate
+    Metrics:
+      - Number of button clicks per MessageCard type  
+      - Most common action types  
+      - Team member participation rate
     ```
   </Step>
 </Steps>
 
-## Enterprise-Compliance
+## Enterprise Compliance
 
-### Sicherheits-Überlegungen
+### Security Considerations
 
 <AccordionGroup>
-  <Accordion title="Datenklassifizierung">
+  <Accordion title="Data Classification">
     ```yaml
-    Sensitivity-Labels für Teams-Nachrichten:
-      Public: Allgemeine Benachrichtigungen
-      Internal: Team-spezifische Updates
-      Confidential: Kundendaten mit Lead-Informationen
-      Highly Confidential: Kritische Business-Intelligence
+    Sensitivity labels for Teams messages:
+      Public: General notifications  
+      Internal: Team-specific updates  
+      Confidential: Customer data with lead information  
+      Highly Confidential: Critical business intelligence
     
     Implementation:
-      - Webhook-URLs nach Sensitivity-Level trennen
-      - Verschiedene Teams-Channels für verschiedene Classifications
-      - Automatische Data-Loss-Prevention-Checks
+      - Separate webhook URLs per sensitivity level  
+      - Different Teams channels for different classifications  
+      - Automated data loss prevention checks
     ```
   </Accordion>
   
   <Accordion title="Audit & Compliance">
     ```yaml
-    Microsoft 365 Compliance-Features:
-      - Message-Retention-Policies
-      - eDiscovery für Teams-Nachrichten
-      - Communication-Compliance-Monitoring
-      - Data-Loss-Prevention (DLP)
+    Microsoft 365 compliance features:
+      - Message retention policies  
+      - eDiscovery for Teams messages  
+      - Communication compliance monitoring  
+      - Data loss prevention (DLP)
     
     Logging:
-      - Alle Webhook-Calls in Audit-Log
-      - Message-Content-Classification
-      - User-Interaction-Tracking
+      - All webhook calls in audit log  
+      - Message content classification  
+      - User interaction tracking
     ```
   </Accordion>
 </AccordionGroup>
@@ -612,9 +611,9 @@ Body: "1" (Teams antwortet nur mit "1" bei Erfolg)
 ---
 
 <Warning>
-**Enterprise-Hinweis**: Stellen Sie sicher, dass Ihre Teams-Webhooks den IT-Security-Richtlinien Ihres Unternehmens entsprechen und regelmäßig auf Sicherheitslücken überprüft werden.
+**Enterprise Notice**: Ensure your Teams webhooks comply with your company’s IT security policies and are regularly checked for vulnerabilities.
 </Warning>
 
 <Info>
-**Integration-Tipp**: Verwenden Sie verschiedene Webhook-URLs für verschiedene Channel-Typen (Sales, Support, etc.) um bessere Kontrolle über Nachrichten-Routing und -Formatierung zu haben.
+**Integration Tip**: Use different webhook URLs for different channel types (Sales, Support, etc.) to gain better control over message routing and formatting.
 </Info>

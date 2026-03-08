@@ -1,48 +1,47 @@
 ---
 title: "Salesforce Integration"
-description: "Enterprise-grade Mid-call Actions für Salesforce CRM mit umfangreichen Lead-, Contact- und Opportunity-Management-Funktionen"
+description: "Enterprise-grade mid-call actions for Salesforce CRM with extensive lead, contact, and opportunity management capabilities"
 icon: "salesforce"
 ---
 
-
 # Salesforce Integration Template
 
-Integrieren Sie Ihre Mid-call Actions mit Salesforce, dem weltweit führenden CRM-System. Diese Integration bietet umfangreiche Möglichkeiten für Enterprise-Workflows, komplexe Sales-Prozesse und skalierbare Customer-Relationship-Management.
+Integrate your mid-call actions with Salesforce, the world’s leading CRM system. This integration offers extensive capabilities for enterprise workflows, complex sales processes, and scalable customer relationship management.
 
-## Überblick & Enterprise-Features
+## Overview & Enterprise Features
 
 <CardGroup cols={2}>
-  <Card title="Enterprise-CRM-Integration" icon="building">
-    - Vollständige Salesforce-Object-Unterstützung (Leads, Contacts, Accounts, Opportunities)
-    - Custom Objects und Fields
-    - Salesforce-Workflows und Triggers
-    - Multi-Org-Support für große Unternehmen
+  <Card title="Enterprise CRM Integration" icon="building">
+    - Full Salesforce object support (Leads, Contacts, Accounts, Opportunities)  
+    - Custom objects and fields  
+    - Salesforce workflows and triggers  
+    - Multi-org support for large enterprises  
   </Card>
   <Card title="Advanced Sales Features" icon="chart-line">
-    - Territory Management Integration
-    - Sales Process und Stage-Management  
-    - Einstein AI Lead Scoring
-    - Revenue Cloud Integration
+    - Territory management integration  
+    - Sales process and stage management  
+    - Einstein AI lead scoring  
+    - Revenue Cloud integration  
   </Card>
 </CardGroup>
 
-## Salesforce API-Setup
+## Salesforce API Setup
 
-### 1. Connected App erstellen
+### 1. Create Connected App
 
 <Steps>
-  <Step title="Setup-Navigation">
-    - Melden Sie sich bei Salesforce als Admin an
-    - Gehen Sie zu "Setup" (Zahnrad-Symbol)
-    - Navigieren Sie zu "Apps" → "App Manager"
+  <Step title="Setup Navigation">
+    - Log in to Salesforce as an admin  
+    - Go to "Setup" (gear icon)  
+    - Navigate to "Apps" → "App Manager"  
   </Step>
   
-  <Step title="Connected App konfigurieren">
+  <Step title="Configure Connected App">
 ```yaml
 App-Details:
   Connected App Name: "Famulor Mid-call Actions"
   API Name: "Famulor_Mid_Call_Tools"
-  Contact Email: ihr-admin@firma.de
+  Contact Email: your-admin@company.com
   
 OAuth Settings:
   Enable OAuth Settings: ✓
@@ -54,36 +53,36 @@ OAuth Settings:
 ```
   </Step>
   
-  <Step title="API-Credentials sichern">
-    Nach der Erstellung:
-    - Consumer Key (Client ID) notieren
-    - Consumer Secret (Client Secret) notieren
-    - Diese werden für die Tool-Authentication benötigt
+  <Step title="Secure API Credentials">
+    After creation:  
+    - Note Consumer Key (Client ID)  
+    - Note Consumer Secret (Client Secret)  
+    - These credentials are required for tool authentication  
   </Step>
   
-  <Step title="User-Permissions setzen">
+  <Step title="Set User Permissions">
 ```yaml
-Profile-Permissions (für Service User):
+Profile Permissions (for Service User):
   - "API Enabled" 
-  - "View All Data" (oder spezifische Object-Permissions)
-  - "Modify All Data" (nur für Write-Operationen)
+  - "View All Data" (or specific object permissions)
+  - "Modify All Data" (only for write operations)
   
-Optional - IP-Restrictions:
-  - Vertrauenswürdige IP-Ranges definieren
-  - VPN-basierte Zugriffe konfigurieren
+Optional - IP Restrictions:
+  - Define trusted IP ranges
+  - Configure VPN-based access
 ```
   </Step>
 </Steps>
 
-### 2. Authentication-Flow
+### 2. Authentication Flow
 
 <Tabs>
   <Tab title="OAuth 2.0 Flow">
     ```yaml
     Authentication-Type: "OAuth 2.0"
-    Grant Type: "Client Credentials" oder "Authorization Code"
+    Grant Type: "Client Credentials" or "Authorization Code"
     
-    Token-Endpoint:
+    Token Endpoint:
       URL: https://login.salesforce.com/services/oauth2/token
       Method: POST
       
@@ -94,58 +93,58 @@ Optional - IP-Restrictions:
       grant_type: "client_credentials"
       client_id: "{consumer_key}"
       client_secret: "{consumer_secret}"
-      username: "{sf_username}"  # für Username-Password-Flow
+      username: "{sf_username}"  # for Username-Password flow
       password: "{sf_password}{security_token}"
     ```
   </Tab>
   
   <Tab title="Session-Based Auth">
     ```yaml
-    Alternative für Legacy-Setups:
+    Alternative for legacy setups:
       Endpoint: https://login.salesforce.com/services/Soap/c/60.0
       Method: POST (SOAP)
       
-    Session-ID aus Login-Response:
-      Verwende Session-ID in "Authorization: Bearer {session_id}"
+    Session ID from login response:
+      Use Session ID in "Authorization: Bearer {session_id}"
       
-    Vorteil: Einfacher Setup
-    Nachteil: Session-Expiry-Handling
+    Pros: Easier setup  
+    Cons: Session expiry handling required
     ```
   </Tab>
 </Tabs>
 
-## Lead-Management-Tool
+## Lead Management Tool
 
-### 1. Lead-Lookup-Tool
+### 1. Lead Lookup Tool
 
 <AccordionGroup>
-  <Accordion title="Tool-Konfiguration">
-    | Parameter | Wert |
-    |-----------|------|
-    | **Funktionsname** | `get_salesforce_lead` |
-    | **Beschreibung** | "Ruft Lead-Informationen aus Salesforce ab basierend auf E-Mail oder Telefonnummer." |
-    | **HTTP-Methode** | `GET` |
+  <Accordion title="Tool Configuration">
+    | Parameter | Value |
+    |-----------|-------|
+    | **Function Name** | `get_salesforce_lead` |
+    | **Description** | "Retrieves lead information from Salesforce based on email or phone number." |
+    | **HTTP Method** | `GET` |
     | **URL** | `https://{instance}.salesforce.com/services/data/v60.0/query` |
     | **Timeout** | `8000ms` |
   </Accordion>
   
-  <Accordion title="Query-Parameter">
+  <Accordion title="Query Parameters">
     ```yaml
-    SOQL-Query-Beispiele:
+    SOQL Query Examples:
       
-      Email-basierte Suche:
+      Email-based Search:
         q: "SELECT Id, FirstName, LastName, Company, Email, Phone, Status, 
             Rating, LeadSource, CreatedDate, LastModifiedDate 
             FROM Lead 
             WHERE Email = '{email}' AND IsConverted = false"
       
-      Telefon-basierte Suche:
+      Phone-based Search:
         q: "SELECT Id, FirstName, LastName, Company, Email, Phone, Status,
             Rating, Industry, AnnualRevenue 
             FROM Lead 
             WHERE Phone = '{phone}' OR MobilePhone = '{phone}'"
       
-      Erweiterte Suche mit Custom Fields:
+      Extended Search with Custom Fields:
         q: "SELECT Id, Name, Email, Lead_Score__c, Next_Follow_Up__c,
             Competitor_Mentioned__c, Budget_Range__c
             FROM Lead 
@@ -154,13 +153,13 @@ Optional - IP-Restrictions:
   </Accordion>
 </AccordionGroup>
 
-### 2. Lead-Creation-Tool
+### 2. Lead Creation Tool
 
 <Tabs>
   <Tab title="Basic Lead Creation">
     ```yaml
-    Funktionsname: create_salesforce_lead
-    HTTP-Methode: POST
+    Function Name: create_salesforce_lead
+    HTTP Method: POST
     URL: https://{instance}.salesforce.com/services/data/v60.0/sobjects/Lead
     
     Headers:
@@ -196,7 +195,7 @@ Optional - IP-Restrictions:
   </Tab>
 </Tabs>
 
-### 3. Lead-Update & Qualification
+### 3. Lead Update & Qualification
 
 ```json
 {
@@ -204,29 +203,29 @@ Optional - IP-Restrictions:
   "properties": {
     "lead_id": {
       "type": "string",
-      "description": "Salesforce Lead-ID für Update"
+      "description": "Salesforce lead ID for update"
     },
     "status": {
       "type": "string",
       "enum": ["Open - Not Contacted", "Working - Contacted", "Closed - Converted", "Closed - Not Converted"],
-      "description": "Neuer Lead-Status"
+      "description": "New lead status"
     },
     "rating": {
       "type": "string", 
       "enum": ["Hot", "Warm", "Cold"],
-      "description": "Lead-Rating basierend auf Gespräch"
+      "description": "Lead rating based on the conversation"
     },
     "qualification_notes": {
       "type": "string",
-      "description": "BANT-Qualifikation und Gesprächsnotizen"
+      "description": "BANT qualification and conversation notes"
     },
     "next_action": {
       "type": "string",
-      "description": "Empfohlene nächste Schritte"
+      "description": "Recommended next steps"
     },
     "assigned_owner": {
       "type": "string",
-      "description": "Salesforce User-ID für Zuweisung"
+      "description": "Salesforce user ID for assignment"
     }
   },
   "required": ["lead_id"]
@@ -235,12 +234,12 @@ Optional - IP-Restrictions:
 
 ## Contact & Account Management
 
-### 1. Contact-Lookup mit Account-Informationen
+### 1. Contact Lookup with Account Information
 
 <AccordionGroup>
-  <Accordion title="Umfassende Contact-Abfrage">
+  <Accordion title="Comprehensive Contact Query">
     ```sql
-    -- SOQL für Contact mit Account-Daten
+    -- SOQL for Contact with Account data
     SELECT Id, FirstName, LastName, Email, Phone, Title,
            Account.Id, Account.Name, Account.Industry, Account.AnnualRevenue,
            Account.NumberOfEmployees, Account.Type,
@@ -251,9 +250,9 @@ Optional - IP-Restrictions:
     ```
   </Accordion>
   
-  <Accordion title="Multi-Relationship-Queries">
+  <Accordion title="Multi-Relationship Queries">
     ```sql
-    -- Contact mit Opportunities und Cases
+    -- Contact with Opportunities and Cases
     SELECT Id, Name, Email, Phone,
            (SELECT Id, Name, StageName, Amount, CloseDate FROM Opportunities),
            (SELECT Id, Subject, Status, Priority FROM Cases WHERE IsClosed = false),
@@ -264,10 +263,10 @@ Optional - IP-Restrictions:
   </Accordion>
 </AccordionGroup>
 
-### 2. Account-Enrichment
+### 2. Account Enrichment
 
 <Tabs>
-  <Tab title="Account-Lookup">
+  <Tab title="Account Lookup">
     ```yaml
     Tool: get_salesforce_account
     SOQL: "SELECT Id, Name, Industry, AnnualRevenue, NumberOfEmployees,
@@ -277,13 +276,13 @@ Optional - IP-Restrictions:
            FROM Account 
            WHERE Name LIKE '%{company_name}%' OR Website LIKE '%{domain}%'"
     
-    Use Case: Firmendaten während Gespräch anreichern
+    Use Case: Enrich company data during calls
     ```
   </Tab>
   
-  <Tab title="Account-Hierarchy">
+  <Tab title="Account Hierarchy">
     ```sql
-    -- Parent-Child-Account-Beziehungen
+    -- Parent-child account relationships
     SELECT Id, Name, Type,
            Parent.Name, Parent.Id,
            (SELECT Name, Type FROM ChildAccounts)
@@ -293,9 +292,9 @@ Optional - IP-Restrictions:
   </Tab>
 </Tabs>
 
-## Opportunity-Management
+## Opportunity Management
 
-### 1. Opportunity-Tracking
+### 1. Opportunity Tracking
 
 ```mermaid
 flowchart TD
@@ -312,21 +311,20 @@ flowchart TD
     I --> K[Lead Nurturing]
 ```
 
-### 2. Opportunity-Creation-Tool
+### 2. Opportunity Creation Tool
 
 <AccordionGroup>
-  <Accordion title="Tool-Configuration">
+  <Accordion title="Tool Configuration">
     ```yaml
-    Funktionsname: create_salesforce_opportunity
+    Function Name: create_salesforce_opportunity
     Method: POST
     URL: /services/data/v60.0/sobjects/Opportunity
     
-    Beschreibung: "Erstellt eine neue Opportunity in Salesforce basierend auf 
-                   qualifiziertem Lead-Gespräch"
+    Description: "Creates a new opportunity in Salesforce based on qualified lead conversation"
     ```
   </Accordion>
   
-  <Accordion title="Opportunity-Fields">
+  <Accordion title="Opportunity Fields">
     ```json
     {
       "Name": "{opportunity_name}",
@@ -354,11 +352,11 @@ flowchart TD
 ### 3. Sales Process Integration
 
 <Tabs>
-  <Tab title="Stage-Management">
+  <Tab title="Stage Management">
     ```yaml
-    Salesforce-Stage-Mapping:
+    Salesforce Stage Mapping:
       "Prospect Reached" → StageName: "Prospecting"
-      "Needs Identified" → StageName: "Qualification" 
+      "Needs Identified" → StageName: "Qualification"
       "Budget Confirmed" → StageName: "Needs Analysis"
       "Demo Scheduled" → StageName: "Value Proposition"
       "Proposal Requested" → StageName: "Id. Decision Makers"
@@ -366,37 +364,37 @@ flowchart TD
       "Contract Sent" → StageName: "Negotiation/Review"
       "Deal Closed" → StageName: "Closed Won"
     
-    Automatic-Stage-Progression:
-      - Basierend auf Gesprächsinhalten
-      - Trigger für Workflow-Rules
-      - Integration mit Sales-Process-Builder
+    Automatic Stage Progression:
+      - Based on conversation content
+      - Triggers for workflow rules
+      - Integration with Sales Process Builder
     ```
   </Tab>
   
-  <Tab title="Einstein-AI-Integration">
+  <Tab title="Einstein AI Integration">
     ```yaml
-    Einstein-Lead-Scoring:
-      API-Endpoint: /services/data/v60.0/einstein/platform/v1/models
+    Einstein Lead Scoring:
+      API Endpoint: /services/data/v60.0/einstein/platform/v1/models
       
-      Verwendung:
-        - Automatische Score-Updates basierend auf Gespräch
-        - Predictive Analytics für Close-Probability
-        - Next-Best-Action-Empfehlungen
+      Usage:
+        - Automatic score updates based on conversation
+        - Predictive analytics for close probability
+        - Next-best-action recommendations
       
-    Einstein-Activity-Capture:
-      - Automatische E-Mail/Call-Logging
-      - Sentiment-Analysis-Integration
-      - Conversation-Intelligence-Features
+    Einstein Activity Capture:
+      - Automated email/call logging
+      - Sentiment analysis integration
+      - Conversation intelligence features
     ```
   </Tab>
 </Tabs>
 
 ## Activity & Task Management
 
-### Automatische Activity-Protokollierung
+### Automatic Activity Logging
 
 <AccordionGroup>
-  <Accordion title="Task-Creation">
+  <Accordion title="Task Creation">
     ```json
     {
       "sobjectType": "Task",
@@ -416,21 +414,21 @@ flowchart TD
     ```
   </Accordion>
   
-  <Accordion title="Event-Logging">
+  <Accordion title="Event Logging">
     ```yaml
-    Event-Types für Mid-Call-Protokollierung:
+    Event Types for Mid-Call Logging:
       
-      Inbound-Call-Event:
+      Inbound Call Event:
         Subject: "Inbound Call - {topic}"
         Type: "Call"
         DurationInMinutes: {call_length}
         
-      Demo-Request-Event:
+      Demo Request Event:
         Subject: "Demo Scheduled"
         Type: "Meeting"
         StartDateTime: {demo_date}
         
-      Follow-up-Task:
+      Follow-up Task:
         Subject: "Send Proposal"
         ActivityDate: {due_date}
         Priority: "High"
@@ -440,12 +438,12 @@ flowchart TD
 
 ## Territory & Team Management
 
-### 1. Lead-Routing basierend auf Territory
+### 1. Lead Routing Based on Territory
 
 <Tabs>
-  <Tab title="Territory-Based-Assignment">
+  <Tab title="Territory-Based Assignment">
     ```sql
-    -- Territory-Lookup für automatische Zuweisung
+    -- Territory lookup for automatic assignment
     SELECT Id, Name, 
            (SELECT User.Id, User.Name FROM UserTerritories WHERE RoleInTerritory = 'Sales Rep')
     FROM Territory2
@@ -455,34 +453,34 @@ flowchart TD
     ```
   </Tab>
   
-  <Tab title="Queue-Based-Distribution">
+  <Tab title="Queue-Based Distribution">
     ```yaml
-    Lead-Assignment-Logic:
+    Lead Assignment Logic:
       
-      Enterprise-Accounts (&gt;1000 Employees):
+      Enterprise Accounts (>1000 Employees):
         → Enterprise Sales Team Queue
-        → Immediate SMS-Notification
-        → 4-Hour Response SLA
+        → Immediate SMS Notification
+        → 4-hour response SLA
       
-      SMB-Accounts (10-1000 Employees):
+      SMB Accounts (10-1000 Employees):
         → Standard Sales Team
-        → E-Mail-Notification
-        → 24-Hour Response SLA
+        → Email Notification
+        → 24-hour response SLA
       
-      Small-Business (&lt;10 Employees):
+      Small Business (<10 Employees):
         → Inside Sales Team
-        → Queue-based Distribution
-        → 48-Hour Response SLA
+        → Queue-based distribution
+        → 48-hour response SLA
     ```
   </Tab>
 </Tabs>
 
-### 2. Escalation-Management
+### 2. Escalation Management
 
 ```mermaid
 sequenceDiagram
     participant C as Customer
-    participant AI as KI-Assistant
+    participant AI as AI Assistant
     participant SF as Salesforce
     participant SR as Sales Rep
     participant SM as Sales Manager
@@ -506,48 +504,48 @@ sequenceDiagram
 <AccordionGroup>
   <Accordion title="Financial Services">
     ```yaml
-    Custom-Objects:
+    Custom Objects:
       - Investment_Profile__c
       - Risk_Assessment__c  
       - Compliance_Record__c
       - Portfolio_Summary__c
       
-    Mid-Call-Integration:
-      - Risk-Profile-Abfrage während Beratungsgespräch
-      - Portfolio-Performance-Updates
-      - Compliance-Status-Checks
-      - Product-Suitability-Assessment
+    Mid-Call Integration:
+      - Risk profile queries during advisory calls
+      - Portfolio performance updates
+      - Compliance status checks
+      - Product suitability assessments
     ```
   </Accordion>
   
   <Accordion title="Healthcare">
     ```yaml
-    Custom-Objects:
+    Custom Objects:
       - Patient_Record__c (HIPAA-compliant)
       - Treatment_Plan__c
       - Insurance_Verification__c
       - Appointment_History__c
       
-    Special-Considerations:
-      - PHI-Handling mit Field-Level-Security
-      - Audit-Trail für alle Datenzugriffe
-      - Consent-Management-Integration
+    Special Considerations:
+      - PHI handling with field-level security
+      - Audit trail for all data accesses
+      - Consent management integration
     ```
   </Accordion>
   
   <Accordion title="Real Estate">
     ```yaml
-    Custom-Objects:
+    Custom Objects:
       - Property_Listing__c
       - Showing_Request__c
       - Market_Analysis__c
       - Financing_Pre_Approval__c
       
     Workflow:
-      - Property-Interest-Capture
-      - Automatic-Showing-Scheduling
-      - Financing-Qualification
-      - Market-Update-Delivery
+      - Property interest capture
+      - Automatic showing scheduling
+      - Financing qualification
+      - Market update delivery
     ```
   </Accordion>
 </AccordionGroup>
@@ -559,45 +557,45 @@ sequenceDiagram
 <Tabs>
   <Tab title="Triggered Flows">
     ```yaml
-    Flow-Trigger-Beispiele:
+    Flow Trigger Examples:
       
-      Lead-Created-Flow:
-        Trigger: Lead Creation via API
+      Lead Created Flow:
+        Trigger: Lead creation via API
         Actions:
-          - Duplicate-Check ausführen
+          - Perform duplicate check
           - Enrichment via Data.com
-          - Auto-Assignment Rules
-          - Welcome-E-Mail senden
-          - Task für First-Contact erstellen
+          - Auto-assignment rules
+          - Send welcome email
+          - Create task for first contact
       
-      Opportunity-Stage-Change:
-        Trigger: Stage-Update via Mid-call Action
+      Opportunity Stage Change:
+        Trigger: Stage update via mid-call action
         Actions:
-          - Approval-Process für große Deals
-          - Quote-Generation für Proposal-Stage
-          - Contract-Template-Creation
-          - Revenue-Forecast-Update
+          - Approval process for large deals
+          - Quote generation for proposal stage
+          - Contract template creation
+          - Revenue forecast updates
     ```
   </Tab>
   
   <Tab title="Process Builder">
     ```yaml
-    Process-Definitions:
+    Process Definitions:
       
-      High-Value-Lead-Process:
+      High Value Lead Process:
         Criteria: Lead_Score__c > 80 AND Annual_Revenue > 1000000
         Actions:
-          - Field-Update: Priority = "Hot"
-          - E-Mail-Alert an VP Sales
-          - Chatter-Post an Account-Team
-          - Task-Assignment an Sr. Account Executive
+          - Field update: Priority = "Hot"
+          - Email alert to VP Sales
+          - Chatter post to account team
+          - Task assignment to senior account executive
       
-      Competitor-Mentioned-Process:
+      Competitor Mentioned Process:
         Criteria: Competitor_Mentioned__c != null
         Actions:
-          - Battle-Card-E-Mail an Sales Rep
-          - Competitive-Intelligence-Report anhängen
-          - Manager-Benachrichtigung
+          - Send battle card email to sales rep
+          - Attach competitive intelligence report
+          - Notify manager
     ```
   </Tab>
 </Tabs>
@@ -607,90 +605,90 @@ sequenceDiagram
 <AccordionGroup>
   <Accordion title="Real-time Dashboards">
     ```yaml
-    Dashboard-Integration für Mid-Call-Analytics:
+    Dashboard integration for mid-call analytics:
       
-      Call-Volume-Metrics:
-        - Calls per Hour/Day
-        - Conversion-Rates by Source
-        - Average-Call-Duration
-        - Lead-Quality-Scores
+      Call Volume Metrics:
+        - Calls per hour/day
+        - Conversion rates by source
+        - Average call duration
+        - Lead quality scores
       
-      Performance-KPIs:
-        - Response-Times nach Lead-Creation
-        - Lead-to-Opportunity-Conversion
-        - Opportunity-Stage-Progression
-        - Win-Rate-Trends
+      Performance KPIs:
+        - Response times after lead creation
+        - Lead-to-opportunity conversion
+        - Opportunity stage progression
+        - Win rate trends
     ```
   </Accordion>
   
   <Accordion title="Predictive Analytics">
     ```yaml
-    Einstein-Predictions:
+    Einstein Predictions:
       
-      Lead-Scoring-Model:
-        Input: Company-Size, Industry, Budget, Timeline
-        Output: Conversion-Probability-Score
+      Lead Scoring Model:
+        Input: Company size, Industry, Budget, Timeline
+        Output: Conversion probability score
         
-      Opportunity-Scoring:
-        Input: Stage-History, Contact-Engagement, Deal-Size
-        Output: Close-Probability + Timeline
+      Opportunity Scoring:
+        Input: Stage history, Contact engagement, Deal size
+        Output: Close probability + timeline
         
-      Churn-Risk-Assessment:
-        Input: Activity-History, Support-Cases, Usage-Metrics
-        Output: Churn-Risk-Score + Intervention-Recommendations
+      Churn Risk Assessment:
+        Input: Activity history, Support cases, Usage metrics
+        Output: Churn risk score + intervention recommendations
     ```
   </Accordion>
 </AccordionGroup>
 
 ## Performance & Monitoring
 
-### API-Limits & Governance
+### API Limits & Governance
 
-| Limit-Typ | Standard | Enterprise | Best Practice |
-|-----------|----------|------------|---------------|
-| **Daily API Requests** | 15,000 | 100,000+ | Request-Pooling |
-| **Concurrent Requests** | 25 | 100 | Queue-Management |
-| **Data Storage** | 1GB | Unlimited | Archive-Strategy |
-| **SOQL Queries per Transaction** | 100 | 100 | Bulk-Operations |
+| Limit Type              | Standard | Enterprise | Best Practice     |
+|------------------------|----------|------------|-------------------|
+| **Daily API Requests**  | 15,000   | 100,000+   | Request pooling   |
+| **Concurrent Requests** | 25       | 100        | Queue management  |
+| **Data Storage**        | 1GB      | Unlimited  | Archive strategy  |
+| **SOQL Queries per Transaction** | 100 | 100    | Bulk operations   |
 
 ### Monitoring & Alerting
 
 <Steps>
-  <Step title="API-Usage-Monitoring">
+  <Step title="API Usage Monitoring">
     ```yaml
-    Metrics zu überwachen:
-      - API-Request-Volume
-      - Response-Times
-      - Error-Rates by Endpoint
-      - Quota-Utilization
+    Metrics to monitor:
+      - API request volume
+      - Response times
+      - Error rates by endpoint
+      - Quota utilization
     ```
   </Step>
   
-  <Step title="Business-Impact-Tracking">
+  <Step title="Business Impact Tracking">
     ```yaml
     KPIs:
-      - Lead-Creation-Rate via Mid-call Actions
-      - Conversion-Rate-Improvement  
-      - Sales-Cycle-Reduction
-      - Revenue-Attribution
+      - Lead creation rate via mid-call actions
+      - Conversion rate improvement
+      - Sales cycle reduction
+      - Revenue attribution
     ```
   </Step>
 </Steps>
 
 ---
 
-<Card title="Enterprise-Integration-Patterns" icon="building">
-Erweitern Sie Ihre Salesforce-Integration:
+<Card title="Enterprise Integration Patterns" icon="building">
+Expand your Salesforce integration:
 
-- [HubSpot Integration](/automation-platform/mid-call-actions/integration-templates/hubspot-kontakt-abruf) für CRM-Vergleiche
-- [Webhook-Integration](/automation-platform/mid-call-actions/integration-templates/webhook-automation) für Multi-System-Workflows
-- [Slack Integration](/automation-platform/mid-call-actions/integration-templates/slack-integration) für Team-Benachrichtigungen
+- [HubSpot Integration](/automation-platform/mid-call-actions/integration-templates/hubspot-kontakt-abruf) for CRM comparisons  
+- [Webhook Integration](/automation-platform/mid-call-actions/integration-templates/webhook-automation) for multi-system workflows  
+- [Slack Integration](/automation-platform/mid-call-actions/integration-templates/slack-integration) for team notifications  
 </Card>
 
 <Warning>
-**Compliance-Hinweis**: Bei Enterprise-Salesforce-Integrationen müssen Sie ggf. spezielle Compliance-Anforderungen (SOX, HIPAA, etc.) beachten. Konsultieren Sie Ihr Compliance-Team vor der Implementierung.
+**Compliance Notice**: For enterprise Salesforce integrations, you may need to observe specific compliance requirements (SOX, HIPAA, etc.). Please consult your compliance team before implementation.
 </Warning>
 
 <Info>
-**Skalierungs-Tipp**: Beginnen Sie mit Standard-Objects (Lead, Contact, Opportunity) und erweitern Sie schrittweise um Custom-Objects und Advanced-Features. Salesforce bietet umfangreiche Sandbox-Umgebungen für sicheres Testing.
+**Scaling Tip**: Start with standard objects (Lead, Contact, Opportunity) and gradually expand to custom objects and advanced features. Salesforce provides extensive sandbox environments for safe testing.
 </Info>

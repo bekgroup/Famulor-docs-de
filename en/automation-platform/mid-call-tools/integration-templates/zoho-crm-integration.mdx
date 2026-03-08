@@ -1,82 +1,82 @@
 ---
 title: "Zoho CRM Integration"
-description: "Automatische Lead-Erstellung und -Management in Zoho CRM direkt während Kundengesprächem für strukturierte Sales-Prozesse"
+description: "Automatic lead creation and management in Zoho CRM directly during customer calls for structured sales processes"
 icon: "user-plus"
 ---
 
 
 # Zoho CRM Integration Template
 
-Integrieren Sie Zoho CRM in Ihre Mid-call Actions und ermöglichen Sie es Ihrem KI-Assistenten, während Kundengesprächem automatisch qualifizierte Leads zu erstellen, zu kategorisieren und Sales-Workflows zu starten.
+Integrate Zoho CRM into your Mid-call Actions and enable your AI assistant to automatically create qualified leads, categorize them, and initiate sales workflows during customer conversations.
 
-## Überblick & Funktionen
+## Overview & Features
 
 <CardGroup cols={2}>
-  <Card title="Intelligente Lead-Erstellung" icon="user-plus">
-    - Automatische Lead-Generierung aus Gespräch
-    - BANT-Qualifizierung und Lead-Scoring
-    - Industry-spezifische Kategorisierung
-    - Multi-Channel-Lead-Source-Tracking
+  <Card title="Intelligent Lead Creation" icon="user-plus">
+    - Automatic lead generation from conversations  
+    - BANT qualification and lead scoring  
+    - Industry-specific categorization  
+    - Multi-channel lead source tracking  
   </Card>
-  <Card title="Sales-Process-Automation" icon="diagram-project">
-    - Automatische Assignment-Rules und Territory-Management
-    - Lead-Nurturing-Workflow-Trigger
-    - Sales-Team-Benachrichtigungen
-    - CRM-Analytics und Performance-Tracking
+  <Card title="Sales Process Automation" icon="diagram-project">
+    - Automatic assignment rules and territory management  
+    - Lead nurturing workflow triggers  
+    - Sales team notifications  
+    - CRM analytics and performance tracking  
   </Card>
 </CardGroup>
 
 ## Zoho CRM API Setup
 
-### 1. Zoho OAuth 2.0 konfigurieren
+### 1. Configure Zoho OAuth 2.0
 
 <Steps>
   <Step title="Zoho API Console">
-    - Besuchen Sie [Zoho API Console](https://api-console.zoho.eu)
-    - Erstellen Sie einen "Server-based Application" Client
-    - Client-ID und Client-Secret notieren
+    - Visit [Zoho API Console](https://api-console.zoho.eu)  
+    - Create a "Server-based Application" client  
+    - Note the client ID and client secret  
   </Step>
   
-  <Step title="OAuth-Scope konfigurieren">
+  <Step title="Configure OAuth Scopes">
     ```yaml
-    Erforderliche Scopes:
+    Required scopes:
       - ZohoCRM.modules.leads.CREATE
       - ZohoCRM.modules.leads.READ
-      - ZohoCRM.modules.contacts.READ (für Duplicate-Check)
-      - ZohoCRM.users.READ (für Assignment)
+      - ZohoCRM.modules.contacts.READ (for duplicate check)
+      - ZohoCRM.users.READ (for assignment)
     ```
   </Step>
   
-  <Step title="Refresh-Token generieren">
+  <Step title="Generate Refresh Token">
     ```yaml
-    Initial-Authorization-Flow:
-      1. Authorization-URL aufrufen
-      2. User-Consent erteilen
-      3. Authorization-Code erhalten
-      4. Code gegen Refresh-Token tauschen
-      5. Refresh-Token für API-Calls verwenden
+    Initial authorization flow:
+      1. Visit the authorization URL  
+      2. Grant user consent  
+      3. Receive authorization code  
+      4. Exchange code for refresh token  
+      5. Use refresh token for API calls  
     ```
   </Step>
 </Steps>
 
-## Lead-Creation-Tool konfigurieren
+## Configure Lead Creation Tool
 
-### Konfiguration im Famulor Interface
+### Configuration in the Famulor Interface
 
 <Tabs>
-  <Tab title="Werkzeugdetails">
-    | Feld | Wert |
-    |------|------|
+  <Tab title="Tool Details">
+    | Field | Value |
+    |-------|-------|
     | **Name*** | `Zoho CRM Lead erstellen` |
-    | **Beschreibung** | "Erstellt automatisch einen neuen Lead in Zoho CRM mit vollständigen Gesprächsinformationen" |
-    | **Funktionsname*** | `create_zoho_lead` |
-    | **Funktionsbeschreibung*** | "Erstellt einen Lead in Zoho CRM. Verwenden Sie dies, wenn ein potentieller Kunde Interesse zeigt oder Sie neue Business-Opportunities identifizieren." |
-    | **HTTP-Methode** | `POST` |
+    | **Description** | "Automatically creates a new lead in Zoho CRM with complete conversation information" |
+    | **Function Name*** | `create_zoho_lead` |
+    | **Function Description*** | "Creates a lead in Zoho CRM. Use this when a potential customer shows interest or you identify new business opportunities." |
+    | **HTTP Method** | `POST` |
     | **Timeout (ms)** | `5000` |
     | **Endpoint*** | `https://www.zohoapis.eu/crm/v2/Leads` |
   </Tab>
   
-  <Tab title="Header-Konfiguration">
+  <Tab title="Header Configuration">
     ```json
     {
       "Authorization": "Zoho-oauthtoken {{ZOHO_TOKEN}}",
@@ -123,7 +123,7 @@ Integrieren Sie Zoho CRM in Ihre Mid-call Actions und ermöglichen Sie es Ihrem 
   </Tab>
 </Tabs>
 
-### Parameter-Schema
+### Parameter Schema
 
 ```json
 {
@@ -131,136 +131,136 @@ Integrieren Sie Zoho CRM in Ihre Mid-call Actions und ermöglichen Sie es Ihrem 
   "properties": {
     "company": {
       "type": "string",
-      "description": "Firmenname des Leads"
+      "description": "Company name of the lead"
     },
     "first_name": {
       "type": "string",
-      "description": "Vorname des Ansprechpartners"
+      "description": "First name of the contact person"
     },
     "last_name": {
       "type": "string",
-      "description": "Nachname des Ansprechpartners"
+      "description": "Last name of the contact person"
     },
     "email": {
       "type": "string",
       "format": "email",
-      "description": "E-Mail-Adresse"
+      "description": "Email address"
     },
     "phone": {
       "type": "string",
-      "description": "Telefonnummer"
+      "description": "Phone number"
     },
     "lead_source": {
       "type": "string",
       "enum": ["Phone Call", "Website", "Trade Show", "Referral", "Advertisement"],
-      "description": "Quelle des Leads",
+      "description": "Source of the lead",
       "default": "Phone Call"
     },
     "lead_status": {
       "type": "string",
       "enum": ["New", "Contacted", "Qualified", "Lost"],
-      "description": "Aktueller Lead-Status",
+      "description": "Current lead status",
       "default": "Contacted"
     },
     "description": {
       "type": "string",
-      "description": "Detaillierte Notizen aus dem Gespräch"
+      "description": "Detailed notes from the conversation"
     },
     "industry": {
       "type": "string",
-      "description": "Branche des Unternehmens"
+      "description": "Industry of the company"
     },
     "employees": {
       "type": "string",
       "enum": ["1-10", "11-50", "51-200", "201-1000", "1000+"],
-      "description": "Anzahl Mitarbeiter"
+      "description": "Number of employees"
     },
     "revenue": {
       "type": "number",
-      "description": "Jahresumsatz in Euro"
+      "description": "Annual revenue in Euros"
     },
     "rating": {
       "type": "string",
       "enum": ["Hot", "Warm", "Cold"],
-      "description": "Lead-Bewertung basierend auf Gespräch",
+      "description": "Lead rating based on conversation",
       "default": "Warm"
     },
     "lead_score": {
       "type": "integer",
-      "description": "Berechneter Lead-Score (0-100)",
+      "description": "Calculated lead score (0-100)",
       "minimum": 0,
       "maximum": 100
     },
     "budget": {
       "type": "string",
-      "description": "Verfügbares oder genanntes Budget"
+      "description": "Available or stated budget"
     },
     "timeline": {
       "type": "string",
-      "description": "Zeitrahmen für Kaufentscheidung"
+      "description": "Timeframe for purchase decision"
     },
     "pain_points": {
       "type": "string",
-      "description": "Identifizierte Herausforderungen und Probleme"
+      "description": "Identified challenges and issues"
     },
     "competitor": {
       "type": "string",
-      "description": "Erwähnte Konkurrenten oder alternative Lösungen"
+      "description": "Mentioned competitors or alternative solutions"
     }
   },
   "required": ["last_name", "company"]
 }
 ```
 
-## Praktische Anwendungsszenarien
+## Practical Use Cases
 
-### Szenario 1: Lead-Qualifizierung während Cold-Call
+### Scenario 1: Lead Qualification During Cold Call
 
 <Steps>
-  <Step title="Lead-Opportunity-Erkennung">
+  <Step title="Lead Opportunity Detection">
     ```yaml
-    Cold-Call-Kontext:
-      Prospect: "Ja, wir suchen tatsächlich nach einer CRM-Lösung..."
+    Cold Call Context:
+      Prospect: "Yes, we are actually looking for a CRM solution..."
       
-    KI: "Perfekt! Lassen Sie mich das als Lead dokumentieren..."
+    AI: "Great! Let me document this as a lead..."
     
     create_zoho_lead:
-      company: "Beispiel AG"
+      company: "Example AG"
       first_name: "Max"
       last_name: "Mustermann" 
       phone: "+49123456789"
       lead_source: "Phone Call"
       lead_status: "Contacted"
-      description: "Sucht CRM-Lösung für 50 Mitarbeiter. Aktuelles System zu langsam."
+      description: "Looking for a CRM solution for 50 employees. Current system is too slow."
       employees: "51-200"
       rating: "Warm"
-      pain_points: "Performance-Probleme mit aktuellem CRM"
+      pain_points: "Performance issues with current CRM"
     ```
   </Step>
   
-  <Step title="BANT-Qualifizierung-Integration">
+  <Step title="BANT Qualification Integration">
     ```yaml
-    Automatische-Lead-Scoring-Logic:
+    Automatic Lead Scoring Logic:
       
-    Budget-Assessment:
-      "Unter 10k" → lead_score: 40
+    Budget Assessment:
+      "Under 10k" → lead_score: 40
       "10-50k" → lead_score: 70
-      "Über 50k" → lead_score: 90
+      "Over 50k" → lead_score: 90
       
-    Authority-Level:
-      "CEO/Geschäftsführer" → +20 Punkte
-      "IT-Leiter" → +15 Punkte  
-      "Mitarbeiter" → +5 Punkte
+    Authority Level:
+      "CEO/Managing Director" → +20 points
+      "IT Manager" → +15 points  
+      "Employee" → +5 points
       
-    Need-Urgency:
-      "Sofort" → rating: "Hot"
-      "Dieses Jahr" → rating: "Warm"
-      "Irgendwann" → rating: "Cold"
+    Need Urgency:
+      "Immediate" → rating: "Hot"
+      "This year" → rating: "Warm"
+      "Sometime" → rating: "Cold"
     ```
   </Step>
 </Steps>
 
-### Response-Verarbeitung
+### Response Handling
 
 ```json
 {
@@ -287,21 +287,19 @@ Integrieren Sie Zoho CRM in Ihre Mid-call Actions und ermöglichen Sie es Ihrem 
 }
 ```
 
-### Natürliche Sprachintegration
+### Natural Language Integration
 
-**Agent-Message**: `"Ich erstelle den Lead für {{company}}..."`
+**Agent Message**: `"I am creating the lead for {{company}}..."`
 
-**Success-Template**: `"Lead erstellt für {{first_name}} {{last_name}} von {{company}}. Lead-ID: {{leadId}}"`
+**Success Template**: `"Lead created for {{first_name}} {{last_name}} from {{company}}. Lead ID: {{leadId}}"`
 
-**Erweiterte Customer-Communication**:
+**Enhanced Customer Communication**:
 ```yaml
-Mit Follow-up-Information:
-  "Lead wurde erstellt. Unser Sales-Team meldet sich binnen 24 Stunden 
-   mit weiteren Informationen bei Ihnen."
+With follow-up information:
+  "The lead has been created. Our sales team will contact you within 24 hours with further information."
 
-Mit Lead-Score-Kontext:
-  "Basierend auf unserem Gespräch haben Sie einen hohen Lead-Score. 
-   Sie werden prioritär von unserem Senior-Account-Manager betreut."
+With lead score context:
+  "Based on our conversation, you have a high lead score. You will be prioritized by our senior account manager."
 ```
 
 ---

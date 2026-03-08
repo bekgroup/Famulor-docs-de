@@ -1,51 +1,51 @@
 ---
 title: "SAP Business One Integration"
-description: "Vollständige SAP B1 Integration für Artikelverfügbarkeit, Bestellstatus und Angebotserstellung direkt während Kundengesprächem"
+description: "Complete SAP B1 integration for item availability, order status, and quote creation directly during customer conversations"
 icon: "database"
 ---
 
 
 # SAP Business One Integration Template
 
-Integrieren Sie SAP Business One ERP-System in Ihre Mid-call Actions mit drei leistungsstarken Funktionen: Artikelverfügbarkeit prüfen, Bestellstatus abrufen und Angebote erstellen - perfekt für B2B-Sales und Customer-Service.
+Integrate the SAP Business One ERP system into your Mid-call Actions with three powerful functions: check item availability, retrieve order status, and create quotes — perfect for B2B sales and customer service.
 
-## Überblick & Funktionen
+## Overview & Features
 
 <CardGroup cols={3}>
-  <Card title="Artikelverfügbarkeit" icon="box">
-    - Echtzeit-Lagerbestand-Abfrage
-    - Reservierte und bestellte Mengen
-    - Multi-Lager-Übersicht
-    - Nachbestellungs-Status
+  <Card title="Item Availability" icon="box">
+    - Real-time stock inquiry  
+    - Reserved and ordered quantities  
+    - Multi-warehouse overview  
+    - Reorder status  
   </Card>
-  <Card title="Bestellstatus" icon="truck">
-    - Vollständige Order-Details
-    - Liefertermin-Tracking  
-    - Teillieferungs-Status
-    - Customer-Service-Integration
+  <Card title="Order Status" icon="truck">
+    - Complete order details  
+    - Delivery date tracking  
+    - Partial delivery status  
+    - Customer service integration  
   </Card>
-  <Card title="Angebot erstellen" icon="file-contract">
-    - Sofortige Quote-Generierung
-    - Customer-spezifische Preise
-    - Rabatt-Management
-    - PDF-Export und E-Mail-Versand
+  <Card title="Create Quote" icon="file-contract">
+    - Instant quote generation  
+    - Customer-specific pricing  
+    - Discount management  
+    - PDF export and email sending  
   </Card>
 </CardGroup>
 
-## Tool 1: Artikelverfügbarkeit prüfen
+## Tool 1: Check Item Availability
 
-### Konfiguration im Famulor Interface
+### Configuration in the Famulor Interface
 
 <Tabs>
-  <Tab title="Werkzeugdetails">
-    | **Name*** | `SAP B1 Artikelverfügbarkeit` |
-    | **Funktionsname*** | `check_sap_item_availability` |
-    | **HTTP-Methode** | `GET` |
+  <Tab title="Tool Details">
+    | **Name*** | `SAP B1 Item Availability` |
+    | **Function Name*** | `check_sap_item_availability` |
+    | **HTTP Method** | `GET` |
     | **Endpoint*** | `https://{{SAP_B1_HOST}}/b1s/v1/Items('{item_code}')` |
     | **Timeout (ms)** | `5000` |
   </Tab>
   
-  <Tab title="Query-Parameter">
+  <Tab title="Query Parameters">
     ```json
     {
       "$select": "ItemCode,ItemName,QuantityOnStock,QuantityOrderedByCustomers,QuantityOrderedFromVendors"
@@ -54,36 +54,36 @@ Integrieren Sie SAP Business One ERP-System in Ihre Mid-call Actions mit drei le
   </Tab>
 </Tabs>
 
-**Success-Template**: `"{{itemName}}: {{available}} Stück verfügbar, {{reserved}} reserviert. {{#if onOrder}}{{onOrder}} Stück nachbestellt.{{/if}}"`
+**Success Template**: `"{{itemName}}: {{available}} pcs available, {{reserved}} reserved. {{#if onOrder}}{{onOrder}} pcs on reorder.{{/if}}"`
 
-## Tool 2: Bestellstatus abrufen
+## Tool 2: Retrieve Order Status
 
-### Konfiguration im Famulor Interface
+### Configuration in the Famulor Interface
 
 <Tabs>
-  <Tab title="Werkzeugdetails">
-    | **Name*** | `SAP B1 Bestellstatus` |
-    | **Funktionsname*** | `get_sap_order_status` |
-    | **HTTP-Methode** | `GET` |
+  <Tab title="Tool Details">
+    | **Name*** | `SAP B1 Order Status` |
+    | **Function Name*** | `get_sap_order_status` |
+    | **HTTP Method** | `GET` |
     | **Endpoint*** | `https://{{SAP_B1_HOST}}/b1s/v1/Orders({{order_id}})` |
   </Tab>
 </Tabs>
 
-**Success-Template**: `"Bestellung {{orderNumber}} für {{customerName}}: Status {{status}}, bestellt am {{orderDate}}, Lieferung geplant: {{deliveryDate}}"`
+**Success Template**: `"Order {{orderNumber}} for {{customerName}}: Status {{status}}, ordered on {{orderDate}}, delivery planned for {{deliveryDate}}"`
 
-## Tool 3: Angebot erstellen
+## Tool 3: Create Quote
 
-### Konfiguration im Famulor Interface
+### Configuration in the Famulor Interface
 
 <Tabs>
-  <Tab title="Werkzeugdetails">
-    | **Name*** | `SAP B1 Angebot erstellen` |
-    | **Funktionsname*** | `create_sap_quotation` |
-    | **HTTP-Methode** | `POST` |
+  <Tab title="Tool Details">
+    | **Name*** | `SAP B1 Create Quote` |
+    | **Function Name*** | `create_sap_quotation` |
+    | **HTTP Method** | `POST` |
     | **Endpoint*** | `https://{{SAP_B1_HOST}}/b1s/v1/Quotations` |
   </Tab>
 </Tabs>
 
-**Success-Template**: `"Angebot {{docNum}} wurde erstellt. Das Angebot ist gültig bis {{valid_until}}."`
+**Success Template**: `"Quote {{docNum}} has been created. The quote is valid until {{valid_until}}."`
 
 ---

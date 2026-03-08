@@ -180,9 +180,9 @@ Indirect Hints:
   "We need to see..." → budget_range: "limited"
 
 Lead Score Impact:
-  High Budget (>50k): +25 points
+  High Budget (&gt;50k): +25 points
   Medium Budget (10-50k): +15 points  
-  Low Budget (<10k): +5 points
+  Low Budget (&lt;10k): +5 points
   Unknown: 0 points
 ```
   </Accordion>
@@ -427,7 +427,7 @@ sequenceDiagram
     **Right after lead creation**:
     ```yaml
     1. Send lead confirmation email  
-    2. Notify sales team (if score >70)  
+    2. Notify sales team (if score &gt;70)  
     3. Create CRM task: "Lead follow-up within 24 hours"  
     4. Add lead to appropriate HubSpot list  
     5. Start marketing automation sequence  
@@ -440,7 +440,7 @@ sequenceDiagram
     If no sales contact made:
       → Automated follow-up email  
       → SMS reminder (for high score leads)  
-      → Manager escalation (if score >80)
+      → Manager escalation (if score &gt;80)
     
     After 1 week:
       → Lead nurturing email series  
@@ -488,7 +488,7 @@ sequenceDiagram
     ```yaml
     HubSpot Workflow:
       Trigger: New contact creation  
-      Condition: Duplicate score >80%  
+      Condition: Duplicate score &gt;80%  
       Action: 
         - Suggest merge to sales team  
         - Temporary hold on automated follow-ups  
@@ -512,7 +512,7 @@ sequenceDiagram
       current_solution: "Existing solution"
       
     Custom_Scoring:
-      Enterprise_Size (+20): >500 employees
+      Enterprise_Size (+20): &gt;500 employees
       High_Tech_Stack (+15): Modern APIs mentioned
       Compliance_Needs (+10): Security/privacy concerns
     ```
@@ -528,7 +528,7 @@ sequenceDiagram
       growth_challenges: "Main growth obstacles"
       
     Custom_Scoring:
-      High_Revenue (+25): >100k monthly
+      High_Revenue (+25): &gt;100k monthly
       Growth_Stage (+15): "fast-growing"
       Multi_Channel (+10): "Omnichannel"
     ```
@@ -544,7 +544,7 @@ sequenceDiagram
       billing_model: "Billing model"
       
     Custom_Scoring:
-      Established_Practice (+20): >3 years
+      Established_Practice (+20): &gt;3 years
       Growing_Team (+15): Hiring mentioned
       Process_Pain (+10): Efficiency issues
     ```
@@ -574,11 +574,11 @@ German_Localization:
 
 | Metric                 | Description                                           | Target      |
 |------------------------|-------------------------------------------------------|-------------|
-| **Data Completeness**   | % of leads with complete key data                      | >90%        |
-| **Lead Score Accuracy** | Correlation of score vs. actual conversion             | >0.7        |
-| **Duplicate Rate**      | % of duplicates created by the tool                    | <5%         |
-| **Sales Acceptance Rate** | % of leads accepted by sales                          | >80%        |
-| **Speed-to-Lead**       | Time from call to sales contact                         | <2 hours    |
+| **Data Completeness**   | % of leads with complete key data                      | &gt;90%        |
+| **Lead Score Accuracy** | Correlation of score vs. actual conversion             | &gt;0.7        |
+| **Duplicate Rate**      | % of duplicates created by the tool                    | &lt;5%         |
+| **Sales Acceptance Rate** | % of leads accepted by sales                          | &gt;80%        |
+| **Speed-to-Lead**       | Time from call to sales contact                         | &lt;2 hours    |
 
 ### Automated Quality Checks
 

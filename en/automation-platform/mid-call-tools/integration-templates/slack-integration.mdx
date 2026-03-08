@@ -1,51 +1,51 @@
 ---
 title: "Slack Integration"
-description: "Automatisches Versenden von Nachrichten an Slack-Channels direkt während Kundengesprächem für nahtlose Team-Kommunikation"
+description: "Automatically sending messages to Slack channels directly during customer calls for seamless team communication"
 icon: "slack"
 ---
 
 
 # Slack Integration Template
 
-Integrieren Sie Slack-Messaging in Ihre Mid-call Actions und ermöglichen Sie es Ihrem KI-Assistenten, während Kundengesprächem automatisch Nachrichten, Benachrichtigungen und Updates an die relevanten Team-Channels zu senden.
+Integrate Slack messaging into your mid-call actions and enable your AI assistant to automatically send messages, notifications, and updates to the relevant team channels during customer conversations.
 
-## Überblick & Funktionen
+## Overview & Features
 
 <CardGroup cols={2}>
-  <Card title="Echtzeit-Team-Benachrichtigungen" icon="bell">
-    - Sofortige Alerts bei wichtigen Kundenanfragen
-    - Automatische Lead-Benachrichtigungen an Sales-Team
-    - Support-Tickets direkt an entsprechende Channels
-    - Eskalations-Nachrichten bei kritischen Issues
+  <Card title="Real-time Team Notifications" icon="bell">
+    - Instant alerts for important customer inquiries  
+    - Automatic lead notifications to the sales team  
+    - Support tickets sent directly to the appropriate channels  
+    - Escalation messages for critical issues  
   </Card>
-  <Card title="Smart Channel-Routing" icon="route">
-    - Automatische Channel-Auswahl basierend auf Gesprächstyp
-    - Rich-Text-Formatierung mit Slack Blocks
-    - Erwähnung von spezifischen Team-Mitgliedern
-    - Integration mit Slack-Workflows und Bots
+  <Card title="Smart Channel Routing" icon="route">
+    - Automatic channel selection based on call type  
+    - Rich text formatting with Slack Blocks  
+    - Mentioning specific team members  
+    - Integration with Slack workflows and bots  
   </Card>
 </CardGroup>
 
 ## Slack App & Bot Setup
 
-### 1. Slack App erstellen
+### 1. Create Slack App
 
 <Steps>
-  <Step title="Workspace Admin-Zugang">
-    - Melden Sie sich als Workspace-Admin bei Slack an
-    - Navigieren Sie zu [api.slack.com/apps](https://api.slack.com/apps)
-    - Klicken Sie auf "Create New App"
+  <Step title="Workspace Admin Access">
+    - Log in to Slack as a workspace admin  
+    - Navigate to [api.slack.com/apps](https://api.slack.com/apps)  
+    - Click on "Create New App"  
   </Step>
   
-  <Step title="App-Konfiguration">
+  <Step title="App Configuration">
     ```yaml
-    App-Details:
+    App Details:
       App Name: "Famulor Mid-Call Integration"
-      Development Workspace: [Ihr Workspace]
+      Development Workspace: [Your Workspace]
       App Icon: Famulor Logo (optional)
       
     OAuth & Permissions:
-      Bot Token Scopes erforderlich:
+      Required Bot Token Scopes:
         - "chat:write"
         - "chat:write.public"
         - "channels:read"
@@ -53,41 +53,41 @@ Integrieren Sie Slack-Messaging in Ihre Mid-call Actions und ermöglichen Sie es
     ```
   </Step>
   
-  <Step title="Bot-Token generieren">
+  <Step title="Generate Bot Token">
     ```yaml
     Installation:
-      1. "Install to Workspace" klicken
-      2. Berechtigungen bestätigen
-      3. Bot User OAuth Token kopieren
-      4. Token sicher speichern (beginnt mit "xoxb-")
+      1. Click "Install to Workspace"
+      2. Confirm permissions
+      3. Copy the Bot User OAuth Token
+      4. Store the token securely (starts with "xoxb-")
     ```
   </Step>
   
-  <Step title="Channel-Einladung">
-    - Bot zu gewünschten Channels einladen: `/invite @Famulor`
-    - Channel-IDs notieren für Konfiguration
-    - Test-Nachricht senden zur Validierung
+  <Step title="Invite Bot to Channels">
+    - Invite the bot to desired channels: `/invite @Famulor`  
+    - Note channel IDs for configuration  
+    - Send a test message for validation  
   </Step>
 </Steps>
 
-## Mid-call Action konfigurieren
+## Configure Mid-call Action
 
-### Konfiguration im Famulor Interface
+### Configuration in Famulor Interface
 
 <Tabs>
-  <Tab title="Werkzeugdetails">
-    | Feld | Wert |
-    |------|------|
-    | **Name*** | `Slack Nachricht senden` |
-    | **Beschreibung** | "Sendet automatisch Nachrichten an Slack-Channels für Team-Koordination und Benachrichtigungen" |
-    | **Funktionsname*** | `send_slack_message` |
-    | **Funktionsbeschreibung*** | "Sendet eine Nachricht an einen Slack-Channel. Verwenden Sie dies für Team-Benachrichtigungen, Lead-Alerts oder wichtige Updates während des Gesprächs." |
-    | **HTTP-Methode** | `POST` |
+  <Tab title="Tool Details">
+    | Field | Value |
+    |-------|-------|
+    | **Name*** | `Send Slack Message` |
+    | **Description** | "Automatically sends messages to Slack channels for team coordination and notifications" |
+    | **Function Name*** | `send_slack_message` |
+    | **Function Description*** | "Sends a message to a Slack channel. Use this for team notifications, lead alerts, or important updates during the call." |
+    | **HTTP Method** | `POST` |
     | **Timeout (ms)** | `5000` |
     | **Endpoint*** | `https://slack.com/api/chat.postMessage` |
   </Tab>
   
-  <Tab title="Header-Konfiguration">
+  <Tab title="Header Configuration">
     ```json
     {
       "Authorization": "Bearer {{SLACK_BOT_TOKEN}}",
@@ -112,7 +112,7 @@ Integrieren Sie Slack-Messaging in Ihre Mid-call Actions und ermöglichen Sie es
   </Tab>
 </Tabs>
 
-### Parameter-Schema
+### Parameter Schema
 
 ```json
 {
@@ -120,27 +120,27 @@ Integrieren Sie Slack-Messaging in Ihre Mid-call Actions und ermöglichen Sie es
   "properties": {
     "channel": {
       "type": "string",
-      "description": "Channel-ID oder Name (z.B. '#general', '#sales', oder 'C1234567890')",
+      "description": "Channel ID or name (e.g. '#general', '#sales', or 'C1234567890')",
       "examples": ["#general", "#sales", "C1234567890"]
     },
     "text": {
-      "type": "string", 
-      "description": "Die zu sendende Nachricht (Plain Text oder mit Markdown-Formatierung)"
+      "type": "string",
+      "description": "The message to send (plain text or markdown-formatted)"
     },
     "blocks": {
       "type": "array",
-      "description": "Rich-Text Blocks für erweiterte Formatierung (optional)",
+      "description": "Rich-text blocks for advanced formatting (optional)",
       "items": {
         "type": "object"
       }
     },
     "thread_ts": {
       "type": "string",
-      "description": "Timestamp einer Nachricht für Thread-Antwort (optional)"
+      "description": "Timestamp of a message to reply in a thread (optional)"
     },
     "reply_broadcast": {
       "type": "boolean",
-      "description": "Thread-Antwort auch im Channel anzeigen (optional)",
+      "description": "Also display thread reply in channel (optional)",
       "default": false
     }
   },
@@ -148,21 +148,21 @@ Integrieren Sie Slack-Messaging in Ihre Mid-call Actions und ermöglichen Sie es
 }
 ```
 
-## Praktische Anwendungsszenarien
+## Practical Use Cases
 
-### Szenario 1: Lead-Benachrichtigung
+### Scenario 1: Lead Notification
 
 <Steps>
-  <Step title="Lead-Erkennung">
+  <Step title="Lead Detection">
     ```yaml
-    Trigger: KI erkennt qualifizierten Lead im Gespräch
+    Trigger: AI detects a qualified lead in the conversation
     
-    Nachricht-Template:
-      "🎯 Neuer qualifizierter Lead!
+    Message Template:
+      "🎯 New qualified lead!
        
        👤 Name: Max Mustermann
-       🏢 Firma: Beispiel GmbH
-       📧 E-Mail: max@beispiel.de
+       🏢 Company: Beispiel GmbH
+       📧 Email: max@beispiel.de
        📊 Score: 85/100
        💰 Budget: ~50k€
        
@@ -170,39 +170,39 @@ Integrieren Sie Slack-Messaging in Ihre Mid-call Actions und ermöglichen Sie es
     ```
   </Step>
   
-  <Step title="Smart Channel-Routing">
+  <Step title="Smart Channel Routing">
     ```yaml
-    Routing-Logik:
-      Wenn Lead-Score > 80:
+    Routing Logic:
+      If Lead Score > 80:
         → Channel: "#hot-leads"
-        → Erwähnung: "@sales-manager"
+        → Mention: "@sales-manager"
       
-      Wenn Lead-Score 50-80:
+      If Lead Score 50-80:
         → Channel: "#sales"
-        → Erwähnung: "@sales-team"
+        → Mention: "@sales-team"
       
-      Wenn Budget > 100k:
+      If Budget > 100k:
         → Channel: "#enterprise"
-        → Erwähnung: "@enterprise-team"
+        → Mention: "@enterprise-team"
     ```
   </Step>
 </Steps>
 
-### Szenario 2: Support-Eskalation
+### Scenario 2: Support Escalation
 
 <AccordionGroup>
-  <Accordion title="Kritischer Bug-Report">
-    **Automatische Support-Nachricht**:
+  <Accordion title="Critical Bug Report">
+    **Automatic Support Message**:
     ```json
     {
       "channel": "#support-critical",
-      "text": "🚨 Kritisches Problem gemeldet!",
+      "text": "🚨 Critical issue reported!",
       "blocks": [
         {
           "type": "section",
           "text": {
             "type": "mrkdwn",
-            "text": "*Kunde:* Max Mustermann (Beispiel GmbH)\n*Problem:* System-Ausfall seit 2 Stunden\n*Priorität:* 🔴 HOCH"
+            "text": "*Customer:* Max Mustermann (Beispiel GmbH)\n*Issue:* System outage for 2 hours\n*Priority:* 🔴 HIGH"
           }
         },
         {
@@ -210,7 +210,7 @@ Integrieren Sie Slack-Messaging in Ihre Mid-call Actions und ermöglichen Sie es
           "elements": [
             {
               "type": "button",
-              "text": {"type": "plain_text", "text": "Ticket öffnen"},
+              "text": {"type": "plain_text", "text": "Open Ticket"},
               "value": "create_ticket",
               "style": "danger"
             }
@@ -221,45 +221,45 @@ Integrieren Sie Slack-Messaging in Ihre Mid-call Actions und ermöglichen Sie es
     ```
   </Accordion>
   
-  <Accordion title="Terminabsage-Notification">
-    **Business-Impact-Alert**:
+  <Accordion title="Appointment Cancellation Notification">
+    **Business Impact Alert**:
     ```yaml
-    Kontext: Kunde sagt wichtigen Termin ab
+    Context: Customer cancels important appointment
     
-    Nachricht:
-      "⚠️ Terminabsage - Handlungsbedarf
+    Message:
+      "⚠️ Appointment cancellation – action required
       
-      📅 Termin: Demo für Enterprise Deal (50k€)
-      👤 Kunde: Beispiel GmbH - Max Mustermann  
-      📞 Grund: Budget eingefroren Q1
-      ⏰ Nächste Aktion: Follow-up in Q2
+      📅 Appointment: Demo for Enterprise Deal (50k€)
+      👤 Customer: Beispiel GmbH - Max Mustermann  
+      📞 Reason: Budget frozen in Q1
+      ⏰ Next action: Follow-up in Q2
       
-      @account-manager - bitte alternative Termine prüfen"
+      @account-manager – please check alternative dates"
     ```
   </Accordion>
 </AccordionGroup>
 
-### Szenario 3: Team-Koordination
+### Scenario 3: Team Coordination
 
 ```mermaid
 flowchart TD
-    A[Kunde ruft an] --> B{Gesprächstyp?}
-    B -->|Sales| C[Lead-Qualifizierung]
-    B -->|Support| D[Problem-Kategorisierung]
+    A[Customer calls in] --> B{Call Type?}
+    B -->|Sales| C[Lead Qualification]
+    B -->|Support| D[Issue Categorization]
     B -->|Partnership| E[Business Development]
     
-    C --> F{Lead-Score?}
+    C --> F{Lead Score?}
     F -->|>80| G[#hot-leads Channel]
     F -->|50-80| H[#sales Channel]
     F -->|<50| I[#nurturing Channel]
     
-    D --> J{Priorität?}
-    J -->|Hoch| K[#support-urgent + @on-call]
+    D --> J{Priority?}
+    J -->|High| K[#support-urgent + @on-call]
     J -->|Normal| L[#support Channel]
     
     E --> M[#partnerships Channel + @bd-team]
     
-    G --> N[Slack-Nachricht mit Details]
+    G --> N[Slack message with details]
     H --> N
     I --> N
     K --> N
@@ -267,9 +267,9 @@ flowchart TD
     M --> N
 ```
 
-## Response-Verarbeitung
+## Response Handling
 
-### Erfolgreiche Nachricht
+### Successful Message
 
 ```json
 {
@@ -279,7 +279,7 @@ flowchart TD
   "message": {
     "type": "message",
     "subtype": "bot_message",
-    "text": "Neuer Lead: Max Mustermann - Beispiel GmbH",
+    "text": "New lead: Max Mustermann - Beispiel GmbH",
     "ts": "1640995200.000100",
     "username": "Famulor Assistant",
     "bot_id": "B12345"
@@ -287,41 +287,41 @@ flowchart TD
 }
 ```
 
-### Natürliche Sprachintegration
+### Natural Language Integration
 
 <Tabs>
-  <Tab title="Agent-Nachrichten">
-    **Vor API-Aufruf**: `"Ich sende die Information an das {{team}}-Team..."`
+  <Tab title="Agent Messages">
+    **Before API Call**: `"I’m sending this information to the {{team}} team..."`
     
-    **Beispiele**:
-    - "Ich informiere unser Sales-Team über den neuen Lead..."
-    - "Ich eskaliere das Problem an den Support..."
-    - "Ich benachrichtige das Entwickler-Team über den Bug..."
+    **Examples**:
+    - "I’m informing our sales team about the new lead..."
+    - "I’m escalating the issue to support..."
+    - "I’m notifying the development team about the bug..."
   </Tab>
   
-  <Tab title="Erfolgs-Bestätigungen">
-    **Template**: `"Nachricht wurde an {{channel}} gesendet."`
+  <Tab title="Success Confirmations">
+    **Template**: `"Message was sent to {{channel}}."`
     
-    **Dynamische Antworten**:
+    **Dynamic Responses**:
     ```yaml
-    Bei #sales Channel:
-      "Das Sales-Team wurde über den Lead informiert."
+    For #sales channel:
+      "The sales team has been informed about the lead."
     
-    Bei #support Channel:
-      "Ein Support-Ticket wurde erstellt und das Team benachrichtigt."
+    For #support channel:
+      "A support ticket has been created and the team notified."
     
-    Bei Thread-Antwort:
-      "Antwort wurde in den bestehenden Thread eingefügt."
+    For thread replies:
+      "Reply has been added to the existing thread."
     ```
   </Tab>
 </Tabs>
 
-## Erweiterte Features
+## Advanced Features
 
-### Rich-Text-Formatting mit Blocks
+### Rich Text Formatting with Blocks
 
 <AccordionGroup>
-  <Accordion title="Lead-Notification mit Buttons">
+  <Accordion title="Lead Notification with Buttons">
     ```json
     {
       "blocks": [
@@ -329,7 +329,7 @@ flowchart TD
           "type": "section",
           "text": {
             "type": "mrkdwn",
-            "text": "*Neuer qualifizierter Lead!*\n\n:bust_in_silhouette: *Name:* Max Mustermann\n:office: *Firma:* Beispiel GmbH\n:chart_with_upwards_trend: *Score:* 85/100"
+            "text": "*New qualified lead!*\n\n:bust_in_silhouette: *Name:* Max Mustermann\n:office: *Company:* Beispiel GmbH\n:chart_with_upwards_trend: *Score:* 85/100"
           }
         },
         {
@@ -337,13 +337,13 @@ flowchart TD
           "elements": [
             {
               "type": "button",
-              "text": {"type": "plain_text", "text": "Lead übernehmen"},
+              "text": {"type": "plain_text", "text": "Claim Lead"},
               "value": "claim_lead",
               "style": "primary"
             },
             {
               "type": "button", 
-              "text": {"type": "plain_text", "text": "Follow-up planen"},
+              "text": {"type": "plain_text", "text": "Schedule Follow-up"},
               "value": "schedule_followup"
             }
           ]
@@ -353,7 +353,7 @@ flowchart TD
     ```
   </Accordion>
   
-  <Accordion title="Support-Ticket mit Priorität">
+  <Accordion title="Support Ticket with Priority">
     ```json
     {
       "blocks": [
@@ -361,16 +361,16 @@ flowchart TD
           "type": "header",
           "text": {
             "type": "plain_text",
-            "text": "🚨 Neues Support-Ticket"
+            "text": "🚨 New Support Ticket"
           }
         },
         {
           "type": "section",
           "fields": [
-            {"type": "mrkdwn", "text": "*Kunde:*\nMax Mustermann"},
-            {"type": "mrkdwn", "text": "*Priorität:*\n🔴 Hoch"},
-            {"type": "mrkdwn", "text": "*Problem:*\nAPI-Ausfall"},
-            {"type": "mrkdwn", "text": "*Geschätzte Ausfallzeit:*\n2 Stunden"}
+            {"type": "mrkdwn", "text": "*Customer:*\nMax Mustermann"},
+            {"type": "mrkdwn", "text": "*Priority:*\n🔴 High"},
+            {"type": "mrkdwn", "text": "*Issue:*\nAPI outage"},
+            {"type": "mrkdwn", "text": "*Estimated downtime:*\n2 hours"}
           ]
         },
         {
@@ -379,7 +379,7 @@ flowchart TD
         {
           "type": "context",
           "elements": [
-            {"type": "mrkdwn", "text": "📞 Anruf aktiv | 🕒 " + new Date().toLocaleString()}
+            {"type": "mrkdwn", "text": "📞 Call active | 🕒 " + new Date().toLocaleString()}
           ]
         }
       ]
@@ -388,174 +388,174 @@ flowchart TD
   </Accordion>
 </AccordionGroup>
 
-### Multi-Channel-Broadcasting
+### Multi-Channel Broadcasting
 
 <Tabs>
-  <Tab title="Parallel-Benachrichtigungen">
+  <Tab title="Parallel Notifications">
     ```yaml
-    Workflow für Critical-Issues:
-      1. Primäre Nachricht: "#support-critical"
-      2. Management-Info: "#management"  
-      3. Developer-Alert: "#dev-team"
-      4. Customer-Success: "#customer-success"
+    Workflow for Critical Issues:
+      1. Primary message: "#support-critical"
+      2. Management info: "#management"  
+      3. Developer alert: "#dev-team"
+      4. Customer Success: "#customer-success"
       
     Implementation:
-      - Mehrere send_slack_message Calls
-      - Angepasste Nachrichten pro Channel
-      - Unterschiedliche @mentions
+      - Multiple send_slack_message calls  
+      - Customized messages per channel  
+      - Different @mentions  
     ```
   </Tab>
   
-  <Tab title="Thread-basierte Updates">
+  <Tab title="Thread-Based Updates">
     ```yaml
-    Follow-up-Nachrichten:
-      Erstnachricht → Thread-ID speichern
-      Updates → thread_ts Parameter verwenden
+    Follow-up messages:
+      Initial message → save thread ID  
+      Updates → use thread_ts parameter
       
-    Beispiel-Flow:
-      1. "Lead erstellt" → Haupt-Nachricht
-      2. "Demo geplant" → Thread-Antwort  
-      3. "Deal closed" → Thread-Antwort mit Broadcast
+    Example flow:
+      1. "Lead created" → main message  
+      2. "Demo scheduled" → thread reply  
+      3. "Deal closed" → thread reply with broadcast
     ```
   </Tab>
 </Tabs>
 
-## Fehlerbehandlung
+## Error Handling
 
-### Häufige Probleme
+### Common Issues
 
 <AccordionGroup>
-  <Accordion title="Channel nicht gefunden (channel_not_found)">
+  <Accordion title="Channel Not Found (channel_not_found)">
     ```yaml
-    Ursache: Bot nicht zum Channel eingeladen oder falscher Channel-Name
+    Cause: Bot not invited to the channel or wrong channel name
     
-    Fallback: "Die Team-Benachrichtigung konnte nicht gesendet werden. 
-              Ich dokumentiere die Information für manuelle Weiterleitung."
+    Fallback: "Team notification could not be sent. 
+              I’m documenting the information for manual forwarding."
     
-    Lösung:
-      - Bot zum Channel einladen: /invite @Famulor
-      - Channel-ID statt Name verwenden
-      - Permissions überprüfen
+    Solution:
+      - Invite bot to the channel: /invite @Famulor
+      - Use channel ID instead of name
+      - Check permissions
     ```
   </Accordion>
   
-  <Accordion title="Token ungültig (invalid_auth)">
+  <Accordion title="Invalid Token (invalid_auth)">
     ```yaml
-    Ursache: Bot-Token abgelaufen oder ungültig
+    Cause: Bot token expired or invalid
     
-    Graceful Handling:
-      "Die Slack-Integration ist momentan nicht verfügbar. 
-       Ich notiere die wichtigen Informationen für das Team."
+    Graceful handling:
+      "Slack integration is currently unavailable. 
+       I’m noting the important information for the team."
     
-    Action: Admin-Benachrichtigung über Token-Problem
+    Action: Notify admin about token issue
     ```
   </Accordion>
   
   <Accordion title="Rate Limiting (rate_limited)">
     ```yaml
-    Slack Limits:
-      - Tier 1: 1+ Nachricht pro Sekunde
-      - Tier 2: 20+ Nachrichten pro Minute
-      - Tier 3: 50+ Nachrichten pro Minute
+    Slack limits:
+      - Tier 1: 1+ message per second
+      - Tier 2: 20+ messages per minute
+      - Tier 3: 50+ messages per minute
     
     Handling:
-      - Exponential Backoff
-      - Message-Queuing implementieren
-      - Prioritäts-basierte Verzögerung
+      - Exponential backoff  
+      - Implement message queuing  
+      - Priority-based delays  
     ```
   </Accordion>
 </AccordionGroup>
 
 ## Performance & Best Practices
 
-### Nachricht-Optimierung
+### Message Optimization
 
 <CardGroup cols={2}>
-  <Card title="Relevante Informationen" icon="filter">
+  <Card title="Relevant Information" icon="filter">
     **Do's**:
-    - Nur geschäftskritische Nachrichten
-    - Klare, actionable Inhalte  
-    - Kontext für Entscheidungen
+    - Only business-critical messages  
+    - Clear, actionable content  
+    - Provide context for decisions
     
     **Don'ts**:
-    - Spam-artige Benachrichtigungen
-    - Redundante Informationen
-    - Reine Statistik-Updates
+    - Spam-like notifications  
+    - Redundant information  
+    - Pure statistics updates  
   </Card>
-  <Card title="Timing & Frequenz" icon="clock">
-    **Intelligente Verzögerung**:
-    - Nicht während Meetings
-    - Batch-Updates statt Einzelnachrichten
-    - Zeitzonenberücksichtigung
+  <Card title="Timing & Frequency" icon="clock">
+    **Smart Delays**:
+    - Avoid during meetings  
+    - Batch updates instead of single messages  
+    - Consider time zones
     
-    **Eskalations-Regeln**:
-    - Sofort: Kritische Issues
-    - 5 Min: Wichtige Leads
-    - 15 Min: Standard-Updates
+    **Escalation Rules**:
+    - Immediate: critical issues  
+    - 5 min delay: important leads  
+    - 15 min delay: standard updates  
   </Card>
 </CardGroup>
 
-## Integration mit anderen Tools
+## Integration with Other Tools
 
-### CRM-Sync-Workflows
+### CRM Sync Workflows
 
 ```mermaid
 sequenceDiagram
-    participant C as Kunde
-    participant AI as KI-Assistant
+    participant C as Customer
+    participant AI as AI Assistant
     participant S as Slack Tool
     participant CRM as HubSpot
     participant T as Team
     
-    C->>AI: "Ich möchte das Enterprise-Paket"
-    AI->>CRM: Lead erstellen (85% Score)
-    CRM-->>AI: Lead-ID + Details
+    C->>AI: "I want the Enterprise package"
+    AI->>CRM: Create lead (85% score)
+    CRM-->>AI: Lead ID + details
     AI->>S: send_slack_message (#hot-leads)
-    S-->>AI: Nachricht gesendet
-    AI->>T: Slack-Notification mit Lead-Details
-    T->>CRM: Claim Lead + Follow-up planen
-    Note over AI: Kunde wird über nächste Schritte informiert
+    S-->>AI: Message sent
+    AI->>T: Slack notification with lead details
+    T->>CRM: Claim lead + schedule follow-up
+    Note over AI: Customer informed about next steps
 ```
 
 ## Analytics & Monitoring
 
-### KPIs für Slack-Integration
+### KPIs for Slack Integration
 
-| Metrik | Beschreibung | Zielwert |
-|--------|-------------|----------|
-| **Message Success Rate** | % erfolgreich gesendeter Nachrichten | &gt;99% |
-| **Response Time** | Zeit bis Team auf Slack-Alert reagiert | &lt;5 Minuten |
-| **Conversion Rate** | Slack-Leads → geschlossene Deals | &gt;15% |
-| **Team Engagement** | Interaktion mit Bot-Nachrichten | &gt;80% |
+| Metric | Description | Target |
+|--------|-------------|--------|
+| **Message Success Rate** | % of successfully sent messages | &gt;99% |
+| **Response Time** | Time until team reacts to Slack alert | &lt;5 minutes |
+| **Conversion Rate** | Slack leads → closed deals | &gt;15% |
+| **Team Engagement** | Interaction with bot messages | &gt;80% |
 
 ### Reporting Dashboard
 
 <Steps>
   <Step title="Message Analytics">
-    - Anzahl Nachrichten pro Channel/Tag
-    - Erfolgreichste Nachrichtentypen
-    - Peak-Hours für Benachrichtigungen
+    - Number of messages per channel/day  
+    - Most successful message types  
+    - Peak notification hours  
   </Step>
   
   <Step title="Business Impact">
-    - Lead-Conversion-Rate via Slack
-    - Support-Response-Zeiten
-    - Team-Produktivitäts-Metriken
+    - Lead conversion rate via Slack  
+    - Support response times  
+    - Team productivity metrics  
   </Step>
   
   <Step title="Optimization Insights">
-    - Häufigste Fehlertypen
-    - Ungenutzte Channels identifizieren
-    - Message-Template-Performance
+    - Most common error types  
+    - Identify unused channels  
+    - Message template performance  
   </Step>
 </Steps>
 
 ---
 
 <Warning>
-**Datenschutz-Hinweis**: Stellen Sie sicher, dass sensible Kundendaten nur in privaten Channels geteilt werden und Ihr Slack-Workspace den Unternehmens-Compliance-Richtlinien entspricht.
+**Privacy Notice**: Ensure that sensitive customer data is only shared in private channels and that your Slack workspace complies with your company’s compliance policies.
 </Warning>
 
 <Info>
-**Pro-Tipp**: Beginnen Sie mit einem dedizierten Test-Channel für die Slack-Integration, bevor Sie sie in produktiven Channels verwenden. Dies hilft beim Fine-Tuning der Nachrichten-Templates und -Frequenz.
+**Pro Tip**: Start with a dedicated test channel for the Slack integration before deploying it in production channels. This helps fine-tune message templates and frequency.
 </Info>

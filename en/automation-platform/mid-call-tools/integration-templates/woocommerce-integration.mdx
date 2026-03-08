@@ -1,55 +1,55 @@
 ---
 title: "WooCommerce Integration"
-description: "Vollständige WooCommerce WordPress-Integration für Lagerbestand, Kundensuche und Bestellungsmanagement"
+description: "Complete WooCommerce WordPress integration for inventory, customer search, and order management"
 icon: "wordpress"
 ---
 
 
 # WooCommerce Integration Template
 
-## Tool 1: Lagerbestand prüfen
+## Tool 1: Check Stock
 
-### Konfiguration im Famulor Interface
+### Configuration in the Famulor Interface
 
 <Tabs>
-  <Tab title="Werkzeugdetails">
+  <Tab title="Tool Details">
     | **Name*** | `WooCommerce Lagerbestand` |
-    | **Funktionsname*** | `check_woo_stock` |
-    | **HTTP-Methode** | `GET` |
+    | **Function Name*** | `check_woo_stock` |
+    | **HTTP Method** | `GET` |
     | **Endpoint*** | `https://{{WOO_SITE_URL}}/wp-json/wc/v3/products/{product_id}` |
   </Tab>
 </Tabs>
 
-**Success-Template**: `"{{productName}}: {{#if stockQuantity}}{{stockQuantity}} Stück verfügbar{{else}}{{stockStatus}}{{/if}}, Preis: {{price}}€"`
+**Success Template**: `"{{productName}}: {{#if stockQuantity}}{{stockQuantity}} pieces available{{else}}{{stockStatus}}{{/if}}, price: {{price}}€"`
 
-## Tool 2: Kundensuche
+## Tool 2: Customer Search
 
-### Konfiguration im Famulor Interface
+### Configuration in the Famulor Interface
 
 <Tabs>
-  <Tab title="Werkzeugdetails">
+  <Tab title="Tool Details">
     | **Name*** | `WooCommerce Kundensuche` |
-    | **Funktionsname*** | `search_woo_customer` |
-    | **HTTP-Methode** | `GET` |
+    | **Function Name*** | `search_woo_customer` |
+    | **HTTP Method** | `GET` |
     | **Endpoint*** | `https://{{WOO_SITE_URL}}/wp-json/wc/v3/customers` |
   </Tab>
 </Tabs>
 
-**Success-Template**: `"Kunde gefunden: {{firstCustomer.first_name}} {{firstCustomer.last_name}}, {{firstCustomer.orders_count}} Bestellungen, Kunde seit {{firstCustomer.date_created}}"`
+**Success Template**: `"Customer found: {{firstCustomer.first_name}} {{firstCustomer.last_name}}, {{firstCustomer.orders_count}} orders, customer since {{firstCustomer.date_created}}"`
 
-## Tool 3: Bestellung erstellen
+## Tool 3: Create Order
 
-### Konfiguration im Famulor Interface
+### Configuration in the Famulor Interface
 
 <Tabs>
-  <Tab title="Werkzeugdetails">
+  <Tab title="Tool Details">
     | **Name*** | `WooCommerce Bestellung` |
-    | **Funktionsname*** | `create_woo_order` |
-    | **HTTP-Methode** | `POST` |
+    | **Function Name*** | `create_woo_order` |
+    | **HTTP Method** | `POST` |
     | **Endpoint*** | `https://{{WOO_SITE_URL}}/wp-json/wc/v3/orders` |
   </Tab>
 </Tabs>
 
-**Success-Template**: `"Bestellung #{{orderNumber}} angelegt. Gesamtbetrag: {{total}}€. Der Kunde erhält eine Bestätigungs-E-Mail."`
+**Success Template**: `"Order #{{orderNumber}} created. Total amount: {{total}}€. The customer will receive a confirmation email."`
 
 ---
