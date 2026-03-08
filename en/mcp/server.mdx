@@ -1,13 +1,13 @@
 ---
 title: "MCP Server"
 icon: "plug"
-description: "Model Context Protocol Server für die Famulor Voice Agent Platform"
+description: "Model Context Protocol Server for the Famulor Voice Agent Platform"
 ---
 
 
 # 🤖 Famulor MCP Server
 
-Ein MCP (Model Context Protocol) Server für die **Famulor Voice Agent Platform**, der KI-gestützte Telefonanrufe, Assistentenverwaltung und Anrufdatenabruf über ChatGPT und andere MCP-kompatible Clients ermöglicht.
+An MCP (Model Context Protocol) Server for the **Famulor Voice Agent Platform** that enables AI-powered phone calls, assistant management, and call data retrieval via ChatGPT and other MCP-compatible clients.
 
 <img
   src="/provisioning/sip-ai/famulor-mcp-server.png"
@@ -20,14 +20,14 @@ Ein MCP (Model Context Protocol) Server für die **Famulor Voice Agent Platform*
     icon="github"
     href="https://github.com/bekservice/Famulor-MCP"
   >
-    Quellcode und Dokumentation
+    Source code and documentation
   </Card>
   <Card
     title="Online MCP Server"
     icon="globe"
     href="https://mcp.famulor.io"
   >
-    Gehosteter Server ohne Installation
+    Hosted server without installation
   </Card>
 </CardGroup>
 
@@ -42,76 +42,76 @@ Ein MCP (Model Context Protocol) Server für die **Famulor Voice Agent Platform*
   allowFullScreen
 ></iframe>
 
-## Übersicht
+## Overview
 
-Dieser MCP Server bietet Zugriff auf die Famulor Voice Agent Platform und ermöglicht es Benutzern, KI-gestützte Telefonanrufe zu tätigen, Voice-Assistenten zu verwalten und Anruf-Transkripte und Aufnahmen abzurufen - alles direkt aus jedem MCP-kompatiblen Client wie ChatGPT Desktop, Claude Desktop oder anderen MCP-kompatiblen Anwendungen.
+This MCP Server provides access to the Famulor Voice Agent Platform, allowing users to make AI-powered phone calls, manage voice assistants, and retrieve call transcripts and recordings — all directly from any MCP-compatible client such as ChatGPT Desktop, Claude Desktop, or other MCP-compliant applications.
 
 ### 🌐 Online MCP Server
 
-**Sie können den gehosteten MCP Server ohne lokale Installation verwenden:**
+**You can use the hosted MCP server without any local installation:**
 
 - **Server URL**: [https://mcp.famulor.io](https://mcp.famulor.io)
 - **SSE Endpoint**: [https://mcp.famulor.io/sse](https://mcp.famulor.io/sse)
 - **Health Check**: [https://mcp.famulor.io/health](https://mcp.famulor.io/health)
 
-Der Server ist einsatzbereit! Für Anweisungen zur Online-Nutzung siehe die [Online Deployment Guide](https://github.com/bekservice/Famulor-MCP/blob/main/ONLINE_DEPLOYMENT.md).
+The server is ready to use! For instructions on online usage, see the [Online Deployment Guide](https://github.com/bekservice/Famulor-MCP/blob/main/ONLINE_DEPLOYMENT.md).
 
 ## Features
 
-- 📞 **Anrufe tätigen** - KI-gestützte Telefongespräche initiieren
-- 🤖 **Assistenten verwalten** - Ihre KI-Assistenten abrufen und verwalten
-- 📊 **Anrufdaten abrufen** - Transkripte, Aufnahmen und Metadaten abrufen
-- 🔒 **Sichere Authentifizierung** - API-Schlüssel-basierte Authentifizierung pro Benutzer
+- 📞 **Make Calls** – Initiate AI-powered phone calls
+- 🤖 **Manage Assistants** – Retrieve and manage your AI assistants
+- 📊 **Fetch Call Data** – Get transcripts, recordings, and metadata
+- 🔒 **Secure Authentication** – User-based API key authentication
 
-## Entwicklung
+## Development
 
 ```bash
-# Entwicklung mit Hot Reload
+# Development with hot reload
 npm run dev
 
-# Build für Produktion
+# Build for production
 npm run build
 
-# Produktions-Build starten
+# Start production build
 npm start
 
-# Code linten
+# Lint code
 npm run lint
 
-# Code formatieren
+# Format code
 npm run format
 ```
 
-## Verfügbare Tools
+## Available Tools
 
 ### Call Tools
 
 <AccordionGroup>
   <Accordion title="make_call">
-    Tätigt einen Telefonanruf mit einem KI-Assistenten
+    Initiates a phone call with an AI assistant
     
-    **Parameter:**
-    - `assistant_id` (erforderlich) - Die ID des Assistenten
-    - `phone_number` (erforderlich) - Die Telefonnummer im E.164-Format
-    - `variables` (optional) - Variablen, die an den Assistenten übergeben werden sollen
+    **Parameters:**
+    - `assistant_id` (required) - The assistant's ID
+    - `phone_number` (required) - Phone number in E.164 format
+    - `variables` (optional) - Variables to pass to the assistant
   </Accordion>
 
   <Accordion title="get_call">
-    Ruft Details eines bestimmten Anrufs ab
+    Retrieves details of a specific call
     
-    **Parameter:**
-    - `call_id` (erforderlich) - Die ID des Anrufs
+    **Parameters:**
+    - `call_id` (required) - Call ID
   </Accordion>
 
   <Accordion title="list_calls">
-    Listet alle Anrufe mit optionalen Filtern auf (paginiert)
+    Lists all calls with optional filters (paginated)
     
-    **Parameter:**
-    - `assistant_id` (optional) - Nach Assistenten-ID filtern
-    - `page` (optional) - Seitennummer (Standard: 1)
-    - `per_page` (optional) - Anzahl der Anrufe pro Seite (Standard: 15)
+    **Parameters:**
+    - `assistant_id` (optional) - Filter by assistant ID
+    - `page` (optional) - Page number (default: 1)
+    - `per_page` (optional) - Calls per page (default: 15)
     
-    **Rückgabe:** Paginierte Antwort mit `data`-Array, das Anrufe und Paginierungs-Metadaten enthält
+    **Returns:** Paginated response with a `data` array containing calls and pagination metadata
   </Accordion>
 </AccordionGroup>
 
@@ -119,95 +119,95 @@ npm run format
 
 <AccordionGroup>
   <Accordion title="get_assistants">
-    Ruft alle verfügbaren KI-Assistenten ab (paginiert)
+    Retrieves all available AI assistants (paginated)
     
-    **Parameter:**
-    - `page` (optional) - Seitennummer (Standard: 1)
-    - `per_page` (optional) - Anzahl der Assistenten pro Seite (Standard: 10)
+    **Parameters:**
+    - `page` (optional) - Page number (default: 1)
+    - `per_page` (optional) - Assistants per page (default: 10)
     
-    **Rückgabe:** Paginierte Antwort mit `data`-Array, das Assistenten und Paginierungs-Metadaten enthält (`current_page`, `per_page`, `total`, `last_page`, `next_page_url`, etc.)
+    **Returns:** Paginated response with a `data` array containing assistants and pagination metadata (`current_page`, `per_page`, `total`, `last_page`, `next_page_url`, etc.)
   </Accordion>
 
   <Accordion title="get_phone_numbers">
-    Ruft alle verfügbaren Telefonnummern für die Assistentenzuweisung ab
+    Retrieves all available phone numbers for assistant assignment
     
-    **Parameter:**
-    - `type` (optional) - Telefonnummern nach Assistententyp filtern: 'inbound' oder 'outbound'
+    **Parameters:**
+    - `type` (optional) - Filter phone numbers by assistant type: 'inbound' or 'outbound'
     
-    **Rückgabe:** Array von verfügbaren Telefonnummern mit Details einschließlich ID, Telefonnummer, Ländercode, Typ-Label und Verfügbarkeitsstatus
+    **Returns:** Array of available phone numbers with details including ID, phone number, country code, type label, and availability status
   </Accordion>
 
   <Accordion title="get_models">
-    Ruft alle verfügbaren LLM-Modelle für die Assistentenkonfiguration ab
+    Retrieves all available LLM models for assistant configuration
     
-    **Parameter:** Keine
+    **Parameters:** None
     
-    **Rückgabe:** Array von verfügbaren LLM-Modellen mit ID und Name
+    **Returns:** Array of available LLM models with ID and name
   </Accordion>
 
   <Accordion title="get_voices">
-    Ruft alle verfügbaren Stimmen für die Assistentenkonfiguration ab
+    Retrieves all available voices for assistant configuration
     
-    **Parameter:**
-    - `mode` (optional) - Stimmen nach Assistentenmodus filtern: 'pipeline' oder 'multimodal'
+    **Parameters:**
+    - `mode` (optional) - Filter voices by assistant mode: 'pipeline' or 'multimodal'
     
-    **Rückgabe:** Array von verfügbaren Stimmen mit ID, Name und Modus-Kompatibilität
+    **Returns:** Array of available voices with ID, name, and mode compatibility
   </Accordion>
 
   <Accordion title="get_languages">
-    Ruft alle verfügbaren Sprachen für die Assistentenkonfiguration ab
+    Retrieves all available languages for assistant configuration
     
-    **Parameter:** Keine
+    **Parameters:** None
     
-    **Rückgabe:** Array von verfügbaren Sprachen mit ID, Name und ISO 639-1 zweistelligem Sprachcode (iso_2)
+    **Returns:** Array of available languages with ID, name, and ISO 639-1 two-letter language code (`iso_2`)
   </Accordion>
 
   <Accordion title="update_assistant">
-    Aktualisiert die Konfiguration eines bestehenden KI-Assistenten
+    Updates the configuration of an existing AI assistant
     
-    **Parameter:**
-    - `id` (erforderlich) - Die eindeutige ID des zu aktualisierenden Assistenten
-    - Alle anderen Parameter sind optional - nur angegebene Felder werden aktualisiert:
-      - `assistant_name` - Assistentenname (max. 255 Zeichen)
-      - `voice_id` - Stimmen-ID (muss in verfügbaren Stimmen existieren)
-      - `language` - Sprachname (max. 100 Zeichen)
-      - `llm_model` - LLM-Modellname (max. 100 Zeichen)
-      - `calls_direction` - Anrufrichtungstyp: 'receive' oder 'make'
-      - `engine_type` - Engine-Typ: 'pipeline' oder 'multimodal'
-      - `timezone` - Zeitzone (z.B. "Europe/Berlin")
-      - `initial_message` - Erste Nachricht, die der Assistent zu Beginn des Anrufs spricht
-      - `system_prompt` - System-Prompt, der das Verhalten und die Persönlichkeit des Assistenten definiert
-      - `phone_number_id` - Telefonnummer-ID zur Zuweisung (auf null setzen, um zu entfernen)
-      - `tool_ids` - Array von Mid-Call-Aktions-IDs zur Synchronisation mit dem Assistenten
-      - `endpoint_type` - Voice Activity Detection-Typ: 'vad' oder 'ai'
-      - `endpoint_sensitivity` - Endpoint-Empfindlichkeitsstufe (0-5)
-      - `interrupt_sensitivity` - Unterbrechungsempfindlichkeitsstufe (0-5)
-      - `ambient_sound_volume` - Umgebungsgeräusch-Lautstärke (0-1)
-      - `post_call_evaluation` - Ob Post-Call-Evaluierung aktiviert werden soll
-      - `send_webhook_only_on_completed` - Ob Webhooks nur bei abgeschlossenen Anrufen gesendet werden sollen
-      - `include_recording_in_webhook` - Ob Aufnahme-URL in Webhook-Payload enthalten sein soll
-      - `is_webhook_active` - Ob Webhook-Benachrichtigungen aktiviert sind
-      - `webhook_url` - Webhook-URL für Post-Call-Benachrichtigungen (auf null setzen, um zu entfernen)
-      - `use_min_interrupt_words` - Ob die Einstellung für minimale Unterbrechungswörter verwendet werden soll
-      - `min_interrupt_words` - Minimale Anzahl von Wörtern vor erlaubter Unterbrechung (0-10)
-      - `variables` - Schlüssel-Wert-Paare von benutzerdefinierten Variablen für den Assistenten
-      - `post_call_schema` - Schema-Definition für Post-Call-Datenextraktion
-      - `end_call_tool` - End-Call-Tool-Konfiguration
-      - `llm_temperature` - LLM-Temperatur-Einstellung (0-1)
-      - `voice_stability` - Stimmen-Stabilitätseinstellung (0-1)
-      - `voice_similarity` - Stimmen-Ähnlichkeitseinstellung (0-1)
-      - `speech_speed` - Sprachgeschwindigkeits-Multiplikator (0.7-1.2)
-      - `allow_interruptions` - Ob Unterbrechungen durch Anrufer erlaubt sind
-      - `filler_audios` - Ob Filler-Audio während der Verarbeitung verwendet werden soll
-      - `re_engagement_interval` - Re-Engagement-Intervall in Sekunden (7-600)
-      - `max_call_duration` - Maximale Anrufdauer in Sekunden (20-1200)
-      - `max_silence_duration` - Maximale Stille-Dauer in Sekunden (1-120)
-      - `end_call_on_voicemail` - Ob Anruf bei Voicemail-Erkennung beendet werden soll
-      - `noise_cancellation` - Ob Rauschunterdrückung aktiviert ist
-      - `record_call` - Ob der Anruf aufgezeichnet werden soll
-      - `who_speaks_first` - Wer zuerst im Anruf spricht: 'AI assistant' oder 'Customer'
+    **Parameters:**
+    - `id` (required) - Unique ID of the assistant to update
+    - All other parameters are optional — only specified fields are updated:
+      - `assistant_name` – Assistant name (max 255 chars)
+      - `voice_id` – Voice ID (must exist in available voices)
+      - `language` – Language name (max 100 chars)
+      - `llm_model` – LLM model name (max 100 chars)
+      - `calls_direction` – Call direction type: 'receive' or 'make'
+      - `engine_type` – Engine type: 'pipeline' or 'multimodal'
+      - `timezone` – Timezone (e.g., "Europe/Berlin")
+      - `initial_message` – Initial message the assistant speaks at call start
+      - `system_prompt` – System prompt defining assistant behavior and personality
+      - `phone_number_id` – Phone number ID to assign (set null to remove)
+      - `tool_ids` – Array of mid-call action IDs to sync with the assistant
+      - `endpoint_type` – Voice Activity Detection type: 'vad' or 'ai'
+      - `endpoint_sensitivity` – Endpoint sensitivity level (0-5)
+      - `interrupt_sensitivity` – Interrupt sensitivity level (0-5)
+      - `ambient_sound_volume` – Ambient noise volume (0-1)
+      - `post_call_evaluation` – Whether post-call evaluation is enabled
+      - `send_webhook_only_on_completed` – Whether webhooks are sent only on completed calls
+      - `include_recording_in_webhook` – Whether the recording URL is included in webhook payloads
+      - `is_webhook_active` – Whether webhook notifications are active
+      - `webhook_url` – Webhook URL for post-call notifications (set null to remove)
+      - `use_min_interrupt_words` – Whether minimum interrupt words setting is used
+      - `min_interrupt_words` – Minimum words before an allowed interruption (0-10)
+      - `variables` – Key-value pairs of custom variables for the assistant
+      - `post_call_schema` – Schema definition for post-call data extraction
+      - `end_call_tool` – End-call tool configuration
+      - `llm_temperature` – LLM temperature setting (0-1)
+      - `voice_stability` – Voice stability setting (0-1)
+      - `voice_similarity` – Voice similarity setting (0-1)
+      - `speech_speed` – Speech speed multiplier (0.7-1.2)
+      - `allow_interruptions` – Whether interruptions by callers are allowed
+      - `filler_audios` – Whether filler audio is played during processing
+      - `re_engagement_interval` – Re-engagement interval in seconds (7-600)
+      - `max_call_duration` – Maximum call duration in seconds (20-1200)
+      - `max_silence_duration` – Maximum silence duration in seconds (1-120)
+      - `end_call_on_voicemail` – Whether to end calls upon voicemail detection
+      - `noise_cancellation` – Whether noise cancellation is enabled
+      - `record_call` – Whether the call should be recorded
+      - `who_speaks_first` – Who speaks first in the call: 'AI assistant' or 'Customer'
     
-    **Rückgabe:** Erfolgsmeldung und aktualisierte Assistentendaten
+    **Returns:** Success message and updated assistant data
   </Accordion>
 </AccordionGroup>
 
@@ -215,37 +215,37 @@ npm run format
 
 <AccordionGroup>
   <Accordion title="get_conversation">
-    Ruft die vollständige Nachrichtenhistorie einer bestehenden Famulor-Konversation ab
+    Retrieves the full message history of an existing Famulor conversation
     
-    **Parameter:**
-    - `uuid` (erforderlich) - Die UUID der abzurufenden Konversation
+    **Parameters:**
+    - `uuid` (required) – The UUID of the conversation to retrieve
     
-    **Rückgabe:** Vollständige Konversationshistorie mit Nachrichten, Rollen und Funktionsaufrufen
+    **Returns:** Complete conversation history with messages, roles, and function calls
   </Accordion>
 
   <Accordion title="create_conversation">
-    Startet eine neue Chat-Session mit einem KI-Assistenten
+    Starts a new chat session with an AI assistant
     
-    **Parameter:**
-    - `assistant_id` (erforderlich) - UUID des Assistenten, der die Konversation bearbeitet
-    - `type` (optional) - Konversationstyp: 'widget' (kostenpflichtig) oder 'test' (kostenlos für Entwicklung)
-    - `variables` (optional) - Benutzerdefinierte Variablen zur Injektion in den Assistentenkontext (zugänglich über Template-Syntax im System-Prompt)
+    **Parameters:**
+    - `assistant_id` (required) – UUID of the assistant handling the conversation
+    - `type` (optional) – Conversation type: 'widget' (paid) or 'test' (free for development)
+    - `variables` (optional) – Custom variables to inject into the assistant context (accessible via template syntax in the system prompt)
     
-    **Rückgabe:** Konversations-ID, Status und initiale Historie (wenn der Assistent eine Startnachricht hat)
+    **Returns:** Conversation ID, status, and initial history (if the assistant has a start message)
     
-    **Hinweis:** Widget-Konversationen sind kostenpflichtig; Test-Konversationen sind kostenlos für die Entwicklung
+    **Note:** Widget conversations are paid; test conversations are free for development
   </Accordion>
 
   <Accordion title="send_message">
-    Sendet eine Benutzernachricht an eine bestehende Konversation und erhält die Antwort des Assistenten
+    Sends a user message to an existing conversation and receives the assistant’s reply
     
-    **Parameter:**
-    - `uuid` (erforderlich) - UUID der bestehenden Konversation
-    - `message` (erforderlich) - Zu sendende Benutzernachricht (max. 2000 Zeichen)
+    **Parameters:**
+    - `uuid` (required) – UUID of the existing conversation
+    - `message` (required) – User message to send (max 2000 characters)
     
-    **Rückgabe:** Assistenten-Antwortnachricht und alle während der Antwort ausgeführten Funktionsaufrufe
+    **Returns:** Assistant reply message and any function calls executed during the response
     
-    **Hinweis:** Widget-Konversationen kosten $0.01 pro Benutzernachricht; Test-Konversationen sind kostenlos
+    **Note:** Widget conversations cost $0.01 per user message; test conversations are free
   </Accordion>
 </AccordionGroup>
 
@@ -253,23 +253,23 @@ npm run format
 
 <AccordionGroup>
   <Accordion title="list_campaigns">
-    Listet alle Kampagnen aus dem Famulor-Konto auf
+    Lists all campaigns from the Famulor account
     
-    **Parameter:** Keine
+    **Parameters:** None
     
-    **Rückgabe:** Array aller Kampagnen mit Details einschließlich Status, Einstellungen und Zeitplanungsinformationen
+    **Returns:** Array of all campaigns with details including status, settings, and scheduling info
   </Accordion>
 
   <Accordion title="update_campaign_status">
-    Startet oder stoppt eine Kampagne im Famulor-System
+    Starts or stops a campaign within the Famulor system
     
-    **Parameter:**
-    - `campaign_id` (erforderlich) - Die ID der zu aktualisierenden Kampagne
-    - `action` (erforderlich) - Die auszuführende Aktion: 'start' oder 'stop'
+    **Parameters:**
+    - `campaign_id` (required) – ID of the campaign to update
+    - `action` (required) – Action to perform: 'start' or 'stop'
     
-    **Rückgabe:** Erfolgsmeldung und aktualisierter Kampagnenstatus
+    **Returns:** Success message and updated campaign status
     
-    **Hinweis:** Das Starten einer Kampagne erfordert ausreichend Leads und Guthaben. Das Stoppen einer Kampagne bricht laufende Anrufe ab.
+    **Note:** Starting a campaign requires sufficient leads and balance. Stopping a campaign cancels any ongoing calls.
   </Accordion>
 </AccordionGroup>
 
@@ -277,40 +277,40 @@ npm run format
 
 <AccordionGroup>
   <Accordion title="list_leads">
-    Listet alle Leads für den authentifizierten Benutzer auf (paginiert)
+    Lists all leads for the authenticated user (paginated)
     
-    **Parameter:**
-    - `page` (optional) - Seitennummer (Standard: 1)
-    - `per_page` (optional) - Anzahl der Leads pro Seite (Standard: 15)
+    **Parameters:**
+    - `page` (optional) – Page number (default: 1)
+    - `per_page` (optional) – Leads per page (default: 15)
     
-    **Rückgabe:** Paginierte Antwort mit `data`-Array, das Leads und Paginierungs-Metadaten enthält
+    **Returns:** Paginated response with a `data` array containing leads and pagination metadata
   </Accordion>
 
   <Accordion title="create_lead">
-    Erstellt einen neuen Lead im Famulor-System
+    Creates a new lead in the Famulor system
     
-    **Parameter:**
-    - `phone_number` (erforderlich) - Die Telefonnummer im E.164-Format
-    - `campaign_id` (erforderlich) - Die ID der Kampagne
-    - `variables` (optional) - Array von Variablen, die an den Lead übergeben werden sollen
-    - `allow_dupplicate` (optional) - Ob doppelte Leads in einer Kampagne erlaubt sind
+    **Parameters:**
+    - `phone_number` (required) – Phone number in E.164 format
+    - `campaign_id` (required) – Campaign ID
+    - `variables` (optional) – Array of variables to pass to the lead
+    - `allow_dupplicate` (optional) – Whether duplicate leads within a campaign are allowed
     
-    **Rückgabe:** Erstellte Lead-Informationen mit ID
+    **Returns:** Created lead information with ID
     
-    **Hinweis:** Verwenden Sie `get_assistants`, um Assistenteninformationen und Variablen zu erhalten, die beim Erstellen von Leads verwendet werden können
+    **Note:** Use `get_assistants` to obtain assistant information and variables usable when creating leads
   </Accordion>
 
   <Accordion title="update_lead">
-    Aktualisiert einen bestehenden Lead in Ihren Kampagnen
+    Updates an existing lead in your campaigns
     
-    **Parameter:**
-    - `id` (erforderlich) - Die ID des zu aktualisierenden Leads
-    - `campaign_id` (optional) - Die ID der Kampagne, der der Lead zugewiesen werden soll
-    - `phone_number` (optional) - Die Telefonnummer (automatisch im E.164-Format formatiert)
-    - `status` (optional) - Der Status: 'created', 'completed' oder 'reached-max-retries'
-    - `variables` (optional) - Benutzerdefinierte Variablen, die mit bestehenden Lead-Variablen zusammengeführt werden
+    **Parameters:**
+    - `id` (required) – ID of the lead to update
+    - `campaign_id` (optional) – ID of the campaign to assign the lead to
+    - `phone_number` (optional) – Phone number (automatically formatted in E.164)
+    - `status` (optional) – Status: 'created', 'completed', or 'reached-max-retries'
+    - `variables` (optional) – Custom variables to merge with existing lead variables
     
-    **Rückgabe:** Erfolgsmeldung, die bestätigt, dass der Lead aktualisiert wurde
+    **Returns:** Success message confirming the lead was updated
   </Accordion>
 </AccordionGroup>
 
@@ -318,20 +318,20 @@ npm run format
 
 <AccordionGroup>
   <Accordion title="send_sms">
-    Sendet eine SMS-Nachricht über Ihre Telefonnummer
+    Sends an SMS message via your phone number
     
-    **Parameter:**
-    - `from` (erforderlich) - Die ID Ihrer Telefonnummer, von der die SMS gesendet werden soll (muss SMS-fähig sein)
-    - `to` (erforderlich) - Die Telefonnummer des Empfängers im internationalen Format (z.B., "+4915123456789")
-    - `body` (erforderlich) - Der SMS-Nachrichteninhalt (max. 300 Zeichen)
+    **Parameters:**
+    - `from` (required) – ID of your phone number to send from (must be SMS-capable)
+    - `to` (required) – Recipient phone number in international format (e.g., "+4915123456789")
+    - `body` (required) – SMS message content (max 300 characters)
     
-    **Rückgabe:** Erfolgsmeldung und SMS-Daten einschließlich SMS-ID, Segmente, Kosten und Status
+    **Returns:** Success message and SMS data including SMS ID, segments, costs, and status
     
-    **Hinweis:**
-    - Die Absender-Telefonnummer muss dem authentifizierten Benutzer gehören und SMS-fähig sein
-    - Ausreichendes Kontoguthaben ist erforderlich, um SMS-Kosten zu decken
-    - SMS-Kosten variieren je nach Zielland und werden pro Segment berechnet
-    - Lange Nachrichten können in mehrere Segmente aufgeteilt werden, was die Kosten erhöht
+    **Note:**
+    - The sender phone number must belong to the authenticated user and be SMS-capable
+    - Sufficient account balance is required to cover SMS costs
+    - SMS costs vary by destination country and are charged per segment
+    - Long messages may be split into multiple segments, increasing costs
   </Accordion>
 </AccordionGroup>
 
@@ -339,59 +339,59 @@ npm run format
 
 <AccordionGroup>
   <Accordion title="list_mid_call_tools">
-    Listet alle Mid-Call-Tools auf, die es KI-Assistenten ermöglichen, während Anrufen mit externen APIs zu interagieren
+    Lists all mid-call tools enabling AI assistants to interact with external APIs during calls
     
-    **Parameter:** Keine
+    **Parameters:** None
     
-    **Rückgabe:** Array aller Mid-Call-Tools mit Details einschließlich Name, Beschreibung, Endpoint, Methode, Timeout, Headers und Schema
+    **Returns:** Array of all mid-call tools with details including name, description, endpoint, method, timeout, headers, and schema
   </Accordion>
 
   <Accordion title="get_mid_call_tool">
-    Ruft detaillierte Informationen über ein bestimmtes Mid-Call-Tool ab
+    Retrieves detailed information about a specific mid-call tool
     
-    **Parameter:**
-    - `id` (erforderlich) - Die eindeutige ID des Mid-Call-Tools
+    **Parameters:**
+    - `id` (required) – Unique ID of the mid-call tool
     
-    **Rückgabe:** Vollständige Tool-Informationen einschließlich Konfiguration und Schema
+    **Returns:** Full tool information including configuration and schema
   </Accordion>
 
   <Accordion title="update_mid_call_tool">
-    Aktualisiert ein bestehendes Mid-Call-Tool
+    Updates an existing mid-call tool
     
-    **Parameter:**
-    - `id` (erforderlich) - Die eindeutige ID des zu aktualisierenden Tools
-    - `name` (optional) - Tool-Name (nur Kleinbuchstaben und Unterstriche)
-    - `description` (optional) - Detaillierte Erklärung, wann und wie die KI dieses Tool verwenden sollte
-    - `endpoint` (optional) - Gültige URL des aufzurufenden API-Endpoints
-    - `method` (optional) - HTTP-Methode: GET, POST, PUT, PATCH oder DELETE
-    - `timeout` (optional) - Request-Timeout in Sekunden (1-30)
-    - `headers` (optional) - HTTP-Header, die mit der Anfrage gesendet werden sollen
-    - `schema` (optional) - Parameter-Schema, das die KI extrahieren und senden wird
+    **Parameters:**
+    - `id` (required) – Unique ID of the tool to update
+    - `name` (optional) – Tool name (lowercase letters and underscores only)
+    - `description` (optional) – Detailed explanation of when and how the AI should use this tool
+    - `endpoint` (optional) – Valid URL of the API endpoint to call
+    - `method` (optional) – HTTP method: GET, POST, PUT, PATCH, or DELETE
+    - `timeout` (optional) – Request timeout in seconds (1-30)
+    - `headers` (optional) – HTTP headers to send with the request
+    - `schema` (optional) – Parameter schema that AI will extract and send
     
-    **Rückgabe:** Erfolgsmeldung und aktualisierte Tool-Daten
+    **Returns:** Success message and updated tool data
   </Accordion>
 </AccordionGroup>
 
-## Projektstruktur
+## Project Structure
 
 ```
 Famulor-MCP/
 ├── src/
-│   ├── index.ts          # MCP Server Entry Point
-│   ├── server.ts         # MCP Server Setup
-│   ├── tools/            # Famulor API Tools
-│   │   ├── calls.ts      # Call Operations
-│   │   ├── assistants.ts # Assistant Operations
-│   │   ├── conversations.ts # Conversation Operations
-│   │   ├── campaigns.ts   # Campaign Operations
-│   │   ├── leads.ts       # Lead Operations
-│   │   ├── sms.ts         # SMS Operations
-│   │   ├── midCallTools.ts # Mid-Call Tools Operations
-│   │   └── index.ts      # Tools Export
+│   ├── index.ts          # MCP Server entry point
+│   ├── server.ts         # MCP Server setup
+│   ├── tools/            # Famulor API tools
+│   │   ├── calls.ts      # Call operations
+│   │   ├── assistants.ts # Assistant operations
+│   │   ├── conversations.ts # Conversation operations
+│   │   ├── campaigns.ts   # Campaign operations
+│   │   ├── leads.ts       # Lead operations
+│   │   ├── sms.ts         # SMS operations
+│   │   ├── midCallTools.ts # Mid-call tools operations
+│   │   └── index.ts      # Tools export
 │   ├── auth/             # Authentication
-│   │   └── famulor.ts    # Famulor API Client
-│   └── types/            # TypeScript Types
-│       └── famulor.ts    # Famulor API Types
+│   │   └── famulor.ts    # Famulor API client
+│   └── types/            # TypeScript types
+│       └── famulor.ts    # Famulor API types
 ├── dist/                 # Compiled JavaScript (generated)
 ├── package.json
 ├── tsconfig.json
@@ -402,42 +402,41 @@ Famulor-MCP/
 └── ONLINE_DEPLOYMENT.md   # Online deployment guide
 ```
 
-## Über MCP
+## About MCP
 
-Dies ist ein **Model Context Protocol (MCP) Server**, der Zugriff auf die Famulor Voice Agent Platform bietet. MCP ist ein Protokoll, das es KI-Assistenten wie ChatGPT, Claude und anderen KI-Tools ermöglicht, sich sicher mit externen Datenquellen und Tools zu verbinden.
+This is a **Model Context Protocol (MCP) Server** providing access to the Famulor Voice Agent Platform. MCP is a protocol that allows AI assistants like ChatGPT, Claude, and other AI tools to securely connect with external data sources and tools.
 
-Der Server stellt die Voice-Agent-Funktionen von Famulor als MCP-Tools bereit und ermöglicht es jedem MCP-kompatiblen Client (ChatGPT Desktop, Claude Desktop oder anderen MCP-Anwendungen), mit der Famulor-Plattform zu interagieren.
+The server exposes Famulor’s voice agent capabilities as MCP tools, enabling any MCP-compatible client (ChatGPT Desktop, Claude Desktop, or others) to interact with the Famulor platform.
 
-## Sicherheit
+## Security
 
-- ✅ Jeder Benutzer konfiguriert seinen eigenen API-Schlüssel
-- ✅ API-Schlüssel werden lokal in Ihrer MCP-Konfigurationsdatei gespeichert (verschlüsselt von Ihrem MCP-Client)
-- ✅ Keine API-Schlüssel werden über das Netzwerk gesendet (stdio ist lokal)
-- ❌ **Kommittieren Sie niemals Ihre MCP-Konfigurationsdatei mit API-Schlüsseln in die Versionskontrolle**
-- ❌ **Teilen Sie Ihren API-Schlüssel niemals öffentlich**
+- ✅ Each user configures their own API key
+- ✅ API keys are stored locally in your MCP config file (encrypted by your MCP client)
+- ✅ No API keys are sent over the network (stdio is local)
+- ❌ **Never commit your MCP config file with API keys to version control**
+- ❌ **Never share your API key publicly**
 
-## Ressourcen
+## Resources
 
 - 🌐 **Online MCP Server**: [https://mcp.famulor.io](https://mcp.famulor.io)
 - [Famulor Voice Agent Homepage](https://www.famulor.io)
 - [Famulor Voice Agent Platform](https://app.famulor.de)
-- [Famulor API Dokumentation](https://docs.famulor.io/api-reference/)
-- [MCP Protocol Dokumentation](https://modelcontextprotocol.io/)
+- [Famulor API Documentation](https://docs.famulor.io/api-reference/)
+- [MCP Protocol Documentation](https://modelcontextprotocol.io/)
 - [ChatGPT Desktop App](https://chatgpt.com/download)
 - [Claude Desktop App](https://claude.ai/download)
 - [GitHub Repository](https://github.com/bekservice/Famulor-MCP)
 
-## Beitragen
+## Contributing
 
-Beiträge sind willkommen! Bitte zögern Sie nicht, einen Pull Request einzureichen.
+Contributions are welcome! Please feel free to submit a pull request.
 
-## Lizenz
+## License
 
-Proprietäre Lizenz - Nutzung nur für Famulor-Benutzer erlaubt
+Proprietary license – use only permitted for Famulor users
 
-Diese Software darf nur verwendet, kopiert und modifiziert werden, wenn Sie die Famulor Voice Agent Platform verwenden. Siehe [LICENSE](https://github.com/bekservice/Famulor-MCP/blob/main/LICENSE) Datei für vollständige Details.
+This software may only be used, copied, and modified if you are using the Famulor Voice Agent Platform. See the [LICENSE](https://github.com/bekservice/Famulor-MCP/blob/main/LICENSE) file for full details.
 
-## Autor
+## Author
 
 [bekservice](https://github.com/bekservice)
-

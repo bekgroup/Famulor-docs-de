@@ -1,359 +1,359 @@
 ---
-title: "Wann Mid-call Actions verwenden?"
-description: "Erfahren Sie, in welchen Szenarien Mid-call Actions den größten Mehrwert bieten und wann Sie sie einsetzen sollten"
+title: "When to Use Mid-call Actions?"
+description: "Learn in which scenarios Mid-call Actions provide the greatest added value and when you should use them"
 icon: "lightbulb"
 ---
 
 
-# Wann sollten Sie Mid-call Actions verwenden?
+# When Should You Use Mid-call Actions?
 
-Mid-call Actions bieten den größten Mehrwert, wenn Ihre KI-Assistenten während Gesprächen auf externe Daten zugreifen müssen. Diese Seite hilft Ihnen zu identifizieren, wann der Einsatz sinnvoll ist und welche Szenarien am besten geeignet sind.
+Mid-call Actions offer the greatest benefit when your AI assistants need to access external data during conversations. This page helps you identify when their use is sensible and which scenarios are best suited.
 
-## Ideal geeignete Szenarien
+## Ideal Suitable Scenarios
 
-### Kundenservice und Support
+### Customer Service and Support
 
 <CardGroup cols={2}>
-  <Card title="Kontoverifizierung" icon="user-check">
-    **Wann einsetzen**: Bei jeder Kundenanfrage wo Identitätsprüfung erforderlich ist
+  <Card title="Account Verification" icon="user-check">
+    **When to use**: For any customer inquiry requiring identity verification
     
-    **Typischer Ablauf**:
-    - Kunde nennt E-Mail oder Kundennummer
-    - Automatischer Abgleich mit CRM-System
-    - Sofortige Bestätigung und Personalisierung
+    **Typical process**:
+    - Customer provides email or customer number
+    - Automatic matching with CRM system
+    - Immediate confirmation and personalization
     
-    **ROI**: Hoch - reduziert Bearbeitungszeit um 60-80%
+    **ROI**: High - reduces handling time by 60-80%
   </Card>
   
-  <Card title="Bestellstatus-Abfragen" icon="box">
-    **Wann einsetzen**: Bei E-Commerce oder Versanddienstleistern
+  <Card title="Order Status Queries" icon="box">
+    **When to use**: For e-commerce or shipping providers
     
-    **Typischer Ablauf**:
-    - Kunde fragt nach Lieferstatus
-    - Echtzeit-Abfrage bei Logistiksystem
-    - Präzise Auskunft ohne Wartezeit
+    **Typical process**:
+    - Customer asks about delivery status
+    - Real-time query to logistics system
+    - Accurate information without wait time
     
-    **ROI**: Mittel-Hoch - eliminiert 40-60% der Support-Tickets
+    **ROI**: Medium-High - eliminates 40-60% of support tickets
   </Card>
 </CardGroup>
 
 <AccordionGroup>
-  <Accordion title="Technischer Support">
-    **Optimale Anwendung**:
-    - Abruf der Geräte-/Software-Konfiguration
-    - Zugriff auf bekannte Probleme und Lösungen
-    - Automatische Ticket-Erstellung mit Systemdaten
+  <Accordion title="Technical Support">
+    **Optimal use**:
+    - Retrieve device/software configuration
+    - Access known issues and solutions
+    - Automatic ticket creation with system data
     
-    **Messbare Vorteile**:
-    - 70% weniger Rückfragen zur Systemkonfiguration
-    - 45% schnellere Problemdiagnose
-    - 25% Steigerung der First-Call-Resolution
+    **Measurable benefits**:
+    - 70% fewer follow-up questions about system configuration
+    - 45% faster problem diagnosis
+    - 25% increase in first-call resolution
   </Accordion>
   
-  <Accordion title="Billing & Rechnungswesen">
-    **Perfekt geeignet für**:
-    - Rechnungsdetails und -historie abrufen
-    - Zahlungsstatus in Echtzeit prüfen
-    - Automatische Mahnungsbearbeitung
+  <Accordion title="Billing & Accounting">
+    **Perfectly suited for**:
+    - Retrieve invoice details and history
+    - Check payment status in real time
+    - Automatic processing of reminders
     
-    **Geschäftsnutzen**:
-    - Sofortige Klärung von Zahlungsfragen
-    - Reduzierte Bearbeitungszeit um 50-70%
-    - Automatisierte Zahlungsvereinbarungen
+    **Business benefits**:
+    - Immediate clarification of payment questions
+    - Reduced processing time by 50-70%
+    - Automated payment agreements
   </Accordion>
 </AccordionGroup>
 
-### Vertrieb und Lead-Management
+### Sales and Lead Management
 
 ```mermaid
 flowchart TD
-    A[Eingehender Anruf] --> B{Lead bekannt?}
-    B -->|Nein| C[Lead-Qualifizierung Tool]
-    B -->|Ja| D[Kundendaten Tool]
-    C --> E[Firmendaten abrufen]
-    C --> F[Lead-Score berechnen]
-    D --> G[Kaufhistorie laden]
-    D --> H[Präferenzen abrufen]
-    E --> I[Personalisierte Ansprache]
+    A[Incoming call] --> B{Known lead?}
+    B -->|No| C[Lead qualification tool]
+    B -->|Yes| D[Customer data tool]
+    C --> E[Retrieve company data]
+    C --> F[Calculate lead score]
+    D --> G[Load purchase history]
+    D --> H[Retrieve preferences]
+    E --> I[Personalized approach]
     F --> I
     G --> I
     H --> I
-    I --> J[Zielgerichtete Gesprächsführung]
+    I --> J[Targeted conversation guidance]
 ```
 
 <Tabs>
-  <Tab title="Lead-Qualifizierung">
-    **Ideale Szenarien**:
-    - B2B-Vertrieb mit komplexen Entscheidungsprozessen
-    - Hochwertige Produkte/Services mit längeren Sales-Zyklen
-    - Multi-Stakeholder-Entscheidungen
+  <Tab title="Lead Qualification">
+    **Ideal scenarios**:
+    - B2B sales with complex decision processes
+    - High-value products/services with longer sales cycles
+    - Multi-stakeholder decisions
     
-    **Tool-Einsatz**:
+    **Tool usage**:
     ```yaml
-    Firmendatenbank-Abfrage:
-      - Unternehmensgröße und -struktur
-      - Branche und Marktposition
-      - Technologie-Stack
-      - Budget-Range
+    Company database query:
+      - Company size and structure
+      - Industry and market position
+      - Technology stack
+      - Budget range
     
-    Leadbewertung:
-      - Automatischer BANT-Score
-      - Buying-Intent-Analyse
-      - Stakeholder-Mapping
+    Lead scoring:
+      - Automated BANT score
+      - Buying intent analysis
+      - Stakeholder mapping
     ```
   </Tab>
   
   <Tab title="Account-Based Sales">
-    **Wann besonders wertvoll**:
-    - Bestehende Kundenbeziehungen
-    - Cross-Selling/Up-Selling-Opportunitäten
-    - Enterprise-Accounts
+    **When particularly valuable**:
+    - Existing customer relationships
+    - Cross-selling/up-selling opportunities
+    - Enterprise accounts
     
-    **Datenintegration**:
+    **Data integration**:
     ```yaml
-    CRM-Integration:
-      - Kontakthistorie und -präferenzen
-      - Vergangene Käufe und Verträge
-      - Open Opportunities
-      - Support-Tickets und Zufriedenheit
+    CRM integration:
+      - Contact history and preferences
+      - Past purchases and contracts
+      - Open opportunities
+      - Support tickets and satisfaction
     
-    Personalisierung:
-      - Individuelle Ansprache
-      - Relevante Produktvorschläge
-      - Terminkoordination mit Account-Team
+    Personalization:
+      - Individualized approach
+      - Relevant product suggestions
+      - Appointment coordination with account team
     ```
   </Tab>
   
-  <Tab title="Terminbuchung">
-    **Optimale Einsatzgebiete**:
-    - Beratungsdienstleistungen
-    - Medizinische Praxen
-    - Service-Termine
+  <Tab title="Appointment Booking">
+    **Optimal use cases**:
+    - Consulting services
+    - Medical practices
+    - Service appointments
     
-    **Workflow-Integration**:
+    **Workflow integration**:
     ```yaml
-    Kalender-Tools:
-      - Echtzeit-Verfügbarkeitscheck
-      - Automatische Terminvorschläge
-      - Sofortige Buchungsbestätigung
-      - E-Mail/SMS-Benachrichtigungen
+    Calendar tools:
+      - Real-time availability check
+      - Automatic appointment suggestions
+      - Immediate booking confirmation
+      - Email/SMS notifications
     
-    CRM-Synchronisation:
-      - Lead-Status-Update
-      - Follow-up-Aufgaben
-      - Team-Benachrichtigungen
+    CRM synchronization:
+      - Lead status update
+      - Follow-up tasks
+      - Team notifications
     ```
   </Tab>
 </Tabs>
 
-### E-Commerce und Retail
+### E-Commerce and Retail
 
 <CardGroup cols={3}>
-  <Card title="Produktberatung" icon="shopping-cart">
-    **Anwendungsfall**: Kunde sucht spezifisches Produkt oder Beratung
+  <Card title="Product Consultation" icon="shopping-cart">
+    **Use case**: Customer is looking for a specific product or advice
     
-    **Tool-Funktionen**:
-    - Lagerbestandsabfrage
-    - Produktspezifikationen
-    - Preisvergleiche
-    - Verfügbarkeit und Lieferzeiten
+    **Tool functions**:
+    - Inventory query
+    - Product specifications
+    - Price comparisons
+    - Availability and delivery times
   </Card>
   
-  <Card title="Bestellabwicklung" icon="credit-card">
-    **Anwendungsfall**: Telefonische Bestellungen oder Änderungen
+  <Card title="Order Processing" icon="credit-card">
+    **Use case**: Phone orders or modifications
     
-    **Tool-Funktionen**:
-    - Warenkorb-Integration
-    - Zahlungsabwicklung
-    - Versandoptionen
-    - Bestellbestätigung
+    **Tool functions**:
+    - Shopping cart integration
+    - Payment processing
+    - Shipping options
+    - Order confirmation
   </Card>
   
-  <Card title="After-Sales-Service" icon="headset">
-    **Anwendungsfall**: Support nach dem Kauf
+  <Card title="After-Sales Service" icon="headset">
+    **Use case**: Support after purchase
     
-    **Tool-Funktionen**:
-    - Garantieabfrage
-    - Reparaturstatus
-    - Ersatzteil-Verfügbarkeit
-    - Return-Management
+    **Tool functions**:
+    - Warranty inquiry
+    - Repair status
+    - Spare part availability
+    - Return management
   </Card>
 </CardGroup>
 
-## Situationen, wo Mid-call Actions NICHT geeignet sind
+## Situations Where Mid-call Actions Are NOT Suitable
 
-### Vermeiden Sie den Einsatz bei:
+### Avoid use in:
 
 <Warning>
-**Einfache Informationsabfragen**: Wenn die benötigten Informationen statisch sind und sich selten ändern (z.B. Öffnungszeiten, allgemeine Firmeninfos), ist ein Mid-call Action überdimensioniert.
+**Simple information queries**: If the required information is static and rarely changes (e.g., opening hours, general company info), a Mid-call Action is overkill.
 </Warning>
 
 <AccordionGroup>
-  <Accordion title="Reine Informationsweitergabe">
-    **Ungeeignete Szenarien**:
-    - FAQ-ähnliche Anfragen
-    - Standardisierte Produktinformationen
-    - Allgemeine Unternehmensdaten
+  <Accordion title="Pure information delivery">
+    **Unsuitable scenarios**:
+    - FAQ-like requests
+    - Standardized product information
+    - General company data
     
-    **Bessere Alternative**: Diese Informationen direkt in den System-Prompt integrieren
+    **Better alternative**: Embed this information directly into the system prompt
   </Accordion>
   
-  <Accordion title="Hochkomplexe Datenverarbeitung">
-    **Problematische Situationen**:
-    - Berechnungen die &gt;5 Sekunden dauern
-    - Multi-System-Abfragen mit komplexer Logik
-    - Datenanalysen mit großen Datenmengen
+  <Accordion title="Highly complex data processing">
+    **Problematic situations**:
+    - Calculations taking more than 5 seconds
+    - Multi-system queries with complex logic
+    - Data analysis with large data volumes
     
-    **Warum problematisch**: Unterbricht den Gesprächsfluss und führt zu unbequemen Pausen
+    **Why problematic**: Interrupts conversation flow and causes awkward pauses
   </Accordion>
   
-  <Accordion title="Instabile oder langsame APIs">
-    **Risikofaktoren**:
-    - APIs mit &gt;30% Ausfallrate
-    - Durchschnittliche Antwortzeiten &gt;8 Sekunden
-    - Systeme ohne SLA-Garantien
+  <Accordion title="Unstable or slow APIs">
+    **Risk factors**:
+    - APIs with more than 30% failure rate
+    - Average response times longer than 8 seconds
+    - Systems without SLA guarantees
     
-    **Konsequenzen**: Schlechte Kundenerfahrung und Frustration
+    **Consequences**: Poor customer experience and frustration
   </Accordion>
 </AccordionGroup>
 
-## Entscheidungshilfe: Tool vs. Alternative
+## Decision Aid: Tool vs. Alternative
 
-### Decision Tree für Mid-call Action-Einsatz
+### Decision tree for Mid-call Action use
 
 ```mermaid
 flowchart TD
-    A[Benötigen Sie externe Daten?] --> B{Ja}
-    A --> C{Nein}
-    B --> D[Ändern sich die Daten häufig?]
-    C --> E[System-Prompt verwenden]
-    D --> F{Ja}
-    D --> G{Nein}
-    F --> H[Ist die Datenquelle zuverlässig?]
-    G --> I[Daten in Knowledge Base]
-    H --> J{Ja}
-    H --> K{Nein}
-    J --> L[Response-Zeit < 5 Sekunden?]
-    K --> M[Datensynchronisation prüfen]
-    L --> N{Ja}
-    L --> O{Nein}
-    N --> P[✅ Mid-call Action geeignet]
-    O --> Q[API-Optimierung oder Alternative]
+    A[Do you need external data?] --> B{Yes}
+    A --> C{No}
+    B --> D[Do data change frequently?]
+    C --> E[Use system prompt]
+    D --> F{Yes}
+    D --> G{No}
+    F --> H[Is the data source reliable?]
+    G --> I[Data in knowledge base]
+    H --> J{Yes}
+    H --> K{No}
+    J --> L[Response time < 5 seconds?]
+    K --> M[Check data synchronization]
+    L --> N{Yes}
+    L --> O{No}
+    N --> P[✅ Mid-call Action suitable]
+    O --> Q[API optimization or alternative]
 ```
 
-### Bewertungsmatrix für Tool-Eignung
+### Evaluation matrix for tool suitability
 
-| Kriterium | Hoch geeignet | Mittel geeignet | Nicht geeignet |
-|-----------|---------------|-----------------|----------------|
-| **Datenaktualität** | Sekunden/Minuten | Stunden/Täglich | Wochen/Monate |
-| **API-Response Zeit** | &lt;3 Sekunden | 3-7 Sekunden | &gt;7 Sekunden |
-| **API-Zuverlässigkeit** | &gt;99% Uptime | 95-99% Uptime | &lt;95% Uptime |
-| **Datenvolumen** | &lt;1MB | 1-5MB | &gt;5MB |
-| **Nutzungshäufigkeit** | Täglich | Wöchentlich | Monatlich |
-| **Geschäftskritikalität** | Hoch | Mittel | Niedrig |
+| Criterion               | Highly suitable   | Moderately suitable | Not suitable   |
+|------------------------|------------------|---------------------|---------------|
+| **Data freshness**      | Seconds/minutes  | Hours/daily         | Weeks/months  |
+| **API response time**   | <3 seconds      | 3-7 seconds          | >7 seconds    |
+| **API reliability**    | >99% uptime     | 95-99% uptime        | <95% uptime   |
+| **Data volume**         | <1MB            | 1-5MB                | >5MB          |
+| **Usage frequency**     | Daily           | Weekly               | Monthly       |
+| **Business criticality**| High            | Medium               | Low           |
 
 ## Implementation Roadmap
 
-### Phase 1: Foundation (Woche 1-2)
+### Phase 1: Foundation (Weeks 1-2)
 <Steps>
-  <Step title="Use Case Identifikation">
-    - Analyse der häufigsten Kundenanfragen
-    - Identifikation von Datenquellen
-    - Bewertung des Automatisierungspotentials
+  <Step title="Use Case Identification">
+    - Analyze most frequent customer inquiries
+    - Identify data sources
+    - Assess automation potential
   </Step>
   
   <Step title="System Assessment">
-    - API-Dokumentation prüfen
-    - Performance-Tests durchführen  
-    - Sicherheitsanforderungen evaluieren
+    - Review API documentation
+    - Conduct performance tests
+    - Evaluate security requirements
   </Step>
 </Steps>
 
-### Phase 2: Pilot Implementation (Woche 3-4)
+### Phase 2: Pilot Implementation (Weeks 3-4)
 <Steps>
-  <Step title="Einfacher Use Case">
-    - Start mit Read-Only-Operation
-    - Beispiel: Kontaktdatenabfrage
-    - Monitoring und Performance-Messung
+  <Step title="Simple Use Case">
+    - Start with read-only operation
+    - Example: Contact data query
+    - Monitoring and performance measurement
   </Step>
   
   <Step title="Feedback Collection">
-    - Kundenreaktionen bewerten
-    - Technische Metriken analysieren
-    - Optimierungsbedarf identifizieren
+    - Evaluate customer reactions
+    - Analyze technical metrics
+    - Identify optimization needs
   </Step>
 </Steps>
 
-### Phase 3: Scale & Optimize (Woche 5-8)
+### Phase 3: Scale & Optimize (Weeks 5-8)
 <Steps>
-  <Step title="Erweiterte Use Cases">
-    - Write-Operationen einführen
-    - Multi-System-Integrationen
-    - Complex Workflows implementieren
+  <Step title="Advanced Use Cases">
+    - Introduce write operations
+    - Multi-system integrations
+    - Implement complex workflows
   </Step>
   
   <Step title="Continuous Improvement">
-    - A/B-Testing verschiedener Ansätze
-    - Performance-Optimierung
-    - Neue Integrationen evaluieren
+    - A/B testing of different approaches
+    - Performance optimization
+    - Evaluate new integrations
   </Step>
 </Steps>
 
-## Kosten-Nutzen-Analyse
+## Cost-Benefit Analysis
 
-### Investitionsrechnung
+### Investment calculation
 
 <Tabs>
-  <Tab title="Einmalige Kosten">
+  <Tab title="One-time costs">
     ```yaml
-    Entwicklung & Setup:
-      - API-Integration: €2,000 - €8,000
+    Development & setup:
+      - API integration: €2,000 - €8,000
       - Testing & QA: €1,000 - €3,000
-      - Dokumentation: €500 - €1,500
+      - Documentation: €500 - €1,500
       - Training: €500 - €2,000
     
-    Gesamt: €4,000 - €14,500
+    Total: €4,000 - €14,500
     ```
   </Tab>
   
-  <Tab title="Laufende Kosten">
+  <Tab title="Ongoing costs">
     ```yaml
-    Betrieb & Wartung:
-      - API-Gebühren: €50 - €500/Monat
-      - Monitoring: €30 - €200/Monat
-      - Support: €100 - €800/Monat
-      - Updates: €200 - €1,000/Quartal
+    Operation & maintenance:
+      - API fees: €50 - €500/month
+      - Monitoring: €30 - €200/month
+      - Support: €100 - €800/month
+      - Updates: €200 - €1,000/quarter
     
-    Monatlich: €180 - €1,500
+    Monthly: €180 - €1,500
     ```
   </Tab>
   
-  <Tab title="Einsparungen">
+  <Tab title="Savings">
     ```yaml
-    Direkte Einsparungen:
-      - Personalkosten: €2,000 - €10,000/Monat
-      - Bearbeitungszeit: 40-70% Reduktion
-      - Fehlerkosten: 50-80% Reduktion
-      - Kundenzufriedenheit: +15-30%
+    Direct savings:
+      - Personnel costs: €2,000 - €10,000/month
+      - Processing time: 40-70% reduction
+      - Error costs: 50-80% reduction
+      - Customer satisfaction: +15-30%
     
-    ROI: 3-12 Monate
+    ROI: 3-12 months
     ```
   </Tab>
 </Tabs>
 
-## Nächste Schritte
+## Next Steps
 
 <CardGroup cols={2}>
-  <Card title="Template-Bibliothek erkunden" icon="clone" href="/automation-platform/mid-call-actions/integration-templates/hubspot-kontakt-abruf">
-    Starten Sie mit bewährten Integration-Templates für beliebte CRM-Systeme
+  <Card title="Explore Template Library" icon="clone" href="/automation-platform/mid-call-actions/integration-templates/hubspot-kontakt-abruf">
+    Start with proven integration templates for popular CRM systems
   </Card>
-  <Card title="Custom Integration planen" icon="code" href="/automation-platform/mid-call-actions/custom-api-integration">
-    Entwickeln Sie maßgeschneiderte Lösungen für Ihre spezifischen Anforderungen
+  <Card title="Plan Custom Integration" icon="code" href="/automation-platform/mid-call-actions/custom-api-integration">
+    Develop tailored solutions for your specific requirements
   </Card>
 </CardGroup>
 
 ---
 
 <Tip>
-**Best Practice**: Beginnen Sie immer mit einem einfachen, risikoarmen Use Case und erweitern Sie schrittweise. Messen Sie kontinuierlich die Performance und Auswirkungen auf die Kundenerfahrung.
+**Best practice**: Always start with a simple, low-risk use case and gradually expand. Continuously measure performance and impacts on the customer experience.
 </Tip>

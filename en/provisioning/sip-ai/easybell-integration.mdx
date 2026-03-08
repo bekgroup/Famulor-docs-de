@@ -1,216 +1,214 @@
 ---
-title: 'Easybell-Integration'
-description: 'Verbinden Sie Ihr Easybell-Telefonsystem mit Famulor über SIP-Trunking oder die Cloud Telefonanlage'
+title: 'Easybell Integration'
+description: 'Connect your Easybell telephone system with Famulor via SIP Trunking or the Cloud Phone System'
 ---
 
-
-# Easybell-Integration
+# Easybell Integration
 
 <Note>
-  Mit Famulor können Sie Ihre **Easybell**-Telefonie mit einem KI-Assistenten verbinden. Es gibt **zwei Wege** – wählen Sie unten Ihren Weg und folgen Sie der passenden Schritt-für-Schritt-Anleitung.
+  With Famulor, you can connect your **Easybell** telephony to an AI assistant. There are **two ways** – choose your path below and follow the corresponding step-by-step guide.
 </Note>
 
-## Welchen Weg wählen?
+## Which path to choose?
 
-| Sie haben … | Dann folgen Sie … |
-|-------------|-------------------|
-| **Nur Easybell SIP-Trunk** (ohne Cloud Telefonanlage) | [Schritt-für-Schritt: SIP-Trunk](#schritt-für-schritt-sip-trunk) |
-| **Easybell Cloud Telefonanlage Pro** | [Schritt-für-Schritt: Cloud Telefonanlage](#schritt-für-schritt-cloud-telefonanlage) |
+| You have … | Then follow … |
+|------------|--------------|
+| **Only Easybell SIP Trunk** (without Cloud Phone System) | [Step-by-step: SIP Trunk](#step-by-step-sip-trunk) |
+| **Easybell Cloud Phone System Pro** | [Step-by-step: Cloud Phone System](#step-by-step-cloud-phone-system) |
 
-- **SIP-Trunk:** FQDN-Feature muss bei Easybell angefragt werden (E-Mail an support@easybell.de, ca. 10€/Monat).  
-- **Cloud Telefonanlage Pro:** FQDN ist bereits enthalten, keine separate Anfrage nötig.
+- **SIP Trunk:** The FQDN feature must be requested from Easybell (email to support@easybell.de, approx. €10/month).  
+- **Cloud Phone System Pro:** The FQDN is already included, no separate request necessary.
 
 ---
 
-## Funktionsweise im Detail
+## How it works in detail
 
-Anrufe laufen über Easybell zu Famulor und werden dort Ihrem KI-Assistenten zugeordnet. Ablauf eines **eingehenden Anrufs**:
+Calls run from Easybell to Famulor and are assigned to your AI assistant. Flow of an **incoming call**:
 
 ```mermaid theme={null}
 sequenceDiagram
-    participant K as Kunde
+    participant C as Customer
     participant E as Easybell
     participant F as Famulor
-    participant A as KI-Assistent
+    participant A as AI Assistant
 
-    K->>E: Anruf an Ihre Easybell-Nummer
-    E->>F: SIP-Anruf (FQDN / erlaubte IPs)
-    F->>A: Anruf an zugewiesenen Assistenten
-    A->>F: Sprachantwort (Echtzeit)
-    F->>E: Medienstrom (RTP/SRTP)
-    E->>K: Gespräch mit KI-Assistent
-    Note over K,A: Kunde und KI-Assistent im Dialog
-    A->>F: Optional: Weiterleitung, Tool-Aufruf
-    F->>E: Weiterleitung z. B. an Nebenstelle
-    E->>K: Verbindung zu Mitarbeiter
+    C->>E: Call to your Easybell number
+    E->>F: SIP call (FQDN / allowed IPs)
+    F->>A: Call to assigned assistant
+    A->>F: Voice response (real-time)
+    F->>E: Media stream (RTP/SRTP)
+    E->>C: Conversation with AI assistant
+    Note over C,A: Customer and AI assistant in dialogue
+    A->>F: Optional: forwarding, tool invocation
+    F->>E: Forwarding e.g., to extension
+    E->>C: Connection to employee
 ```
 
 ---
 
-## Schritt-für-Schritt: SIP-Trunk
+## Step-by-step: SIP Trunk
 
-Nutzen Sie **nur** den Easybell SIP-Trunk (ohne Cloud Telefonanlage). Gehen Sie die Schritte der Reihe nach durch.
+Use **only** the Easybell SIP Trunk (without Cloud Phone System). Follow the steps in order.
 
-### Schritt 1: FQDN-Feature bei Easybell anfordern
+### Step 1: Request FQDN feature from Easybell
 
-Das FQDN-Feature ist im Easybell-Kundenportal nicht buchbar. Senden Sie eine E-Mail an **support@easybell.de** mit Ihrer **Easybell-Kundennummer** und bitten Sie um Freischaltung des SIP Trunking FQDN Feature für Famulor.
+The FQDN feature cannot be booked via the Easybell customer portal. Send an email to **support@easybell.de** with your **Easybell customer number** and request activation of the SIP Trunking FQDN feature for Famulor.
 
-**Beispiel-E-Mail:**
+**Example email:**
 
 ```text
-Sehr geehrtes Easybell Team,
+Dear Easybell team,
 
-Könnten Sie uns bitte das SIP Trunking FQDN Feature für die Nutzung mit Famulor freischalten?
+Could you please activate the SIP Trunking FQDN feature for use with Famulor?
 
-Vielen Dank und liebe Grüße
+Thank you very much and best regards
 ```
 
 <Note>
-  **Kosten (Stand August 2025):** 10€ / Monat. Auf die Bestätigung vom Support kann es einige Tage dauern.
+  **Cost (as of August 2025):** €10 / month. It may take several days to receive confirmation from support.
 </Note>
 
-### Schritt 2: In Famulor einrichten
+### Step 2: Configure in Famulor
 
-1. Auf [famulor.de](https://famulor.de) einloggen.
-2. Links **„Deine Telefonnummern“** wählen, dann **„SIP-Trunk integrieren“** klicken.
+1. Log in at [famulor.de](https://famulor.de).  
+2. Select **“Your Phone Numbers”** on the left, then click **“Integrate SIP Trunk”**.
 
-<img src="/images/easybell/easybell-1.png" alt="Famulor: Deine Telefonnummern – SIP-Trunk integrieren" />
+<img src="/images/easybell/easybell-1.png" alt="Famulor: Your Phone Numbers – Integrate SIP Trunk" />
 
-3. **SIP-Trunk-Konfiguration** ausfüllen:
-   - **Authentifizierung:** Benutzername und Passwort (von Easybell).
-   - **Ausgehende Telefonie:** SIP-Adresse z. B. `voip.easybell.de`, Rufnummernformat (z. B. „International mit +“).
+3. Fill in the **SIP Trunk configuration**:  
+   - **Authentication:** username and password (from Easybell).  
+   - **Outbound Telephony:** SIP address e.g. `voip.easybell.de`, number format (e.g., “International with +”).
 
-<img src="/images/easybell/easybell-2.png" alt="SIP-Trunk: Authentifizierung und ausgehende Telefonie" />
+<img src="/images/easybell/easybell-2.png" alt="SIP Trunk: Authentication and outbound telephony" />
 
-4. **Eingehende Telefonie** einstellen:
-   - **Erlaubte IP-Adressen** eintragen (siehe Kasten unten).  
-   - **„Unsere SIP-Adresse“** notieren – diese brauchen Sie in Schritt 3 für Easybell.
+4. Set up **Inbound Telephony**:  
+   - Enter **allowed IP addresses** (see box below).  
+   - Note **“Our SIP address”** – you will need this in Step 3 for Easybell.
 
-<img src="/images/easybell/easybell-3.png" alt="Eingehende Telefonie: SIP-Adresse und erlaubte IPs" />
+<img src="/images/easybell/easybell-3.png" alt="Inbound Telephony: SIP address and allowed IPs" />
 
-**Freizuschaltende IPs bei Famulor (SIP-Trunk):**
+**IPs to whitelist at Famulor (SIP Trunk):**
 
 - **TCP/UDP:** 195.52.221.151, 195.185.214.173, 195.52.221.142  
 - **TLS:** 212.172.204.95, 212.172.58.207  
 
-5. Konfiguration **bestätigen**. Anschließend einen **KI-Assistenten** anlegen und **dieser Rufnummer zuordnen**.
+5. Confirm the configuration. Then create an **AI assistant** and **assign this phone number** to them.
 
-<img src="/images/easybell/easybell-4.png" alt="Assistent bearbeiten: Anrufrichtung, Name, Telefonnummer" />
+<img src="/images/easybell/easybell-4.png" alt="Edit Assistant: call direction, name, phone number" />
 
-### Schritt 3: Im Easybell-Kundenportal eintragen
+### Step 3: Enter details in Easybell customer portal
 
-Im Easybell-Kundenportal die **Famulor-SIP-Adresse** als Anrufziel/Domain eintragen – **ohne** `sip:` davor.
+Enter the **Famulor SIP address** as call destination/domain in the Easybell customer portal – **without** the `sip:` prefix.
 
-**Beispiel:** `XXXXX.sip.livekit.cloud` (Ihre Adresse steht in Famulor unter „Unsere SIP-Adresse“.)
+**Example:** `XXXXX.sip.livekit.cloud` (your address can be found in Famulor under “Our SIP address”).
 
-UDP, TCP und TLS werden unterstützt. Für das **Rufnummernformat** E.164 **mit** führendem „+“ wählen.
+UDP, TCP, and TLS are supported. For the **number format**, choose E.164 **with** a leading “+”.
 
-#### Authentifizierung per FQDN im Modus „Trunk“
+#### Authentication via FQDN in “Trunk” mode
 
-Wenn Sie bei Easybell im Modus **„Trunk“** arbeiten, richten Sie die Authentifizierung wie folgt ein:
+If you operate Easybell in **“Trunk”** mode, configure authentication as follows:
 
-- **Authentifizierung durch:** `vollqualifizierter Domainname (FQDN)` auswählen.  
-- **FQDN:** exakt den Wert eintragen, der in Famulor unter **„Unsere SIP-Adresse“** angezeigt wird (ohne `sip:` davor).  
-- **SRTP nutzen:** **deaktiviert** lassen (Häkchen darf **nicht** gesetzt sein).  
+- **Authenticate by:** select `fully qualified domain name (FQDN)`.  
+- **FQDN:** enter exactly the value shown in Famulor under **“Our SIP address”** (without `sip:`).  
+- **Use SRTP:** keep **disabled** (checkbox must **not** be checked).  
 
-Die Konfiguration sieht dann z. B. wie im folgenden Screenshot aus:
+The configuration then looks like the example screenshot below:
 
-<img src="./trusteip-FQDN-de.png" alt="Easybell Trusted IP Einstellungen mit Authentifizierung per FQDN (SRTP deaktiviert)" />
-
+<img src="./trusteip-FQDN-de.png" alt="Easybell Trusted IP settings with FQDN authentication (SRTP disabled)" />
 
 <Note>
-  Details: [Easybell-Hilfe SIP-Trunk FQDN](https://www.easybell.de/hilfe/fragen/fragen-zum-telefonanschluss/antwort/sip-trunk-authentifizierung-per-fqdn-domain-einrichten/).
+  Details: [Easybell Help SIP Trunk FQDN](https://www.easybell.de/hilfe/fragen/fragen-zum-telefonanschluss/antwort/sip-trunk-authentifizierung-per-fqdn-domain-einrichten/).
 </Note>
 
-### Schritt 4: Testen
+### Step 4: Test
 
-- Eingehenden Anruf an Ihre Easybell-Nummer testen.  
-- Prüfen, ob der KI-Assistent antwortet und das Rufnummernformat stimmt.
+- Test an incoming call to your Easybell number.  
+- Check whether the AI assistant responds and the number format is correct.
 
 ---
 
-## Schritt-für-Schritt: Cloud Telefonanlage
+## Step-by-step: Cloud Phone System
 
-Sie nutzen die **Easybell Cloud Telefonanlage Pro**. FQDN ist hier bereits enthalten – keine E-Mail an Easybell nötig. Zuerst in Famulor einrichten (wie beim SIP-Trunk), dann in der Cloud Telefonanlage.
+You use the **Easybell Cloud Phone System Pro**. The FQDN is already included – no email to Easybell required. First set up in Famulor (same as for SIP Trunk), then in the Cloud Phone System.
 
-### Schritt 1: In Famulor einrichten (wie SIP-Trunk)
+### Step 1: Configure in Famulor (as SIP Trunk)
 
-- Wie unter [Schritt 2: In Famulor einrichten](#schritt-2-in-famulor-einrichten) (Login → „Deine Telefonnummern“ → „SIP-Trunk integrieren“ → Authentifizierung, ausgehende und eingehende Telefonie).  
-- **Wichtig:** Bei **Eingehende Telefonie** andere IPs eintragen als beim reinen SIP-Trunk (siehe Kasten unten).
+- As described in [Step 2: Configure in Famulor](#step-2-configure-in-famulor) (login → “Your Phone Numbers” → “Integrate SIP Trunk” → authentication, outbound and inbound telephony).  
+- **Important:** For **Inbound Telephony** enter different IPs than for the pure SIP Trunk (see box below).
 
-**Freizuschaltende IPs bei Famulor (Cloud Telefonanlage):**
+**IPs to whitelist at Famulor (Cloud Phone System):**
 
 - 62.144.211.104  
 - 195.52.221.134  
 - 195.52.221.137  
 
-„Unsere SIP-Adresse“ aus Famulor notieren – wird in Schritt 2 bei Easybell benötigt.
+Note “Our SIP address” from Famulor – this is needed in Step 2 at Easybell.
 
-### Schritt 2: Cloud Telefonanlage bei Easybell einrichten
+### Step 2: Set up Cloud Phone System at Easybell
 
-1. **Cloud Telefonanlage öffnen**  
-   Im [Easybell-Kundenportal](https://www.easybell.de) einloggen → **Telefonfunktionen** → **Cloud Telefonanlage**.
+1. **Open Cloud Phone System**  
+   Log into the [Easybell customer portal](https://www.easybell.de) → **Phone Functions** → **Cloud Phone System**.
 
-<img src="/images/easybell/easybell-5.png" alt="Easybell Dashboard – Cloud Telefonanlage verwalten" />
+<img src="/images/easybell/easybell-5.png" alt="Easybell Dashboard – Manage Cloud Phone System" />
 
-2. **Neue FQDN-Nebenstelle anlegen**  
-   Bei **Nebenstellen und Rufgruppen** auf **+ Hinzufügen** klicken. Nebenstellenart: **FQDN-Anbindung**. Unter **Eingehende Telefonie** Rufnummer und Durchwahl festlegen, unter der Famulor erreichbar sein soll.
+2. **Create a new FQDN extension**  
+   In **Extensions and Call Groups**, click **+ Add**. Extension type: **FQDN connection**. Under **Incoming Telephony**, assign the number and extension where Famulor should be reachable.
 
-<img src="/images/easybell/easybell-6.png" alt="Nebenstellenart FQDN-Anbindung auswählen" />
-<img src="/images/easybell/easybell-7.png" alt="Eingehende Telefonie: Rufnummer und Durchwahl" />
+<img src="/images/easybell/easybell-6.png" alt="Select extension type FQDN connection" />
+<img src="/images/easybell/easybell-7.png" alt="Incoming Telephony: number and extension" />
 
-3. **FQDN eintragen**  
-   Die **SIP-URI von Famulor** eintragen („Unsere SIP-Adresse“), **ohne** `sip:` – z. B. `ihre-unique-id.sip.livekit.cloud`.
+3. **Enter FQDN**  
+   Enter the **Famulor SIP URI** (“Our SIP address”) **without** `sip:` – e.g., `your-unique-id.sip.livekit.cloud`.
 
-4. **Weiterleitung erlauben (optional)**  
-   In den Einstellungen der FQDN-Nebenstelle die Option **„Weiterleitung zulassen“** aktivieren, wenn der KI-Assistent Anrufe an interne Nebenstellen weiterleiten soll. Nur **Cloud Telefonanlage Pro**; nur interne Weiterleitungen erlaubt.
+4. **Allow forwarding (optional)**  
+   In the FQDN extension settings enable **“Allow forwarding”** if the AI assistant should forward calls to internal extensions. Only available with **Cloud Phone System Pro**; forwarding only allowed internally.
 
-<img src="/images/easybell/easybell-8.png" alt="FQDN-Nebenstelle: Weiterleitung zulassen aktivieren" />
+<img src="/images/easybell/easybell-8.png" alt="Enable forwarding in FQDN extension settings" />
 
-### Schritt 3: Weiterleitung in Famulor (optional)
+### Step 3: Forwarding in Famulor (optional)
 
-Wenn Anrufe an Mitarbeiter (Nebenstellen) weitergeleitet werden sollen:
+If calls should be forwarded to employees (extensions):
 
-- In Famulor unter **Tools** eine **Kalt-** oder **Warm-Weiterleitung** anlegen und im Prompt verwenden.  
-- Typ **„SIP“** (nicht „Rufnummer“) wählen.  
-- **SIP-URL:** interne Kurzwahl im Format **Nebenstelle@easybell**, z. B. `200@easybell`. Das **„@easybell“** ist erforderlich.
+- Create a **cold** or **warm forwarding** under **Tools** in Famulor and use it in your prompt.  
+- Choose type **“SIP”** (not “phone number”).  
+- **SIP URL:** internal short number in the format **extension@easybell**, e.g., `200@easybell`. The **“@easybell”** is mandatory.
 
-<img src="/images/easybell/easybell-9.png" alt="Famulor: Benutzerdefinierte SIP-Weiterleitung z. B. 200@easybell" />
+<img src="/images/easybell/easybell-9.png" alt="Famulor custom SIP forwarding e.g. 200@easybell" />
 
-### Schritt 4: Testen
+### Step 4: Test
 
-Eingehenden Anruf testen und prüfen, ob der KI-Assistent antwortet und ggf. Weiterleitung funktioniert.
+Test an incoming call and check if the AI assistant answers and forwarding works if configured.
 
 ---
 
-## Wichtige Hinweise
+## Important notes
 
-- **Rufnummernformat:** E.164 **mit** führendem „+“ in Easybell einstellen.  
-- **SIP-Daten:** Benutzername/Passwort sicher verwahren; Passwort mind. 12 Zeichen, mit Zahlen, Groß-/Kleinbuchstaben, ggf. Sonderzeichen.  
-- **Domain:** Immer die von Famulor angezeigte SIP-Adresse verwenden (z. B. `… .sip.livekit.cloud`).
+- **Number format:** Set E.164 **with** leading “+” in Easybell.  
+- **SIP credentials:** Keep username/password secure; password at least 12 characters with numbers, uppercase/lowercase letters, and optionally special characters.  
+- **Domain:** Always use the SIP address shown by Famulor (e.g., `… .sip.livekit.cloud`).
 
-## Häufige Probleme
+## Common issues
 
 <AccordionGroup>
-  <Accordion title="FQDN-Feature nicht verfügbar (SIP-Trunk)" icon="envelope">
-    Das SIP Trunking FQDN Feature muss bei Easybell angefragt werden. Senden Sie eine E-Mail an **support@easybell.de** mit Ihrer **Easybell-Kundennummer** und der Bitte um Freischaltung für Famulor. Die Aktivierung kann einige Tage dauern.
+  <Accordion title="FQDN feature not available (SIP Trunk)" icon="envelope">
+    The SIP Trunking FQDN feature must be requested from Easybell. Send an email to **support@easybell.de** with your **Easybell customer number** and a request for activation for Famulor. Activation may take several days.
   </Accordion>
 
-  <Accordion title="Anrufe kommen nicht an" icon="phone-slash">
-    Prüfen Sie: **Erlaubte IP-Adressen** in Famulor unter „Eingehende Telefonie“ (je nach Weg SIP-Trunk- oder Cloud-IPs eintragen). Stellen Sie in Easybell das Rufnummernformat **E.164 mit führendem „+“** ein.
+  <Accordion title="Calls are not coming through" icon="phone-slash">
+    Check the **allowed IP addresses** in Famulor under “Inbound Telephony” (enter SIP Trunk or Cloud IPs according to your setup). Make sure Easybell uses the number format **E.164 with leading “+”**.
   </Accordion>
 
-  <Accordion title="Falsche oder unbekannte Domain" icon="server">
-    Tragen Sie die **genaue SIP-Adresse** aus Famulor ein („Unsere SIP-Adresse“ unter Telefonnummern → SIP-Trunk integrieren). **Ohne** `sip:` davor, **ohne** Leerzeichen – nur den angezeigten Wert übernehmen (z. B. `… .sip.livekit.cloud`).
+  <Accordion title="Wrong or unknown domain" icon="server">
+    Enter the **exact SIP address** from Famulor (“Our SIP address” under Phone Numbers → Integrate SIP Trunk). **Without** `sip:` prefix, **without** spaces – use only the displayed value (e.g., `… .sip.livekit.cloud`).
   </Accordion>
 
-  <Accordion title="Weiterleitung an Nebenstelle funktioniert nicht (Cloud Telefonanlage)" icon="phone-flip">
-    Nur in der **Cloud Telefonanlage Pro** und nur für **interne** Nebenstellen. In der FQDN-Nebenstelle die Option **„Weiterleitung zulassen“** aktivieren. In Famulor den Weiterleitungstyp **„SIP“** und die SIP-URL im Format **Nebenstelle@easybell** (z. B. `200@easybell`) verwenden.
+  <Accordion title="Forwarding to extension not working (Cloud Phone System)" icon="phone-flip">
+    Only works with **Cloud Phone System Pro** and only for **internal** extensions. In the FQDN extension, enable the option **“Allow forwarding”**. Use forwarding type **“SIP”** in Famulor and SIP URL format **extension@easybell** (e.g., `200@easybell`).
   </Accordion>
 </AccordionGroup>
 
-## Hilfe
+## Help
 
 <Tip>
-  Unser Support unterstützt Sie bei der Einrichtung: [support@famulor.io](mailto:support@famulor.io). Für Fragen zu FQDN/Produkten: [support@easybell.de](mailto:support@easybell.de).
+  Our support will assist you with setup: [support@famulor.io](mailto:support@famulor.io). For questions about FQDN/products: [support@easybell.de](mailto:support@easybell.de).
 </Tip>

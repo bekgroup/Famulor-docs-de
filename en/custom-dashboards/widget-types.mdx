@@ -1,612 +1,612 @@
 ---
-title: "Widget-Konfiguration"
+title: "Widget Configuration"
 icon: "sliders"
-description: "Vollständiger Leitfaden für die Konfiguration von Statistik-, Diagramm- und Tabellen-Widgets mit allen verfügbaren Optionen"
+description: "Complete guide to configuring statistic, chart, and table widgets with all available options"
 ---
 
 
-Lernen Sie, wie Sie jeden Widget-Typ mit detaillierten Erklärungen aller Optionen konfigurieren.
+Learn how to configure each widget type with detailed explanations of all options.
 
-## Widgets erstellen
+## Creating Widgets
 
-1. Zum individuellen Dashboard navigieren
-2. Klicken Sie auf **"Widgets verwalten"** dann **"Neues Widget erstellen"**
-3. Widget-Typ auswählen
-4. 2-3 Schritte Assistent folgen
-5. Speichern und zum Dashboard hinzufügen
+1. Navigate to your custom dashboard
+2. Click **"Manage Widgets"** then **"Create New Widget"**
+3. Select widget type
+4. Follow the 2-3 step wizard
+5. Save and add to the dashboard
 
-## Statistik-Widgets
+## Statistic Widgets
 
-Einzelne Metrik-Anzeige mit optionalem Vergleich und Trend-Diagramm.
+Single metric display with optional comparison and trend chart.
 
-### Schritt 1: Grundlagen
+### Step 1: Basics
 
-**Widget-Name**
-- Interne Kennung für Widget-Liste
-- Wird nicht auf dem Dashboard angezeigt
-- Beispiel: "Gesamtanrufe diesen Monat"
+**Widget Name**
+- Internal identifier for the widget list
+- Not displayed on the dashboard
+- Example: "Total Calls This Month"
 
-**Datentabelle**
-- Datenquelle wählen: anrufe, leads, kampagnen, assistenten, telefonnummern, sms
-- Bestimmt verfügbare Spalten
+**Data Table**
+- Choose data source: calls, leads, campaigns, assistants, phone_numbers, sms
+- Determines available columns
 
 **Aggregation**
-- `COUNT` - Gesamtanzahl der Datensätze (keine Spalte erforderlich)
-- `SUM` - Summe der Werte (erfordert Spaltenauswahl)
-- `AVG` - Durchschnitt der Werte (erfordert Spaltenauswahl)
-- `MAX` - Maximalwert (erfordert Spaltenauswahl)
-- `MIN` - Minimalwert (erfordert Spaltenauswahl)
+- `COUNT` - Total number of records (no column required)
+- `SUM` - Sum of values (requires column selection)
+- `AVG` - Average of values (requires column selection)
+- `MAX` - Maximum value (requires column selection)
+- `MIN` - Minimum value (requires column selection)
 
-**Spalte** (falls SUM/AVG/MAX/MIN ausgewählt)
-- Numerische Spalte zur Aggregation auswählen
-- Beispiel: `dauer` für durchschnittliche Anruflänge
-- Nicht erforderlich für COUNT
+**Column** (if SUM/AVG/MAX/MIN selected)
+- Select numeric column to aggregate
+- Example: `duration` for average call length
+- Not required for COUNT
 
-### Schritt 2: Anzeige & Filter
+### Step 2: Display & Filters
 
-**Beschriftung** (erforderlich)
-- Hauptüberschrift auf dem Widget angezeigt
-- Beispiel: "Gesamtanrufe"
+**Label** (required)
+- Main heading displayed on the widget
+- Example: "Total Calls"
 
-**Beschreibung**
-- Optionaler Text unter dem Wert
-- Versteckt wenn Vergleich aktiviert
-- Beispiel: "Anrufe diesen Monat getätigt"
+**Description**
+- Optional text shown below the value
+- Hidden if comparison is enabled
+- Example: "Calls made this month"
 
-**Farbe**
-- primär (blau), erfolg (grün), warnung (gelb), gefahr (rot), info (cyan), grau
-- Basierend auf Metriktyp wählen (grün für positiv, rot für negativ)
+**Color**
+- primary (blue), success (green), warning (yellow), danger (red), info (cyan), gray
+- Choose based on metric type (green for positive, red for negative)
 
-**Mini-Diagramm anzeigen**
-- Zeigt kleines Liniendiagramm mit täglichem Trend
-- Verwendet denselben Datumsbereich wie Statistik
+**Show Mini Chart**
+- Displays a small line chart with daily trend
+- Uses the same date range as the statistic
 
-**Mit vorherigem Zeitraum vergleichen**
-- Zeigt prozentuale Änderung vom vorherigen Zeitraum
-- Beispiel: Letzte 7 Tage vs vorherige 7 Tage
-- Zeigt "+15%" oder "-8%" mit Aufnahme-/Abnahme-Pfeil
-- Überschreibt Beschreibungsfeld
+**Compare to Previous Period**
+- Shows percentage change from previous period
+- Example: Last 7 days vs previous 7 days
+- Displays "+15%" or "-8%" with up/down arrow
+- Overrides description field
 
-**Datumsbereich**
-- Nach Erstellungsdatum filtern
-- Optionen: Heute, 1, 7, 14, 30, 60, 90, 180, 365 Tage
+**Date Range**
+- Filter by creation date
+- Options: Today, 1, 7, 14, 30, 60, 90, 180, 365 days
 
-**Bedingungen** (optional)
-- Filter hinzufügen, um Daten einzugrenzen
-- Mehrere Bedingungen mit UND verknüpft
-- Siehe Abschnitt [Daten filtern](#filtering-data)
+**Conditions** (optional)
+- Add filters to narrow data
+- Multiple conditions combined with AND
+- See section [Filtering Data](#filtering-data)
 
-### Beispiele
+### Examples
 
-**Gesamtanrufe**
+**Total Calls**
 ```
 Aggregation: COUNT
-Tabelle: anrufe
-Beschriftung: "Gesamtanrufe"
-Beschreibung: "Letzte 30 Tage"
-Farbe: primär
-Datumsbereich: 30 Tage
+Table: calls
+Label: "Total Calls"
+Description: "Last 30 Days"
+Color: primary
+Date Range: 30 days
 ```
 
-**Durchschnittliche Anrufdauer**
+**Average Call Duration**
 ```
 Aggregation: AVG
-Tabelle: anrufe
-Spalte: dauer
-Beschriftung: "Ø Dauer"
-Farbe: info
-Mini-Diagramm anzeigen: Ja
-Datumsbereich: 30 Tage
+Table: calls
+Column: duration
+Label: "Ø Duration"
+Color: info
+Show Mini Chart: Yes
+Date Range: 30 days
 ```
 
-**Erfolgreiche Termine**
+**Successful Appointments**
 ```
 Aggregation: COUNT
-Tabelle: anrufe
-Beschriftung: "Termine gebucht"
-Farbe: erfolg
-Vergleichen: Ja
-Datumsbereich: 7 Tage
-Bedingungen:
-  - status = abgeschlossen
-  - evaluation.termin_gebucht = true
+Table: calls
+Label: "Appointments Booked"
+Color: success
+Compare: Yes
+Date Range: 7 days
+Conditions:
+  - status = completed
+  - evaluation.appointment_booked = true
 ```
 
-## Diagramm-Widgets
+## Chart Widgets
 
-Visualisieren Sie Trends mit 8 Diagrammtypen.
+Visualize trends with 8 chart types.
 
-### Schritt 1: Grundlagen
+### Step 1: Basics
 
-Wie bei Statistik-Widgets, zusätzlich:
+Same as statistic widgets, additionally:
 
-**Diagrammtyp**
-- `line` - Trends über Zeit
-- `bar` - Kategorien oder Zeiträume vergleichen
-- `area` - Gefülltes Trend-Diagramm
-- `pie` - Proportionen (erfordert Gruppierung)
-- `donut` - Kreis mit mittlerem Loch (erfordert Gruppierung)
-- `polarArea` - Kreisförmig mit variierendem Radius (erfordert Gruppierung)
-- `radar` - Mehrachsenvergleich
-- `radialBar` - Einzelner Fortschrittsindikator
+**Chart Type**
+- `line` - Trends over time
+- `bar` - Compare categories or time periods
+- `area` - Filled trend chart
+- `pie` - Proportions (requires grouping)
+- `donut` - Circle with center hole (requires grouping)
+- `polarArea` - Circular with varying radius (requires grouping)
+- `radar` - Multi-axis comparison
+- `radialBar` - Single progress indicator
 
-### Schritt 2: Anzeige & Filter
+### Step 2: Display & Filters
 
-**Beschriftung** (erforderlich)
-- Diagrammtitel
+**Label** (required)
+- Chart title
 
-**Beschreibung**
-- Optionaler Untertitel unter dem Diagramm
-- Beispiel: "Leistung der letzten 30 Tage"
+**Description**
+- Optional subtitle below the chart
+- Example: "Performance last 30 days"
 
-**Farbe**
-- Primärfarbe des Diagramms
-- Für Kreis/Donut verwendet mehrfarbige Palette (blau, grün, orange, rot, lila, rosa)
+**Color**
+- Primary chart color
+- For pie/donut uses multi-color palette (blue, green, orange, red, purple, pink)
 
-**Datumsbereich**
-- Wie bei Statistiken
+**Date Range**
+- Same as statistics
 
-**Gruppieren nach** ODER **Gruppieren nach Zeitraum** (sich gegenseitig ausschließend)
+**Group By** OR **Group By Period** (mutually exclusive)
 
-**Gruppieren nach** - Kategorische Gruppierung
-- Daten nach Spaltenwerten gruppieren
-- Beispiele: Status, Kampagnen-ID, Assistentenname
-- **Erforderlich** für Kreis/Donut/Polarbereich-Diagramme
-- Optional für Balken/Radar-Diagramme
-- **Kann nicht** mit Gruppierung nach Zeitraum verwendet werden
+**Group By** - Categorical grouping
+- Group data by column values
+- Examples: status, campaign ID, assistant name
+- **Required** for pie/donut/polarArea charts
+- Optional for bar/radar charts
+- **Cannot** be combined with Group By Period
 
-**Gruppieren nach Zeitraum** - Zeitbasierte Gruppierung
-- Nach Zeit-Buckets gruppieren
-- Optionen: Stunde, Tag, Woche, Monat
-- Verwendet für Linien/Balken/Flächen-Diagramme
-- **Kann nicht** mit Gruppieren nach verwendet werden
+**Group By Period** - Time-based grouping
+- Group by time buckets
+- Options: hour, day, week, month
+- Used for line/bar/area charts
+- **Cannot** be combined with Group By
 
-**Bedingungen**
-- Wie bei Statistiken
+**Conditions**
+- Same as statistics
 
-### Schritt 3: Erweitert (nur Diagramme)
+### Step 3: Advanced (Charts only)
 
-**Gitterlinien anzeigen** (nur Linie/Balken/Fläche)
-- Horizontale/vertikale Hintergrundlinien
-- Hilft beim Ablesen exakter Werte
-- Standard: Ja
+**Show Grid Lines** (line/bar/area only)
+- Horizontal/vertical background lines
+- Helps reading exact values
+- Default: Yes
 
-**Legende anzeigen**
-- Farbkodierte Beschriftungen
-- Standard: Ja für Kreis/Donut/Polarbereich, Nein für andere
-- Position: Unten im Diagramm
+**Show Legend**
+- Color-coded labels
+- Default: Yes for pie/donut/polarArea, No for others
+- Position: Bottom of chart
 
-**Tooltips anzeigen**
-- Hover-Popups mit exakten Werten
-- Standard: Ja (empfohlen)
+**Show Tooltips**
+- Hover popups with exact values
+- Default: Yes (recommended)
 
-**Datenbeschriftungen anzeigen**
-- Werte direkt auf Diagrammelementen angezeigt
-- Standard: Ja für Kreis/Donut/Polarbereich, Nein für andere
-- Kann Linien-/Balkendiagramme überfüllen
+**Show Data Labels**
+- Values displayed directly on chart elements
+- Default: Yes for pie/donut/polarArea, No for others
+- Can clutter line/bar charts
 
-**Symbolleiste anzeigen** (nur Linie/Balken/Fläche)
-- Zoom- und Download-Steuerelemente
-- Standard: Nein
+**Show Toolbar** (line/bar/area only)
+- Zoom and download controls
+- Default: No
 
-**Linienkurve** (nur Linie/Fläche)
-- `smooth` - Gerundete Kurven (Standard, visuell ansprechend)
-- `straight` - Direkte Linien (präzise)
-- `stepline` - Stufenweise (gut für diskrete Ereignisse)
+**Line Curve** (line/area only)
+- `smooth` - Rounded curves (default, visually appealing)
+- `straight` - Direct lines (precise)
+- `stepline` - Stepwise (good for discrete events)
 
-**Linienbreite** (nur Linie/Balken/Fläche)
-- Dicke in Pixeln (1-10)
-- Standard: 2px
+**Line Width** (line/bar/area only)
+- Thickness in pixels (1-10)
+- Default: 2px
 
-**Diagrammhöhe**
-- Vertikaler Platz in Pixeln (200-800)
-- Standard: 300px
-- Höhere Diagramme besser für mehr Datenpunkte
+**Chart Height**
+- Vertical space in pixels (200-800)
+- Default: 300px
+- Taller charts better for more data points
 
-**Gradient aktivieren** (nur radialBar)
-- Farbverlaufseffekt
-- Standard: Nein
+**Enable Gradient** (radialBar only)
+- Gradient color effect
+- Default: No
 
-**Gradientfarbe** (wenn Gradient aktiviert)
-- Endfarbe für Gradient
-- Standard: Grün (#10b981)
+**Gradient Color** (if gradient enabled)
+- End color for gradient
+- Default: Green (#10b981)
 
-### Diagrammtyp-Leitfaden
+### Chart Type Guide
 
-**Liniendiagramm**
-- **Verwenden für:** Tägliche/wöchentliche Trends, kontinuierliche Daten
-- **Erfordert:** Gruppierung nach Zeitraum
-- **Beispiel:** Anrufe pro Tag letzte 30 Tage
+**Line Chart**
+- **Use for:** Daily/weekly trends, continuous data
+- **Requires:** Group By Period
+- **Example:** Calls per day last 30 days
 
-**Balkendiagramm**
-- **Verwenden für:** Kategorienvergleich, Zeiträume
-- **Kann verwenden:** Gruppieren nach (Kategorien) ODER Gruppieren nach Zeitraum (Zeit)
-- **Beispiel:** Anrufe pro Kampagne, stündliche Verteilung
+**Bar Chart**
+- **Use for:** Category comparison, time periods
+- **Can use:** Group By (categories) OR Group By Period (time)
+- **Example:** Calls per campaign, hourly distribution
 
-**Flächendiagramm**
-- **Verwenden für:** Wie Linie, betont Volumen
-- **Erfordert:** Gruppierung nach Zeitraum
-- **Beispiel:** Anrufvolumen-Trend
+**Area Chart**
+- **Use for:** Like line, emphasizes volume
+- **Requires:** Group By Period
+- **Example:** Call volume trend
 
-**Kreis-/Donut-Diagramm**
-- **Verwenden für:** Proportionen, Prozentsätze
-- **Erfordert:** Gruppieren nach (NICHT Gruppieren nach Zeitraum)
-- **Beispiel:** Anrufstatus-Aufschlüsselung
+**Pie/Donut Chart**
+- **Use for:** Proportions, percentages
+- **Requires:** Group By (NOT Group By Period)
+- **Example:** Call status breakdown
 
-**Polarbereich**
-- **Verwenden für:** Wie Kreis, zeigt aber Größe durch Radius
-- **Erfordert:** Gruppieren nach
-- **Beispiel:** Kampagnenbeitrag
+**Polar Area**
+- **Use for:** Like pie, but radius shows size
+- **Requires:** Group By
+- **Example:** Campaign contribution
 
-**Radar-Diagramm**
-- **Verwenden für:** Mehrfachvariablenvergleich
-- **Erfordert:** Gruppieren nach
-- **Beispiel:** Leistung über Metriken
+**Radar Chart**
+- **Use for:** Multi-variable comparison
+- **Requires:** Group By
+- **Example:** Performance across metrics
 
-**Radialbalken**
-- **Verwenden für:** Einzelner Prozentsatz/Fortschritt
-- **Verwendet nicht:** Gruppieren nach oder Gruppieren nach Zeitraum
-- **Beispiel:** Zielerreichung %
+**Radial Bar**
+- **Use for:** Single percentage/progress
+- **Does not use:** Group By or Group By Period
+- **Example:** Goal completion %
 
-### Beispiele
+### Examples
 
-**Tägliches Anrufvolumen (Linie)**
+**Daily Call Volume (Line)**
 ```
-Tabelle: anrufe
+Table: calls
 Aggregation: COUNT
-Diagrammtyp: line
-Beschriftung: "Tägliche Anrufe"
-Gruppieren nach Zeitraum: tag
-Gitter anzeigen: Ja
-Linienkurve: glatt
-Datumsbereich: 30 Tage
+Chart Type: line
+Label: "Daily Calls"
+Group By Period: day
+Show Grid Lines: Yes
+Line Curve: smooth
+Date Range: 30 days
 ```
 
-**Status-Aufschlüsselung (Kreis)**
+**Status Breakdown (Pie)**
 ```
-Tabelle: anrufe
+Table: calls
 Aggregation: COUNT
-Diagrammtyp: pie
-Beschriftung: "Anrufstatus"
-Gruppieren nach: status
-Legende anzeigen: Ja
-Datenbeschriftungen anzeigen: Ja
-Datumsbereich: 7 Tage
+Chart Type: pie
+Label: "Call Status"
+Group By: status
+Show Legend: Yes
+Show Data Labels: Yes
+Date Range: 7 days
 ```
 
-**Stündliches Muster (Balken)**
+**Hourly Pattern (Bar)**
 ```
-Tabelle: anrufe
+Table: calls
 Aggregation: COUNT
-Diagrammtyp: bar
-Beschriftung: "Anrufe nach Stunde"
-Gruppieren nach Zeitraum: stunde
-Datumsbereich: 7 Tage
+Chart Type: bar
+Label: "Calls by Hour"
+Group By Period: hour
+Date Range: 7 days
 ```
 
-**Kampagnenvergleich (Balken)**
+**Campaign Comparison (Bar)**
 ```
-Tabelle: anrufe
+Table: calls
 Aggregation: COUNT
-Diagrammtyp: bar
-Beschriftung: "Anrufe pro Kampagne"
-Gruppieren nach: campaign.name
-Datumsbereich: 30 Tage
+Chart Type: bar
+Label: "Calls per Campaign"
+Group By: campaign.name
+Date Range: 30 days
 ```
 
-## Tabellen-Widgets
+## Table Widgets
 
-Zeigen detaillierte Datensätze mit benutzerdefinierten Spalten an.
+Display detailed records with custom columns.
 
-### Schritt 1: Grundlagen
+### Step 1: Basics
 
-**Datentabelle**
-- Quelle wählen: anrufe, leads, kampagnen, assistenten, telefonnummern, sms
+**Data Table**
+- Choose source: calls, leads, campaigns, assistants, phone_numbers, sms
 
-**Kampagnenfilter** (nur Leads-Tabelle)
-- Kampagne auswählen um:
-  - Tabelle auf diese Kampagne zu filtern
-  - Benutzerdefinierte Variablenspalten zu aktivieren
+**Campaign Filter** (leads table only)
+- Select campaign to:
+  - Filter table to that campaign
+  - Enable custom variable columns
 - Optional
 
-**Assistentenfilter** (nur Anrufe-Tabelle)
-- Assistent auswählen um:
-  - Tabelle auf diesen Assistenten zu filtern
-  - Bewertungsfeldspalten zu aktivieren
+**Assistant Filter** (calls table only)
+- Select assistant to:
+  - Filter table to that assistant
+  - Enable evaluation field columns
 - Optional
 
-**Spaltenauswahl**
-- Grundspalten: ID, Status, Erstellt am, usw.
-- Beziehungsspalten: Assistentenname, Kampagnenname
-- Bewertungsfelder: evaluation.{feldname} (wenn Assistent ausgewählt)
-- Lead-Variablen: variables.{variablenname} (wenn Kampagne ausgewählt)
-- Standard wenn keine ausgewählt: ID, Status, Erstellt am
+**Column Selection**
+- Basic columns: ID, status, created_at, etc.
+- Relationship columns: assistant name, campaign name
+- Evaluation fields: evaluation.{fieldname} (if assistant selected)
+- Lead variables: variables.{variablename} (if campaign selected)
+- Defaults if none selected: ID, status, created_at
 
-### Schritt 2: Anzeige & Filter
+### Step 2: Display & Filters
 
-**Beschriftung** (erforderlich)
-- Tabellenüberschrift
+**Label** (required)
+- Table heading
 
-**Beschreibung**
-- Optionaler Untertitel
+**Description**
+- Optional subtitle
 
-**Datumsbereich**
-- Wie bei Statistiken/Diagrammen
+**Date Range**
+- As in statistics/charts
 
-**Sortieren nach**
-- Standard-Sortierspalte
-- Nur einfache Spalten (nicht Beziehungen)
-- Standard: created_at
+**Sort By**
+- Default sort column
+- Only simple columns (no relationships)
+- Default: created_at
 
-**Sortierrichtung**
-- desc (neueste zuerst) - Standard
-- asc (älteste zuerst)
+**Sort Direction**
+- desc (newest first) - Default
+- asc (oldest first)
 
-**Zeilen pro Seite**
-- Anzahl anzuzeigender Zeilen (1-100)
-- Standard: 10
+**Rows per Page**
+- Number of rows to display (1-100)
+- Default: 10
 
-**Bedingungen**
-- Wie bei Statistiken/Diagrammen
+**Conditions**
+- As in statistics/charts
 
-### Interaktive Funktionen
+### Interactive Features
 
-**Klickbare Zeilen**
-- Tabellenzeilen sind klickbar
-- Verlinkt automatisch zur Detail-/Bearbeitungsseite für den Datensatz
-- Funktioniert für: Anrufe, Leads, Kampagnen, Assistenten
+**Clickable Rows**
+- Table rows are clickable
+- Automatically link to detail/edit page for that record
+- Works for: calls, leads, campaigns, assistants
 
-**Live-Datumsfilter**
-- Datumsbereich direkt im Widget ändern
-- Überschreibt den konfigurierten Standard-Datumsbereich
-- Nützlich zum Erkunden verschiedener Zeiträume
+**Live Date Filter**
+- Change date range directly in widget
+- Overrides configured default date range
+- Useful to explore different periods
 
-**Status-Filter**
-- Mehrfachauswahl-Dropdown zum Filtern nach Status
-- Verfügbar für: Anrufe, Leads, Kampagnen, Assistenten, SMS
-- Mehrere Status gleichzeitig auswählen
+**Status Filter**
+- Multi-select dropdown to filter by status
+- Available for: calls, leads, campaigns, assistants, sms
+- Multiple statuses can be selected simultaneously
 
-**Textanzeige**
-- Langer Text wird automatisch bei 50 Zeichen gekürzt
-- Hover über gekürzten Text zeigt vollständigen Inhalt im Tooltip
+**Text Display**
+- Long text is automatically truncated after 50 characters
+- Hovering truncated text shows full content in tooltip
 
-### Spaltentypen
+### Column Types
 
-**Telefonnummer-Spalten**
-- Internationales Format (+1 555 123 4567)
-- Länderflaggen-Präfix
-- Beispiele: client_phone_number, phone_number
+**Phone Number Columns**
+- International format (+1 555 123 4567)
+- Country flag prefix
+- Examples: client_phone_number, phone_number
 
-**Status-Spalten**
-- Farbige Badges
-- Beispiele: Status-Feld in jeder Tabelle
+**Status Columns**
+- Colored badges
+- Examples: status field in each table
 
-**Datums-Spalten**
-- "Vor 3 Stunden"-Format
-- Hover zeigt vollständiges Datum/Zeit
-- Beispiele: created_at, updated_at
+**Date Columns**
+- "3 hours ago" format
+- Hover shows full date/time
+- Examples: created_at, updated_at
 
-**Bewertungs-Spalten** (Anrufe-Tabelle mit Assistent)
-- Boolean-Felder: Häkchen oder X mit grünem/rotem Badge
-- Nicht-Boolean-Felder: Wert mit grauem Badge
-- Hover zeigt Feldbeschreibung
-- Format: evaluation.{feldname}
+**Evaluation Columns** (calls table with assistant)
+- Boolean fields: checkmark or X with green/red badge
+- Non-boolean fields: value with gray badge
+- Hover shows field description
+- Format: evaluation.{fieldname}
 
-**Variablen-Spalten** (Leads-Tabelle mit Kampagne)
-- Benutzerdefinierte Lead-Daten
-- Format: variables.{variablenname}
-- Beispiele: kundenname, unternehmen
+**Variable Columns** (leads table with campaign)
+- Custom lead data
+- Format: variables.{variablename}
+- Examples: customer_name, company
 
-**Beziehungs-Spalten**
-- Zugriff auf verwandte Daten
-- Beispiele: Assistentenname, Kampagnenname
-- Nicht nach diesen sortierbar
+**Relationship Columns**
+- Access related data
+- Examples: assistant name, campaign name
+- Not sortable by these columns
 
-### Beispiele
+### Examples
 
-**Aktuelle Anrufe**
+**Current Calls**
 ```
-Tabelle: anrufe
-Spalten:
-  - Kunden-Telefonnummer
-  - Assistentenname
-  - Dauer
+Table: calls
+Columns:
+  - Client Phone Number
+  - Assistant Name
+  - Duration
   - Status
-  - Erstellt am
-Sortierung: Erstellt am desc
-Zeilen: 25
-Datumsbereich: 7 Tage
+  - Created At
+Sort: Created At desc
+Rows: 25
+Date Range: 7 days
 ```
 
-**Erfolgreiche Termine**
+**Successful Appointments**
 ```
-Tabelle: anrufe
-Assistent: [Auswählen zum Laden der Felder]
-Spalten:
-  - Kunden-Telefonnummer
-  - Assistentenname
-  - evaluation.termin_gebucht
-  - Erstellt am
-Sortierung: Erstellt am desc
-Zeilen: 50
-Datumsbereich: 30 Tage
-Bedingungen:
-  - Status = abgeschlossen
-  - Spalte: Extrahierte Variablen
-    Extrahierte Variablenname: Benutzerdefinierte Variable
-    Benutzerdefinierter Variablenname: termin_gebucht
+Table: calls
+Assistant: [Select to load fields]
+Columns:
+  - Client Phone Number
+  - Assistant Name
+  - evaluation.appointment_booked
+  - Created At
+Sort: Created At desc
+Rows: 50
+Date Range: 30 days
+Conditions:
+  - Status = completed
+  - Column: Extracted Variables
+    Extracted Variable Name: Custom Variable
+    Custom Variable Name: appointment_booked
     Operator: =
-    Variablenwert: true
+    Variable Value: true
 ```
 
-## Daten filtern
+## Filtering Data
 
-Alle Widgets unterstützen Bedingungen zum Filtern von Daten.
+All widgets support conditions for filtering data.
 
-### Operatoren
+### Operators
 
-- `=` - Gleich
-- `!=` - Ungleich
-- `>` - Größer als
-- `>=` - Größer oder gleich
-- `<` - Kleiner als
-- `<=` - Kleiner oder gleich
-- `like` - Enthält Text
-- `in` - Einer von (kommagetrennt)
-- `not in` - Nicht einer von
-- `is null` - Kein Wert
-- `is not null` - Hat Wert
+- `=` - Equal
+- `!=` - Not equal
+- `>` - Greater than
+- `>=` - Greater than or equal
+- `<` - Less than
+- `<=` - Less than or equal
+- `like` - Contains text
+- `in` - One of (comma-separated)
+- `not in` - Not one of
+- `is null` - No value
+- `is not null` - Has value
 
-### Grundlegendes Filtern
+### Basic Filtering
 
-**Status-Filter**
+**Status Filter**
 ```
-Spalte: Status
+Column: status
 Operator: =
-Wert: abgeschlossen
+Value: completed
 ```
 
-**Dauer-Filter**
+**Duration Filter**
 ```
-Spalte: Dauer
+Column: duration
 Operator: >
-Wert: 60
+Value: 60
 ```
 
-**Mehrere Werte**
+**Multiple Values**
 ```
-Spalte: Status
+Column: status
 Operator: in
-Wert: abgeschlossen,in-bearbeitung
+Value: completed,in-progress
 ```
 
-### Bewertungsfeld-Filterung
+### Evaluation Field Filtering
 
-Nach Post-Call-Bewertungswerten filtern.
+Filter by post-call evaluation values.
 
-**Einrichtung:**
-1. Spalte: Extrahierte Variablen
-2. Extrahierte Variablenname: Status oder Benutzerdefinierte Variable
-3. Falls benutzerdefinierte Variable: Feldname in Benutzerdefinierter Variablenname eingeben
-4. Variablenwert: true/false für Booleans, oder beliebig + benutzerdefinierter Wert
+**Setup:**
+1. Column: Extracted Variables
+2. Extracted Variable Name: Status or Custom Variable
+3. If custom variable: enter field name under Custom Variable Name
+4. Variable Value: true/false for booleans, or any + custom value
 
-**Boolean-Beispiel - Termin gebucht**
+**Boolean Example - Appointment Booked**
 ```
-Spalte: Extrahierte Variablen
-Extrahierte Variablenname: Benutzerdefinierte Variable
-Benutzerdefinierter Variablenname: termin_gebucht
+Column: Extracted Variables
+Extracted Variable Name: Custom Variable
+Custom Variable Name: appointment_booked
 Operator: =
-Variablenwert: true
+Variable Value: true
 ```
 
-**Nicht-Boolean-Beispiel - Stimmung**
+**Non-Boolean Example - Mood**
 ```
-Spalte: Extrahierte Variablen
-Extrahierte Variablenname: Benutzerdefinierte Variable
-Benutzerdefinierter Variablenname: stimmung
+Column: Extracted Variables
+Extracted Variable Name: Custom Variable
+Custom Variable Name: mood
 Operator: =
-Variablenwert: beliebig
-Benutzerdefinierter Wert: positiv
+Variable Value: any
+Custom Value: positive
 ```
 
-**Feld-Existenz prüfen**
+**Check Field Existence**
 ```
-Spalte: Extrahierte Variablen
-Extrahierte Variablenname: Benutzerdefinierte Variable
-Benutzerdefinierter Variablenname: interessiert
+Column: Extracted Variables
+Extracted Variable Name: Custom Variable
+Custom Variable Name: interested
 Operator: =
-Variablenwert: beliebig
+Variable Value: any
 ```
 
-### Mehrere Bedingungen
+### Multiple Conditions
 
-Bedingungen mit UND verknüpft:
+Conditions combined with AND:
 
 ```
-Filter für erfolgreiche lange Anrufe:
-Bedingung 1:
-  - Spalte: Status
+Filter for successful long calls:
+Condition 1:
+  - Column: status
   - Operator: =
-  - Wert: abgeschlossen
+  - Value: completed
 
-Bedingung 2:
-  - Spalte: Dauer
+Condition 2:
+  - Column: duration
   - Operator: >
-  - Wert: 120
+  - Value: 120
 
-Bedingung 3:
-  - Spalte: Extrahierte Variablen
-  - Extrahierte Variablenname: Benutzerdefinierte Variable
-  - Benutzerdefinierter Variablenname: termin_gebucht
+Condition 3:
+  - Column: Extracted Variables
+  - Extracted Variable Name: Custom Variable
+  - Custom Variable Name: appointment_booked
   - Operator: =
-  - Variablenwert: true
+  - Variable Value: true
 ```
 
-## Bewährte Praktiken
+## Best Practices
 
-### Widget-Benennung
+### Widget Naming
 
-Verwenden Sie beschreibende interne Namen:
-- ✅ "Verkaufsanrufe - Letzte 30 Tage"
-- ✅ "Support-Dauer Durchschnitt"
+Use descriptive internal names:
+- ✅ "Sales Calls - Last 30 Days"
+- ✅ "Support Duration Average"
 - ❌ "Widget 1"
 
-### Datumsbereiche
+### Date Ranges
 
-Bereich an Anwendungsfall anpassen:
-- **Heute:** Echtzeit-Überwachung
-- **7 Tage:** Wöchentliche Leistung
-- **30 Tage:** Monatliche Trends
-- **90+ Tage:** Langzeit-Analyse
+Adjust range to use case:
+- **Today:** Real-time monitoring
+- **7 Days:** Weekly performance
+- **30 Days:** Monthly trends
+- **90+ Days:** Long-term analysis
 
-### Farben
+### Colors
 
-Strategische Farbverwendung:
-- **Grün (Erfolg):** Positive Metriken
-- **Rot (Gefahr):** Alarm-Metriken
-- **Blau (Primär):** Neutrale Metriken
-- **Gelb (Warnung):** Aufmerksamkeit erforderlich
-- **Grau (Info):** Sekundäre Informationen
+Use colors strategically:
+- **Green (Success):** Positive metrics
+- **Red (Danger):** Alert metrics
+- **Blue (Primary):** Neutral metrics
+- **Yellow (Warning):** Needs attention
+- **Gray (Info):** Secondary information
 
-### Leistung
+### Performance
 
-Dashboards schnell halten:
-- Datumsbereichsfilter verwenden
-- Widgets pro Dashboard unter 20 begrenzen
-- COUNT wenn möglich verwenden (schneller)
-- Sehr lange Datumsbereiche vermeiden
+Keep dashboards fast:
+- Use date range filters
+- Limit widgets per dashboard to under 20
+- Use COUNT if possible (faster)
+- Avoid very long date ranges
 
-## Problembehandlung
+## Troubleshooting
 
-**Widget zeigt "Keine Daten"**
-- Datumsbereich erweitern
-- Filter entfernen/anpassen
-- Verifizieren, dass Tabelle Datensätze hat
+**Widget shows "No Data"**
+- Expand date range
+- Remove/adjust filters
+- Verify table contains records
 
-**Bewertungsfelder werden nicht angezeigt**
-- Assistent in Widget-Konfiguration auswählen
-- Sicherstellen, dass Assistent Post-Call-Schema hat
-- Prüfen, ob Feldnamen übereinstimmen
+**Evaluation fields not shown**
+- Select assistant in widget config
+- Ensure assistant has post-call schema
+- Check field names match
 
-**Diagramm zeigt leer**
-- Kreis/Donut: Muss Gruppieren nach verwenden (nicht Zeitraum)
-- Linie/Fläche: Muss Gruppieren nach Zeitraum verwenden (nicht Kategorie)
-- Prüfen, ob Datumsbereich Daten enthält
+**Chart shows empty**
+- Pie/Donut: Must use Group By (not period)
+- Line/Area: Must use Group By Period (not category)
+- Check date range has data
 
-**Tabelle fehlen Spalten**
-- Beziehungsspalten benötigen verwandte Datensätze
-- Bewertungsspalten benötigen Assistentenauswahl
-- Variablenspalten benötigen Kampagnenauswahl
+**Table missing columns**
+- Relationship columns require related records
+- Evaluation columns require assistant selection
+- Variable columns require campaign selection
 
-**"Gruppieren nach erforderlich"-Fehler**
-- Kreis/Donut/Polarbereich-Diagramme MÜSSEN Gruppieren nach haben
-- Kann Gruppieren nach Zeitraum nicht mit diesen Diagrammtypen verwenden
+**"Group By required" error**
+- Pie/Donut/PolarArea charts MUST have Group By
+- Cannot use Group By Period with these chart types
 
-**Kann nicht nach Spalte sortieren**
-- Beziehungsspalten (mit .) nicht sortierbar
-- Bewertungsfelder nicht sortierbar
-- Grundspalten für Sortierung verwenden
+**Cannot sort by column**
+- Relationship columns (with .) not sortable
+- Evaluation fields not sortable
+- Use basic columns for sorting
 
 <Note>
-Für Dashboard-Erstellung und Layout-Verwaltung siehe [Übersicht individuelle Dashboards](/en/custom-dashboards/overview).
+For dashboard creation and layout management see [Custom Dashboards Overview](/custom-dashboards/overview).
 </Note>
