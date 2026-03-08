@@ -1,0 +1,334 @@
+---
+title: "Pause or slow reading"
+icon: "pause"
+description: "Control the speaking pace by adding pauses in your assistant's responses"
+---
+
+
+# Pause or slow reading
+
+<Note>
+  Control the speaking pace by inserting space-dash sequences to create pauses in your assistant's responses.
+</Note>
+
+## Overview
+
+<Card title="Why use pauses?" icon="volume-high" color="blue">
+  Although you can adjust the overall audio speed by changing the speech rate, you might want to slow down your assistant’s speaking pace only at specific points (e.g., when reading phone numbers).
+
+  You can do this by instructing the LLM and generating text with space-dashes in between.
+</Card>
+
+## Basic pauses
+
+<Card title="Adding simple pauses" icon="gauge" color="green">
+  Use single dashes with spaces before and after to create short pauses:
+</Card>
+
+### Example of simple pauses
+
+<CodeGroup>
+
+````text
+## Simple pauses
+
+The number is 2 - 1 - 3 - 4
+
+Important: The spaces around the dash (-) are essential for correct pause behavior.
+```text
+## German phone numbers
+
+My phone number is 0 - 3 - 0 - 1 - 2 - 3 - 4 - 5 - 6 - 7 - 8
+
+The postal code is 1 - 0 - 1 - 1 - 5
+
+The account number is 1 - 2 - 3 - 4 - 5 - 6 - 7 - 8 - 9 - 0
+````
+
+</CodeGroup>
+
+<Warning>
+  **Important:** The spaces around the dash (`-`) are crucial for the pause to work correctly. Without these spaces, the pause does not function properly.
+</Warning>
+
+## Longer pauses
+
+<Card title="Creating longer pauses" icon="clock" color="orange">
+  Sometimes you want to insert longer pauses into the speech. You can do this by using multiple dashes between words.
+</Card>
+
+### Example of longer pauses
+
+<CodeGroup>
+
+````text
+## Longer pauses
+
+The number is 2 - - - - 1 - - - - 3
+
+// Note the double spaces between the dashes
+```text
+## German examples with longer pauses
+
+The phone number is 0 - - - - 3 - - - - 0 - - - - 1 - - - - 2
+
+The postal code is 1 - - - - 0 - - - - 1 - - - - 1 - - - - 5
+
+The account number is 1 - - - - 2 - - - - 3 - - - - 4 - - - - 5
+````
+
+</CodeGroup>
+
+<Note>
+  **Note:** Multiple dashes with spaces in between create longer pauses than single dashes.
+</Note>
+
+## Practical use cases
+
+<CardGroup cols={2}>
+  <Card title="Phone numbers" icon="phone" color="blue">
+    
+    - 
+    Use pauses between digits
+
+    
+    - 
+    Example: 0 - 3 - 0 - 1 - 2 - 3 - 4 - 5 - 6 - 7 - 8
+
+    
+    - 
+    Helps improve understandability
+
+    
+  </Card>
+  <Card title="Postal codes" icon="map-pin" color="green">
+    
+    - 
+    Pauses between individual digits
+
+    
+    - 
+    Example: 1 - 0 - 1 - 1 - 5
+
+    
+    - 
+    Especially important for German postal codes
+
+    
+  </Card>
+</CardGroup>
+
+<CardGroup cols={2}>
+  <Card title="Account numbers" icon="credit-card" color="purple">
+    
+    - 
+    Longer pauses for better clarity
+
+    
+    - 
+    Example: 1 - - - - 2 - - - - 3 - - - - 4
+
+    
+    - 
+    Important for IBANs or account numbers
+
+    
+  </Card>
+  <Card title="Dates and times" icon="calendar" color="orange">
+    
+    - 
+    Pauses between date and time elements
+
+    
+    - 
+    Example: 5 - July - 2024 - at - 14 - o'clock - 30
+
+    
+    - 
+    Helps structure the information
+
+    
+  </Card>
+</CardGroup>
+
+## Prompt examples for different situations
+
+<CodeGroup>
+
+````text
+## Speaking phone numbers
+
+When asked for my phone number, answer:
+
+"My phone number is 0 - 3 - 0 - 1 - 2 - 3 - 4 - 5 - 6 - 7 - 8"
+
+Always use pauses between digits for better clarity.
+```text
+## Speaking addresses
+
+Use pauses to better structure addresses:
+
+"The address is Musterstraße - 123 - 10115 - Berlin"
+
+Use longer pauses between main components.
+```text
+## Emphasizing important information
+
+For important info, use longer pauses:
+
+"Your order number is - - - - 1 - - - - 2 - - - - 3 - - - - 4 - - - - 5"
+
+This gives the customer time to note the information.
+````
+
+</CodeGroup>
+
+## Best practices
+
+<Card title="Recommended approach" icon="florin-sign" color="green">
+  
+  - 
+  Consistency:
+
+   Always use the same format for similar information.
+
+  
+  - 
+  Spaces:
+
+   Make sure spaces are present around dashes.
+
+  
+  - 
+  Pause length:
+
+   Adjust the number of dashes based on the importance of the information.
+
+  
+  - 
+  Testing:
+
+   Listen to the generated speech to verify pauses.
+
+  
+  - 
+  User friendliness:
+
+   Use pauses to improve understandability, not to make it harder.
+
+  
+</Card>
+
+## Avoid common mistakes
+
+<Card title="What to avoid" icon="user-shield" color="red">
+  
+  - 
+  Missing spaces:
+
+   "-" alone doesn’t work, only " - " works.
+
+  
+  - 
+  Too many pauses:
+
+   Excessive dashes can make speech sound unnatural.
+
+  
+  - 
+  Inconsistent usage:
+
+   Use the same format for similar information.
+
+  
+  - 
+  Lack of testing:
+
+   Always test the generated speech.
+
+  
+</Card>
+
+## Integrating pauses into your prompts
+
+<Card title="How to integrate pauses into your prompts" icon="circle-pause" color="blue">
+  1. Identify points where pauses would be helpful.
+  2. Insert dashes with appropriate spaces.
+  3. Test the pronunciation with audio checks.
+  4. Adjust if there are too many or too few pauses.
+  5. Document your decisions for future reference.
+</Card>
+
+## Example of a complete prompt
+
+<CodeGroup>
+
+```text
+# Famulor Assistant – pauses and slow reading
+
+## Identity
+You are a professional Famulor AI assistant supporting customers on phone calls.
+
+## Pause guidelines
+
+### Phone numbers
+- Always use pauses between digits
+- Example: "My phone number is 0 - 3 - 0 - 1 - 2 - 3 - 4 - 5 - 6 - 7 - 8"
+
+### Important information
+- Use longer pauses for very important info
+- Example: "Your order number is - - - - 1 - - - - 2 - - - - 3"
+
+### Addresses
+- Use pauses between street, house number, postal code, and city
+- Example: "The address is Musterstraße - 123 - 10115 - Berlin"
+
+## Important rules
+- ALWAYS use spaces around dashes: " - " not "-"
+- Test pronunciation with audio checks
+- Adjust the number of dashes based on importance
+```
+
+</CodeGroup>
+
+## Testing and optimizing
+
+<Card title="Test your pauses" icon="play" color="purple">
+  1. Conduct audio tests and listen to the generated speech.
+  2. Check the pauses: Are they too short, too long, or just right?
+  3. Test understandability: Can customers clearly understand the information?
+  4. Make adjustments by changing the number of dashes.
+  5. Check for consistency: Are you using the same format everywhere?
+</Card>
+
+## Help and support
+
+<Tip>
+  Our support team can assist you with integrating pauses into your prompts.
+</Tip>
+
+<Card title="Contact support" icon="headphones" color="blue" href="mailto:support@famulor.io">
+  Need help with speech control? Contact our support team.
+</Card>
+
+## Next steps
+
+<Card title="Further resources" icon="arrow-right" color="green">
+  
+  - 
+  Check out our General Prompt Engineering Guide.
+
+  
+  - 
+  Explore our prompt guide for specific situations.
+
+  
+  - 
+  Learn more about speech controllability.
+
+  
+  - 
+  Test your prompts with audio tests.
+
+  
+</Card>

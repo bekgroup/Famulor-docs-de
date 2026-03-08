@@ -1,0 +1,87 @@
+---
+title: "Delete Assistant"
+api: "DELETE https://app.famulor.de/api/user/assistant/{id}"
+icon: "trash"
+description: "Permanently delete a specific AI assistant"
+---
+
+This endpoint allows you to permanently delete an AI assistant that belongs to the authenticated user.
+
+### Path Parameter
+
+<ParamField path="id" type="integer" required>
+  The unique identifier of the assistant to be deleted
+</ParamField>
+
+### Response
+
+<ResponseField name="message" type="string">
+  Confirmation message indicating the assistant was successfully deleted
+</ResponseField>
+
+### Error Responses
+
+<ResponseField name="message" type="string">
+  Error message if the assistant was not found or does not belong to the authenticated user
+</ResponseField>
+
+### Notes
+
+- Only assistants belonging to the authenticated user can be deleted
+- Once an assistant is deleted, it cannot be restored
+- This action permanently removes the assistant and all its configuration
+- If the assistant is currently handling active calls, those calls might be affected
+
+<CodeGroup>
+```bash cURL
+curl -X DELETE "https://app.famulor.de/api/user/assistant/123" \
+  -H "Authorization: Bearer YOUR_API_TOKEN"
+```
+
+```javascript JavaScript
+const response = await fetch("https://app.famulor.de/api/user/assistant/123", {
+  method: "DELETE",
+  headers: {
+    Authorization: "Bearer YOUR_API_TOKEN",
+  },
+});
+
+const data = await response.json();
+```
+
+```python Python
+import requests
+
+response = requests.delete(
+    "https://app.famulor.de/api/user/assistant/123",
+    headers={
+        "Authorization": "Bearer YOUR_API_TOKEN",
+    },
+    timeout=10,
+)
+
+print(response.json())
+```
+</CodeGroup>
+
+<ResponseExample>
+
+```json 200 Success
+{
+  "message": "Assistant deleted successfully"
+}
+```
+
+```json 404 Not Found
+{
+  "message": "Assistant not found or does not belong to the authenticated user"
+}
+```
+
+```json 500 Internal Server Error
+{
+  "message": "Assistant deletion failed"
+}
+```
+
+</ResponseExample>

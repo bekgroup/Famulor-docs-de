@@ -1,0 +1,28 @@
+---
+title: Collect keypad input
+description: "Collect keypad input (DTMF) is a tool that allows customers to enter digits on their phone keypad during a conversation."
+---
+
+Add this tool to your assistant to enable customers to enter digits via their phone keypad. The input is collected in the background and appears as "[Keypad input: 12345]" in the conversation.
+
+_Example: Ask customers to enter their account number or PIN using the keypad_
+
+## Configuration
+
+- **Input Timeout (seconds)**: Seconds to wait after last digit before auto-submitting (default: 5 seconds)
+- **Submit Key**: Key that immediately submits input (`#` or `*`)
+
+## How It Works
+
+- Runs in the background — no awkward pauses
+- Auto-submits after timeout or when submit key is pressed
+- Works alongside voice input
+- Collected digits appear in conversation transcript
+
+## Use Cases
+
+- Account numbers and verification codes
+- PINs and security codes
+- Phone numbers for callback
+- License plates and order codes
+- Any scenario requiring accurate digit input

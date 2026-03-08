@@ -1,0 +1,92 @@
+---
+title: "Update Lead"
+api: "PUT /user/leads/{id}"
+description: "Modify an existing lead's information"
+---
+
+Update one or more fields of an existing lead. Only the fields you provide will be changed; all other fields remain unchanged.
+
+## Path Parameters
+
+<ParamField path="id" type="integer" required>
+  The unique identifier of the lead to update
+</ParamField>
+
+## Body Parameters
+
+<ParamField body="campaign_id" type="integer" optional>
+  Move the lead to a different campaign by providing the new campaign ID
+</ParamField>
+
+<ParamField body="phone_number" type="string" optional>
+  Update the lead's phone number (will be automatically formatted to E164 standard)
+</ParamField>
+
+<ParamField body="status" type="string" optional>
+  Set the lead status. Valid values: `created`, `completed`, `reached-max-retries`
+</ParamField>
+
+<ParamField body="variables" type="object" optional>
+  Update or add custom variables. These will be merged with existing variables, not replaced
+</ParamField>
+
+## Response
+
+<ResponseField name="message" type="string">
+  Success message confirming the update
+</ResponseField>
+
+
+<ResponseExample>
+
+```json Success Response
+{
+  "message": "Lead updated successfully"
+}
+```
+
+```json Error Response - Lead Not Found
+{
+  "message": "Lead not found"
+}
+```
+
+```json Error Response - Campaign Not Found
+{
+  "message": "Campaign not found"
+}
+```
+
+```json Error Response - Invalid Phone Number
+{
+  "message": "Invalid phone number"
+}
+```
+
+```json Error Response - Validation Failed
+{
+  "message": "Validation failed",
+  "errors": {
+    "campaign_id": ["The selected campaign does not exist"],
+    "status": ["This status is assigned automatically and cannot be set manually"],
+    "variables": ["Variables must be an array"]
+  }
+}
+```
+
+```json Error Response - Invalid Fields
+{
+  "message": "Invalid fields: invalid_field, another_invalid_field"
+}
+```
+
+</ResponseExample>
+
+## Notes
+
+- The lead must belong to your account
+- If changing the campaign, the new campaign must also be yours
+- Phone numbers are automatically validated and formatted
+- Variables are merged with existing ones (partial updates are supported)
+- Only these fields can be modified: `campaign_id`, `phone_number`, `status`, `variables`
+- Status field has restrictions to maintain data integrity

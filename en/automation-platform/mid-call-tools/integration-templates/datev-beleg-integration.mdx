@@ -1,0 +1,97 @@
+---
+title: "Upload DATEV Document"
+description: "Automatic document capture in DATEV Unternehmen online directly during business calls for seamless accounting"
+icon: "file-invoice"
+---
+
+
+# DATEV Document Upload Integration
+
+Digitize your document capture through mid-call actions and enable your AI assistant to record documents directly in DATEV during business conversations.
+
+## Configuration in the Famulor Interface
+
+<Tabs>
+  <Tab title="Tool Details">
+    | **Name*** | `DATEV Beleg hochladen` |
+    | **Function Name*** | `upload_datev_document` |
+    | **HTTP Method** | `POST` |
+    | **Endpoint*** | `https://api.datev.de/data/v1/clients/{client_id}/documents` |
+    | **Timeout (ms)** | `10000` |
+  </Tab>
+  
+  <Tab title="Request Body">
+    ```json
+    {
+      "document_type": "{document_type}",
+      "document_date": "{document_date}",
+      "vendor": {
+        "name": "{vendor_name}",
+        "tax_id": "{vendor_tax_id}"
+      },
+      "amounts": {
+        "gross_amount": "{gross_amount}",
+        "net_amount": "{net_amount}",
+        "tax_amount": "{tax_amount}",
+        "tax_rate": "{tax_rate}"
+      },
+      "booking_text": "{description}",
+      "cost_center": "{cost_center}"
+    }
+    ```
+  </Tab>
+</Tabs>
+
+### Parameter Schema
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "client_id": {
+      "type": "string",
+      "description": "DATEV client number"
+    },
+    "document_type": {
+      "type": "string",
+      "enum": ["invoice", "receipt", "credit_note", "expense"],
+      "description": "Type of document"
+    },
+    "document_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Document date"
+    },
+    "vendor_name": {
+      "type": "string",
+      "description": "Supplier/Recipient"
+    },
+    "gross_amount": {
+      "type": "number",
+      "description": "Gross amount"
+    },
+    "tax_rate": {
+      "type": "integer",
+      "enum": [0, 7, 19],
+      "description": "Tax rate"
+    },
+    "description": {
+      "type": "string", 
+      "description": "Booking text"
+    },
+    "cost_center": {
+      "type": "string",
+      "description": "Cost center"
+    }
+  },
+  "required": ["client_id", "document_type", "document_date", "vendor_name", "gross_amount"]
+}
+```
+
+## Practical Usage
+
+**Agent Message**: `"I am recording the document in DATEV..."`
+
+**Success Template**: `"Document recorded. Document number: {{bookingNumber}}. The document has been forwarded to your tax advisor for posting."`
+
+---

@@ -1,0 +1,136 @@
+---
+title: "Get outbound assistants"
+api: "GET /user/assistants/outbound"
+description: "Retrieve all outbound assistants in your account"
+---
+
+Get a list of all outbound assistants you've created. Outbound assistants are designed to make proactive calls to leads and prospects.
+
+### Response Fields
+
+<ResponseField name="data" type="array">
+  Array of outbound assistant objects
+  <Expandable title="properties">
+    <ResponseField name="id" type="integer">
+      Unique assistant identifier
+    </ResponseField>
+
+    <ResponseField name="user_id" type="integer">
+      Account owner identifier
+    </ResponseField>
+
+    <ResponseField name="name" type="string">
+      Assistant name
+    </ResponseField>
+
+    <ResponseField name="type" type="string">
+      Assistant type (always "outbound" for this endpoint)
+    </ResponseField>
+
+    <ResponseField name="mode" type="string">
+      Engine mode (`pipeline` or `multimodal`)
+    </ResponseField>
+
+    <ResponseField name="status" type="string">
+      Current assistant status
+    </ResponseField>
+
+    <ResponseField name="voice_id" type="integer">
+      Identifier of the voice used
+    </ResponseField>
+
+    <ResponseField name="language_id" type="integer">
+      Identifier of the language configured
+    </ResponseField>
+
+    <ResponseField name="timezone" type="string">
+      Timezone configuration
+    </ResponseField>
+
+    <ResponseField name="initial_message" type="string">
+      Opening message the assistant speaks
+    </ResponseField>
+
+    <ResponseField name="system_prompt" type="string">
+      System prompt defining assistant behavior
+    </ResponseField>
+
+    <ResponseField name="variables" type="object">
+      Custom variables defined for this assistant
+    </ResponseField>
+
+    <ResponseField name="webhook_url" type="string">
+      Webhook URL for post-call notifications
+    </ResponseField>
+
+    <ResponseField name="is_webhook_active" type="boolean">
+      Whether webhook notifications are enabled
+    </ResponseField>
+
+    <ResponseField name="created_at" type="string">
+      Creation timestamp
+    </ResponseField>
+
+    <ResponseField name="updated_at" type="string">
+      Last update timestamp
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseExample>
+
+```json 200 Response
+[
+  {
+    "id": 123,
+    "user_id": 1,
+    "name": "Sales Outbound Assistant",
+    "type": "outbound",
+    "mode": "pipeline",
+    "status": "active",
+    "voice_id": 8,
+    "language_id": 1,
+    "timezone": "America/New_York",
+    "initial_message": "Hi, this is Sarah from Your Company. I hope I'm catching you at a good time. How are you doing today?",
+    "system_prompt": "You are a sales representative for Your Company. Be professional, friendly, and focus on qualifying leads.",
+    "variables": {
+      "company_name": "Your Company",
+      "product_line": "Premium Services"
+    },
+    "webhook_url": "https://yourcompany.com/api/webhooks/outbound-calls",
+    "is_webhook_active": true,
+    "created_at": "2025-07-15T14:32:15.000000Z",
+    "updated_at": "2025-08-02T09:18:42.000000Z"
+  },
+  {
+    "id": 124,
+    "user_id": 1,
+    "name": "Follow-up Assistant",
+    "type": "outbound",
+    "mode": "multimodal",
+    "status": "inactive",
+    "voice_id": 12,
+    "language_id": 1,
+    "timezone": "America/Los_Angeles",
+    "initial_message": "Hello! I'm calling to follow up on our previous conversation. Do you have a few minutes to chat?",
+    "system_prompt": "You are a follow-up specialist. Be warm and professional while gathering feedback and next steps.",
+    "variables": {
+      "purpose": "follow_up",
+      "max_duration": "5_minutes"
+    },
+    "webhook_url": null,
+    "is_webhook_active": false,
+    "created_at": "2025-07-20T10:15:30.000000Z",
+    "updated_at": "2025-07-25T16:45:22.000000Z"
+  }
+]
+```
+
+</ResponseExample>
+
+### Notes
+
+- This endpoint only returns assistants with type "outbound"
+- All assistants belonging to your account are returned (no pagination)
+- Use these assistants with the make call endpoint to start outbound calls
+- Suitable for sales calls, follow-ups, surveys, and other proactive calling use cases

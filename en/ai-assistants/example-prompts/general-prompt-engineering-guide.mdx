@@ -1,0 +1,126 @@
+---
+title: "General Prompt Engineering Guide"
+icon: "book-open"
+description: "A comprehensive guide to writing effective prompts for your Famulor AI assistants"
+---
+
+
+# General Prompt Engineering Guide
+
+<Note>
+  Prompt engineering may be the most important part of your assistant—it can make the difference between success and failure. This guide shares our insights on how to write prompts that assistants can follow more reliably.
+</Note>
+
+<Warning>
+  This guide is a work in progress and will be updated as we learn more. If you have suggestions or feedback, please let us know.
+</Warning>
+
+<Tip>
+  To see some of the prompts we have created, you can check out the templates in the dashboard (create a new assistant and select a template to get started).
+</Tip>
+
+## Structured Prompts
+
+<Card title="Why Structured Prompts?" icon="layer-group" color="blue">
+  When writing a large prompt like the general prompt, it’s good practice to break it down into smaller sections, each with its own focus such as identity, style, guidelines, tasks, and goals. This has several advantages:
+  
+    - **Reusable** – sections can be used in other prompts
+    - **Easier to maintain** – changes can be made in a targeted way
+    - **Easier for LLMs to understand** – clear structure improves comprehension
+  
+</Card>
+
+## Example of a Structured Prompt
+
+<CodeGroup>
+
+```
+## Identity
+You are a friendly AI assistant for Famulor. You help customers manage their calls in a professional and efficient manner.
+```
+
+</CodeGroup>
+
+## For Single/Multi-Prompt Agents: Be Explicit About When Tools Should Be Called
+
+<Note>
+  Conversation Flow agents handle function calls deterministically, so you don’t need to worry about this. The following section applies only to Single/Multi-Prompt agents.
+</Note>
+
+## Example of Explicit Tool Calls
+
+<CodeGroup>
+
+```
+## Tool Calls
+
+1. Ask the user whether they need a refund or just want to get information
+  - If the user needs a refund, call the function transfer_to_support to provide further assistance
+  - If the user needs a replacement, switch to the replacement status
+```
+
+
+```
+## Available Tools
+
+- **kalender_buchen**: Use this tool to book appointments
+- **kundendaten_abrufen**: Use this tool to retrieve customer data
+- **anruf_weiterleiten**: Use this tool to forward calls
+```
+
+</CodeGroup>
+
+## Best Practices for Famulor
+
+<CardGroup cols={2}>
+  <Card title="Language Adaptation" icon="globe" color="blue">
+    
+      - Use German terms and expressions
+      - Consider German business etiquette
+      - Adjust the tone to your target audience
+    
+  </Card>
+  <Card title="Technical Integration" icon="code" color="green">
+    
+      - Integrate Famulor-specific tools
+      - Make optimal use of available functions
+      - Test prompts with real calls
+    
+  </Card>
+</CardGroup>
+
+## Common Mistakes to Avoid
+
+<Card title="What to Avoid" icon="ban" color="red">
+  
+  - **Too long prompts** – LLMs can get lost in overly long instructions
+  - **Contradictory instructions** – Ensure all parts are consistent
+  - **Unclear tool calls** – Be explicit about when and how to use tools
+  - **Missing examples** – Provide concrete examples of expected behavior
+  - **Overly complex logic** – Break complex tasks into simpler steps
+
+  
+</Card>
+
+## Testing and Optimization
+
+<Card title="Steps for Testing" icon="play" color="purple">
+  
+  - **Test step-by-step** – test each section individually
+  - **Simulate real calls** – use various scenarios
+  - **Gather feedback** – listen to recordings
+  - **Iterate improvements** – adjust based on results
+  - **Monitor performance** – pay attention to response times and quality
+
+  
+</Card>
+
+## Help and Support
+
+<Tip>
+  Our support team can assist you with creating and optimizing your prompts.
+</Tip>
+
+<Card title="Contact Support" icon="headphones" color="blue" href="mailto:support@famulor.io">
+  Need help with prompt engineering? Contact our support team.
+</Card>

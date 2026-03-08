@@ -1,0 +1,529 @@
+---
+title: 'Prompt Guide for Specific Situations'
+icon: 'pause'
+description: 'Specific prompt guides and examples for common scenarios when building a voice assistant'
+---
+
+
+# Prompt Guide for Specific Situations
+
+<Note>
+  Here you will find specific prompt guides and examples for common scenarios you might encounter when building a voice assistant with Famulor.
+</Note>
+
+## Pronouncing Phone Numbers
+
+<Card
+  title="Use the Speak Slowly Feature"
+  icon="volume-high"
+  color="blue">
+  We use the "speak slowly" feature to add pauses between words. For more information, see the <a href="/ai-assistants/example-prompts/pause-or-read-slowly">Speech Controllability Documentation</a>.
+  It is recommended to use a prompt as a guideline for the LLM. This ensures the assistant consistently responds with the correct format, even when customers verify the phone number.
+</Card>
+
+### Example for Pronouncing Phone Numbers
+
+<CodeGroup>
+  <CodeGroupItem title="Phone Number Prompt">
+    ```markdown
+    When people ask for your phone number, your phone number is 03012345678
+
+    ## Guidelines
+    When pronouncing the phone number, transform the format as follows:
+    - Input formats like 03012345678, (030) 123-45678, or 030-123-45678
+    - Should be pronounced as: "null drei null - eins zwei drei - vier fünf sechs sieben acht"
+    - Important: Do not omit the space around the dash when speaking
+    ```
+  </CodeGroupItem>
+  
+  <CodeGroupItem title="German Pronunciation">
+    ```markdown
+    ## German Phone Numbers
+    
+    For German phone numbers:
+    - 0 is pronounced as "null"
+    - Use dashes for better clarity
+    - Example: 030-123-45678 → "null drei null - eins zwei drei - vier fünf sechs sieben acht"
+    ```
+  </CodeGroupItem>
+</CodeGroup>
+
+## Spelling Email Addresses
+
+<Card
+  title="Pronounce Email Addresses Correctly"
+  icon="envelope"
+  color="green">
+  Email addresses must be spelled out to avoid confusion. Here is the correct approach:
+</Card>
+
+### Example for Spelling Email Addresses
+
+<CodeGroup>
+  <CodeGroupItem title="Email Format">
+    ```markdown
+    ## How to spell
+    
+    The possible email format is name@unternehmen.de
+    
+    To spell an email address:
+    n-a-m-e-@-u-n-t-e-r-n-e-h-m-e-n-dot-de
+    
+    @ is pronounced as "at"
+    ```
+  </CodeGroupItem>
+  
+  <CodeGroupItem title="German Email Addresses">
+    ```markdown
+    ## German Email Addresses
+    
+    For German email addresses:
+    - Use German pronunciation for letters
+    - Example: info@famulor.de → "i-n-f-o-at-f-a-m-u-l-o-r-punkt-d-e"
+    - Dot is pronounced as "punkt"
+    ```
+  </CodeGroupItem>
+</CodeGroup>
+
+## Pronouncing Websites
+
+<Card
+  title="Pronounce Website URLs Correctly"
+  icon="globe"
+  color="purple">
+  Website URLs must be pronounced clearly and understandably. Here is the correct approach:
+</Card>
+
+### Example for Pronouncing Websites
+
+<CodeGroup>
+  <CodeGroupItem title="General Guidelines">
+    ```markdown
+    Whenever you encounter a website URL, please:
+    
+    1. Identify each segment of the domain name
+    2. If a segment consists of individual letters (e.g., "NK"), pronounce each letter in its spoken form in German (e.g., "N" → "en", "K" → "ka")
+    3. If a segment is a recognizable word (e.g., "laundry"), pronounce it normally as that word
+    4. Pronounce "punkt" before the top-level domain (e.g., "punkt de", "punkt net", "punkt org", etc.)
+    ```
+  </CodeGroupItem>
+  
+  <CodeGroupItem title="German Examples">
+    ```markdown
+    ## German Examples
+    
+    "famulor.de" → "f-a-m-u-l-o-r punkt de"
+    "testfirma.net" → "t-e-s-t-f-i-r-m-a punkt net"
+    "beispiel.org" → "b-e-i-s-p-i-e-l punkt org"
+    
+    Stick exactly to this phonetic breakdown to ensure clarity and correct pronunciation for customers.
+    ```
+  </CodeGroupItem>
+</CodeGroup>
+
+## Pronouncing Times
+
+<Card
+  title="Pronounce Times Correctly"
+  icon="clock"
+  color="orange">
+  Times must be pronounced in an understandable format. Here are the guidelines:
+</Card>
+
+### Example for Pronouncing Times
+
+<CodeGroup>
+  <CodeGroupItem title="English Times">
+    ```markdown
+    ## For times, numbers, and dates
+    
+    For 1:00 PM, say "One PM"
+    For 3:30 PM, say "Three thirty PM"
+    For 8:45 AM, say "Eight forty-five AM"
+    
+    Never say "O'clock"; instead, say "O-Clock"
+    Always say "AM" or "PM"
+    ```
+  </CodeGroupItem>
+  
+  <CodeGroupItem title="German Times">
+    ```markdown
+    ## For times
+    
+    For 13:00, say "Dreizehn Uhr" or "Ein Uhr nachmittags"
+    For 15:30, say "Fünfzehn Uhr dreißig" or "Drei Uhr dreißig nachmittags"
+    For 8:45, say "Acht Uhr fünfundvierzig" or "Viertel vor neun morgens"
+    
+    Use "morgens" for AM and "nachmittags" for PM
+    ```
+  </CodeGroupItem>
+  
+  <CodeGroupItem title="Alternative Formats">
+    ```markdown
+    ## Alternative formats
+    
+    You can also say:
+    - "Halb neun" for 8:30
+    - "Viertel nach zwei" for 14:15
+    - "Drei viertel vier" for 15:45
+    
+    Choose the format that is most understandable for your customers.
+    ```
+  </CodeGroupItem>
+</CodeGroup>
+
+## Putting Customers On Hold / No Response Needed
+
+<Card
+  title="Putting Customers on Hold"
+  icon="pause"
+  color="yellow">
+  Sometimes you need to put customers on hold or no response is required. Famulor has a special function for this:
+</Card>
+
+### For Non-Reasoning Models
+
+<CodeGroup>
+  <CodeGroupItem title="Use NO_RESPONSE_NEEDED">
+    ```markdown
+    ## Putting on hold
+    
+    Famulor has a hardcoded stop sequence in the LLM: `NO_RESPONSE_NEEDED`.
+    Whenever this sequence is detected, response generation stops.
+    
+    You can instruct the LLM to output nothing by writing:
+    
+    - When the user says "one moment" or "please hold", respond exactly with: "NO_RESPONSE_NEEDED"
+    ```
+  </CodeGroupItem>
+  
+  <CodeGroupItem title="Example">
+    ```markdown
+    ## Example Implementation
+    
+    When the customer says:
+    - "one moment"
+    - "wait a second"
+    - "please hold"
+    
+    Then respond exactly: "NO_RESPONSE_NEEDED"
+    
+    Response generation stops and the assistant waits for further input.
+    ```
+  </CodeGroupItem>
+</CodeGroup>
+
+### For Reasoning Models
+
+<Warning>
+  Reasoning models like `gpt-5` or `gpt-5.1` do not support this feature. You must craft prompts differently to achieve this behavior.
+</Warning>
+
+<CodeGroup>
+  <CodeGroupItem title="Alternative for Reasoning Models">
+    ```markdown
+    ## Putting on hold for Reasoning Models
+    
+    When the user says "one moment" or similar, simply do not respond.
+    Do not react to hold signals, just wait for further instructions.
+    ```
+  </CodeGroupItem>
+  
+  <CodeGroupItem title="Example Prompt">
+    ```markdown
+    ## Example Prompt
+    
+    When the user says:
+    - "one moment"
+    - "wait a second"
+    - "please hold"
+    
+    Then DO NOT respond. Just wait until the user speaks again.
+    ```
+  </CodeGroupItem>
+</CodeGroup>
+
+## Normalizing Text for Speech
+
+<Card
+  title="Normalize Text for Speech"
+  icon="font"
+  color="indigo">
+  Normalize certain parts of the text (numbers, currency, dates, etc.) into their spoken form for more consistent speech synthesis. Sometimes TTS models misread non-normalized text.
+</Card>
+
+### Example for Text Normalization
+
+<CodeGroup>
+  <CodeGroupItem title="Before Normalization">
+    ```markdown
+    ## Before normalization
+    
+    Call my number 03012345678 on July 5, 2024 for the payment of €24.12
+    ```
+  </CodeGroupItem>
+  
+  <CodeGroupItem title="After Normalization">
+    ```markdown
+    ## After normalization
+    
+    Call my number null drei null eins zwei drei vier fünf sechs sieben acht on the fifth of July twenty twenty-four for the twenty-four Euro twelve Cent payment
+    ```
+  </CodeGroupItem>
+</CodeGroup>
+
+<Note>
+  This feature adds a small latency (~100ms) to the overall process.
+</Note>
+
+## Language Support
+
+<Card
+  title="Supported Languages"
+  icon="globe"
+  color="teal">
+  Currently, text normalization is supported for the following languages:
+  
+    - **German** - full support
+    - **English** - full support
+    - **Spanish** - full support
+    - **French** - full support
+  
+  Other languages result in a no-op (text is not modified) for this step.
+</Card>
+
+<Card
+  title="Language Settings"
+  icon="gear"
+  color="blue">
+  When you select a language other than multilingual, that language code is used to normalize the text (e.g., 1 is normalized to "eins" when using German).
+  When you select multilingual, the language is detected automatically based on the generated text and normalized accordingly.
+</Card>
+
+## Prompt Engineering Guide
+
+<Card
+  title="Best Practices for Effective Prompts"
+  icon="book-open"
+  color="blue">
+  Best practices for writing effective prompts that create reliable and natural-sounding AI phone assistants.
+</Card>
+
+### Introduction
+
+Prompt engineering is the foundation for creating effective AI phone assistants. A well-designed prompt determines how your assistant interprets situations, responds to users, and handles edge cases. This guide provides proven strategies for writing prompts your assistant can reliably follow.
+
+<Note>
+  This guide focuses on general prompt engineering principles. For agent-specific implementation:
+  
+  * **Single/Multi Prompt Agents**: Apply these principles directly in your prompts
+  * **Conversation Flow Agents**: Use these principles within individual node instructions
+</Note>
+
+### Best Practice 1: Use Structured Prompts
+
+Break large prompts into focused sections to improve organization and LLM understanding. This structured approach offers several advantages:
+
+* **Reusability**: Sections can be adapted across different agents
+* **Maintainability**: Easily update specific behaviors without affecting others
+* **Clarity**: LLMs process structured information more accurately
+
+#### Recommended Prompt Structure
+
+```markdown
+## Identity
+
+You are a friendly AI assistant for [Company Name].
+
+Your role is [specific purpose].
+
+You have expertise in [relevant areas].
+
+## Style Guidelines
+
+Be concise: Keep answers under 2 sentences unless explaining complex topics.
+
+Be conversational: Use natural language, contractions, and acknowledge what the caller says.
+
+Be empathetic: Show understanding for the caller's situation.
+
+## Response Guidelines
+
+Return data in spoken form: say "fifteenth January" not "15.01".
+
+Ask one question at a time: avoid overwhelming the caller with multiple questions.
+
+Confirm understanding: paraphrase key information back to the caller.
+
+## Task Instructions
+
+[Specific steps the assistant should follow]
+
+## Objection Handling
+
+If the caller says they are not interested: "I understand. Is there something specific..."
+
+If the caller is frustrated: "I understand your frustration, let me help solve this..."
+```
+
+### Best Practice 2: Use Conversation Flow for Complex Tasks
+
+If your assistant needs to handle complex logic or multiple tools, use Conversation Flow Agents instead of managing everything in a single prompt.
+
+#### When to switch to Conversation Flow:
+
+* **Multiple decision branches**: More than 3-4 conditional paths
+* **Tool coordination**: Using 5+ different functions/tools
+* **State management**: Tracking multiple variables over conversation
+* **Reliability concerns**: Single prompt exhibits inconsistent behavior
+
+#### Benefits of Conversation Flow:
+
+* Each node focuses on one specific task
+* Deterministic tool call and transitions
+* Easier to debug and optimize individual steps
+* More predictable assistant behavior
+
+### Best Practice 3: Explicit Tool Call Instructions
+
+<Note>
+  This section applies only to Single/Multi Prompt Agents. Conversation Flow Agents handle function calls deterministically via their node configuration.
+</Note>
+
+#### The Challenge
+
+LLMs often struggle to determine when to call tools based only on tool descriptions. Without explicit instructions, agents may:
+
+* Call tools at inappropriate times
+* Fail to call tools when needed
+* Use the wrong tool for a situation
+
+#### Solution: Define Clear Triggers
+
+Always provide precise conditions for tool usage in your prompts. Refer to tools by their exact names.
+
+##### Example: Customer Service Agent
+
+```markdown
+## Tool Usage Instructions
+
+1. First, gather information about the customer's issue.
+
+2. Determine the type of request:
+
+   - If the customer mentions "refund" or "money back":
+
+     → Call the function `transfer_to_support` immediately
+
+   - If the customer needs order status:
+
+     → Call the function `check_order_status` with order_id
+
+   - If the customer wants to change their order:
+
+     → First call `check_order_status`
+
+     → Then switch to change status
+
+3. After retrieving information:
+
+   - Always summarize what you found
+
+   - Ask if they need additional help
+
+   - If yes, determine the next appropriate action
+```
+
+#### Best Practices for Tool Instructions
+
+1. **Use trigger words**: List specific words/phrases that should trigger tool calls
+2. **Define sequences**: Specify when tools should be called in order
+3. **Set boundaries**: Clarify when certain tools SHOULD NOT be called
+4. **Provide context**: Explain why each tool is called
+
+## Practical Examples for Famulor
+
+<Card
+  title="Famulor-Specific Adjustments"
+  icon="star"
+  color="red">
+  Here are some Famulor-specific customizations:
+</Card>
+
+### Example of a Complete Prompt
+
+<CodeGroup>
+  <CodeGroupItem title="Complete Example Prompt">
+    ```markdown
+    # Famulor Assistant - Prompt for Specific Situations
+
+    ## Identity
+    You are a professional Famulor AI assistant supporting customers on phone calls.
+
+    ## Pronunciation Guidelines
+
+    ### Phone Numbers
+    - Use German pronunciation
+    - Example: 030-123-45678 → "null drei null - eins zwei drei - vier fünf sechs sieben acht"
+
+    ### Email Addresses
+    - Spell every part out
+    - Example: info@famulor.de → "i-n-f-o-at-f-a-m-u-l-o-r-punkt-d-e"
+
+    ### Websites
+    - Pronounce each letter individually
+    - Example: famulor.de → "f-a-m-u-l-o-r-punkt-d-e"
+
+    ### Times
+    - Use German time formats
+    - Example: 14:30 → "Vierzehn Uhr dreißig"
+
+    ## Behavior
+    - Be polite and professional
+    - Use the pause feature when needed
+    - Normalize numbers and dates for better clarity
+    ```
+  </CodeGroupItem>
+</CodeGroup>
+
+## Testing and Optimizing
+
+<Card
+  title="Test Your Prompts"
+  icon="play"
+  color="green">
+  
+    - **Conduct audio tests** - Listen to the pronunciation
+    - **Test various scenarios** - Cover all specific situations
+    - **Collect customer feedback** - Ask about understandability
+    - **Iteratively improve** - Adjust based on results
+  
+</Card>
+
+## Help and Support
+
+<Tip>
+  Our support team can help you customize your prompts for specific situations.
+</Tip>
+
+<Card
+  title="Contact Support"
+  icon="headphones"
+  color="blue"
+  href="mailto:support@famulor.io">
+  Need help customizing your prompts? Contact our support team.
+</Card>
+
+## Next Steps
+
+<Card
+  title="Further Resources"
+  icon="arrow-right"
+  color="purple">
+  
+    - Check out our <a href="/ai-assistants/example-prompts/general-prompt-engineering-guide">General Prompt Engineering Guide</a>
+    - Explore our **Prompt Templates** in the dashboard
+    - Learn more about <a href="/ai-assistants/example-prompts/pause-or-read-slowly">Speech Controllability</a>
+    - Test your prompts with **Audio Tests**
+  
+</Card>

@@ -1,0 +1,168 @@
+---
+title: "Send SMS"
+api: "POST https://app.famulor.de/api/user/sms"
+icon: "message"
+description: "Send an SMS message using your phone number"
+---
+
+This endpoint allows you to send SMS messages via your purchased phone numbers. The SMS is sent through Twilio, and the costs are automatically deducted from your account balance.
+
+### Request Body
+
+<ParamField body="from" type="integer" required>
+  The ID of your phone number from which the SMS will be sent (must be SMS-capable)
+</ParamField>
+
+<ParamField body="to" type="string" required>
+  The recipient's phone number in international format (e.g., "+4915123456789")
+</ParamField>
+
+<ParamField body="body" type="string" required>
+  The SMS message content (max. 300 characters)
+</ParamField>
+
+### Response Fields
+
+<ResponseField name="message" type="string">
+  Success message confirming that the SMS was sent
+</ResponseField>
+
+<ResponseField name="data" type="object">
+  Additional data about the sent SMS
+</ResponseField>
+
+### Error Responses
+
+<ResponseField name="400 Bad Request" type="object">
+  <Expandable title="Error Details">
+    <ResponseField name="message" type="string">
+      Error message describing the issue (invalid phone number, insufficient balance, etc.)
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="500 Internal Server Error" type="object">
+  <Expandable title="Server Error">
+    <ResponseField name="message" type="string">
+      Error message indicating a failure in sending the SMS
+    </ResponseField>
+    
+    <ResponseField name="error" type="string">
+      Detailed error information
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+### Notes
+
+- The sender phone number must belong to the authenticated user
+- The sender phone number must be SMS-capable
+- The phone number subscription must be active (not expired)
+- Sufficient account balance is required to cover SMS costs
+- Phone numbers are automatically formatted to E.164 format
+- SMS costs vary depending on the destination country and are charged per segment
+- Long messages can be split into multiple segments, increasing the cost
+- The recipient phone number must comply with international standards
+
+<CodeGroup>
+```bash cURL
+curl -X POST "https://app.famulor.de/api/user/sms" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "from": 12345,
+    "to": "+4915123456789",
+    "body": "Hello! This is a test SMS from Famulor."
+  }'
+```
+
+```javascript JavaScript
+const response = await fetch("https://app.famulor.de/api/user/sms", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: "Bearer YOUR_API_KEY",
+  },
+  body: JSON.stringify({
+    from: 12345,
+    to: "+4915123456789",
+    body: "Hello! This is a test SMS from Famulor.",
+  }),
+});
+
+const data = await response.json();
+```
+
+```python Python
+import requests
+
+payload = {
+    "from": 12345,
+    "to": "+4915123456789",
+    "body": "Hello! This is a test SMS from Famulor.",
+}
+
+response = requests.post(
+    "https://app.famulor.de/api/user/sms",
+    headers={
+        "Content-Type": "application/json",
+        "Authorization": "Bearer YOUR_API_KEY",
+    },
+    json=payload,
+    timeout=10,
+)
+
+print(response.json())
+```
+</CodeGroup>
+
+<ResponseExample>
+
+```json 200 Sent Successfully
+{
+  "message": "SMS sent successfully",
+  "data": {
+    "sms_id": "SMS_67890",
+    "from": "+4912345678",
+    "to": "+4915123456789",
+    "body": "Hello! This is a test SMS from Famulor.",
+    "segments": 1,
+    "cost": 0.05,
+    "currency": "EUR",
+    "status": "sent"
+  }
+}
+```
+
+```json 400 Invalid Request
+{
+  "message": "Invalid phone number format"
+}
+```
+
+```json 400 Insufficient Balance
+{
+  "message": "Insufficient balance to send SMS"
+}
+```
+
+```json 400 Phone Number Not SMS-Capable
+{
+  "message": "Phone number is not SMS-capable"
+}
+```
+
+```json 400 Phone Number Not Found
+{
+  "message": "From number not found"
+}
+```
+
+```json 500 Server Error
+{
+  "message": "Failed to send SMS",
+  "error": "Twilio service temporarily unavailable"
+}
+```
+
+</ResponseExample>

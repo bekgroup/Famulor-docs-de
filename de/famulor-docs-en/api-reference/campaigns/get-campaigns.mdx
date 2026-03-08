@@ -1,0 +1,117 @@
+---
+title: "List campaigns"
+api: "GET /user/campaigns"
+icon: "list"
+description: "Retrieve all campaigns in your account"
+---
+
+Fetch a complete list of all campaigns you've created in your account.
+
+### Response Fields
+
+<ResponseField name="campaigns" type="array">
+  Array of campaign objects
+
+  <Expandable title="Campaign properties">
+    <ResponseField name="id" type="integer">
+      Unique campaign identifier
+    </ResponseField>
+
+    <ResponseField name="name" type="string">
+      Campaign name
+    </ResponseField>
+
+    <ResponseField name="status" type="string">
+      Current campaign status
+    </ResponseField>
+
+    <ResponseField name="max_calls_in_parallel" type="integer">
+      Maximum number of calls that can be made in parallel
+    </ResponseField>
+
+    <ResponseField name="mark_complete_when_no_leads" type="boolean">
+      Whether the campaign should be marked as completed when there are no leads
+    </ResponseField>
+
+    <ResponseField name="allowed_hours_start_time" type="string">
+      Start time for allowed calling hours
+    </ResponseField>
+
+    <ResponseField name="allowed_hours_end_time" type="string">
+      End time for allowed calling hours
+    </ResponseField>
+
+    <ResponseField name="allowed_days" type="array">
+      Days of the week when calls are allowed
+    </ResponseField>
+
+    <ResponseField name="max_retries" type="integer">
+      Maximum number of retry attempts for failed calls
+    </ResponseField>
+
+    <ResponseField name="retry_interval" type="integer">
+      Interval in seconds between retry attempts
+    </ResponseField>
+
+    <ResponseField name="created_at" type="string">
+      Timestamp when the campaign was created
+    </ResponseField>
+
+    <ResponseField name="updated_at" type="string">
+      Timestamp when the campaign was last updated
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseExample>
+
+```json 200 Response
+{
+  "campaigns": [
+    {
+      "id": 1,
+      "name": "Q1 2024 New Customer Acquisition",
+      "status": "active",
+      "max_calls_in_parallel": 5,
+      "mark_complete_when_no_leads": true,
+      "allowed_hours_start_time": "09:00",
+      "allowed_hours_end_time": "18:00",
+      "allowed_days": ["monday", "tuesday", "wednesday", "thursday", "friday"],
+      "max_retries": 3,
+      "retry_interval": 300,
+      "created_at": "2024-01-10T08:00:00Z",
+      "updated_at": "2024-01-15T14:30:00Z"
+    },
+    {
+      "id": 2,
+      "name": "Existing Customer Follow-up Campaign",
+      "status": "paused",
+      "max_calls_in_parallel": 3,
+      "mark_complete_when_no_leads": false,
+      "allowed_hours_start_time": "10:00",
+      "allowed_hours_end_time": "17:00",
+      "allowed_days": ["monday", "wednesday", "friday"],
+      "max_retries": 2,
+      "retry_interval": 600,
+      "created_at": "2024-01-08T12:00:00Z",
+      "updated_at": "2024-01-12T16:45:00Z"
+    },
+    {
+      "id": 3,
+      "name": "2024 Product Launch",
+      "status": "completed",
+      "max_calls_in_parallel": 10,
+      "mark_complete_when_no_leads": true,
+      "allowed_hours_start_time": "08:00",
+      "allowed_hours_end_time": "20:00",
+      "allowed_days": ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday"],
+      "max_retries": 5,
+      "retry_interval": 180,
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-20T23:59:00Z"
+    }
+  ]
+}
+```
+
+</ResponseExample>

@@ -1,0 +1,90 @@
+---
+title: "API Base Templates"
+description: "Template collection for common API patterns and integration examples as a starting point for custom integrations"
+icon: "code"
+---
+
+# API Base Templates
+
+This page contains proven template patterns for the most common API integration types. Use these as a starting point for your own custom mid-call actions.
+
+## GET Request Template
+
+### REST API GET Example
+
+<Tabs>
+  <Tab title="Tool Details">
+    | **Name*** | `REST API GET Example` |
+    | **Function Name*** | `get_user_info` |
+    | **HTTP Method** | `GET` |
+    | **Endpoint*** | `https://api.example.com/users/{user_id}` |
+  </Tab>
+  
+  <Tab title="Query Parameters">
+    ```json
+    {
+      "include": "profile,settings"
+    }
+    ```
+  </Tab>
+</Tabs>
+
+**Success Template**: `"User {{name}} ({{email}}) has status {{status}}."`
+
+## POST Request Template
+
+### REST API POST Example
+
+<Tabs>
+  <Tab title="Tool Details">
+    | **Name*** | `REST API POST Example` |
+    | **Function Name*** | `create_ticket` |
+    | **HTTP Method** | `POST` |
+    | **Endpoint*** | `https://api.example.com/tickets` |
+  </Tab>
+  
+  <Tab title="Request Body">
+    ```json
+    {
+      "title": "{title}",
+      "description": "{description}",
+      "priority": "{priority}",
+      "user_id": "{user_id}"
+    }
+    ```
+  </Tab>
+</Tabs>
+
+**Success Template**: `"The support ticket was created successfully. Ticket ID: {{ticket_id}}, Status: {{status}}."`
+
+## Webhook Template
+
+### Webhook Notification
+
+<Tabs>
+  <Tab title="Tool Details">
+    | **Name*** | `Webhook Notification` |
+    | **Function Name*** | `send_webhook` |
+    | **HTTP Method** | `POST` |
+    | **Endpoint*** | `{webhook_url}` |
+  </Tab>
+</Tabs>
+
+**Success Template**: `"The webhook notification was sent successfully."`
+
+## Basic CRM Template
+
+### CRM Integration
+
+<Tabs>
+  <Tab title="Tool Details">
+    | **Name*** | `CRM Integration` |
+    | **Function Name*** | `get_customer_data` |
+    | **HTTP Method** | `GET` |
+    | **Endpoint*** | `https://api.crm-example.com/customers/{customer_id}` |
+  </Tab>
+</Tabs>
+
+**Success Template**: `"The customer {{customer_name}} ({{customer_email}}) has status {{customer_status}}. Last contact: {{last_contact_date}}."`
+
+---

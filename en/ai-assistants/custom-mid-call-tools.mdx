@@ -1,0 +1,274 @@
+---
+title: "Tools During the Call"
+icon: "plug"
+description: "Learn how to create and configure custom API integrations that your AI assistant can use during calls"
+---
+
+Mid-call tools allow your AI assistant to interact with external systems during calls. Whether checking inventory, verifying customer data, or retrieving real-time information – these tools make your AI more powerful and connected.
+
+## Overview
+
+Tools during the call enable your AI assistant to:
+- Make real-time API calls during conversations
+- Retrieve or submit data from/to your systems
+- Make informed decisions based on live data
+- Provide accurate, up-to-date information to callers
+
+### Key Benefits
+- **No coding required** – simply configure API endpoints and parameters
+- **AI automatically knows** when and how to use the tools
+- **Real-time data access** during calls
+- **Seamless integration** with your existing systems
+
+## Setting Up Your Tool
+
+### 1. Basic Configuration
+
+#### Main Tool Configuration
+
+1. **Access tool creation**
+   
+   Navigate to "Tools During the Call" and click "New Tool"
+
+2. **Configure main settings**
+   
+   Fill out the essential details:
+   - **Name**: Use lowercase letters and underscores (e.g., `check_order_status`)
+   - **Description**: Explain when and how the AI should use this tool
+   - **Endpoint**: Your API URL (e.g., `https://api.yourcompany.com/orders`)
+   - **Timeout**: How long to wait for responses (in seconds)
+   - **Method**: Choose GET, POST, PUT, PATCH, or DELETE
+
+3. **Add headers**
+   
+   Common headers you might need:
+   ```
+   Content-Type: application/json
+   Authorization: Bearer your_token
+   ```
+
+### 2. Variable Configuration
+
+#### Defining Parameters
+
+1. **Define parameters**
+   
+   These are the pieces of information your AI will collect during the call:
+   ```
+   Name: order_number
+   Type: string
+   Description: "10-digit order number from the customer"
+   ```
+
+2. **Set validation rules**
+   
+   Add format requirements in the description:
+   ```
+   "Date in DD/MM/YYYY format"
+   "Phone number without spaces"
+   "Email address for confirmation"
+   ```
+
+### Understanding Parameter Types
+
+#### String
+Text values like names, addresses, or reference numbers
+```
+Type: string
+Examples: "Max Mustermann", "Main Street 123"
+```
+
+#### Number
+Numerical values like amounts, quantities, or IDs
+```
+Type: number
+Examples: 42, 99.99
+```
+
+#### true_false
+Boolean values for yes/no situations
+```
+Type: true_false
+Examples: true, false
+```
+
+#### Formatting guidance
+Include formatting instructions in descriptions:
+```
+"Date in DD/MM/YYYY format"
+"Phone number without spaces"
+```
+
+### Dynamic Endpoints
+
+If you use variables in your endpoint URL, make sure to enclose them in curly braces and use the exact parameter names.
+
+You can create dynamic endpoints with variables:
+
+```
+Base URL:
+https://api.example.com/orders/status
+
+With variables:
+https://api.example.com/orders/{order_id}/status
+```
+
+The AI will automatically replace `{order_id}` with the actual value collected during the conversation.
+
+## Simple Testing
+
+### Automated Testing
+Click “Test Tool” to run a test with dummy data:
+- String parameters: "test"
+- Number parameters: 1
+- Boolean parameters: true
+
+You will see the response code and body to verify that everything is working.
+
+## Power User Feature: Automation Platform Integration
+
+Need more complex logic? Connect your tool to the Famulor automation platform for advanced workflows.
+
+How to build powerful integrations:
+
+**In the automation platform:**
+1. Create a new flow
+2. Add a webhook trigger
+3. Build your logic (API calls, data transformations, etc.)
+4. Finish with "Return Response"
+
+**In your tool during the call:**
+1. Use the webhook URL as your endpoint
+2. Append `/sync` at the end
+3. Example: `https://automation.famulor.de/webhook/abc123/sync`
+
+This allows you to:
+- Transform data before/after API calls
+- Chain multiple API calls sequentially
+- Implement complex business logic
+- Handle errors gracefully
+
+## Practical Examples
+
+### Order Lookup System
+
+```
+Name: check_order
+Endpoint: https://api.yourshop.com/orders/{order_number}
+Parameters:
+  - Name: order_number
+    Type: string
+    Description: "Order reference (format: ORD-XXXXX)"
+```
+
+The AI will:
+- Ask for the order number
+- Retrieve the status
+- Explain delivery dates and status to the customer
+
+### Appointment Availability
+
+```
+Name: check_appointments
+Endpoint: https://api.calendar.com/availability
+Parameters:
+  - Name: service
+    Type: string
+    Description: "Type of service (Haircut, Massage, Consultation)"
+  - Name: date
+    Type: string
+    Description: "Desired date (DD/MM/YYYY)"
+```
+
+The AI will:
+- Ask for the desired service
+- Inquire about the preferred date
+- Show available time slots
+
+### Customer Verification
+
+```
+Name: verify_customer
+Endpoint: https://api.crm.com/verify
+Parameters:
+  - Name: phone
+    Type: string
+    Description: "10-digit phone number"
+  - Name: email
+    Type: string
+    Description: "Email address for verification"
+```
+
+The AI will:
+- Collect contact information
+- Verify it against your CRM
+- Proceed based on verification status
+
+## Configuring Your AI
+
+The AI requires clear instructions in its system prompt to effectively use your tools during the call.
+
+Example prompt section:
+
+```
+When to use the check_order tool:
+1. Customer asks about order status
+2. Mentions tracking or delivery
+3. Wants to know where their package is
+
+How to use it:
+1. Ask for the order number if not provided
+2. Verify format (ORD-XXXXX)
+3. Use tool to retrieve status
+4. Explain results in simple terms
+```
+
+Test your tools with various conversation flows to ensure the AI handles all scenarios smoothly. Start with simple test calls before going live.
+
+---
+
+## Further Resources
+
+<CardGroup cols={3}>
+  <Card title="Understanding Mid-call Actions" icon="lightbulb" href="/automation-platform/mid-call-tools/was-sind-mid-call-tools">
+    Learn more about the technical basics and how they work
+  </Card>
+  <Card title="Use Cases" icon="map" href="/automation-platform/mid-call-tools/wann-verwenden">
+    Discover when mid-call actions provide the most value
+  </Card>
+  <Card title="Integration Templates" icon="clone" href="/automation-platform/mid-call-tools/integration-templates/hubspot-kontakt-abruf">
+    Use prebuilt templates for popular systems
+  </Card>
+</CardGroup>
+
+### Popular Integration Templates
+
+<AccordionGroup>
+  <Accordion title="CRM Integrations">
+    - [HubSpot Contact Retrieval](/automation-platform/mid-call-tools/integration-templates/hubspot-kontakt-abruf)
+    - [Salesforce Integration](/automation-platform/mid-call-tools/integration-templates/salesforce-integration)
+    - [Pipedrive Deal Management](/automation-platform/mid-call-tools/integration-templates/pipedrive-integration)
+    - [Google Sheets Integration](/automation-platform/mid-call-tools/integration-templates/google-sheets-integration)
+  </Accordion>
+  
+  <Accordion title="Communication & Marketing">
+    - [Slack Notifications](/automation-platform/mid-call-tools/integration-templates/slack-integration)
+    - [SendGrid Email Sending](/automation-platform/mid-call-tools/integration-templates/sendgrid-integration)
+    - [Mailchimp Subscriber Management](/automation-platform/mid-call-tools/integration-templates/mailchimp-integration)
+  </Accordion>
+  
+  <Accordion title="Project Management">
+    - [Asana Task Creation](/automation-platform/mid-call-tools/integration-templates/asana-integration)
+    - [Jira Issue Management](/automation-platform/mid-call-tools/integration-templates/jira-integration)
+    - [Notion Documentation](/automation-platform/mid-call-tools/integration-templates/notion-integration)
+  </Accordion>
+  
+  <Accordion title="Advanced Automation">
+    - [Webhook Integration with Famulor Automation](/automation-platform/mid-call-tools/integration-templates/webhook-automation)
+    - [API Base Templates](/automation-platform/mid-call-tools/integration-templates/api-vorlagen)
+  </Accordion>
+</AccordionGroup>
+
+---
+
+**Note:** Tools during the call can be combined with other Famulor features. For example, the AI can check an order and then, if further support is needed, escalate to a human agent.

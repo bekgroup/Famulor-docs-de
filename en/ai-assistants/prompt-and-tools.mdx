@@ -1,0 +1,775 @@
+---
+title: "Prompt & Tools"
+icon: "wand-magic-sparkles"
+description: "Configure the knowledge base, tools, variables, and system prompt of your assistant to define its capabilities and behavior."
+---
+
+
+Configure the assistant’s goal and the tools it can use during calls.
+
+## Knowledge Base
+
+Provide the assistant with information to use as a knowledge base when responding to customer inquiries — from website content, documents, etc.
+
+### Knowledge Base Selection
+
+<AccordionGroup>
+  <Accordion title="Select Knowledge Base" icon="book-open">
+    Choose a knowledge base store that contains relevant information for the assistant.
+
+    **Requirements:**
+
+    * Must first be created in your workspace under [Knowledge Bases](/api-reference/knowledgebases/list)
+    * Displays status (Active, Processing, etc.) and description
+    * Only your own knowledge bases are available
+
+    <Tip>
+      Create knowledge bases from website content, PDFs, or custom documents to provide your assistant with domain-specific information. For comprehensive setup instructions, including content types, processing status, website scraping, and troubleshooting, see the full [Knowledge Base Guide](/conversation-design/knowledge-bases).
+    </Tip>
+  </Accordion>
+
+  <Accordion title="Knowledge Base Mode" icon="brain">
+    Choose how the AI should utilize the knowledge base.
+
+    <CardGroup cols={2}>
+      <Card title="Function Call" icon="code">
+        **Recommended for most cases**
+
+        Uses a function call to search the knowledge base only when needed. More precise and efficient.
+      </Card>
+
+      <Card title="Prompt Injection" icon="syringe">
+        **For simple use cases**
+
+        Performs a search after every customer utterance. More accurate but can be slower without filler audios.
+      </Card>
+    </CardGroup>
+
+    <Note>
+      **Mode availability:** The Speech-to-Speech and Dualplex modes only support the function call mode.
+    </Note>
+  </Accordion>
+</AccordionGroup>
+
+## Custom Mid-Call Tools
+
+Create and assign your own custom tools that the AI can use **during the call** with the customer.
+
+<CardGroup cols={2}>
+  <Card title="Create Custom Tools" icon="plus" href="/ai-assistants/custom-mid-call-tools">
+    Build tools tailored to your specific business needs: API integrations, database queries, custom workflows, and external service calls.
+  </Card>
+
+  <Card title="Assign to Assistant" icon="link">
+    Select which custom tools this assistant can use, with multi-selection, search by name/description, and real-time assignment.
+
+    **Scope:** Only your own tools are available.
+  </Card>
+</CardGroup>
+
+<Tip>
+  Read the [Custom Tools Documentation](/ai-assistants/custom-mid-call-tools) for detailed instructions on creating and configuring custom tools.
+</Tip>
+
+## Standard Tools
+
+Select built-in tools the AI can use **during the call** with the customer.
+
+<AccordionGroup>
+  <Accordion title="Call Forwarding" icon="phone-flip">
+    Forward calls to multiple target numbers like different people or departments based on your workflow.
+
+    **Use cases:**
+
+    * Escalation to human agents
+    * Department routing
+    * Specialist handoffs
+
+    **Configuration options:**
+
+    * **Standard mode:** Use regular phone numbers (e.g., +491234567890)
+    * **Advanced mode:** Use SIP URI format for SIP providers (e.g., sip:+491234567890@sip-server)
+
+    **For SIP integrations:**
+
+    * Set forwarding mode to “Advanced”
+    * Use the SIP URI format: `sip:number@sip-server`
+    * Ensure your SIP provider supports SIP REFER
+    * Test different URI formats if forwarding fails
+
+    <Note>
+      **Prompt instruction:** Add something like “Invoke the forwarding function when the user wants to speak to someone else” to your system prompt to ensure the AI uses this tool appropriately.
+    </Note>
+
+    <Tip>
+      If forwarding does not work, see our [SIP Integration Troubleshooting Guide](/provisioning/sip-ai/sip-troubleshooting) for detailed solutions.
+    </Tip>
+  </Accordion>
+
+  <Accordion title="End Call" icon="phone-slash">
+    Ends the call when the conversation is complete.
+
+    **Use cases:**
+
+    * Natural conversation closure
+    * Goal achieved
+    * Customer satisfaction confirmed
+
+    <Note>
+      **Prompt instruction:** If the AI does not automatically invoke the “end call” function, add to your system prompt: “Invoke the hang_up function to close the call” when the conversation should end.
+    </Note>
+  </Accordion>
+
+  <Accordion title="DTMF Input" icon="hashtag">
+    Easily send keypad inputs during outgoing calls to enable smooth navigation of IVR menus and automated workflows. The AI uses keypad tones to navigate when calling and responding to prompts.
+
+    **Use cases:**
+
+    * Telephone navigation menus
+    * Entering extension numbers
+    * Inputting security codes
+    * IVR system navigation
+
+    <Note>
+      **Prompt instruction:** Include instructions in your system prompt on when to use DTMF input, e.g., “Use the send_dtmf tool to navigate phone menus when needed to reach the correct person.”
+    </Note>
+
+    Detailed information on DTMF capabilities is available under [Tools & Functions](/ai-assistants/tools-and-functions#dtmf-input).
+  </Accordion>
+
+  <Accordion title="Scheduling" icon="calendar">
+    Real-time appointment booking with integration of multiple calendar platforms.
+
+    **Available integrations:**
+
+    * **Cal.com:** Complete setup guide at [Cal.com Scheduling](/ai-assistants/cal-com-scheduling)
+    * **GoHighLevel:** Full integration guide at [GoHighLevel Scheduling](/ai-assistants/gohighlevel-scheduling)
+    * **Calendly:** Connect your Calendly account to book appointments directly via calls
+
+    **Use cases:**
+
+    * Book appointments with calendars
+    * Check real-time availability
+    * Send automatic confirmation details
+    * Sync with existing calendar systems
+
+    **Setup:**
+
+    1. Choose your calendar provider (Cal.com, GoHighLevel, or Calendly)
+    2. Authenticate with your calendar account
+    3. Select event type/calendar for bookings
+    4. The AI automatically checks availability and books appointments
+
+    <Note>
+      Available if calendar integration is enabled in your platform settings.
+    </Note>
+  </Accordion>
+</AccordionGroup>
+
+## Call Variables
+
+Define variables that can be passed **before** the call and used in prompts **like {variable_name}**.
+
+### Variables Configuration
+
+<AccordionGroup>
+  <Accordion title="Variable Definition" icon="code">
+    Create call variables to pass information to your assistant before the call begins.
+
+    **Setup process:**
+
+    * Define variable names and default values
+    * Pass values when creating calls/leads or importing customers
+    * Variables are immediately available in prompts and during the call
+    * Use them for personalization and context
+
+    **Configuration:**
+
+    * **Variable name:** The identifier (e.g., `customer_name`)
+    * **Default value:** Used when no value is passed (e.g., “Customer”)
+  </Accordion>
+
+  <Accordion title="Variable Usage" icon="code">
+    How to use call variables in your assistant:
+
+    **In system prompts:**
+
+    * Reference variables using `{variable_name}` syntax
+    * Personalize conversations dynamically
+    * Provide context-specific information
+
+    **Examples:**
+
+    * `{customer_name}` for personalization (“Hello {customer_name}”)
+    * `{email}` for calendar integrations
+    * `{account_type}` for tailored responses
+    * `{company}` for business context
+  </Accordion>
+
+  <Accordion title="Data Sources" icon="database">
+    Ways to populate call variables:
+
+    **Manual input:**
+
+    * When creating individual calls
+    * Via lead creation for campaigns
+
+    **Import methods:**
+
+    * CSV import with variable columns
+    * API integration with customer data
+    * Direct CRM synchronization
+
+    **Automation platform integrations:**
+
+    * **GoHighLevel (GHL):** Automatically fetch contact data and custom fields
+    * **Google Sheets:** Import leads with variables from spreadsheet columns
+    * **Connect to over 250 popular tools** and platforms via our no-code platform
+    * **Any other platform** via webhooks for custom integration
+  </Accordion>
+</AccordionGroup>
+
+<Note>
+  Call variables are crucial for personalizing AI conversations. They enable the AI to use specific customer information during calls, making interactions more relevant and effective.
+</Note>
+
+## Call Flow Configuration
+
+### Who Speaks First?
+
+Control whether your assistant or the customer initiates the conversation.
+
+<CardGroup cols={2}>
+  <Card title="AI Assistant" icon="robot">
+    **Default behavior:** Assistant starts the conversation
+
+    The AI will greet the caller immediately and lead the conversation flow once connected.
+
+    **Ideal for:** Most outbound scenarios, sales calls, appointment reminders
+  </Card>
+
+  <Card title="Customer" icon="user">
+    **Wait for customer:** Assistant listens first
+
+    If you choose “Customer”, the AI waits for the customer to speak first before responding.
+
+    **Ideal for:** Inbound support calls, reception scenarios, reactive assistance
+  </Card>
+</CardGroup>
+
+### First Message
+
+Configure what your assistant says first when the call begins.
+
+<AccordionGroup>
+  <Accordion title="First Message Text" icon="message">
+    Write the opening message your assistant speaks at the start of each call.
+
+    **Best practices:**
+
+    * Keep it brief and friendly
+    * Clearly introduce your company/purpose
+    * Set expectations for the conversation
+    * Use variables for personalization (e.g., `{customer_name}`)
+
+    **Example:** “Hello {customer_name}, this is Sarah from Famulor. I’m calling regarding your recent inquiry about our services. Do you have a moment to chat?”
+  </Accordion>
+
+  <Accordion title="First Audio File" icon="volume-high">
+    **Optional:** Upload a custom audio file instead of text-to-speech.
+
+    **Requirements:**
+
+    * MP3 or WAV format
+    * Clear, high-quality recording
+    * Professional voice and tone
+    * Matches your assistant’s voice if you use voice cloning
+
+    **Benefits:**
+
+    * Perfect pronunciation and delivery
+    * Consistent brand voice
+    * Professional first impression
+    * No text-to-speech latency for the opening
+
+    <Tip>
+      Works best if the AI voice is cloned from the same voice used in the first audio file.
+    </Tip>
+  </Accordion>
+</AccordionGroup>
+
+<Note>
+  See our [First Message Guide](/ai-assistants/initial-message) for detailed best practices and examples.
+</Note>
+
+## System Prompt
+
+Define the personality, goals, and behavioral guidelines of the assistant.
+
+### Editing Tools
+
+Choose the editing experience that works best for you:
+
+<CardGroup cols={2}>
+  <Card title="AI Prompt Editor" icon="wand-magic-sparkles" href="/ai-assistants/ai-prompt-editor">
+    **Chat-based editing with AI assistance**
+
+    Describe changes in simple language and let the AI suggest intelligent modifications. Review and accept/decline each change individually.
+
+    **Ideal for:** Fast iterations, improving existing prompts, text-focused editing
+  </Card>
+
+  <Card title="Flow Builder" icon="share-nodes" href="/ai-assistants/flow-builder">
+    **Visual drag-and-drop editor**
+
+    Design conversation flows by connecting nodes on a canvas. Create branching logic and multi-path decision trees visually.
+
+    **Ideal for:** Complex call flows, structured scripts, visual thinkers
+  </Card>
+</CardGroup>
+
+<Note>
+  Both tools save the prompt in the same field — switching between them is possible but may require adjustments.
+</Note>
+
+### Prompt Configuration
+
+<CardGroup cols={2}>
+  <Card title="Custom Prompt" icon="pencil">
+    Write your own system prompt from scratch
+
+    * Full control over assistant behavior
+    * Tailored to specific use cases
+    * Supports Markdown formatting
+  </Card>
+
+  <Card title="Template Library" icon="folder">
+    Start with pre-made templates
+
+    * Available in multiple languages
+    * Various conversation types
+    * Proven, effective prompts
+  </Card>
+</CardGroup>
+
+### Best Practices
+
+<AccordionGroup>
+  <Accordion title="Be Specific" icon="bullseye">
+    Clearly define the assistant’s role, goals, and limitations.
+
+    **Include:**
+
+    * Who the assistant represents
+    * What it aims to achieve
+    * What it should/should not do
+  </Accordion>
+
+  <Accordion title="Set Boundaries" icon="shield">
+    Define which topics and actions are off-limits.
+
+    **Consider:**
+
+    * Privacy requirements
+    * Legal compliance
+    * Brand guidelines
+  </Accordion>
+
+  <Accordion title="Use Examples" icon="lightbulb">
+    Provide example conversations to guide behavior.
+
+    **Examples help with:**
+
+    * Tone and style
+    * Response length
+    * Handling objections
+  </Accordion>
+</AccordionGroup>
+
+<Tip>
+  See our [System Prompt Guide](/ai-assistants/system-prompt) for detailed best practices and examples.
+</Tip>
+
+# Post-Call Actions
+
+Extract data from the call and send it to an app or webhook for automation workflows.
+
+## Overview
+
+Automate actions post-call:
+
+* Extract structured data from conversations using AI
+* Send extracted variables to webhooks for automation
+* Trigger workflows in connected platforms
+* Update CRM records and databases
+* Enable complex automation scenarios
+
+## Post-Call Variables
+
+Define variables the AI should extract from the call and send to a webhook.
+
+### Variables Configuration
+
+Configure what information the AI should extract from each conversation:
+
+<AccordionGroup>
+  <Accordion title="Variable Definition" icon="code">
+    Create variables the AI should identify and extract from conversations.
+
+    **How extraction works:**
+    The AI analyzes the complete call transcript and considers your system prompt context to extract the requested variables. It understands what was discussed during the call and extracts relevant information based on your variable descriptions.
+
+    **Configuration:**
+
+    * **Name:** Variable identifier (3–16 characters, lowercase, alphanumeric)
+    * **Type:** Data type for the extracted value
+    * **Description:** Clear explanation so the AI understands what to extract from the conversation
+
+    **Variable types:**
+
+    * **String:** Text values (names, addresses, comments)
+    * **Number:** Numeric values (quantities, prices, ratings)
+    * **True/False:** Boolean values (yes/no answers, goal achieved)
+  </Accordion>
+
+  <Accordion title="Standard Variables" icon="list">
+    Every assistant comes with these essential standard variables:
+
+    **status (True/False):** Whether the call goal was achieved or not
+
+    **summary (String):** Brief call summary in a few words
+
+    You can add custom variables based on your specific use case.
+  </Accordion>
+
+  <Accordion title="Variable Examples" icon="lightbulb">
+    Common variables for different scenarios:
+
+    **Sales qualification:**
+
+    * `budget` (Number): Customer’s budget range
+    * `decision_maker` (True/False): Whether the caller is the decision-maker
+    * `timeline` (String): When they need the solution
+    * `pain_points` (String): Main challenges mentioned
+
+    **Appointment booking:**
+
+    * `appointment_date` (String): Preferred appointment date
+    * `service_type` (String): Type of requested service
+    * `contact_method` (String): Preferred contact method
+
+    **Support calls:**
+
+    * `issue_type` (String): Problem category
+    * `urgency_level` (Number): Priority rating (1–10)
+    * `resolution_status` (True/False): Whether the issue was resolved
+  </Accordion>
+</AccordionGroup>
+
+### Extraction Process
+
+<AccordionGroup>
+  <Accordion title="How the AI Extracts Variables" icon="brain">
+    The AI uses advanced analysis to extract variables from your calls:
+
+    **Data sources:**
+
+    * **Full call transcript:** Everything said by both AI and customer
+    * **System prompt context:** Your assistant’s goals and instructions guide extraction
+    * **Variable descriptions:** Clear descriptions you provide for each variable
+
+    **Analysis method:**
+
+    1. The AI reviews the entire conversation transcript
+    2. Considers the system prompt and call objectives
+    3. Identifies relevant information based on variable descriptions
+    4. Extracts and formats data according to specified types
+    5. Validates extracted values before sending them to the webhook
+  </Accordion>
+</AccordionGroup>
+
+### Best Practices
+
+<Warning>
+  **Variable naming:** Use only lowercase letters and alphanumeric characters. No spaces or special characters except underscores.
+</Warning>
+
+<Tip>
+  **Clear descriptions:** Write descriptions that clearly explain what the AI should look for in the transcript. The more specific and context-aware, the better the extraction accuracy.
+</Tip>
+
+<Note>
+  **System prompt synergy:** Your variable descriptions work best when aligned with your system prompt goals. If your assistant is designed for lead qualification, your variables should reflect that purpose.
+</Note>
+
+## Webhook Configuration
+
+Send a request to a URL that transmits the extracted variables to external systems.
+
+### Webhook Settings
+
+<AccordionGroup>
+  <Accordion title="Webhook Status" icon="check">
+    **Enabled/Disabled:** Control whether webhooks are sent after calls
+
+    **Default:** Disabled — enable only if you have a webhook endpoint ready to receive data
+  </Accordion>
+
+  <Accordion title="Webhook URL" icon="link">
+    **URL endpoint:** Where the extracted data should be sent
+
+    **Format:** Must be a valid URL
+
+    **Example:** `https://automate.famulor.de/api/v1/webhooks/your-webhook-id`
+
+    **Test functionality:** The built-in test function sends sample data to check connectivity
+  </Accordion>
+
+  <Accordion title="Delivery Options" icon="gear">
+    **Send webhook only on completion:**
+
+    * **Yes (default):** Send data only for completed calls
+    * **No:** Send data for all calls, regardless of completion status
+
+    **Include recording in webhook:**
+
+    * **Yes (default):** Include recording URL in webhook payload
+    * **No:** Send only extracted variables without recording link
+  </Accordion>
+</AccordionGroup>
+
+### Webhook Payload
+
+The webhook receives a comprehensive JSON payload with call details, extracted variables, and transcript. Full API documentation is available at [Post-Call Webhook API](/api-reference/webhooks/post-call).
+
+**Key payload fields:**
+
+<AccordionGroup>
+  <Accordion title="Call Information" icon="phone">
+    * **id:** Unique call identifier
+    * **customer_phone:** Customer’s phone number (E.164 format)
+    * **assistant_phone:** Assistant’s phone number
+    * **duration:** Call duration in seconds
+    * **status:** Call status (initiated, ringing, busy, in progress, ended, completed, ended by customer, ended by assistant, no answer, failed)
+    * **created_at/finished_at:** ISO 8601 timestamps
+  </Accordion>
+
+  <Accordion title="Extracted Variables" icon="code">
+    * **extracted_variables:** Data extracted by AI based on your post-call schema configuration
+    * **input_variables:** Variables passed before the call
+    * Includes standard variables (status, summary) plus your custom variables
+  </Accordion>
+
+  <Accordion title="Conversation Data" icon="message">
+    * **transcript:** Detailed conversation transcript with timestamps
+    * **formatted_transcript:** Human-readable conversation format
+    * **recording_url:** URL of call recording (if enabled)
+  </Accordion>
+
+  <Accordion title="Campaign & Lead Data" icon="users">
+    * **lead:** Lead information (for campaign calls)
+    * **campaign:** Campaign details and settings
+    * Only included for calls part of campaigns
+  </Accordion>
+</AccordionGroup>
+
+**Example Webhook Payload:**
+
+```json
+{
+  "id": 12345,
+  "customer_phone": "+491234567890",
+  "assistant_phone": "+49987654321",
+  "duration": 125,
+  "status": "completed",
+  "extracted_variables": {
+    "status": true,
+    "summary": "Customer interested in product demo",
+    "lead_quality": "high",
+    "budget": 5000
+  },
+  "input_variables": {
+    "customer_name": "Max Mustermann",
+    "product_interest": "Pro Plan"
+  },
+  "transcript": [
+    {
+      "text": "Hello! This is Sarah from Famulor.",
+      "type": "transcript",
+      "sender": "bot",
+      "timestamp": 1756812511.315143
+    },
+    {
+      "text": "Hello, I’m doing well, thank you.",
+      "type": "transcript", 
+      "sender": "human",
+      "timestamp": 1756812514.104436
+    }
+  ],
+  "formatted_transcript": "AI: Hello! This is Sarah from Famulor.\nCustomer: Hello, I’m doing well, thank you.",
+  "recording_url": "https://app.famulor.de/storage/recordings/call-12345.mp4",
+  "created_at": "2025-01-15T10:30:00.000000Z",
+  "finished_at": "2025-01-15T10:32:05.000000Z"
+}
+```
+
+### Testing Webhooks
+
+<Tip>
+  **Test before going live:** Use the “Send Test Request” button to send sample data to your webhook endpoint and verify everything works correctly.
+</Tip>
+
+**Test process:**
+
+1. Configure your variables and webhook URL
+2. Save your assistant settings
+3. Click “Send Test Request”
+4. Verify your webhook endpoint receives the test data
+5. Confirm the payload structure matches your expectations
+
+## Integration Examples
+
+### Our Automation Platform
+
+**Primary integration:** Use our built-in no-code automation platform for seamless workflows:
+
+* **Direct webhook processing:** No external setup required
+* **Over 250 app integrations:** Connect to CRM, email, calendars, and more
+* **Visual workflow builder:** Create complex automations without code
+* **Real-time data synchronization:** Instant processing of extracted variables
+* **Prebuilt templates:** Ready-to-use workflows for common scenarios
+
+**Common automation workflows:**
+
+* **CRM updates:** Automatically update contact records in HubSpot, Salesforce, Pipedrive
+* **Email follow-ups:** Send personalized emails based on call outcomes
+* **Lead scoring:** Update lead scores based on extracted variables
+* **Calendar booking:** Automatically schedule follow-up appointments
+* **Team notifications:** Alert team members about important calls
+
+### External Platforms
+
+**Any platform with webhook support:**
+
+* Receive webhook data from our platform
+* Process extracted variables in your own systems
+* Build custom automation workflows
+* Integrate any API or service that accepts webhooks
+
+**Use cases:**
+
+* Connect to any CRM, email platform, or business tool
+* Send data to custom applications
+* Trigger workflows in third-party automation platforms
+* Store data in external databases or systems
+
+### Custom Development
+
+**API endpoints:** Build custom receivers for webhook data
+
+**Database integration:** Store call data within your own systems
+
+**Business logic:** Trigger complex workflows based on extracted variables
+
+## Testing Your Assistant
+
+After configuring your assistant’s settings, it’s important to thoroughly test before deploying to production.
+
+### Testing Methods
+
+<AccordionGroup>
+  <Accordion title="Talk to Your Assistant" icon="microphone">
+    **Web-based testing:** Use the “Talk to Your Assistant” button to test directly via your browser
+
+    **Features:**
+
+    * Real-time voice conversation through your web browser
+    * Test all assistant capabilities, including tools and knowledge base
+    * No phone required — ideal for quick iterations
+    * Immediate feedback on responses and behavior
+
+    **Ideal for:** Rapid testing during development and configuration
+  </Accordion>
+
+  <Accordion title="Phone Call Test" icon="phone">
+    **Real phone call testing:** Call your assistant from any phone number
+
+    **Outbound assistants:**
+
+    * If no specific number is set: the assistant calls from a random number
+    * If a caller ID is configured: the assistant calls from your specified number
+    * Test the full outbound flow including dialing and first message
+
+    **Inbound assistants:**
+
+    * Call the assigned phone number directly
+    * Test how the assistant handles incoming calls
+    * Verify call routing and response quality
+
+    **Ideal for:** Final tests under real phone conditions and audio quality
+  </Accordion>
+</AccordionGroup>
+
+### Testing Checklist
+
+<Tip>
+  **Comprehensive testing:** Test all configured features including knowledge base queries, variable extraction, and webhook delivery.
+</Tip>
+
+**Key tests:**
+
+* Voice clarity and response speed
+* Knowledge base integration (if configured)
+* Tool functionality (forwarding, scheduling, etc.)
+* Accuracy of variable extraction
+* Webhook delivery (check if your endpoint receives data)
+* Edge cases and error handling
+
+## Web Widget Integration
+
+Configure your assistant to operate as a web widget on your site to enable seamless customer interactions.
+
+### Widget Configuration
+
+<AccordionGroup>
+  <Accordion title="Widget Setup" icon="code">
+    **Easy integration:** Add your AI assistant to any website with a simple code snippet
+
+    **Features:**
+
+    * **Voice chat:** Customers can speak directly to your assistant
+    * **Text fallback:** Option for text-based conversations
+    * **Customizable appearance:** Adjust colors and styling to match your brand
+    * **Mobile optimized:** Works on all devices and screen sizes
+  </Accordion>
+
+  <Accordion title="Widget Behavior" icon="gear">
+    **Smart interactions:** The widget adapts to your assistant configuration
+
+    **Capabilities:**
+
+    * Uses the same knowledge base and tools as the phone assistant
+    * Supports all configured languages
+    * Extracts the same post-call variables
+    * Sends webhooks for web conversations
+    * Respects the same system prompt and personality
+  </Accordion>
+
+  <Accordion title="Use Cases" icon="lightbulb">
+    **Common applications:**
+
+    **Customer support:** Automated 24/7 support on your website  
+    **Lead qualification:** Qualify visitors before passing to sales  
+    **Appointment booking:** Allow visitors to schedule directly via the widget  
+    **FAQ handling:** Answer frequently asked questions instantly  
+    **Product demos:** Guide visitors through your product features
+  </Accordion>
+</AccordionGroup>
+
+<Note>
+  Detailed testing instructions and integration guides for the widget are in our [Testing the Assistant Documentation](/ai-assistants/testing).
+</Note>
+
+<Note>
+  For detailed instructions and examples on webhook integration, see our [Automation Documentation](/automation/overview).
+</Note>

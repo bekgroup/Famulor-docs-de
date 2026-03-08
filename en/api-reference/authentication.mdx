@@ -1,0 +1,42 @@
+---
+title: "Authentication"
+icon: "key"
+description: "Learn how to authenticate your API requests"
+---
+
+All Famulor API endpoints require authentication via API keys. Include your API key in every request using the Authorization header.
+
+## Getting Your API Key
+
+Follow these steps to create an API key:
+
+1. Sign in to your account at [https://app.famulor.de](https://app.famulor.de)
+2. Go to the API Keys section
+3. Click "Create new API Key"
+4. Save your API key securely - you won't be able to view it again
+
+<Warning>
+  Protect your API key like a password. Never expose it in public repositories, 
+  client-side code, or share it with unauthorized parties.
+</Warning>
+
+## Authentication Header
+
+Add your API key to the `Authorization` header using Bearer token format:
+
+```
+Authorization: Bearer YOUR_API_KEY
+```
+
+Make sure to replace `YOUR_API_KEY` with your actual key.
+
+## Request Example
+
+Here's a sample cURL command showing proper authentication:
+
+```bash
+curl -X GET "https://app.famulor.de/api/user/campaigns" \
+     -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+Remember to substitute `YOUR_API_KEY` with your real API key.

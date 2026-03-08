@@ -1,0 +1,1275 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "Famulor",
+  "colors": {
+    "primary": "#1FD5F9",
+    "light": "#1FD5F9",
+    "dark": "#1FD5F9"
+  },
+  "favicon": "/favicon.png",
+  "navigation": {
+    "languages": [
+      {
+        "language": "en",
+        "default": true,
+        "tabs": [
+          {
+            "tab": "Platform Guide",
+            "icon": "book",
+            "groups": [
+              {
+                "group": "Introduction",
+                "pages": [
+                  "en/introduction/what-is-Famulor",
+                  "en/introduction/how-it-works",
+                  "en/introduction/key-terminology",
+                  "en/introduction/whitepaper-ki-telefonie"
+                ]
+              },
+              {
+                "group": "For Developers",
+                "icon": "code",
+                "pages": [
+                  "en/developers/overview",
+                  "en/developers/authentication-guide",
+                  "en/developers/api-integration-examples"
+                ]
+              },
+              {
+                "group": "Getting Started",
+                "pages": [
+                  "en/getting-started/core-concepts",
+                  "en/getting-started/understanding-billing"
+                ]
+              },
+              {
+                "group": "AI Assistants Overview",
+                "pages": [
+                  "en/ai-assistants/what-is-ai-assistant",
+                  {
+                    "group": "Creating and Editing an AI Assistant",
+                    "icon": "robot",
+                    "pages": [
+                      "en/ai-assistants/creating-and-editing",
+                      "en/ai-assistants/general-settings",
+                      "en/ai-assistants/prompt-and-tools",
+                      "en/ai-assistants/system-prompt",
+                      "en/ai-assistants/ai-prompt-editor",
+                      "en/ai-assistants/initial-message",
+                      "en/ai-assistants/variablen",
+                      "en/ai-assistants/assistant-best-practices"
+                    ]
+                  },
+                  {
+                    "group": "Behavior and Modes",
+                    "pages": [
+                      "en/ai-assistants/assistant-modes",
+                      "en/ai-assistants/custom-gpt",
+                      "en/ai-assistants/flow-builder"
+                    ]
+                  },
+                  {
+                    "group": "Tools and Integrations",
+                    "pages": [
+                      "en/ai-assistants/tools-and-functions",
+                      "en/ai-assistants/custom-mid-call-tools",
+                      "en/ai-assistants/cal-com-scheduling",
+                      "en/ai-assistants/gohighlevel-scheduling"
+                    ]
+                  },
+                  {
+                    "group": "Voice and Channels",
+                    "pages": [
+                      "en/ai-assistants/voice-selection",
+                      "en/ai-assistants/filler-audio",
+                      "en/ai-assistants/web-widget"
+                    ]
+                  },
+                  {
+                    "group": "Testing",
+                    "pages": [
+                      "en/ai-assistants/testing"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Example Prompts",
+                "pages": [
+                  "en/ai-assistants/example-prompts/general-prompt-engineering-guide",
+                  "en/ai-assistants/example-prompts/prompt-guide-specific-situations",
+                  "en/ai-assistants/example-prompts/pause-or-read-slowly",
+                  "en/ai-assistants/example-prompts/intelligent-answering-machine",
+                  "en/ai-assistants/example-prompts/receptionist",
+                  "en/ai-assistants/example-prompts/appointment-booking",
+                  "en/ai-assistants/example-prompts/first-level-support"
+                ]
+              },
+              {
+                "group": "Custom Dashboards",
+                "icon": "chart-line",
+                "pages": [
+                  "en/custom-dashboards/overview",
+                  "en/custom-dashboards/widget-types"
+                ]
+              },
+              {
+                "group": "Phone Numbers",
+                "pages": [
+                  "en/phone-numbers/types",
+                  "en/phone-numbers/purchasing-and-managing",
+                  "en/phone-numbers/pricing-and-regions",
+                  "en/phone-numbers/sms-capabilities",
+                  "en/phone-numbers/assigning-to-assistants",
+                  "en/phone-numbers/call-forwarding"
+                ]
+              },
+              {
+                "group": "Inbound Calls",
+                "pages": [
+                  "en/inbound-calls/overview",
+                  "en/inbound-calls/provisioning",
+                  "en/inbound-calls/configuring",
+                  "en/inbound-calls/insights"
+                ]
+              },
+              {
+                "group": "Outbound Calls",
+                "pages": [
+                  "en/outbound-calls/overview",
+                  "en/outbound-calls/campaigns",
+                  "en/outbound-calls/caller-id",
+                  "en/outbound-calls/voicemail-handling",
+                  "en/outbound-calls/scripts-and-prompts",
+                  "en/outbound-calls/mass-dialing"
+                ]
+              },
+              {
+                "group": "WhatsApp Business",
+                "pages": [
+                  "en/whatsapp/integration",
+                  "en/whatsapp/senders",
+                  "en/whatsapp/templates",
+                  "en/whatsapp/conversations",
+                  "en/whatsapp/automation"
+                ]
+              },
+              {
+                "group": "AI Prompting & Conversation Design",
+                "pages": [
+                  "en/conversation-design/prompt-basics",
+                  "en/conversation-design/knowledge-bases",
+                  "en/conversation-design/interruptions",
+                  "en/conversation-design/language-support",
+                  "en/conversation-design/cledon"
+                ]
+              },
+              {
+                "group": "Automation & Integrations",
+                "pages": [
+                  "en/automation/overview",
+                  "en/automation/webhook-api"
+                ]
+              },
+              {
+                "group": "Costs & Pricing",
+                "pages": [
+                  "en/pricing/overview",
+                  "en/pricing/usage-based",
+                  "en/pricing/number-rentals"
+                ]
+              },
+              {
+                "group": "SIP Phone Numbers",
+                "pages": [
+                  "en/provisioning/sip-ai/sip-integration",
+                  "en/provisioning/sip-ai/twilio-integration",
+                  "en/provisioning/sip-ai/zadarma-integration",
+                  "en/provisioning/sip-ai/3cx-integration",
+                  "en/provisioning/sip-ai/easybell-integration",
+                  "en/provisioning/sip-ai/fonial-integration",
+                  "en/provisioning/sip-ai/telnyx-integration",
+                  "en/provisioning/sip-ai/vonage-integration",
+                  "en/provisioning/sip-ai/placetel-limitations",
+                  "en/provisioning/sip-ai/peoplefone-limitations",
+                  "en/provisioning/sip-ai/nfon-limitations",
+                  "en/provisioning/sip-ai/fonial-limitations",
+                  "en/provisioning/sip-ai/sipgate-limitations",
+                  "en/provisioning/sip-ai/sip-troubleshooting"
+                ]
+              },
+              {
+                "group": "Number Provisioning",
+                "pages": [
+                  "en/provisioning/supported-countries",
+                  "en/provisioning/compliance"
+                ]
+              },
+              {
+                "group": "Troubleshooting & FAQs",
+                "pages": [
+                  "en/troubleshooting/voice-problems",
+                  "en/troubleshooting/billing",
+                  "en/troubleshooting/call-quality",
+                  "en/troubleshooting/ai-behavior"
+                ]
+              },
+              {
+                "group": "MCP",
+                "icon": "plug",
+                "pages": [
+                  "en/mcp/client"
+                ]
+              },
+              {
+                "group": "Whitepapers & Resources",
+                "icon": "graduation-cap",
+                "pages": [
+                  "en/resources/whitepaper-ki-telefonie-zukunft"
+                ]
+              },
+              {
+                "group": "Sales & Best Practices",
+                "pages": [
+                  "en/sales/beste-zeit-fuer-kaltakquise",
+                  "en/sales/gespraechsfuehrung-und-einwandbehandlung",
+                  "en/sales/skript-optimierung",
+                  "en/sales/datenschutz-und-compliance",
+                  "en/sales/zielgruppenansprache",
+                  "en/sales/technische-optimierung",
+                  "en/sales/erfolgsmessung-und-reporting"
+                ]
+              },
+              {
+                "group": "Legal Information",
+                "icon": "scale-balanced",
+                "pages": [
+                  "en/legal/automatisches-loeschen-anrufdaten",
+                  "en/legal/voice-cloning-legal-information",
+                  "en/legal/voice-cloning-compliance",
+                  "en/legal/voice-cloning-contracts"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "No-Code Automation",
+            "icon": "wand-magic-sparkles",
+            "groups": [
+              {
+                "group": "No-Code Automation Platform",
+                "pages": [
+                  "en/automation-platform/introduction",
+                  "en/automation-platform/building-flows",
+                  "en/automation-platform/passing-data",
+                  "en/automation-platform/publishing-flows",
+                  "en/automation-platform/debugging-runs",
+                  "en/automation-platform/versioning",
+                  "en/automation-platform/known-limits"
+                ]
+              },
+              {
+                "group": "Call-related",
+                "pages": [
+                  "en/automation-platform/calls-related/Famulor-tool",
+                  "en/automation-platform/calls-related/common-integrations",
+                  "en/automation-platform/calls-related/sms-capabilities"
+                ]
+              },
+              {
+                "group": "Tutorials",
+                "pages": [
+                  "en/automation-platform/tutorials/outbound-form-call",
+                  "en/automation-platform/tutorials/inbound-context-injection"
+                ]
+              },
+              {
+                "group": "Integrations",
+                "pages": [
+                  "en/automation-platform/integrations/overview",
+                  "en/automation-platform/integrations/crm-sales-hub",
+                  "en/automation-platform/integrations/communication-collaboration-hub",
+                  "en/automation-platform/integrations/ai-machine-learning",
+                  "en/automation-platform/integrations/crm",
+                  "en/automation-platform/integrations/communication",
+                  "en/automation-platform/integrations/email-marketing",
+                  "en/automation-platform/integrations/productivity",
+                  "en/automation-platform/integrations/calendar",
+                  "en/automation-platform/integrations/ecommerce"
+                ]
+              },
+              {
+                "group": "Popular Individual Integrations",
+                "pages": [
+                  "en/automation-platform/integrations/einzelintegrations/hubspot",
+                  "en/automation-platform/integrations/einzelintegrations/salesforce",
+                  "en/automation-platform/integrations/einzelintegrations/openai",
+                  "en/automation-platform/integrations/einzelintegrations/anthropic-claude",
+                  "en/automation-platform/integrations/einzelintegrations/slack",
+                  "en/automation-platform/integrations/einzelintegrations/microsoft-teams",
+                  "en/automation-platform/integrations/einzelintegrations/gmail",
+                  "en/automation-platform/integrations/einzelintegrations/google-calendar",
+                  "en/automation-platform/integrations/einzelintegrations/google-sheets",
+                  "en/automation-platform/integrations/einzelintegrations/shopify",
+                  "en/automation-platform/integrations/einzelintegrations/calendly",
+                  "en/automation-platform/integrations/einzelintegrations/cal-com",
+                  "en/automation-platform/integrations/einzelintegrations/clickup",
+                  "en/automation-platform/integrations/einzelintegrations/notion",
+                  "en/automation-platform/integrations/einzelintegrations/monday",
+                  "en/automation-platform/integrations/einzelintegrations/zoom"
+                ]
+              },
+              {
+                "group": "CRM & Sales Integrations",
+                "pages": [
+                  "en/automation-platform/integrations/einzelintegrations/pipedrive",
+                  "en/automation-platform/integrations/einzelintegrations/activecampaign",
+                  "en/automation-platform/integrations/einzelintegrations/airtable",
+                  "en/automation-platform/integrations/einzelintegrations/asana"
+                ]
+              },
+              {
+                "group": "Integration Database",
+                "pages": [
+                  "en/automation-platform/integrations/famulor-integrations-database",
+                  "en/automation-platform/integrations/famulor-integrations-c-z",
+                  "en/automation-platform/integrations/zapier",
+                  "en/automation-platform/integrations/make-com",
+                  "en/automation-platform/integrations/n8n"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Mid-Call",
+            "icon": "link",
+            "groups": [
+              {
+                "group": "Mid-Call Tools",
+                "pages": [
+                  "en/automation-platform/mid-call-tools/was-sind-mid-call-tools",
+                  "en/automation-platform/mid-call-tools/wann-verwenden",
+                  "en/automation-platform/mid-call-tools/integration-templates/webhook-automation"
+                ]
+              },
+              {
+                "group": "Mid-Call Tool Integrations",
+                "pages": [
+                  {
+                    "group": "Healthcare",
+                    "pages": [
+                      "en/automation-platform/mid-call-tools/integration-templates/doctolib-integration"
+                    ]
+                  },
+                  {
+                    "group": "CRM & Sales",
+                    "pages": [
+                      "en/automation-platform/mid-call-tools/integration-templates/hubspot-kontakt-abruf",
+                      "en/automation-platform/mid-call-tools/integration-templates/hubspot-deal-management",
+                      "en/automation-platform/mid-call-tools/integration-templates/hubspot-lead-erstellung",
+                      "en/automation-platform/mid-call-tools/integration-templates/salesforce-integration",
+                      "en/automation-platform/mid-call-tools/integration-templates/pipedrive-integration",
+                      "en/automation-platform/mid-call-tools/integration-templates/zoho-crm-integration",
+                      "en/automation-platform/mid-call-tools/integration-templates/google-sheets-integration"
+                    ]
+                  },
+                  {
+                    "group": "Communication",
+                    "pages": [
+                      "en/automation-platform/mid-call-tools/integration-templates/slack-integration",
+                      "en/automation-platform/mid-call-tools/integration-templates/teams-integration"
+                    ]
+                  },
+                  {
+                    "group": "Marketing",
+                    "pages": [
+                      "en/automation-platform/mid-call-tools/integration-templates/sendgrid-integration",
+                      "en/automation-platform/mid-call-tools/integration-templates/mailchimp-integration"
+                    ]
+                  },
+                  {
+                    "group": "Project Management",
+                    "pages": [
+                      "en/automation-platform/mid-call-tools/integration-templates/asana-integration",
+                      "en/automation-platform/mid-call-tools/integration-templates/notion-integration",
+                      "en/automation-platform/mid-call-tools/integration-templates/jira-integration",
+                      "en/automation-platform/mid-call-tools/integration-templates/monday-integration"
+                    ]
+                  },
+                  {
+                    "group": "Payments",
+                    "pages": [
+                      "en/automation-platform/mid-call-tools/integration-templates/stripe-integration",
+                      "en/automation-platform/mid-call-tools/integration-templates/shopify-integration"
+                    ]
+                  },
+                  {
+                    "group": "Accounting & HR",
+                    "pages": [
+                      "en/automation-platform/mid-call-tools/integration-templates/lexoffice-integration",
+                      "en/automation-platform/mid-call-tools/integration-templates/personio-integration",
+                      "en/automation-platform/mid-call-tools/integration-templates/datev-beleg-integration",
+                      "en/automation-platform/mid-call-tools/integration-templates/datev-kontenumsaetze-integration",
+                      "en/automation-platform/mid-call-tools/integration-templates/datev-mahnung-integration",
+                      "en/automation-platform/mid-call-tools/integration-templates/zoho-books-integration"
+                    ]
+                  },
+                  {
+                    "group": "Support",
+                    "pages": [
+                      "en/automation-platform/mid-call-tools/integration-templates/zendesk-integration",
+                      "en/automation-platform/mid-call-tools/integration-templates/zoho-desk-integration"
+                    ]
+                  },
+                  {
+                    "group": "Logistics & Documents",
+                    "pages": [
+                      "en/automation-platform/mid-call-tools/integration-templates/dhl-integration",
+                      "en/automation-platform/mid-call-tools/integration-templates/docusign-integration"
+                    ]
+                  },
+                  {
+                    "group": "Hospitality & Food",
+                    "pages": [
+                      "en/automation-platform/mid-call-tools/integration-templates/lieferando-integration",
+                      "en/automation-platform/mid-call-tools/integration-templates/opentable-integration"
+                    ]
+                  },
+                  {
+                    "group": "ERP & E-Commerce",
+                    "pages": [
+                      "en/automation-platform/mid-call-tools/integration-templates/sap-business-one-integration",
+                      "en/automation-platform/mid-call-tools/integration-templates/dynamics365-integration",
+                      "en/automation-platform/mid-call-tools/integration-templates/shopware-integration",
+                      "en/automation-platform/mid-call-tools/integration-templates/woocommerce-integration",
+                      "en/automation-platform/mid-call-tools/integration-templates/jtl-wawi-integration"
+                    ]
+                  },
+                  {
+                    "group": "General",
+                    "pages": [
+                      "en/automation-platform/mid-call-tools/integration-templates/feiertage-integration",
+                      "en/automation-platform/mid-call-tools/integration-templates/wetter-integration",
+                      "en/automation-platform/mid-call-tools/integration-templates/weltzeit-integration",
+                      "en/automation-platform/mid-call-tools/integration-templates/api-vorlagen"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "API Reference",
+            "icon": "code",
+            "groups": [
+              {
+                "group": "API Reference",
+                "pages": [
+                  "en/api-reference/introduction",
+                  "en/api-reference/authentication",
+                  "en/api-reference/user/me"
+                ]
+              },
+              {
+                "group": "AI Assistants",
+                "pages": [
+                  "en/api-reference/assistants/list",
+                  "en/api-reference/assistants/outbound",
+                  "en/api-reference/assistants/create",
+                  "en/api-reference/assistants/update",
+                  "en/api-reference/assistants/delete",
+                  "en/api-reference/assistants/languages",
+                  "en/api-reference/assistants/voices",
+                  "en/api-reference/assistants/models",
+                  "en/api-reference/assistants/synthesizer-providers",
+                  "en/api-reference/assistants/transcriber-providers",
+                  "en/api-reference/assistants/phone-numbers",
+                  "en/api-reference/assistants/enable-inbound-webhook",
+                  "en/api-reference/assistants/disable-inbound-webhook",
+                  "en/api-reference/assistants/disable-webhook"
+                ]
+              },
+              {
+                "group": "Leads",
+                "pages": [
+                  "en/api-reference/leads/list",
+                  "en/api-reference/leads/create",
+                  "en/api-reference/leads/update",
+                  "en/api-reference/leads/delete"
+                ]
+              },
+              {
+                "group": "Campaigns",
+                "pages": [
+                  "en/api-reference/campaigns/list",
+                  "en/api-reference/campaigns/update-status"
+                ]
+              },
+              {
+                "group": "Mid Call Tools",
+                "pages": [
+                  "en/api-reference/mid-call-tools/get-tools",
+                  "en/api-reference/mid-call-tools/get-tool",
+                  "en/api-reference/mid-call-tools/create-tool",
+                  "en/api-reference/mid-call-tools/update-tool",
+                  "en/api-reference/mid-call-tools/delete-tool"
+                ]
+              },
+              {
+                "group": "AI Chatbot",
+                "pages": [
+                  "en/api-reference/conversations/list",
+                  "en/api-reference/ai-chatbot/create-conversation",
+                  "en/api-reference/ai-chatbot/get-conversation",
+                  "en/api-reference/ai-chatbot/send-conversation"
+                ]
+              },
+              {
+                "group": "AI Replies",
+                "pages": [
+                  "en/api-reference/ai-replies/generate-reply"
+                ]
+              },
+              {
+                "group": "Knowledgebases",
+                "pages": [
+                  "en/api-reference/knowledgebases/list",
+                  "en/api-reference/knowledgebases/get",
+                  "en/api-reference/knowledgebases/create",
+                  "en/api-reference/knowledgebases/update",
+                  "en/api-reference/knowledgebases/delete",
+                  "en/api-reference/knowledgebases/list-documents",
+                  "en/api-reference/knowledgebases/get-document",
+                  "en/api-reference/knowledgebases/create-document",
+                  "en/api-reference/knowledgebases/update-document",
+                  "en/api-reference/knowledgebases/delete-document"
+                ]
+              },
+              {
+                "group": "SMS",
+                "pages": [
+                  "en/api-reference/sms/send"
+                ]
+              },
+              {
+                "group": "WhatsApp",
+                "pages": [
+                  "en/api-reference/whatsapp/get-senders",
+                  "en/api-reference/whatsapp/get-templates",
+                  "en/api-reference/whatsapp/send-template",
+                  "en/api-reference/whatsapp/send-freeform",
+                  "en/api-reference/whatsapp/session-status"
+                ]
+              },
+              {
+                "group": "Phone Numbers",
+                "pages": [
+                  "en/api-reference/phone-numbers/list",
+                  "en/api-reference/phone-numbers/search",
+                  "en/api-reference/phone-numbers/purchase",
+                  "en/api-reference/phone-numbers/release"
+                ]
+              },
+              {
+                "group": "Calls",
+                "pages": [
+                  "en/api-reference/calls/list",
+                  "en/api-reference/user/calls/get",
+                  "en/api-reference/calls/make",
+                  "en/api-reference/calls/delete"
+                ]
+              },
+              {
+                "group": "Webhooks",
+                "pages": [
+                  "en/api-reference/webhooks/post-call"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "MCP",
+            "icon": "plug",
+            "groups": [
+              {
+                "group": "MCP",
+                "icon": "plug",
+                "pages": [
+                  "en/mcp/server"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "language": "de",
+        "tabs": [
+          {
+            "tab": "Plattform-Anleitung",
+            "icon": "book",
+            "groups": [
+              {
+                "group": "Einführung",
+                "pages": [
+                  "de/introduction/what-is-Famulor",
+                  "de/introduction/how-it-works",
+                  "de/introduction/key-terminology",
+                  "de/introduction/whitepaper-ki-telefonie"
+                ]
+              },
+              {
+                "group": "Für Entwickler",
+                "icon": "code",
+                "pages": [
+                  "de/developers/overview",
+                  "de/developers/authentication-guide",
+                  "de/developers/api-integration-examples"
+                ]
+              },
+              {
+                "group": "Erste Schritte",
+                "pages": [
+                  "de/getting-started/core-concepts",
+                  "de/getting-started/understanding-billing"
+                ]
+              },
+              {
+                "group": "KI-Assistenten Übersicht",
+                "pages": [
+                  "de/ai-assistants/what-is-ai-assistant",
+                  {
+                    "group": "KI-Assistent erstellen und bearbeiten",
+                    "icon": "robot",
+                    "pages": [
+                      "de/ai-assistants/creating-and-editing",
+                      "de/ai-assistants/general-settings",
+                      "de/ai-assistants/prompt-and-tools",
+                      "de/ai-assistants/system-prompt",
+                      "de/ai-assistants/ai-prompt-editor",
+                      "de/ai-assistants/initial-message",
+                      "de/ai-assistants/variablen",
+                      "de/ai-assistants/assistant-best-practices"
+                    ]
+                  },
+                  {
+                    "group": "Verhalten und Modi",
+                    "pages": [
+                      "de/ai-assistants/assistant-modes",
+                      "de/ai-assistants/custom-gpt",
+                      "de/ai-assistants/flow-builder"
+                    ]
+                  },
+                  {
+                    "group": "Tools und Integrationen",
+                    "pages": [
+                      "de/ai-assistants/tools-and-functions",
+                      "de/ai-assistants/custom-mid-call-tools",
+                      "de/ai-assistants/cal-com-scheduling",
+                      "de/ai-assistants/gohighlevel-scheduling"
+                    ]
+                  },
+                  {
+                    "group": "Stimme und Kanaele",
+                    "pages": [
+                      "de/ai-assistants/voice-selection",
+                      "de/ai-assistants/filler-audio",
+                      "de/ai-assistants/web-widget"
+                    ]
+                  },
+                  {
+                    "group": "Testing",
+                    "pages": [
+                      "de/ai-assistants/testing"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Beispiel-Prompts",
+                "pages": [
+                  "de/ai-assistants/example-prompts/general-prompt-engineering-guide",
+                  "de/ai-assistants/example-prompts/prompt-guide-specific-situations",
+                  "de/ai-assistants/example-prompts/pause-or-read-slowly",
+                  "de/ai-assistants/example-prompts/intelligent-answering-machine",
+                  "de/ai-assistants/example-prompts/receptionist",
+                  "de/ai-assistants/example-prompts/appointment-booking",
+                  "de/ai-assistants/example-prompts/first-level-support"
+                ]
+              },
+              {
+                "group": "Custom Dashboards",
+                "icon": "chart-line",
+                "pages": [
+                  "de/custom-dashboards/overview",
+                  "de/custom-dashboards/widget-types"
+                ]
+              },
+              {
+                "group": "Telefonnummern",
+                "pages": [
+                  "de/phone-numbers/types",
+                  "de/phone-numbers/purchasing-and-managing",
+                  "de/phone-numbers/pricing-and-regions",
+                  "de/phone-numbers/sms-capabilities",
+                  "de/phone-numbers/assigning-to-assistants",
+                  "de/phone-numbers/call-forwarding"
+                ]
+              },
+              {
+                "group": "Eingehende Anrufe",
+                "pages": [
+                  "de/inbound-calls/overview",
+                  "de/inbound-calls/provisioning",
+                  "de/inbound-calls/configuring",
+                  "de/inbound-calls/insights"
+                ]
+              },
+              {
+                "group": "Ausgehende Anrufe",
+                "pages": [
+                  "de/outbound-calls/overview",
+                  "de/outbound-calls/campaigns",
+                  "de/outbound-calls/caller-id",
+                  "de/outbound-calls/voicemail-handling",
+                  "de/outbound-calls/scripts-and-prompts",
+                  "de/outbound-calls/mass-dialing"
+                ]
+              },
+              {
+                "group": "WhatsApp Business",
+                "pages": [
+                  "de/whatsapp/integration",
+                  "de/whatsapp/senders",
+                  "de/whatsapp/templates",
+                  "de/whatsapp/conversations",
+                  "de/whatsapp/automation"
+                ]
+              },
+              {
+                "group": "KI-Prompting & Konversationsdesign",
+                "pages": [
+                  "de/conversation-design/prompt-basics",
+                  "de/conversation-design/knowledge-bases",
+                  "de/conversation-design/interruptions",
+                  "de/conversation-design/language-support",
+                  "de/conversation-design/cledon"
+                ]
+              },
+              {
+                "group": "Automatisierung & Integrationen",
+                "pages": [
+                  "de/automation/overview",
+                  "de/automation/webhook-api"
+                ]
+              },
+              {
+                "group": "Kosten & Preise",
+                "pages": [
+                  "de/pricing/overview",
+                  "de/pricing/usage-based",
+                  "de/pricing/number-rentals"
+                ]
+              },
+              {
+                "group": "SIP Telefonnummern",
+                "pages": [
+                  "de/provisioning/sip-ai/sip-integration",
+                  "de/provisioning/sip-ai/twilio-integration",
+                  "de/provisioning/sip-ai/zadarma-integration",
+                  "de/provisioning/sip-ai/3cx-integration",
+                  "de/provisioning/sip-ai/easybell-integration",
+                  "de/provisioning/sip-ai/fonial-integration",
+                  "de/provisioning/sip-ai/telnyx-integration",
+                  "de/provisioning/sip-ai/vonage-integration",
+                  "de/provisioning/sip-ai/placetel-limitations",
+                  "de/provisioning/sip-ai/peoplefone-limitations",
+                  "de/provisioning/sip-ai/nfon-limitations",
+                  "de/provisioning/sip-ai/fonial-limitations",
+                  "de/provisioning/sip-ai/sipgate-limitations",
+                  "de/provisioning/sip-ai/sip-troubleshooting"
+                ]
+              },
+              {
+                "group": "Nummern-Bereitstellung",
+                "pages": [
+                  "de/provisioning/supported-countries",
+                  "de/provisioning/compliance"
+                ]
+              },
+              {
+                "group": "Fehlerbehebung & FAQs",
+                "pages": [
+                  "de/troubleshooting/voice-problems",
+                  "de/troubleshooting/billing",
+                  "de/troubleshooting/call-quality",
+                  "de/troubleshooting/ai-behavior"
+                ]
+              },
+              {
+                "group": "MCP",
+                "icon": "plug",
+                "pages": [
+                  "de/mcp/client"
+                ]
+              },
+              {
+                "group": "Whitepapers & Ressourcen",
+                "icon": "graduation-cap",
+                "pages": [
+                  "de/resources/whitepaper-ki-telefonie-zukunft"
+                ]
+              },
+              {
+                "group": "Vertrieb & Best Practices",
+                "pages": [
+                  "de/sales/beste-zeit-fuer-kaltakquise",
+                  "de/sales/gespraechsfuehrung-und-einwandbehandlung",
+                  "de/sales/skript-optimierung",
+                  "de/sales/datenschutz-und-compliance",
+                  "de/sales/zielgruppenansprache",
+                  "de/sales/technische-optimierung",
+                  "de/sales/erfolgsmessung-und-reporting"
+                ]
+              },
+              {
+                "group": "Rechtliche Informationen",
+                "icon": "scale-balanced",
+                "pages": [
+                  "de/legal/automatisches-loeschen-anrufdaten",
+                  "de/legal/voice-cloning-legal-information",
+                  "de/legal/voice-cloning-compliance",
+                  "de/legal/voice-cloning-contracts"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "No-Code Automatisierung",
+            "icon": "wand-magic-sparkles",
+            "groups": [
+              {
+                "group": "No-Code Automatisierungsplattform",
+                "pages": [
+                  "de/automation-platform/introduction",
+                  "de/automation-platform/building-flows",
+                  "de/automation-platform/passing-data",
+                  "de/automation-platform/publishing-flows",
+                  "de/automation-platform/debugging-runs",
+                  "de/automation-platform/versioning",
+                  "de/automation-platform/known-limits"
+                ]
+              },
+              {
+                "group": "Anruf-bezogen",
+                "pages": [
+                  "de/automation-platform/calls-related/Famulor-tool",
+                  "de/automation-platform/calls-related/common-integrations",
+                  "de/automation-platform/calls-related/sms-capabilities"
+                ]
+              },
+              {
+                "group": "Tutorials",
+                "pages": [
+                  "de/automation-platform/tutorials/outbound-form-call",
+                  "de/automation-platform/tutorials/inbound-context-injection"
+                ]
+              },
+              {
+                "group": "Integrationen",
+                "pages": [
+                  "de/automation-platform/integrations/overview",
+                  "de/automation-platform/integrations/crm-sales-hub",
+                  "de/automation-platform/integrations/communication-collaboration-hub",
+                  "de/automation-platform/integrations/ai-machine-learning",
+                  "de/automation-platform/integrations/crm",
+                  "de/automation-platform/integrations/communication",
+                  "de/automation-platform/integrations/email-marketing",
+                  "de/automation-platform/integrations/productivity",
+                  "de/automation-platform/integrations/calendar",
+                  "de/automation-platform/integrations/ecommerce"
+                ]
+              },
+              {
+                "group": "Beliebte Einzelintegrationen",
+                "pages": [
+                  "de/automation-platform/integrations/einzelintegrations/hubspot",
+                  "de/automation-platform/integrations/einzelintegrations/salesforce",
+                  "de/automation-platform/integrations/einzelintegrations/openai",
+                  "de/automation-platform/integrations/einzelintegrations/anthropic-claude",
+                  "de/automation-platform/integrations/einzelintegrations/slack",
+                  "de/automation-platform/integrations/einzelintegrations/microsoft-teams",
+                  "de/automation-platform/integrations/einzelintegrations/gmail",
+                  "de/automation-platform/integrations/einzelintegrations/google-calendar",
+                  "de/automation-platform/integrations/einzelintegrations/google-sheets",
+                  "de/automation-platform/integrations/einzelintegrations/shopify",
+                  "de/automation-platform/integrations/einzelintegrations/calendly",
+                  "de/automation-platform/integrations/einzelintegrations/cal-com",
+                  "de/automation-platform/integrations/einzelintegrations/clickup",
+                  "de/automation-platform/integrations/einzelintegrations/notion",
+                  "de/automation-platform/integrations/einzelintegrations/monday",
+                  "de/automation-platform/integrations/einzelintegrations/zoom"
+                ]
+              },
+              {
+                "group": "CRM & Sales Integrationen",
+                "pages": [
+                  "de/automation-platform/integrations/einzelintegrations/pipedrive",
+                  "de/automation-platform/integrations/einzelintegrations/activecampaign",
+                  "de/automation-platform/integrations/einzelintegrations/airtable",
+                  "de/automation-platform/integrations/einzelintegrations/asana"
+                ]
+              },
+              {
+                "group": "Integration Database",
+                "pages": [
+                  "de/automation-platform/integrations/famulor-integrations-database",
+                  "de/automation-platform/integrations/famulor-integrations-c-z",
+                  "de/automation-platform/integrations/zapier",
+                  "de/automation-platform/integrations/make-com",
+                  "de/automation-platform/integrations/n8n"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Mid-Call",
+            "icon": "link",
+            "groups": [
+              {
+                "group": "Mid-Call-Tools",
+                "pages": [
+                  "de/automation-platform/mid-call-tools/was-sind-mid-call-tools",
+                  "de/automation-platform/mid-call-tools/wann-verwenden",
+                  "de/automation-platform/mid-call-tools/integration-templates/webhook-automation"
+                ]
+              },
+              {
+                "group": "Mid-Call-Tools Integrationen",
+                "pages": [
+                  {
+                    "group": "Gesundheitswesen",
+                    "pages": [
+                      "de/automation-platform/mid-call-tools/integration-templates/doctolib-integration"
+                    ]
+                  },
+                  {
+                    "group": "CRM & Vertrieb",
+                    "pages": [
+                      "de/automation-platform/mid-call-tools/integration-templates/hubspot-kontakt-abruf",
+                      "de/automation-platform/mid-call-tools/integration-templates/hubspot-deal-management",
+                      "de/automation-platform/mid-call-tools/integration-templates/hubspot-lead-erstellung",
+                      "de/automation-platform/mid-call-tools/integration-templates/salesforce-integration",
+                      "de/automation-platform/mid-call-tools/integration-templates/pipedrive-integration",
+                      "de/automation-platform/mid-call-tools/integration-templates/zoho-crm-integration",
+                      "de/automation-platform/mid-call-tools/integration-templates/google-sheets-integration"
+                    ]
+                  },
+                  {
+                    "group": "Kommunikation",
+                    "pages": [
+                      "de/automation-platform/mid-call-tools/integration-templates/slack-integration",
+                      "de/automation-platform/mid-call-tools/integration-templates/teams-integration"
+                    ]
+                  },
+                  {
+                    "group": "Marketing",
+                    "pages": [
+                      "de/automation-platform/mid-call-tools/integration-templates/sendgrid-integration",
+                      "de/automation-platform/mid-call-tools/integration-templates/mailchimp-integration"
+                    ]
+                  },
+                  {
+                    "group": "Projektmanagement",
+                    "pages": [
+                      "de/automation-platform/mid-call-tools/integration-templates/asana-integration",
+                      "de/automation-platform/mid-call-tools/integration-templates/notion-integration",
+                      "de/automation-platform/mid-call-tools/integration-templates/jira-integration",
+                      "de/automation-platform/mid-call-tools/integration-templates/monday-integration"
+                    ]
+                  },
+                  {
+                    "group": "Zahlungen",
+                    "pages": [
+                      "de/automation-platform/mid-call-tools/integration-templates/stripe-integration",
+                      "de/automation-platform/mid-call-tools/integration-templates/shopify-integration"
+                    ]
+                  },
+                  {
+                    "group": "Buchhaltung & HR",
+                    "pages": [
+                      "de/automation-platform/mid-call-tools/integration-templates/lexoffice-integration",
+                      "de/automation-platform/mid-call-tools/integration-templates/personio-integration",
+                      "de/automation-platform/mid-call-tools/integration-templates/datev-beleg-integration",
+                      "de/automation-platform/mid-call-tools/integration-templates/datev-kontenumsaetze-integration",
+                      "de/automation-platform/mid-call-tools/integration-templates/datev-mahnung-integration",
+                      "de/automation-platform/mid-call-tools/integration-templates/zoho-books-integration"
+                    ]
+                  },
+                  {
+                    "group": "Support",
+                    "pages": [
+                      "de/automation-platform/mid-call-tools/integration-templates/zendesk-integration",
+                      "de/automation-platform/mid-call-tools/integration-templates/zoho-desk-integration"
+                    ]
+                  },
+                  {
+                    "group": "Logistik & Dokumente",
+                    "pages": [
+                      "de/automation-platform/mid-call-tools/integration-templates/dhl-integration",
+                      "de/automation-platform/mid-call-tools/integration-templates/docusign-integration"
+                    ]
+                  },
+                  {
+                    "group": "Gastronomie & Food",
+                    "pages": [
+                      "de/automation-platform/mid-call-tools/integration-templates/lieferando-integration",
+                      "de/automation-platform/mid-call-tools/integration-templates/opentable-integration"
+                    ]
+                  },
+                  {
+                    "group": "ERP & E-Commerce",
+                    "pages": [
+                      "de/automation-platform/mid-call-tools/integration-templates/sap-business-one-integration",
+                      "de/automation-platform/mid-call-tools/integration-templates/dynamics365-integration",
+                      "de/automation-platform/mid-call-tools/integration-templates/shopware-integration",
+                      "de/automation-platform/mid-call-tools/integration-templates/woocommerce-integration",
+                      "de/automation-platform/mid-call-tools/integration-templates/jtl-wawi-integration"
+                    ]
+                  },
+                  {
+                    "group": "Allgemein",
+                    "pages": [
+                      "de/automation-platform/mid-call-tools/integration-templates/feiertage-integration",
+                      "de/automation-platform/mid-call-tools/integration-templates/wetter-integration",
+                      "de/automation-platform/mid-call-tools/integration-templates/weltzeit-integration",
+                      "de/automation-platform/mid-call-tools/integration-templates/api-vorlagen"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "API Referenz",
+            "icon": "code",
+            "groups": [
+              {
+                "group": "API Referenz",
+                "pages": [
+                  "de/api-reference/introduction",
+                  "de/api-reference/authentication",
+                  "de/api-reference/user/me"
+                ]
+              },
+              {
+                "group": "KI-Assistants",
+                "pages": [
+                  "de/api-reference/assistants/list",
+                  "de/api-reference/assistants/outbound",
+                  "de/api-reference/assistants/create",
+                  "de/api-reference/assistants/update",
+                  "de/api-reference/assistants/delete",
+                  "de/api-reference/assistants/languages",
+                  "de/api-reference/assistants/voices",
+                  "de/api-reference/assistants/models",
+                  "de/api-reference/assistants/synthesizer-providers",
+                  "de/api-reference/assistants/transcriber-providers",
+                  "de/api-reference/assistants/phone-numbers",
+                  "de/api-reference/assistants/enable-inbound-webhook",
+                  "de/api-reference/assistants/disable-inbound-webhook",
+                  "de/api-reference/assistants/disable-webhook"
+                ]
+              },
+              {
+                "group": "Leads",
+                "pages": [
+                  "de/api-reference/leads/list",
+                  "de/api-reference/leads/create",
+                  "de/api-reference/leads/update",
+                  "de/api-reference/leads/delete"
+                ]
+              },
+              {
+                "group": "Campaigns",
+                "pages": [
+                  "de/api-reference/campaigns/list",
+                  "de/api-reference/campaigns/update-status"
+                ]
+              },
+              {
+                "group": "Mid Call Tools",
+                "pages": [
+                  "de/api-reference/mid-call-tools/get-tools",
+                  "de/api-reference/mid-call-tools/get-tool",
+                  "de/api-reference/mid-call-tools/create-tool",
+                  "de/api-reference/mid-call-tools/update-tool",
+                  "de/api-reference/mid-call-tools/delete-tool"
+                ]
+              },
+              {
+                "group": "AI Chatbot",
+                "pages": [
+                  "de/api-reference/conversations/list",
+                  "de/api-reference/ai-chatbot/create-conversation",
+                  "de/api-reference/ai-chatbot/get-conversation",
+                  "de/api-reference/ai-chatbot/send-conversation"
+                ]
+              },
+              {
+                "group": "AI Replies",
+                "pages": [
+                  "de/api-reference/ai-replies/generate-reply"
+                ]
+              },
+              {
+                "group": "Knowledgebases",
+                "pages": [
+                  "de/api-reference/knowledgebases/list",
+                  "de/api-reference/knowledgebases/get",
+                  "de/api-reference/knowledgebases/create",
+                  "de/api-reference/knowledgebases/update",
+                  "de/api-reference/knowledgebases/delete",
+                  "de/api-reference/knowledgebases/list-documents",
+                  "de/api-reference/knowledgebases/get-document",
+                  "de/api-reference/knowledgebases/create-document",
+                  "de/api-reference/knowledgebases/update-document",
+                  "de/api-reference/knowledgebases/delete-document"
+                ]
+              },
+              {
+                "group": "SMS",
+                "pages": [
+                  "de/api-reference/sms/send"
+                ]
+              },
+              {
+                "group": "WhatsApp",
+                "pages": [
+                  "de/api-reference/whatsapp/get-senders",
+                  "de/api-reference/whatsapp/get-templates",
+                  "de/api-reference/whatsapp/send-template",
+                  "de/api-reference/whatsapp/send-freeform",
+                  "de/api-reference/whatsapp/session-status"
+                ]
+              },
+              {
+                "group": "Phone Numbers",
+                "pages": [
+                  "de/api-reference/phone-numbers/list",
+                  "de/api-reference/phone-numbers/search",
+                  "de/api-reference/phone-numbers/purchase",
+                  "de/api-reference/phone-numbers/release"
+                ]
+              },
+              {
+                "group": "Calls",
+                "pages": [
+                  "de/api-reference/calls/list",
+                  "de/api-reference/user/calls/get",
+                  "de/api-reference/calls/make",
+                  "de/api-reference/calls/delete"
+                ]
+              },
+              {
+                "group": "Webhooks",
+                "pages": [
+                  "de/api-reference/webhooks/post-call"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "MCP",
+            "icon": "plug",
+            "groups": [
+              {
+                "group": "MCP",
+                "icon": "plug",
+                "pages": [
+                  "de/mcp/server"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Platform Status",
+          "icon": "chart-line",
+          "href": "https://status.famulor.io/"
+        },
+        {
+          "anchor": "Demo buchen",
+          "icon": "calendar-days",
+          "href": "https://cal.com/bek-group/demotermine"
+        },
+        {
+          "anchor": "Community",
+          "icon": "users",
+          "href": "https://www.skool.com/famulor/about"
+        }
+      ]
+    }
+  },
+  "logo": {
+    "light": "/resources/logo/light.png",
+    "dark": "/resources/logo/dark.png"
+  },
+  "api": {
+    "mdx": {
+      "server": "https://app.famulor.de/api/",
+      "auth": {
+        "method": "bearer"
+      }
+    }
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Updates",
+        "href": "/en/updates/changelog"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Dashboard",
+      "href": "https://app.famulor.de"
+    }
+  },
+  "footer": {
+    "socials": {
+      "linkedin": "https://www.linkedin.com/company/Famulor/"
+    }
+  },
+  "integrations": {
+    "ga4": {
+      "measurementId": "G-WPTBT13HB0"
+    }
+  },
+  "contextual": {
+    "display": "header",
+    "options": [
+      "assistant",
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "mcp",
+      "cursor",
+      "vscode"
+    ]
+  },
+  "seo": {
+    "indexing": "all",
+    "metatags": {
+      "og:site_name": "Famulor Docs",
+      "twitter:card": "summary_large_image"
+    }
+  }
+}
