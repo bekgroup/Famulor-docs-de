@@ -1,49 +1,48 @@
 ---
-title: "HubSpot Lead-Erstellung"
-description: "Automatische Lead-Generierung und -Qualifizierung in HubSpot direkt während Telefongesprächem"
+title: "HubSpot Lead Creation"
+description: "Automatic lead generation and qualification in HubSpot directly during phone calls"
 icon: "user-plus"
 ---
 
+# HubSpot Lead Creation Template
 
-# HubSpot Lead-Erstellung Template
+Automatically transform incoming calls into qualified leads in your HubSpot CRM. This tool enables your AI assistant to create, qualify, and enrich new contacts with relevant information in real time during the conversation.
 
-Transformieren Sie eingehende Anrufe automatisch in qualifizierte Leads in Ihrem HubSpot CRM. Dieses Tool ermöglicht es Ihrem KI-Assistenten, während des Gesprächs neue Kontakte zu erstellen, zu qualifizieren und mit relevanten Informationen anzureichern.
-
-## Überblick & Funktionen
+## Overview & Features
 
 <CardGroup cols={2}>
-  <Card title="Automatische Lead-Erfassung" icon="magic">
-    - Echtzeit-Kontakterstellung aus Gespräch
-    - Intelligente Datenextraktion (Name, E-Mail, Firma)
-    - Lead-Score-Berechnung basierend auf Gespräch
-    - Automatische Kategorisierung und Tagging
+  <Card title="Automatic Lead Capture" icon="magic">
+    - Real-time contact creation from conversation  
+    - Intelligent data extraction (name, email, company)  
+    - Lead score calculation based on conversation  
+    - Automatic categorization and tagging  
   </Card>
-  <Card title="BANT-Qualifizierung" icon="star">
-    - Budget-Assessment durch Gesprächsanalyse
-    - Authority-Level-Bestimmung
-    - Need-Analysis und Pain-Point-Identifikation
-    - Timeline-Ermittlung für Kaufentscheidung
+  <Card title="BANT Qualification" icon="star">
+    - Budget assessment through conversation analysis  
+    - Authority level determination  
+    - Need analysis and pain point identification  
+    - Timeline detection for purchase decision  
   </Card>
 </CardGroup>
 
-## Lead-Erstellung-Tool konfigurieren
+## Configure Lead Creation Tool
 
-### 1. Basis-Tool-Setup
+### 1. Basic Tool Setup
 
 <Tabs>
-  <Tab title="Tool-Konfiguration">
-    | Parameter | Wert |
-    |-----------|------|
-    | **Funktionsname** | `create_hubspot_lead` |
-    | **Beschreibung** | "Erstellt einen neuen Lead in HubSpot basierend auf Gesprächsinformationen. Verwenden Sie dies, wenn ein potentieller Kunde Interesse zeigt und noch nicht im System existiert." |
-    | **HTTP-Methode** | `POST` |
+  <Tab title="Tool Configuration">
+    | Parameter | Value |
+    |-----------|-------|
+    | **Function Name** | `create_hubspot_lead` |
+    | **Description** | "Creates a new lead in HubSpot based on conversation information. Use when a potential customer shows interest and is not yet in the system." |
+    | **HTTP Method** | `POST` |
     | **Timeout** | `7000ms` |
     | **URL** | `https://api.hubapi.com/crm/v3/objects/contacts` |
   </Tab>
   
   <Tab title="Headers">
     ```yaml
-    Authorization: "Bearer IHRE_HUBSPOT_API_KEY"
+    Authorization: "Bearer YOUR_HUBSPOT_API_KEY"
     Content-Type: "application/json"
     User-Agent: "Famulor-LeadGen/1.0"
     ```
@@ -77,7 +76,7 @@ Transformieren Sie eingehende Anrufe automatisch in qualifizierte Leads in Ihrem
 }
 ```
 
-### 3. Parameter-Schema
+### 3. Parameter Schema
 
 ```json
 {
@@ -85,198 +84,198 @@ Transformieren Sie eingehende Anrufe automatisch in qualifizierte Leads in Ihrem
   "properties": {
     "first_name": {
       "type": "string",
-      "description": "Vorname des Kontakts"
+      "description": "Contact's first name"
     },
     "last_name": {
       "type": "string", 
-      "description": "Nachname des Kontakts"
+      "description": "Contact's last name"
     },
     "email_address": {
       "type": "string",
       "format": "email",
-      "description": "E-Mail-Adresse des Leads"
+      "description": "Lead's email address"
     },
     "phone_number": {
       "type": "string",
-      "description": "Telefonnummer des Kontakts"
+      "description": "Contact's phone number"
     },
     "company_name": {
       "type": "string",
-      "description": "Name des Unternehmens"
+      "description": "Company name"
     },
     "job_title": {
       "type": "string",
-      "description": "Position/Jobtitel des Kontakts"
+      "description": "Contact's position/job title"
     },
     "company_website": {
       "type": "string",
-      "description": "Website des Unternehmens (falls erwähnt)"
+      "description": "Company website (if mentioned)"
     },
     "calculated_score": {
       "type": "integer",
-      "description": "Lead-Score basierend auf Gesprächsqualität (0-100)",
+      "description": "Lead score based on conversation quality (0-100)",
       "minimum": 0,
       "maximum": 100
     },
     "conversation_summary": {
       "type": "string",
-      "description": "Zusammenfassung der wichtigsten Gesprächspunkte"
+      "description": "Summary of key conversation points"
     },
     "estimated_budget": {
       "type": "string",
-      "description": "Geschätzter oder genannter Budget-Range"
+      "description": "Estimated or stated budget range"
     },
     "buying_timeline": {
       "type": "string",
-      "description": "Zeitrahmen für Kaufentscheidung"
+      "description": "Time frame for purchase decision"
     },
     "identified_challenges": {
       "type": "string",
-      "description": "Im Gespräch identifizierte Herausforderungen/Pain Points"
+      "description": "Challenges/pain points identified during conversation"
     },
     "engagement_score": {
       "type": "string",
       "enum": ["low", "medium", "high"],
-      "description": "Interesse-Level basierend auf Gesprächsengagement"
+      "description": "Interest level based on conversation engagement"
     }
   },
   "required": ["first_name", "last_name", "phone_number"]
 }
 ```
 
-## Intelligente Lead-Qualifizierung
+## Intelligent Lead Qualification
 
-### BANT-Framework Implementation
+### BANT Framework Implementation
 
 ```mermaid
 flowchart TD
-    A[Gespräch beginnt] --> B[Kontakt-Grunddaten sammeln]
-    B --> C{Budget erwähnt?}
-    C -->|Ja| D[Budget-Range erfassen]
-    C -->|Nein| E[Budget-Indikation suchen]
-    D --> F{Authority-Level?}
+    A[Conversation starts] --> B[Collect basic contact data]
+    B --> C{Budget mentioned?}
+    C -->|Yes| D[Capture budget range]
+    C -->|No| E[Search for budget indication]
+    D --> F{Authority level?}
     E --> F
-    F --> G[Entscheidungsbefugnis bewerten]
-    G --> H{Need identifiziert?}
-    H -->|Ja| I[Pain Points dokumentieren]  
-    H -->|Nein| J[Bedarf-Exploration]
-    I --> K{Timeline genannt?}
+    F --> G[Evaluate decision-making authority]
+    G --> H{Need identified?}
+    H -->|Yes| I[Document pain points]  
+    H -->|No| J[Explore needs]
+    I --> K{Timeline stated?}
     J --> K
-    K --> L[Lead-Score berechnen]
+    K --> L[Calculate lead score]
     L --> M[create_hubspot_lead]
-    M --> N[Follow-up-Aktivitäten planen]
+    M --> N[Plan follow-up activities]
 ```
 
 <AccordionGroup>
-  <Accordion title="Budget-Assessment">
-    **Automatische Budget-Erkennung**:
+  <Accordion title="Budget Assessment">
+    **Automatic Budget Detection**:
 ```yaml
-Direktangaben:
-  "Unser Budget liegt bei 50.000€" → budget_range: "50k-60k"
-  "Wir haben etwa zehntausend Euro eingeplant" → budget_range: "10k-15k"
+Direct Statements:
+  "Our budget is 50,000€" → budget_range: "50k-60k"
+  "We have about ten thousand euros planned" → budget_range: "10k-15k"
 
-Indirekte Hinweise:
-  "Wir sind ein kleines Startup" → budget_range: "under_10k"
-  "Das Budget ist nicht das Problem" → budget_range: "flexible"
-  "Wir müssen schauen..." → budget_range: "limited"
+Indirect Hints:
+  "We are a small startup" → budget_range: "under_10k"
+  "Budget is not an issue" → budget_range: "flexible"
+  "We need to see..." → budget_range: "limited"
 
-Lead-Score-Einfluss:
-  High Budget (&gt;50k): +25 Punkte
-  Medium Budget (10-50k): +15 Punkte  
-  Low Budget (&lt;10k): +5 Punkte
-  Unbekannt: 0 Punkte
+Lead Score Impact:
+  High Budget (>50k): +25 points
+  Medium Budget (10-50k): +15 points  
+  Low Budget (<10k): +5 points
+  Unknown: 0 points
 ```
   </Accordion>
   
-  <Accordion title="Authority-Assessment">
-    **Entscheidungsbefugnis-Klassifikation**:
+  <Accordion title="Authority Assessment">
+    **Decision Authority Classification**:
 ```yaml
 Decision Maker:
-  Indikatoren: "Ich bin der Geschäftsführer", "Das kann ich entscheiden"
-  Lead-Score: +30 Punkte
+  Indicators: "I am the CEO", "I can decide this"
+  Lead Score: +30 points
   Tag: "decision_maker"
 
 Influencer:
-  Indikatoren: "Ich bin der IT-Leiter", "Ich empfehle das dann weiter"
-  Lead-Score: +20 Punkte
+  Indicators: "I am the IT manager", "I will recommend this"
+  Lead Score: +20 points
   Tag: "influencer"
 
 Gatekeeper:
-  Indikatoren: "Ich sammle erst mal Informationen", "Das muss ich weiterleiten"
-  Lead-Score: +10 Punkte
+  Indicators: "I’m just gathering information first", "I need to forward this"
+  Lead Score: +10 points
   Tag: "gatekeeper"
 
 User/Stakeholder:
-  Lead-Score: +5 Punkte
+  Lead Score: +5 points
   Tag: "stakeholder"
 ```
   </Accordion>
   
-  <Accordion title="Need-Analysis">
-    **Pain-Point-Kategorisierung**:
+  <Accordion title="Need Analysis">
+    **Pain Point Categorization**:
     ```yaml
     Technical Challenges:
-      Keywords: "Integration", "Performance", "Skalierung"
+      Keywords: "Integration", "Performance", "Scaling"
       Category: "technical_needs"
       Urgency: high
     
     Business Challenges:  
-      Keywords: "Effizienz", "Kosten", "Wachstum", "Konkurrenz"
+      Keywords: "Efficiency", "Costs", "Growth", "Competition"
       Category: "business_needs"
       Urgency: medium-high
     
     Compliance/Security:
-      Keywords: "DSGVO", "Sicherheit", "Audit", "Compliance"
+      Keywords: "GDPR", "Security", "Audit", "Compliance"
       Category: "compliance_needs"
       Urgency: high
     
     Process Optimization:
-      Keywords: "Automatisierung", "Workflow", "Prozess"
+      Keywords: "Automation", "Workflow", "Process"
       Category: "process_needs"
       Urgency: medium
     ```
   </Accordion>
   
-  <Accordion title="Timeline-Assessment">
-    **Buying-Timeline-Klassifikation**:
+  <Accordion title="Timeline Assessment">
+    **Buying Timeline Classification**:
     ```yaml
-    Immediate (0-1 Monat):
-      Indikatoren: "sofort", "dringend", "so schnell wie möglich"
+    Immediate (0-1 month):
+      Indicators: "immediately", "urgent", "as soon as possible"
       Timeline: "immediate"
-      Lead-Score: +25 Punkte
+      Lead Score: +25 points
     
-    Short-term (1-3 Monate):
-      Indikatoren: "in den nächsten Monaten", "bis Quartalsende"
+    Short-term (1-3 months):
+      Indicators: "in the next months", "by end of quarter"
       Timeline: "1-3_months"
-      Lead-Score: +20 Punkte
+      Lead Score: +20 points
     
-    Medium-term (3-6 Monate):
-      Indikatoren: "dieses Jahr noch", "mittelfristig"
+    Medium-term (3-6 months):
+      Indicators: "this year", "mid-term"
       Timeline: "3-6_months" 
-      Lead-Score: +15 Punkte
+      Lead Score: +15 points
     
-    Long-term (6+ Monate):
-      Indikatoren: "nächstes Jahr", "langfristige Planung"
+    Long-term (6+ months):
+      Indicators: "next year", "long-term planning"
       Timeline: "6+_months"
-      Lead-Score: +10 Punkte
+      Lead Score: +10 points
     
     Undefined:
       Timeline: "undefined"
-      Lead-Score: +5 Punkte
+      Lead Score: +5 points
     ```
   </Accordion>
 </AccordionGroup>
 
-## Erweiterte Lead-Anreicherung
+## Advanced Lead Enrichment
 
-### Company-Enrichment-Tool
+### Company Enrichment Tool
 
 <Tabs>
-  <Tab title="Tool-Konfiguration">
+  <Tab title="Tool Configuration">
     ```yaml
-    Funktionsname: enrich_hubspot_company
-    Beschreibung: "Reichert Lead mit Firmendaten an, basierend auf Firmenname oder Website"
-    HTTP-Methode: POST
+    Function Name: enrich_hubspot_company
+    Description: "Enriches lead with company data based on company name or website"
+    HTTP Method: POST
     URL: https://api.hubapi.com/crm/v3/objects/companies
     ```
   </Tab>
@@ -298,7 +297,7 @@ User/Stakeholder:
   </Tab>
 </Tabs>
 
-### Lead-Company-Association
+### Lead-Company Association
 
 ```json
 {
@@ -318,15 +317,15 @@ User/Stakeholder:
 }
 ```
 
-## Praktische Implementierung
+## Practical Implementation
 
-### Szenario 1: Inbound-Lead aus Cold-Call
+### Scenario 1: Inbound Lead from Cold Call
 
 <Steps>
-  <Step title="Erstkontakt & Datensammlung">
+  <Step title="First Contact & Data Collection">
     ```yaml
-    KI-Assistent: "Darf ich fragen, mit wem ich spreche?"
-    Kunde: "Hier ist Max Mustermann von der Beispiel GmbH"
+    AI Assistant: "May I ask who I am speaking with?"
+    Customer: "This is Max Mustermann from Beispiel GmbH"
     
     → Automatic Data Extraction:
       first_name: "Max"
@@ -335,31 +334,31 @@ User/Stakeholder:
     ```
   </Step>
   
-  <Step title="Bedarf-Exploration">
+  <Step title="Needs Exploration">
     ```yaml
-    KI: "Wobei kann ich Ihnen denn helfen?"
-    Kunde: "Wir suchen eine neue CRM-Lösung. Unser aktuelles System 
-            ist zu langsam und die Integration funktioniert nicht."
+    AI: "How can I assist you?"
+    Customer: "We're looking for a new CRM solution. Our current system 
+              is too slow and integration doesn't work."
     
     → Pain Point Analysis:
-      pain_points: "Performance-Probleme, Integration-Challenges"
+      pain_points: "Performance issues, integration challenges"
       category: "technical_needs"
       urgency: "high"
     ```
   </Step>
   
-  <Step title="BANT-Qualifizierung">
+  <Step title="BANT Qualification">
     ```yaml
-    Budget: "Was haben Sie sich budgetmäßig vorgestellt?"
-    Authority: "Wer trifft bei Ihnen die Entscheidung für Software?"
-    Need: "Welche Funktionen sind für Sie am wichtigsten?"
-    Timeline: "Bis wann möchten Sie eine Lösung implementiert haben?"
+    Budget: "What budget range are you considering?"
+    Authority: "Who makes software decisions at your company?"
+    Need: "What features are most important to you?"
+    Timeline: "By when do you want to implement a solution?"
     
-    → Lead-Score-Berechnung basierend auf Antworten
+    → Lead score calculation based on answers
     ```
   </Step>
   
-  <Step title="Lead-Creation & Follow-up">
+  <Step title="Lead Creation & Follow-up">
     ```yaml
     create_hubspot_lead(
       first_name: "Max",
@@ -367,42 +366,42 @@ User/Stakeholder:
       company_name: "Beispiel GmbH", 
       calculated_score: 75,
       timeline: "1-3_months",
-      pain_points: "CRM Performance & Integration issues"
+      pain_points: "CRM performance & integration issues"
     )
     
-    → Automatic Follow-up Task Creation
-    → Sales-Team-Benachrichtigung
+    → Automatic follow-up task creation  
+    → Sales team notification
     ```
   </Step>
 </Steps>
 
-### Szenario 2: Warm-Lead mit hohem Intent
+### Scenario 2: Warm Lead with High Intent
 
 ```mermaid
 sequenceDiagram
     participant C as Caller
-    participant AI as KI-Assistant
+    participant AI as AI Assistant
     participant LC as Lead Creation Tool
     participant CC as Company Creation Tool
     participant DT as Deal Tool
     participant NT as Notification Tool
     
-    C->>AI: "Ich habe Ihre Anzeige gesehen..."
-    AI->>AI: High-Intent-Signal erkannt
-    C->>AI: Teilt Kontaktdaten & Bedarf
+    C->>AI: "I saw your ad..."
+    AI->>AI: High-intent signal detected
+    C->>AI: Shares contact details & needs
     AI->>LC: create_hubspot_lead (Score: 85)
-    LC-->>AI: Lead erstellt (ID: 12345)
+    LC-->>AI: Lead created (ID: 12345)
     AI->>CC: create/enrich_company
-    CC-->>AI: Company-ID
+    CC-->>AI: Company ID
     AI->>DT: create_initial_opportunity
-    DT-->>AI: Deal erstellt  
+    DT-->>AI: Deal created  
     AI->>NT: notify_sales_team (Hot Lead!)
-    AI->>C: "Perfekt! Ich verbinde Sie mit unserem Experten..."
+    AI->>C: "Perfect! I'll connect you with our expert..."
 ```
 
-## Response-Verarbeitung & Follow-up
+## Response Handling & Follow-up
 
-### Erfolgreiche Lead-Erstellung
+### Successful Lead Creation
 
 ```json
 {
@@ -421,84 +420,84 @@ sequenceDiagram
 }
 ```
 
-### Automatische Follow-up-Workflows
+### Automatic Follow-up Workflows
 
 <AccordionGroup>
-  <Accordion title="Sofortige Aktionen">
-    **Unmittelbar nach Lead-Erstellung**:
+  <Accordion title="Immediate Actions">
+    **Right after lead creation**:
     ```yaml
-    1. Lead-Bestätigungs-E-Mail senden
-    2. Sales-Team-Benachrichtigung (bei Score &gt;70)
-    3. CRM-Aufgabe erstellen: "Lead-Follow-up innerhalb 24h"
-    4. Lead in entsprechende HubSpot-Liste einordnen
-    5. Marketing-Automation-Sequenz starten
+    1. Send lead confirmation email  
+    2. Notify sales team (if score >70)  
+    3. Create CRM task: "Lead follow-up within 24 hours"  
+    4. Add lead to appropriate HubSpot list  
+    5. Start marketing automation sequence  
     ```
   </Accordion>
   
-  <Accordion title="Zeitverzögerte Workflows">
-    **24-48 Stunden später**:
+  <Accordion title="Delayed Workflows">
+    **24-48 hours later**:
     ```yaml
-    Wenn kein Sales-Kontakt erfolgte:
-      → Automated Follow-up E-Mail
-      → SMS-Erinnerung (bei hohem Score)
-      → Manager-Eskalation (bei Score &gt;80)
+    If no sales contact made:
+      → Automated follow-up email  
+      → SMS reminder (for high score leads)  
+      → Manager escalation (if score >80)
     
-    Nach 1 Woche:
-      → Lead-Nurturing-E-Mail-Serie
-      → LinkedIn-Connection-Request
-      → Re-Engagement-Call planen
+    After 1 week:
+      → Lead nurturing email series  
+      → LinkedIn connection request  
+      → Schedule re-engagement call  
     ```
   </Accordion>
   
-  <Accordion title="Lead-Scoring-Updates">
-    **Kontinuierliche Score-Anpassung**:
+  <Accordion title="Lead Scoring Updates">
+    **Continuous score adjustment**:
     ```yaml
-    E-Mail-Engagement: +5 Punkte
-    Website-Besuche: +3 Punkte pro Session
-    Content-Downloads: +10 Punkte
-    Demo-Request: +25 Punkte
-    Pricing-Page-Besuche: +15 Punkte
+    Email engagement: +5 points  
+    Website visits: +3 points per session  
+    Content downloads: +10 points  
+    Demo request: +25 points  
+    Pricing page visits: +15 points  
     ```
   </Accordion>
 </AccordionGroup>
 
-## Duplicate-Management
+## Duplicate Management
 
 ### Intelligent Duplicate Detection
 
 <Tabs>
-  <Tab title="Pre-Creation-Check">
+  <Tab title="Pre-Creation Check">
     ```yaml
     Tool: check_existing_contact
     Method: GET
     URL: https://api.hubapi.com/crm/v3/objects/contacts/search
     
-    Search-Criteria:
-      - E-Mail-Adresse (exakter Match)
-      - Telefonnummer (normalisierter Vergleich)
-      - Firmenname + Nachname (fuzzy Match)
+    Search Criteria:
+      - Email address (exact match)
+      - Phone number (normalized comparison)
+      - Company name + last name (fuzzy match)
     
-    Wenn Match gefunden:
-      → update_existing_contact statt create_new
-      → Lead-Score addieren statt überschreiben
-      → Conversation-History anhängen
+    If match found:
+      → update_existing_contact instead of create_new  
+      → add lead score instead of overwriting  
+      → append conversation history
     ```
   </Tab>
   
-  <Tab title="Post-Creation-Cleanup">
+  <Tab title="Post-Creation Cleanup">
     ```yaml
-    HubSpot-Workflow:
-      Trigger: Neue Kontakt-Erstellung
-      Bedingung: Duplicate-Score &gt;80%
-      Aktion: 
-        - Merge-Vorschlag an Sales-Team
-        - Temporary-Hold auf Automated Follow-ups
-        - Manual Review Required Tag
+    HubSpot Workflow:
+      Trigger: New contact creation  
+      Condition: Duplicate score >80%  
+      Action: 
+        - Suggest merge to sales team  
+        - Temporary hold on automated follow-ups  
+        - Manual review required tag
     ```
   </Tab>
 </Tabs>
 
-## Erweiterte Konfigurationen
+## Advanced Configurations
 
 ### Industry-Specific Lead Templates
 
@@ -506,31 +505,31 @@ sequenceDiagram
   <Accordion title="SaaS/Tech Companies">
     ```yaml
     Additional_Fields:
-      tech_stack: "Aktuelle Software-Landschaft"
-      integration_requirements: "Benötigte Integrationen" 
-      user_count: "Anzahl geplanter User"
-      compliance_requirements: "DSGVO, SOC2, etc."
-      current_solution: "Bestehende Lösung"
+      tech_stack: "Current software landscape"
+      integration_requirements: "Needed integrations" 
+      user_count: "Planned number of users"
+      compliance_requirements: "GDPR, SOC2, etc."
+      current_solution: "Existing solution"
       
     Custom_Scoring:
-      Enterprise_Size (+20): &gt;500 Employees
+      Enterprise_Size (+20): >500 employees
       High_Tech_Stack (+15): Modern APIs mentioned
-      Compliance_Needs (+10): Security/Privacy concerns
+      Compliance_Needs (+10): Security/privacy concerns
     ```
   </Accordion>
   
   <Accordion title="E-Commerce">
     ```yaml
     Additional_Fields:
-      platform_current: "Aktuelle E-Commerce-Plattform"
-      monthly_revenue: "Monatlicher Umsatz"
-      product_count: "Anzahl Produkte"
-      international_sales: "Internationale Verkäufe?"
-      growth_challenges: "Hauptwachstumshürden"
+      platform_current: "Current e-commerce platform"
+      monthly_revenue: "Monthly revenue"
+      product_count: "Number of products"
+      international_sales: "International sales?"
+      growth_challenges: "Main growth obstacles"
       
     Custom_Scoring:
-      High_Revenue (+25): &gt;100k monthly
-      Growth_Stage (+15): "schnell wachsend"
+      High_Revenue (+25): >100k monthly
+      Growth_Stage (+15): "fast-growing"
       Multi_Channel (+10): "Omnichannel"
     ```
   </Accordion>
@@ -538,14 +537,14 @@ sequenceDiagram
   <Accordion title="Professional Services">
     ```yaml
     Additional_Fields:
-      service_focus: "Hauptdienstleistungsbereich"
-      client_size_focus: "Zielkundengruppe"
-      current_tools: "Aktuell genutzte Tools"
-      team_size: "Größe des Teams"
-      billing_model: "Abrechnungsmodell"
+      service_focus: "Main service area"
+      client_size_focus: "Target customer group"
+      current_tools: "Currently used tools"
+      team_size: "Team size"
+      billing_model: "Billing model"
       
     Custom_Scoring:
-      Established_Practice (+20): &gt;3 Jahre
+      Established_Practice (+20): >3 years
       Growing_Team (+15): Hiring mentioned
       Process_Pain (+10): Efficiency issues
     ```
@@ -571,63 +570,63 @@ German_Localization:
 
 ## Quality Assurance & Monitoring
 
-### Lead-Quality-Metriken
+### Lead Quality Metrics
 
-| Metrik | Beschreibung | Zielwert |
-|--------|-------------|----------|
-| **Data Completeness** | % der Leads mit vollständigen Kerndaten | &gt;90% |
-| **Lead-Score-Accuracy** | Korrelation Score vs. tatsächliche Conversion | &gt;0.7 |
-| **Duplicate-Rate** | % der durch Tool erstellten Duplicates | &lt;5% |
-| **Sales-Acceptance-Rate** | % der von Sales akzeptierten Leads | &gt;80% |
-| **Speed-to-Lead** | Zeit von Gespräch bis Sales-Kontakt | &lt;2 Stunden |
+| Metric                 | Description                                           | Target      |
+|------------------------|-------------------------------------------------------|-------------|
+| **Data Completeness**   | % of leads with complete key data                      | >90%        |
+| **Lead Score Accuracy** | Correlation of score vs. actual conversion             | >0.7        |
+| **Duplicate Rate**      | % of duplicates created by the tool                    | <5%         |
+| **Sales Acceptance Rate** | % of leads accepted by sales                          | >80%        |
+| **Speed-to-Lead**       | Time from call to sales contact                         | <2 hours    |
 
 ### Automated Quality Checks
 
 <Steps>
-  <Step title="Data-Validation">
+  <Step title="Data Validation">
     ```yaml
-    Pre-Creation-Checks:
-      - E-Mail-Format validieren
-      - Telefonnummer normalisieren  
-      - Firmenname gegen Blacklist prüfen
-      - Spam-Pattern-Detection
+    Pre-Creation Checks:
+      - Validate email format  
+      - Normalize phone numbers  
+      - Check company name against blacklist  
+      - Detect spam patterns
     ```
   </Step>
   
-  <Step title="Score-Validation">
+  <Step title="Score Validation">
     ```yaml
-    Score-Plausibility:
-      - Score vs. Data-Completeness Check
-      - Timeline vs. Budget Consistency
-      - Authority vs. Company Size Logic
+    Score Plausibility:
+      - Check score vs. data completeness  
+      - Validate timeline vs. budget consistency  
+      - Check authority vs. company size logic
     ```
   </Step>
   
-  <Step title="Post-Creation-Verification">
+  <Step title="Post-Creation Verification">
     ```yaml
-    Automated_Follow-up:
-      - E-Mail-Deliverability-Test
-      - Phone-Number-Validation
-      - Company-Website-Verification
-      - Social-Media-Profile-Enrichment
+    Automated Follow-up:
+      - Email deliverability test  
+      - Phone number validation  
+      - Company website verification  
+      - Social media profile enrichment
     ```
   </Step>
 </Steps>
 
 ---
 
-<Card title="Integration-Empfehlungen" icon="link">
-Optimieren Sie Ihre Lead-Generierung durch zusätzliche Tool-Kombinationen:
+<Card title="Integration Recommendations" icon="link">
+Optimize your lead generation with additional tool combinations:
 
-- [HubSpot Deal Management](/automation-platform/mid-call-actions/integration-templates/hubspot-deal-management) für Sales-Pipeline-Verwaltung
-- [Webhook-Integration](/automation-platform/mid-call-actions/integration-templates/webhook-automation) für komplexe Multi-System-Workflows
-- [SendGrid Integration](/automation-platform/mid-call-actions/integration-templates/sendgrid-integration) für automatische Follow-up-E-Mails
+- [HubSpot Deal Management](/automation-platform/mid-call-actions/integration-templates/hubspot-deal-management) for sales pipeline management  
+- [Webhook Integration](/automation-platform/mid-call-actions/integration-templates/webhook-automation) for complex multi-system workflows  
+- [SendGrid Integration](/automation-platform/mid-call-actions/integration-templates/sendgrid-integration) for automated follow-up emails  
 </Card>
 
 <Tip>
-**Pro-Tipp**: Beginnen Sie mit einem konservativen Lead-Score-Algorithmus und optimieren Sie basierend auf tatsächlichen Conversion-Daten. Ein zu aggressives Scoring kann zu Lead-Überflutung des Sales-Teams führen.
+**Pro Tip**: Start with a conservative lead scoring algorithm and optimize based on actual conversion data. Overly aggressive scoring can overwhelm the sales team with leads.
 </Tip>
 
 <Warning>
-**Datenschutz-Hinweis**: Stellen Sie sicher, dass alle erfassten Leads explizit der Kontaktaufnahme zugestimmt haben und implementieren Sie DSGVO-konforme Opt-out-Mechanismen.
+**Privacy Notice**: Ensure all collected leads have explicitly consented to contact and implement GDPR-compliant opt-out mechanisms.
 </Warning>

@@ -1,59 +1,59 @@
 ---
 title: "Mailchimp Integration"
-description: "Automatisches Hinzufügen von Subscribern zu Mailchimp-Listen direkt während Kundengesprächem für optimale Marketing-Automation"
+description: "Automatically add subscribers to Mailchimp lists directly during client calls for optimal marketing automation"
 icon: "envelope-circle-check"
 ---
 
 
 # Mailchimp Integration Template
 
-Integrieren Sie Mailchimp-Subscriber-Management in Ihre Mid-call Actions und ermöglichen Sie es Ihrem KI-Assistenten, während Kundengesprächem automatisch interessierte Leads zu Marketing-Listen hinzuzufügen und Marketing-Automation-Workflows auszulösen.
+Integrate Mailchimp subscriber management into your mid-call actions and enable your AI assistant to automatically add interested leads to marketing lists and trigger marketing automation workflows during client conversations.
 
-## Überblick & Funktionen
+## Overview & Features
 
 <CardGroup cols={2}>
-  <Card title="Automatische List-Building" icon="users">
-    - Sofortiges Hinzufügen von Interessenten zu Mailchimp-Listen
-    - Intelligente List-Segmentierung basierend auf Gespräch
-    - Tag-basierte Kategorisierung für zielgerichtetes Marketing
-    - Double-Opt-In-Compliance und DSGVO-Konformität
+  <Card title="Automatic List Building" icon="users">
+    - Instantly add prospects to Mailchimp lists  
+    - Intelligent list segmentation based on conversations  
+    - Tag-based categorization for targeted marketing  
+    - Double opt-in compliance and GDPR adherence  
   </Card>
-  <Card title="Marketing-Automation-Trigger" icon="magic">
-    - Automatischer Start von E-Mail-Sequenzen
-    - Verhaltensbasierte Marketing-Workflows
-    - Lead-Scoring-Integration
-    - Multi-Channel-Marketing-Orchestration
+  <Card title="Marketing Automation Triggers" icon="magic">
+    - Automatic triggering of email sequences  
+    - Behavior-based marketing workflows  
+    - Lead scoring integration  
+    - Multi-channel marketing orchestration  
   </Card>
 </CardGroup>
 
 ## Mailchimp API & Audience Setup
 
-### 1. Mailchimp API-Zugang einrichten
+### 1. Set Up Mailchimp API Access
 
 <Steps>
-  <Step title="Mailchimp Account vorbereiten">
-    - Melden Sie sich bei Mailchimp an oder erstellen Sie einen Account
-    - Navigieren Sie zu "Account" → "Extras" → "API keys"
-    - Notieren Sie sich Ihr Datacenter (z.B. "us6", "eu1") aus der Login-URL
+  <Step title="Prepare Mailchimp Account">
+    - Log in to Mailchimp or create an account  
+    - Navigate to "Account" → "Extras" → "API keys"  
+    - Note your datacenter (e.g., "us6", "eu1") from the login URL  
   </Step>
   
-  <Step title="API Key generieren">
+  <Step title="Generate API Key">
     ```yaml
-    API-Key-Erstellung:
-      1. "Create A Key" klicken
-      2. Key-Name: "Famulor Mid-Call Integration"
-      3. API-Key kopieren (Format: abc123def456-us6)
-      4. Datacenter-Code notieren (letzter Teil nach dem Bindestrich)
+    API Key Creation:
+      1. Click "Create A Key"
+      2. Key Name: "Famulor Mid-Call Integration"
+      3. Copy the API key (format: abc123def456-us6)
+      4. Note the datacenter code (last part after the hyphen)
     ```
   </Step>
   
-  <Step title="Audience (Liste) vorbereiten">
+  <Step title="Prepare Audience (List)">
     ```yaml
-    Liste-Setup:
-      1. "Audience" → "All contacts"
+    List Setup:
+      1. Go to "Audience" → "All contacts"
       2. "Settings" → "Audience name and defaults"
-      3. List-ID kopieren (wird für API-Calls benötigt)
-      4. Merge Fields konfigurieren:
+      3. Copy the List ID (needed for API calls)
+      4. Configure Merge Fields:
          - FNAME (First Name)
          - LNAME (Last Name)
          - COMPANY (Company Name)
@@ -61,31 +61,31 @@ Integrieren Sie Mailchimp-Subscriber-Management in Ihre Mid-call Actions und erm
     ```
   </Step>
   
-  <Step title="Tags und Segmente definieren">
-    - Tags für verschiedene Lead-Quellen: "mid-call-lead", "phone-inquiry"
-    - Segmente für Automatisierung: "Hot Leads", "Demo Requests"  
-    - Custom Fields für Gesprächs-Metadaten
+  <Step title="Define Tags and Segments">
+    - Tags for various lead sources: "mid-call-lead", "phone-inquiry"  
+    - Segments for automation: "Hot Leads", "Demo Requests"  
+    - Custom fields for call metadata  
   </Step>
 </Steps>
 
-## Mid-call Action konfigurieren
+## Configure Mid-call Action
 
-### Konfiguration im Famulor Interface
+### Configuration in Famulor Interface
 
 <Tabs>
-  <Tab title="Werkzeugdetails">
-    | Feld | Wert |
-    |------|------|
+  <Tab title="Tool Details">
+    | Field | Value |
+    |-------|-------|
     | **Name*** | `Mailchimp Subscriber hinzufügen` |
-    | **Beschreibung** | "Fügt automatisch neue Subscriber zu Mailchimp-Listen hinzu für Marketing-Automation und Lead-Nurturing" |
-    | **Funktionsname*** | `add_mailchimp_subscriber` |
-    | **Funktionsbeschreibung*** | "Fügt einen Subscriber zu einer Mailchimp-Liste hinzu. Verwenden Sie dies, wenn ein Kunde Interesse an Updates, Newslettern oder weiteren Informationen zeigt." |
-    | **HTTP-Methode** | `POST` |
+    | **Description** | "Automatically adds new subscribers to Mailchimp lists for marketing automation and lead nurturing" |
+    | **Function Name*** | `add_mailchimp_subscriber` |
+    | **Function Description*** | "Adds a subscriber to a Mailchimp list. Use this when a client shows interest in updates, newsletters, or further information." |
+    | **HTTP Method** | `POST` |
     | **Timeout (ms)** | `5000` |
     | **Endpoint*** | `https://{{MAILCHIMP_DC}}.api.mailchimp.com/3.0/lists/{list_id}/members` |
   </Tab>
   
-  <Tab title="Header-Konfiguration">
+  <Tab title="Header Configuration">
     ```json
     {
       "Authorization": "Bearer {{MAILCHIMP_API_KEY}}",
@@ -94,7 +94,7 @@ Integrieren Sie Mailchimp-Subscriber-Management in Ihre Mid-call Actions und erm
     }
     ```
     
-    <Info>**Datacenter-Variable**: `{{MAILCHIMP_DC}}` sollte durch Ihr Datacenter ersetzt werden (z.B. "us6", "eu1")</Info>
+    <Info>**Datacenter variable**: `{{MAILCHIMP_DC}}` should be replaced with your datacenter (e.g., "us6", "eu1")</Info>
   </Tab>
   
   <Tab title="Request Body Template">
@@ -128,7 +128,7 @@ Integrieren Sie Mailchimp-Subscriber-Management in Ihre Mid-call Actions und erm
   </Tab>
 </Tabs>
 
-### Parameter-Schema
+### Parameter Schema
 
 ```json
 {
@@ -136,49 +136,49 @@ Integrieren Sie Mailchimp-Subscriber-Management in Ihre Mid-call Actions und erm
   "properties": {
     "list_id": {
       "type": "string",
-      "description": "Mailchimp Audience/List ID (z.B. 'abc123def4')"
+      "description": "Mailchimp Audience/List ID (e.g., 'abc123def4')"
     },
     "email": {
       "type": "string",
       "format": "email",
-      "description": "E-Mail-Adresse des Subscribers"
+      "description": "Subscriber's email address"
     },
     "status": {
       "type": "string",
       "enum": ["subscribed", "unsubscribed", "pending"],
-      "description": "Subscription-Status",
+      "description": "Subscription status",
       "default": "pending"
     },
     "first_name": {
       "type": "string",
-      "description": "Vorname des Subscribers"
+      "description": "Subscriber's first name"
     },
     "last_name": {
       "type": "string", 
-      "description": "Nachname des Subscribers"
+      "description": "Subscriber's last name"
     },
     "company_name": {
       "type": "string",
-      "description": "Firmenname (optional für B2B-Marketing)"
+      "description": "Company name (optional for B2B marketing)"
     },
     "phone_number": {
       "type": "string",
-      "description": "Telefonnummer (optional)"
+      "description": "Phone number (optional)"
     },
     "tags": {
       "type": "array",
       "items": {"type": "string"},
-      "description": "Tags für Segmentierung und Automatisierung",
+      "description": "Tags for segmentation and automation",
       "examples": [["mid-call-lead", "demo-interest"], ["hot-prospect", "enterprise"]]
     },
     "interest_groups": {
       "type": "array",
       "items": {"type": "string"},
-      "description": "Interest Group IDs für präzises Targeting"
+      "description": "Interest group IDs for precise targeting"
     },
     "opt_in_confirmed": {
       "type": "boolean",
-      "description": "Hat der Kunde explizit zugestimmt?",
+      "description": "Has the customer explicitly consented?",
       "default": true
     }
   },
@@ -186,59 +186,59 @@ Integrieren Sie Mailchimp-Subscriber-Management in Ihre Mid-call Actions und erm
 }
 ```
 
-## Praktische Anwendungsszenarien
+## Practical Use Cases
 
-### Szenario 1: Newsletter-Anmeldung während Gespräch
+### Scenario 1: Newsletter Signup During Call
 
 <Steps>
-  <Step title="Interest-Erkennung">
+  <Step title="Interest Detection">
     ```yaml
-    Kunde äußert Interesse:
-      "Können Sie mich über neue Features informieren?"
-      "Gibt es einen Newsletter?"
-      "Schicken Sie mir Updates zu..."
+    Customer expresses interest:
+      "Can you keep me informed about new features?"
+      "Is there a newsletter?"
+      "Please send me updates about..."
       
-    KI-Reaktion:
-      "Gerne! Ich füge Sie zu unserem Newsletter hinzu. 
-       Sie erhalten dann regelmäßig Updates zu..."
+    AI response:
+      "Sure! I'll add you to our newsletter. 
+       You'll then receive regular updates about..."
     ```
   </Step>
   
-  <Step title="DSGVO-konforme Einwilligung">
+  <Step title="GDPR-compliant Consent">
     ```yaml
-    Einwilligungs-Dialog:
-      "Ist es okay, wenn ich Sie zu unserem Newsletter hinzufüge? 
-       Sie erhalten dann etwa einmal pro Woche Updates zu neuen Features 
-       und können sich jederzeit wieder abmelden."
+    Consent dialog:
+      "Is it okay if I add you to our newsletter? 
+       You will receive updates about new features about once a week 
+       and can unsubscribe at any time."
     
-    Nur bei expliziter Zustimmung:
+    Only with explicit consent:
       → add_mailchimp_subscriber(status: "subscribed")
     
-    Bei Unsicherheit:
+    If unsure:
       → add_mailchimp_subscriber(status: "pending")
-      → Double-Opt-In-E-Mail wird automatisch gesendet
+      → Double opt-in email is sent automatically
     ```
   </Step>
 </Steps>
 
-### Szenario 2: Lead-Segmentierung
+### Scenario 2: Lead Segmentation
 
 <AccordionGroup>
-  <Accordion title="Automatische Tag-Generierung">
+  <Accordion title="Automatic Tag Generation">
     ```yaml
-    Gesprächsbasierte Tag-Logik:
+    Conversation-based tag logic:
       
-    Firmengröße:
+    Company size:
       "Startup" → Tags: ["small-business", "growth-stage"]
-      "Mittelstand" → Tags: ["smb", "established"]  
-      "Konzern" → Tags: ["enterprise", "large-scale"]
+      "SME" → Tags: ["smb", "established"]  
+      "Enterprise" → Tags: ["enterprise", "large-scale"]
       
-    Interesse-Level:
-      Demo angefragt → Tags: ["demo-interest", "hot-lead"]
-      Preise erfragt → Tags: ["pricing-interest", "consideration-stage"]
-      Konkurrent erwähnt → Tags: ["competitive-situation", "decision-stage"]
+    Interest level:
+      Demo requested → Tags: ["demo-interest", "hot-lead"]
+      Asked about pricing → Tags: ["pricing-interest", "consideration-stage"]
+      Mentioned competitor → Tags: ["competitive-situation", "decision-stage"]
       
-    Branche:
+    Industry:
       "E-Commerce" → Tags: ["ecommerce", "online-retail"]
       "Healthcare" → Tags: ["healthcare", "medical"]
       "Finance" → Tags: ["fintech", "financial-services"]
@@ -247,57 +247,57 @@ Integrieren Sie Mailchimp-Subscriber-Management in Ihre Mid-call Actions und erm
   
   <Accordion title="Interest Groups Assignment">
     ```yaml
-    Mailchimp-Interest-Groups:
+    Mailchimp interest groups:
       
-    Produktkategorien:
-      - Basic-Features: Für kleine Unternehmen
-      - Advanced-Features: Für wachsende Unternehmen
-      - Enterprise-Features: Für große Organisationen
+    Product categories:
+      - Basic Features: For small businesses
+      - Advanced Features: For growing companies
+      - Enterprise Features: For large organizations
       
-    Content-Präferenzen:
-      - Technical-Updates: Entwickler und IT-Teams
-      - Business-Updates: Management und Entscheider
-      - Industry-News: Branchenspezifische Insights
+    Content preferences:
+      - Technical Updates: Developers and IT teams
+      - Business Updates: Management and decision makers
+      - Industry News: Sector-specific insights
       
-    Automatische-Zuweisung:
-      Wenn Jobtitle == "CTO" → Technical-Updates
-      Wenn Jobtitle == "CEO" → Business-Updates
-      Wenn Branche == "Healthcare" → Industry-News: Healthcare
+    Automatic assignment:
+      If job title == "CTO" → Technical Updates
+      If job title == "CEO" → Business Updates
+      If industry == "Healthcare" → Industry News: Healthcare
     ```
   </Accordion>
 </AccordionGroup>
 
-### Szenario 3: Marketing-Automation-Trigger
+### Scenario 3: Marketing Automation Trigger
 
 ```mermaid
 flowchart TD
-    A[Kunde zeigt Interesse] --> B{Interesse-Typ?}
-    B -->|Newsletter| C[Allgemeine Liste]
-    B -->|Demo| D[Hot-Leads Liste]  
-    B -->|Preise| E[Consideration-Stage Liste]
-    B -->|Partnership| F[Business-Development Liste]
+    A[Customer shows interest] --> B{Interest type?}
+    B -->|Newsletter| C[General list]
+    B -->|Demo| D[Hot leads list]  
+    B -->|Pricing| E[Consideration stage list]
+    B -->|Partnership| F[Business development list]
     
     C --> G[add_mailchimp_subscriber]
     D --> G
     E --> G
     F --> G
     
-    G --> H{DSGVO-Consent?}
-    H -->|Ja| I[Status: subscribed]
-    H -->|Nein/Unsicher| J[Status: pending]
+    G --> H{GDPR Consent?}
+    H -->|Yes| I[Status: subscribed]
+    H -->|No/Unsure| J[Status: pending]
     
-    I --> K[Automation-Workflow starten]
-    J --> L[Double-Opt-In senden]
+    I --> K[Start automation workflow]
+    J --> L[Send double opt-in]
     
-    K --> M{Lead-Score?}
-    M -->|>70| N[Sales-Sequence]
-    M -->|30-70| O[Nurturing-Sequence]
-    M -->|<30| P[Educational-Sequence]
+    K --> M{Lead score?}
+    M -->|>70| N[Sales sequence]
+    M -->|30-70| O[Nurturing sequence]
+    M -->|<30| P[Educational sequence]
 ```
 
-## Response-Verarbeitung
+## Response Handling
 
-### Erfolgreiche Subscriber-Addition
+### Successful Subscriber Addition
 
 ```json
 {
@@ -331,296 +331,294 @@ flowchart TD
 }
 ```
 
-### Natürliche Sprachintegration
+### Natural Language Integration
 
 <AccordionGroup>
-  <Accordion title="Agent-Nachrichten vor API-Aufruf">
-    **Template**: `"Ich füge {{email}} zur Mailchimp-Liste hinzu..."`
+  <Accordion title="Agent Messages Before API Call">
+    **Template**: `"I'm adding {{email}} to the Mailchimp list..."`
     
-    **Kontextuelle Beispiele**:
+    **Contextual examples**:
     ```yaml
-    Newsletter-Anmeldung:
-      "Perfekt! Ich trage Sie in unseren Newsletter ein..."
+    Newsletter signup:
+      "Great! I'll add you to our newsletter..."
     
-    Demo-Interest:
-      "Ich füge Sie zu unserer Demo-Liste hinzu, damit Sie keine Updates verpassen..."
+    Demo interest:
+      "I'll add you to our demo list so you don't miss any updates..."
     
-    Product-Updates:
-      "Sie werden ab sofort über alle neuen Features informiert..."
+    Product updates:
+      "You'll now receive all new feature announcements..."
     ```
   </Accordion>
   
-  <Accordion title="Erfolgsbestätigungen">
-    **Standard-Template**: `"Subscriber wurde erfolgreich hinzugefügt."`
+  <Accordion title="Success Confirmations">
+    **Standard template**: `"Subscriber was added successfully."`
     
-    **Status-spezifische Bestätigungen**:
+    **Status-specific confirmations**:
     ```yaml
     Status "subscribed":
-      "Sie sind jetzt in unserem Newsletter eingetragen und 
-       erhalten die nächste Ausgabe automatisch."
+      "You're now subscribed to our newsletter and will receive the next issue automatically."
     
     Status "pending":
-      "Sie erhalten gleich eine Bestätigungs-E-Mail. 
-       Bitte klicken Sie auf den Bestätigungslink."
+      "You will shortly receive a confirmation email. 
+       Please click the confirmation link."
     
-    Mit Automation-Trigger:
-      "Willkommen! Sie erhalten in den nächsten Minuten 
-       eine Begrüßungs-E-Mail mit ersten Informationen."
+    With automation trigger:
+      "Welcome! You'll receive a welcome email with initial information within the next few minutes."
     ```
   </Accordion>
 </AccordionGroup>
 
-## Erweiterte Marketing-Features
+## Advanced Marketing Features
 
-### Segment-basierte Listen-Zuordnung
+### Segment-based List Assignment
 
 <AccordionGroup>
-  <Accordion title="Intelligente Listen-Auswahl">
+  <Accordion title="Intelligent List Selection">
     ```yaml
-    Listen-Routing basierend auf Gesprächskontext:
+    List routing based on conversation context:
       
-    Lead-Score > 80:
-      Liste: "Hot-Prospects" 
+    Lead score > 80:
+      List: "Hot Prospects" 
       Tags: ["hot-lead", "high-priority"]
-      Automation: Sales-Ready-Sequence
+      Automation: Sales-ready sequence
       
-    Demo angefragt:
-      Liste: "Demo-Requests"
+    Demo requested:
+      List: "Demo Requests"
       Tags: ["demo-interest", "product-evaluation"] 
-      Automation: Demo-Preparation-Sequence
+      Automation: Demo preparation sequence
       
-    Preise erfragt:
-      Liste: "Pricing-Interested"
+    Asked about pricing:
+      List: "Pricing Interested"
       Tags: ["pricing-stage", "consideration"]
-      Automation: ROI-Calculator-Sequence
+      Automation: ROI calculator sequence
       
-    Newsletter-Interest:
-      Liste: "General-Newsletter"
+    Newsletter interest:
+      List: "General Newsletter"
       Tags: ["newsletter", "general-interest"]
-      Automation: Welcome-Series
+      Automation: Welcome series
     ```
   </Accordion>
   
   <Accordion title="Custom Merge Fields">
     ```yaml
-    Erweiterte_Personalisierung:
-      LEADSCORE: Calculated Lead Score (0-100)
-      CALLDATE: Datum des Gesprächs
-      CALLTYPE: Art des Gesprächs (Sales/Support/Info)
-      PAINPOINTS: Identifizierte Herausforderungen
-      BUDGET: Erwähnter Budget-Range
-      TIMELINE: Kaufzeitrahmen
-      INDUSTRY: Branchenzuordnung
-      COMPANYSIZE: Unternehmensgröße
+    Advanced personalization:
+      LEADSCORE: Calculated lead score (0-100)
+      CALLDATE: Date of conversation
+      CALLTYPE: Type of conversation (Sales/Support/Info)
+      PAINPOINTS: Identified challenges
+      BUDGET: Mentioned budget range
+      TIMELINE: Purchase timeline
+      INDUSTRY: Industry classification
+      COMPANYSIZE: Company size
       
-    Verwendung_in_E-Mails:
-      "Hallo {{FNAME}}, basierend auf unserem Gespräch am {{CALLDATE}} 
-       über {{PAINPOINTS}} haben wir einige Lösungsansätze für {{COMPANY}}..."
+    Usage in emails:
+      "Hello {{FNAME}}, based on our conversation on {{CALLDATE}} 
+       about {{PAINPOINTS}} we have some solutions for {{COMPANY}}..."
     ```
   </Accordion>
 </AccordionGroup>
 
-### Marketing-Automation-Integration
+### Marketing Automation Integration
 
 <Tabs>
-  <Tab title="Automation-Workflows">
+  <Tab title="Automation Workflows">
     ```yaml
-    Lead-Nurturing-Automation:
-      Trigger: Tag "mid-call-lead" hinzugefügt
+    Lead nurturing automation:
+      Trigger: Tag "mid-call-lead" added
       
-      E-Mail 1 (sofort): Willkommen + Gesprächs-Zusammenfassung
-      E-Mail 2 (+2 Stunden): Relevante Case Studies
-      E-Mail 3 (+24 Stunden): Personalisierte Produktdemo
-      E-Mail 4 (+3 Tage): Social Proof + Testimonials
-      E-Mail 5 (+1 Woche): Sonder-Angebot oder Beratungstermin
+      Email 1 (immediately): Welcome + call summary
+      Email 2 (+2 hours): Relevant case studies
+      Email 3 (+24 hours): Personalized product demo
+      Email 4 (+3 days): Social proof + testimonials
+      Email 5 (+1 week): Special offer or consultation appointment
     
-    Bedingungen:
-      - Stopp bei E-Mail-Öffnung von Sales-E-Mail
-      - Stopp bei Website-Demo-Request
-      - Escalation bei hohem Engagement-Score
+    Conditions:
+      - Stop on opening sales email
+      - Stop on website demo request
+      - Escalate on high engagement score
     ```
   </Tab>
   
-  <Tab title="Behavioral-Triggers">
+  <Tab title="Behavioral Triggers">
     ```yaml
-    Mailchimp-E-Commerce-Integration:
+    Mailchimp e-commerce integration:
       
-    Website-Aktivität-Tracking:
-      - Pricing-Page-Besuche → Tag: "pricing-interested"
-      - Feature-Page-Views → Tag: "feature-research"
-      - Competitor-Comparison → Tag: "decision-stage"
+    Website activity tracking:
+      - Pricing page visits → Tag: "pricing-interested"
+      - Feature page views → Tag: "feature-research"
+      - Competitor comparisons → Tag: "decision-stage"
       
-    E-Mail-Engagement:
-      - Hohe Open-Rate → Upgrade zu "Engaged" Liste
-      - Click-Through → "Active-Interest" Tag
-      - Forward-Rate → "Influencer" Tag
+    Email engagement:
+      - High open rate → Upgrade to "Engaged" list
+      - Click-through → "Active Interest" tag
+      - Forward rate → "Influencer" tag
     ```
   </Tab>
 </Tabs>
 
-## Integration mit anderen Tools
+## Integration with Other Tools
 
-### CRM-Synchronisation
+### CRM Synchronization
 
 ```mermaid
 sequenceDiagram
-    participant C as Kunde
-    participant AI as KI-Assistant
+    participant C as Customer
+    participant AI as AI Assistant
     participant MC as Mailchimp
     participant CRM as HubSpot/Salesforce
-    participant MA as Marketing-Automation
+    participant MA as Marketing Automation
     
-    C->>AI: "Ja, Newsletter interessiert mich"
-    AI->>CRM: Lead-Informationen abrufen
-    CRM-->>AI: Lead-Score + Details
+    C->>AI: "Yes, I'm interested in the newsletter"
+    AI->>CRM: Fetch lead information
+    CRM-->>AI: Lead score + details
     AI->>MC: add_mailchimp_subscriber
-    MC-->>AI: Subscriber hinzugefügt (ID: 12345)
-    AI->>CRM: E-Mail-Subscription-Status aktualisieren
-    AI->>MA: Marketing-Automation starten
-    AI->>C: "Perfekt! Sie erhalten unseren Newsletter..."
+    MC-->>AI: Subscriber added (ID: 12345)
+    AI->>CRM: Update email subscription status
+    AI->>MA: Start marketing automation
+    AI->>C: "Great! You'll receive our newsletter..."
     
-    Note over MC: Double-Opt-In-E-Mail automatisch versendet
-    C->>MC: Bestätigung klicken
-    MC->>MA: Automation-Workflow aktivieren
+    Note over MC: Double opt-in email sent automatically
+    C->>MC: Click confirmation
+    MC->>MA: Trigger automation workflow
 ```
 
-## Fehlerbehandlung & Compliance
+## Error Handling & Compliance
 
-### Häufige API-Fehler
+### Common API Errors
 
 <AccordionGroup>
-  <Accordion title="Member bereits vorhanden (400)">
+  <Accordion title="Member Already Exists (400)">
     ```yaml
-    Mailchimp-Response:
+    Mailchimp response:
       "title": "Member Exists"
       "detail": "max@beispiel.de is already a list member"
     
-    Intelligentes Handling:
-      1. Member-Status prüfen
-      2. Wenn "unsubscribed" → Update zu "pending"
-      3. Wenn "subscribed" → Tags/Interests aktualisieren
-      4. Wenn "pending" → Bestätigungs-E-Mail erneut senden
+    Smart handling:
+      1. Check member status
+      2. If "unsubscribed" → update to "pending"
+      3. If "subscribed" → update tags/interests
+      4. If "pending" → resend confirmation email
     
-    Kunde-Information:
-      "Sie sind bereits in unserem System. Ich aktualisiere Ihre Präferenzen 
-       basierend auf unserem Gespräch."
+    Inform customer:
+      "You are already in our system. I am updating your preferences 
+       based on our conversation."
     ```
   </Accordion>
   
-  <Accordion title="Invalid E-Mail (400)">
+  <Accordion title="Invalid Email (400)">
     ```yaml
-    Ursachen:
-      - E-Mail-Format ungültig
-      - Disposable/Temp-E-Mail-Adresse
-      - Domain auf Blacklist
+    Causes:
+      - Invalid email format
+      - Disposable/temporary email address
+      - Domain on blacklist
     
-    Fallback-Strategie:
-      "Die E-Mail-Adresse scheint ungültig zu sein. 
-       Können Sie mir eine alternative E-Mail-Adresse geben?"
+    Fallback strategy:
+      "The email address seems invalid. 
+       Could you provide an alternative email address?"
     
     Validation:
-      - E-Mail-Format vor API-Call prüfen
-      - Disposable-E-Mail-Detection
-      - Domain-Reputation-Check
+      - Check email format before API call
+      - Detect disposable emails
+      - Check domain reputation
     ```
   </Accordion>
   
-  <Accordion title="API-Quota erreicht (429)">
+  <Accordion title="API Quota Exceeded (429)">
     ```yaml
-    Mailchimp-Rate-Limits:
-      - 10 simultane Verbindungen
-      - Max 10.000 Requests/Stunde
-      - Burst-Limits für kurze Spitzen
+    Mailchimp rate limits:
+      - 10 simultaneous connections
+      - Max 10,000 requests per hour
+      - Burst limits for short spikes
     
-    Retry-Logic:
-      - Exponential Backoff
-      - Max 3 Wiederholungsversuche
-      - Fallback auf manuelle Liste
+    Retry logic:
+      - Exponential backoff
+      - Max 3 retries
+      - Fallback to manual list
     
-    Graceful-Degradation:
-      "Newsletter-Anmeldung wird verarbeitet. 
-       Sie erhalten eine Bestätigung in den nächsten Minuten."
+    Graceful degradation:
+      "Newsletter signup is being processed. 
+       You will receive confirmation within the next few minutes."
     ```
   </Accordion>
 </AccordionGroup>
 
-### DSGVO & Datenschutz
+### GDPR & Data Protection
 
 <Steps>
-  <Step title="Einwilligung dokumentieren">
+  <Step title="Document Consent">
     ```yaml
-    Consent-Tracking:
-      - Timestamp der Einwilligung
-      - Gesprächskontext dokumentieren  
-      - IP-Adresse für Audit-Trail
-      - Opt-In-Methode ("phone-call-consent")
+    Consent tracking:
+      - Timestamp of consent
+      - Document conversation context  
+      - IP address for audit trail
+      - Opt-in method ("phone-call-consent")
     ```
   </Step>
   
-  <Step title="Data-Minimization">
+  <Step title="Data Minimization">
     ```yaml
-    Nur_notwendige_Daten_sammeln:
-      - E-Mail (erforderlich)
-      - Name (für Personalisierung)
-      - Interesse-Bereich (für Relevanz)
+    Collect only necessary data:
+      - Email (required)
+      - Name (for personalization)
+      - Interest area (for relevance)
       
-    Vermeiden:
-      - Sensitive persönliche Daten
-      - Unnötige Demografie-Informationen
-      - Geschäftsdaten ohne Relevanz
+    Avoid:
+      - Sensitive personal data
+      - Unnecessary demographic info
+      - Business data without relevance
     ```
   </Step>
   
-  <Step title="Retention-Management">
+  <Step title="Retention Management">
     ```yaml
-    Automatische_Bereinigung:
-      - Inactive Subscribers nach 2 Jahren
-      - Bounced E-Mails nach 6 Monaten
-      - Unengaged Contacts nach 1 Jahr
+    Automatic cleansing:
+      - Inactive subscribers after 2 years
+      - Bounced emails after 6 months
+      - Unengaged contacts after 1 year
       
-    Right-to-Deletion:
-      - API-Endpoint für Löschungsanfragen
-      - Compliance-Dashboard für Anfragen
-      - Audit-Log aller Löschungen
+    Right to deletion:
+      - API endpoint for deletion requests
+      - Compliance dashboard for requests
+      - Audit log of all deletions
     ```
   </Step>
 </Steps>
 
 ## Performance & Analytics
 
-### Marketing-KPIs
+### Marketing KPIs
 
-| Metrik | Beschreibung | Zielwert |
-|--------|-------------|----------|
-| **Subscription Success Rate** | % erfolgreiche Anmeldungen | &gt;95% |
-| **Double-Opt-In Conversion** | % Bestätigungen bei Pending-Status | &gt;60% |
-| **List Growth Rate** | Monatliches Listen-Wachstum | &gt;15% |
-| **Engagement Rate** | Durchschnittliche Open/Click-Rate | &gt;25%/5% |
-| **Churn Rate** | Monatliche Abmelde-Rate | &lt;2% |
+| Metric | Description | Target |
+|--------|-------------|--------|
+| **Subscription Success Rate** | % of successful signups | &gt;95% |
+| **Double Opt-In Conversion** | % confirmations for pending status | &gt;60% |
+| **List Growth Rate** | Monthly list growth | &gt;15% |
+| **Engagement Rate** | Average open/click rates | &gt;25%/5% |
+| **Churn Rate** | Monthly unsubscribe rate | &lt;2% |
 
-### ROI-Tracking
+### ROI Tracking
 
 <Steps>
-  <Step title="Attribution-Modeling">
+  <Step title="Attribution Modeling">
     ```yaml
-    Revenue-Attribution:
-      Mid-Call-Subscription → E-Mail-Engagement → Demo-Request → Deal
+    Revenue attribution:
+      Mid-call subscription → Email engagement → Demo request → Deal
       
-    Tracking-Chain:
-      1. UTM-Parameter in E-Mails
-      2. Landing-Page-Conversion-Tracking
-      3. CRM-Lead-Attribution
-      4. Closed-Deal-Revenue-Zuordnung
+    Tracking chain:
+      1. UTM parameters in emails
+      2. Landing page conversion tracking
+      3. CRM lead attribution
+      4. Closed deal revenue attribution
     ```
   </Step>
   
-  <Step title="Campaign-Performance">
+  <Step title="Campaign Performance">
     ```yaml
-    A/B-Testing-Metriken:
-      - Subject-Line-Performance
-      - Template-Conversion-Rates  
-      - Send-Time-Optimization
-      - Audience-Segment-Effectiveness
+    A/B testing metrics:
+      - Subject line performance
+      - Template conversion rates  
+      - Send time optimization
+      - Audience segment effectiveness
     ```
   </Step>
 </Steps>
@@ -628,9 +626,9 @@ sequenceDiagram
 ---
 
 <Warning>
-**DSGVO-Compliance**: Stellen Sie sicher, dass alle Mailchimp-Anmeldungen mit expliziter Einwilligung erfolgen. Implementieren Sie Double-Opt-In für rechtssichere Marketing-Kommunikation.
+**GDPR Compliance**: Ensure all Mailchimp signups have explicit consent. Implement double opt-in for legally compliant marketing communications.
 </Warning>
 
 <Info>
-**Marketing-Tipp**: Verwenden Sie verschiedene Mailchimp-Listen für verschiedene Lead-Qualitätsstufen und Interesse-Bereiche. Dies ermöglicht zielgerichtete Marketing-Kampagnen mit höheren Conversion-Rates.
+**Marketing Tip**: Use different Mailchimp lists for varying lead quality levels and interest areas. This enables targeted marketing campaigns with higher conversion rates.
 </Info>
