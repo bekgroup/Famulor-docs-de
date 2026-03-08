@@ -152,41 +152,11 @@
               {
                 "group": "WhatsApp Business",
                 "pages": [
-                  {
-                    "group": "WhatsApp Business Integration",
-                    "icon": "link",
-                    "pages": [
-                      "en/whatsapp/integration"
-                    ]
-                  },
-                  {
-                    "group": "WhatsApp Sender",
-                    "icon": "message",
-                    "pages": [
-                      "en/whatsapp/senders"
-                    ]
-                  },
-                  {
-                    "group": "Message Templates",
-                    "icon": "file-lines",
-                    "pages": [
-                      "en/whatsapp/templates"
-                    ]
-                  },
-                  {
-                    "group": "WhatsApp Chats",
-                    "icon": "comments",
-                    "pages": [
-                      "en/whatsapp/conversations"
-                    ]
-                  },
-                  {
-                    "group": "WhatsApp Automation",
-                    "icon": "bolt",
-                    "pages": [
-                      "en/whatsapp/automation"
-                    ]
-                  }
+                  "en/whatsapp/integration",
+                  "en/whatsapp/senders",
+                  "en/whatsapp/templates",
+                  "en/whatsapp/conversations",
+                  "en/whatsapp/automation"
                 ]
               },
               {
@@ -848,41 +818,11 @@
               {
                 "group": "WhatsApp Business",
                 "pages": [
-                  {
-                    "group": "WhatsApp Business Integration",
-                    "icon": "link",
-                    "pages": [
-                      "de/whatsapp/integration"
-                    ]
-                  },
-                  {
-                    "group": "WhatsApp-Absender",
-                    "icon": "message",
-                    "pages": [
-                      "de/whatsapp/senders"
-                    ]
-                  },
-                  {
-                    "group": "Nachrichten-Templates",
-                    "icon": "file-lines",
-                    "pages": [
-                      "de/whatsapp/templates"
-                    ]
-                  },
-                  {
-                    "group": "WhatsApp-Chats",
-                    "icon": "comments",
-                    "pages": [
-                      "de/whatsapp/conversations"
-                    ]
-                  },
-                  {
-                    "group": "WhatsApp-Automatisierung",
-                    "icon": "bolt",
-                    "pages": [
-                      "de/whatsapp/automation"
-                    ]
-                  }
+                  "de/whatsapp/integration",
+                  "de/whatsapp/senders",
+                  "de/whatsapp/templates",
+                  "de/whatsapp/conversations",
+                  "de/whatsapp/automation"
                 ]
               },
               {
