@@ -1,240 +1,239 @@
 ---
-title: "WhatsApp-Automatisierung"
-description: "Automatisieren Sie das WhatsApp-Messaging mit Triggern und Aktionen in der Automatisierungs-Plattform"
+title: "WhatsApp Automation"
+description: "Automate WhatsApp messaging with triggers and actions in the automation platform"
 ---
 
+The automation platform integrates with WhatsApp so you can send messages automatically, trigger flows based on WhatsApp events, and programmatically generate AI responses.
 
-Die Automatisierungs-Plattform integriert sich mit WhatsApp, damit Sie Nachrichten automatisch senden, Flows durch WhatsApp-Ereignisse auslösen und KI-Antworten programmgesteuert generieren können.
+## Available Actions
 
-## Verfügbare Aktionen
+### Send WhatsApp Template Message
 
-### WhatsApp-Template-Nachricht senden
+Send a pre-approved template message to a customer.
 
-Senden Sie eine vorab genehmigte Template-Nachricht an einen Kunden.
+**Use cases:**
 
-**Anwendungsfälle:**
+* Send order confirmations after a purchase  
+* Trigger appointment reminders on schedule  
+* Deliver follow-up messages after calls  
+* Re-engage customers who haven’t responded  
 
-* Bestellbestätigungen nach einem Kauf senden
-* Terminerinnerungen nach Zeitplan auslösen
-* Follow-up-Nachrichten nach Anrufen zustellen
-* Kunden erneut ansprechen, die nicht geantwortet haben
+**Configuration:**
 
-**Konfiguration:**
-
-| Feld                  | Beschreibung                                              |
-| --------------------- | --------------------------------------------------------- |
-| **Absender**          | Wählen Sie Ihren WhatsApp-Absender (muss online sein)     |
-| **Template**          | Wählen Sie aus genehmigten Templates                      |
-| **Empfänger-Telefon** | Kunden-Telefonnummer (E.164 Format: +491234567890)       |
-| **Empfänger-Name**    | Optionaler Kundenname zur Personalisierung                |
-| **Variablen**         | Dynamische Werte für Template-Platzhalter                 |
+| Field                 | Description                                                  |
+| --------------------- | ------------------------------------------------------------ |
+| **Sender**            | Select your WhatsApp sender (must be online)                 |
+| **Template**          | Select from approved templates                                |
+| **Recipient Phone**   | Customer phone number (E.164 format: +491234567890)          |
+| **Recipient Name**    | Optional customer name for personalization                    |
+| **Variables**         | Dynamic values for template placeholders                      |
 
 <Tip>
-  **E.164 Format** — Telefonnummern müssen im internationalen Format mit Ländercode vorliegen. Beispiele:
+  **E.164 Format** — Phone numbers must be in international format with country code. Examples:
 
-  * ✅ `+4915112345678`
-  * ✅ `+436641234567`
-  * ❌ `0151/12345678`
-  * ❌ `+49 (0) 151 12345678`
+  * ✅ `+4915112345678`  
+  * ✅ `+436641234567`  
+  * ❌ `0151/12345678`  
+  * ❌ `+49 (0) 151 12345678`  
 </Tip>
 
-### WhatsApp-Nachricht senden (Freitext)
+### Send WhatsApp Message (Free Text)
 
-Senden Sie eine Freitextnachricht an einen Kunden innerhalb des 24-Stunden-Messaging-Fensters.
+Send a free-text message to a customer within the 24-hour messaging window.
 
 <Warning>
-  **24-Stunden-Fenster erforderlich** — Freitextnachrichten können nur an Kunden gesendet werden, die Ihnen innerhalb der letzten 24 Stunden eine Nachricht geschickt haben. Für Kunden außerhalb dieses Fensters nutzen Sie bitte eine Template-Nachricht.
+  **24-hour window required** — Free-text messages can only be sent to customers who messaged you within the last 24 hours. Use a template message for customers outside this window.
 </Warning>
 
-**Anwendungsfälle:**
+**Use cases:**
 
-* Sofortiges Follow-up zu aktuellen Gesprächen
-* Zustellung zeitkritischer Informationen
-* Automatische Reaktion auf Kundenanfragen
+* Immediate follow-up to ongoing conversations  
+* Delivery of time-sensitive information  
+* Automated responses to customer inquiries  
 
-**Konfiguration:**
+**Configuration:**
 
-| Feld                  | Beschreibung                                     |
-| --------------------- | ------------------------------------------------ |
-| **Absender**          | Wählen Sie Ihren WhatsApp-Absender               |
-| **Empfänger-Telefon** | Kunden-Telefonnummer (E.164 Format)              |
-| **Nachricht**         | Nachrichtentext (max. 4096 Zeichen)              |
+| Field                 | Description                                        |
+| --------------------- | ------------------------------------------------- |
+| **Sender**            | Select your WhatsApp sender                       |
+| **Recipient Phone**   | Customer phone number (E.164 format)              |
+| **Message**           | Message text (max. 4096 characters)               |
 
-### KI-Antwort generieren
+### Generate AI Response
 
-Generieren Sie eine KI-Antwort mithilfe Ihres Assistenten, identifiziert durch einen externen Kunden-Identifikator.
+Generate an AI response using your assistant, identified by an external customer identifier.
 
-**Anwendungsfälle:**
+**Use cases:**
 
-* Aufbau eigener Chat-Schnittstellen
-* Integration von WhatsApp in externe CRM-Systeme
-* Erstellung kanalübergreifender KI-Antworten
-* Verarbeitung von Nachrichten von externen Plattformen
+* Build custom chat interfaces  
+* Integrate WhatsApp with external CRM systems  
+* Create cross-channel AI responses  
+* Process messages from external platforms  
 
-**Konfiguration:**
+**Configuration:**
 
-| Feld                      | Beschreibung                                                  |
-| ------------------------- | ------------------------------------------------------------- |
-| **Assistent**             | Wählen Sie den zu verwendenden KI-Assistenten                  |
-| **Kunden-Identifikator**  | Eindeutige Kunden-ID (z. B. Telefonnummer, E-Mail, CRM-ID)    |
-| **Nachricht**             | Die Nachricht, auf die geantwortet werden soll                |
-| **Variablen**             | Optionale Kontextvariablen für den Assistenten                |
+| Field                    | Description                                                   |
+| ------------------------ | ------------------------------------------------------------- |
+| **Assistant**            | Select the AI assistant to use                                |
+| **Customer Identifier**  | Unique customer ID (e.g., phone number, email, CRM ID)       |
+| **Message**              | The message to respond to                                     |
+| **Variables**            | Optional context variables for the assistant                 |
 
-**Wie es funktioniert:**
+**How it works:**
 
-1. Die Aktion findet oder erstellt ein Gespräch für den Kunden-Identifikator
-2. Die Nachricht wird an Ihren KI-Assistenten gesendet
-3. Die KI-generierte Antwort wird zurückgegeben
-4. Sie können diese Antwort dann über WhatsApp oder andere Kanäle senden
+1. The action finds or creates a conversation for the customer identifier  
+2. The message is sent to your AI assistant  
+3. The AI-generated response is returned  
+4. You can then send this response via WhatsApp or other channels  
 
-## Trigger (Auslöser)
+## Triggers
 
-### WhatsApp-Nachricht erhalten
+### WhatsApp Message Received
 
-Lösen Sie einen Flow aus, wenn ein Kunde eine WhatsApp-Nachricht sendet.
+Trigger a flow when a customer sends a WhatsApp message.
 
-**Verfügbare Daten:**
+**Available data:**
 
-* Kunden-Telefonnummer
-* Nachrichtentest
-* Absender-ID
-* Zeitstempel
-* Gesprächs-ID
+* Customer phone number  
+* Message text  
+* Sender ID  
+* Timestamp  
+* Conversation ID  
 
-**Beispielhafte Anwendungsfälle:**
+**Example use cases:**
 
-* Nachrichten in einem CRM oder einer Datenbank protokollieren
-* Benachrichtigungen an Ihr Team senden
-* Follow-up-Sequenzen auslösen
-* Kundendaten sammeln und verarbeiten
+* Log messages in a CRM or database  
+* Notify your team  
+* Trigger follow-up sequences  
+* Collect and process customer data  
 
-### WhatsApp-Gespräch gestartet
+### WhatsApp Conversation Started
 
-Lösen Sie einen Flow aus, wenn ein neues WhatsApp-Gespräch beginnt.
+Trigger a flow when a new WhatsApp conversation begins.
 
-**Verfügbare Daten:**
+**Available data:**
 
-* Kunden-Telefonnummer
-* Erster Nachrichtentext
-* Absenderinformationen
-* Gesprächs-ID
+* Customer phone number  
+* First message text  
+* Sender information  
+* Conversation ID  
 
-## Beispiellose Workflows
+## Example Workflows
 
-### WhatsApp-Follow-up nach Anruf
+### WhatsApp Follow-up After Call
 
-Senden Sie eine WhatsApp-Template-Nachricht, nachdem ein Anruf abgeschlossen wurde:
-
-```mermaid  theme={null}
-flowchart LR
-    A[Anruf beendet Trigger] --> B[5 Minuten warten]
-    B --> C{Anrufergebnis?}
-    C -->|Interessiert| D[Sende 'Interessiert' Template]
-    C -->|Nachfassen| E[Sende 'Follow-up' Template]
-    C -->|Kein Interesse| F[Ende]
-```
-
-**Einrichtung:**
-
-1. Trigger **Anruf beendet** hinzufügen
-2. Aktion **Verzögerung** (Delay) hinzufügen (optional)
-3. **Verzweigung** (Branch) basierend auf Anrufergebnis hinzufügen
-4. Aktion **WhatsApp-Template senden** für jeden Zweig hinzufügen
-5. Template und Variablen konfigurieren
-
-### Lead-Qualifizierung via WhatsApp
-
-Qualifizieren Sie Leads durch WhatsApp-Gespräche:
+Send a WhatsApp template message after a call is completed:
 
 ```mermaid  theme={null}
 flowchart LR
-    A[Formular-Einsendung] --> B[Sende WhatsApp-Template]
-    B --> C[Warte auf Antwort]
-    C --> D[KI verarbeitet Antwort]
-    D --> E[CRM aktualisieren]
+    A[Call Ended Trigger] --> B[Wait 5 minutes]
+    B --> C{Call Outcome?}
+    C -->|Interested| D[Send 'Interested' Template]
+    C -->|Follow-up| E[Send 'Follow-up' Template]
+    C -->|No Interest| F[End]
 ```
 
-### Flow für Terminerinnerungen
+**Setup:**
 
-Automatisierte Terminerinnerungen senden:
+1. Add **Call Ended** trigger  
+2. Add **Delay** action (optional)  
+3. Add **Branch** based on call outcome  
+4. Add **Send WhatsApp Template** action for each branch  
+5. Configure template and variables  
+
+### Lead Qualification via WhatsApp
+
+Qualify leads through WhatsApp conversations:
 
 ```mermaid  theme={null}
 flowchart LR
-    A[Zeitplan-Trigger] --> B[Termine abrufen]
-    B --> C[Schleife durch Termine]
-    C --> D[Sende Erinnerungs-Template]
-    D --> E[In Tabelle protokollieren]
+    A[Form Submission] --> B[Send WhatsApp Template]
+    B --> C[Wait for Reply]
+    C --> D[AI Processes Reply]
+    D --> E[Update CRM]
 ```
 
-## Variablen-Mapping
+### Appointment Reminder Flow
 
-Wenn Sie Template-Nachrichten senden, ordnen Sie Ihre Flow-Daten den Template-Variablen zu:
+Send automated appointment reminders:
+
+```mermaid  theme={null}
+flowchart LR
+    A[Schedule Trigger] --> B[Fetch Appointments]
+    B --> C[Loop Through Appointments]
+    C --> D[Send Reminder Template]
+    D --> E[Log in Table]
+```
+
+## Variable Mapping
+
+When sending template messages, map your flow data to the template variables:
 
 **Template:**
 
 ```
-Hallo {{1}}, Ihr Termin mit {{2}} am {{3}} wurde bestätigt.
+Hello {{1}}, your appointment with {{2}} on {{3}} is confirmed.
 
-Ort: {{4}}
+Location: {{4}}
 ```
 
-**Variablen-Mapping:**
+**Variable mapping:**
 
-| Template-Variable | Flow-Daten                     |
-| ----------------- | ------------------------------ |
-| `{{1}}`           | `{{trigger.customer_name}}`    |
-| `{{2}}`           | `{{trigger.agent_name}}`       |
-| `{{3}}`           | `{{trigger.appointment_date}}` |
-| `{{4}}`           | `{{trigger.location}}`         |
+| Template Variable | Flow Data                       |
+| ----------------- | ------------------------------- |
+| `{{1}}`           | `{{trigger.customer_name}}`     |
+| `{{2}}`           | `{{trigger.agent_name}}`        |
+| `{{3}}`           | `{{trigger.appointment_date}}`  |
+| `{{4}}`           | `{{trigger.location}}`          |
 
-## Fehlerbehandlung
+## Error Handling
 
-### Häufige Fehler
+### Common Errors
 
-| Fehler                             | Ursache                                         | Lösung                                               |
-| ---------------------------------- | ----------------------------------------------- | ---------------------------------------------------- |
-| **Template nicht gefunden**       | Template-ID ungültig oder nicht genehmigt       | Prüfen, ob Template genehmigt und ID korrekt ist    |
-| **Absender offline**              | WhatsApp-Absender ist nicht online              | Absenderstatus prüfen, Verbindung sicherstellen      |
-| **Ungültige Telefonnummer**       | Telefonnummer nicht im E.164-Format             | Format als +[Ländercode][Nummer] anpassen            |
-| **Außerhalb des 24-Std.-Fensters** | Versuch, Freitext außerhalb des Fensters zu senden | Nutzen Sie stattdessen eine Template-Nachricht      |
-| **Rate limited**                  | Zu viele Nachrichten gesendet                   | Verzögerungen zwischen Nachrichten einbauen          |
+| Error                           | Cause                                                | Solution                                            |
+| -------------------------------| ----------------------------------------------------| ---------------------------------------------------|
+| **Template not found**          | Template ID invalid or not approved                   | Check if template is approved and ID is correct    |
+| **Sender offline**              | WhatsApp sender is not online                         | Check sender status, ensure connection is active   |
+| **Invalid phone number**        | Phone number not in E.164 format                       | Format as +[country code][number]                   |
+| **Outside 24-hour window**     | Trying to send free-text message outside the window   | Use a template message instead                       |
+| **Rate limited**                | Too many messages sent                                | Add delays between messages                          |
 
-### Strategie für erneute Versuche (Retry)
+### Retry Strategy
 
-Implementieren Sie bei fehlgeschlagenen Nachrichten eine Retry-Strategie:
+Implement a retry strategy for failed messages:
 
-1. 1 Minute warten
-2. Aktion erneut versuchen
-3. Falls es immer noch fehlschlägt: Fehler protokollieren und Ihr Team benachrichtigen
+1. Wait 1 minute  
+2. Retry the action  
+3. If it still fails: log the error and notify your team  
 
 ## Best Practices
 
-### 1. Immer Templates für Outbound nutzen
+### 1. Always use templates for outbound messaging
 
-Wenn Sie den Kontakt mit Kunden initiieren, nutzen Sie immer genehmigte Templates. Freitextnachrichten funktionieren nur innerhalb des 24-Stunden-Fensters.
+When initiating contact with customers, always use approved templates. Free-text messages only work within the 24-hour window.
 
-### 2. Opt-Out-Optionen einbeziehen
+### 2. Include opt-out options
 
-Fügen Sie bei Marketing-Nachrichten Abmeldehinweise ein, um Vorschriften einzuhalten und Ihre Qualitätsbewertung hochzuhalten.
+Add unsubscribe options in marketing messages to comply with regulations and maintain your quality rating.
 
-### 3. Rate-Limits respektieren
+### 3. Respect rate limits
 
-Senden Sie nicht zu viele Nachrichten zu schnell. Implementieren Sie angemessene Verzögerungen bei Batch-Versendungen.
+Do not send too many messages too quickly. Implement appropriate delays for batch sends.
 
-### 4. Fehler elegant behandeln
+### 4. Handle errors gracefully
 
-Fügen Sie Ihren Flows immer eine Fehlerbehandlung hinzu. Protokollieren Sie Fehlschläge und informieren Sie Ihr Team bei Problemen.
+Always add error handling in your flows. Log failures and alert your team about issues.
 
-### 5. Zuerst mit Einzelempfängern testen
+### 5. Test with individual recipients first
 
-Bevor Sie Massenkampagnen starten, testen Sie Ihren Flow mit einem einzelnen Empfänger, um die korrekte Funktionsweise sicherzustellen.
+Before launching mass campaigns, test your flow with a single recipient to ensure it works correctly.
 
-### 6. Qualitätsbewertung überwachen
+### 6. Monitor your quality rating
 
-Behalten Sie die Qualitätsbewertung Ihres Absenders im Auge. Pausieren Sie Kampagnen, wenn Sie eine sinkende Qualität bemerken.
+Keep an eye on your sender’s quality rating. Pause campaigns if you notice a drop in quality.
 
-## Nächste Schritte
+## Next Steps
 
-* Erfahren Sie mehr über [Nachrichten-Templates](/en/whatsapp/templates) und deren Erstellung
-* Richten Sie [WhatsApp-Absender](/en/whatsapp/senders) für Ihre Telefonnummern ein
-* Erkunden Sie die [Automatisierungs-Plattform](/en/automation-platform/introduction) für weitere Workflow-Optionen
+* Learn more about [message templates](/whatsapp/templates) and how to create them  
+* Set up [WhatsApp senders](/whatsapp/senders) for your phone numbers  
+* Explore the [automation platform](/automation-platform/introduction) for more workflow options
