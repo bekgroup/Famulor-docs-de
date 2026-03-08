@@ -1,0 +1,134 @@
+---
+title: "Retrieve Available Languages"
+api: "GET https://app.famulor.de/api/user/assistants/languages"
+icon: "language"
+description: "Retrieve all available languages for assistant configuration"
+---
+
+
+This endpoint returns a list of all available languages that can be used when creating or updating assistants.
+
+### Response Fields
+
+The API returns a direct array of available languages:
+
+<ResponseField name="array" type="array">
+  Array of available languages
+
+  <Expandable title="Language Properties">
+    <ResponseField name="id" type="integer">
+      The unique identifier of the language
+    </ResponseField>
+
+    <ResponseField name="name" type="string">
+      The display name of the language
+    </ResponseField>
+
+    <ResponseField name="iso_2" type="string">
+      The ISO 639-1 two-letter language code
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+### Notes
+
+- This endpoint requires no parameters
+- Use the `name` field when creating or updating assistants
+- The `iso_2` code can be useful for language-specific functionality
+- All available languages are returned in a single request
+
+<CodeGroup>
+```bash cURL
+curl -H "Authorization: Bearer YOUR_API_TOKEN" \
+  "https://app.famulor.de/api/user/assistants/languages"
+```
+
+```javascript JavaScript
+const response = await fetch(
+  "https://app.famulor.de/api/user/assistants/languages",
+  {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer YOUR_API_TOKEN",
+    },
+  }
+);
+
+const data = await response.json();
+```
+
+```python Python
+import requests
+
+response = requests.get(
+    "https://app.famulor.de/api/user/assistants/languages",
+    headers={
+        "Content-Type": "application/json",
+        "Authorization": "Bearer YOUR_API_TOKEN",
+    },
+    timeout=10,
+)
+
+print(response.json())
+```
+</CodeGroup>
+
+<ResponseExample>
+
+```json 200 Response
+[
+  {
+    "id": 1,
+    "name": "English",
+    "iso_2": "en"
+  },
+  {
+    "id": 2,
+    "name": "Romanian",
+    "iso_2": "ro"
+  },
+  {
+    "id": 3,
+    "name": "French",
+    "iso_2": "fr"
+  },
+  {
+    "id": 4,
+    "name": "Spanish",
+    "iso_2": "es"
+  },
+  {
+    "id": 5,
+    "name": "German",
+    "iso_2": "de"
+  },
+  {
+    "id": 6,
+    "name": "Lithuanian",
+    "iso_2": "lt"
+  },
+  {
+    "id": 7,
+    "name": "Italian",
+    "iso_2": "it"
+  },
+  {
+    "id": 8,
+    "name": "Arabic",
+    "iso_2": "ar"
+  },
+  {
+    "id": 9,
+    "name": "Portuguese",
+    "iso_2": "pt"
+  },
+  {
+    "id": 10,
+    "name": "Danish",
+    "iso_2": "da"
+  }
+]
+```
+
+</ResponseExample>

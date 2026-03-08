@@ -1,0 +1,360 @@
+---
+title: "Flow Builder"
+icon: "share-nodes"
+description: "Design conversational flows visually with an intuitive drag-and-drop interface"
+---
+
+The Flow Builder is a visual drag-and-drop editor for conversation flows that lets you design scripts for AI assistants without writing code. Create multi-step conversation flows by connecting nodes that represent different actions and decision points.
+
+## Overview
+
+The Flow Builder offers:
+
+* **Visual design** – Drag and drop nodes on a canvas
+* **Multiple node types** – Messages, prompts, actions, and more
+* **Branching logic** – Create different paths based on responses
+* **Settings panel** – Configure the agent’s personality and behavior
+* **Import/Export** – Save and share flows as JSON files
+
+<Frame>
+  <img src="https://mintcdn.com/famulors/K8UKKHV-lKgli753/resources/ai-assistants/flow-builder-overview.png?fit=max&auto=format&n=K8UKKHV-lKgli753&q=85&s=877800da7a260a7612a8a4b0298f8e39" alt="Flow Builder User Interface" />
+</Frame>
+
+## When to Use the Flow Builder
+
+<CardGroup cols={2}>
+  <Card title="Use the Flow Builder for" icon="check">
+    * Structured conversation scripts  
+    * Multi-path decision trees  
+    * Complex call flows with branching  
+    * Visual thinkers who prefer diagrams  
+  </Card>
+
+  <Card title="Use the Classic Editor for" icon="pen">
+    * Simple, linear conversations  
+    * Highly dynamic AI responses  
+    * Rapid prompt iterations  
+    * Text-focused editing  
+  </Card>
+</CardGroup>
+
+## Getting Started
+
+<Steps>
+  <Step title="Open Assistants">
+    Navigate to **Assistants** and click the assistant you want to edit.
+  </Step>
+
+  <Step title="Find the Flow Builder">
+    Scroll to the **System Prompt** section in the edit form and click the **Flow Builder** tab.
+  </Step>
+
+  <Step title="Launch the Flow Builder">
+    Click **Start Flow Builder**. A fullscreen editor will open.
+  </Step>
+
+  <Step title="Choose a start mode">
+    * **Continue with existing** – Edit your current flow  
+    * **Start from scratch** – Begin with only a start node  
+    * **Start with template** – Load a pre-built flow template  
+  </Step>
+</Steps>
+
+## Interface Overview
+
+### Canvas Area (Center)
+
+The main workspace where you build your flow:
+
+* **Nodes** – Drag to reposition
+* **Connections** – Lines showing flow between nodes
+* **Grid background** – Helps with alignment
+* **Zoom controls** – Zoom in/out and fit to view
+* **Pan** – Click and drag empty space to move around
+
+### Bottom Toolbar
+
+Quick actions for managing your flow:
+
+| Button              | Action                                     |
+| ------------------- | ------------------------------------------ |
+| ⚡ Auto Layout       | Arrange nodes neatly automatically         |
+| 📋 Duplicate        | Copy the selected node                      |
+| 🗑️ Delete           | Remove selected node or connection          |
+| **+ Add Node**       | Add a new node to the canvas                 |
+
+### Settings Panel (Right Side)
+
+Configure your assistant's personality and behavior:
+
+* **Agent Name** – The name your AI will use  
+* **Agent Type** – Sales, Support, Survey, etc.  
+* **Language** – Spoken language for calls  
+* **Assertiveness** – How persistent the AI should be  
+* **Humor** – Level of humor in responses  
+* **Variables** – Pre-call data fields  
+* **Post-Call Fields** – Data to collect after calls  
+
+## Node Types
+
+The Flow Builder includes 5 node types, each serving a specific purpose:
+
+<Frame>
+  <img src="https://mintcdn.com/famulors/K8UKKHV-lKgli753/resources/ai-assistants/flow-builder-nodes.png?fit=max&auto=format&n=K8UKKHV-lKgli753&q=85&s=f9d2b247078e4a1229accfa5631fff65" alt="Flow Builder Node Types" />
+</Frame>
+
+### Start Node (Green)
+
+<Card title="Start Node" icon="play" color="#22c55e">
+The entry point of every conversation. Each flow must have exactly one start node.
+
+**Properties:**
+
+* **Greeting** – The first message when the call begins
+
+**Example:** “Hello, this is Sarah from Famulor. How are you today?”
+</Card>
+
+### Speak Node (Blue)
+
+<Card title="Speak Node" icon="volume-high" color="#3b82f6">
+Outputs a predefined message exactly as specified. Use this node when you need precise wording.
+
+**Properties:**
+
+* **Text** – The exact message to be spoken  
+* **Outcomes** – Different paths based on customer response  
+
+**Example:** “We are currently offering a limited 20% discount on all plans. Would you like to learn more?”
+</Card>
+
+### Prompt Node (Purple)
+
+<Card title="Prompt Node" icon="message" color="#a855f7">
+Gives the AI instructions on how to respond. More flexible than Speak nodes — AI generates context-aware replies.
+
+**Properties:**
+
+* **Prompt** – Instructions for the AI  
+* **Outcomes** – Different paths based on response categories  
+
+**Example prompt:** “Ask the customer about their current insurance coverage. Be conversational and empathetic. Listen for mentions of family size, budget concerns, or timing.”
+</Card>
+
+### Action Node (Orange)
+
+<Card title="Action Node" icon="bolt" color="#f97316">
+Performs special actions during the call.
+
+**Action Types:**
+
+* **Call Forward** – Forward to another number  
+* **Schedule Appointment** – Book via a linked calendar  
+* **Custom Action** – Trigger a custom mid-call tool  
+
+**Example:** Forward to the sales team at +49-555-123-4567 if the customer is ready to buy.
+</Card>
+
+### End Node (Red)
+
+<Card title="End Node" icon="phone-slash" color="#ef4444">
+Ends the call or transfers to another destination.
+
+**End Types:**
+
+* **End Call** – Hang up with a closing message  
+* **Forward Call** – Forward to a phone number  
+* **Agent Transfer** – Hand off to another assistant  
+
+**Example closing:** “Thank you for your time today. Have a great day!”
+</Card>
+
+## Working with Nodes
+
+### Adding Nodes
+
+1. Click **+ Add Node** in the bottom toolbar.  
+2. Select the node type from the dropdown menu.  
+3. The node appears on the canvas.  
+4. Drag it to your desired position.
+
+### Connecting Nodes
+
+1. Hover over the bottom edge of a node to reveal the **outbound port** (small circle).  
+2. Click and drag from the outlet.  
+3. Connect it to the **inbound port** on the top edge of another node.  
+4. Release to create the connection.
+
+### Editing Nodes
+
+1. Click any node to select it.  
+2. Its properties show up in a panel.  
+3. Edit text, prompt, or settings as needed.  
+4. Changes are saved automatically on the canvas.
+
+### Deleting Nodes
+
+* Select a node and press the **Delete** key, or  
+* Select a node and click the 🗑️ button in the toolbar.
+
+<Warning>
+  The start node cannot be deleted. Each flow must have a start node.
+</Warning>
+
+## Outcomes (Multiple Paths)
+
+Speak and Prompt nodes can have multiple **outcomes** – separate paths depending on the customer's response.
+
+### Adding Outcomes
+
+1. Select a Speak or Prompt node.  
+2. In the properties panel, find the **Outcomes** section.  
+3. Click **Add Outcome**.  
+4. Name the outcome (e.g., “Interested”, “Not interested”, “Request callback”).
+
+### Connecting Outcomes
+
+Each outcome appears as a colored dot at the bottom edge of the node. Connect each outcome to a target node to create branching logic.
+
+<Frame>
+  <img src="https://mintcdn.com/famulors/K8UKKHV-lKgli753/resources/ai-assistants/flow-builder-branching.png?fit=max&auto=format&n=K8UKKHV-lKgli753&q=85&s=932916045af243724c9cc36934ceadb8" alt="Conversation branching with outcomes" />
+</Frame>
+
+**Example flow:**
+
+```
+[Start] → [Ask about interest]
+               ↓
+         [Prompt: "Ask if interested"]
+               ↓
+     ┌─────────┼─────────┐
+     ↓         ↓         ↓
+[Interested] [Maybe] [Not interested]
+     ↓         ↓         ↓
+[Book demo] [Send info] [Thank & End]
+```
+
+## Settings Panel
+
+<Frame>
+  <img src="https://mintcdn.com/famulors/K8UKKHV-lKgli753/resources/ai-assistants/flow-builder-settings.png?fit=max&auto=format&n=K8UKKHV-lKgli753&q=85&s=36683cf1b665ac9e6631f60720cc2192" alt="Flow Builder Settings Panel" />
+</Frame>
+
+### Agent Identity
+
+| Setting           | Description                                   |
+| ----------------- | --------------------------------------------- |
+| **Agent Name**    | Name the AI uses to introduce itself          |
+| **Agent Type**    | Preset personality: Sales, Support, etc.      |
+| **Language**      | Primary language for the conversation          |
+
+### Personality
+
+| Setting              | Options                 | Description                      |
+| -------------------- | ----------------------- | -------------------------------- |
+| **Assertiveness**     | Low / Medium / High     | How persistent the AI is          |
+| **Humor**            | Off / Low / Medium / High | Level of humor in replies          |
+
+### Variables
+
+Add pre-call data that can be used in your messages:
+
+1. Click **Add Variable**.  
+2. Enter a **Name** (e.g., `product_interest`).  
+3. Set a **Default Value**.
+
+Use variables in messages with curly braces: `{variable_name}`
+
+**Example:** “Hello {customer_name}, I see you have shown interest in our {product_interest}.”
+
+### Post-Call Fields
+
+Define data to be extracted from calls:
+
+1. Click **Add Field**.  
+2. Enter **Name**, **Type**, and **Description**.  
+3. The AI will try to fill these fields based on the conversation.
+
+**Types:** `string`, `number`, `boolean`
+
+## Import/Export
+
+### Exporting Your Flow
+
+1. Open the settings panel.  
+2. Scroll down.  
+3. Click **Export JSON**.  
+4. Save the `.json` file.
+
+### Importing a Flow
+
+1. In settings, click **Import JSON**.  
+2. Select your `.json` file.  
+3. The flow will load on the canvas.
+
+<Tip>
+  Regularly export your flows as backups. This also makes sharing flows with team members easy.
+</Tip>
+
+## Voicemail Settings
+
+Configure what happens when voicemail is detected:
+
+* **Voicemail Message** – Message to leave when voicemail answers  
+* **End call on voicemail** – Toggle to hang up automatically on voicemail
+
+## Saving Your Flow
+
+Click the **Save** button in the top right to save your flow within the assistant.
+
+<Note>
+  The flow is stored as JSON in your assistant’s system prompt field. When you switch to the Classic Editor, you will see the raw JSON data.
+</Note>
+
+## Best Practices
+
+<CardGroup cols={2}>
+  <Card title="Start Simple" icon="seedling">
+    Begin with a simple flow and gradually add complexity. Test at each step.
+  </Card>
+
+  <Card title="Use Prompt Nodes" icon="brain">
+    Prompt nodes give the AI flexibility. Use them for dynamic, context-aware responses.
+  </Card>
+
+  <Card title="Plan Outcomes" icon="diagram-project">
+    Outline main paths first: positive, negative, and neutral responses.
+  </Card>
+
+  <Card title="Test Thoroughly" icon="vial">
+    Make test calls that cover all paths. Verify that each outcome leads to the correct target.
+  </Card>
+</CardGroup>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Nodes won’t connect">
+    * Make sure you are dragging from an **outbound port** (bottom) to an **inbound port** (top).  
+    * Check that you are not creating a circular connection.  
+    * Start node has only one output; End node has only one input.  
+  </Accordion>
+
+  <Accordion title="Flow won’t save">
+    * Check your internet connection.  
+    * Ensure you have at least one node besides the Start node.  
+    * Look for validation errors in the settings panel.  
+  </Accordion>
+
+  <Accordion title="AI not following the flow">
+    * Use Speak nodes for exact wording requirements.  
+    * Make instructions in Prompt nodes more specific.  
+    * Ensure outcomes are clearly defined and connected.  
+  </Accordion>
+</AccordionGroup>
+
+## Related Resources
+
+* [AI Prompt Editor](/ai-assistants/ai-prompt-editor) – Chat-based alternative for prompt editing  
+* [System Prompt Guide](/ai-assistants/system-prompt) – Understanding prompt fundamentals  
+* [Testing Assistants](/ai-assistants/testing) – How to test your flows

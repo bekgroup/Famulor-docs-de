@@ -1,0 +1,73 @@
+---
+title: "Disable assistant inbound webhook"
+api: "POST /user/assistants/disable-inbound-webhook"
+icon: "toggle-off"
+description: "Turn off inbound webhook notifications for an assistant"
+---
+
+Disable inbound webhook notifications for an assistant. This stops delivery of real-time updates about inbound call completions and associated data.
+
+### Request Body
+
+<ParamField body="assistant_id" type="integer" required>
+  The identifier of the assistant to disable inbound webhooks for
+</ParamField>
+
+### Response
+
+<ResponseField name="message" type="string">
+  Success confirmation message
+</ResponseField>
+
+<ResponseField name="data" type="array">
+  Empty array (reserved for future functionality)
+</ResponseField>
+
+### Error Responses
+
+<ResponseField name="404 Not Found">
+  <Expandable title="Error Response">
+    <ResponseField name="message" type="string">
+      Error when the assistant doesn't exist or belongs to another account
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="422 Validation Error">
+  <Expandable title="Error Response">
+    <ResponseField name="message" type="string">
+      Validation error message
+    </ResponseField>
+    <ResponseField name="errors" type="object">
+      Detailed field-level validation errors
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseExample>
+
+```json 200 Success Response
+{
+  "message": "Inbound webhook disabled successfully",
+  "data": []
+}
+```
+
+```json 404 Not Found
+{
+  "message": "Assistant not found"
+}
+```
+
+```json 422 Validation Error
+{
+  "message": "The given data was invalid.",
+  "errors": {
+    "assistant_id": [
+      "The assistant id field is required."
+    ]
+  }
+}
+```
+
+</ResponseExample>

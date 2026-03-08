@@ -1,0 +1,152 @@
+---
+title: "Assistant Best Practices"
+icon: "check"
+description: "Quick guide to fine-tune mode, transcriber, model, and other settings for the best call experience"
+---
+
+<Info>
+Last updated: Feb. 1, 2026
+</Info>
+
+Getting great results often comes down to picking the right engine settings. Use this checklist when configuring a Famulor assistant.
+
+## 1. Pick a Mode
+
+| Mode | Why choose it? | Notes |
+| --- | --- | --- |
+| Speech-to-Speech (Multimodal) | Fastest turn-taking and most natural flow | Recommended starting point. Try the Gemini 2.5 engine (beta) for the lowest latency, but note it’s experimental and may be less stable. |
+| Pipeline | Maximum control over voice and long-form replies | If you select Pipeline, continue to the Transcriber step below. |
+
+Want to know more about the differences? See the [Assistant Modes guide](/ai-assistants/assistant-modes).
+
+<Tip>
+Record the same scenario in both modes and compare response time and caller satisfaction.
+</Tip>
+
+## 2. Choose a Transcriber (Pipeline only)
+
+| Transcriber | Accuracy | Latency | Best for |
+| --- | --- | --- | --- |
+| Azure | ⭐️⭐️⭐️⭐️ | ⏱️⏱️⏱️ (slower) | Highest transcription fidelity |
+| Gladia | ⭐️⭐️⭐️ | ⏱️ (faster) | Good all-rounder for most languages |
+| Deepgram | ⭐️⭐️⭐️ | ⏱️ (faster) | Solid alternative—test which performs better for your language and audio setup |
+
+<Tip>
+Different languages, accents, and background noise can affect each engine differently. Run a quick A/B test and keep the best performer.
+</Tip>
+
+## 3. Select an LLM Model
+
+| Model | Strengths | Trade-offs |
+| --- | --- | --- |
+| GPT-4o | Smartest reasoning, handles complex prompts | Slightly higher latency and cost |
+| Gemini 2.5-Flash-Lite | Blazing-fast, still highly capable | May miss nuance in very complex tasks—test for your use case |
+
+<Tip>
+If speed is critical, start with Gemini 2.5-Flash-Lite. For sophisticated reasoning, use GPT-4o and offset latency by shortening replies.
+</Tip>
+
+## 4. Noise Cancellation
+
+If callers are on speaker phone or in a quiet environment, keep noise cancellation ON. If your call volume is low or some words are “clipped,” turn it OFF so the transcriber gets the full waveform.
+
+<Tip>
+If the assistant isn’t hearing you well, try turning noise cancellation off.
+</Tip>
+
+## 5. Conversation Timers
+
+| Parameter | Recommended | Why |
+| --- | --- | --- |
+| Re-engagement | ≈ 30 s | Gives callers enough time to think. Lower values can feel pushy. |
+| Max silence duration | ≈ 60 s | Prevents premature hang-ups while still ending truly silent calls. |
+
+<Info>
+Test different values in real calls—too low can interrupt, too high leaves awkward gaps.
+</Info>
+
+## 6. Initial Message
+
+| Mode | How it’s used | Best practice |
+| --- | --- | --- |
+| Pipeline | Read exactly as written (converted by TTS) | Write the greeting verbatim: “Hello, this is Alex from …”. |
+| Speech-to-Speech | Interpreted as a prompt by the model | Include instructions like “Greet the customer and say …” or prepend `say exactly:` to ensure literal output. |
+
+## 7. Ambient sound
+
+Ambient sound adds subtle background noise to the assistant’s voice and is enabled by default.
+
+<Tip>
+If the assistant isn’t hearing you well, turn off ambient sound or lower the ambient volume.
+</Tip>
+
+## 8. Endpointing sliders
+
+Control when your assistant starts talking with the endpointing sensitivity slider at the bottom of assistant settings.
+
+| Setting | Effect | Use when |
+| --- | --- | --- |
+| Lower sensitivity | Assistant responds faster after caller stops speaking | You want snappy, quick-turn conversations |
+| Higher sensitivity | Assistant waits longer before responding | Callers give longer, more detailed replies |
+
+<Tip>
+If your assistant cuts off callers mid-sentence, increase sensitivity. If responses feel sluggish, decrease it.
+</Tip>
+
+## 9. Debug using the call transcript
+
+<Steps>
+<Step title="Open Call history">
+Go to the Call history page in your dashboard.
+</Step>
+
+<Step title="Select your latest test call">
+Open the most recent call you placed for this assistant.
+</Step>
+
+<Step title="Inspect transcript and function calls">
+Review the transcript, function calls, and parameters to identify timing or logic issues.
+
+<Check>
+Confirm the assistant is using the expected mode, model, and tools per your configuration.
+</Check>
+</Step>
+</Steps>
+
+## 10. Still have questions?
+
+If you need help, contact our support team via the chat widget inside the app.
+
+## 11. Debug with the Test Assistant (chat)
+
+<Steps>
+<Step title="Open your assistant">
+Open the assistant you want to debug in the Famulor app.
+</Step>
+
+<Step title="Switch to the Test Assistant tab">
+At the top of the page, click the <strong>Test Assistant</strong> tab.
+</Step>
+
+<Step title="Start a free chat session">
+Chat with your assistant to validate prompts, tools, and behavior. These chats are free and do not consume call minutes.
+</Step>
+
+<Step title="Ensure you have chat credits">
+Make sure you have at least one chat credit available. If you do not have any, go to <a href="https://app.famulor.de/credits">the credits page</a> and convert your minute credits into chat credits.
+</Step>
+</Steps>
+
+---
+
+<CardGroup cols={2}>
+<Card title="Assistant Modes" icon="bolt" href="/ai-assistants/assistant-modes">
+Understand the differences between Pipeline and Speech-to-Speech.
+</Card>
+
+<Card title="Voice Selection & Cloning" icon="microphone" href="/ai-assistants/voice-selection">
+Choose a built-in voice or your custom-cloned brand voice.
+</Card>
+</CardGroup>
+
+

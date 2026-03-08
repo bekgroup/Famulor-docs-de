@@ -1,0 +1,52 @@
+---
+title: "Delete call"
+api: "DELETE /user/calls/{call}"
+description: "Permanently remove a call record"
+---
+
+Delete a specific call record from your account. This action permanently removes all associated data including transcripts, recordings, and metadata.
+
+### Path Parameters
+
+<ParamField path="call" type="integer" required>
+  The unique identifier of the call to delete
+</ParamField>
+
+### Response
+
+<ResponseField name="message" type="string">
+  Confirmation message
+</ResponseField>
+
+### Error Responses
+
+<ResponseField name="404 Not Found">
+  <Expandable title="Error Response">
+    <ResponseField name="message" type="string">
+      Error message when the call doesn't exist or belongs to another account
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseExample>
+
+```json 200 Success Response
+{
+  "message": "Call deleted successfully"
+}
+```
+
+```json 404 Not Found
+{
+  "message": "Call not found"
+}
+```
+
+</ResponseExample>
+
+### Notes
+
+- Only calls from assistants you own can be deleted
+- Deletion is permanent and cannot be undone
+- This removes the call record, transcript, evaluation data, and metadata
+- If a recording exists, the file will also be permanently deleted from storage

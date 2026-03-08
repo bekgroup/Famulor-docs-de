@@ -1,0 +1,70 @@
+---
+title: "Delete Document"
+api: "DELETE https://app.famulor.de/api/user/knowledgebases/{knowledgebaseId}/documents/{documentId}"
+icon: "trash"
+description: "Deletes a document from a knowledge base"
+---
+
+This endpoint permanently deletes a document from a knowledge base. The document's vector embeddings are also removed from the vector database.
+
+### Path Parameters
+
+<ParamField path="knowledgebaseId" type="integer" required>
+  The unique identifier of the knowledge base
+</ParamField>
+
+<ParamField path="documentId" type="integer" required>
+  The unique identifier of the document to delete
+</ParamField>
+
+### Response Fields
+
+<ResponseField name="message" type="string">
+  Success message
+</ResponseField>
+
+### What Gets Deleted
+
+When you delete a document:
+
+* **Document record** is removed from the database
+* **Vector embeddings** are deleted from the vector database
+* **Processed content** is removed from external document storage
+* **Parent knowledge base status** is automatically updated
+
+<Warning>
+  This action is irreversible. The document and all its processed content will be permanently deleted.
+</Warning>
+
+<Note>
+  If this was the last document in the knowledge base, the knowledge base status will change to `empty`.
+</Note>
+
+
+<ResponseExample>
+
+```json 200 Success
+{
+  "message": "Document deleted successfully."
+}
+```
+
+```json 404 Knowledgebase Not Found
+{
+  "error": "Knowledgebase not found."
+}
+```
+
+```json 404 Document Not Found
+{
+  "error": "Document not found."
+}
+```
+
+```json 500 Error
+{
+  "error": "Failed to delete document. Please try again."
+}
+```
+
+</ResponseExample>

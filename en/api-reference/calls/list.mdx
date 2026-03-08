@@ -1,0 +1,303 @@
+---
+title: "List Calls"
+api: "GET https://app.famulor.de/api/user/calls"
+icon: "phone"
+description: "List all calls for the authenticated user with filtering options"
+---
+
+This endpoint allows you to list all calls belonging to the authenticated user with various filtering options.
+
+### Query Parameters
+
+<ParamField query="status" type="string">
+  Filter calls by status. Possible values: `initiated`, `ringing`, `busy`, `in-progress`, `ended`, `completed`, `ended_by_customer`, `ended_by_assistant`, `no-answer`, `failed`
+</ParamField>
+
+<ParamField query="type" type="string">
+  Filter calls by type. Possible values: `inbound`, `outbound`, `web`
+</ParamField>
+
+<ParamField query="phone_number" type="string">
+  Filter calls by client phone number
+</ParamField>
+
+<ParamField query="assistant_id" type="integer">
+  Filter calls by assistant ID
+</ParamField>
+
+<ParamField query="campaign_id" type="integer">
+  Filter calls by campaign ID
+</ParamField>
+
+<ParamField query="date_from" type="string">
+  Filter calls from this date (YYYY-MM-DD format)
+</ParamField>
+
+<ParamField query="date_to" type="string">
+  Filter calls up to this date (YYYY-MM-DD format)
+</ParamField>
+
+<ParamField query="per_page" type="integer">
+  Number of calls per page (1-100, default: 15)
+</ParamField>
+
+<ParamField query="page" type="integer">
+  Page number (default: 1)
+</ParamField>
+
+### Response Fields
+
+<ResponseField name="data" type="array">
+  Array of calls
+
+  <Expandable title="Call Properties">
+    <ResponseField name="id" type="integer">
+      The unique identifier of the call
+    </ResponseField>
+
+    <ResponseField name="assistant_name" type="string">
+      The name of the assistant who handled the call
+    </ResponseField>
+
+    <ResponseField name="campaign_name" type="string">
+      The name of the campaign to which this call belongs (if applicable)
+    </ResponseField>
+
+    <ResponseField name="type" type="string">
+      The type of the call (inbound, outbound, or web)
+    </ResponseField>
+
+    <ResponseField name="duration" type="integer">
+      The duration of the call in seconds
+    </ResponseField>
+
+    <ResponseField name="assistant_phone_number" type="string">
+      The phone number used by the assistant
+    </ResponseField>
+
+    <ResponseField name="client_phone_number" type="string">
+      The client's phone number
+    </ResponseField>
+
+    <ResponseField name="status" type="string">
+      The current status of the call
+    </ResponseField>
+
+    <ResponseField name="transcript" type="array">
+      The transcript of the call conversation as an array of objects containing text, type, sender, and timestamp
+    </ResponseField>
+
+    <ResponseField name="variables" type="object">
+      Variables collected during the call
+    </ResponseField>
+
+    <ResponseField name="evaluation" type="array">
+      Evaluation data for call performance as an array of objects with name, type, value, and description
+    </ResponseField>
+
+    <ResponseField name="webhook_response" type="object">
+      Response from configured webhooks
+    </ResponseField>
+
+    <ResponseField name="carrier_cost" type="number">
+      The cost charged by the carrier for this call
+    </ResponseField>
+
+    <ResponseField name="total_cost" type="number">
+      The total cost of the call including all fees
+    </ResponseField>
+
+    <ResponseField name="answered_by" type="string">
+      Who answered the call (human, machine, or unknown)
+    </ResponseField>
+
+    <ResponseField name="recording_url" type="string">
+      URL to the call recording (if available and enabled)
+    </ResponseField>
+
+    <ResponseField name="created_at" type="string">
+      Date and time when the call was created
+    </ResponseField>
+
+    <ResponseField name="updated_at" type="string">
+      Date and time of the last update to the call
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="current_page" type="integer">
+  The current page number
+</ResponseField>
+
+<ResponseField name="per_page" type="integer">
+  Number of items per page
+</ResponseField>
+
+<ResponseField name="total" type="integer">
+  Total number of calls matching the criteria
+</ResponseField>
+
+<ResponseField name="last_page" type="integer">
+  The last page number
+</ResponseField>
+
+<CodeGroup>
+```bash cURL
+curl -X GET "https://app.famulor.de/api/user/calls?status=completed&type=outbound&date_from=2024-01-01&per_page=25" \
+     -H "Authorization: Bearer YOUR_API_KEY" \
+     -H "Content-Type: application/json"
+```
+
+```javascript JavaScript
+const response = await fetch(
+  "https://app.famulor.de/api/user/calls?status=completed&type=outbound&date_from=2024-01-01&per_page=25",
+  {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer YOUR_API_KEY",
+    },
+  }
+);
+
+const data = await response.json();
+```
+
+```python Python
+import requests
+
+params = {
+    "status": "completed",
+    "type": "outbound",
+    "date_from": "2024-01-01",
+    "per_page": 25,
+}
+
+response = requests.get(
+    "https://app.famulor.de/api/user/calls",
+    headers={
+        "Content-Type": "application/json",
+        "Authorization": "Bearer YOUR_API_KEY",
+    },
+    params=params,
+    timeout=10,
+)
+
+print(response.json())
+```
+</CodeGroup>
+
+<ResponseExample>
+
+```json 200 Response
+{
+  "data": [
+    {
+      "id": 123456,
+      "assistant_name": "Sales Assistant",
+      "campaign_name": "Neukundenakquise Q1 2024",
+      "type": "outbound",
+      "duration": 180,
+      "assistant_phone_number": "+4912345678",
+      "client_phone_number": "+4915123456789",
+      "status": "completed",
+      "transcript": [
+        {
+          "text": "Hallo, mein Name ist Maximilian, ich melde mich im Auftrag eines IT-Unternehmens.",
+          "type": "transcript",
+          "sender": "bot",
+          "timestamp": 1754055268.525861
+        },
+        {
+          "text": "Hallo?",
+          "type": "transcript",
+          "sender": "human",
+          "timestamp": 1754055272.069057
+        }
+      ],
+      "variables": {
+        "customer_name": "John"
+      },
+      "evaluation": [
+        {
+          "name": "status",
+          "type": "bool",
+          "value": true,
+          "description": "Whether the call objective was achieved or not."
+        },
+        {
+          "name": "summary",
+          "type": "string",
+          "value": "Connected to the customer, obtained name of the person responsible for IT.",
+          "description": "Call summary in a few words."
+        }
+      ],
+      "webhook_response": {
+        "crm_updated": true,
+        "lead_score": 75
+      },
+      "carrier_cost": 0.08,
+      "total_cost": 0.12,
+      "answered_by": "human",
+      "recording_url": "https://recordings.famulor.de/call-123456.mp3",
+      "created_at": "2024-01-15T10:30:00Z",
+      "updated_at": "2024-01-15T10:33:00Z"
+    },
+    {
+      "id": 123457,
+      "assistant_name": "Support Assistant",
+      "campaign_name": null,
+      "type": "inbound",
+      "duration": 120,
+      "assistant_phone_number": "+4912345678",
+      "client_phone_number": "+4917123456789",
+      "status": "ended_by_customer",
+      "transcript": [
+        {
+          "text": "Kunde: Hallo, ich habe eine Frage zu meinem Konto.",
+          "type": "transcript",
+          "sender": "human",
+          "timestamp": 1754055300.123456
+        },
+        {
+          "text": "Gerne helfe ich Ihnen dabei. Was kann ich für Sie tun?",
+          "type": "transcript",
+          "sender": "bot",
+          "timestamp": 1754055302.789012
+        }
+      ],
+      "variables": {
+        "issue_resolved": true,
+        "satisfaction_rating": 9
+      },
+      "evaluation": [
+        {
+          "name": "issue_resolved",
+          "type": "bool",
+          "value": true,
+          "description": "Whether the customer's issue was resolved."
+        },
+        {
+          "name": "satisfaction_rating",
+          "type": "integer",
+          "value": 9,
+          "description": "Customer satisfaction rating from 1-10."
+        }
+      ],
+      "webhook_response": null,
+      "carrier_cost": 0.05,
+      "total_cost": 0.08,
+      "answered_by": "human",
+      "recording_url": null,
+      "created_at": "2024-01-15T14:20:00Z",
+      "updated_at": "2024-01-15T14:22:00Z"
+    }
+  ],
+  "current_page": 1,
+  "per_page": 15,
+  "total": 2,
+  "last_page": 1
+}
+```
+
+</ResponseExample>

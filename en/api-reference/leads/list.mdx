@@ -1,0 +1,146 @@
+---
+title: "List Leads"
+api: "GET https://app.famulor.de/api/user/leads"
+icon: "list"
+description: "List all leads for the authenticated user"
+---
+
+This endpoint allows you to list all leads that belong to the authenticated user.
+
+### Response Fields
+
+<ResponseField name="leads" type="array">
+  Array of all the user's leads
+
+  <Expandable title="Lead Properties">
+    <ResponseField name="id" type="integer">
+      The ID of the lead
+    </ResponseField>
+
+    <ResponseField name="campaign_id" type="integer">
+      The ID of the campaign this lead belongs to
+    </ResponseField>
+
+    <ResponseField name="phone_number" type="string">
+      The lead's phone number in E.164 format
+    </ResponseField>
+
+    <ResponseField name="variables" type="object">
+      The variables assigned to the lead
+    </ResponseField>
+
+    <ResponseField name="status" type="string">
+      The status of the lead
+    </ResponseField>
+
+    <ResponseField name="created_at" type="string">
+      The creation date of the lead
+    </ResponseField>
+
+    <ResponseField name="updated_at" type="string">
+      The date of the last update of the lead
+    </ResponseField>
+
+    <ResponseField name="campaign" type="object">
+      The campaign information
+
+      <Expandable title="Campaign Properties">
+        <ResponseField name="id" type="integer">
+          The ID of the campaign
+        </ResponseField>
+
+        <ResponseField name="name" type="string">
+          The name of the campaign
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+
+    <ResponseField name="secondary_contacts" type="array">
+      Array of secondary contact leads linked to this lead
+
+      <Expandable title="Secondary Contact Properties">
+        <ResponseField name="id" type="integer">
+          The ID of the secondary contact lead
+        </ResponseField>
+
+        <ResponseField name="phone_number" type="string">
+          The phone number of the secondary contact in E.164 format
+        </ResponseField>
+
+        <ResponseField name="variables" type="object">
+          The variables assigned to the secondary contact
+        </ResponseField>
+
+        <ResponseField name="status" type="string">
+          The status of the secondary contact
+        </ResponseField>
+
+        <ResponseField name="created_at" type="string">
+          The creation date of the secondary contact
+        </ResponseField>
+
+        <ResponseField name="updated_at" type="string">
+          The date of the last update of the secondary contact
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseExample>
+
+```json 200 Response
+{
+  "leads": [
+    {
+      "id": 1234,
+      "campaign_id": 56,
+      "phone_number": "+1234567890",
+      "variables": {
+        "customer_name": "John Doe",
+        "email": "john.doe@example.com",
+        "company": "Beispiel GmbH"
+      },
+      "status": "created",
+      "created_at": "2024-01-15T10:30:00Z",
+      "updated_at": "2024-01-15T10:30:00Z",
+      "campaign": {
+        "id": 56,
+        "name": "Neukundenakquise Q1 2024"
+      },
+      "secondary_contacts": [
+        {
+          "id": 5678,
+          "phone_number": "+1234567891",
+          "variables": {
+            "name": "Jane Smith",
+            "role": "Entscheidungsträger"
+          },
+          "status": "created",
+          "created_at": "2024-01-15T11:00:00Z",
+          "updated_at": "2024-01-15T11:00:00Z"
+        }
+      ]
+    },
+    {
+      "id": 1235,
+      "campaign_id": 57,
+      "phone_number": "+1987654321",
+      "variables": {
+        "customer_name": "Max Mustermann",
+        "email": "max.mustermann@beispiel.de"
+      },
+      "status": "completed",
+      "created_at": "2024-01-14T09:15:00Z",
+      "updated_at": "2024-01-14T14:22:00Z",
+      "campaign": {
+        "id": 57,
+        "name": "Follow-up Kampagne"
+      },
+      "secondary_contacts": []
+    }
+  ]
+}
+```
+
+</ResponseExample>

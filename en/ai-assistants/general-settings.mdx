@@ -1,0 +1,298 @@
+---
+title: "General Assistant Settings"
+icon: "gear"
+description: "Basic configuration for Famulor AI assistants – call direction, numbers, voices, language, audio, and protection mechanisms."
+---
+
+
+<Info>
+This page guides you step-by-step through the essential basic settings of your Famulor AI assistant – from call direction to advanced parameters.
+</Info>
+
+## Quick Start
+
+How to set up your first Famulor assistant:
+
+1. **Choose call direction:** Incoming (receive calls) or outgoing (make calls).
+2. **Assign assistant name:** Internal name such as “Support Assistant” or “Sales Qualifier.”
+3. **Configure phone numbers:** Assign platform numbers, SIP numbers, or just a verified caller ID number.
+4. **Select voice & language:** Use built-in voices or clone your own voice.
+5. **Adjust advanced settings:** Fine-tune model, timing, audio parameters, and protection mechanisms.
+
+<Tip>
+  Test each change with a brief test call or a small campaign to ensure the assistant behaves as expected.
+</Tip>
+
+<Note>
+  Work through the sections of this page in order. Each setting explains its function and how to use it effectively in Famulor.
+</Note>
+
+## Call Direction & Basic Setup
+
+### Assistant Type
+
+Specify whether your assistant handles **incoming** or **outgoing** calls. This choice determines which number and routing options are visible in Famulor.
+
+- **Incoming (receive calls):** Your assistant answers calls from customers, e.g., as a digital switchboard or support hotline.
+- **Outgoing (make calls):** Your assistant actively calls leads or existing customers, e.g., for qualification, follow-ups, or appointment confirmations.
+
+### Assistant Name
+
+Choose a clear, descriptive name that reflects the purpose and use case, for example:
+
+- “Outbound Lead Qualification B2B”
+- “Customer Support Level 1”
+- “Appointment Booking Dr. Müller’s Practice”
+
+A consistent naming scheme helps your team quickly identify assistants within the Famulor interface.
+
+## Phone Number Configuration
+
+Your assistant needs at least one assigned phone number to be reachable in the telephone network or to make calls.
+
+### For Outgoing Assistants
+
+You can use the following options:
+
+- **Platform numbers:** Numbers booked directly through Famulor, ideal for quick setup without your own phone system.
+- **SIP numbers:** Integration of your existing VoIP or PBX infrastructure via SIP trunks.
+- **Caller ID only:** An existing company number is verified and used solely as the displayed caller ID on outgoing calls.
+
+### For Incoming Assistants
+
+Typically use:
+
+- **Platform numbers:** You route customers directly to a number provided by Famulor.
+- **SIP numbers:** You connect your existing phone system with Famulor and forward calls to the assistant.
+
+**Important:** Caller ID–only numbers cannot receive incoming calls. They are used only as visible caller ID on outgoing calls.
+
+### Cost Overview
+
+- **Platform numbers:** Monthly base fee per number plus usage-based per-minute prices.
+- **SIP integration:** Usually no monthly fee from Famulor; only per-minute charges for AI processing apply.
+- **Caller ID:** No monthly fees; per-minute charges apply for outgoing calls.
+
+For details on prices, regions, and types, refer to the “Phone Numbers” and “Costs & Pricing” sections in the documentation.
+
+## Engine Type (Speech Processing Mode)
+
+Determine how your Famulor assistant processes speech and generates responses. The mode choice affects latency, naturalness, and configuration options.
+
+### Pipeline Mode
+
+Classic chain: speech recognition → language model → speech output.
+
+**Suitable for:**
+
+- Complex reasoning and long responses
+- Precise control over voices, transcriber, and models
+- Scenarios with many tools and integrations
+
+### Speech-to-Speech Mode
+
+Direct speech-to-speech processing without visible intermediate text.
+
+**Suitable for:**
+
+- Very natural conversations
+- Fastest turn-taking experience
+- Simple use cases focused on conversational flow
+
+### Dualplex Mode (Beta)
+
+Combines fast multimodal processing with high-quality voices.
+
+**Suitable for:**
+
+- Standard use cases prioritizing performance and quality
+- Recommended default for many Famulor assistants
+
+## Language Configuration
+
+### Primary Language
+
+Define the primary language your assistant speaks and understands. This setting affects:
+
+- Accuracy of speech recognition
+- Available voices and accents
+- Default filler phrases
+- Selection of the appropriate model
+
+### Secondary Languages
+
+Optionally, your assistant can understand and speak additional languages.
+
+**Typical use cases:**
+
+- Multilingual customer support
+- International companies operating in multiple countries
+- Conversations switching between languages
+
+The assistant usually detects automatically which language the other person speaks and responds accordingly.
+
+## TTS Provider & Voice Selection
+
+### TTS Provider
+
+In Pipeline and Dualplex modes, you can select the text-to-speech provider. Typical options include:
+
+- **High-quality premium voices** with many accents
+- **Fast, low-latency voices** for reactive conversations
+
+### Voice Options
+
+There are three ways to find the ideal assistant voice:
+
+1. **Use existing voices**
+   - Pre-made professional voices
+   - Different accents and speaking styles
+   - Various gender and tonal variants
+
+2. **Clone your own voice**
+   - Upload voice recordings of a speaker.
+   - Minimum recording length and quality requirements apply (one person, minimal background noise).
+   - After processing, you can select the voice directly in the assistant.
+
+3. **Tune brand voice**
+   - Choose and configure a voice that matches your brand (formal, casual, friendly, businesslike).
+   - A consistent voice across multiple assistants builds brand recognition.
+
+## Time Zone Settings
+
+### Time Zone
+
+Your assistant’s time zone controls:
+
+- Time references in conversations (“today,” “tomorrow,” times)
+- Appointment scheduling logic
+- Timestamps in call logs and reports
+
+**Recommendation:** Choose the time zone of your main location or the majority of your customers for consistent time references.
+
+## Audio Optimization
+
+### Background Noise
+
+Optionally, you can mix a subtle ambient noise under the voice, such as light office ambiance.
+
+- **Advantage:** Feels more natural and masks minimal processing delays.
+- **Note:** Too loud background noise can impair speech recognition.
+
+<Tip>
+  If the assistant has trouble understanding customers, reduce or disable background noise.
+</Tip>
+
+### Filler Audio
+
+Filler audios are short confirmation sounds and phrases like “mhm,” “okay,” “understood” played during processing.
+
+**Benefits:**
+
+- Prevent unnatural pauses in speech
+- Keep callers engaged and reduce drop-offs
+- Make the assistant sound more attentive
+
+Famulor provides appropriate default filler phrases for each supported language. You can customize these by category (positive, neutral, questioning, etc.) to match your brand voice.
+
+<Note>
+  In most scenarios, it's worth enabling filler audio by default. Adjust phrasing and frequency based on real calls.
+</Note>
+
+## Advanced Settings
+
+### LLM Model
+
+Choose the language model appropriate for your mode and use case:
+
+- Models with **low latency** for very fast conversations.
+- Models with **strong reasoning** for complex logic and long answers.
+
+**Practical tip:**
+
+- When response speed is crucial (e.g., support hotline or outbound campaigns), prioritize fast models.
+- For complex decisions (e.g., multi-stage qualification, extensive consulting), use models with better reasoning and compensate latency with filler audio.
+
+### LLM Temperature
+
+**Range:** 0.0 – 1.0 &nbsp;|&nbsp; **Default:** 0.1
+
+Temperature controls how “creative” and varied responses are:
+
+- **Low (0.0–0.3):** Stable, repeatable, ideal for business and functional calls.
+- **High (0.7–1.0):** Freer, more creative, e.g., for casual conversations.
+
+<Note>
+  For many Famulor assistants, a low temperature is recommended to ensure reliable and brand-compliant responses.
+</Note>
+
+### Duration and Timing Settings
+
+Control call duration, wait times, and silence to balance costs and user experience:
+
+- **Re-engagement interval:** How many seconds of silence before the assistant prompts again.
+- **Re-engagement prompt:** Optional phrasing for follow-up after silence (e.g., polite “Are you still there?”).
+- **Maximum call duration:** Upper limit for total call length to control costs.
+- **Maximum silence duration:** Time after which the call ends if no response is received.
+- **Ring duration:** How long the phone rings before the call is marked unanswered (helps to avoid voicemail).
+
+<Tip>
+  Start with moderate default values and adjust based on real calls. Higher limits increase costs; too low values can cut off calls prematurely.
+</Tip>
+
+### Protection and Quality Settings
+
+These options help you manage call quality and costs:
+
+- **Noise suppression:** Filters callers’ background noise. Disable if voices sound "cut off."
+- **End on voicemail:** Automatically ends the call when an answering machine is detected to avoid unnecessary costs.
+- **Voicemail message:** Optionally leave a brief message (e.g., name, company, callback request).
+- **Record calls:** Records calls for quality assurance and analysis – be mindful of local regulations and consents.
+- **Maximum initial silence:** Ends the call if no one speaks at the beginning (e.g., when only voicemail picks up).
+
+## Synthesizer Settings
+
+In Pipeline and Dualplex modes, you can fine-tune your assistant’s voice parameters.
+
+### Voice Modulation
+
+- **Emotional modulation:** When enabled, adjusts tone and emphasis based on context and conversation.
+- **Stability:** Controls how consistent the voice sounds – low values are livelier, high values calmer and more even.
+- **Voice similarity:** Relevant for cloned voices – controls how closely output matches the original voice.
+- **Speech rate:** Choose whether the assistant speaks slowly, normally, or quickly based on your target audience.
+
+<Tip>
+  For complex content or older audiences, a slightly slower speech rate is advisable. For short, operational conversations, you can speed it up.
+</Tip>
+
+## Transcriber Settings
+
+In Pipeline mode you select the speech recognition service and endpointing behavior.
+
+### Transcriber Selection
+
+Typically, multiple providers with different strengths are available:
+
+- Providers offering **maximum accuracy** for critical professional calls.
+- Providers with **very low latency** for reactive dialogues.
+
+Test with your language, accents, and typical noise environments to find the most reliable service in Famulor.
+
+### Endpointing & Interruptions
+
+Endpointing controls when the assistant stops listening and begins speaking:
+
+- **Endpoint sensitivity:** How long to wait after the last word before the assistant responds.
+- **Interruption sensitivity:** How easily the assistant stops if the caller interrupts.
+- **Minimum word count for interruption:** Prevents random background noises from interrupting the conversation.
+- **Turn detection threshold (for multimodal modes):** Controls how quickly the assistant detects the other party has finished speaking.
+
+<Tip>
+  Start with Famulor’s default settings and optimize after test calls: if the assistant interrupts too early, increase sensitivity; if it reacts slowly, decrease it.
+</Tip>
+
+---
+
+<Note>
+  Once these basic settings are properly configured, you can proceed to system prompt, initial message, tools, variables, and integrations to perfectly tailor your Famulor assistant to your use case.
+</Note>

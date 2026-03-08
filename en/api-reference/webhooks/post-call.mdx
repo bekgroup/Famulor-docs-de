@@ -1,0 +1,250 @@
+---
+title: "Post-Call Webhook"
+icon: "webhook"
+description: "Webhook sent after a call ends containing extracted variables and call data"
+---
+
+The Post-Call Webhook is automatically sent to your specified webhook URL after each call is completed. This webhook includes call details, extracted variables, the transcript, and optionally the recording URL.
+
+## Webhook Configuration
+
+To enable Post-Call Webhooks:
+
+1. Configure your assistant’s webhook URL in the assistant settings
+2. Enable "Post call webhook" in the assistant configuration
+3. Define the post-call variables you want the AI to extract
+
+## Request Format
+
+The webhook is sent as a POST request to your configured URL with the following JSON payload:
+
+### Payload Structure
+
+<ResponseField name="id" type="integer">
+  Unique identifier of the call
+</ResponseField>
+
+<ResponseField name="customer_phone" type="string">
+  Customer’s phone number in E.164 format (e.g. "+1234567890") or null if not available
+</ResponseField>
+
+<ResponseField name="assistant_phone" type="string">
+  Phone number used by the assistant in E.164 format or null if not available
+</ResponseField>
+
+<ResponseField name="duration" type="integer">
+  Call duration in seconds
+</ResponseField>
+
+<ResponseField name="status" type="string">
+  Final status of the call (e.g. "completed", "busy", "failed")
+</ResponseField>
+
+<ResponseField name="extracted_variables" type="object">
+  Variables extracted by the AI based on your post-call schema configuration
+
+  <Expandable title="Example extracted variables">
+    ```json
+    {
+      "customer_interested": true,
+      "appointment_scheduled": false,
+      "contact_reason": "product_inquiry",
+      "follow_up_needed": true,
+      "customer_budget": "10000-50000"
+    }
+    ```
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="input_variables" type="object">
+  Variables passed to the assistant before the call started
+</ResponseField>
+
+<ResponseField name="transcript" type="string">
+  Full transcript of the conversation
+</ResponseField>
+
+<ResponseField name="recording_url" type="string">
+  URL to download the call recording (only included if "Include recording in webhook" is enabled in assistant settings)
+</ResponseField>
+
+<ResponseField name="created_at" type="string">
+  ISO 8601 timestamp of when the call was initiated
+</ResponseField>
+
+<ResponseField name="finished_at" type="string">
+  ISO 8601 timestamp of when the call was completed (taken from the call record’s updated_at)
+</ResponseField>
+
+<ResponseField name="lead" type="object">
+  Lead information (only included for campaign calls)
+
+  <Expandable title="Lead properties">
+    <ResponseField name="id" type="integer">
+      Unique identifier of the lead
+    </ResponseField>
+
+    <ResponseField name="phone_number" type="string">
+      Lead's phone number
+    </ResponseField>
+
+    <ResponseField name="variables" type="object">
+      Variables associated with the lead
+    </ResponseField>
+
+    <ResponseField name="status" type="string">
+      Current status of the lead
+    </ResponseField>
+
+    <ResponseField name="created_at" type="string">
+      When the lead was created
+    </ResponseField>
+
+    <ResponseField name="updated_at" type="string">
+      When the lead was last updated
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="campaign" type="object">
+  Campaign information (if available)
+
+  <Expandable title="Campaign properties">
+    <ResponseField name="id" type="integer">
+      Campaign ID
+    </ResponseField>
+
+    <ResponseField name="name" type="string">
+      Campaign name
+    </ResponseField>
+
+    <ResponseField name="status" type="string">
+      Campaign status
+    </ResponseField>
+
+    <ResponseField name="allowed_hours_start_time" type="string">
+      Campaign allowed start time
+    </ResponseField>
+
+    <ResponseField name="allowed_hours_end_time" type="string">
+      Campaign allowed end time
+    </ResponseField>
+
+    <ResponseField name="allowed_days" type="array">
+      Allowed campaign days
+    </ResponseField>
+
+    <ResponseField name="max_calls_in_parallel" type="integer">
+      Maximum concurrent calls for the campaign
+    </ResponseField>
+
+    <ResponseField name="max_retries" type="integer">
+      Maximum retry attempts for leads
+    </ResponseField>
+
+    <ResponseField name="retry_interval" type="integer">
+      Retry interval in minutes
+    </ResponseField>
+
+    <ResponseField name="created_at" type="string">
+      When the campaign was created
+    </ResponseField>
+
+    <ResponseField name="updated_at" type="string">
+      When the campaign was last updated
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+## Webhook Settings
+
+You can configure the following options for your Post-Call Webhook:
+
+- **Send webhook only on completed**: Send the webhook only for successfully completed calls
+- **Include recording in webhook**: Include the `recording_url` field in the payload
+- **Custom variables**: Define custom variables the AI should extract from the conversation
+
+## Important Notes
+
+- The fields `customer_phone` and `assistant_phone` can be null if the information is not available
+- The field `recording_url` is only included if you have enabled "Include recording in webhook" in your assistant settings
+- The `lead` object is only included for calls that are part of a campaign
+- The `extracted_variables` object contains the variables you defined in your assistant’s post-call schema configuration
+
+<ResponseExample>
+
+```json Webhook Payload Example
+{
+  "id": 480336,
+  "customer_phone": "+4915123456789",
+  "assistant_phone": "+4912345678",
+  "duration": 180,
+  "status": "completed",
+  "extracted_variables": {
+    "customer_interested": true,
+    "appointment_scheduled": false,
+    "contact_reason": "product_inquiry",
+    "follow_up_needed": true,
+    "customer_budget": "10000-50000",
+    "decision_maker": true,
+    "next_contact_date": "2024-02-15"
+  },
+  "input_variables": {
+    "customer_name": "Max Mustermann",
+    "company": "Beispiel GmbH"
+  },
+  "transcript": "Assistant: Hello Mr. Mustermann! I am calling from Famulor...\nCustomer: Hello, yes I’m listening...",
+  "recording_url": "https://recordings.famulor.de/call-480336.mp3",
+  "created_at": "2024-01-15T10:30:00Z",
+  "finished_at": "2024-01-15T10:33:00Z",
+  "lead": {
+    "id": 12345,
+    "phone_number": "+4915123456789",
+    "variables": {
+      "customer_name": "Max Mustermann",
+      "company": "Beispiel GmbH",
+      "source": "website"
+    },
+    "status": "contacted",
+    "created_at": "2024-01-14T09:00:00Z",
+    "updated_at": "2024-01-15T10:33:00Z"
+  },
+  "campaign": {
+    "id": 2324,
+    "name": "New Customer Acquisition Q1 2024",
+    "status": "in-progress",
+    "allowed_hours_start_time": "09:00:00",
+    "allowed_hours_end_time": "18:00:00",
+    "allowed_days": ["monday", "tuesday", "wednesday", "thursday", "friday"],
+    "max_calls_in_parallel": 5,
+    "max_retries": 3,
+    "retry_interval": 60,
+    "created_at": "2024-01-01T08:00:00Z",
+    "updated_at": "2024-01-15T10:00:00Z"
+  }
+}
+```
+
+```json Webhook without Lead/Campaign
+{
+  "id": 480337,
+  "customer_phone": "+4917123456789",
+  "assistant_phone": "+4912345678",
+  "duration": 120,
+  "status": "completed",
+  "extracted_variables": {
+    "issue_resolved": true,
+    "customer_satisfaction": 9,
+    "support_category": "technical"
+  },
+  "input_variables": {},
+  "transcript": "Assistant: Hello! How can I assist you today?\nCustomer: I have a problem with...",
+  "recording_url": null,
+  "created_at": "2024-01-15T14:20:00Z",
+  "finished_at": "2024-01-15T14:22:00Z",
+  "lead": null,
+  "campaign": null
+}
+```
+
+</ResponseExample>

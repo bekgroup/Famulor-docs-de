@@ -35,8 +35,12 @@
       "url": "https://www.famulor.io"
     },
     {
-      "name": "🇬🇧 English",
+      "name": "🇩🇪 Deutsch",
       "url": "https://docs.famulor.io/"
+    },
+    {
+      "name": "🇬🇧 English",
+      "url": "https://docs.famulor.io/en"
     },
     {
       "name": "Support",

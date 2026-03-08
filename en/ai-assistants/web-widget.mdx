@@ -1,0 +1,417 @@
+---
+title: "Web Widget"
+icon: "code"
+description: "Learn how to embed the Famulor Chat Widget on your website"
+---
+
+
+# Web Widget
+
+<Note>
+  The Famulor embeddable Chat Widget is a production-ready, customizable, and secure chat widget for websites. The widget can be embedded via a single `<script>` tag—no backend proxy required.
+</Note>
+
+## Overview
+
+<Card title="What is the Famulor Web Widget?" color="blue">
+  The Famulor Web Widget allows your website visitors to interact directly with your AI assistant via a voice chat button. The widget is fully customizable and can be seamlessly integrated into any website.
+</Card>
+
+## Accessing the Web Widget
+
+<Card title="Configure Widget" icon="headset" iconType="regular" color="green">
+  You can find the Web Widget settings here:
+
+  1. Go to "Assistants".
+  2. Select your assistant.
+  3. Click on "Edit".
+  4. Navigate to "Web Widget".
+</Card>
+
+## Widget Configuration
+
+<CardGroup cols={2}>
+  <Card title="Live Preview" icon="eye" color="blue">
+    
+    - View a real-time preview of your widget.
+
+    
+    - Auto-updates with changes.
+
+    
+    - Test functionality directly.
+
+    
+  </Card>
+  <Card title="Customization Options" icon="palette" color="purple">
+    
+    - Choose the position on the website.
+
+    
+    - Customize the primary color.
+
+    
+    - Edit button and menu texts.
+
+    
+  </Card>
+</CardGroup>
+
+## Customization Options
+
+### 1. General Settings
+
+<Card title="Position and Color" icon="book-user" color="orange">
+  
+  - 
+  Position:
+
+   Select the widget’s position (e.g., "Bottom right").
+
+  
+  - 
+  Primary Color:
+
+   Customize the widget color (e.g., #3B82F6).
+
+  
+</Card>
+
+### 2. Button Configuration
+
+<CodeGroup>
+
+````text
+// Primary text displayed on the widget button
+Need help?
+```text
+// Secondary text displayed below the main button text
+Start voice chat ✨
+````
+
+</CodeGroup>
+
+### 3. Menu Configuration
+
+<CodeGroup>
+
+````text
+// Title in the widget header
+Voice AI
+```text
+// Subtitle in the widget header
+Ready to help ✨
+```text
+// Title shown when the modal opens
+Ready to chat?
+```text
+// Text on the button that starts the conversation
+Start Voice Chat
+```text
+// Description text inside the modal
+Click below to start your voice conversation
+````
+
+</CodeGroup>
+
+## Script Tag Integration
+
+<Card title="Simple Integration" icon="code" color="green">
+  Copy the generated script tag and paste it into your website:
+</Card>
+
+### Example Script Tag
+
+```html
+<script 
+  src="https://app.famulor.de/embed.js" 
+  data-assistant-id="5c92d914-9099-4d5-8f09-096ada2ade0" 
+  data-position="right-bottom" 
+  data-color="#3B82F6" 
+  data-header-title="Voice AI" 
+  data-header-subtitle="Ready to help ✨" 
+  data-button-main-text="Need help?" 
+  data-button-sub-text="Start voice chat ✨" 
+  data-start-button-text="Start Voice Chat" 
+  data-modal-title="Ready to chat?" 
+  data-modal-description="Click below to start your voice conversation">
+</script>
+```
+
+<Warning>
+  **Usage:** Insert this script tag anywhere in your website’s HTML code, preferably before the closing `&lt;/body&gt;` tag.
+</Warning>
+
+## Data Attribute Explanation
+
+<Card title="Available Attributes" icon="list" color="blue">
+  
+  - 
+  data-assistant-id:
+
+   Unique ID of your assistant.
+
+  
+  - 
+  data-position:
+
+   Widget position (e.g., "right-bottom").
+
+  
+  - 
+  data-color:
+
+   Primary color of the widget.
+
+  
+  - 
+  data-header-title:
+
+   Title in the widget header.
+
+  
+  - 
+  data-header-subtitle:
+
+   Subtitle in the widget header.
+
+  
+  - 
+  data-button-main-text:
+
+   Main button text.
+
+  
+  - 
+  data-button-sub-text:
+
+   Sub button text.
+
+  
+  - 
+  data-start-button-text:
+
+   Start button text.
+
+  
+  - 
+  data-modal-title:
+
+   Modal title.
+
+  
+  - 
+  data-modal-description:
+
+   Modal description.
+
+  
+</Card>
+
+## Positioning Options
+
+<CardGroup cols={1}>
+  <Card title="Available Positions" icon="compass" color="green">
+    
+    - 
+    right-bottom:
+
+     Bottom right
+
+    
+    - 
+    left-bottom:
+
+     Bottom left
+
+    
+    - 
+    right-top:
+
+     Top right
+
+    
+    - 
+    left-top:
+
+     Top left
+
+    
+  </Card>
+  <Card title="Recommended Position" icon="star" color="blue">
+    
+    Bottom right
+
+     is the most common and user-friendly position for chat widgets on websites.
+
+    
+  </Card>
+</CardGroup>
+
+## Customization Tips
+
+<Card title="Best Practices" icon="lightbulb" color="yellow">
+  
+  - 
+  Colors:
+
+   Choose a color that matches your branding.
+
+  
+  - 
+  Texts:
+
+   Use inviting and clear wording.
+
+  
+  - 
+  Position:
+
+   Ensure the widget doesn’t cover other important elements.
+
+  
+  - 
+  Testing:
+
+   Test the widget on different devices and screen sizes.
+
+  
+</Card>
+
+## Integration into Various Platforms
+
+<CardGroup cols={2}>
+  <Card title="WordPress" icon="wordpress" color="blue">
+    
+    Add the script tag to your theme’s footer or use a plugin for custom scripts.
+
+    
+  </Card>
+  <Card title="HTML/CSS Websites" icon="code" color="green">
+    
+    Insert the script tag directly before the closing `&lt;/body&gt;` tag in your HTML files.
+
+    
+  </Card>
+</CardGroup>
+
+<CardGroup cols={2}>
+  <Card title="React/Vue/Angular" icon="react" color="orange">
+    
+    Integrate the script tag via your package manager or include it directly in your `index.html`.
+
+    
+  </Card>
+  <Card title="CMS Systems" icon="cms" color="purple">
+    
+    Use your CMS’s script injection features or add the code to template files.
+
+    
+  </Card>
+</CardGroup>
+
+## Security and Performance
+
+<Card title="Production Ready" icon="shield" color="green">
+  
+  - 
+  Secure:
+
+   All data is transmitted encrypted.
+
+  
+  - 
+  Fast:
+
+   Minimal load times due to optimized scripts.
+
+  
+  - 
+  Reliable:
+
+   99.9% uptime.
+
+  
+  - 
+  GDPR-Compliant:
+
+   Meets German data protection regulations.
+
+  
+</Card>
+
+## Testing the Widget
+
+<Card title="Testing the Widget" icon="test-tube" color="purple">
+  
+  - 
+  Use live preview:
+
+   Use the preview in the dashboard.
+
+  
+  - 
+  Staging environment:
+
+   Test the widget first on a test website.
+
+  
+  - 
+  Various devices:
+
+   Test on desktop, tablet, and mobile.
+
+  
+  - 
+  Browser tests:
+
+   Check compatibility with different browsers.
+
+  
+  - 
+  Functional test:
+
+   Start a real voice chat to verify functionality.
+
+  
+</Card>
+
+## Common Issues and Solutions
+
+<Card title="Troubleshooting" icon="help-circle" color="red">
+  
+  - 
+  Widget not showing:
+
+   Check if the script tag is embedded correctly.
+
+  
+  - 
+  Colors wrong:
+
+   Ensure the hex code (#) is correctly formatted.
+
+  
+  - 
+  Position incorrect:
+
+   Use one of the available position values.
+
+  
+  - 
+  Text not displaying:
+
+   Check for typos in the data attributes.
+
+  
+</Card>
+
+## Need Help?
+
+<Tip>
+  Our support team can assist you with the integration of the Web Widget.
+</Tip>
+
+<Card title="Contact Support" icon="headphones" color="blue" href="mailto:support@famulor.io">
+  Need assistance with widget integration? Contact our support team at support@famulor.io.
+</Card>

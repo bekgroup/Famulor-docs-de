@@ -1,0 +1,42 @@
+---
+title: "Delete lead"
+api: "DELETE /user/leads/{id}"
+description: "Remove a lead from your account"
+---
+
+Permanently delete a lead from your account. This action cannot be undone.
+
+### Path Parameters
+
+<ParamField path="id" type="integer" required>
+  The unique identifier of the lead you want to remove
+</ParamField>
+
+### Response
+
+<ResponseField name="message" type="string">
+  Confirmation message indicating successful deletion
+</ResponseField>
+
+<ResponseExample>
+
+```json 200 Success Response
+{
+  "message": "Lead deleted successfully"
+}
+```
+
+```json 404 Not Found
+{
+  "message": "Lead not found"
+}
+```
+
+</ResponseExample>
+
+### Notes
+
+- Only leads that belong to your account can be deleted
+- Deleting a lead also removes all associated secondary contacts
+- This operation is permanent and cannot be reversed
+- If the lead is currently being processed in a campaign, deletion may be prevented
