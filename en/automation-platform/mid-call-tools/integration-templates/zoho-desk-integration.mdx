@@ -1,19 +1,19 @@
 ---
 title: "Zoho Desk Integration"
-description: "Automatische Support-Ticket-Erstellung in Zoho Desk für strukturiertes Customer-Service-Management"
+description: "Automatic support ticket creation in Zoho Desk for structured customer service management"
 icon: "ticket"
 ---
 
 
 # Zoho Desk Integration Template
 
-## Konfiguration im Famulor Interface
+## Configuration in the Famulor Interface
 
 <Tabs>
-  <Tab title="Werkzeugdetails">
+  <Tab title="Tool Details">
     | **Name*** | `Zoho Desk Ticket` |
-    | **Funktionsname*** | `create_zoho_ticket` |
-    | **HTTP-Methode** | `POST` |
+    | **Function Name*** | `create_zoho_ticket` |
+    | **HTTP Method** | `POST` |
     | **Endpoint*** | `https://desk.zoho.eu/api/v1/tickets` |
     | **Timeout (ms)** | `5000` |
   </Tab>
@@ -33,7 +33,7 @@ icon: "ticket"
   </Tab>
 </Tabs>
 
-### Parameter-Schema
+### Parameter Schema
 
 ```json
 {
@@ -41,38 +41,38 @@ icon: "ticket"
   "properties": {
     "subject": {
       "type": "string",
-      "description": "Ticket-Betreff"
+      "description": "Ticket subject"
     },
     "department_id": {
       "type": "string",
-      "description": "Abteilungs-ID"
+      "description": "Department ID"
     },
     "email": {
       "type": "string",
-      "description": "Kunden-Email"
+      "description": "Customer email"
     },
     "phone": {
       "type": "string",
-      "description": "Telefonnummer"
+      "description": "Phone number"
     },
     "description": {
       "type": "string",
-      "description": "Problembeschreibung"
+      "description": "Problem description"
     },
     "priority": {
       "type": "string",
       "enum": ["Low", "Medium", "High", "Urgent"],
-      "description": "Priorität"
+      "description": "Priority"
     },
     "category": {
       "type": "string",
-      "description": "Kategorie"
+      "description": "Category"
     }
   },
   "required": ["subject", "description", "email"]
 }
 ```
 
-**Success-Template**: `"Ticket #{{ticketNumber}} erstellt: {{subject}}. Ein Agent wird sich in Kürze darum kümmern."`
+**Success template**: `"Ticket #{{ticketNumber}} created: {{subject}}. An agent will address it shortly."`
 
 ---
