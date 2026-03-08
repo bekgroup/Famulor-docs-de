@@ -1,100 +1,525 @@
 ---
-title: "Update Knowledge Base"
-api: "PUT https://app.famulor.de/api/user/knowledgebases/{id}"
-icon: "pencil"
-description: "Updates an existing knowledge base"
+title: "Update Assistant"
+api: "PUT https://app.famulor.de/api/user/assistant/{id}"
+description: "Update the configuration of an existing AI assistant"
 ---
 
-This endpoint updates the name and/or description of an existing knowledge base.
+This endpoint allows you to update the configuration of an existing AI assistant. All fields are optional – only the fields provided will be updated. For detailed field descriptions and options, see [Create Assistant](/api-reference/assistants/create).
 
-### Path Parameters
+### Path Parameter
 
 <ParamField path="id" type="integer" required>
-  The unique identifier of the knowledge base to update
+  The unique identifier of the assistant to be updated
 </ParamField>
 
 ### Request Body
 
+#### Core Fields
+
 <ParamField body="name" type="string">
-  The new name for the knowledge base (max. 255 characters)
+  The name of the assistant (max. 255 characters)
 </ParamField>
 
-<ParamField body="description" type="string">
-  The new description for the knowledge base (max. 255 characters)
+<ParamField body="voice_id" type="integer">
+  The voice ID to be used for the assistant. Use the [Get Voices](/api-reference/assistants/voices) endpoint with the `mode` parameter to get voices compatible with your engine mode.
 </ParamField>
 
-### Response Fields
+<ParamField body="language_id" type="integer">
+  The language ID for the assistant. Use the [Get Languages](/api-reference/assistants/languages) endpoint to retrieve available languages.
+</ParamField>
+
+<ParamField body="type" type="string">
+  The assistant type. Options: `inbound`, `outbound`
+</ParamField>
+
+<ParamField body="mode" type="string">
+  The engine mode. Options: `pipeline`, `multimodal`, `dualplex`
+
+  <Warning>
+    Changing the mode resets mode-specific settings to their default values for the new mode.
+  </Warning>
+</ParamField>
+
+<ParamField body="timezone" type="string">
+  The timezone for the assistant (e.g., "Europe/Berlin", "America/New_York")
+</ParamField>
+
+<ParamField body="initial_message" type="string">
+  The initial message the assistant will speak at call start (max. 200 characters)
+</ParamField>
+
+<ParamField body="system_prompt" type="string">
+  The system prompt defining the assistant's behaviour and personality
+</ParamField>
+
+#### Mode-Specific Fields
+
+<ParamField body="llm_model_id" type="integer">
+  The LLM model ID to use. Only applicable in `pipeline` mode.
+
+  Use the [Get Models](/api-reference/assistants/models) endpoint to retrieve available models.
+</ParamField>
+
+<ParamField body="multimodal_model_id" type="integer">
+  The multimodal model ID. Applicable only in `multimodal` and `dualplex` modes.
+
+  Use the [Get Models](/api-reference/assistants/models) endpoint to retrieve available multimodal models.
+</ParamField>
+
+<ParamField body="chat_llm_fallback_id" type="integer">
+  Fallback LLM model ID for tool calls in multimodal/dualplex modes. Set to `null` to remove.
+</ParamField>
+
+<ParamField body="turn_detection_threshold" type="number">
+  Sensitivity of speaker turn detection for multimodal/dualplex modes (0-1). Set to `null` for automatic.
+</ParamField>
+
+#### Secondary Languages
+
+<ParamField body="secondary_language_ids" type="integer[]">
+  Array of additional language IDs the assistant can speak. Replaces existing secondary languages. Pass an empty array `[]` to remove all secondary languages.
+
+  ```json  theme={null}
+  "secondary_language_ids": [2, 3, 4]
+  ```
+</ParamField>
+
+#### Knowledgebase Settings
+
+<ParamField body="knowledgebase_id" type="integer">
+  The ID of the knowledgebase to link. Set to `null` to remove.
+</ParamField>
+
+<ParamField body="knowledgebase_mode" type="string">
+  How the knowledgebase should be used. Options:
+
+  * `function_call` - AI uses a function to search (required for multimodal/dualplex)
+  * `prompt` - knowledge is injected into the prompt (pipeline only)
+</ParamField>
+
+#### Phone Number
+
+<ParamField body="phone_number_id" type="integer">
+  The ID of a phone number to assign. Set to `null` to unassign. Must belong to your account.
+
+  <Warning>
+    For `inbound` assistants, the phone number cannot be a caller ID type and must not already be assigned to another inbound assistant.
+  </Warning>
+</ParamField>
+
+#### Custom Mid-Call Tools
+
+<ParamField body="tool_ids" type="integer[]">
+  Array of custom mid-call tool IDs to synchronize. **Replaces all existing tool assignments.** Pass an empty array `[]` to remove all tools. Each tool must belong to your account.
+
+  ```json  theme={null}
+  "tool_ids": [1, 5, 12]
+  ```
+</ParamField>
+
+#### Built-in Tools
+
+<ParamField body="tools" type="array">
+  Array of built-in tools. **Replaces all existing built-in tools.** Pass an empty array `[]` to remove all tools.
+
+  <Expandable title="Tool Types">
+    **call_transfer** - Transfer the call to another phone number
+
+    * `phone_number` (required): Phone number for transfer
+    * `description`: When to transfer the call
+    * `custom`: If true, AI can dynamically determine the transfer number
+    * `timezone`: Timezone for the transfer’s availability
+    * `warm_transfer`: Message to the customer before transfer (default: `false`)
+    * `warm_transfer_message`: Prompt what AI should say before transfer (e.g., “Let the customer know the call is being transferred.”)
+
+    **warm_call_transfer** - Warm transfer with supervisor briefing
+
+    * `supervisor_phone` (required): Phone number for warm transfer (e.g., "+14155552001"). For `custom_sip`, use SIP address or internal extension.
+    * `outbound_phone_id` (required): ID of the phone number used to call the supervisor. See [Get Phone Numbers](/api-reference/assistants/phone-numbers).
+    * `description` (required): **When to transfer** – when AI should trigger the warm transfer (e.g., “Transfer to human agent when customer wants to speak to a real person.”)
+    * `custom_sip`: Custom SIP address or internal extension instead of phone number (default: `false`)
+    * `caller_id_mode`: Which number the supervisor sees. Options: `outbound_number` (default), `customer_number`, `custom`
+    * `custom_caller_id`: Custom number for supervisor. Only with `caller_id_mode: custom`.
+    * `hold_music`: Hold music. Options: `hold_music` (default), `none`
+    * `hold_music_volume`: Volume of hold music 0–100 (default: `80`)
+    * `hold_message`: Message to caller before hold (default: “Please wait while I connect you to an agent.”)
+    * `summary_instructions`: Instruction on how AI should brief supervisor (default summary: Who is calling, why, why a human is needed.)
+    * `briefing_initial_message`: AI’s initial message to supervisor (default: “Hello! I have a caller who needs assistance. May I briefly explain the situation?”)
+    * `connected_message`: Message to caller after connecting with supervisor (default: “You are now connected to an agent.”)
+
+    **end_call** - Programmatically end the call
+
+    * `description`: When AI should end the call
+
+    **dtmf_input** - Send DTMF tones (keypad input)
+
+    * `description`: When DTMF input is used (e.g., IVR navigation)
+
+    **collect_keypad** - Collect keypad input from caller
+
+    * `timeout`: Wait time in seconds, 1–30 (default: 5)
+    * `stop_key`: Key to end input. Options: `#` (default), `*`
+
+    **calendar_integration** - Schedule appointments via Cal.com
+
+    * `calcom_api_key` (required): Your Cal.com API key
+    * `calcom_event_slug` (required): Cal.com event type slug
+    * `calcom_team_slug`: Team slug if the event belongs to a Cal.com team
+    * `calcom_endpoint`: API region. Options: `us` (default – `https://api.cal.com`), `eu` (`https://api.cal.eu`), `custom` (uses `calcom_custom_endpoint`)
+    * `calcom_custom_endpoint`: Custom Cal.com API URL. Only for `calcom_endpoint: custom` (e.g., `https://my-calcom-instance.com`).
+    * `calcom_booking_fields`: Array of custom booking fields. Each field: `slug`, `type`, `label`, optionally `required`, `options` for Select.
+    * `description`: When to offer appointment booking
+  </Expandable>
+
+  ```json  theme={null}
+  "tools": [
+    {"type": "dtmf_input", "description": "Navigate IVR as needed"},
+    {
+      "type": "warm_call_transfer",
+      "supervisor_phone": "+1234567890",
+      "outbound_phone_id": 7,
+      "description": "Transfer to a human agent when the customer wants to speak to a real person.",
+      "custom_sip": false,
+      "caller_id_mode": "outbound_number",
+      "hold_music": "hold_music",
+      "hold_music_volume": 80,
+      "hold_message": "Please wait while I connect you to an agent.",
+      "summary_instructions": "Briefly from your perspective: Who is calling, why, why a human is needed. 2–3 sentences.",
+      "briefing_initial_message": "Hello! I have a caller who needs assistance. May I briefly explain the situation?",
+      "connected_message": "You are now connected to an agent."
+    },
+    {"type": "collect_keypad", "timeout": 5, "stop_key": "#"},
+    {"type": "end_call", "description": "End call when done"}
+  ]
+  ```
+</ParamField>
+
+#### Speech and TTS Settings
+
+<ParamField body="tts_emotion_enabled" type="boolean">
+  Whether emotional text-to-speech synthesis is enabled
+</ParamField>
+
+<ParamField body="voice_stability" type="number">
+  Voice stability setting (0-1). Higher = more consistent voice
+</ParamField>
+
+<ParamField body="voice_similarity" type="number">
+  Voice similarity setting (0-1). Higher = closer to original voice
+</ParamField>
+
+<ParamField body="speech_speed" type="number">
+  Speech speed multiplier (0.7-1.2)
+</ParamField>
+
+<ParamField body="llm_temperature" type="number">
+  LLM temperature setting (0-1). Lower = more deterministic
+</ParamField>
+
+<ParamField body="synthesizer_provider_id" type="integer">
+  Custom TTS provider ID. Set to `null` to use the system default voice. See [Get Synthesizer Providers](/api-reference/assistants/synthesizer-providers).
+</ParamField>
+
+<ParamField body="transcriber_provider_id" type="integer">
+  Custom STT provider ID. Pipeline mode only. Set to `null` to use the system default voice. See [Get Transcriber Providers](/api-reference/assistants/transcriber-providers).
+</ParamField>
+
+#### Call Behavior Settings
+
+<ParamField body="allow_interruptions" type="boolean">
+  Whether caller interruptions are allowed.
+
+  <Warning>Cannot be disabled in `multimodal` and `dualplex` modes.</Warning>
+</ParamField>
+
+<ParamField body="fillers" type="boolean">
+  Whether filler audio should be used during processing.
+
+  <Warning>Available only in `pipeline` mode.</Warning>
+</ParamField>
+
+<ParamField body="filler_config" type="object">
+  Custom filler profiles per category. Replaces the existing filler configuration. Each category is an array of short phrases.
+
+  * `positive`: Fillers for affirmative responses
+  * `negative`: Fillers for negative/neutral responses
+  * `question`: Fillers when processing a question
+  * `neutral`: Fillers for neutral confirmations
+
+  ```json  theme={null}
+  "filler_config": {
+    "positive": ["Great!", "Perfect!"],
+    "negative": ["Hmm.", "Understood."],
+    "question": ["Good question.", "One moment."],
+    "neutral": ["Okay.", "Noted."]
+  }
+  ```
+</ParamField>
+
+<ParamField body="record" type="boolean">
+  Whether the call should be recorded
+</ParamField>
+
+<ParamField body="enable_noise_cancellation" type="boolean">
+  Whether noise cancellation should be enabled
+</ParamField>
+
+<ParamField body="wait_for_customer" type="boolean">
+  If true, the assistant waits for the customer to speak first
+</ParamField>
+
+#### Timing Settings
+
+<ParamField body="max_duration" type="integer">
+  Maximum call duration in seconds (20-1200)
+</ParamField>
+
+<ParamField body="max_silence_duration" type="integer">
+  Maximum silence duration before re-engagement in seconds (1-360)
+</ParamField>
+
+<ParamField body="max_initial_silence_duration" type="integer">
+  Maximum silence at the start of the call before termination (1-120 seconds). Set to `null` to disable.
+</ParamField>
+
+<ParamField body="ringing_time" type="integer">
+  Maximum ringing time before aborting (1-60 seconds)
+</ParamField>
+
+#### Re-Engagement Settings
+
+<ParamField body="reengagement_interval" type="integer">
+  Interval for re-engagement in seconds (7-600)
+</ParamField>
+
+<ParamField body="reengagement_prompt" type="string">
+  Custom prompt for re-engagement messages (max. 1000 characters). Set to `null` to use the default.
+</ParamField>
+
+#### Voicemail Settings
+
+<ParamField body="end_call_on_voicemail" type="boolean">
+  Whether to end the call when voicemail is detected
+</ParamField>
+
+<ParamField body="voice_mail_message" type="string">
+  Message to leave on voicemail before hanging up (max. 1000 characters). Set to `null` to disable.
+</ParamField>
+
+#### Endpoint Detection
+
+<ParamField body="endpoint_type" type="string">
+  Type of voice activity detection. Options: `vad`, `ai`
+</ParamField>
+
+<ParamField body="endpoint_sensitivity" type="number">
+  Endpoint sensitivity level (0-5)
+</ParamField>
+
+<ParamField body="interrupt_sensitivity" type="number">
+  Interruption sensitivity level (0-5)
+</ParamField>
+
+<ParamField body="min_interrupt_words" type="integer">
+  Minimum number of words before interruption is allowed (0-10). Set to `null` to disable.
+</ParamField>
+
+#### Ambient Sound
+
+<ParamField body="ambient_sound" type="string">
+  Background ambient sound. Options: `off`, `office`, `city`, `forest`, `crowded_room`, `cafe`, `nature`
+</ParamField>
+
+<ParamField body="ambient_sound_volume" type="number">
+  Volume of the ambient sound (0-1)
+</ParamField>
+
+#### Webhook Configuration
+
+<ParamField body="is_webhook_active" type="boolean">
+  Whether webhook notifications are enabled
+</ParamField>
+
+<ParamField body="webhook_url" type="string">
+  The webhook URL for post-call notifications. Set to `null` to remove.
+</ParamField>
+
+<ParamField body="send_webhook_only_on_completed" type="boolean">
+  Whether webhooks should be sent only for successfully completed calls (not on failed/no-answer)
+</ParamField>
+
+<ParamField body="include_recording_in_webhook" type="boolean">
+  Whether the recording URL should be included in the webhook payload
+</ParamField>
+
+#### Post-Call Evaluation
+
+<ParamField body="post_call_evaluation" type="boolean">
+  Whether AI-based post-call evaluation is enabled
+</ParamField>
+
+<ParamField body="post_call_schema" type="array">
+  Schema definition for extracting post-call data. Replaces the existing schema.
+
+  <Expandable title="post_call_schema Properties">
+    <ParamField body="name" type="string" required>
+      Field name (3-16 characters, lowercase, alphanumeric and underscores only)
+    </ParamField>
+
+    <ParamField body="type" type="string" required>
+      Data type. Options: `string`, `number`, `bool`
+    </ParamField>
+
+    <ParamField body="description" type="string" required>
+      Description of what this field represents (3-255 characters)
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+#### Variables
+
+<ParamField body="variables" type="object">
+  Key-value pairs for custom variables. **Replaces all existing variables.**
+
+  ```json  theme={null}
+  "variables": {
+    "company_name": "Acme Corp",
+    "product": "Premium Widget"
+  }
+  ```
+</ParamField>
+
+***
+
+## Example Requests
+
+### Update Basic Settings
+
+```json  theme={null}
+{
+  "name": "Updated Assistant Name",
+  "initial_message": "Hello! How can I help you today?",
+  "max_duration": 900
+}
+```
+
+### Switch to Multimodal Mode
+
+```json  theme={null}
+{
+  "mode": "multimodal",
+  "voice_id": 41,
+  "multimodal_model_id": 1,
+  "chat_llm_fallback_id": 2,
+  "knowledgebase_mode": "function_call"
+}
+```
+
+### Update Tools and Knowledgebase
+
+```json  theme={null}
+{
+  "tool_ids": [1, 5, 12],
+  "knowledgebase_id": 3,
+  "knowledgebase_mode": "prompt"
+}
+```
+
+### Update Re-Engagement and Voicemail
+
+```json  theme={null}
+{
+  "reengagement_interval": 15,
+  "reengagement_prompt": "Are you still there? I'm here to help.",
+  "end_call_on_voicemail": true,
+  "voice_mail_message": "Hello, please call us back at your earliest convenience."
+}
+```
+
+### Remove Optional Settings
+
+```json  theme={null}
+{
+  "phone_number_id": null,
+  "webhook_url": null,
+  "tool_ids": [],
+  "secondary_language_ids": []
+}
+```
+
+***
+
+## Response
 
 <ResponseField name="message" type="string">
-  Success message
+  Success message confirming the assistant update
 </ResponseField>
 
 <ResponseField name="data" type="object">
-  The updated knowledge base object
-  
-  <Expandable title="Data Properties">
+  <Expandable title="Properties">
     <ResponseField name="id" type="integer">
-      The unique identifier of the knowledge base
+      The unique ID of the updated assistant
     </ResponseField>
 
     <ResponseField name="name" type="string">
-      The name of the knowledge base
-    </ResponseField>
-
-    <ResponseField name="description" type="string">
-      Description of the knowledge base
+      The assistant’s name
     </ResponseField>
 
     <ResponseField name="status" type="string">
-      Current status
+      The current status of the assistant
     </ResponseField>
 
-    <ResponseField name="status_label" type="string">
-      Human-readable status label
+    <ResponseField name="type" type="string">
+      The type (`inbound` or `outbound`)
     </ResponseField>
 
-    <ResponseField name="updated_at" type="string">
-      ISO 8601 timestamp of last update
+    <ResponseField name="mode" type="string">
+      The engine mode (`pipeline`, `multimodal`, or `dualplex`)
     </ResponseField>
   </Expandable>
 </ResponseField>
 
-<Note>
-  Updating the name or description of a knowledge base does not affect its documents or processing status.
-</Note>
-
-
 <ResponseExample>
-
-```json 200 Success
-{
-  "message": "Knowledgebase updated successfully.",
-  "data": {
-    "id": 1,
-    "name": "Updated Product Documentation",
-    "description": "Updated description for our technical documents",
-    "status": "active",
-    "status_label": "Active",
-    "updated_at": "2025-01-08T15:45:00.000000Z"
+  ```json 200 Success theme={null}
+  {
+    "message": "Assistant updated successfully",
+    "data": {
+      "id": 789,
+      "name": "Updated Sales Assistant",
+      "status": "active",
+      "type": "outbound",
+      "mode": "pipeline"
+    }
   }
-}
-```
+  ```
 
-```json 404 Not Found
-{
-  "error": "Knowledgebase not found."
-}
-```
-
-```json 422 Validation Error
-{
-  "message": "The name may not be greater than 255 characters.",
-  "errors": {
-    "name": [
-      "The name may not be greater than 255 characters."
-    ]
+  ```json 404 Not Found theme={null}
+  {
+    "message": "Assistant not found"
   }
-}
-```
+  ```
 
+  ```json 422 Validation Error theme={null}
+  {
+    "message": "Validation failed",
+    "errors": {
+      "speech_speed": ["Speech speed must be between 0.7 and 1.2."],
+      "voice_id": ["The selected voice is not compatible with the selected engine type."],
+      "allow_interruptions": ["Interruptions cannot be disabled in multimodal or dualplex mode."]
+    }
+  }
+  ```
 </ResponseExample>
+
+***
+
+## Notes
+
+* Only the fields you provide in the request body will be updated
+* To remove optional fields, explicitly set them to `null`
+* To clear arrays (tools, secondary languages), pass an empty array `[]`
+* The assistant must belong to the authenticated user
+* Use the [Get Voices](/api-reference/assistants/voices) endpoint with the `mode` parameter to get compatible voices
+* For multimodal/dualplex modes, `knowledgebase_mode` must be set to `function_call`
+* In multimodal/dualplex modes, interruptions (`allow_interruptions`) cannot be disabled
+* Changing mode resets mode-specific settings (LLM model, multimodal model, providers)
