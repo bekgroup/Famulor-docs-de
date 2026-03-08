@@ -21,6 +21,7 @@
               {
                 "group": "Introduction",
                 "pages": [
+                  "en/index",
                   "en/introduction/what-is-Famulor",
                   "en/introduction/how-it-works",
                   "en/introduction/key-terminology",
@@ -685,6 +686,7 @@
               {
                 "group": "Einführung",
                 "pages": [
+                  "de/index",
                   "de/introduction/what-is-Famulor",
                   "de/introduction/how-it-works",
                   "de/introduction/key-terminology",
