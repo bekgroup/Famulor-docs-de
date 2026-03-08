@@ -67,7 +67,8 @@
                       "en/ai-assistants/assistant-modes",
                       "en/ai-assistants/custom-gpt",
                       "en/ai-assistants/flow-builder"
-                    ]
+                    ],
+                    "icon": "sliders"
                   },
                   {
                     "group": "Tools and Integrations",
@@ -76,7 +77,8 @@
                       "en/ai-assistants/custom-mid-call-tools",
                       "en/ai-assistants/cal-com-scheduling",
                       "en/ai-assistants/gohighlevel-scheduling"
-                    ]
+                    ],
+                    "icon": "plug"
                   },
                   {
                     "group": "Voice and Channels",
@@ -84,13 +86,15 @@
                       "en/ai-assistants/voice-selection",
                       "en/ai-assistants/filler-audio",
                       "en/ai-assistants/web-widget"
-                    ]
+                    ],
+                    "icon": "waveform-lines"
                   },
                   {
                     "group": "Testing",
                     "pages": [
                       "en/ai-assistants/testing"
-                    ]
+                    ],
+                    "icon": "vial"
                   }
                 ]
               },
@@ -148,11 +152,41 @@
               {
                 "group": "WhatsApp Business",
                 "pages": [
-                  "en/whatsapp/integration",
-                  "en/whatsapp/senders",
-                  "en/whatsapp/templates",
-                  "en/whatsapp/conversations",
-                  "en/whatsapp/automation"
+                  {
+                    "group": "WhatsApp Business Integration",
+                    "icon": "link",
+                    "pages": [
+                      "en/whatsapp/integration"
+                    ]
+                  },
+                  {
+                    "group": "WhatsApp Sender",
+                    "icon": "message",
+                    "pages": [
+                      "en/whatsapp/senders"
+                    ]
+                  },
+                  {
+                    "group": "Message Templates",
+                    "icon": "file-lines",
+                    "pages": [
+                      "en/whatsapp/templates"
+                    ]
+                  },
+                  {
+                    "group": "WhatsApp Chats",
+                    "icon": "comments",
+                    "pages": [
+                      "en/whatsapp/conversations"
+                    ]
+                  },
+                  {
+                    "group": "WhatsApp Automation",
+                    "icon": "bolt",
+                    "pages": [
+                      "en/whatsapp/automation"
+                    ]
+                  }
                 ]
               },
               {
@@ -260,14 +294,21 @@
               {
                 "group": "No-Code Automation Platform",
                 "pages": [
-                  "en/automation-platform/introduction",
+                  {
+                    "group": "Introduction",
+                    "icon": "book-open",
+                    "pages": [
+                      "en/automation-platform/introduction"
+                    ]
+                  },
                   "en/automation-platform/building-flows",
                   "en/automation-platform/passing-data",
                   "en/automation-platform/publishing-flows",
                   "en/automation-platform/debugging-runs",
                   "en/automation-platform/versioning",
                   "en/automation-platform/known-limits"
-                ]
+                ],
+                "icon": "diagram-project"
               },
               {
                 "group": "Call-related",
@@ -852,14 +893,21 @@
               {
                 "group": "No-Code Automatisierungsplattform",
                 "pages": [
-                  "de/automation-platform/introduction",
+                  {
+                    "group": "Einführung",
+                    "icon": "book-open",
+                    "pages": [
+                      "de/automation-platform/introduction"
+                    ]
+                  },
                   "de/automation-platform/building-flows",
                   "de/automation-platform/passing-data",
                   "de/automation-platform/publishing-flows",
                   "de/automation-platform/debugging-runs",
                   "de/automation-platform/versioning",
                   "de/automation-platform/known-limits"
-                ]
+                ],
+                "icon": "diagram-project"
               },
               {
                 "group": "Anruf-bezogen",
