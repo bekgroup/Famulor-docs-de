@@ -1,281 +1,281 @@
 ---
-title: 'SIP-Integration'
-description: 'Verbinden Sie Ihr bestehendes Telefonsystem und Ihre Nummern mit Famulor'
+title: 'SIP Integration'
+description: 'Connect your existing phone system and numbers with Famulor'
 ---
 
 
-# SIP-Integration
+# SIP Integration
 
-## Übersicht
+## Overview
 
-Verbinden Sie Ihr bestehendes Telefonsystem und Ihre Nummern mit Famulor
+Connect your existing phone system and numbers with Famulor.
 
-Dieser Leitfaden hilft Ihnen dabei, die SIP-Integration zu verstehen und einzurichten. Falls Sie während der Einrichtung Klärung benötigen, steht unser Support-Team zur Verfügung, um Ihnen zu helfen.
+This guide will help you understand and set up the SIP integration. If you need assistance during the setup, our support team is available to help.
 
-## Was ist SIP-Integration?
+## What is SIP Integration?
 
-SIP (Session Initiation Protocol) Integration ermöglicht es Ihnen, Ihr bestehendes Telefonsystem mit Famulor zu verbinden. Stellen Sie sich das als den Bau einer Brücke zwischen Ihrem aktuellen Telefon-Setup und unserer KI-Plattform vor. Das bedeutet, Sie können:
+SIP (Session Initiation Protocol) integration allows you to connect your existing phone system with Famulor. Think of it as building a bridge between your current phone setup and our AI platform. This means you can:
 
-- Ihre bestehenden Telefonnummern mit unseren KI-Assistenten nutzen
-- Ihr aktuelles Telefonsystem und Ihren Anbieter beibehalten
-- Anrufe über Ihr bestehendes Setup tätigen und empfangen
-- Die vollständige Kontrolle über Ihre Nummern behalten
-- Carrier-Kosten reduzieren, indem Sie lokale VoIP-Anbieter mit besseren Tarifen nutzen
+- Use your existing phone numbers with our AI assistants
+- Keep your current phone system and provider
+- Make and receive calls through your existing setup
+- Retain full control over your numbers
+- Reduce carrier costs by using local VoIP providers with better rates
 
-## Wie es funktioniert
+## How It Works
 
-Wenn Sie Ihr Telefonsystem mit Famulor integrieren:
+When you integrate your phone system with Famulor:
 
-**Eingehende Anrufe:** Anrufe an Ihre Nummern werden über Ihr Telefonsystem zu unseren KI-Assistenten weitergeleitet
+**Incoming Calls:** Calls to your numbers are routed through your phone system to our AI assistants.
 
-**Ausgehende Anrufe:** Unsere KI-Assistenten können Anrufe tätigen, die von Ihren Nummern zu kommen scheinen
+**Outgoing Calls:** Our AI assistants can make calls that appear to come from your numbers.
 
-**Verwaltung:** Sie verwalten Ihre Nummern weiterhin über Ihren aktuellen Anbieter
+**Management:** You continue to manage your numbers through your current provider.
 
-**Kosteneffizienz:** Nutzen Sie die wettbewerbsfähigen Tarife Ihres VoIP-Anbieters für die Anrufbeendigung
+**Cost Efficiency:** Benefit from competitive rates of your VoIP provider for call termination.
 
-## Integrationsoptionen
+## Integration Options
 
-Sie können Ihr Telefonsystem auf zwei Arten mit Famulor verbinden:
+You can connect your phone system to Famulor in two ways:
 
-### 1. PBX-Erweiterungsintegration
+### 1. PBX Extension Integration
 
-Das ist, als würden Sie unserer KI-Plattform eine "Erweiterung" auf Ihrem Telefonsystem geben:
+This is like giving our AI platform an "extension" on your phone system:
 
-**Was es ist:** Verbinden Sie eine spezifische Erweiterung von Ihrem PBX/Telefonsystem
+**What it is:** Connect a specific extension from your PBX/phone system.
 
-**Perfekt für:**
-- Testen der Integration
-- Weiterleitung spezifischer Erweiterungen an die KI
-- Einfache Einrichtung mit bestehenden Telefonsystemen
+**Ideal for:**
+- Testing the integration
+- Forwarding specific extensions to the AI
+- Simple setup with existing phone systems
 
-**Sie benötigen:**
-- Ihre Erweiterungsnummer (z.B. 1000)
-- Erweiterungs-Benutzername und Passwort
-- Ihre PBX-Server-Adresse (z.B. pbx.ihrefirma.com)
+**You need:**
+- Your extension number (e.g., 1000)
+- Extension username and password
+- Your PBX server address (e.g., pbx.yourcompany.com)
 
-**Beispiel aus der Praxis:**
-
-```
-Ihr Büro verwendet Erweiterungen 1001-1010 für Mitarbeiter
-Sie richten Erweiterung 1011 für den KI-Assistenten ein
-Anrufe an 1011 gehen an die KI
-Die KI kann Anrufe tätigen, die als Erweiterung 1011 erscheinen
-```
-
-### 2. Direkte Nummernintegration
-
-Dies verbindet spezifische Telefonnummern mit unserer Plattform:
-
-**Was es ist:** Leiten Sie eine oder mehrere Ihrer Telefonnummern an unsere KI weiter
-
-**Perfekt für:**
-- Dedizierte KI-Telefonleitungen
-- Kundenservice-Nummern
-- Vertriebs- oder Support-Leitungen
-
-**Sie benötigen:**
-- Ihre Telefonnummer (z.B. +49 30 123456)
-- SIP-Anmeldedaten von Ihrem Anbieter
-- SIP-Server-Adresse des Anbieters
-
-**Beispiel aus der Praxis:**
+**Example in practice:**
 
 ```
-Sie haben eine Support-Nummer: +49 30 123456
-Sie verbinden diese Nummer mit unserer KI
-Alle Anrufe an +49 30 123456 werden vom KI-Assistenten bearbeitet
-Die KI macht ausgehende Anrufe, die +49 30 123456 anzeigen
+Your office uses extensions 1001-1010 for staff
+You set up extension 1011 for the AI assistant
+Calls to 1011 go to the AI
+The AI can make calls appearing as extension 1011
 ```
 
-## Authentifizierung & Anrufablauf
+### 2. Direct Number Integration
 
-### Bidirektionale Konfiguration
+This connects specific phone numbers to our platform:
 
-Die SIP-Integration verwendet dieselben Anmeldedaten für eingehende und ausgehende Anrufe:
+**What it is:** Forward one or more of your phone numbers to our AI.
 
-**Eingehende Anrufe (VoIP → Famulor):**
+**Ideal for:**
+- Dedicated AI phone lines
+- Customer service numbers
+- Sales or support lines
+
+**You need:**
+- Your phone number (e.g., +49 30 123456)
+- SIP credentials from your provider
+- Your provider’s SIP server address
+
+**Example in practice:**
 
 ```
-Ihr VoIP-System authentifiziert sich mit Benutzername/Passwort
+You have a support number: +49 30 123456
+You connect this number to our AI
+All calls to +49 30 123456 are handled by the AI assistant
+The AI makes outbound calls showing +49 30 123456
+```
+
+## Authentication & Call Flow
+
+### Bidirectional Configuration
+
+The SIP integration uses the same credentials for inbound and outbound calls:
+
+**Incoming Calls (VoIP → Famulor):**
+
+```
+Your VoIP system authenticates using username/password
 ↓
-Anrufe erreichen unsere Plattform
+Calls reach our platform
 ↓
-KI-Assistent antwortet
+AI assistant answers
 ```
 
-**Ausgehende Anrufe (Famulor → VoIP):**
+**Outgoing Calls (Famulor → VoIP):**
 
 ```
-KI initiiert Anruf
+AI initiates call
 ↓
-Unsere Plattform authentifiziert sich bei Ihrem VoIP mit denselben Benutzername/Passwort
+Our platform authenticates to your VoIP using the same username/password
 ↓
-Anruf erreicht Ziel
+Call reaches the destination
 ```
 
-### Anmeldedaten-Synchronisation
+### Credential Synchronization
 
-Damit die Integration ordnungsgemäß funktioniert:
+To ensure proper operation:
 
-- Die Anmeldedaten, die Sie im Famulor-Dashboard festlegen, müssen exakt mit Ihrer VoIP-Konfiguration übereinstimmen
-- Dieselbe Benutzername/Passwort-Kombination wird für beide Richtungen verwendet
-- Alle Änderungen an den Anmeldedaten müssen in beiden Systemen aktualisiert werden
-- Wenn Sie Anmeldedaten in Ihrem VoIP-System ändern, denken Sie daran, sie im Famulor-Dashboard zu aktualisieren (und umgekehrt), um die Verbindung aufrechtzuerhalten
+- The credentials you enter in the Famulor dashboard must exactly match your VoIP configuration.
+- The same username/password pair is used for both directions.
+- Any credential changes must be updated in both systems.
+- If you change credentials in your VoIP system, make sure to update them in the Famulor dashboard (and vice versa) to maintain the connection.
 
-## Einrichtung Ihrer Integration
+## Setting Up Your Integration
 
-### Schritt 1: Sammeln Sie Ihre Informationen
+### Step 1: Gather Your Information
 
-**Für PBX-Erweiterung:**
-
-```
-Erweiterungsnummer: z.B. 1000
-Server-Adresse: z.B. pbx.firma.com
-Benutzername: Ihr Erweiterungs-Benutzername
-Passwort: Ihr Erweiterungs-Passwort
-```
-
-**Für direkte Nummer:**
+**For PBX Extension:**
 
 ```
-Telefonnummer: z.B. +49 30 123456
-SIP-Server: z.B. sip.anbieter.com
-Benutzername: Von Ihrer Telefongesellschaft bereitgestellt
-Passwort: Von Ihrer Telefongesellschaft bereitgestellt
+Extension number: e.g., 1000
+Server address: e.g., pbx.company.com
+Username: Your extension username
+Password: Your extension password
 ```
 
-### Schritt 2: Konfiguration im Dashboard
-
-1. Gehen Sie zu Ihrem Famulor-Dashboard
-2. Navigieren Sie zu "Ihre Telefonnummern"
-3. Klicken Sie auf "SIP-Trunk integrieren"
-
-### Schritt 3: SIP-Trunk-Typ auswählen
-
-Wählen Sie oben im Formular einen dieser Trunk-Typen:
-
-- **SIP-Erweiterung** - Verwenden Sie dies, wenn Sie bereits bestehende SIP-Anmeldedaten (eine Erweiterung) haben, die von Ihrem VoIP-Anbieter bereitgestellt werden
-- **Telefonnummer (DID)** - Verwenden Sie dies, wenn Sie eine dedizierte Direct Inward Dial (DID) Nummer anstelle einer generischen SIP-Erweiterung integrieren möchten
-
-**Für PBX-Erweiterung:**
+**For Direct Number:**
 
 ```
-Erweiterungsnummer: z.B. 1000
-Benutzername: Ihr Erweiterungs-Benutzername
-Passwort: Ihr Erweiterungs-Passwort
+Phone number: e.g., +49 30 123456
+SIP server: e.g., sip.provider.com
+Username: Provided by your telephony provider
+Password: Provided by your telephony provider
 ```
 
-**Für direkte Nummer:**
+### Step 2: Configure in the Dashboard
+
+1. Go to your Famulor dashboard
+2. Navigate to "Your Phone Numbers"
+3. Click on "Integrate SIP Trunk"
+
+### Step 3: Select SIP Trunk Type
+
+At the top of the form, choose one of these trunk types:
+
+- **SIP Extension** – Use this if you already have SIP credentials (an extension) provided by your VoIP provider.
+- **Phone Number (DID)** – Use this if you want to integrate a dedicated Direct Inward Dial (DID) number instead of a generic SIP extension.
+
+**For PBX Extension:**
 
 ```
-Telefonnummer: z.B. +49 30 123456
-Benutzername: Von Ihrer Telefongesellschaft bereitgestellt
-Passwort: Von Ihrer Telefongesellschaft bereitgestellt
+Extension number: e.g., 1000
+Username: Your extension username
+Password: Your extension password
 ```
 
-### Schritt 4: Ausgehende Einstellungen
-
-Diese Einstellungen steuern, wie Famulor ausgehende Anrufe über Ihren SIP-Anbieter sendet.
-
-**SIP-Adresse** - Geben Sie die Adresse/den Server des SIP-Trunks ohne den Port ein.
-
-**Ausgehender Proxy (Feste IP)** - Einige SIP-Anbieter verlangen, dass Anrufe von einer einzigen, whitelisteten IP-Adresse ausgehen. Konfigurieren Sie dies wie folgt:
-
-- **Toggle EIN** - Wenn Ihr SIP-Anbieter eine feste Quell-IP verlangt, aktivieren Sie "Ausgehender Proxy kommt von einer festen IP-Adresse". Famulor sendet dann alle ausgehenden Anfragen über eine bekannte statische IP. Verwenden Sie diese Option nur, wenn Ihr Anbieter explizit eine einzige Quell-IP verlangt.
-- **Toggle AUS** - Wenn Ihr Anbieter Anrufe von beliebigen IPs akzeptiert, lassen Sie diese Option aus. In diesem Fall sendet Famulor Anrufe von dynamischen IPs.
+**For Direct Number:**
 
 ```
-SIP-Adresse: (z.B. pbx.firma.com/sip.anbieter.com)
+Phone number: e.g., +49 30 123456
+Username: Provided by your telephony provider
+Password: Provided by your telephony provider
 ```
 
-### Schritt 5: Nummernformat-Konfiguration
+### Step 4: Outgoing Settings
 
-Dies teilt unserem System mit, wie Telefonnummern beim Tätigen von Anrufen formatiert werden sollen. Wählen Sie basierend auf den Anforderungen Ihres Anbieters:
+These control how Famulor sends outbound calls via your SIP provider.
 
-**International mit +**
+**SIP Address** – Enter the address/server of the SIP trunk without the port.
 
-```
-Format: +[Land][Nummer]
-Beispiel: +49 30 123456
-SIP-Anfrage: sip:+4930123456@ihr.pbx.com
-```
+**Outgoing Proxy (Static IP)** – Some SIP providers require calls to originate from a single whitelisted IP address. Configure as follows:
 
-**International ohne +**
+- **Toggle ON** – If your SIP provider requires a fixed source IP, enable “Outgoing Proxy comes from a fixed IP address.” Famulor will then send all outbound requests from a known static IP. Use only if your provider explicitly requires a single source IP.
+- **Toggle OFF** – If your provider accepts calls from any IP, leave off. Famulor will send calls from dynamic IPs.
 
 ```
-Format: [Land][Nummer]
-Beispiel: 49 30 123456
-SIP-Anfrage: sip:4930123456@ihr.pbx.com
+SIP Address: (e.g., pbx.company.com/sip.provider.com)
 ```
 
-**Nationales Format**
+### Step 5: Number Format Configuration
+
+This informs our system how to format phone numbers when placing calls. Choose based on your provider’s requirements:
+
+**International with +**
 
 ```
-Format: [lokale Nummer]
-Beispiel: 030 123456
-SIP-Anfrage: sip:030123456@ihr.pbx.com
+Format: +[Country][Number]
+Example: +49 30 123456
+SIP Request: sip:+4930123456@your.pbx.com
 ```
 
-### Schritt 6: Eingehende Einstellungen
+**International without +**
 
-Diese Einstellungen bestimmen, wie Famulor eingehende Anrufe von Ihrem SIP-Anbieter empfängt und authentifiziert.
+```
+Format: [Country][Number]
+Example: 49 30 123456
+SIP Request: sip:4930123456@your.pbx.com
+```
 
-**Unsere SIP-Adresse** - Famulor weist eine eindeutige eingehende SIP-URI zu (z.B. `ihre-unique-id.sip.livekit.cloud`). Ihr SIP-Anbieter muss so konfiguriert sein, dass er eingehende Anrufe an diese Adresse sendet, indem er seinen ausgehenden Trunk oder seine Routing-Regel auf diese URI zeigt.
+**National Format**
+
+```
+Format: [Local Number]
+Example: 030 123456
+SIP Request: sip:030123456@your.pbx.com
+```
+
+### Step 6: Incoming Settings
+
+These determine how Famulor receives and authenticates incoming calls from your SIP provider.
+
+**Our SIP Address** – Famulor assigns a unique inbound SIP URI (e.g., `your-unique-id.sip.livekit.cloud`). Your SIP provider must be configured to send inbound calls to this address by pointing their outbound trunk or routing rule to this URI.
 
 <Note>
-  **Wichtig:** Die spezifische Sip-URL finden Sie in Ihrem Famulor-Dashboard unter "Telefonnummern" → "SIP-Trunk integrieren" → "Unsere SIP-Adresse".
+  **Important:** You can find your specific SIP URL in your Famulor dashboard under "Phone Numbers" → "Integrate SIP Trunk" → "Our SIP Address".
 </Note>
 
-**IP-Adresse (Whitelist-IPs)** - Wenn Ihr SIP-Anbieter Anrufe von einer bekannten Menge öffentlicher IP-Adressen senden kann, wählen Sie "IP-Adresse". Fügen Sie dann jede Anbieter-IP zur Whitelist unter "Eingehende Authentifizierung" hinzu.
+**IP Address (Whitelist IPs)** – If your SIP provider sends calls from a known set of public IP addresses, select “IP Address.” Then add each provider IP to the whitelist under "Incoming Authentication."
 
-**Benutzername und Passwort** - Wenn Ihr Anbieter SIP-Auth unterstützt, wählen Sie "Benutzername und Passwort". Dieselben Anmeldedaten, die Sie unter "Ausgehende Einstellungen" eingegeben haben (Benutzername/Passwort), werden zur Authentifizierung eingehender Anrufe verwendet. Stellen Sie sicher, dass die PBX Ihres Anbieters so konfiguriert ist, dass sie diese Anmeldedaten enthält.
+**Username and Password** – If your provider supports SIP authentication, select “Username and Password.” The same credentials you entered under "Outgoing Settings" (username/password) will be used to authenticate incoming calls. Make sure your provider’s PBX is configured to use these credentials.
 
-### Schritt 7: Länderauswahl
+### Step 7: Select Country
 
-Wählen Sie das Land aus, in dem Ihr SIP-Trunk bereitgestellt ist.
+Select the country where your SIP trunk is provisioned.
 
-### Schritt 8: Einrichtung verifizieren
+### Step 8: Verify Setup
 
-Nach der Konfiguration:
+After configuration:
 
-1. Tätigen Sie einen Testanruf an Ihre Nummer/Erweiterung
-2. Überprüfen Sie, dass der KI-Assistent antwortet
-3. Verwenden Sie die Testanruf-Funktion, um ausgehende Anrufe zu verifizieren
+1. Place a test call to your number/extension
+2. Confirm the AI assistant answers
+3. Use the test call feature to verify outbound calls
 
-## Sicherheitsanforderungen
+## Security Requirements
 
-Ihre SIP-Anmeldedaten müssen sicher sein:
+Your SIP credentials must be secure:
 
-- **Benutzername:** Ihre Erweiterungsnummer oder vom Anbieter bereitgestellter Benutzername
-- **Passwort muss haben:**
-  - 12 oder mehr Zeichen
-  - Zahlen
-  - Groß- und Kleinbuchstaben
-  - Sonderzeichen empfohlen
+- **Username:** Your extension number or username provided by the provider
+- **Password requirements:**
+  - 12 or more characters
+  - Numbers
+  - Upper and lowercase letters
+  - Special characters recommended
 
-## Häufige Fragen
+## Frequently Asked Questions
 
-**Kann ich mehrere Nummern verwenden?**
+**Can I use multiple numbers?**
 
-Ja! Sie können mehrere Erweiterungen oder direkte Nummern mit unserer Plattform integrieren.
+Yes! You can integrate multiple extensions or direct numbers with our platform.
 
-**Verliere ich die Kontrolle über meine Nummern?**
+**Will I lose control over my numbers?**
 
-Nein, Sie behalten die vollständige Kontrolle über Ihren aktuellen Anbieter. Die Integration stellt nur eine Verbindung zwischen Ihrem System und unserer Plattform her.
+No, you retain full control via your current provider. The integration only connects your system to our platform.
 
-**Kann ich meine Nummern weiterhin für reguläre Anrufe verwenden?**
+**Can I still use my numbers for regular calls?**
 
-Ja, Sie können Routing-Regeln in Ihrem Telefonsystem einrichten, um zu entscheiden, welche Anrufe an die KI gehen und welche an Ihr reguläres Telefonsystem.
+Yes, you can set up routing rules in your phone system to decide which calls go to the AI and which go to your standard phone system.
 
-**Was, wenn ich Einstellungen später ändern muss?**
+**What if I need to change settings later?**
 
-Sie können Ihre Integrations-Einstellungen jederzeit über das Dashboard aktualisieren. Alle Konfigurationsoptionen bleiben nach der ersten Einrichtung zugänglich.
+You can update your integration settings anytime via the dashboard. All configuration options remain accessible after initial setup.
 
-**Wie hilft das bei Anrufkosten?**
+**How does this help with call costs?**
 
-Indem Sie Ihren eigenen VoIP-Anbieter nutzen, können Sie von deren lokalen Tarifen und bestehenden Vereinbarungen profitieren, die oft wettbewerbsfähiger sind als Standard-Carrier-Tarife. Dies ist besonders vorteilhaft für internationale Anrufe.
+By using your own VoIP provider, you benefit from their local rates and existing agreements, which are often more competitive than standard carrier rates. This is especially advantageous for international calls.
 
-## Hilfe benötigt?
+## Need Help?
 
-Unser Support-Team ist darauf spezialisiert, Kunden bei der Integration ihrer Telefonsysteme zu helfen. Wir führen Sie durch den gesamten Prozess und stellen eine reibungslose Einrichtung mit Ihrer spezifischen Telefonsystem-Konfiguration sicher.
+Our support team specializes in assisting customers with integrating their phone systems. We guide you through the entire process to ensure a smooth setup with your specific phone system configuration.

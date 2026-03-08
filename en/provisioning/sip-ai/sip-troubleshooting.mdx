@@ -1,137 +1,136 @@
 ---
-title: 'SIP-Fehlerbehebung'
-description: 'Leitfaden zur Lösung häufiger SIP-Integrationsprobleme mit Famulor'
+title: 'SIP Troubleshooting'
+description: 'Guide to resolving common SIP integration issues with Famulor'
 ---
 
 
-# SIP-Fehlerbehebung
+# SIP Troubleshooting
 
-Dieser Leitfaden hilft Ihnen, typische SIP-Integrationsprobleme zu lösen, wenn Sie Ihren SIP-Provider mit der Famulor-Plattform verbinden.
+This guide helps you resolve typical SIP integration issues when connecting your SIP provider to the Famulor platform.
 
-## Teststrategie
+## Testing Strategy
 
-1. **Zuerst Outbound testen** – lässt sich meist schneller konfigurieren
-2. **Dann Inbound testen** – nachdem Outbound stabil funktioniert
+1. **Test outbound first** – usually easier and faster to configure  
+2. **Then test inbound** – once outbound is stable
 
-## Outbound-SIP-Probleme
+## Outbound SIP Issues
 
-### Verbindungsprobleme
+### Connection Problems
 
-**SIP-Trunk stellt keine Verbindung für ausgehende Anrufe her:**
+**SIP trunk does not connect for outgoing calls:**
 
-1. **SIP-Zugangsdaten prüfen** – Benutzername, Passwort und Serverdetails
-2. **Phone-Type-Auswahl prüfen** – beim Provider die korrekte Einstellung wählen
-3. **Fixed-IP-Konfiguration** – meist aktivieren und die Provider-IP hinterlegen
-4. **Provider-Settings verifizieren** – Codec, Transport und Port-Einstellungen gegenprüfen
+1. **Check SIP credentials** – username, password, and server details  
+2. **Verify phone-type selection** – select the correct setting with your provider  
+3. **Fixed IP configuration** – usually enable this and enter the provider’s IP  
+4. **Verify provider settings** – check codec, transport, and port settings
 
-### SIP-Registrierung
+### SIP Registration
 
-**Wichtig:** Die Famulor-Plattform:
+**Important:** The Famulor platform:
 
-- sendet **keine SIP REGISTER**-Nachrichten an Ihren Provider
-- benötigt **keine eingehenden SIP REGISTER** von Ihrem Provider
-- nutzt **direkte Call-Authentifizierung**
+- **does NOT send SIP REGISTER** messages to your provider  
+- **does NOT require incoming SIP REGISTER** from your provider  
+- **uses direct call authentication**
 
-### Outbound testen
+### Testing Outbound
 
-1. SIP-Trunk-Einstellungen konfigurieren
-2. **Direkten Testcall** über die Plattform auslösen
-3. Call-Logs auf Fehlermeldungen prüfen
+1. Configure SIP trunk settings  
+2. Trigger a **direct test call** via the platform  
+3. Check call logs for error messages
 
-## Inbound-SIP-Probleme
+## Inbound SIP Issues
 
-### Authentifizierung einrichten
+### Setting Up Authentication
 
-**Für eingehende Anrufe:**
+**For incoming calls:**
 
-1. **IP-Authentifizierung nutzen** – statt Benutzername/Passwort
-2. **Provider-IPs whitelisten** – alle Provider-IP-Adressen in Famulor hinterlegen
-3. **Provider-Konfiguration – wichtig**
-   - **Unser FQDN** für das Routing verwenden (nicht die Outbound-IP)
-   - **An die Domain senden** – stellt korrektes Routing sicher
-   - **Nicht an die IP senden** – verursacht Routing-Probleme
+1. Use **IP authentication** instead of username/password  
+2. Whitelist **all provider IPs** within Famulor  
+3. **Provider configuration – crucial:**  
+   - Use **our FQDN** for routing (not the outbound IP)  
+   - **Send calls to the domain** – ensures proper routing  
+   - **Do not send to the IP address** – causes routing issues
 
-### Häufige Inbound-Probleme
+### Common Inbound Issues
 
-**Anrufe erreichen den Assistenten nicht:**
+**Calls do not reach the assistant:**
 
-- Prüfen, ob alle Provider-IPs freigeschaltet sind
-- Sicherstellen, dass der Provider an die FQDN-Domain sendet (nicht an eine IP)
-- Zielrufnummern-Format kontrollieren
+- Verify all provider IPs are whitelisted  
+- Confirm the provider sends to the FQDN domain (not an IP)  
+- Check the target number format
 
-## Allgemeine Probleme
+## General Issues
 
-**Netzwerk:**
+**Network:**
 
-- Internetverbindung prüfen
-- Sicherstellen, dass keine Firewall SIP-Verkehr blockiert
+- Verify internet connection  
+- Ensure no firewall is blocking SIP traffic
 
-**Provider-Kompatibilität:**
+**Provider Compatibility:**
 
-- Bestätigen, dass der Provider Direktwahl ohne Registrierung unterstützt
-- IP-Authentifizierung unterstützen lassen
+- Confirm the provider supports direct dialing without registration  
+- Ensure IP authentication is supported
 
-## Test-Checkliste
+## Testing Checklist
 
-### Vor Kontaktaufnahme mit dem Support
+### Before Contacting Support
 
-1. **Outbound-Test:**
-   - Zugangsdaten verifiziert
-   - Phone-Type korrekt gewählt
-   - Fixed IP mit Provider-IP hinterlegt
-   - Direkter Testcall durchgeführt
-2. **Inbound-Test:**
-   - IP-Authentifizierung konfiguriert
-   - Alle Provider-IPs in Famulor freigeschaltet
-   - Provider sendet an FQDN-Domain (nicht an direkte IP)
-   - Testcall von externer Nummer durchgeführt
-3. **Allgemein:**
-   - Netzwerkverbindung geprüft
+1. **Outbound test:**  
+   - Credentials verified  
+   - Correct phone-type selected  
+   - Fixed IP configured with provider IP  
+   - Direct test call done  
+2. **Inbound test:**  
+   - IP authentication configured  
+   - All provider IPs whitelisted in Famulor  
+   - Provider sends to FQDN domain (not direct IP)  
+   - Test call from external number performed  
+3. **General:**  
+   - Network connection verified
 
 ## FAQ
 
-### Call-Transfer funktioniert nicht
+### Call Transfer Does Not Work
 
-**Frage:** Warum funktioniert die Funktion zum Weiterleiten eines Anrufs nicht?  
-**Antwort:** Wenn Call-Transfers fehlschlagen, probieren Sie folgende Schritte:
+**Question:** Why does the call forwarding feature fail?  
+**Answer:** If call transfers fail, try the following steps:
 
-1. **SIP-Transfer-Einstellungen prüfen:**
-   - Transfer auf „Advanced“ stellen
-   - SIP-URI-Format verwenden: `sip:number@sip-server`
-   - Beispiel: `sip:+1234567890@sip.provider.com:5060`
-2. **Provider-Support verifizieren:**
-   - Bestätigen, dass Ihr Provider SIP REFER unterstützt
-   - Prüfen, ob Transfer-Funktionalität in Ihrem Konto aktiviert ist
-   - Manche Provider benötigen spezifische Einstellungen für Transfers
-3. **Unterschiedliche Formate testen:**
-   - Mit Port: `sip:+1234567890@sip-server:5060`
-   - Ohne Port: `sip:+1234567890@sip-server`
-   - Einfaches Format: `sip:+1234567890`
-4. **Ziel prüfen:**
-   - Sicherstellen, dass die Zielnummer erreichbar ist
-   - Testen, ob die Nummer Anrufe normal annimmt
-   - Prüfen, ob die Nummer blockiert oder eingeschränkt ist
-5. **Häufige Ursachen:**
-   - Provider unterstützt kein SIP REFER
-   - Falsches SIP-URI-Format
-   - Netzwerk-/Firewall blockiert Transfer-Anfragen
-   - Zielnummer nimmt nicht ab
+1. **Check SIP transfer settings:**  
+   - Set transfer mode to “Advanced”  
+   - Use SIP URI format: `sip:number@sip-server`  
+   - Example: `sip:+1234567890@sip.provider.com:5060`  
+2. **Verify provider support:**  
+   - Confirm your provider supports SIP REFER  
+   - Check if transfer functionality is enabled on your account  
+   - Some providers require specific transfer settings  
+3. **Test different formats:**  
+   - With port: `sip:+1234567890@sip-server:5060`  
+   - Without port: `sip:+1234567890@sip-server`  
+   - Simple format: `sip:+1234567890`  
+4. **Check the target:**  
+   - Make sure the target number is reachable  
+   - Test if the number accepts calls normally  
+   - Verify the number is not blocked or restricted  
+5. **Common causes:**  
+   - Provider does not support SIP REFER  
+   - Incorrect SIP URI format  
+   - Network/firewall blocking transfer requests  
+   - Target number does not answer
 
-**Troubleshooting-Steps:**
+**Troubleshooting Steps:**
 
-1. Mit einer bekannten, funktionierenden Nummer testen
-2. Unterschiedliche SIP-URI-Formate ausprobieren
-3. Provider kontaktieren, ob SIP REFER unterstützt wird
-4. Call-Logs auf konkrete Fehlermeldungen prüfen
+1. Test with a known working number  
+2. Try different SIP URI formats  
+3. Contact the provider to verify SIP REFER support  
+4. Check call logs for specific error messages
 
-## Hilfe erhalten
+## Getting Help
 
-**Bitte angeben, wenn Sie den Support kontaktieren:**
+**When contacting support, please provide:**
 
-- Fehlermeldungen aus den Call-Logs
-- SIP-Trunk-Konfiguration
-- Testergebnisse (Outbound und Inbound)
-- Details zu Transfer-Versuchen inklusive verwendeter SIP-URI
+- Error messages from the call logs  
+- SIP trunk configuration  
+- Test results (outbound and inbound)  
+- Details of transfer attempts including the SIP URI used
 
-Unser Team unterstützt Sie gerne bei der Einrichtung oder Fehlersuche: `support@famulor.io`.
-
+Our team is happy to assist you with setup or troubleshooting: `support@famulor.io`.
