@@ -1,0 +1,41 @@
+---
+title: "Conversation Ended Webhook aktivieren"
+api: "POST https://app.famulor.de/api/user/assistants/enable-conversation-ended-webhook"
+description: "Aktiviert Conversation-Ended-Webhook-Benachrichtigungen für Chat-Konversationen"
+---
+
+Aktivieren Sie Webhook-Benachrichtigungen, die gesendet werden, sobald eine Chat-Konversation (Web Widget oder WhatsApp) endet.
+
+### Request Body
+
+<ParamField body="assistant_id" type="integer" required>
+  Die Assistenten-ID, für die der Webhook aktiviert werden soll
+</ParamField>
+
+<ParamField body="webhook_url" type="string" required>
+  HTTPS-URL, die Conversation-Ended-Webhook-Payloads empfangen soll
+</ParamField>
+
+### Response
+
+<ResponseField name="message" type="string">
+  Bestätigung, dass der Webhook aktiviert wurde
+</ResponseField>
+
+<ResponseField name="data" type="array">
+  Leeres Array (für zukünftige Erweiterungen reserviert)
+</ResponseField>
+
+<ResponseExample>
+```json 200 Success
+{
+  "message": "Conversation ended webhook enabled successfully",
+  "data": []
+}
+```
+</ResponseExample>
+
+## Siehe auch
+
+- [Conversation Ended Webhook](/de/api-reference/webhooks/conversation-ended)
+- [Assistenten-Webhook deaktivieren](/de/api-reference/assistants/disable-webhook)

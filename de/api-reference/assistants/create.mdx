@@ -28,11 +28,11 @@ Die API unterstützt drei Engine-Modi mit unterschiedlichen Fähigkeiten:
 </ParamField>
 
 <ParamField body="voice_id" type="integer" required>
-  Die Voice-ID für den Assistenten. Verwenden Sie den Endpunkt [Stimmen abrufen](/api-reference/assistants/voices) mit dem Query-Parameter `mode`, um kompatible Stimmen für Ihren Engine-Modus zu erhalten.
+  Die Voice-ID für den Assistenten. Verwenden Sie den Endpunkt [Stimmen abrufen](/de/api-reference/assistants/voices) mit dem Query-Parameter `mode`, um kompatible Stimmen für Ihren Engine-Modus zu erhalten.
 </ParamField>
 
 <ParamField body="language_id" type="integer" required>
-  Die Language-ID für den Assistenten. Verwenden Sie den Endpunkt [Sprachen abrufen](/api-reference/assistants/languages), um verfügbare Sprachen zu erhalten.
+  Die Language-ID für den Assistenten. Verwenden Sie den Endpunkt [Sprachen abrufen](/de/api-reference/assistants/languages), um verfügbare Sprachen zu erhalten.
 </ParamField>
 
 <ParamField body="type" type="string" required>
@@ -60,13 +60,13 @@ Die API unterstützt drei Engine-Modi mit unterschiedlichen Fähigkeiten:
 <ParamField body="llm_model_id" type="integer">
   Die LLM-Model-ID. **Erforderlich für den Modus `pipeline`.**
 
-  Verwenden Sie den Endpunkt [Modelle abrufen](/api-reference/assistants/models), um verfügbare Modelle zu erhalten.
+  Verwenden Sie den Endpunkt [Modelle abrufen](/de/api-reference/assistants/models), um verfügbare Modelle zu erhalten.
 </ParamField>
 
 <ParamField body="multimodal_model_id" type="integer">
   Die Multimodal-Model-ID. **Erforderlich für die Modi `multimodal` und `dualplex`.**
 
-  Verwenden Sie den Endpunkt [Modelle abrufen](/api-reference/assistants/models), um verfügbare Multimodal-Modelle zu erhalten.
+  Verwenden Sie den Endpunkt [Modelle abrufen](/de/api-reference/assistants/models), um verfügbare Multimodal-Modelle zu erhalten.
 </ParamField>
 
 <ParamField body="chat_llm_fallback_id" type="integer">
@@ -138,7 +138,7 @@ Die API unterstützt drei Engine-Modi mit unterschiedlichen Fähigkeiten:
     **warm\_call\_transfer** - Warm-Transfer mit Supervisor-Briefing
 
     * `supervisor_phone` (erforderlich): Telefonnummer für den Warm-Transfer (z.B. "+14155552001"). Bei `custom_sip` stattdessen SIP-Adresse oder interne Durchwahl.
-    * `outbound_phone_id` (erforderlich): ID der Telefonnummer, mit der der Supervisor angerufen wird. Siehe [Telefonnummern abrufen](/api-reference/assistants/phone-numbers).
+    * `outbound_phone_id` (erforderlich): ID der Telefonnummer, mit der der Supervisor angerufen wird. Siehe [Telefonnummern abrufen](/de/api-reference/assistants/phone-numbers).
     * `description` (erforderlich): **Wann transferieren** – wann die KI den Warm-Transfer auslösen soll (z.B. „An einen menschlichen Ansprechpartner weiterleiten, wenn der Kunde mit einer echten Person sprechen möchte.“)
     * `custom_sip`: Custom-SIP-Adresse oder interne Durchwahl statt Telefonnummer (Standard: `false`)
     * `caller_id_mode`: Welche Nummer der Supervisor sieht. Optionen: `outbound_number` (Standard), `customer_number`, `custom`
@@ -231,11 +231,11 @@ Die API unterstützt drei Engine-Modi mit unterschiedlichen Fähigkeiten:
 </ParamField>
 
 <ParamField body="synthesizer_provider_id" type="integer">
-  Custom TTS Provider-ID. Wenn nicht gesetzt, wird anhand der Sprache automatisch ausgewählt. Siehe [Synthesizer-Provider abrufen](/api-reference/assistants/synthesizer-providers).
+  Custom TTS Provider-ID. Wenn nicht gesetzt, wird anhand der Sprache automatisch ausgewählt. Siehe [Synthesizer-Provider abrufen](/de/api-reference/assistants/synthesizer-providers).
 </ParamField>
 
 <ParamField body="transcriber_provider_id" type="integer">
-  Custom STT Provider-ID. Wenn nicht gesetzt, wird anhand der Sprache automatisch ausgewählt. Nur `pipeline`. Siehe [Transcriber-Provider abrufen](/api-reference/assistants/transcriber-providers).
+  Custom STT Provider-ID. Wenn nicht gesetzt, wird anhand der Sprache automatisch ausgewählt. Nur `pipeline`. Siehe [Transcriber-Provider abrufen](/de/api-reference/assistants/transcriber-providers).
 </ParamField>
 
 ### Call-Behavior-Einstellungen
@@ -585,7 +585,7 @@ Die API unterstützt drei Engine-Modi mit unterschiedlichen Fähigkeiten:
 ## Hinweise
 
 * Alle erforderlichen Felder müssen für eine erfolgreiche Erstellung angegeben werden
-* Verwenden Sie den Endpunkt [Stimmen abrufen](/api-reference/assistants/voices) mit dem Query-Parameter `mode`, um kompatible Stimmen zu erhalten
+* Verwenden Sie den Endpunkt [Stimmen abrufen](/de/api-reference/assistants/voices) mit dem Query-Parameter `mode`, um kompatible Stimmen zu erhalten
 * Für `multimodal`/`dualplex` muss `knowledgebase_mode` auf `function_call` gesetzt sein
 * Für `multimodal`/`dualplex` ist `allow_interruptions` immer aktiv
 * `fillers` ist nur im Modus `pipeline` verfügbar

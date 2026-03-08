@@ -7,7 +7,7 @@ description: "Send a free-text WhatsApp message within an active 24-hour session
 Send a freeform (free-text) WhatsApp message to a recipient using your Famulor WhatsApp sender. Unlike template messages, freeform messages can contain any text but **require an active 24-hour messaging window** — meaning the recipient must have sent a message to your WhatsApp sender within the last 24 hours.
 
 <Warning>
-  Freeform messages can only be sent during an active 24-hour messaging window. If the session has expired, you must send a [template message](/api-reference/whatsapp/send-template) first to re-initiate the conversation. Use the [Session Status](/api-reference/whatsapp/session-status) endpoint to check if a session is active.
+  Freeform messages can only be sent during an active 24-hour messaging window. If the session has expired, you must send a [template message](/en/api-reference/whatsapp/send-template) first to re-initiate the conversation. Use the [Session Status](/en/api-reference/whatsapp/session-status) endpoint to check if a session is active.
 </Warning>
 
 <Note>
@@ -17,7 +17,7 @@ Send a freeform (free-text) WhatsApp message to a recipient using your Famulor W
 ### Request Body
 
 <ParamField body="sender_id" type="integer" required>
-  The ID of the WhatsApp sender to send from (obtained from the [Get Senders](/api-reference/whatsapp/get-senders) endpoint)
+  The ID of the WhatsApp sender to send from (obtained from the [Get Senders](/en/api-reference/whatsapp/get-senders) endpoint)
 </ParamField>
 
 <ParamField body="recipient_phone" type="string" required>
@@ -244,10 +244,10 @@ WhatsApp enforces a **24-hour messaging window** policy:
 
 1. When a customer sends a message to your WhatsApp Business number, a 24-hour window opens.
 2. During this window, you can send freeform messages without restrictions.
-3. After the window expires, you must use a [template message](/api-reference/whatsapp/send-template) to re-initiate the conversation.
+3. After the window expires, you must use a [template message](/en/api-reference/whatsapp/send-template) to re-initiate the conversation.
 4. Each new customer message resets the 24-hour timer.
 
-Use the [Session Status](/api-reference/whatsapp/session-status) endpoint to check whether a session is active before attempting to send a freeform message.
+Use the [Session Status](/en/api-reference/whatsapp/session-status) endpoint to check whether a session is active before attempting to send a freeform message.
 
 ### Notes
 

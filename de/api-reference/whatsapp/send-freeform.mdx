@@ -12,7 +12,7 @@ description: "Freitext-WhatsApp-Nachrichten innerhalb eines aktiven 24-Stunden-F
 Dieser Endpunkt sendet eine Freiform- (Freitext-) WhatsApp-Nachricht an einen Empfänger. Im Gegensatz zu Template-Nachrichten kann der Inhalt beliebigen Text enthalten, er **erfordert jedoch ein aktives 24-Stunden-Messaging-Fenster** – der Empfänger muss innerhalb der letzten 24 Stunden eine Nachricht an Ihren WhatsApp-Sender geschickt haben.
 
 <Warning>
-  Freiform-Nachrichten können nur während eines aktiven 24-Stunden-Fensters gesendet werden. Wenn die Session abgelaufen ist, müssen Sie zunächst eine [Template-Nachricht](/api-reference/whatsapp/send-template) senden, um die Konversation wieder zu starten. Verwenden Sie den Endpunkt [Session-Status](/api-reference/whatsapp/session-status), um zu prüfen, ob eine Session aktiv ist.
+  Freiform-Nachrichten können nur während eines aktiven 24-Stunden-Fensters gesendet werden. Wenn die Session abgelaufen ist, müssen Sie zunächst eine [Template-Nachricht](/de/api-reference/whatsapp/send-template) senden, um die Konversation wieder zu starten. Verwenden Sie den Endpunkt [Session-Status](/de/api-reference/whatsapp/session-status), um zu prüfen, ob eine Session aktiv ist.
 </Warning>
 
 <Note>
@@ -22,7 +22,7 @@ Dieser Endpunkt sendet eine Freiform- (Freitext-) WhatsApp-Nachricht an einen Em
 ### Anfrage-Body
 
 <ParamField body="sender_id" type="integer" required>
-  Die ID des WhatsApp-Senders, von dem gesendet werden soll (erhalten über [WhatsApp-Sender abrufen](/api-reference/whatsapp/get-senders))
+  Die ID des WhatsApp-Senders, von dem gesendet werden soll (erhalten über [WhatsApp-Sender abrufen](/de/api-reference/whatsapp/get-senders))
 </ParamField>
 
 <ParamField body="recipient_phone" type="string" required>
@@ -249,10 +249,10 @@ WhatsApp enforces a **24-hour messaging window** policy:
 
 1. When a customer sends a message to your WhatsApp Business number, a 24-hour window opens.
 2. During this window, you can send freeform messages without restrictions.
-3. After the window expires, you must use a [template message](/api-reference/whatsapp/send-template) to re-initiate the conversation.
+3. After the window expires, you must use a [template message](/de/api-reference/whatsapp/send-template) to re-initiate the conversation.
 4. Each new customer message resets the 24-hour timer.
 
-Use the [Session Status](/api-reference/whatsapp/session-status) endpoint to check whether a session is active before attempting to send a freeform message.
+Use the [Session Status](/de/api-reference/whatsapp/session-status) endpoint to check whether a session is active before attempting to send a freeform message.
 
 ### Notes
 

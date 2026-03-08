@@ -13,11 +13,11 @@ Send a WhatsApp message using a pre-approved Meta template through your Famulor 
 ### Request Body
 
 <ParamField body="sender_id" type="integer" required>
-  The ID of the WhatsApp sender to send from (obtained from the [Get Senders](/api-reference/whatsapp/get-senders) endpoint)
+  The ID of the WhatsApp sender to send from (obtained from the [Get Senders](/en/api-reference/whatsapp/get-senders) endpoint)
 </ParamField>
 
 <ParamField body="template_id" type="integer" required>
-  The ID of the message template to use (obtained from the [Get Templates](/api-reference/whatsapp/get-templates) endpoint)
+  The ID of the message template to use (obtained from the [Get Templates](/en/api-reference/whatsapp/get-templates) endpoint)
 </ParamField>
 
 <ParamField body="recipient_phone" type="string" required>
@@ -245,7 +245,7 @@ Send a WhatsApp message using a pre-approved Meta template through your Famulor 
 * Template messages must use **approved** templates. Templates with `pending` or `rejected` status will fail.
 * The sender must be `online`. Offline senders cannot send messages.
 * Message costs are automatically deducted from your Famulor account balance (credits for tenant users, minutes for direct users).
-* After sending a template message, a 24-hour messaging window opens. During this window, you can send [freeform messages](/api-reference/whatsapp/send-freeform) without needing a template.
+* After sending a template message, a 24-hour messaging window opens. During this window, you can send [freeform messages](/en/api-reference/whatsapp/send-freeform) without needing a template.
 * If a conversation already exists with the recipient, the message is added to the existing conversation.
 * Rate limit: 5 requests per second per user.
 

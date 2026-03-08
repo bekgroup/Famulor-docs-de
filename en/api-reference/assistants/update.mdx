@@ -4,7 +4,7 @@ api: "PUT https://app.famulor.de/api/user/assistant/{id}"
 description: "Update the configuration of an existing AI assistant"
 ---
 
-This endpoint allows you to update the configuration of an existing AI assistant. All fields are optional – only the fields provided will be updated. For detailed field descriptions and options, see [Create Assistant](/api-reference/assistants/create).
+This endpoint allows you to update the configuration of an existing AI assistant. All fields are optional – only the fields provided will be updated. For detailed field descriptions and options, see [Create Assistant](/en/api-reference/assistants/create).
 
 ### Path Parameter
 
@@ -21,11 +21,11 @@ This endpoint allows you to update the configuration of an existing AI assistant
 </ParamField>
 
 <ParamField body="voice_id" type="integer">
-  The voice ID to be used for the assistant. Use the [Get Voices](/api-reference/assistants/voices) endpoint with the `mode` parameter to get voices compatible with your engine mode.
+  The voice ID to be used for the assistant. Use the [Get Voices](/en/api-reference/assistants/voices) endpoint with the `mode` parameter to get voices compatible with your engine mode.
 </ParamField>
 
 <ParamField body="language_id" type="integer">
-  The language ID for the assistant. Use the [Get Languages](/api-reference/assistants/languages) endpoint to retrieve available languages.
+  The language ID for the assistant. Use the [Get Languages](/en/api-reference/assistants/languages) endpoint to retrieve available languages.
 </ParamField>
 
 <ParamField body="type" type="string">
@@ -57,13 +57,13 @@ This endpoint allows you to update the configuration of an existing AI assistant
 <ParamField body="llm_model_id" type="integer">
   The LLM model ID to use. Only applicable in `pipeline` mode.
 
-  Use the [Get Models](/api-reference/assistants/models) endpoint to retrieve available models.
+  Use the [Get Models](/en/api-reference/assistants/models) endpoint to retrieve available models.
 </ParamField>
 
 <ParamField body="multimodal_model_id" type="integer">
   The multimodal model ID. Applicable only in `multimodal` and `dualplex` modes.
 
-  Use the [Get Models](/api-reference/assistants/models) endpoint to retrieve available multimodal models.
+  Use the [Get Models](/en/api-reference/assistants/models) endpoint to retrieve available multimodal models.
 </ParamField>
 
 <ParamField body="chat_llm_fallback_id" type="integer">
@@ -135,7 +135,7 @@ This endpoint allows you to update the configuration of an existing AI assistant
     **warm_call_transfer** - Warm transfer with supervisor briefing
 
     * `supervisor_phone` (required): Phone number for warm transfer (e.g., "+14155552001"). For `custom_sip`, use SIP address or internal extension.
-    * `outbound_phone_id` (required): ID of the phone number used to call the supervisor. See [Get Phone Numbers](/api-reference/assistants/phone-numbers).
+    * `outbound_phone_id` (required): ID of the phone number used to call the supervisor. See [Get Phone Numbers](/en/api-reference/assistants/phone-numbers).
     * `description` (required): **When to transfer** – when AI should trigger the warm transfer (e.g., “Transfer to human agent when customer wants to speak to a real person.”)
     * `custom_sip`: Custom SIP address or internal extension instead of phone number (default: `false`)
     * `caller_id_mode`: Which number the supervisor sees. Options: `outbound_number` (default), `customer_number`, `custom`
@@ -217,11 +217,11 @@ This endpoint allows you to update the configuration of an existing AI assistant
 </ParamField>
 
 <ParamField body="synthesizer_provider_id" type="integer">
-  Custom TTS provider ID. Set to `null` to use the system default voice. See [Get Synthesizer Providers](/api-reference/assistants/synthesizer-providers).
+  Custom TTS provider ID. Set to `null` to use the system default voice. See [Get Synthesizer Providers](/en/api-reference/assistants/synthesizer-providers).
 </ParamField>
 
 <ParamField body="transcriber_provider_id" type="integer">
-  Custom STT provider ID. Pipeline mode only. Set to `null` to use the system default voice. See [Get Transcriber Providers](/api-reference/assistants/transcriber-providers).
+  Custom STT provider ID. Pipeline mode only. Set to `null` to use the system default voice. See [Get Transcriber Providers](/en/api-reference/assistants/transcriber-providers).
 </ParamField>
 
 #### Call Behavior Settings
@@ -519,7 +519,7 @@ This endpoint allows you to update the configuration of an existing AI assistant
 * To remove optional fields, explicitly set them to `null`
 * To clear arrays (tools, secondary languages), pass an empty array `[]`
 * The assistant must belong to the authenticated user
-* Use the [Get Voices](/api-reference/assistants/voices) endpoint with the `mode` parameter to get compatible voices
+* Use the [Get Voices](/en/api-reference/assistants/voices) endpoint with the `mode` parameter to get compatible voices
 * For multimodal/dualplex modes, `knowledgebase_mode` must be set to `function_call`
 * In multimodal/dualplex modes, interruptions (`allow_interruptions`) cannot be disabled
 * Changing mode resets mode-specific settings (LLM model, multimodal model, providers)

@@ -4,12 +4,12 @@ api: "GET /user/whatsapp/session-status"
 description: "Check the 24-hour WhatsApp messaging window status for a Famulor conversation"
 ---
 
-Check whether an active 24-hour WhatsApp messaging window exists between your Famulor WhatsApp sender and a specific recipient. Use this endpoint to determine whether you can send [freeform messages](/api-reference/whatsapp/send-freeform) or need to use a [template message](/api-reference/whatsapp/send-template).
+Check whether an active 24-hour WhatsApp messaging window exists between your Famulor WhatsApp sender and a specific recipient. Use this endpoint to determine whether you can send [freeform messages](/en/api-reference/whatsapp/send-freeform) or need to use a [template message](/en/api-reference/whatsapp/send-template).
 
 ### Query Parameters
 
 <ParamField query="sender_id" type="integer" required>
-  The ID of the WhatsApp sender (obtained from the [Get Senders](/api-reference/whatsapp/get-senders) endpoint)
+  The ID of the WhatsApp sender (obtained from the [Get Senders](/en/api-reference/whatsapp/get-senders) endpoint)
 </ParamField>
 
 <ParamField query="recipient_phone" type="string" required>
@@ -195,8 +195,8 @@ Check whether an active 24-hour WhatsApp messaging window exists between your Fa
 Use this endpoint as part of a WhatsApp message-sending flow:
 
 1. **Check session status** before sending a message.
-2. If `can_send_freeform` is `true` → use [Send Freeform Message](/api-reference/whatsapp/send-freeform).
-3. If `requires_template` is `true` → use [Send Template Message](/api-reference/whatsapp/send-template).
+2. If `can_send_freeform` is `true` → use [Send Freeform Message](/en/api-reference/whatsapp/send-freeform).
+3. If `requires_template` is `true` → use [Send Template Message](/en/api-reference/whatsapp/send-template).
 
 ### Notes
 
