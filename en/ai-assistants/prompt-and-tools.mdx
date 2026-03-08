@@ -19,12 +19,12 @@ Provide the assistant with information to use as a knowledge base when respondin
 
     **Requirements:**
 
-    * Must first be created in your workspace under [Knowledge Bases](/api-reference/knowledgebases/list)
+    * Must first be created in your workspace under [Knowledge Bases](/en/api-reference/knowledgebases/list)
     * Displays status (Active, Processing, etc.) and description
     * Only your own knowledge bases are available
 
     <Tip>
-      Create knowledge bases from website content, PDFs, or custom documents to provide your assistant with domain-specific information. For comprehensive setup instructions, including content types, processing status, website scraping, and troubleshooting, see the full [Knowledge Base Guide](/conversation-design/knowledge-bases).
+      Create knowledge bases from website content, PDFs, or custom documents to provide your assistant with domain-specific information. For comprehensive setup instructions, including content types, processing status, website scraping, and troubleshooting, see the full [Knowledge Base Guide](/en/conversation-design/knowledge-bases).
     </Tip>
   </Accordion>
 
@@ -56,7 +56,7 @@ Provide the assistant with information to use as a knowledge base when respondin
 Create and assign your own custom tools that the AI can use **during the call** with the customer.
 
 <CardGroup cols={2}>
-  <Card title="Create Custom Tools" icon="plus" href="/ai-assistants/custom-mid-call-tools">
+  <Card title="Create Custom Tools" icon="plus" href="/en/ai-assistants/custom-mid-call-tools">
     Build tools tailored to your specific business needs: API integrations, database queries, custom workflows, and external service calls.
   </Card>
 
@@ -68,7 +68,7 @@ Create and assign your own custom tools that the AI can use **during the call** 
 </CardGroup>
 
 <Tip>
-  Read the [Custom Tools Documentation](/ai-assistants/custom-mid-call-tools) for detailed instructions on creating and configuring custom tools.
+  Read the [Custom Tools Documentation](/en/ai-assistants/custom-mid-call-tools) for detailed instructions on creating and configuring custom tools.
 </Tip>
 
 ## Standard Tools
@@ -102,7 +102,7 @@ Select built-in tools the AI can use **during the call** with the customer.
     </Note>
 
     <Tip>
-      If forwarding does not work, see our [SIP Integration Troubleshooting Guide](/provisioning/sip-ai/sip-troubleshooting) for detailed solutions.
+      If forwarding does not work, see our [SIP Integration Troubleshooting Guide](/en/provisioning/sip-ai/sip-troubleshooting) for detailed solutions.
     </Tip>
   </Accordion>
 
@@ -134,7 +134,7 @@ Select built-in tools the AI can use **during the call** with the customer.
       **Prompt instruction:** Include instructions in your system prompt on when to use DTMF input, e.g., “Use the send_dtmf tool to navigate phone menus when needed to reach the correct person.”
     </Note>
 
-    Detailed information on DTMF capabilities is available under [Tools & Functions](/ai-assistants/tools-and-functions#dtmf-input).
+    Detailed information on DTMF capabilities is available under [Tools & Functions](/en/ai-assistants/tools-and-functions#dtmf-input).
   </Accordion>
 
   <Accordion title="Scheduling" icon="calendar">
@@ -142,8 +142,8 @@ Select built-in tools the AI can use **during the call** with the customer.
 
     **Available integrations:**
 
-    * **Cal.com:** Complete setup guide at [Cal.com Scheduling](/ai-assistants/cal-com-scheduling)
-    * **GoHighLevel:** Full integration guide at [GoHighLevel Scheduling](/ai-assistants/gohighlevel-scheduling)
+    * **Cal.com:** Complete setup guide at [Cal.com Scheduling](/en/ai-assistants/cal-com-scheduling)
+    * **GoHighLevel:** Full integration guide at [GoHighLevel Scheduling](/en/ai-assistants/gohighlevel-scheduling)
     * **Calendly:** Connect your Calendly account to book appointments directly via calls
 
     **Use cases:**
@@ -299,7 +299,7 @@ Configure what your assistant says first when the call begins.
 </AccordionGroup>
 
 <Note>
-  See our [First Message Guide](/ai-assistants/initial-message) for detailed best practices and examples.
+  See our [First Message Guide](/en/ai-assistants/initial-message) for detailed best practices and examples.
 </Note>
 
 ## System Prompt
@@ -311,7 +311,7 @@ Define the personality, goals, and behavioral guidelines of the assistant.
 Choose the editing experience that works best for you:
 
 <CardGroup cols={2}>
-  <Card title="AI Prompt Editor" icon="wand-magic-sparkles" href="/ai-assistants/ai-prompt-editor">
+  <Card title="AI Prompt Editor" icon="wand-magic-sparkles" href="/en/ai-assistants/ai-prompt-editor">
     **Chat-based editing with AI assistance**
 
     Describe changes in simple language and let the AI suggest intelligent modifications. Review and accept/decline each change individually.
@@ -319,7 +319,7 @@ Choose the editing experience that works best for you:
     **Ideal for:** Fast iterations, improving existing prompts, text-focused editing
   </Card>
 
-  <Card title="Flow Builder" icon="share-nodes" href="/ai-assistants/flow-builder">
+  <Card title="Flow Builder" icon="share-nodes" href="/en/ai-assistants/flow-builder">
     **Visual drag-and-drop editor**
 
     Design conversation flows by connecting nodes on a canvas. Create branching logic and multi-path decision trees visually.
@@ -387,7 +387,7 @@ Choose the editing experience that works best for you:
 </AccordionGroup>
 
 <Tip>
-  See our [System Prompt Guide](/ai-assistants/system-prompt) for detailed best practices and examples.
+  See our [System Prompt Guide](/en/ai-assistants/system-prompt) for detailed best practices and examples.
 </Tip>
 
 # Post-Call Actions
@@ -540,7 +540,7 @@ Send a request to a URL that transmits the extracted variables to external syste
 
 ### Webhook Payload
 
-The webhook receives a comprehensive JSON payload with call details, extracted variables, and transcript. Full API documentation is available at [Post-Call Webhook API](/api-reference/webhooks/post-call).
+The webhook receives a comprehensive JSON payload with call details, extracted variables, and transcript. Full API documentation is available at [Post-Call Webhook API](/en/api-reference/webhooks/post-call).
 
 **Key payload fields:**
 
@@ -767,9 +767,9 @@ Configure your assistant to operate as a web widget on your site to enable seaml
 </AccordionGroup>
 
 <Note>
-  Detailed testing instructions and integration guides for the widget are in our [Testing the Assistant Documentation](/ai-assistants/testing).
+  Detailed testing instructions and integration guides for the widget are in our [Testing the Assistant Documentation](/en/ai-assistants/testing).
 </Note>
 
 <Note>
-  For detailed instructions and examples on webhook integration, see our [Automation Documentation](/automation/overview).
+  For detailed instructions and examples on webhook integration, see our [Automation Documentation](/en/automation/overview).
 </Note>

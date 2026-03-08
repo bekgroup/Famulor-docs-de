@@ -328,46 +328,83 @@
               {
                 "group": "Integrations",
                 "pages": [
-                  "en/automation-platform/integrations/overview",
-                  "en/automation-platform/integrations/crm-sales-hub",
-                  "en/automation-platform/integrations/communication-collaboration-hub",
                   "en/automation-platform/integrations/ai-machine-learning",
-                  "en/automation-platform/integrations/crm",
-                  "en/automation-platform/integrations/communication",
-                  "en/automation-platform/integrations/email-marketing",
-                  "en/automation-platform/integrations/productivity",
+                  "en/automation-platform/integrations/analytics",
                   "en/automation-platform/integrations/calendar",
-                  "en/automation-platform/integrations/ecommerce"
+                  "en/automation-platform/integrations/communication",
+                  "en/automation-platform/integrations/communication-collaboration-hub",
+                  "en/automation-platform/integrations/communication-templates",
+                  "en/automation-platform/integrations/crm",
+                  "en/automation-platform/integrations/crm-sales-hub",
+                  "en/automation-platform/integrations/ecommerce",
+                  "en/automation-platform/integrations/email-marketing",
+                  "en/automation-platform/integrations/overview",
+                  "en/automation-platform/integrations/productivity",
+                  "en/automation-platform/integrations/roi-calculator"
                 ]
               },
               {
                 "group": "Popular Individual Integrations",
                 "pages": [
-                  "en/automation-platform/integrations/einzelintegrations/hubspot",
-                  "en/automation-platform/integrations/einzelintegrations/salesforce",
-                  "en/automation-platform/integrations/einzelintegrations/openai",
                   "en/automation-platform/integrations/einzelintegrations/anthropic-claude",
-                  "en/automation-platform/integrations/einzelintegrations/slack",
-                  "en/automation-platform/integrations/einzelintegrations/microsoft-teams",
-                  "en/automation-platform/integrations/einzelintegrations/gmail",
-                  "en/automation-platform/integrations/einzelintegrations/google-calendar",
-                  "en/automation-platform/integrations/einzelintegrations/google-sheets",
-                  "en/automation-platform/integrations/einzelintegrations/shopify",
-                  "en/automation-platform/integrations/einzelintegrations/calendly",
                   "en/automation-platform/integrations/einzelintegrations/cal-com",
+                  "en/automation-platform/integrations/einzelintegrations/calendly",
+                  "en/automation-platform/integrations/einzelintegrations/claude/advanced-reasoning",
+                  "en/automation-platform/integrations/einzelintegrations/claude/constitutional-ai",
                   "en/automation-platform/integrations/einzelintegrations/clickup",
-                  "en/automation-platform/integrations/einzelintegrations/notion",
+                  "en/automation-platform/integrations/einzelintegrations/clickup/roi",
+                  "en/automation-platform/integrations/einzelintegrations/clickup/templates",
+                  "en/automation-platform/integrations/einzelintegrations/discord",
+                  "en/automation-platform/integrations/einzelintegrations/excel",
+                  "en/automation-platform/integrations/einzelintegrations/gmail",
+                  "en/automation-platform/integrations/einzelintegrations/google-ai",
+                  "en/automation-platform/integrations/einzelintegrations/google-calendar",
+                  "en/automation-platform/integrations/einzelintegrations/google-calendar/advanced-setup",
+                  "en/automation-platform/integrations/einzelintegrations/google-calendar/templates",
+                  "en/automation-platform/integrations/einzelintegrations/google-sheets",
+                  "en/automation-platform/integrations/einzelintegrations/hubspot",
+                  "en/automation-platform/integrations/einzelintegrations/mailchimp",
+                  "en/automation-platform/integrations/einzelintegrations/microsoft-teams",
+                  "en/automation-platform/integrations/einzelintegrations/microsoft-teams/enterprise-setup",
+                  "en/automation-platform/integrations/einzelintegrations/microsoft-teams/templates",
                   "en/automation-platform/integrations/einzelintegrations/monday",
-                  "en/automation-platform/integrations/einzelintegrations/zoom"
+                  "en/automation-platform/integrations/einzelintegrations/monday/templates",
+                  "en/automation-platform/integrations/einzelintegrations/monday/visual-roi",
+                  "en/automation-platform/integrations/einzelintegrations/notion",
+                  "en/automation-platform/integrations/einzelintegrations/notion/knowledge-roi",
+                  "en/automation-platform/integrations/einzelintegrations/notion/templates",
+                  "en/automation-platform/integrations/einzelintegrations/openai",
+                  "en/automation-platform/integrations/einzelintegrations/outlook",
+                  "en/automation-platform/integrations/einzelintegrations/outlook-calendar",
+                  "en/automation-platform/integrations/einzelintegrations/salesforce",
+                  "en/automation-platform/integrations/einzelintegrations/shopify",
+                  "en/automation-platform/integrations/einzelintegrations/signal",
+                  "en/automation-platform/integrations/einzelintegrations/slack",
+                  "en/automation-platform/integrations/einzelintegrations/slack/best-practices",
+                  "en/automation-platform/integrations/einzelintegrations/slack/workflows",
+                  "en/automation-platform/integrations/einzelintegrations/telegram",
+                  "en/automation-platform/integrations/einzelintegrations/whatsapp-business",
+                  "en/automation-platform/integrations/einzelintegrations/woocommerce",
+                  "en/automation-platform/integrations/einzelintegrations/zoom",
+                  "en/automation-platform/integrations/einzelintegrations/zoom/enterprise",
+                  "en/automation-platform/integrations/einzelintegrations/zoom/templates"
                 ]
               },
               {
                 "group": "CRM & Sales Integrations",
                 "pages": [
-                  "en/automation-platform/integrations/einzelintegrations/pipedrive",
                   "en/automation-platform/integrations/einzelintegrations/activecampaign",
+                  "en/automation-platform/integrations/einzelintegrations/activecampaign/best-practices",
                   "en/automation-platform/integrations/einzelintegrations/airtable",
-                  "en/automation-platform/integrations/einzelintegrations/asana"
+                  "en/automation-platform/integrations/einzelintegrations/airtable/templates",
+                  "en/automation-platform/integrations/einzelintegrations/asana",
+                  "en/automation-platform/integrations/einzelintegrations/asana/best-practices",
+                  "en/automation-platform/integrations/einzelintegrations/asana/templates",
+                  "en/automation-platform/integrations/einzelintegrations/dynamics",
+                  "en/automation-platform/integrations/einzelintegrations/pipedrive",
+                  "en/automation-platform/integrations/einzelintegrations/pipedrive/performance",
+                  "en/automation-platform/integrations/einzelintegrations/pipedrive/templates",
+                  "en/automation-platform/integrations/einzelintegrations/sap"
                 ]
               },
               {
@@ -389,9 +426,10 @@
               {
                 "group": "Mid-Call Tools",
                 "pages": [
-                  "en/automation-platform/mid-call-tools/was-sind-mid-call-tools",
+                  "en/automation-platform/mid-call-tools/custom-api-integration",
+                  "en/automation-platform/mid-call-tools/integration-templates/webhook-automation",
                   "en/automation-platform/mid-call-tools/wann-verwenden",
-                  "en/automation-platform/mid-call-tools/integration-templates/webhook-automation"
+                  "en/automation-platform/mid-call-tools/was-sind-mid-call-tools"
                 ]
               },
               {
@@ -515,20 +553,21 @@
               {
                 "group": "AI Assistants",
                 "pages": [
-                  "en/api-reference/assistants/list",
-                  "en/api-reference/assistants/outbound",
                   "en/api-reference/assistants/create",
-                  "en/api-reference/assistants/update",
                   "en/api-reference/assistants/delete",
+                  "en/api-reference/assistants/disable-inbound-webhook",
+                  "en/api-reference/assistants/disable-webhook",
+                  "en/api-reference/assistants/enable-conversation-ended-webhook",
+                  "en/api-reference/assistants/enable-inbound-webhook",
                   "en/api-reference/assistants/languages",
-                  "en/api-reference/assistants/voices",
+                  "en/api-reference/assistants/list",
                   "en/api-reference/assistants/models",
+                  "en/api-reference/assistants/outbound",
+                  "en/api-reference/assistants/phone-numbers",
                   "en/api-reference/assistants/synthesizer-providers",
                   "en/api-reference/assistants/transcriber-providers",
-                  "en/api-reference/assistants/phone-numbers",
-                  "en/api-reference/assistants/enable-inbound-webhook",
-                  "en/api-reference/assistants/disable-inbound-webhook",
-                  "en/api-reference/assistants/disable-webhook"
+                  "en/api-reference/assistants/update",
+                  "en/api-reference/assistants/voices"
                 ]
               },
               {
@@ -756,7 +795,13 @@
                   "de/phone-numbers/pricing-and-regions",
                   "de/phone-numbers/sms-capabilities",
                   "de/phone-numbers/assigning-to-assistants",
-                  "de/phone-numbers/call-forwarding"
+                  {
+                    "group": "Rufweiterleitung einrichten",
+                    "icon": "link",
+                    "pages": [
+                      "de/phone-numbers/call-forwarding"
+                    ]
+                  }
                 ]
               },
               {
@@ -782,11 +827,41 @@
               {
                 "group": "WhatsApp Business",
                 "pages": [
-                  "de/whatsapp/integration",
-                  "de/whatsapp/senders",
-                  "de/whatsapp/templates",
-                  "de/whatsapp/conversations",
-                  "de/whatsapp/automation"
+                  {
+                    "group": "WhatsApp Business Integration",
+                    "icon": "link",
+                    "pages": [
+                      "de/whatsapp/integration"
+                    ]
+                  },
+                  {
+                    "group": "WhatsApp-Absender",
+                    "icon": "message",
+                    "pages": [
+                      "de/whatsapp/senders"
+                    ]
+                  },
+                  {
+                    "group": "Nachrichten-Templates",
+                    "icon": "file-lines",
+                    "pages": [
+                      "de/whatsapp/templates"
+                    ]
+                  },
+                  {
+                    "group": "WhatsApp-Chats",
+                    "icon": "comments",
+                    "pages": [
+                      "de/whatsapp/conversations"
+                    ]
+                  },
+                  {
+                    "group": "WhatsApp-Automatisierung",
+                    "icon": "bolt",
+                    "pages": [
+                      "de/whatsapp/automation"
+                    ]
+                  }
                 ]
               },
               {
@@ -928,46 +1003,83 @@
               {
                 "group": "Integrationen",
                 "pages": [
-                  "de/automation-platform/integrations/overview",
-                  "de/automation-platform/integrations/crm-sales-hub",
-                  "de/automation-platform/integrations/communication-collaboration-hub",
                   "de/automation-platform/integrations/ai-machine-learning",
-                  "de/automation-platform/integrations/crm",
-                  "de/automation-platform/integrations/communication",
-                  "de/automation-platform/integrations/email-marketing",
-                  "de/automation-platform/integrations/productivity",
+                  "de/automation-platform/integrations/analytics",
                   "de/automation-platform/integrations/calendar",
-                  "de/automation-platform/integrations/ecommerce"
+                  "de/automation-platform/integrations/communication",
+                  "de/automation-platform/integrations/communication-collaboration-hub",
+                  "de/automation-platform/integrations/communication-templates",
+                  "de/automation-platform/integrations/crm",
+                  "de/automation-platform/integrations/crm-sales-hub",
+                  "de/automation-platform/integrations/ecommerce",
+                  "de/automation-platform/integrations/email-marketing",
+                  "de/automation-platform/integrations/overview",
+                  "de/automation-platform/integrations/productivity",
+                  "de/automation-platform/integrations/roi-calculator"
                 ]
               },
               {
                 "group": "Beliebte Einzelintegrationen",
                 "pages": [
-                  "de/automation-platform/integrations/einzelintegrations/hubspot",
-                  "de/automation-platform/integrations/einzelintegrations/salesforce",
-                  "de/automation-platform/integrations/einzelintegrations/openai",
                   "de/automation-platform/integrations/einzelintegrations/anthropic-claude",
-                  "de/automation-platform/integrations/einzelintegrations/slack",
-                  "de/automation-platform/integrations/einzelintegrations/microsoft-teams",
-                  "de/automation-platform/integrations/einzelintegrations/gmail",
-                  "de/automation-platform/integrations/einzelintegrations/google-calendar",
-                  "de/automation-platform/integrations/einzelintegrations/google-sheets",
-                  "de/automation-platform/integrations/einzelintegrations/shopify",
-                  "de/automation-platform/integrations/einzelintegrations/calendly",
                   "de/automation-platform/integrations/einzelintegrations/cal-com",
+                  "de/automation-platform/integrations/einzelintegrations/calendly",
+                  "de/automation-platform/integrations/einzelintegrations/claude/advanced-reasoning",
+                  "de/automation-platform/integrations/einzelintegrations/claude/constitutional-ai",
                   "de/automation-platform/integrations/einzelintegrations/clickup",
-                  "de/automation-platform/integrations/einzelintegrations/notion",
+                  "de/automation-platform/integrations/einzelintegrations/clickup/roi",
+                  "de/automation-platform/integrations/einzelintegrations/clickup/templates",
+                  "de/automation-platform/integrations/einzelintegrations/discord",
+                  "de/automation-platform/integrations/einzelintegrations/excel",
+                  "de/automation-platform/integrations/einzelintegrations/gmail",
+                  "de/automation-platform/integrations/einzelintegrations/google-ai",
+                  "de/automation-platform/integrations/einzelintegrations/google-calendar",
+                  "de/automation-platform/integrations/einzelintegrations/google-calendar/advanced-setup",
+                  "de/automation-platform/integrations/einzelintegrations/google-calendar/templates",
+                  "de/automation-platform/integrations/einzelintegrations/google-sheets",
+                  "de/automation-platform/integrations/einzelintegrations/hubspot",
+                  "de/automation-platform/integrations/einzelintegrations/mailchimp",
+                  "de/automation-platform/integrations/einzelintegrations/microsoft-teams",
+                  "de/automation-platform/integrations/einzelintegrations/microsoft-teams/enterprise-setup",
+                  "de/automation-platform/integrations/einzelintegrations/microsoft-teams/templates",
                   "de/automation-platform/integrations/einzelintegrations/monday",
-                  "de/automation-platform/integrations/einzelintegrations/zoom"
+                  "de/automation-platform/integrations/einzelintegrations/monday/templates",
+                  "de/automation-platform/integrations/einzelintegrations/monday/visual-roi",
+                  "de/automation-platform/integrations/einzelintegrations/notion",
+                  "de/automation-platform/integrations/einzelintegrations/notion/knowledge-roi",
+                  "de/automation-platform/integrations/einzelintegrations/notion/templates",
+                  "de/automation-platform/integrations/einzelintegrations/openai",
+                  "de/automation-platform/integrations/einzelintegrations/outlook",
+                  "de/automation-platform/integrations/einzelintegrations/outlook-calendar",
+                  "de/automation-platform/integrations/einzelintegrations/salesforce",
+                  "de/automation-platform/integrations/einzelintegrations/shopify",
+                  "de/automation-platform/integrations/einzelintegrations/signal",
+                  "de/automation-platform/integrations/einzelintegrations/slack",
+                  "de/automation-platform/integrations/einzelintegrations/slack/best-practices",
+                  "de/automation-platform/integrations/einzelintegrations/slack/workflows",
+                  "de/automation-platform/integrations/einzelintegrations/telegram",
+                  "de/automation-platform/integrations/einzelintegrations/whatsapp-business",
+                  "de/automation-platform/integrations/einzelintegrations/woocommerce",
+                  "de/automation-platform/integrations/einzelintegrations/zoom",
+                  "de/automation-platform/integrations/einzelintegrations/zoom/enterprise",
+                  "de/automation-platform/integrations/einzelintegrations/zoom/templates"
                 ]
               },
               {
                 "group": "CRM & Sales Integrationen",
                 "pages": [
-                  "de/automation-platform/integrations/einzelintegrations/pipedrive",
                   "de/automation-platform/integrations/einzelintegrations/activecampaign",
+                  "de/automation-platform/integrations/einzelintegrations/activecampaign/best-practices",
                   "de/automation-platform/integrations/einzelintegrations/airtable",
-                  "de/automation-platform/integrations/einzelintegrations/asana"
+                  "de/automation-platform/integrations/einzelintegrations/airtable/templates",
+                  "de/automation-platform/integrations/einzelintegrations/asana",
+                  "de/automation-platform/integrations/einzelintegrations/asana/best-practices",
+                  "de/automation-platform/integrations/einzelintegrations/asana/templates",
+                  "de/automation-platform/integrations/einzelintegrations/dynamics",
+                  "de/automation-platform/integrations/einzelintegrations/pipedrive",
+                  "de/automation-platform/integrations/einzelintegrations/pipedrive/performance",
+                  "de/automation-platform/integrations/einzelintegrations/pipedrive/templates",
+                  "de/automation-platform/integrations/einzelintegrations/sap"
                 ]
               },
               {
@@ -989,9 +1101,10 @@
               {
                 "group": "Mid-Call-Tools",
                 "pages": [
-                  "de/automation-platform/mid-call-tools/was-sind-mid-call-tools",
+                  "de/automation-platform/mid-call-tools/custom-api-integration",
+                  "de/automation-platform/mid-call-tools/integration-templates/webhook-automation",
                   "de/automation-platform/mid-call-tools/wann-verwenden",
-                  "de/automation-platform/mid-call-tools/integration-templates/webhook-automation"
+                  "de/automation-platform/mid-call-tools/was-sind-mid-call-tools"
                 ]
               },
               {
@@ -1115,20 +1228,21 @@
               {
                 "group": "KI-Assistants",
                 "pages": [
-                  "de/api-reference/assistants/list",
-                  "de/api-reference/assistants/outbound",
                   "de/api-reference/assistants/create",
-                  "de/api-reference/assistants/update",
                   "de/api-reference/assistants/delete",
+                  "de/api-reference/assistants/disable-inbound-webhook",
+                  "de/api-reference/assistants/disable-webhook",
+                  "de/api-reference/assistants/enable-conversation-ended-webhook",
+                  "de/api-reference/assistants/enable-inbound-webhook",
                   "de/api-reference/assistants/languages",
-                  "de/api-reference/assistants/voices",
+                  "de/api-reference/assistants/list",
                   "de/api-reference/assistants/models",
+                  "de/api-reference/assistants/outbound",
+                  "de/api-reference/assistants/phone-numbers",
                   "de/api-reference/assistants/synthesizer-providers",
                   "de/api-reference/assistants/transcriber-providers",
-                  "de/api-reference/assistants/phone-numbers",
-                  "de/api-reference/assistants/enable-inbound-webhook",
-                  "de/api-reference/assistants/disable-inbound-webhook",
-                  "de/api-reference/assistants/disable-webhook"
+                  "de/api-reference/assistants/update",
+                  "de/api-reference/assistants/voices"
                 ]
               },
               {

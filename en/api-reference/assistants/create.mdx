@@ -27,11 +27,11 @@ The API supports three engine modes with different capabilities:
 </ParamField>
 
 <ParamField body="voice_id" type="integer" required>
-  The voice ID for the assistant. Use the endpoint [Retrieve Voices](/api-reference/assistants/voices) with the query parameter `mode` to get compatible voices for your engine mode.
+  The voice ID for the assistant. Use the endpoint [Retrieve Voices](/en/api-reference/assistants/voices) with the query parameter `mode` to get compatible voices for your engine mode.
 </ParamField>
 
 <ParamField body="language_id" type="integer" required>
-  The language ID for the assistant. Use the endpoint [Retrieve Languages](/api-reference/assistants/languages) to get available languages.
+  The language ID for the assistant. Use the endpoint [Retrieve Languages](/en/api-reference/assistants/languages) to get available languages.
 </ParamField>
 
 <ParamField body="type" type="string" required>
@@ -59,13 +59,13 @@ The API supports three engine modes with different capabilities:
 <ParamField body="llm_model_id" type="integer">
   The LLM model ID. **Required for mode `pipeline`.**
 
-  Use the endpoint [Retrieve Models](/api-reference/assistants/models) to get available models.
+  Use the endpoint [Retrieve Models](/en/api-reference/assistants/models) to get available models.
 </ParamField>
 
 <ParamField body="multimodal_model_id" type="integer">
   The multimodal model ID. **Required for modes `multimodal` and `dualplex`.**
 
-  Use the endpoint [Retrieve Models](/api-reference/assistants/models) to get available multimodal models.
+  Use the endpoint [Retrieve Models](/en/api-reference/assistants/models) to get available multimodal models.
 </ParamField>
 
 <ParamField body="chat_llm_fallback_id" type="integer">
@@ -137,7 +137,7 @@ The API supports three engine modes with different capabilities:
     **warm_call_transfer** - Warm transfer with supervisor briefing
 
     * `supervisor_phone` (required): Phone number for the warm transfer (e.g., "+14155552001"). For `custom_sip` instead SIP address or internal extension.
-    * `outbound_phone_id` (required): ID of the phone number used to call the supervisor. See [Retrieve Phone Numbers](/api-reference/assistants/phone-numbers).
+    * `outbound_phone_id` (required): ID of the phone number used to call the supervisor. See [Retrieve Phone Numbers](/en/api-reference/assistants/phone-numbers).
     * `description` (required): **When to transfer** – when the AI should trigger the warm transfer (e.g., "Transfer to a human agent if the customer wants to speak to a real person.")
     * `custom_sip`: Custom SIP address or internal extension instead of phone number (default: `false`)
     * `caller_id_mode`: Which number the supervisor sees. Options: `outbound_number` (default), `customer_number`, `custom`
@@ -230,11 +230,11 @@ The API supports three engine modes with different capabilities:
 </ParamField>
 
 <ParamField body="synthesizer_provider_id" type="integer">
-  Custom TTS provider ID. If not set, selected automatically based on language. See [Retrieve Synthesizer Providers](/api-reference/assistants/synthesizer-providers).
+  Custom TTS provider ID. If not set, selected automatically based on language. See [Retrieve Synthesizer Providers](/en/api-reference/assistants/synthesizer-providers).
 </ParamField>
 
 <ParamField body="transcriber_provider_id" type="integer">
-  Custom STT provider ID. If not set, selected automatically based on language. Only for `pipeline`. See [Retrieve Transcriber Providers](/api-reference/assistants/transcriber-providers).
+  Custom STT provider ID. If not set, selected automatically based on language. Only for `pipeline`. See [Retrieve Transcriber Providers](/en/api-reference/assistants/transcriber-providers).
 </ParamField>
 
 ### Call Behavior Settings
@@ -584,7 +584,7 @@ The API supports three engine modes with different capabilities:
 ## Notes
 
 * All required fields must be provided for successful creation
-* Use the endpoint [Retrieve Voices](/api-reference/assistants/voices) with the query parameter `mode` to obtain compatible voices
+* Use the endpoint [Retrieve Voices](/en/api-reference/assistants/voices) with the query parameter `mode` to obtain compatible voices
 * For `multimodal`/`dualplex`, `knowledgebase_mode` must be set to `function_call`
 * For `multimodal`/`dualplex`, `allow_interruptions` is always enabled
 * `fillers` is only available in `pipeline` mode

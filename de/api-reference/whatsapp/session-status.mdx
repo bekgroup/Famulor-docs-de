@@ -9,12 +9,12 @@ description: "Prüfen, ob das 24-Stunden-Messaging-Fenster für eine WhatsApp-Ko
 
 > Den Status des 24-Stunden-Messaging-Fensters für eine WhatsApp-Konversation prüfen
 
-Dieser Endpunkt prüft, ob ein aktives 24-Stunden-Messaging-Fenster zwischen Ihrem WhatsApp-Sender und einem bestimmten Empfänger besteht. Verwenden Sie ihn, um zu entscheiden, ob Sie [Freiform-Nachrichten](/api-reference/whatsapp/send-freeform) senden können oder zunächst eine [Template-Nachricht](/api-reference/whatsapp/send-template) nutzen müssen.
+Dieser Endpunkt prüft, ob ein aktives 24-Stunden-Messaging-Fenster zwischen Ihrem WhatsApp-Sender und einem bestimmten Empfänger besteht. Verwenden Sie ihn, um zu entscheiden, ob Sie [Freiform-Nachrichten](/de/api-reference/whatsapp/send-freeform) senden können oder zunächst eine [Template-Nachricht](/de/api-reference/whatsapp/send-template) nutzen müssen.
 
 ### Query-Parameter
 
 <ParamField query="sender_id" type="integer" required>
-  Die ID des WhatsApp-Senders (erhalten über [WhatsApp-Sender abrufen](/api-reference/whatsapp/get-senders))
+  Die ID des WhatsApp-Senders (erhalten über [WhatsApp-Sender abrufen](/de/api-reference/whatsapp/get-senders))
 </ParamField>
 
 <ParamField query="recipient_phone" type="string" required>
@@ -200,8 +200,8 @@ Dieser Endpunkt prüft, ob ein aktives 24-Stunden-Messaging-Fenster zwischen Ihr
 Use this endpoint as part of a message-sending flow:
 
 1. **Check session status** before sending a message
-2. If `can_send_freeform` is `true` → use [Send Freeform Message](/api-reference/whatsapp/send-freeform)
-3. If `requires_template` is `true` → use [Send Template Message](/api-reference/whatsapp/send-template)
+2. If `can_send_freeform` is `true` → use [Send Freeform Message](/de/api-reference/whatsapp/send-freeform)
+3. If `requires_template` is `true` → use [Send Template Message](/de/api-reference/whatsapp/send-template)
 
 ### Notes
 
