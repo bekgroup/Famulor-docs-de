@@ -1,25 +1,25 @@
 ---
 title: "Microsoft Dynamics 365 Integration"
-description: "Umfassende Dynamics 365 ERP-Integration für Produktsuche und Auftragsmanagement während Kundengesprächem"
+description: "Comprehensive Dynamics 365 ERP integration for product search and order management during customer conversations"
 icon: "microsoft"
 ---
 
 
 # Microsoft Dynamics 365 Integration Template
 
-## Tool 1: Produktsuche
+## Tool 1: Product Search
 
-### Konfiguration im Famulor Interface
+### Configuration in the Famulor Interface
 
 <Tabs>
-  <Tab title="Werkzeugdetails">
-    | **Name*** | `Dynamics 365 Produktsuche` |
-    | **Funktionsname*** | `search_dynamics_products` |
-    | **HTTP-Methode** | `GET` |
+  <Tab title="Tool Details">
+    | **Name*** | `Dynamics 365 Product Search` |
+    | **Function Name*** | `search_dynamics_products` |
+    | **HTTP Method** | `GET` |
     | **Endpoint*** | `https://{{DYNAMICS_INSTANCE}}.crm.dynamics.com/api/data/v9.2/products` |
   </Tab>
   
-  <Tab title="Query-Parameter">
+  <Tab title="Query Parameters">
     ```json
     {
       "$filter": "contains(name, '{search_term}') or productnumber eq '{product_number}'",
@@ -30,21 +30,21 @@ icon: "microsoft"
   </Tab>
 </Tabs>
 
-**Success-Template**: `"Gefunden: {{products[0].name}} ({{products[0].productnumber}}), Preis: {{products[0].price}}€, Lagerbestand: {{products[0].quantityonhand}} Stück"`
+**Success Template**: `"Found: {{products[0].name}} ({{products[0].productnumber}}), Price: €{{products[0].price}}, Stock: {{products[0].quantityonhand}} units"`
 
-## Tool 2: Auftrag anlegen
+## Tool 2: Create Order
 
-### Konfiguration im Famulor Interface
+### Configuration in the Famulor Interface
 
 <Tabs>
-  <Tab title="Werkzeugdetails">
-    | **Name*** | `Dynamics 365 Auftrag anlegen` |
-    | **Funktionsname*** | `create_dynamics_order` |
-    | **HTTP-Methode** | `POST` |
+  <Tab title="Tool Details">
+    | **Name*** | `Dynamics 365 Create Order` |
+    | **Function Name*** | `create_dynamics_order` |
+    | **HTTP Method** | `POST` |
     | **Endpoint*** | `https://{{DYNAMICS_INSTANCE}}.crm.dynamics.com/api/data/v9.2/salesorders` |
   </Tab>
 </Tabs>
 
-**Success-Template**: `"Auftrag wurde angelegt. Auftragsnummer: {{orderNumber}}. Lieferung geplant für {{delivery_date}}."`
+**Success Template**: `"Order has been created. Order number: {{orderNumber}}. Delivery scheduled for {{delivery_date}}."`
 
 ---

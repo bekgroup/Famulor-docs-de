@@ -1,46 +1,46 @@
 ---
 title: "HubSpot Deal Management"
-description: "Mid-call Action für Echtzeit-Zugriff auf HubSpot Deals und Sales Pipeline Management während Kundengesprächem"
+description: "Mid-call action for real-time access to HubSpot deals and sales pipeline management during customer conversations"
 icon: "handshake"
 ---
 
 
 # HubSpot Deal Management Template
 
-Erweitern Sie Ihren KI-Assistenten um die Fähigkeit, während Kundengesprächem direkt auf HubSpot-Deals zuzugreifen, Deal-Status zu aktualisieren und Sales-Pipeline-Informationen bereitzustellen.
+Enhance your AI assistant with the capability to access HubSpot deals directly during customer calls, update deal statuses, and provide sales pipeline information.
 
-## Überblick
+## Overview
 
 <CardGroup cols={2}>
-  <Card title="Deal-Abfrage" icon="search">
-    - Automatischer Zugriff auf bestehende Deals
-    - Status-Updates in Echtzeit
-    - Pipeline-Stufen-Verfolgung
-    - Deal-Wert und Wahrscheinlichkeit
+  <Card title="Deal Query" icon="search">
+    - Automatic access to existing deals  
+    - Real-time status updates  
+    - Pipeline stage tracking  
+    - Deal value and probability  
   </Card>
-  <Card title="Sales-Automation" icon="robot">
-    - Automatische Deal-Erstellung
-    - Status-Updates basierend auf Gespräch
-    - Follow-up-Aktivitäten planen
-    - Team-Benachrichtigungen senden
+  <Card title="Sales Automation" icon="robot">
+    - Automatic deal creation  
+    - Status updates based on conversation  
+    - Schedule follow-up activities  
+    - Send team notifications  
   </Card>
 </CardGroup>
 
-## Deal-Abfrage-Tool konfigurieren
+## Configuring the Deal Query Tool
 
-### 1. Basis-Konfiguration
+### 1. Basic Configuration
 
 <Tabs>
-  <Tab title="Tool-Settings">
-    | Parameter | Wert |
-    |-----------|------|
-    | **Funktionsname** | `get_hubspot_deals` |
-    | **Beschreibung** | "Ruft aktuelle Deals eines Kontakts aus HubSpot ab. Verwenden Sie dies, wenn Sie über bestehende Projekte oder Angebote sprechen möchten." |
-    | **HTTP-Methode** | `GET` |
+  <Tab title="Tool Settings">
+    | Parameter | Value |
+    |-----------|-------|
+    | **Function Name** | `get_hubspot_deals` |
+    | **Description** | "Fetches current deals of a contact from HubSpot. Use this when discussing existing projects or proposals." |
+    | **HTTP Method** | `GET` |
     | **Timeout** | `6000ms` |
   </Tab>
   
-  <Tab title="API-Konfiguration">
+  <Tab title="API Configuration">
     ```yaml
     URL: https://api.hubapi.com/crm/v3/objects/deals/search
     
@@ -48,12 +48,12 @@ Erweitern Sie Ihren KI-Assistenten um die Fähigkeit, während Kundengesprächem
       Authorization: "Bearer IHRE_HUBSPOT_API_KEY"
       Content-Type: "application/json"
     
-    Method: POST (für Search-API)
+    Method: POST (for Search API)
     ```
   </Tab>
 </Tabs>
 
-### 2. Request Body für Deal-Suche
+### 2. Request Body for Deal Search
 
 ```json
 {
@@ -89,7 +89,7 @@ Erweitern Sie Ihren KI-Assistenten um die Fähigkeit, während Kundengesprächem
 }
 ```
 
-### 3. Parameter-Schema
+### 3. Parameter Schema
 
 ```json
 {
@@ -97,16 +97,16 @@ Erweitern Sie Ihren KI-Assistenten um die Fähigkeit, während Kundengesprächem
   "properties": {
     "contact_id": {
       "type": "string",
-      "description": "HubSpot Kontakt-ID für die Deal-Suche"
+      "description": "HubSpot contact ID for deal search"
     },
     "deal_stage": {
       "type": "string", 
-      "description": "Filtert nach spezifischer Deal-Stufe (optional)",
+      "description": "Filter by specific deal stage (optional)",
       "enum": ["prospecting", "qualification", "needs-analysis", "proposal", "negotiation", "closed-won", "closed-lost"]
     },
     "include_closed": {
       "type": "boolean",
-      "description": "Sollen abgeschlossene Deals einbezogen werden?",
+      "description": "Include closed deals?",
       "default": false
     }
   },
@@ -114,17 +114,17 @@ Erweitern Sie Ihren KI-Assistenten um die Fähigkeit, während Kundengesprächem
 }
 ```
 
-## Deal-Update-Tool konfigurieren
+## Configuring the Deal Update Tool
 
-### 1. Deal-Status aktualisieren
+### 1. Updating Deal Status
 
 <AccordionGroup>
-  <Accordion title="Tool-Konfiguration">
-    | Parameter | Wert |
-    |-----------|------|
-    | **Funktionsname** | `update_hubspot_deal` |
-    | **Beschreibung** | "Aktualisiert den Status oder Details eines bestehenden HubSpot-Deals basierend auf dem Gesprächsverlauf." |
-    | **HTTP-Methode** | `PATCH` |
+  <Accordion title="Tool Configuration">
+    | Parameter | Value |
+    |-----------|-------|
+    | **Function Name** | `update_hubspot_deal` |
+    | **Description** | "Updates the status or details of an existing HubSpot deal based on the conversation flow." |
+    | **HTTP Method** | `PATCH` |
     | **URL** | `https://api.hubapi.com/crm/v3/objects/deals/{deal_id}` |
   </Accordion>
   
@@ -142,28 +142,28 @@ Erweitern Sie Ihren KI-Assistenten um die Fähigkeit, während Kundengesprächem
     ```
   </Accordion>
   
-  <Accordion title="Parameter-Schema">
+  <Accordion title="Parameter Schema">
     ```json
     {
       "type": "object",
       "properties": {
         "deal_id": {
           "type": "string",
-          "description": "ID des zu aktualisierenden Deals"
+          "description": "ID of the deal to update"
         },
         "new_stage": {
           "type": "string",
-          "description": "Neue Deal-Stufe",
+          "description": "New deal stage",
           "enum": ["prospecting", "qualification", "needs-analysis", "proposal", "negotiation", "closed-won", "closed-lost"]
         },
         "priority": {
           "type": "string",
-          "description": "Deal-Priorität",
+          "description": "Deal priority",
           "enum": ["low", "medium", "high"]
         },
         "notes": {
           "type": "string",
-          "description": "Gesprächsnotizen oder Updates"
+          "description": "Conversation notes or updates"
         }
       },
       "required": ["deal_id", "new_stage"]
@@ -172,23 +172,22 @@ Erweitern Sie Ihren KI-Assistenten um die Fähigkeit, während Kundengesprächem
   </Accordion>
 </AccordionGroup>
 
-## Deal-Erstellung-Tool
+## Deal Creation Tool
 
-### Automatische Deal-Generierung
+### Automatic Deal Generation
 
 <Tabs>
-  <Tab title="Basis-Tool">
+  <Tab title="Basic Tool">
     ```yaml
-    Funktionsname: create_hubspot_deal
-    HTTP-Methode: POST
+    FunctionName: create_hubspot_deal
+    HTTP-Method: POST
     URL: https://api.hubapi.com/crm/v3/objects/deals
     
-    Beschreibung: "Erstellt einen neuen Deal in HubSpot basierend auf 
-                   dem aktuellen Gespräch und den Kundenanforderungen."
+    Description: "Creates a new deal in HubSpot based on the current conversation and customer requirements."
     ```
   </Tab>
   
-  <Tab title="Request-Struktur">
+  <Tab title="Request Structure">
     ```json
     {
       "properties": {
@@ -219,35 +218,35 @@ Erweitern Sie Ihren KI-Assistenten um die Fähigkeit, während Kundengesprächem
     ```
   </Tab>
   
-  <Tab title="Parameter-Schema">
+  <Tab title="Parameter Schema">
     ```json
     {
       "type": "object",
       "properties": {
         "deal_name": {
           "type": "string",
-          "description": "Name des neuen Deals"
+          "description": "Name of the new deal"
         },
         "contact_id": {
           "type": "string", 
-          "description": "HubSpot-ID des Kontakts"
+          "description": "HubSpot contact ID"
         },
         "estimated_value": {
           "type": "number",
-          "description": "Geschätzter Deal-Wert in Euro"
+          "description": "Estimated deal value in euros"
         },
         "estimated_close_date": {
           "type": "string",
           "format": "date",
-          "description": "Erwartetes Abschlussdatum (YYYY-MM-DD)"
+          "description": "Expected close date (YYYY-MM-DD)"
         },
         "owner_id": {
           "type": "string",
-          "description": "HubSpot User-ID des zuständigen Sales-Mitarbeiters"
+          "description": "HubSpot user ID of the responsible sales staff"
         },
         "deal_description": {
           "type": "string",
-          "description": "Beschreibung des Deals basierend auf dem Gespräch"
+          "description": "Description of the deal based on the conversation"
         }
       },
       "required": ["deal_name", "contact_id"]
@@ -256,105 +255,105 @@ Erweitern Sie Ihren KI-Assistenten um die Fähigkeit, während Kundengesprächem
   </Tab>
 </Tabs>
 
-## Kombiniertes Workflow-Tool
+## Combined Workflow Tool
 
-### Intelligentes Deal-Management
+### Intelligent Deal Management
 
 ```mermaid
 flowchart TD
-    A[Gespräch beginnt] --> B{Kontakt bekannt?}
-    B -->|Ja| C[get_hubspot_deals]
-    B -->|Nein| D[get_hubspot_contact first]
+    A[Conversation starts] --> B{Contact known?}
+    B -->|Yes| C[get_hubspot_deals]
+    B -->|No| D[get_hubspot_contact first]
     D --> C
-    C --> E{Deals vorhanden?}
-    E -->|Ja| F[Bestehende Deals besprechen]
-    E -->|Nein| G{Kaufinteresse erkannt?}
-    F --> H{Deal-Update nötig?}
-    G -->|Ja| I[create_hubspot_deal]
-    G -->|Nein| J[Gespräch fortsetzen]
-    H -->|Ja| K[update_hubspot_deal]
-    H -->|Nein| L[Follow-up planen]
-    I --> M[Deal-Details sammeln]
-    K --> N[Bestätigung an Kunde]
+    C --> E{Deals present?}
+    E -->|Yes| F[Discuss existing deals]
+    E -->|No| G{Purchase interest detected?}
+    F --> H{Update deal needed?}
+    G -->|Yes| I[create_hubspot_deal]
+    G -->|No| J[Continue conversation]
+    H -->|Yes| K[update_hubspot_deal]
+    H -->|No| L[Plan follow-up]
+    I --> M[Collect deal details]
+    K --> N[Confirm with customer]
 ```
 
-## Praktische Anwendungsszenarien
+## Practical Use Cases
 
-### Szenario 1: Bestehender Kunde ruft an
+### Scenario 1: Existing Customer Calls
 
 <Steps>
-  <Step title="Kundenerkennung">
-    - KI identifiziert Kunden über E-Mail/Telefon
-    - Automatischer Deal-Abruf für diesen Kontakt
+  <Step title="Customer Identification">
+    - AI identifies customer by email/phone  
+    - Automatically fetch deals for this contact  
   </Step>
   
-  <Step title="Intelligente Gesprächsführung">
+  <Step title="Intelligent Conversation Guidance">
     ```yaml
-    Wenn aktive Deals vorhanden:
-      "Ich sehe, wir haben aktuell ein Angebot für [Deal-Name] laufen. 
-       Wie kann ich Ihnen dabei helfen?"
+    If active deals exist:
+      "I see we currently have a proposal for [Deal Name]. 
+       How can I assist you with this?"
     
-    Wenn Deal in Verhandlung:
-      "Haben Sie noch Fragen zu unserem Vorschlag vom [Datum]? 
-       Der Deal-Wert beträgt [Betrag]."
+    If deal is in negotiation:
+      "Do you have any questions regarding our proposal from [Date]? 
+       The deal value is [Amount]."
     
-    Wenn keine aktiven Deals:
-      "Wie kann ich Ihnen heute helfen? Planen Sie vielleicht ein neues Projekt?"
+    If no active deals:
+      "How can I help you today? Are you planning a new project?"
     ```
   </Step>
   
-  <Step title="Automatische Updates">
-    - Deal-Stufe basierend auf Gespräch aktualisieren
-    - Gesprächsnotizen hinzufügen
-    - Next Steps definieren
+  <Step title="Automatic Updates">
+    - Update deal stage based on conversation  
+    - Add conversation notes  
+    - Define next steps  
   </Step>
 </Steps>
 
-### Szenario 2: Lead-Qualifizierung mit Deal-Erstellung
+### Scenario 2: Lead Qualification with Deal Creation
 
 <AccordionGroup>
-  <Accordion title="BANT-Qualifizierung">
-    **Budget-Identifikation**:
+  <Accordion title="BANT Qualification">
+    **Budget Identification**:
 ```yaml
-KI erkennt Budget-Aussagen:
-  "Unser Budget liegt bei etwa 50.000€"
-  → create_hubspot_deal mit amount: 50000
+AI recognizes budget statements:
+  "Our budget is approximately €50,000"
+  → create_hubspot_deal with amount: 50000
 
-"Wir haben noch kein festes Budget"
-  → Deal mit amount: 0, Notiz: "Budget zu klären"
+"We don't have a fixed budget yet"
+  → Deal with amount: 0, note: "Budget to be clarified"
 ```
   </Accordion>
   
-  <Accordion title="Authority-Check">
-    **Entscheidungsbefugnis prüfen**:
+  <Accordion title="Authority Check">
+    **Check decision-making authority**:
 ```yaml
-Entscheidungsträger identifiziert:
-  → Deal-Priority: "high"
+Decision maker identified:
+  → Deal priority: "high"
   → Owner: Senior Sales Rep
 
-Influencer/Gatekeeper:
-  → Deal-Priority: "medium" 
-  → Next Step: Decision Maker Meeting
+Influencer / Gatekeeper:
+  → Deal priority: "medium" 
+  → Next step: Decision maker meeting
 ```
   </Accordion>
   
   <Accordion title="Need & Timeline">
-    **Bedarf und Zeitrahmen**:
+    **Needs and timeline**:
 ```yaml
-Akuter Bedarf:
-  → closedate: +30 Tage
+Urgent need:
+  → closedate: +30 days
   → hs_deal_priority: "high"
 
-Langfristige Planung:
-  → closedate: +6 Monate
+Long-term planning:
+  → closedate: +6 months
   → dealstage: "prospecting"
 ```
   </Accordion>
 </AccordionGroup>
 
-## Response-Verarbeitung
+## Response Processing
 
-### Deal-Abfrage Response
+### Deal Query Response
 
 ```json
 {
@@ -362,7 +361,7 @@ Langfristige Planung:
     {
       "id": "deal123",
       "properties": {
-        "dealname": "Website Redesign Projekt",
+        "dealname": "Website Redesign Project",
         "dealstage": "proposal",
         "amount": "15000",
         "closedate": "2024-03-15",
@@ -370,163 +369,162 @@ Langfristige Planung:
         "probability": "60",
         "createdate": "2024-01-15T10:00:00.000Z",
         "hs_deal_priority": "high",
-        "description": "Komplette Website-Neugestaltung mit CMS"
+        "description": "Complete website redesign with CMS"
       }
     }
   ]
 }
 ```
 
-### Natürliche Sprachverwendung
+### Natural Language Usage
 
 <Tabs>
-  <Tab title="Deal-Status-Updates">
+  <Tab title="Deal Status Updates">
     ```yaml
     Deal in Proposal Stage:
-      "Ich sehe, unser Vorschlag für das Website Redesign Projekt 
-       ist noch in der Bewertungsphase. Haben Sie Fragen dazu?"
+      "I see our proposal for the Website Redesign Project 
+       is still under evaluation. Do you have any questions?"
     
-    Deal in Verhandlung:
-      "Bezüglich des 15.000€ Angebots - können wir heute 
-       die letzten Details klären?"
+    Deal in Negotiation:
+      "Regarding the €15,000 offer - can we finalize the last details today?"
     
-    Deal kurz vor Abschluss:
-      "Perfekt! Der geplante Projektstart ist für den 15. März. 
-       Sollen wir die Vertragsunterlagen vorbereiten?"
+    Deal Close to Completion:
+      "Perfect! The planned project start is March 15th. 
+       Should we prepare the contract documents?"
     ```
   </Tab>
   
-  <Tab title="Automatische Updates">
+  <Tab title="Automatic Updates">
     ```yaml
-    Kunde zeigt Interesse:
+    Customer shows interest:
       → update_deal: dealstage = "needs-analysis"
-      → add_note: "Kunde sehr interessiert, Details besprochen"
+      → add_note: "Customer very interested, discussed details"
     
-    Kunde nennt Einwände:
+    Customer raises objections:
       → update_deal: hs_deal_priority = "medium"  
-      → add_note: "Einwände: Budget-Bedenken, Follow-up nötig"
+      → add_note: "Objections: budget concerns, follow-up needed"
     
-    Positive Signale:
+    Positive signals:
       → update_deal: probability = "80"
-      → add_note: "Grünes Licht vom Kunden, Abschluss wahrscheinlich"
+      → add_note: "Green light from customer, close likely"
     ```
   </Tab>
 </Tabs>
 
-## Erweiterte Features
+## Advanced Features
 
-### Pipeline-Management
+### Pipeline Management
 
 <CardGroup cols={2}>
   <Card title="Multi-Pipeline Support" icon="sitemap">
-    **Verschiedene Sales-Prozesse**:
-    - Standard Sales Pipeline
+    **Different sales processes**:  
+    - Standard Sales Pipeline  
     - Enterprise Sales Pipeline  
-    - Partner/Channel Pipeline
-    - Renewal Pipeline
+    - Partner/Channel Pipeline  
+    - Renewal Pipeline  
   </Card>
   <Card title="Custom Deal Properties" icon="sliders">
-    **Branchen-spezifische Felder**:
-    - Projektumfang
-    - Technische Anforderungen
-    - Compliance-Anforderungen
-    - ROI-Erwartungen
+    **Industry-specific fields**:  
+    - Project scope  
+    - Technical requirements  
+    - Compliance requirements  
+    - ROI expectations  
   </Card>
 </CardGroup>
 
-### Deal-Forecasting
+### Deal Forecasting
 
 ```yaml
-Intelligente Abschluss-Vorhersage:
+Intelligent close prediction:
   Factors:
-    - Aktuelle Deal-Stage
-    - Historische Conversion-Rates
-    - Kunde-Engagement-Level
-    - Competitive-Situation
+    - Current deal stage
+    - Historical conversion rates
+    - Customer engagement level
+    - Competitive situation
   
   Output:
-    - Adjustierte Close-Probability
-    - Empfohlene Next Steps
-    - Risk-Assessment
+    - Adjusted close probability
+    - Recommended next steps
+    - Risk assessment
 ```
 
-## Integration mit anderen HubSpot-Tools
+## Integration with Other HubSpot Tools
 
-### Workflow-Kombination
+### Workflow Combination
 
 ```mermaid
 sequenceDiagram
-    participant C as Kunde
-    participant AI as KI-Assistant  
+    participant C as Customer
+    participant AI as AI Assistant  
     participant CT as Contact Tool
     participant DT as Deal Tool
     participant TT as Task Tool
     participant NT as Notification Tool
     
-    C->>AI: "Können wir das Angebot besprechen?"
+    C->>AI: "Can we discuss the proposal?"
     AI->>CT: get_contact(email)
-    CT-->>AI: Kontakt-ID + Details
+    CT-->>AI: contact ID + details
     AI->>DT: get_deals(contact_id)
-    DT-->>AI: Deal-Liste + Status
-    AI->>C: "Ja gerne! Ich sehe unser 15k€ Angebot..."
-    C->>AI: "Wir möchten das Projekt starten"
+    DT-->>AI: deal list + status
+    AI->>C: "Sure! I see our €15k proposal..."
+    C->>AI: "We want to start the project"
     AI->>DT: update_deal(stage: "closed-won")
-    AI->>TT: create_task("Projekt-Kickoff planen")
+    AI->>TT: create_task("Plan project kickoff")
     AI->>NT: notify_sales_team("Deal closed!")
-    AI->>C: "Fantastisch! Ich leite alles ein..."
+    AI->>C: "Great! I'll initiate everything..."
 ```
 
-## Fehlerbehandlung & Best Practices
+## Error Handling & Best Practices
 
-### Robuste Fehlerbehandlung
+### Robust Error Handling
 
 <AccordionGroup>
-  <Accordion title="API-Fehler abfangen">
-    **Deal nicht gefunden (404)**:
+  <Accordion title="Catch API Errors">
+    **Deal not found (404)**:
     ```yaml
-    Ursache: Deal-ID existiert nicht oder wurde gelöscht
-    Fallback: "Es scheint, als wäre dieses Projekt nicht mehr aktuell. 
-              Lassen Sie uns über Ihre aktuellen Anforderungen sprechen."
+    Cause: Deal ID does not exist or was deleted
+    Fallback: "It seems this project is no longer current. 
+              Let’s talk about your current needs."
     ```
   </Accordion>
   
-  <Accordion title="Berechtigung-Fehler (403)">
+  <Accordion title="Permission Error (403)">
     ```yaml
-    Ursache: API-Key hat keine Berechtigung für Deals
-    Fallback: "Ich kann momentan nicht auf unsere Projektdatenbank zugreifen. 
-              Lassen Sie mich Ihnen trotzdem gerne helfen."
-    Action: Admin-Benachrichtigung über Berechtigungs-Problem
+    Cause: API key lacks permission for deals
+    Fallback: "I currently can't access our project database. 
+              I’ll still be happy to assist you."
+    Action: Notify admin about permission issue
     ```
   </Accordion>
   
-  <Accordion title="Rate-Limiting (429)">
+  <Accordion title="Rate Limiting (429)">
     ```yaml
     Handling: 
-      - Automatic Retry mit Exponential Backoff
-      - Temp Fallback: "Einen Moment, ich lade Ihre Projektdaten..."
-      - Nach 3 Versuchen: Graceful Degradation
+      - Automatic retry with exponential backoff
+      - Temporary fallback: "One moment, loading your project data..."
+      - After 3 attempts: graceful degradation
     ```
   </Accordion>
 </AccordionGroup>
 
-### Performance-Optimierung
+### Performance Optimization
 
 <Tabs>
   <Tab title="Selective Loading">
     ```yaml
-    Nur relevante Deal-Properties laden:
+    Load only relevant deal properties:
       Standard: dealname, dealstage, amount, closedate
-      Bei Bedarf: description, custom_properties
-      Vermeiden: associations, notes (große Datenmengen)
+      As needed: description, custom_properties
+      Avoid: associations, notes (large data volumes)
     ```
   </Tab>
   
   <Tab title="Smart Caching">
     ```yaml
-    Deal-Cache-Strategie:
-      Active Deals: Cache für 5 Minuten
-      Closed Deals: Cache für 1 Stunde  
-      Recently Modified: Invalidierung über Webhooks
+    Deal cache strategy:
+      Active deals: cache for 5 minutes
+      Closed deals: cache for 1 hour  
+      Recently modified: invalidate via webhooks
     ```
   </Tab>
 </Tabs>
@@ -535,45 +533,45 @@ sequenceDiagram
 
 ### Key Performance Indicators
 
-| Metrik | Beschreibung | Zielwert |
-|--------|-------------|----------|
-| **Deal-Conversion-Rate** | Gespräch → Deal-Erstellung | >15% |
-| **Stage-Progression** | Durchschnittliche Stufen-Bewegung | +1 Stage/Gespräch |
-| **Close-Rate-Improvement** | Verbesserung durch Tool-Einsatz | +20% |
-| **Response-Time** | Deal-Tool-Performance | &lt;3 Sekunden |
+| Metric | Description | Target |
+|--------|-------------|--------|
+| **Deal Conversion Rate** | Conversation → Deal creation | >15% |
+| **Stage Progression** | Average stage movement | +1 stage per conversation |
+| **Close Rate Improvement** | Improvement via tool usage | +20% |
+| **Response Time** | Deal tool performance | &lt;3 seconds |
 
-### Success-Tracking
+### Success Tracking
 
 <Steps>
-  <Step title="Baseline etablieren">
-    - Conversion-Rates vor Tool-Implementierung messen
-    - Durchschnittliche Deal-Sizes dokumentieren  
-    - Sales-Cycle-Längen erfassen
+  <Step title="Establish Baseline">
+    - Measure conversion rates before tool implementation  
+    - Document average deal sizes  
+    - Capture sales cycle lengths  
   </Step>
   
-  <Step title="Tool-Impact messen">
-    - Gespräche mit vs. ohne Tool-Einsatz vergleichen
-    - Deal-Quality-Scores analysieren
-    - Customer-Experience-Feedback sammeln
+  <Step title="Measure Tool Impact">
+    - Compare conversations with vs. without tool usage  
+    - Analyze deal quality scores  
+    - Collect customer experience feedback  
   </Step>
   
-  <Step title="Kontinuierliche Optimierung">
-    - Wöchentliche Performance-Reviews
-    - Monatliche Tool-Konfiguration-Anpassungen
-    - Quarterly Business-Impact-Assessment
+  <Step title="Continuous Optimization">
+    - Weekly performance reviews  
+    - Monthly tool configuration adjustments  
+    - Quarterly business impact assessments  
   </Step>
 </Steps>
 
 ---
 
-<Card title="Weiterführende Integrationen" icon="link">
-Erweitern Sie Ihr HubSpot Deal-Management mit zusätzlichen Tools:
+<Card title="Further Integrations" icon="link">
+Expand your HubSpot deal management with additional tools:
 
-- [HubSpot Kontakt-Abruf](/automation-platform/mid-call-actions/integration-templates/hubspot-kontakt-abruf) für Customer Data
-- [HubSpot Lead-Erstellung](/automation-platform/mid-call-actions/integration-templates/hubspot-lead-erstellung) für Lead-Nurturing
-- [Webhook-Integration](/automation-platform/mid-call-actions/integration-templates/webhook-automation) für komplexe Workflows
+- [HubSpot Contact Retrieval](/automation-platform/mid-call-actions/integration-templates/hubspot-kontakt-abruf) for customer data  
+- [HubSpot Lead Creation](/automation-platform/mid-call-actions/integration-templates/hubspot-lead-erstellung) for lead nurturing  
+- [Webhook Integration](/automation-platform/mid-call-actions/integration-templates/webhook-automation) for complex workflows  
 </Card>
 
 <Warning>
-**Wichtiger Hinweis**: Deal-Updates haben direkten Einfluss auf Sales-Forecasting und Team-Performance. Stellen Sie sicher, dass Ihr Sales-Team über die automatischen Updates informiert ist und definieren Sie klare Regeln für kritische Deal-Änderungen.
+**Important Note**: Deal updates directly affect sales forecasting and team performance. Ensure your sales team is informed about the automatic updates and define clear rules for critical deal changes.
 </Warning>

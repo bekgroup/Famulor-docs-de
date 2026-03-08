@@ -1,25 +1,25 @@
 ---
-title: "Feiertage-Service Integration"
-description: "Kostenlose Feiertage-Abfrage für Terminplanung und Business-Scheduling während Kundengesprächem"
+title: "Holiday Service Integration"
+description: "Free holiday lookup for appointment scheduling and business planning during customer meetings"
 icon: "calendar"
 ---
 
 
-# Feiertage-Service Integration Template
+# Holiday Service Integration Template
 
-## Konfiguration im Famulor Interface
+## Configuration in the Famulor Interface
 
 <Tabs>
-  <Tab title="Werkzeugdetails">
-    | **Name*** | `Nächste Feiertage` |
-    | **Funktionsname*** | `get_next_public_holidays` |
-    | **HTTP-Methode** | `GET` |
+  <Tab title="Tool Details">
+    | **Name*** | `Next Holidays` |
+    | **Function Name*** | `get_next_public_holidays` |
+    | **HTTP Method** | `GET` |
     | **Endpoint*** | `https://date.nager.at/api/v3/NextPublicHolidays/{countryCode}` |
     | **Timeout (ms)** | `5000` |
   </Tab>
 </Tabs>
 
-### Parameter-Schema
+### Parameter Schema
 
 ```json
 {
@@ -27,15 +27,15 @@ icon: "calendar"
   "properties": {
     "countryCode": {
       "type": "string",
-      "description": "Ländercode (z.B. 'DE', 'AT', 'CH', 'US')"
+      "description": "Country code (e.g. 'DE', 'AT', 'CH', 'US')"
     }
   },
   "required": ["countryCode"]
 }
 ```
 
-**Agent-Message**: `"Ich schaue nach den nächsten Feiertagen für {{countryCode}}..."`
+**Agent Message**: `"Looking up the next holidays for {{countryCode}}..."`
 
-**Success-Template**: `"Die nächsten Feiertage für {{countryCode}}: {{response}}"`
+**Success Template**: `"The next holidays for {{countryCode}} are: {{response}}"`
 
 ---
