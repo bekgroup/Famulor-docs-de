@@ -1,55 +1,55 @@
 ---
 title: "Doctolib Integration"
-description: "Komplette Arzttermin-Automatisierung mit Doctolib - Arztsuche, Terminabfrage und Buchung direkt während des Telefongesprächs"
+description: "Complete doctor appointment automation with Doctolib – doctor search, appointment inquiry, and booking directly during the phone call"
 icon: "stethoscope"
 ---
 
 
 # Doctolib Integration Template
 
-Integrieren Sie Deutschlands führende Arzttermin-Plattform Doctolib direkt in Ihre Mid-call Actions. Ermöglichen Sie Ihren Kunden, Ärzte zu finden, verfügbare Termine zu prüfen und sogar Termine zu buchen - alles während des Telefongesprächs.
+Integrate Germany's leading doctor appointment platform Doctolib directly into your Mid-call Actions. Enable your customers to find doctors, check available appointments, and even book appointments – all while on the phone.
 
-## Überblick & Funktionen
+## Overview & Features
 
 <CardGroup cols={2}>
-  <Card title="Arztsuche-Automation" icon="magnifying-glass">
-    - Suche nach Fachärzten basierend auf Standort und Spezialität
-    - Filterung nach Versicherungstyp (Kasse/Privat)
-    - Verfügbarkeit innerhalb definierter Zeiträume
-    - Radius-basierte Suche für optimale Erreichbarkeit
+  <Card title="Doctor Search Automation" icon="magnifying-glass">
+    - Search for specialists based on location and specialty
+    - Filter by insurance type (public/private)
+    - Availability within defined timeframes
+    - Radius-based search for optimal accessibility
   </Card>
-  <Card title="Terminmanagement" icon="calendar">
-    - Echtzeit-Verfügbarkeit von Arztterminen
-    - Automatische Terminbuchung während des Gesprächs
-    - Support für Videosprechstunden
-    - Vollständige Patientendaten-Integration
+  <Card title="Appointment Management" icon="calendar">
+    - Real-time availability of doctor appointments
+    - Automatic appointment booking during the call
+    - Support for video consultations
+    - Full patient data integration
   </Card>
 </CardGroup>
 
-## Doctolib API-Zugang einrichten
+## Setting Up Doctolib API Access
 
 ### 1. Doctolib Developer Account
 
 <Steps>
-  <Step title="Developer-Registrierung">
-    - Besuchen Sie das [Doctolib Developer Portal](https://developers.doctolib.com)
-    - Registrieren Sie sich als Healthcare-Integration-Partner
-    - Reichen Sie Ihre Geschäftslizenz und Datenschutz-Dokumentation ein
+  <Step title="Developer Registration">
+    - Visit the [Doctolib Developer Portal](https://developers.doctolib.com)
+    - Register as a healthcare integration partner
+    - Submit your business license and data protection documentation
   </Step>
   
-  <Step title="API-Credentials erhalten">
+  <Step title="Obtain API Credentials">
     ```yaml
-    Nach Approval erhalten Sie:
+    After approval, you will receive:
       - Client ID
       - Client Secret  
-      - API-Umgebung (Sandbox/Production)
-      - Rate-Limits und Usage-Guidelines
+      - API environment (Sandbox/Production)
+      - Rate limits and usage guidelines
     ```
   </Step>
   
   <Step title="OAuth 2.0 Setup">
     ```yaml
-    OAuth-Konfiguration:
+    OAuth Configuration:
       Authorization URL: https://api.doctolib.de/oauth/authorize
       Token URL: https://api.doctolib.de/oauth/token
       Scopes: 
@@ -60,24 +60,24 @@ Integrieren Sie Deutschlands führende Arzttermin-Plattform Doctolib direkt in I
   </Step>
 </Steps>
 
-## Tool 1: Arztsuche-Tool
+## Tool 1: Doctor Search Tool
 
-### Konfiguration im Famulor Interface
+### Configuration in Famulor Interface
 
 <Tabs>
-  <Tab title="Werkzeugdetails">
-    | Feld | Wert |
-    |------|------|
+  <Tab title="Tool Details">
+    | Field | Value |
+    |-------|-------|
     | **Name*** | `Doctolib Arztsuche` |
-    | **Beschreibung** | "Sucht verfügbare Ärzte und Fachärzte basierend auf Standort und Spezialität" |
-    | **Funktionsname*** | `search_doctolib_practitioners` |
-    | **Funktionsbeschreibung*** | "Sucht Ärzte basierend auf Fachgebiet und Standort. Verwenden Sie diese Funktion, wenn der Patient nach einem Arzt in seiner Nähe sucht." |
-    | **HTTP-Methode** | `GET` |
+    | **Description** | "Searches for available doctors and specialists based on location and specialty" |
+    | **Function Name*** | `search_doctolib_practitioners` |
+    | **Function Description*** | "Searches for doctors by specialty and location. Use this function when the patient is looking for a doctor nearby." |
+    | **HTTP Method** | `GET` |
     | **Timeout (ms)** | `5000` |
     | **Endpoint*** | `https://api.doctolib.de/practitioners/search` |
   </Tab>
   
-  <Tab title="Header-Konfiguration">
+  <Tab title="Header Configuration">
     ```json
     {
       "Authorization": "Bearer {{DOCTOLIB_API_KEY}}",
@@ -87,7 +87,7 @@ Integrieren Sie Deutschlands führende Arzttermin-Plattform Doctolib direkt in I
     ```
   </Tab>
   
-  <Tab title="Query-Parameter">
+  <Tab title="Query Parameters">
     ```json
     {
       "speciality": "{speciality}",
@@ -100,7 +100,7 @@ Integrieren Sie Deutschlands führende Arzttermin-Plattform Doctolib direkt in I
   </Tab>
 </Tabs>
 
-### Parameter-Schema
+### Parameter Schema
 
 ```json
 {
@@ -108,28 +108,28 @@ Integrieren Sie Deutschlands führende Arzttermin-Plattform Doctolib direkt in I
   "properties": {
     "speciality": {
       "type": "string",
-      "description": "Fachgebiet (z.B. 'Allgemeinmedizin', 'Zahnarzt', 'Orthopädie', 'Dermatologie')",
-      "examples": ["Allgemeinmedizin", "Zahnarzt", "Orthopädie", "Dermatologie", "Gynäkologie"]
+      "description": "Medical specialty (e.g. 'General Medicine', 'Dentist', 'Orthopedics', 'Dermatology')",
+      "examples": ["General Medicine", "Dentist", "Orthopedics", "Dermatology", "Gynecology"]
     },
     "location": {
       "type": "string", 
-      "description": "PLZ oder Stadt für die Arztsuche"
+      "description": "Postal code or city for the doctor search"
     },
     "insurance_type": {
       "type": "string",
       "enum": ["public", "private", "both"],
-      "description": "Versicherungstyp: 'public' (Kassenpatienten), 'private' (Privatpatienten), 'both' (beide)"
+      "description": "Insurance type: 'public' (statutory insured), 'private' (private insured), 'both' (both)"
     },
     "availability_days": {
       "type": "integer",
-      "description": "Verfügbarkeit innerhalb der nächsten X Tage",
+      "description": "Availability within the next X days",
       "minimum": 1,
       "maximum": 90,
       "default": 14
     },
     "radius": {
       "type": "integer",
-      "description": "Suchradius in Kilometern",
+      "description": "Search radius in kilometers",
       "minimum": 1,
       "maximum": 100,
       "default": 25
@@ -139,7 +139,7 @@ Integrieren Sie Deutschlands führende Arzttermin-Plattform Doctolib direkt in I
 }
 ```
 
-### Response-Mapping
+### Response Mapping
 
 ```json
 {
@@ -149,43 +149,43 @@ Integrieren Sie Deutschlands führende Arzttermin-Plattform Doctolib direkt in I
 }
 ```
 
-### Natürliche Sprachintegration
+### Natural Language Integration
 
 <AccordionGroup>
-  <Accordion title="Agent-Nachricht vor API-Aufruf">
-    **Template**: `"Ich suche {{speciality}} in {{location}} für Sie..."`
+  <Accordion title="Agent Message Before API Call">
+    **Template**: `"I'm searching for {{speciality}} in {{location}} for you..."`
     
-    **Beispiele**:
-    - "Ich suche Zahnärzte in München für Sie..."
-    - "Ich schaue nach Allgemeinmedizinern in 10115 Berlin..."
-    - "Ich finde Orthopäden in Hamburg, die Kassenpatienten behandeln..."
+    **Examples**:
+    - "I'm searching for dentists in Munich for you..."
+    - "I'll look for general practitioners in 10115 Berlin..."
+    - "I’m finding orthopedists in Hamburg who accept public insurance..."
   </Accordion>
   
-  <Accordion title="Custom-Prompt für Zusammenfassung">
+  <Accordion title="Custom Prompt for Summary">
     ```
-    Ich habe {{total}} Ärzte gefunden. Dr. {{practitioners[0].name}} praktiziert in {{practitioners[0].address}} und hat den nächsten verfügbaren Termin am {{practitioners[0].next_availability}}. {{#if practitioners[1]}}Weitere Optionen: Dr. {{practitioners[1].name}} in {{practitioners[1].address}}.{{/if}}
+    I found {{total}} doctors. Dr. {{practitioners[0].name}} practices at {{practitioners[0].address}} and has the next available appointment on {{practitioners[0].next_availability}}. {{#if practitioners[1]}}Other options include Dr. {{practitioners[1].name}} at {{practitioners[1].address}}.{{/if}}
     ```
   </Accordion>
 </AccordionGroup>
 
-## Tool 2: Terminslots-Abfrage
+## Tool 2: Appointment Slots Inquiry
 
-### Konfiguration im Famulor Interface
+### Configuration in Famulor Interface
 
 <Tabs>
-  <Tab title="Werkzeugdetails">
-    | Feld | Wert |
-    |------|------|
+  <Tab title="Tool Details">
+    | Field | Value |
+    |-------|-------|
     | **Name*** | `Doctolib Terminslots` |
-    | **Beschreibung** | "Zeigt verfügbare Termine bei einem spezifischen Arzt an" |
-    | **Funktionsname*** | `get_doctolib_slots` |
-    | **Funktionsbeschreibung*** | "Ruft verfügbare Terminslots ab. Verwenden Sie diese Funktion, nachdem ein Arzt ausgewählt wurde, um konkrete Terminoptionen zu zeigen." |
-    | **HTTP-Methode** | `GET` |
+    | **Description** | "Displays available appointments for a specific doctor" |
+    | **Function Name*** | `get_doctolib_slots` |
+    | **Function Description*** | "Retrieves available appointment slots. Use this function after a doctor has been selected to show concrete appointment options." |
+    | **HTTP Method** | `GET` |
     | **Timeout (ms)** | `5000` |
     | **Endpoint*** | `https://api.doctolib.de/practitioners/{practitioner_id}/availabilities` |
   </Tab>
   
-  <Tab title="Query-Parameter">
+  <Tab title="Query Parameters">
     ```json
     {
       "start_date": "{start_date}",
@@ -197,7 +197,7 @@ Integrieren Sie Deutschlands führende Arzttermin-Plattform Doctolib direkt in I
   </Tab>
 </Tabs>
 
-### Parameter-Schema für Terminabfrage
+### Parameter Schema for Appointment Inquiry
 
 ```json
 {
@@ -205,25 +205,25 @@ Integrieren Sie Deutschlands führende Arzttermin-Plattform Doctolib direkt in I
   "properties": {
     "practitioner_id": {
       "type": "string",
-      "description": "Eindeutige Doctolib-ID des Arztes (aus vorheriger Suche)"
+      "description": "Unique Doctolib ID of the doctor (from previous search)"
     },
     "start_date": {
       "type": "string",
       "format": "date",
-      "description": "Startdatum für Terminsuche (YYYY-MM-DD)"
+      "description": "Start date for appointment search (YYYY-MM-DD)"
     },
     "end_date": {
       "type": "string",
       "format": "date", 
-      "description": "Enddatum für Terminsuche (YYYY-MM-DD)"
+      "description": "End date for appointment search (YYYY-MM-DD)"
     },
     "motive_id": {
       "type": "string",
-      "description": "ID des Behandlungsgrundes (optional, für spezifische Termintypen)"
+      "description": "ID of the treatment reason (optional, for specific appointment types)"
     },
     "telehealth": {
       "type": "boolean",
-      "description": "Nur Videosprechstunden anzeigen? (true/false)",
+      "description": "Show only video consultations? (true/false)",
       "default": false
     }
   },
@@ -231,7 +231,7 @@ Integrieren Sie Deutschlands führende Arzttermin-Plattform Doctolib direkt in I
 }
 ```
 
-### Response-Verarbeitung
+### Response Handling
 
 ```json
 {
@@ -241,19 +241,19 @@ Integrieren Sie Deutschlands führende Arzttermin-Plattform Doctolib direkt in I
 }
 ```
 
-## Tool 3: Terminbuchung
+## Tool 3: Appointment Booking
 
-### Konfiguration für Buchungs-Tool
+### Configuration for Booking Tool
 
 <Tabs>
-  <Tab title="Werkzeugdetails">
-    | Feld | Wert |
-    |------|------|
+  <Tab title="Tool Details">
+    | Field | Value |
+    |-------|-------|
     | **Name*** | `Doctolib Termin buchen` |
-    | **Beschreibung** | "Bucht einen Arzttermin über Doctolib" |
-    | **Funktionsname*** | `book_doctolib_appointment` |
-    | **Funktionsbeschreibung*** | "Bucht einen konkreten Termin bei einem Arzt. Verwenden Sie diese Funktion erst, nachdem alle Patientendaten vollständig erfasst wurden." |
-    | **HTTP-Methode** | `POST` |
+    | **Description** | "Books a doctor appointment via Doctolib" |
+    | **Function Name*** | `book_doctolib_appointment` |
+    | **Function Description*** | "Books a specific appointment with a doctor. Use this function only after all patient data is fully collected." |
+    | **HTTP Method** | `POST` |
     | **Timeout (ms)** | `10000` |
     | **Endpoint*** | `https://api.doctolib.de/appointments` |
   </Tab>
@@ -281,7 +281,7 @@ Integrieren Sie Deutschlands führende Arzttermin-Plattform Doctolib direkt in I
   </Tab>
 </Tabs>
 
-### Vollständiges Parameter-Schema für Buchung
+### Complete Parameter Schema for Booking
 
 ```json
 {
@@ -289,110 +289,110 @@ Integrieren Sie Deutschlands führende Arzttermin-Plattform Doctolib direkt in I
   "properties": {
     "practitioner_id": {
       "type": "string",
-      "description": "Arzt-ID von der vorherigen Suche"
+      "description": "Doctor ID from the previous search"
     },
     "start_time": {
       "type": "string",
       "format": "date-time",
-      "description": "Gewählte Terminzeit (ISO 8601 Format)"
+      "description": "Selected appointment time (ISO 8601 format)"
     },
     "motive_id": {
       "type": "string",
-      "description": "Behandlungsgrund-ID"
+      "description": "Treatment reason ID"
     },
     "first_name": {
       "type": "string",
-      "description": "Vorname des Patienten"
+      "description": "Patient's first name"
     },
     "last_name": {
       "type": "string", 
-      "description": "Nachname des Patienten"
+      "description": "Patient's last name"
     },
     "birthdate": {
       "type": "string",
       "format": "date",
-      "description": "Geburtsdatum des Patienten (YYYY-MM-DD)"
+      "description": "Patient's date of birth (YYYY-MM-DD)"
     },
     "phone": {
       "type": "string",
-      "description": "Telefonnummer des Patienten"
+      "description": "Patient's phone number"
     },
     "email": {
       "type": "string",
       "format": "email",
-      "description": "E-Mail-Adresse des Patienten"
+      "description": "Patient's email address"
     },
     "insurance_type": {
       "type": "string",
       "enum": ["public", "private"],
-      "description": "Versicherungstyp: 'public' (gesetzlich) oder 'private' (privat)"
+      "description": "Insurance type: 'public' (statutory) or 'private' (private)"
     },
     "insurance_number": {
       "type": "string",
-      "description": "Versichertennummer (bei gesetzlicher Versicherung)"
+      "description": "Insurance number (for statutory insurance)"
     },
     "comments": {
       "type": "string",
-      "description": "Zusätzliche Anmerkungen oder Beschwerden"
+      "description": "Additional notes or complaints"
     }
   },
   "required": ["practitioner_id", "start_time", "first_name", "last_name", "phone"]
 }
 ```
 
-## Kompletter Workflow-Ablauf
+## Complete Workflow
 
-### Schritt-für-Schritt-Integration
+### Step-by-Step Integration
 
 ```mermaid
 flowchart TD
-    A[Patient ruft an] --> B{Benötigt Arzttermin?}
-    B -->|Ja| C[Fachgebiet erfragen]
-    B -->|Nein| Z[Anderer Service]
-    C --> D[Standort erfragen]
+    A[Patient calls] --> B{Needs doctor appointment?}
+    B -->|Yes| C[Ask for specialty]
+    B -->|No| Z[Other service]
+    C --> D[Ask for location]
     D --> E[search_doctolib_practitioners]
-    E --> F{Ärzte gefunden?}
-    F -->|Ja| G[Arztauswahl durch Patient]
-    F -->|Nein| H[Suchkriterien erweitern]
+    E --> F{Doctors found?}
+    F -->|Yes| G[Patient selects doctor]
+    F -->|No| H[Expand search criteria]
     G --> I[get_doctolib_slots]
-    I --> J{Termine verfügbar?}
-    J -->|Ja| K[Terminauswahl]
-    J -->|Nein| L[Alternative Termine/Ärzte]
-    K --> M[Patientendaten erfassen]
+    I --> J{Appointments available?}
+    J -->|Yes| K[Select appointment]
+    J -->|No| L[Alternative appointments/doctors]
+    K --> M[Collect patient data]
     M --> N[book_doctolib_appointment]
-    N --> O[Bestätigung an Patient]
+    N --> O[Confirmation to patient]
     H --> D
     L --> G
 ```
 
-### Praktisches Gesprächsbeispiel
+### Practical Conversation Example
 
 <AccordionGroup>
-  <Accordion title="Szenario: Zahnarzttermin-Buchung">
-    **Patient**: "Ich brauche einen Zahnarzttermin in München."
+  <Accordion title="Scenario: Dentist Appointment Booking">
+    **Patient**: "I need a dentist appointment in Munich."
     
-    **KI-Assistent**: "Gerne helfe ich Ihnen dabei. Sind Sie gesetzlich oder privat versichert?"
+    **AI Assistant**: "I'd be glad to help. Are you insured publicly or privately?"
     
-    **Patient**: "Gesetzlich versichert."
+    **Patient**: "Publicly insured."
     
-    **KI**: "Perfekt. Ich suche Zahnärzte in München für Sie..."
+    **AI**: "Perfect. I’m searching for dentists in Munich for you..."
     
     *→ Tool: `search_doctolib_practitioners`*
     ```json
     {
-      "speciality": "Zahnarzt",
-      "location": "München", 
+      "speciality": "Dentist",
+      "location": "Munich", 
       "insurance_type": "public",
       "availability_days": 14,
       "radius": 25
     }
     ```
     
-    **KI**: "Ich habe 8 Zahnärzte gefunden. Dr. Schmidt in der Maximilianstraße hat bereits übermorgen einen Termin frei. Dr. Müller in Schwabing hätte auch nächste Woche Zeit. Welche Praxis wäre für Sie günstiger gelegen?"
+    **AI**: "I found 8 dentists. Dr. Schmidt on Maximilianstraße has an appointment available the day after tomorrow. Dr. Müller in Schwabing is available next week as well. Which practice would be more convenient for you?"
     
-    **Patient**: "Dr. Schmidt klingt gut."
+    **Patient**: "Dr. Schmidt sounds good."
     
-    **KI**: "Ich prüfe die verfügbaren Termine bei Dr. Schmidt..."
+    **AI**: "I’m checking available appointments for Dr. Schmidt..."
     
     *→ Tool: `get_doctolib_slots`*
     ```json
@@ -403,50 +403,50 @@ flowchart TD
     }
     ```
     
-    **KI**: "Dr. Schmidt hat folgende Termine frei: Mittwoch 14:30, Donnerstag 09:15 oder Freitag 16:00. Was passt Ihnen am besten?"
+    **AI**: "Dr. Schmidt has the following appointments available: Wednesday 14:30, Thursday 09:15, or Friday 16:00. What works best for you?"
     
-    **Patient**: "Donnerstag 09:15 wäre perfekt."
+    **Patient**: "Thursday 09:15 would be perfect."
     
-    **KI**: "Excellent! Dann benötige ich noch Ihre Daten für die Buchung. Wie ist Ihr vollständiger Name und Geburtsdatum?"
+    **AI**: "Excellent! Now I need your details to complete the booking. What is your full name and birthdate?"
     
-    *→ Datenerfassung → Tool: `book_doctolib_appointment`*
+    *→ Data collection → Tool: `book_doctolib_appointment`*
     
-    **KI**: "Termin gebucht! Sie haben am Donnerstag, 18. Januar um 09:15 Uhr einen Termin bei Dr. Schmidt. Sie erhalten eine SMS und E-Mail zur Bestätigung."
+    **AI**: "Appointment booked! You have an appointment with Dr. Schmidt on Thursday, January 18 at 09:15. You will receive a confirmation via SMS and email."
   </Accordion>
   
-  <Accordion title="Erweiterte Szenarien">
-    **Notfall-Termine**:
+  <Accordion title="Advanced Scenarios">
+    **Emergency Appointments**:
     ```yaml
-    Wenn Patient: "Es ist ein Notfall"
+    If patient says: "It’s an emergency"
     → availability_days: 1
-    → Suche nach Notfall-Sprechstunden
-    → Priorisierung nach Verfügbarkeit heute
+    → Search for emergency hours
+    → Prioritize availability today
     ```
     
-    **Videosprechstunden**:
+    **Video Consultations**:
     ```yaml
-    Wenn Patient: "Geht das auch als Videosprechstunde?"
+    If patient says: "Is this possible as a video consultation?"
     → telehealth: true
-    → Erweiterte Terminoptionen
-    → Online-Beratung-Möglichkeiten
+    → Extended appointment options
+    → Online consultation possibilities
     ```
     
-    **Mehrere Fachrichtungen**:
+    **Multiple Specialties**:
     ```yaml
-    Wenn Patient: "Ich brauche auch noch einen Orthopäden"
-    → Parallel-Suche verschiedener Spezialitäten
-    → Terminkoordination
-    → Optimierte Routing-Vorschläge
+    If patient says: "I also need an orthopedist"
+    → Parallel search for multiple specialties
+    → Appointment coordination
+    → Optimized routing suggestions
     ```
   </Accordion>
 </AccordionGroup>
 
-## Response-Verarbeitung & Fehlerbehandlung
+## Response Handling & Error Management
 
-### Typische API-Responses
+### Typical API Responses
 
 <Tabs>
-  <Tab title="Arztsuche-Response">
+  <Tab title="Doctor Search Response">
     ```json
     {
       "data": {
@@ -454,8 +454,8 @@ flowchart TD
           {
             "id": "dr_schmidt_12345",
             "name": "Dr. med. Schmidt",
-            "speciality": "Zahnarzt",
-            "address": "Maximilianstraße 15, 80539 München",
+            "speciality": "Dentist",
+            "address": "Maximilianstraße 15, 80539 Munich",
             "phone": "+49 89 12345678",
             "rating": 4.8,
             "review_count": 127,
@@ -471,7 +471,7 @@ flowchart TD
     ```
   </Tab>
   
-  <Tab title="Terminslots-Response">
+  <Tab title="Appointment Slots Response">
     ```json
     {
       "data": {
@@ -491,14 +491,14 @@ flowchart TD
         ],
         "practitioner_info": {
           "name": "Dr. med. Schmidt",
-          "address": "Maximilianstraße 15, 80539 München"
+          "address": "Maximilianstraße 15, 80539 Munich"
         }
       }
     }
     ```
   </Tab>
   
-  <Tab title="Buchungs-Response">
+  <Tab title="Booking Response">
     ```json
     {
       "data": {
@@ -508,7 +508,7 @@ flowchart TD
         "start_time": "2024-01-18T09:15:00Z",
         "practitioner": {
           "name": "Dr. med. Schmidt",
-          "address": "Maximilianstraße 15, 80539 München"
+          "address": "Maximilianstraße 15, 80539 Munich"
         },
         "patient": {
           "name": "Max Mustermann"
@@ -523,176 +523,176 @@ flowchart TD
   </Tab>
 </Tabs>
 
-### Fehlerbehandlung
+### Error Handling
 
 <AccordionGroup>
-  <Accordion title="Häufige Fehlerszenarios">
-    **Keine Ärzte gefunden (404)**:
+  <Accordion title="Common Error Scenarios">
+    **No doctors found (404)**:
     ```yaml
-    Fallback: "In Ihrem Umkreis habe ich leider keine verfügbaren Ärzte gefunden. 
-              Soll ich den Suchradius erweitern oder nach einer anderen Stadt suchen?"
+    Fallback: "Unfortunately, I couldn’t find any available doctors in your area. 
+              Would you like me to expand the search radius or try another city?"
     
     Next-Action: 
-      - Suchradius vergrößern
-      - Alternative Städte vorschlagen
-      - Andere Fachrichtungen anbieten
+      - Increase search radius
+      - Suggest alternative cities
+      - Offer other specialties
     ```
   </Accordion>
   
-  <Accordion title="Terminbuchung fehlgeschlagen">
+  <Accordion title="Appointment Booking Failed">
     ```yaml
-    Mögliche_Ursachen:
-      - Termin bereits vergeben
-      - Unvollständige Patientendaten
-      - Versicherung nicht akzeptiert
+    Possible_Causes:
+      - Appointment already taken
+      - Incomplete patient data
+      - Insurance not accepted
     
     Graceful_Handling:
-      "Es tut mir leid, dieser Termin ist leider nicht mehr verfügbar. 
-       Ich kann Ihnen aber einen alternativen Termin anbieten..."
+      "I’m sorry, this appointment is no longer available. 
+       I can offer you another available slot..."
     
-    Fallback_Aktionen:
-      - Alternative Terminslots abrufen
-      - Warteliste anbieten
-      - Anderen Arzt vorschlagen
+    Fallback_Actions:
+      - Retrieve alternative appointment slots
+      - Offer a waiting list
+      - Suggest a different doctor
     ```
   </Accordion>
   
-  <Accordion title="API-Rate-Limiting">
+  <Accordion title="API Rate Limiting">
     ```yaml
     Rate_Limit_Exceeded (429):
-      Fallback: "Die Arztsuche ist momentan sehr stark frequentiert. 
-                Darf ich es in ein paar Sekunden nochmal versuchen?"
+      Fallback: "The doctor search is currently highly loaded. 
+                May I try again in a few seconds?"
       
     Retry_Logic:
-      - Exponential Backoff: 2s, 4s, 8s
-      - Max 3 Retry-Versuche
-      - Nach 3 Fehlschlägen: Manual-Alternative anbieten
+      - Exponential backoff: 2s, 4s, 8s
+      - Max 3 retry attempts
+      - After 3 failures, offer manual alternative
     ```
   </Accordion>
 </AccordionGroup>
 
-## Erweiterte Features
+## Advanced Features
 
-### Integration mit CRM-Systemen
+### Integration with CRM Systems
 
 <Tabs>
-  <Tab title="Patient-Data-Sync">
+  <Tab title="Patient Data Sync">
     ```yaml
     CRM_Integration_Workflow:
-      1. Nach_erfolgreicher_Buchung:
-         → Patientendaten in CRM übertragen
-         → Termin als "Healthcare Appointment" kategorisieren
-         → Follow-up-Task für Terminerinnerung
+      1. After successful booking:
+         → Transfer patient data to CRM
+         → Categorize appointment as "Healthcare Appointment"
+         → Create a follow-up task for appointment reminder
       
-      2. Existing_Patient_Recognition:
-         → CRM-Lookup vor Neuerfassung
-         → Vorhandene Daten vorausfüllen
-         → Präferenz-basierte Arztauswahl
+      2. Existing patient recognition:
+         → CRM lookup before creating new record
+         → Pre-fill existing data
+         → Preference-based doctor selection
     ```
   </Tab>
   
-  <Tab title="Healthcare-Analytics">
+  <Tab title="Healthcare Analytics">
     ```yaml
     Tracking_Metrics:
-      - Terminbuchungsrate
-      - Bevorzugte Fachrichtungen
-      - Regionale Verteilung
-      - Versicherungstyp-Distribution
+      - Appointment booking rate
+      - Preferred specialties
+      - Regional distribution
+      - Insurance type distribution
       
     Business_Intelligence:
-      - Peak-Times für Terminanfragen
-      - Erfolgsrate verschiedener Ärzte
-      - Patient-Satisfaction-Scores
-      - Conversion von Anfrage zu Buchung
+      - Peak times for appointment inquiries
+      - Success rates of different doctors
+      - Patient satisfaction scores
+      - Conversion from inquiry to booking
     ```
   </Tab>
 </Tabs>
 
-### Compliance & Datenschutz
+### Compliance & Data Protection
 
 <AccordionGroup>
-  <Accordion title="DSGVO-Konformität">
+  <Accordion title="GDPR Compliance">
     ```yaml
     Privacy_by_Design:
-      - Minimale Datenerfassung (nur für Buchung notwendig)
-      - Explizite Einverständniserklärung vor Buchung
-      - Automatische Datenlöschung nach Termindatum
-      - Audit-Trail für alle Datenverarbeitungen
+      - Minimal data collection (only what is needed for booking)
+      - Explicit consent before booking
+      - Automatic data deletion after appointment date
+      - Audit trail for all data processing
     
     Patient_Rights:
-      - Recht auf Datenportabilität
-      - Recht auf Löschung
-      - Recht auf Berichtigung
-      - Transparenz über Datenverwendung
+      - Right to data portability
+      - Right to deletion
+      - Right to correction
+      - Transparency about data use
     ```
   </Accordion>
   
-  <Accordion title="Healthcare-Security">
+  <Accordion title="Healthcare Security">
     ```yaml
     Security_Measures:
-      - Ende-zu-Ende-Verschlüsselung für Patientendaten
-      - Sichere API-Kommunikation (TLS 1.3)
-      - Access-Logging und Monitoring
-      - Regular Security-Audits
+      - End-to-end encryption for patient data
+      - Secure API communication (TLS 1.3)
+      - Access logging and monitoring
+      - Regular security audits
     
     Compliance_Standards:
-      - BDSG-Konformität
-      - TMG-Compliance
-      - eHealth-Standards (DiGA-V konform)
+      - BDSG compliance
+      - TMG compliance
+      - eHealth standards (DiGA-V compliant)
     ```
   </Accordion>
 </AccordionGroup>
 
 ## Performance & Monitoring
 
-### KPIs und Metriken
+### KPIs and Metrics
 
-| Metrik | Zielwert | Kritischer Wert |
-|--------|----------|-----------------|
-| **Arztsuche Response Time** | &lt;2 Sekunden | &gt;5 Sekunden |
-| **Buchungserfolgrate** | &gt;90% | &lt;75% |
-| **Patient-Satisfaction** | &gt;4.5/5 | &lt;4.0/5 |
-| **API-Verfügbarkeit** | &gt;99.5% | &lt;97% |
+| Metric                         | Target Value | Critical Value  |
+|-------------------------------|--------------|-----------------|
+| **Doctor Search Response Time** | <2 seconds   | >5 seconds      |
+| **Booking Success Rate**         | >90%         | <75%            |
+| **Patient Satisfaction**         | >4.5/5       | <4.0/5          |
+| **API Availability**             | >99.5%       | <97%            |
 
-### Monitoring-Dashboard
+### Monitoring Dashboard
 
 <Steps>
   <Step title="Real-time Metrics">
-    - API-Response-Times für alle drei Tools
-    - Erfolgs-/Fehlerschläge-Verhältnis
-    - Aktuelle Buchungsrate
-    - Geographic Heat-Map der Anfragen
+    - API response times for all three tools
+    - Success / failure ratio
+    - Current booking rate
+    - Geographic heat map of requests
   </Step>
   
   <Step title="Business Intelligence">
-    - Most-requested Specialities
-    - Peak-Hours für Terminanfragen
-    - Regional Demand Analysis
-    - Patient Demographics
+    - Most-requested specialties
+    - Peak hours for appointment inquiries
+    - Regional demand analysis
+    - Patient demographics
   </Step>
   
   <Step title="Alerting System">
-    - High API-Error-Rate (&gt;5%)
-    - Unusual Booking-Pattern (Spam-Detection)
-    - Low Success-Rate (&lt;80%)
-    - Dr-API-Outages
+    - High API error rate (>5%)
+    - Unusual booking patterns (spam detection)
+    - Low success rate (<80%)
+    - Doctor API outages
   </Step>
 </Steps>
 
 ---
 
-<Card title="Healthcare-Integration-Patterns" icon="heart">
-Erweitern Sie Ihre Healthcare-Automatisierung:
+<Card title="Healthcare Integration Patterns" icon="heart">
+Expand your healthcare automation:
 
-- [Webhook-Integration](/automation-platform/mid-call-actions/integration-templates/webhook-automation) für komplexe Workflows
-- [Salesforce Integration](/automation-platform/mid-call-actions/integration-templates/salesforce-integration) für CRM-Synchronisation
-- [Google Sheets Integration](/automation-platform/mid-call-actions/integration-templates/google-sheets-integration) für einfache Datenhaltung
+- [Webhook Integration](/automation-platform/mid-call-actions/integration-templates/webhook-automation) for complex workflows
+- [Salesforce Integration](/automation-platform/mid-call-actions/integration-templates/salesforce-integration) for CRM synchronization
+- [Google Sheets Integration](/automation-platform/mid-call-actions/integration-templates/google-sheets-integration) for simple data management
 </Card>
 
 <Warning>
-**Medizinrecht-Hinweis**: Die Doctolib-Integration unterliegt strengen Healthcare-Compliance-Anforderungen. Stellen Sie sicher, dass alle Datenschutzbestimmungen eingehalten werden und die Integration den geltenden Gesetzen zur Fernbehandlung entspricht.
+**Medical-Legal Notice**: The Doctolib integration is subject to strict healthcare compliance requirements. Ensure all data protection regulations are observed and that the integration complies with applicable telemedicine laws.
 </Warning>
 
 <Info>
-**Praxis-Tipp**: Beginnen Sie mit der Arztsuche-Funktionalität und erweitern Sie schrittweise um Terminbuchungen. Die meisten Patienten schätzen bereits die schnelle Arztsuche, auch wenn sie den Termin dann selbst vereinbaren.
+**Pro Tip**: Start with the doctor search functionality and gradually expand to appointment booking. Most patients already appreciate the fast doctor search, even if they book the appointment themselves.
 </Info>
