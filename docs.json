@@ -1366,7 +1366,8 @@
   },
   "logo": {
     "light": "/resources/logo/light.png",
-    "dark": "/resources/logo/dark.png"
+    "dark": "/resources/logo/dark.png",
+    "href": "/de/index"
   },
   "api": {
     "mdx": {
