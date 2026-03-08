@@ -1,97 +1,96 @@
 ---
 title: "Asana Integration"
-description: "Automatische Task-Erstellung in Asana direkt während Kundengesprächem für nahtloses Projektmanagement und Follow-up-Tracking"
+description: "Automatic task creation in Asana directly during customer calls for seamless project management and follow-up tracking"
 ---
-
 
 # Asana Integration Template
 
-Integrieren Sie Asana-Task-Management in Ihre Mid-call Actions und ermöglichen Sie es Ihrem KI-Assistenten, während Kundengesprächem automatisch Aufgaben zu erstellen, zu zuweisen und Projekte zu koordinieren - perfekt für agile Teams und Projektmanagement.
+Integrate Asana task management into your Mid-call Actions and allow your AI assistant to automatically create tasks, assign them, and coordinate projects during customer conversations – perfect for agile teams and project management.
 
-## Überblick & Funktionen
+## Overview & Features
 
 <CardGroup cols={2}>
-  <Card title="Automatisiertes Task-Management" icon="tasks">
-    - Sofortige Task-Erstellung aus Gesprächsinhalten
-    - Intelligente Projekt-Zuordnung basierend auf Kontext
-    - Automatische Assignee-Bestimmung und Due-Date-Setting
-    - Integration mit Asana-Workflows und Custom Fields
+  <Card title="Automated Task Management" icon="tasks">
+    - Instant task creation from conversation content  
+    - Intelligent project assignment based on context  
+    - Automatic assignee determination and due date setting  
+    - Integration with Asana workflows and custom fields  
   </Card>
-  <Card title="Team-Koordination & Follow-up" icon="users">
-    - Cross-funktionale Task-Assignments
-    - Automatische Abhängigkeiten und Subtasks
-    - Integration mit Asana-Timeline und Portfolio-Management
-    - Real-time Team-Benachrichtigungen über neue Tasks
+  <Card title="Team Coordination & Follow-up" icon="users">
+    - Cross-functional task assignments  
+    - Automatic dependencies and subtasks  
+    - Integration with Asana timeline and portfolio management  
+    - Real-time team notifications about new tasks  
   </Card>
 </CardGroup>
 
 ## Asana API & Workspace Setup
 
-### 1. Asana API-Zugang einrichten
+### 1. Set Up Asana API Access
 
 <Steps>
   <Step title="Asana Account & Workspace">
-    - Stellen Sie sicher, dass Sie Admin-Rechte in Ihrem Asana-Workspace haben
-    - Navigieren Sie zu "Admin Console" → "Apps" → "Service accounts"
-    - Oder verwenden Sie Personal Access Tokens für einfacheres Setup
+    - Ensure you have admin rights in your Asana workspace  
+    - Navigate to "Admin Console" → "Apps" → "Service accounts"  
+    - Or use Personal Access Tokens for easier setup  
   </Step>
   
-  <Step title="Personal Access Token erstellen">
+  <Step title="Create Personal Access Token">
     ```yaml
-    Token-Generation:
-      1. Klicken Sie auf Ihr Profilbild → "My Settings"
+    Token Generation:
+      1. Click on your profile picture → "My Settings"
       2. "Apps" → "Manage Developer Apps"
       3. "Create New Personal Access Token"
       4. Name: "Famulor Mid-Call Integration"
-      5. Token kopieren (beginnt mit "1/...")
+      5. Copy the token (starts with "1/...")
     ```
   </Step>
   
-  <Step title="Service Account erstellen (Enterprise)">
+  <Step title="Create Service Account (Enterprise)">
     ```yaml
-    Service-Account (für Teams/Business):
+    Service Account (for Teams/Business):
       1. "Admin Console" → "Service accounts" 
       2. "Add service account"
       3. Name: "Famulor Mid-Call Service"
-      4. Permissions: "Editor" oder "Member"
-      5. Token generieren und sicher speichern
+      4. Permissions: "Editor" or "Member"
+      5. Generate and securely store the token
     ```
   </Step>
   
-  <Step title="Projekte und Teams identifizieren">
+  <Step title="Identify Projects and Teams">
     ```yaml
-    Projekt-Setup:
-      - Projekt-IDs für verschiedene Bereiche sammeln
-      - Sales-Projekt: "1234567890123456"
-      - Support-Projekt: "2345678901234567"
-      - Business-Development: "3456789012345678"
+    Project Setup:
+      - Collect project IDs for various areas
+      - Sales Project: "1234567890123456"
+      - Support Project: "2345678901234567"
+      - Business Development: "3456789012345678"
       
-    Team-GIDs für Assignments:
-      - Sales-Team: "987654321098765"
-      - Support-Team: "876543210987654" 
-      - DevOps-Team: "765432109876543"
+    Team GIDs for assignments:
+      - Sales Team: "987654321098765"
+      - Support Team: "876543210987654" 
+      - DevOps Team: "765432109876543"
     ```
   </Step>
 </Steps>
 
-## Mid-call Action konfigurieren
+## Configure Mid-call Action
 
-### Konfiguration im Famulor Interface
+### Configuration in the Famulor Interface
 
 <Tabs>
-  <Tab title="Werkzeugdetails">
-    | Feld | Wert |
-    |------|------|
+  <Tab title="Tool Details">
+    | Field | Value |
+    |-------|-------|
     | **Name*** | `Asana Task erstellen` |
-    | **Beschreibung** | "Erstellt automatisch neue Aufgaben in Asana basierend auf Gesprächsinhalten und Action Items" |
-    | **Funktionsname*** | `create_asana_task` |
-    | **Funktionsbeschreibung*** | "Erstellt eine neue Task in einem Asana-Projekt. Verwenden Sie dies, wenn während des Gesprächs Action Items, Follow-ups oder Projektaufgaben identifiziert werden." |
-    | **HTTP-Methode** | `POST` |
+    | **Description** | "Automatically creates new tasks in Asana based on conversation content and action items" |
+    | **Function Name*** | `create_asana_task` |
+    | **Function Description*** | "Creates a new task in an Asana project. Use this when action items, follow-ups, or project tasks are identified during the conversation." |
+    | **HTTP Method** | `POST` |
     | **Timeout (ms)** | `5000` |
     | **Endpoint*** | `https://app.asana.com/api/1.0/tasks` |
   </Tab>
   
-  <Tab title="Header-Konfiguration">
+  <Tab title="Header Configuration">
     ```json
     {
       "Authorization": "Bearer {{ASANA_TOKEN}}",
@@ -123,7 +122,7 @@ Integrieren Sie Asana-Task-Management in Ihre Mid-call Actions und ermöglichen 
   </Tab>
 </Tabs>
 
-### Parameter-Schema
+### Parameter Schema
 
 ```json
 {
@@ -131,51 +130,51 @@ Integrieren Sie Asana-Task-Management in Ihre Mid-call Actions und ermöglichen 
   "properties": {
     "task_name": {
       "type": "string",
-      "description": "Name der Aufgabe (präzise und actionable)",
-      "examples": ["Follow-up Call mit Beispiel AG", "Demo vorbereiten für Max Mustermann", "Support-Ticket #12345 bearbeiten"]
+      "description": "Name of the task (precise and actionable)",
+      "examples": ["Follow-up call with Example AG", "Prepare demo for Max Mustermann", "Handle support ticket #12345"]
     },
     "task_description": {
       "type": "string",
-      "description": "Detaillierte Beschreibung der Aufgabe inkl. Kontext aus dem Gespräch"
+      "description": "Detailed task description including context from the conversation"
     },
     "project_id": {
       "type": "string",
-      "description": "Asana Projekt-ID (GID) für die Task-Zuordnung"
+      "description": "Asana project ID (GID) for task assignment"
     },
     "assignee_email": {
       "type": "string",
       "format": "email",
-      "description": "E-Mail-Adresse des Asana-Users, der die Task übernehmen soll"
+      "description": "Email address of the Asana user who should take ownership of the task"
     },
     "due_date": {
       "type": "string",
       "format": "date",
-      "description": "Fälligkeitsdatum im Format YYYY-MM-DD"
+      "description": "Due date in the format YYYY-MM-DD"
     },
     "start_date": {
       "type": "string",
-      "format": "date", 
-      "description": "Startdatum der Aufgabe (optional)"
+      "format": "date",
+      "description": "Start date of the task (optional)"
     },
     "priority": {
       "type": "string",
       "enum": ["Low", "Normal", "High", "Critical"],
-      "description": "Prioritätsstufe basierend auf Gesprächskontext",
+      "description": "Priority level based on conversation context",
       "default": "Normal"
     },
     "client_name": {
       "type": "string",
-      "description": "Kundenname für Task-Kategorisierung (optional)"
+      "description": "Customer name for task categorization (optional)"
     },
     "tags": {
       "type": "array",
       "items": {"type": "string"},
-      "description": "Asana-Tags für Kategorisierung",
+      "description": "Asana tags for categorization",
       "examples": [["mid-call", "follow-up"], ["sales", "hot-lead"], ["support", "urgent"]]
     },
     "estimated_hours": {
       "type": "number",
-      "description": "Geschätzte Arbeitszeit in Stunden (optional)",
+      "description": "Estimated work hours (optional)",
       "minimum": 0.5,
       "maximum": 40
     }
@@ -184,39 +183,39 @@ Integrieren Sie Asana-Task-Management in Ihre Mid-call Actions und ermöglichen 
 }
 ```
 
-## Praktische Anwendungsszenarien
+## Practical Use Cases
 
-### Szenario 1: Sales Follow-up Task
+### Scenario 1: Sales Follow-up Task
 
 <Steps>
-  <Step title="Lead-Gespräch mit Action Items">
+  <Step title="Lead Conversation with Action Items">
     ```yaml
-    Während des Sales-Calls:
-      Kunde: "Schicken Sie mir bis Freitag ein detailliertes Angebot"
+    During the sales call:
+      Customer: "Please send me a detailed proposal by Friday."
       
-    KI-Assistant: "Selbstverständlich! Ich erstelle eine Aufgabe für unser Sales-Team..."
+    AI Assistant: "Of course! I am creating a task for our sales team..."
     
-    → create_asana_task wird ausgelöst
+    → create_asana_task is triggered
     ```
   </Step>
   
-  <Step title="Intelligente Task-Generierung">
+  <Step title="Intelligent Task Generation">
     ```yaml
-    Task-Details:
-      task_name: "Angebot erstellen: Beispiel AG - CRM-Integration"
-      task_description: "Kunde Max Mustermann von Beispiel AG benötigt detailliertes Angebot für CRM-Integration.
+    Task Details:
+      task_name: "Create Proposal: Example AG - CRM Integration"
+      task_description: "Customer Max Mustermann from Example AG requires a detailed proposal for CRM integration.
                         
-                        Gesprächskontext:
+                        Conversation context:
                         - Budget: ~50k€
                         - Timeline: Q1 2024
-                        - Pain Points: Aktuelle Lösung zu langsam
-                        - Entscheidungsträger: Max (Geschäftsführer)
+                        - Pain Points: Current solution too slow
+                        - Decision Maker: Max (CEO)
                         
                         Action Items:
-                        - Technische Spezifikationen zusammenstellen
-                        - Pricing für 50-User-Setup kalkulieren  
-                        - Case Study ähnlicher Kunden beifügen
-                        - Termin für Angebotsvostellung vorschlagen"
+                        - Compile technical specifications
+                        - Calculate pricing for 50-user setup  
+                        - Attach case study of similar customers
+                        - Suggest date for proposal presentation"
       
       project_id: "sales-pipeline-project-id"
       assignee_email: "sales@company.com"
@@ -227,95 +226,95 @@ Integrieren Sie Asana-Task-Management in Ihre Mid-call Actions und ermöglichen 
   </Step>
 </Steps>
 
-### Szenario 2: Support-Ticket-Task-Management
+### Scenario 2: Support Ticket Task Management
 
 <AccordionGroup>
-  <Accordion title="Kritisches Problem-Reporting">
-    **Support-Eskalation via Asana**:
+  <Accordion title="Critical Issue Reporting">
+    **Support escalation via Asana**:
     ```yaml
-    Problem-Context:
-      Kunde: "Unser System ist seit 2 Stunden down!"
+    Problem context:
+      Customer: "Our system has been down for 2 hours!"
       
-    Automatische-Task-Creation:
-      task_name: "KRITISCH: System-Ausfall bei Beispiel AG"
+    Automatic Task Creation:
+      task_name: "CRITICAL: System outage at Example AG"
       project_id: "support-critical-project-id"
       assignee_email: "devops@company.com" 
-      due_date: "2024-01-15" (heute)
+      due_date: "2024-01-15" (today)
       priority: "Critical"
       
-    Task-Description:
-      "🚨 KRITISCHER SYSTEM-AUSFALL
+    Task Description:
+      "🚨 CRITICAL SYSTEM OUTAGE
       
-      Kunde: Beispiel AG (Max Mustermann)
-      Problem: Kompletter System-Ausfall seit 14:00 Uhr
-      Business Impact: Produktions-Stopp, Revenue-Loss
+      Customer: Example AG (Max Mustermann)
+      Problem: Complete outage since 2:00 PM
+      Business impact: Production stoppage, revenue loss
       
-      Sofort-Maßnahmen erforderlich:
-      1. System-Status prüfen
-      2. Kunde innerhalb 30 Min kontaktieren
-      3. Workaround bereitstellen
-      4. Root-Cause-Analysis starten
+      Immediate actions required:
+      1. Check system status
+      2. Contact customer within 30 minutes
+      3. Provide workaround
+      4. Start root cause analysis
       
-      SLA: 1-Stunden-Resolution-Target"
+      SLA: 1-hour resolution target"
     ```
   </Accordion>
   
-  <Accordion title="Feature-Request-Tracking">
-    **Produkt-Entwicklung koordinieren**:
+  <Accordion title="Feature Request Tracking">
+    **Coordinate product development**:
     ```yaml
-    Feature-Request-Flow:
-      Kunde: "Könnten Sie eine Integration zu XY-System hinzufügen?"
+    Feature request flow:
+      Customer: "Could you add an integration to XY system?"
       
-    Task-Creation:
-      task_name: "Feature Request: XY-System Integration"
+    Task Creation:
+      task_name: "Feature Request: XY System Integration"
       project_id: "product-development-backlog"
       assignee_email: "product-manager@company.com"
       
-    Custom-Fields:
-      customer_impact: "High" (mehrere Kunden betroffen)
+    Custom fields:
+      customer_impact: "High" (multiple customers affected)
       estimated_effort: "Medium"
       revenue_potential: "€25k+ ARR"
-      competitive_advantage: "Ja"
+      competitive_advantage: "Yes"
     ```
   </Accordion>
 </AccordionGroup>
 
-### Szenario 3: Partnership & Business Development
+### Scenario 3: Partnership & Business Development
 
 ```mermaid
 flowchart TD
-    A[Partnership-Gespräch] --> B{Opportunity-Typ?}
-    B -->|Integration| C[Tech-Partnership Task]
-    B -->|Reseller| D[Channel-Partnership Task]
-    B -->|Strategic| E[Strategic-Alliance Task]
+    A[Partnership Conversation] --> B{Opportunity Type?}
+    B -->|Integration| C[Tech Partnership Task]
+    B -->|Reseller| D[Channel Partnership Task]
+    B -->|Strategic| E[Strategic Alliance Task]
     
     C --> F[create_asana_task]
     D --> F
     E --> F
     
-    F --> G[Task in Asana erstellt]
-    G --> H[Team-Assignment]
-    H --> I{Priorität?}
+    F --> G[Task created in Asana]
+    G --> H[Team Assignment]
+    H --> I{Priority?}
     
-    I -->|High| J[Sofortige Benachrichtigung]
-    I -->|Medium| K[Daily-Standup-Aufnahme]
-    I -->|Low| L[Weekly-Review-Aufnahme]
+    I -->|High| J[Immediate Notification]
+    I -->|Medium| K[Include in Daily Standup]
+    I -->|Low| L[Include in Weekly Review]
     
-    J --> M[Follow-up innerhalb 24h]
-    K --> N[Follow-up diese Woche]
-    L --> O[Follow-up nächste Woche]
+    J --> M[Follow-up within 24h]
+    K --> N[Follow-up this week]
+    L --> O[Follow-up next week]
 ```
 
-## Response-Verarbeitung
+## Response Handling
 
-### Erfolgreiche Task-Erstellung
+### Successful Task Creation
 
 ```json
 {
   "data": {
     "gid": "1234567890123456",
-    "name": "Follow-up Call mit Beispiel AG",
-    "notes": "Kunde Max Mustermann benötigt detailliertes Angebot...",
+    "name": "Follow-up call with Example AG",
+    "notes": "Customer Max Mustermann requires a detailed proposal...",
     "assignee": {
       "gid": "9876543210987654",
       "name": "Sales Manager"
@@ -333,296 +332,295 @@ flowchart TD
 }
 ```
 
-### Natürliche Sprachintegration
+### Natural Language Integration
 
 <AccordionGroup>
-  <Accordion title="Agent-Nachrichten vor API-Aufruf">
-    **Template**: `"Ich erstelle die Aufgabe '{{task_name}}' in Asana..."`
+  <Accordion title="Agent Messages Before API Call">
+    **Template**: `"Creating the task '{{task_name}}' in Asana..."`
     
-    **Kontextuelle Beispiele**:
+    **Contextual examples**:
     ```yaml
-    Follow-up-Task:
-      "Ich erstelle eine Follow-up-Aufgabe für unser Sales-Team..."
+    Follow-up Task:
+      "I am creating a follow-up task for our sales team..."
     
-    Support-Task:
-      "Ich lege ein Support-Ticket in Asana für das Tech-Team an..."
+    Support Task:
+      "I am creating a support ticket in Asana for the tech team..."
     
-    Project-Task:
-      "Ich erstelle eine Projektaufgabe für die weitere Bearbeitung..."
+    Project Task:
+      "I am creating a project task for further processing..."
     ```
   </Accordion>
   
-  <Accordion title="Erfolgsbestätigungen">
-    **Standard-Template**: `"Aufgabe wurde erfolgreich in Asana erstellt."`
+  <Accordion title="Success Confirmations">
+    **Standard template**: `"Task was successfully created in Asana."`
     
-    **Erweiterte Bestätigungen**:
+    **Extended confirmations**:
     ```yaml
-    Mit Assignee:
-      "Aufgabe wurde erstellt und an {assignee_name} zugewiesen."
+    With assignee:
+      "Task was created and assigned to {assignee_name}."
     
-    Mit Deadline:
-      "Die Aufgabe wurde erstellt und hat ein Fälligkeitsdatum von {due_date}."
+    With deadline:
+      "The task was created with a due date of {due_date}."
     
-    Mit Team-Kontext:
-      "Das {team_name}-Team wurde über die neue Aufgabe benachrichtigt."
+    With team context:
+      "The {team_name} team has been notified about the new task."
     
-    Mit Link:
-      "Aufgabe erstellt. Sie können den Fortschritt hier verfolgen: [Link zur Task]"
+    With link:
+      "Task created. You can track progress here: [Link to Task]"
     ```
   </Accordion>
 </AccordionGroup>
 
-## Erweiterte Asana-Features
+## Advanced Asana Features
 
 ### Custom Fields & Automation
 
 <AccordionGroup>
   <Accordion title="Custom Field Integration">
     ```yaml
-    Branchen-spezifische Custom Fields:
+    Industry-specific custom fields:
       
-    Sales-Tasks:
-      - Lead Score: Dropdown (Cold/Warm/Hot)
-      - Deal Size: Number field
-      - Competition: Multi-select
-      - Close Probability: Percentage
+    Sales Tasks:
+      - Lead Score: dropdown (Cold/Warm/Hot)
+      - Deal Size: number field
+      - Competition: multi-select
+      - Close Probability: percentage
       
-    Support-Tasks:
-      - Severity: Dropdown (Low/Medium/High/Critical)
-      - Customer Tier: Dropdown (Basic/Pro/Enterprise)
-      - Resolution Time: Number (hours)
-      - Escalation Level: Dropdown
+    Support Tasks:
+      - Severity: dropdown (Low/Medium/High/Critical)
+      - Customer Tier: dropdown (Basic/Pro/Enterprise)
+      - Resolution Time: number (hours)
+      - Escalation Level: dropdown
       
-    Project-Tasks:
-      - Client Name: Text field
-      - Project Phase: Dropdown
-      - Budget Allocated: Number
-      - Stakeholders: People field
+    Project Tasks:
+      - Client Name: text field
+      - Project Phase: dropdown
+      - Budget Allocated: number
+      - Stakeholders: people field
     ```
   </Accordion>
   
-  <Accordion title="Asana-Automation-Rules">
+  <Accordion title="Asana Automation Rules">
     ```yaml
-    Trigger-basierte Automatisierung:
+    Trigger-based automation:
       
-    Wenn Priority = "Critical":
-      → Assignee sofort benachrichtigen
-      → Due Date auf "heute" setzen
-      → Manager als Follower hinzufügen
+    When Priority = "Critical":
+      → Notify assignee immediately
+      → Set due date to "today"
+      → Add manager as follower
       
-    Wenn Tag = "mid-call":
-      → Spezielle "Live Call" Statusfarbe
-      → Automatisches Follow-up nach 24h
-      → Team-Dashboard-Aufnahme
+    When Tag = "mid-call":
+      → Special "Live Call" status color
+      → Automatic follow-up after 24h
+      → Add to team dashboard
       
-    Wenn Client = "Enterprise":
-      → Account Manager als Follower
-      → Höhere Prioritätsstufe
-      → Executive-Dashboard-Visibility
+    When Client = "Enterprise":
+      → Add account manager as follower
+      → Increase priority level
+      → Executive dashboard visibility
     ```
   </Accordion>
 </AccordionGroup>
 
-### Multi-Project-Workflows
+### Multi-Project Workflows
 
 <Tabs>
-  <Tab title="Cross-funktionale Tasks">
+  <Tab title="Cross-Functional Tasks">
     ```yaml
-    Komplexe-Kundenanfrage-Workflow:
+    Complex customer request workflow:
       
-    Lead aus Enterprise-Gespräch:
-      1. Sales-Task: "Proposal erstellen"
+    Lead from enterprise conversation:
+      1. Sales task: "Create proposal"
          Project: Sales Pipeline
          Assignee: Account Manager
          
-      2. Tech-Task: "Technical Deep Dive"
+      2. Tech task: "Technical deep dive"
          Project: Solution Engineering  
          Assignee: Solutions Architect
          
-      3. Legal-Task: "Contract Review"
+      3. Legal task: "Contract review"
          Project: Legal & Compliance
          Assignee: Legal Team
          
     Dependencies:
-      Tech-Task → Sales-Task (blocking)
-      Sales-Task → Legal-Task (predecessor)
+      Tech task → Sales task (blocking)
+      Sales task → Legal task (predecessor)
     ```
   </Tab>
   
-  <Tab title="Portfolio-Management">
+  <Tab title="Portfolio Management">
     ```yaml
-    Portfolio-Level-Tracking:
+    Portfolio-level tracking:
       
-    Customer-Success-Portfolio:
-      - Onboarding-Tasks
-      - Health-Check-Tasks
-      - Renewal-Preparation-Tasks
+    Customer Success Portfolio:
+      - Onboarding tasks
+      - Health check tasks
+      - Renewal preparation tasks
       
-    Product-Development-Portfolio:
-      - Feature-Request-Tasks
-      - Bug-Report-Tasks
-      - Enhancement-Tasks
+    Product Development Portfolio:
+      - Feature request tasks
+      - Bug report tasks
+      - Enhancement tasks
       
-    Go-to-Market-Portfolio:
-      - Campaign-Launch-Tasks
-      - Content-Creation-Tasks  
-      - Partnership-Activation-Tasks
+    Go-to-Market Portfolio:
+      - Campaign launch tasks
+      - Content creation tasks  
+      - Partnership activation tasks
     ```
   </Tab>
 </Tabs>
 
-## Fehlerbehandlung & Troubleshooting
+## Error Handling & Troubleshooting
 
-### Häufige API-Fehler
+### Common API Errors
 
 <AccordionGroup>
   <Accordion title="Invalid Project (400)">
     ```yaml
-    Ursache: Projekt-ID existiert nicht oder kein Zugriff
+    Cause: Project ID does not exist or no access
     
-    Asana-Response:
+    Asana response:
       "errors": [{
         "message": "project: Not a recognized ID",
         "phrase": "project"
       }]
     
     Fallback:
-      "Die Aufgabe konnte nicht dem spezifischen Projekt zugeordnet werden. 
-       Ich erstelle sie in Ihrem Standard-Inbox."
+      "The task could not be assigned to the specified project. 
+       It will be created in your default Inbox."
     
     Resolution:
-      - Projekt-ID validieren
-      - Fallback auf User-Inbox
-      - Admin-Benachrichtigung über Konfigurationsfehler
+      - Validate project ID
+      - Fallback to user Inbox
+      - Notify admin about configuration error
     ```
   </Accordion>
   
-  <Accordion title="User nicht gefunden (404)">
+  <Accordion title="User Not Found (404)">
     ```yaml
-    Ursache: Assignee-E-Mail nicht in Asana-Workspace
+    Cause: Assignee email not found in Asana workspace
     
-    Graceful-Handling:
-      "Aufgabe wurde erstellt, aber der Verantwortliche konnte nicht automatisch zugewiesen werden. 
-       Bitte weisen Sie die Aufgabe manuell zu."
+    Graceful handling:
+      "Task was created, but the assignee could not be automatically assigned. 
+       Please assign the task manually."
     
-    Automatische-Correction:
-      - Task ohne Assignee erstellen
-      - Default-Team-Lead als Assignee setzen
-      - Notification an Workspace-Admin
+    Automatic correction:
+      - Create task without assignee
+      - Assign default team lead as assignee
+      - Notify workspace admin
     ```
   </Accordion>
   
   <Accordion title="Rate Limiting (429)">
     ```yaml
-    Asana-Rate-Limits:
-      - Standard: 1500 Requests/Minute
-      - Premium: 1500 Requests/Minute (gleich)
-      - Enterprise: Custom Limits möglich
+    Asana rate limits:
+      - Standard: 1500 requests/minute
+      - Premium: 1500 requests/minute (same)
+      - Enterprise: custom limits possible
     
-    Retry-Strategy:
-      - Exponential Backoff: 1s, 2s, 4s
-      - Max 3 Wiederholungsversuche
-      - Queue-System für Burst-Loads
+    Retry strategy:
+      - Exponential backoff: 1s, 2s, 4s
+      - Maximum 3 retries
+      - Queue system for burst loads
     
-    User-Communication:
-      "Die Aufgabe wird erstellt. Bei hoher Systemlast kann das 
-       einen Moment dauern..."
+    User communication:
+      "The task is being created. Under heavy load this may take a moment..."
     ```
   </Accordion>
 </AccordionGroup>
 
-## Integration mit anderen Tools
+## Integration with Other Tools
 
-### CRM-Synchronisation
+### CRM Synchronization
 
 ```mermaid
 sequenceDiagram
-    participant C as Kunde
-    participant AI as KI-Assistant
+    participant C as Customer
+    participant AI as AI Assistant
     participant A as Asana
     participant CRM as HubSpot
     participant S as Slack
     
-    C->>AI: "Können Sie mir bis Freitag ein Angebot schicken?"
-    AI->>CRM: Kontakt-Daten und Deal-Info abrufen
-    CRM-->>AI: Customer Details + Deal-Context
-    AI->>A: create_asana_task (Proposal Task)
+    C->>AI: "Can you send me a proposal by Friday?"
+    AI->>CRM: Fetch contact data and deal info
+    CRM-->>AI: Customer details + deal context
+    AI->>A: create_asana_task (proposal task)
     A-->>AI: Task created (GID: 12345)
-    AI->>CRM: Task-ID als Activity protokollieren
-    AI->>S: Team-Benachrichtigung senden
-    AI->>C: "Aufgabe wurde erstellt. Sie erhalten das Angebot bis Freitag."
+    AI->>CRM: Log task ID as activity
+    AI->>S: Send team notification
+    AI->>C: "The task was created. You'll receive the proposal by Friday."
     
-    Note over A: Task-Notifications an Team
-    Note over CRM: Activity-Log aktualisiert
+    Note over A: Task notifications to team
+    Note over CRM: Activity log updated
 ```
 
 ## Performance & Analytics
 
-### Projektmanagement-KPIs
+### Project Management KPIs
 
-| Metrik | Beschreibung | Zielwert |
-|--------|-------------|----------|
-| **Task Creation Success Rate** | % erfolgreich erstellter Tasks | &gt;99% |
-| **Assignment Accuracy** | % korrekt zugewiesener Tasks | &gt;95% |
-| **Task Completion Rate** | % fristgerecht erledigter Mid-Call-Tasks | &gt;80% |
-| **Follow-up Conversion** | % der Tasks die zu Business-Results führen | &gt;60% |
+| Metric | Description | Target Value |
+|--------|-------------|--------------|
+| **Task Creation Success Rate** | % of tasks created successfully | >99% |
+| **Assignment Accuracy** | % of correctly assigned tasks | >95% |
+| **Task Completion Rate** | % of on-time completed mid-call tasks | >80% |
+| **Follow-up Conversion** | % of tasks leading to business results | >60% |
 
 ### Productivity Impact Tracking
 
 <Steps>
-  <Step title="Team-Effizienz messen">
+  <Step title="Measure Team Efficiency">
     ```yaml
-    Vorher/Nachher-Vergleich:
-      Ohne Mid-Call-Tasks:
-        - Follow-up-Rate: 45%
-        - Durchschnittliche Response-Zeit: 48h
-        - Vergessene Action Items: 25%
+    Before/After comparison:
+      Without mid-call tasks:
+        - Follow-up rate: 45%
+        - Average response time: 48h
+        - Forgotten action items: 25%
       
-      Mit Mid-Call-Tasks:
-        - Follow-up-Rate: 85%
-        - Durchschnittliche Response-Zeit: 6h
-        - Vergessene Action Items: 5%
+      With mid-call tasks:
+        - Follow-up rate: 85%
+        - Average response time: 6h
+        - Forgotten action items: 5%
     ```
   </Step>
   
-  <Step title="Business-Impact-Attribution">
+  <Step title="Business Impact Attribution">
     ```yaml
-    Revenue-Tracking:
-      Mid-Call-Task → Follow-up-Action → Meeting → Deal
+    Revenue tracking:
+      Mid-call task → Follow-up action → Meeting → Deal
       
-    Conversion-Funnel:
-      - Tasks Created: 100%
-      - Tasks Completed on Time: 80%
-      - Follow-up Meetings Scheduled: 60%
-      - Deals Closed: 15%
+    Conversion funnel:
+      - Tasks created: 100%
+      - Tasks completed on time: 80%
+      - Follow-up meetings scheduled: 60%
+      - Deals closed: 15%
     ```
   </Step>
 </Steps>
 
 ## Best Practices
 
-### Task-Design-Patterns
+### Task Design Patterns
 
 <CardGroup cols={2}>
-  <Card title="Actionable Task Names" icon="target">
-    **Gute Beispiele**:
-    - "Demo vorbereiten: CRM-Features für Beispiel AG"
-    - "Follow-up Call: Budget-Bestätigung bis Freitag"
-    - "Proposal senden: 50k€ Enterprise-Deal"
+  <Card title="Actionable Task Names" icon="bullseye">
+    **Good examples**:
+    - "Prepare demo: CRM features for Example AG"
+    - "Follow-up call: Budget confirmation by Friday"
+    - "Send proposal: 50k€ enterprise deal"
     
-    **Vermeiden**:
-    - "Kunde anrufen"
-    - "Follow-up machen"
-    - "Angebot"
+    **Avoid**:
+    - "Call customer"
+    - "Do follow-up"
+    - "Proposal"
   </Card>
   <Card title="Context-Rich Descriptions" icon="info">
-    **Template-Struktur**:
+    **Template structure**:
     ```
-    Kontext: [Was ist passiert?]
-    Ziel: [Was soll erreicht werden?]
-    Details: [Spezifische Informationen]
-    Deadline: [Warum diese Frist?]
-    Success-Criteria: [Wann ist es erfolgreich?]
+    Context: [What happened?]
+    Goal: [What should be achieved?]
+    Details: [Specific information]
+    Deadline: [Why this deadline?]
+    Success Criteria: [When is it successful?]
     ```
   </Card>
 </CardGroup>
@@ -630,9 +628,9 @@ sequenceDiagram
 ---
 
 <Warning>
-**Workspace-Zugriff**: Stellen Sie sicher, dass alle automatisch erstellten Tasks von den zugewiesenen Team-Mitgliedern gesehen und bearbeitet werden können. Überprüfen Sie regelmäßig die Projekt-Berechtigungen.
+**Workspace Access**: Ensure that all automatically created tasks can be seen and managed by the assigned team members. Regularly review project permissions.
 </Warning>
 
 <Info>
-**Produktivitäts-Tipp**: Verwenden Sie Asana-Templates für wiederkehrende Task-Typen (Sales Follow-up, Support-Eskalation, etc.) um Konsistenz und Effizienz zu maximieren.
+**Productivity Tip**: Use Asana templates for recurring task types (sales follow-ups, support escalations, etc.) to maximize consistency and efficiency.
 </Info>

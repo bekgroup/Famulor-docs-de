@@ -47,25 +47,51 @@
                 "group": "AI Assistants Overview",
                 "pages": [
                   "en/ai-assistants/what-is-ai-assistant",
-                  "en/ai-assistants/general-settings",
-                  "en/ai-assistants/prompt-and-tools",
-                  "en/ai-assistants/ai-prompt-editor",
-                  "en/ai-assistants/flow-builder",
-                  "en/ai-assistants/system-prompt",
-                  "en/ai-assistants/assistant-best-practices",
-                  "en/ai-assistants/assistant-modes",
-                  "en/ai-assistants/custom-gpt",
-                  "en/ai-assistants/initial-message",
-                  "en/ai-assistants/creating-and-editing",
-                  "en/ai-assistants/tools-and-functions",
-                  "en/ai-assistants/variablen",
-                  "en/ai-assistants/custom-mid-call-tools",
-                  "en/ai-assistants/voice-selection",
-                  "en/ai-assistants/filler-audio",
-                  "en/ai-assistants/web-widget",
-                  "en/ai-assistants/cal-com-scheduling",
-                  "en/ai-assistants/gohighlevel-scheduling",
-                  "en/ai-assistants/testing"
+                  {
+                    "group": "Creating and Editing an AI Assistant",
+                    "icon": "robot",
+                    "pages": [
+                      "en/ai-assistants/creating-and-editing",
+                      "en/ai-assistants/general-settings",
+                      "en/ai-assistants/prompt-and-tools",
+                      "en/ai-assistants/system-prompt",
+                      "en/ai-assistants/ai-prompt-editor",
+                      "en/ai-assistants/initial-message",
+                      "en/ai-assistants/variablen",
+                      "en/ai-assistants/assistant-best-practices"
+                    ]
+                  },
+                  {
+                    "group": "Behavior and Modes",
+                    "pages": [
+                      "en/ai-assistants/assistant-modes",
+                      "en/ai-assistants/custom-gpt",
+                      "en/ai-assistants/flow-builder"
+                    ]
+                  },
+                  {
+                    "group": "Tools and Integrations",
+                    "pages": [
+                      "en/ai-assistants/tools-and-functions",
+                      "en/ai-assistants/custom-mid-call-tools",
+                      "en/ai-assistants/cal-com-scheduling",
+                      "en/ai-assistants/gohighlevel-scheduling"
+                    ]
+                  },
+                  {
+                    "group": "Voice and Channels",
+                    "pages": [
+                      "en/ai-assistants/voice-selection",
+                      "en/ai-assistants/filler-audio",
+                      "en/ai-assistants/web-widget"
+                    ]
+                  },
+                  {
+                    "group": "Testing",
+                    "pages": [
+                      "en/ai-assistants/testing"
+                    ]
+                  }
                 ]
               },
               {
@@ -317,7 +343,7 @@
           },
           {
             "tab": "Mid-Call",
-            "icon": "webhook",
+            "icon": "link",
             "groups": [
               {
                 "group": "Mid-Call Tools",
@@ -613,25 +639,51 @@
                 "group": "KI-Assistenten Übersicht",
                 "pages": [
                   "de/ai-assistants/what-is-ai-assistant",
-                  "de/ai-assistants/general-settings",
-                  "de/ai-assistants/prompt-and-tools",
-                  "de/ai-assistants/ai-prompt-editor",
-                  "de/ai-assistants/flow-builder",
-                  "de/ai-assistants/system-prompt",
-                  "de/ai-assistants/assistant-best-practices",
-                  "de/ai-assistants/assistant-modes",
-                  "de/ai-assistants/custom-gpt",
-                  "de/ai-assistants/initial-message",
-                  "de/ai-assistants/creating-and-editing",
-                  "de/ai-assistants/tools-and-functions",
-                  "de/ai-assistants/variablen",
-                  "de/ai-assistants/custom-mid-call-tools",
-                  "de/ai-assistants/voice-selection",
-                  "de/ai-assistants/filler-audio",
-                  "de/ai-assistants/web-widget",
-                  "de/ai-assistants/cal-com-scheduling",
-                  "de/ai-assistants/gohighlevel-scheduling",
-                  "de/ai-assistants/testing"
+                  {
+                    "group": "KI-Assistent erstellen und bearbeiten",
+                    "icon": "robot",
+                    "pages": [
+                      "de/ai-assistants/creating-and-editing",
+                      "de/ai-assistants/general-settings",
+                      "de/ai-assistants/prompt-and-tools",
+                      "de/ai-assistants/system-prompt",
+                      "de/ai-assistants/ai-prompt-editor",
+                      "de/ai-assistants/initial-message",
+                      "de/ai-assistants/variablen",
+                      "de/ai-assistants/assistant-best-practices"
+                    ]
+                  },
+                  {
+                    "group": "Verhalten und Modi",
+                    "pages": [
+                      "de/ai-assistants/assistant-modes",
+                      "de/ai-assistants/custom-gpt",
+                      "de/ai-assistants/flow-builder"
+                    ]
+                  },
+                  {
+                    "group": "Tools und Integrationen",
+                    "pages": [
+                      "de/ai-assistants/tools-and-functions",
+                      "de/ai-assistants/custom-mid-call-tools",
+                      "de/ai-assistants/cal-com-scheduling",
+                      "de/ai-assistants/gohighlevel-scheduling"
+                    ]
+                  },
+                  {
+                    "group": "Stimme und Kanaele",
+                    "pages": [
+                      "de/ai-assistants/voice-selection",
+                      "de/ai-assistants/filler-audio",
+                      "de/ai-assistants/web-widget"
+                    ]
+                  },
+                  {
+                    "group": "Testing",
+                    "pages": [
+                      "de/ai-assistants/testing"
+                    ]
+                  }
                 ]
               },
               {
@@ -883,7 +935,7 @@
           },
           {
             "tab": "Mid-Call",
-            "icon": "webhook",
+            "icon": "link",
             "groups": [
               {
                 "group": "Mid-Call-Tools",
@@ -1155,6 +1207,11 @@
           "anchor": "Demo buchen",
           "icon": "calendar-days",
           "href": "https://cal.com/bek-group/demotermine"
+        },
+        {
+          "anchor": "Community",
+          "icon": "users",
+          "href": "https://www.skool.com/famulor/about"
         }
       ]
     }

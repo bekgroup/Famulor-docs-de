@@ -1,25 +1,25 @@
 ---
-title: "DATEV Kontenumsätze"
-description: "Echtzeit-Zugriff auf DATEV Kontenbewegungen und Salden für Liquiditätsmanagement während Geschäftsgesprächem"
+title: "DATEV Account Movements"
+description: "Real-time access to DATEV account transactions and balances for liquidity management during business discussions"
 icon: "chart-bar"
 ---
 
 
-# DATEV Kontenumsätze Integration
+# DATEV Account Movements Integration
 
-## Konfiguration im Famulor Interface
+## Configuration in the Famulor Interface
 
 <Tabs>
-  <Tab title="Werkzeugdetails">
+  <Tab title="Tool Details">
     | **Name*** | `DATEV Kontenumsätze` |
-    | **Funktionsname*** | `get_datev_account_movements` |
-    | **HTTP-Methode** | `GET` |
+    | **Function Name*** | `get_datev_account_movements` |
+    | **HTTP Method** | `GET` |
     | **Endpoint*** | `https://api.datev.de/data/v1/clients/{client_id}/accounts/{account_number}/movements` |
     | **Timeout (ms)** | `5000` |
   </Tab>
 </Tabs>
 
-### Parameter-Schema
+### Parameter Schema
 
 ```json
 {
@@ -27,34 +27,34 @@ icon: "chart-bar"
   "properties": {
     "client_id": {
       "type": "string",
-      "description": "Mandantennummer"
+      "description": "Client number"
     },
     "account_number": {
       "type": "string",
-      "description": "Kontonummer (z.B. 1000 für Kasse)"
+      "description": "Account number (e.g., 1000 for cash account)"
     },
     "date_from": {
       "type": "string",
       "format": "date",
-      "description": "Datum von"
+      "description": "Date from"
     },
     "date_to": {
       "type": "string",
       "format": "date", 
-      "description": "Datum bis"
+      "description": "Date to"
     },
     "status": {
       "type": "string",
       "enum": ["all", "open", "cleared"],
-      "description": "Status der Posten"
+      "description": "Status of the items"
     }
   },
   "required": ["client_id", "account_number"]
 }
 ```
 
-**Agent-Message**: `"Ich rufe die Kontoinformationen ab..."`
+**Agent-Message**: `"Retrieving the account information..."`
 
-**Success-Template**: `"Kontostand: {{balance}}€. {{#if openItems}}Offene Posten: {{openItems}}€.{{/if}} Bewegungen im Zeitraum: {{movements.length}}"`
+**Success-Template**: `"Balance: €{{balance}}. {{#if openItems}}Open items: €{{openItems}}.{{/if}} Movements in the period: {{movements.length}}"`
 
 ---

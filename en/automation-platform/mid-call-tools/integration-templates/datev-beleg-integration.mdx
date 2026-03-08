@@ -1,21 +1,21 @@
 ---
-title: "DATEV Beleg hochladen"
-description: "Automatische Belegerfassung in DATEV Unternehmen online direkt während Geschäftsgesprächem für nahtlose Buchhaltung"
+title: "Upload DATEV Document"
+description: "Automatic document capture in DATEV Unternehmen online directly during business calls for seamless accounting"
 icon: "file-invoice"
 ---
 
 
-# DATEV Beleg-Upload Integration
+# DATEV Document Upload Integration
 
-Digitalisieren Sie Ihre Belegerfassung durch Mid-call Actions und ermöglichen Sie es Ihrem KI-Assistenten, während Geschäftsgesprächem Belege direkt in DATEV zu erfassen.
+Digitize your document capture through mid-call actions and enable your AI assistant to record documents directly in DATEV during business conversations.
 
-## Konfiguration im Famulor Interface
+## Configuration in the Famulor Interface
 
 <Tabs>
-  <Tab title="Werkzeugdetails">
+  <Tab title="Tool Details">
     | **Name*** | `DATEV Beleg hochladen` |
-    | **Funktionsname*** | `upload_datev_document` |
-    | **HTTP-Methode** | `POST` |
+    | **Function Name*** | `upload_datev_document` |
+    | **HTTP Method** | `POST` |
     | **Endpoint*** | `https://api.datev.de/data/v1/clients/{client_id}/documents` |
     | **Timeout (ms)** | `10000` |
   </Tab>
@@ -42,7 +42,7 @@ Digitalisieren Sie Ihre Belegerfassung durch Mid-call Actions und ermöglichen S
   </Tab>
 </Tabs>
 
-### Parameter-Schema
+### Parameter Schema
 
 ```json
 {
@@ -50,48 +50,48 @@ Digitalisieren Sie Ihre Belegerfassung durch Mid-call Actions und ermöglichen S
   "properties": {
     "client_id": {
       "type": "string",
-      "description": "DATEV Mandantennummer"
+      "description": "DATEV client number"
     },
     "document_type": {
       "type": "string",
       "enum": ["invoice", "receipt", "credit_note", "expense"],
-      "description": "Belegtyp"
+      "description": "Type of document"
     },
     "document_date": {
       "type": "string",
       "format": "date",
-      "description": "Belegdatum"
+      "description": "Document date"
     },
     "vendor_name": {
       "type": "string",
-      "description": "Lieferant/Empfänger"
+      "description": "Supplier/Recipient"
     },
     "gross_amount": {
       "type": "number",
-      "description": "Bruttobetrag"
+      "description": "Gross amount"
     },
     "tax_rate": {
       "type": "integer",
       "enum": [0, 7, 19],
-      "description": "Steuersatz"
+      "description": "Tax rate"
     },
     "description": {
       "type": "string", 
-      "description": "Buchungstext"
+      "description": "Booking text"
     },
     "cost_center": {
       "type": "string",
-      "description": "Kostenstelle"
+      "description": "Cost center"
     }
   },
   "required": ["client_id", "document_type", "document_date", "vendor_name", "gross_amount"]
 }
 ```
 
-## Praktische Anwendung
+## Practical Usage
 
-**Agent-Message**: `"Ich erfasse den Beleg in DATEV..."`
+**Agent Message**: `"I am recording the document in DATEV..."`
 
-**Success-Template**: `"Beleg erfasst. Belegnummer: {{bookingNumber}}. Der Beleg wurde zur Verbuchung an Ihren Steuerberater übermittelt."`
+**Success Template**: `"Document recorded. Document number: {{bookingNumber}}. The document has been forwarded to your tax advisor for posting."`
 
 ---

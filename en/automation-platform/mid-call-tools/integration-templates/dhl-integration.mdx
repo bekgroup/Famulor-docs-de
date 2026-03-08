@@ -1,28 +1,27 @@
 ---
 title: "DHL Integration"
-description: "Automatische Versandlabel-Erstellung über DHL API direkt während Kundengesprächem für nahtlose Logistik-Abwicklung"
+description: "Automatic shipping label creation via DHL API directly during customer calls for seamless logistics processing"
 icon: "truck"
 ---
 
-
 # DHL Integration Template
 
-Integrieren Sie DHL-Versandservices in Ihre Mid-call Actions und ermöglichen Sie es Ihrem KI-Assistenten, während Kundengesprächem automatisch Versandlabels zu erstellen, Sendungen zu verfolgen und Logistik-Prozesse zu optimieren.
+Integrate DHL shipping services into your Mid-call Actions and enable your AI assistant to automatically create shipping labels, track shipments, and optimize logistics processes during customer conversations.
 
-## Überblick & Funktionen
+## Overview & Features
 
 <CardGroup cols={2}>
   <Card title="Automated Shipping" icon="shipping-fast">
-    - Sofortige Versandlabel-Erstellung während Sales-Calls
-    - Multi-Produkt-Support (Paket, Warenpost, Express)
-    - Automatische Adress-Validierung und -Korrektur
-    - Integration mit E-Commerce-Systemen und CRM
+    - Instant shipping label creation during sales calls  
+    - Multi-product support (Parcel, merchandise mail, express)  
+    - Automatic address validation and correction  
+    - Integration with e-commerce systems and CRM  
   </Card>
   <Card title="Logistics Management" icon="route">
-    - Echtzeit-Sendungsverfolgung und Status-Updates
-    - Retouren-Management und Return-Labels
-    - Versandkosten-Kalkulation und Optimierung
-    - B2B und B2C Versand-Workflows
+    - Real-time shipment tracking and status updates  
+    - Returns management and return labels  
+    - Shipping cost calculation and optimization  
+    - B2B and B2C shipping workflows  
   </Card>
 </CardGroup>
 
@@ -31,70 +30,70 @@ Integrieren Sie DHL-Versandservices in Ihre Mid-call Actions und ermöglichen Si
 ### 1. DHL Developer Portal & Credentials
 
 <Steps>
-  <Step title="DHL Business Account vorbereiten">
-    - Stellen Sie sicher, dass Sie einen DHL Business-Account haben
-    - Notieren Sie Ihre DHL-Abrechnungsnummer (14-stellig)
-    - Sammeln Sie Ihre Standard-Absenderdaten
+  <Step title="Prepare DHL Business Account">
+    - Ensure you have a DHL business account  
+    - Note your DHL billing number (14 digits)  
+    - Gather your standard sender data  
   </Step>
   
-  <Step title="DHL Developer Portal registrieren">
+  <Step title="Register at DHL Developer Portal">
     ```yaml
-    API-Zugang beantragen:
-      1. Besuchen Sie das DHL Developer Portal
-      2. Account erstellen mit Business-Daten
-      3. API-Zugang für "Paket DE API" beantragen
-      4. Sandbox-Credentials für Testing erhalten
+    Request API Access:
+      1. Visit the DHL Developer Portal  
+      2. Create an account with business details  
+      3. Apply for API access for "Paket DE API"  
+      4. Obtain sandbox credentials for testing  
     ```
   </Step>
   
-  <Step title="API-Credentials konfigurieren">
+  <Step title="Configure API Credentials">
     ```yaml
     Authentication:
       Method: Basic Auth (User:Password)
       
-    Sandbox-Environment:
+    Sandbox Environment:
       URL: https://api-sandbox.dhl.com/parcel/de/shipping/v2/
       User: Sandbox-Username
       Password: Sandbox-Password
       
-    Production-Environment:
+    Production Environment:
       URL: https://api.dhl.com/parcel/de/shipping/v2/
       User: Production-Username 
       Password: Production-Password
     ```
   </Step>
   
-  <Step title="Basic Auth String generieren">
+  <Step title="Generate Basic Auth String">
     ```yaml
     Base64-Encoding:
       Format: "username:password"
-      Beispiel: "dhl_user:dhl_password"
+      Example: "dhl_user:dhl_password"
       
-    Base64-Result:
+    Base64 Result:
       echo -n "dhl_user:dhl_password" | base64
       → "ZGhsX3VzZXI6ZGhsX3Bhc3N3b3Jk"
     ```
   </Step>
 </Steps>
 
-## Versandlabel-Tool konfigurieren
+## Configure Shipping Label Tool
 
-### Konfiguration im Famulor Interface
+### Configuration in the Famulor Interface
 
 <Tabs>
-  <Tab title="Werkzeugdetails">
-    | Feld | Wert |
-    |------|------|
+  <Tab title="Tool Details">
+    | Field | Value |
+    |------|--------|
     | **Name*** | `DHL Versandlabel erstellen` |
-    | **Beschreibung** | "Erstellt automatisch ein DHL-Versandlabel basierend auf Kunden- und Produktdaten" |
-    | **Funktionsname*** | `create_dhl_label` |
-    | **Funktionsbeschreibung*** | "Erstellt ein DHL Versandlabel. Verwenden Sie dies, wenn ein Kunde eine Bestellung aufgibt oder Sie Dokumente/Produkte versenden möchten." |
-    | **HTTP-Methode** | `POST` |
+    | **Description** | "Automatically creates a DHL shipping label based on customer and product data" |
+    | **Function Name*** | `create_dhl_label` |
+    | **Function Description*** | "Creates a DHL shipping label. Use this when a customer places an order or you need to send documents/products." |
+    | **HTTP Method** | `POST` |
     | **Timeout (ms)** | `10000` |
     | **Endpoint*** | `https://api-sandbox.dhl.com/parcel/de/shipping/v2/orders` |
   </Tab>
   
-  <Tab title="Header-Konfiguration">
+  <Tab title="Header Configuration">
     ```json
     {
       "Authorization": "Basic {{DHL_CREDENTIALS}}",
@@ -164,7 +163,7 @@ Integrieren Sie DHL-Versandservices in Ihre Mid-call Actions und ermöglichen Si
   </Tab>
 </Tabs>
 
-### Parameter-Schema
+### Parameter Schema
 
 ```json
 {
@@ -173,81 +172,81 @@ Integrieren Sie DHL-Versandservices in Ihre Mid-call Actions und ermöglichen Si
     "product": {
       "type": "string",
       "enum": ["V01PAK", "V53WPAK", "V54EPAK"],
-      "description": "DHL-Produkt: V01PAK (DHL Paket), V53WPAK (Warenpost), V54EPAK (Europaket)",
+      "description": "DHL product: V01PAK (DHL Parcel), V53WPAK (merchandise mail), V54EPAK (Europe parcel)",
       "default": "V01PAK"
     },
     "billing_number": {
       "type": "string",
-      "description": "DHL-Abrechnungsnummer (14-stellig)"
+      "description": "DHL billing number (14 digits)"
     },
     "reference_number": {
       "type": "string",
-      "description": "Ihre interne Referenznummer (Bestell-ID, etc.)"
+      "description": "Your internal reference number (order ID, etc.)"
     },
     "shipper_name": {
       "type": "string",
-      "description": "Absender Name/Firma"
+      "description": "Sender name/company"
     },
     "shipper_street": {
       "type": "string",
-      "description": "Absender Straße (ohne Hausnummer)"
+      "description": "Sender street (without house number)"
     },
     "shipper_house": {
       "type": "string",
-      "description": "Absender Hausnummer"
+      "description": "Sender house number"
     },
     "shipper_postal": {
       "type": "string",
-      "description": "Absender Postleitzahl"
+      "description": "Sender postal code"
     },
     "shipper_city": {
       "type": "string",
-      "description": "Absender Stadt"
+      "description": "Sender city"
     },
     "receiver_name": {
       "type": "string",
-      "description": "Empfänger Name"
+      "description": "Recipient name"
     },
     "receiver_street": {
       "type": "string",
-      "description": "Empfänger Straße"
+      "description": "Recipient street"
     },
     "receiver_house": {
       "type": "string",
-      "description": "Empfänger Hausnummer"
+      "description": "Recipient house number"
     },
     "receiver_postal": {
       "type": "string",
-      "description": "Empfänger PLZ"
+      "description": "Recipient postal code"
     },
     "receiver_city": {
       "type": "string", 
-      "description": "Empfänger Stadt"
+      "description": "Recipient city"
     },
     "receiver_country": {
       "type": "string",
-      "description": "Empfänger Land (3-stelliger ISO-Code, z.B. 'DEU', 'AUT', 'CHE')",
+      "description": "Recipient country (3-letter ISO code, e.g. 'DEU', 'AUT', 'CHE')",
       "default": "DEU"
     },
     "weight": {
       "type": "number",
-      "description": "Paketgewicht in Kilogramm",
+      "description": "Package weight in kilograms",
       "minimum": 0.1,
       "maximum": 31.5
     },
     "length": {
       "type": "number",
-      "description": "Paketlänge in cm (optional)",
+      "description": "Package length in cm (optional)",
       "maximum": 120
     },
     "width": {
       "type": "number",
-      "description": "Paketbreite in cm (optional)",
+      "description": "Package width in cm (optional)",
       "maximum": 60
     },
     "height": {
       "type": "number",
-      "description": "Pakethöhe in cm (optional)",
+      "description": "Package height in cm (optional)",
       "maximum": 60
     }
   },
@@ -255,28 +254,28 @@ Integrieren Sie DHL-Versandservices in Ihre Mid-call Actions und ermöglichen Si
 }
 ```
 
-## Praktische Anwendungsszenarien
+## Practical Use Cases
 
-### Szenario 1: Sofort-Versand bei Bestellung
+### Scenario 1: Immediate Shipping Upon Order
 
 <Steps>
-  <Step title="Bestellung während Gespräch">
+  <Step title="Order During Call">
     ```yaml
-    Sales-Call-Kontext:
-      Kunde: "Perfekt! Wann kann ich mit der Lieferung rechnen?"
+    Sales Call Context:
+      Customer: "Perfect! When can I expect delivery?"
       
-    KI: "Ich bereite den Versand sofort vor. Können Sie mir Ihre Lieferadresse bestätigen?"
+    AI: "I'm preparing the shipment immediately. Could you please confirm your delivery address?"
     
-    Address-Collection:
-      "Max Mustermann, Musterstraße 15, 80331 München"
+    Address Collection:
+      "Max Mustermann, Musterstraße 15, 80331 Munich"
     
-    KI: "Ich erstelle das DHL Versandlabel für Max Mustermann..."
+    AI: "I am creating the DHL shipping label for Max Mustermann..."
     ```
   </Step>
   
-  <Step title="Automatische Label-Erstellung">
+  <Step title="Automatic Label Creation">
     ```yaml
-    create_dhl_label Parameter:
+    create_dhl_label Parameters:
       product: "V01PAK"
       billing_number: "22222222220101"
       reference_number: "ORDER-2024-001"
@@ -284,14 +283,14 @@ Integrieren Sie DHL-Versandservices in Ihre Mid-call Actions und ermöglichen Si
       receiver_street: "Musterstraße"
       receiver_house: "15"
       receiver_postal: "80331"
-      receiver_city: "München" 
+      receiver_city: "Munich"
       receiver_country: "DEU"
       weight: 2.5
     ```
   </Step>
 </Steps>
 
-### Versand-Response & Tracking
+### Shipping Response & Tracking
 
 ```json
 {
@@ -307,6 +306,6 @@ Integrieren Sie DHL-Versandservices in Ihre Mid-call Actions und ermöglichen Si
 }
 ```
 
-**Success-Kommunikation**: `"Versandlabel wurde erstellt. Sendungsnummer: {{response.shipments[0].shipmentNumber}}"`
+**Success Message**: `"Shipping label created. Tracking number: {{response.shipments[0].shipmentNumber}}"`
 
 ---
