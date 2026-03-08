@@ -92,7 +92,8 @@
                   {
                     "group": "Testing",
                     "pages": [
-                      "en/ai-assistants/testing"
+                      "en/ai-assistants/testing",
+                      "en/ai-assistants/cledon"
                     ],
                     "icon": "vial"
                   }
@@ -165,8 +166,7 @@
                   "en/conversation-design/prompt-basics",
                   "en/conversation-design/knowledge-bases",
                   "en/conversation-design/interruptions",
-                  "en/conversation-design/language-support",
-                  "en/ai-assistants/cledon"
+                  "en/conversation-design/language-support"
                 ]
               },
               {
@@ -753,7 +753,8 @@
                   {
                     "group": "Testing",
                     "pages": [
-                      "de/ai-assistants/testing"
+                      "de/ai-assistants/testing",
+                      "de/ai-assistants/cledon"
                     ]
                   }
                 ]
@@ -831,8 +832,7 @@
                   "de/conversation-design/prompt-basics",
                   "de/conversation-design/knowledge-bases",
                   "de/conversation-design/interruptions",
-                  "de/conversation-design/language-support",
-                  "de/ai-assistants/cledon"
+                  "de/conversation-design/language-support"
                 ]
               },
               {
