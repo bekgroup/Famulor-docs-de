@@ -243,10 +243,20 @@
               {
                 "group": "Troubleshooting & FAQs",
                 "pages": [
+                  "en/troubleshooting/setup-issues",
                   "en/troubleshooting/voice-problems",
+                  "en/troubleshooting/web-widget-issues",
+                  "en/troubleshooting/sip-integration-issues",
+                  "en/troubleshooting/cal-com-issues",
+                  "en/troubleshooting/calendly-issues",
+                  "en/troubleshooting/gohighlevel-issues",
+                  "en/troubleshooting/campaign-issues",
+                  "en/troubleshooting/leads-issues",
+                  "en/troubleshooting/whatsapp-troubleshooting",
                   "en/troubleshooting/billing",
                   "en/troubleshooting/call-quality",
-                  "en/troubleshooting/ai-behavior"
+                  "en/troubleshooting/ai-behavior",
+                  "en/troubleshooting/byop"
                 ]
               },
               {
@@ -279,10 +289,21 @@
                 "group": "Legal Information",
                 "icon": "scale-balanced",
                 "pages": [
+                  "en/legal/data-retention",
                   "en/legal/automatisches-loeschen-anrufdaten",
                   "en/legal/voice-cloning-legal-information",
                   "en/legal/voice-cloning-compliance",
                   "en/legal/voice-cloning-contracts"
+                ]
+              },
+              {
+                "group": "Support",
+                "icon": "users",
+                "pages": [
+                  "en/support",
+                  "en/enterprise",
+                  "en/glossary",
+                  "en/faq"
                 ]
               }
             ]
@@ -918,10 +939,20 @@
               {
                 "group": "Fehlerbehebung & FAQs",
                 "pages": [
+                  "de/troubleshooting/setup-issues",
                   "de/troubleshooting/voice-problems",
+                  "de/troubleshooting/web-widget-issues",
+                  "de/troubleshooting/sip-integration-issues",
+                  "de/troubleshooting/cal-com-issues",
+                  "de/troubleshooting/calendly-issues",
+                  "de/troubleshooting/gohighlevel-issues",
+                  "de/troubleshooting/campaign-issues",
+                  "de/troubleshooting/leads-issues",
+                  "de/troubleshooting/whatsapp-troubleshooting",
                   "de/troubleshooting/billing",
                   "de/troubleshooting/call-quality",
-                  "de/troubleshooting/ai-behavior"
+                  "de/troubleshooting/ai-behavior",
+                  "de/troubleshooting/byop"
                 ]
               },
               {
@@ -954,10 +985,21 @@
                 "group": "Rechtliche Informationen",
                 "icon": "scale-balanced",
                 "pages": [
+                  "de/legal/data-retention",
                   "de/legal/automatisches-loeschen-anrufdaten",
                   "de/legal/voice-cloning-legal-information",
                   "de/legal/voice-cloning-compliance",
                   "de/legal/voice-cloning-contracts"
+                ]
+              },
+              {
+                "group": "Support",
+                "icon": "users",
+                "pages": [
+                  "de/support",
+                  "de/enterprise",
+                  "de/glossary",
+                  "de/faq"
                 ]
               }
             ]
@@ -1397,6 +1439,10 @@
       {
         "label": "Updates",
         "href": "/en/updates/changelog"
+      },
+      {
+        "label": "Support",
+        "href": "/en/support"
       }
     ],
     "primary": {

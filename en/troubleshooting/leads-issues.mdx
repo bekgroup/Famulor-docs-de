@@ -1,0 +1,143 @@
+---
+title: "Leads Issues"
+icon: "address-book"
+description: "Solve common lead management issues and import problems"
+---
+
+> Solve common lead management issues and import problems
+
+Quick solutions for common lead import and management issues.
+
+## Lead Import Issues
+
+### Import Fails Completely
+
+**Error:** "Import failed" or "File format not supported"
+
+**Solutions:**
+
+1. Use CSV or Excel files only
+2. Select a campaign before import
+3. Keep file size under 10MB for best reliability
+4. Save CSV with UTF-8 encoding
+
+### No Leads Imported
+
+**Issue:** Import completes but no leads appear
+
+**Solutions:**
+
+1. Map phone number column during import
+2. Validate phone number format
+3. Remove empty rows
+4. Ensure required phone data exists
+5. Include a header row
+
+### Partial Import Success
+
+**Issue:** Some leads import, others fail
+
+**Solutions:**
+
+1. Download and review error report
+2. Normalize numbers to international format (`+1234567890`)
+3. Remove duplicate phone numbers
+4. Fix malformed or incomplete rows
+
+## Lead Management Issues
+
+### Lead Not Appearing in Campaign
+
+**Check:**
+
+- Lead status (Created/Scheduled)
+- Campaign filters
+- Lead not accidentally completed
+
+**Solutions:**
+
+1. Reset status to Created
+2. Confirm campaign assignment
+3. Refresh campaign page
+
+### Invalid Phone Numbers
+
+**Correct format:** `+1234567890`
+
+**Incorrect examples:** `(123) 456-7890`, `123-456-7890`, `1234567890`
+
+**Solutions:**
+
+1. Convert numbers to E.164 format
+2. Remove spaces, dashes, brackets
+3. Add country codes
+
+### Duplicate Leads
+
+**Prevention:**
+
+1. Deduplicate before import
+2. Normalize phone format first
+3. Check duplicates by name + phone
+
+## Variable and Data Issues
+
+### Variable Mapping Errors
+
+**Solutions:**
+
+1. Map each column to the intended variable
+2. Verify variable names match assistant configuration
+3. Check data type compatibility
+4. Validate required variables are provided
+
+### Missing Lead Information
+
+**Solutions:**
+
+1. Recheck column mapping
+2. Include optional fields intentionally
+3. Validate source data completeness
+4. Re-import corrected file if needed
+
+## File Format Issues
+
+### CSV Problems
+
+- Use commas (not semicolons)
+- Keep headers in first row
+- Escape quotes correctly
+- Save as UTF-8
+
+### Excel Problems
+
+- Use first sheet only
+- Avoid merged cells
+- Convert formulas to values
+- Remove hidden formatting artifacts
+
+## Getting Help
+
+### Before Contacting Support
+
+1. Review import error report
+2. Validate file format
+3. Test with a small batch (5-10 rows)
+4. Verify assistant variable configuration
+
+### Information to Provide
+
+- Error messages
+- Sanitized sample rows
+- Campaign context
+- Expected vs actual behavior
+
+<Warning>
+Remove sensitive personal data before sharing sample files with support.
+</Warning>
+
+## Related Docs
+
+- [Campaigns](/en/outbound-calls/campaigns)
+- [Assistant Variables](/en/ai-assistants/prompt-and-tools)
+- [Support](/en/support)

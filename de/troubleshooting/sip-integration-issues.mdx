@@ -1,0 +1,68 @@
+---
+title: "SIP Integrationsprobleme"
+icon: "phone-volume"
+description: "Beheben Sie SIP-Trunk Verbindungs- und Konfigurationsprobleme"
+---
+
+> Beheben Sie SIP-Trunk Verbindungs- und Konfigurationsprobleme
+
+## Teststrategie
+
+1. Zuerst ausgehende Anrufe testen
+2. Danach eingehende Anrufe testen
+
+## Ausgehende SIP-Probleme
+
+### Verbindungsprobleme
+
+1. SIP-Zugangsdaten prüfen
+2. Richtigen Phone-Typ beim Provider prüfen
+3. Falls nötig feste IP aktivieren und korrekt setzen
+4. Codec, Transport und Port prüfen
+
+### SIP-Registrierung
+
+Famulor:
+
+- sendet keine SIP REGISTER Nachrichten
+- benötigt keine Provider-seitige REGISTER-Konfiguration
+- nutzt direkte Call-Authentifizierung
+
+## Eingehende SIP-Probleme
+
+### Authentifizierung
+
+1. Für Inbound IP-Authentifizierung nutzen
+2. Alle Provider-IPs in Famulor whitelisten
+3. Provider auf FQDN-Ziel konfigurieren (nicht direkte IP)
+
+### Häufige Inbound-Fehler
+
+- Nicht alle Provider-IPs whitelisted
+- Provider sendet auf IP statt FQDN
+- Zielrufnummer falsch formatiert
+
+## Transfer funktioniert nicht
+
+Wenn Warm Transfer fehlschlägt:
+
+1. Transfer-Modus auf Advanced setzen
+2. SIP-URI Format nutzen, z. B. `sip:+1234567890@sip.provider.com:5060`
+3. SIP REFER Support beim Provider bestätigen
+4. Mit/ohne Port testen
+5. Zielrufnummer auf Erreichbarkeit prüfen
+
+## Hilfe
+
+Für Support bereitstellen:
+
+- Fehler aus Call-Logs
+- SIP-Trunk Konfiguration
+- Inbound-/Outbound-Testergebnisse
+- verwendete SIP-URI beim Transfer
+
+## Verwandte Seiten
+
+- [SIP Troubleshooting](/de/provisioning/sip-ai/sip-troubleshooting)
+- [SIP Integration Setup](/de/provisioning/sip-ai/sip-integration)
+- [Support](/de/support)

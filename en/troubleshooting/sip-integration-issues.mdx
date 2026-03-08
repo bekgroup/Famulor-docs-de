@@ -1,0 +1,72 @@
+---
+title: "SIP Integration Issues"
+icon: "phone-volume"
+description: "Troubleshoot SIP trunk connection problems and configuration issues"
+---
+
+> Troubleshoot SIP trunk connection problems and configuration issues
+
+This guide helps resolve common SIP integration issues when connecting your SIP provider to Famulor.
+
+## Testing Strategy
+
+1. Test outbound calls first
+2. Test inbound calls after outbound works
+
+## Outbound SIP Issues
+
+### Connection Problems
+
+1. Verify SIP credentials (username, password, server)
+2. Confirm phone type with provider
+3. Enable fixed IP where required and enter provider IP
+4. Check codec, transport, and port settings
+
+### SIP Registration Notes
+
+Famulor:
+
+- Does not send SIP REGISTER to your provider
+- Does not require provider-side SIP REGISTER
+- Uses direct call authentication
+
+## Inbound SIP Issues
+
+### Authentication Setup
+
+For inbound calls:
+
+1. Use IP authentication (not username/password)
+2. Whitelist all provider IPs in Famulor
+3. Configure provider to route to our FQDN domain (not direct IP)
+
+### Common Inbound Failures
+
+- Verify all provider IPs are whitelisted
+- Confirm provider sends calls to FQDN
+- Check destination number format
+
+## Transfer Phone Call Not Working
+
+If call transfer fails:
+
+1. Set transfer mode to Advanced
+2. Use SIP URI format like `sip:+1234567890@sip.provider.com:5060`
+3. Confirm provider supports SIP REFER
+4. Test with and without explicit port
+5. Validate destination reachability
+
+## Getting Help
+
+Provide support with:
+
+- Call log errors
+- SIP trunk configuration
+- Outbound and inbound test results
+- Transfer URI used during testing
+
+## Related Docs
+
+- [SIP Troubleshooting](/en/provisioning/sip-ai/sip-troubleshooting)
+- [SIP Integration Setup](/en/provisioning/sip-ai/sip-integration)
+- [Support](/en/support)

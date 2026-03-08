@@ -1,0 +1,156 @@
+---
+title: "Campaign Issues"
+icon: "bullhorn"
+description: "Solve common campaign issues and optimize performance"
+---
+
+> Solve common campaign issues and optimize performance
+
+Quick solutions for common campaign problems and performance optimization tips.
+
+## Campaign Won't Start
+
+### Phone Number Not Configured
+
+**Error:** "Your agent does not have a phone number setup"
+
+**Solution:**
+
+1. Go to [Assistant Settings](/en/ai-assistants/general-settings)
+2. Configure a phone number (Platform number, SIP, or Caller ID)
+3. Save assistant settings
+4. Try starting campaign again
+
+### Insufficient Balance
+
+**Error:** "Insufficient balance to start the campaign"
+
+**Solution:**
+
+1. Check your account balance in billing section
+2. Add funds to your account
+3. Return to campaign and click start
+
+### No Leads to Call
+
+**Error:** "No leads to call"
+
+**Solution:**
+
+1. Add leads manually or import from CSV
+2. Verify leads have valid phone numbers
+3. Check that leads are not all marked completed
+4. Ensure completion settings match your needs
+
+## No Calls Being Made
+
+### Outside Allowed Hours
+
+**Issue:** Campaign shows as running but no calls happening
+
+**Check:**
+
+- Current time is within allowed calling hours
+- Today is an allowed calling day
+- Assistant timezone matches expected schedule
+
+**Solution:** Adjust allowed hours or wait until the next allowed time window.
+
+### All Leads Called
+
+**Issue:** Campaign appears idle
+
+**Check:**
+
+- All primary leads were attempted up to max retry count
+- Secondary contacts have been tried
+- Goal completion status if goal-based retry is enabled
+
+**Solution:** Add more leads or review retry settings.
+
+## Retry Logic Problems
+
+### Too Many Retries
+
+**Issue:** Leads complain about excessive calls
+
+**Solutions:**
+
+1. Lower max retries
+2. Increase retry interval
+3. Disable voicemail retry
+4. Review goal variable logic
+
+### Not Enough Retries
+
+**Issue:** Potential contacts are missed
+
+**Solutions:**
+
+1. Increase max retries
+2. Enable voicemail retry
+3. Test different retry intervals
+4. Use goal-based retry for high-value leads
+
+## Goal Completion Issues
+
+### Goal Variable Not Working
+
+**Requirements:**
+
+1. Post-call variables configured in assistant
+2. Boolean variable exists in post-call schema
+3. Exact variable name match in campaign settings
+4. AI extraction works in real calls
+
+**Solution:** Validate extraction with manual test calls.
+
+### False Goal Completion
+
+**Debugging:**
+
+1. Review call transcripts for extraction errors
+2. Test variable definitions with sample calls
+3. Adjust prompt for clearer goal criteria
+4. Refine variable descriptions in assistant settings
+
+## Common Error Messages
+
+### "Campaign is already in progress"
+
+Pause first before making changes.
+
+### "Campaign is not running"
+
+Start or resume the campaign.
+
+### "Assistant timezone not set"
+
+Set timezone in assistant settings.
+
+## Getting Help
+
+### Before Contacting Support
+
+1. Check error messages
+2. Review campaign settings
+3. Test with a single lead
+4. Check account/billing status
+
+### Information to Provide
+
+- Campaign ID and name
+- Error messages
+- Steps taken before the issue
+- Expected vs actual behavior
+- Assistant and phone number configuration
+
+<Warning>
+Allow up to 10-15 minutes after starting a campaign before expecting calls to begin.
+</Warning>
+
+## Related Docs
+
+- [Campaigns Overview](/en/outbound-calls/campaigns)
+- [Assistant Variables and Tools](/en/ai-assistants/prompt-and-tools)
+- [Billing & Credits](/en/troubleshooting/billing)

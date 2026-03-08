@@ -1,0 +1,83 @@
+---
+title: "Web Widget Issues"
+icon: "browser"
+description: "Troubleshoot common web widget problems and integration issues"
+---
+
+> Troubleshoot common web widget problems and integration issues
+
+Solutions for common web widget issues.
+
+## Widget Not Appearing
+
+Check these:
+
+- Embed code is placed before closing `</body>`
+- Browser cache cleared (hard refresh)
+- Incognito/private mode test
+- Plan includes web widget access
+- Browser console has no JavaScript errors
+- Embed code was copied fresh from current widget config
+
+## Voice Not Working
+
+Voice requires HTTPS.
+
+Check these:
+
+- Site runs on HTTPS
+- Browser microphone permission granted
+- Microphone works in other apps
+- Modern browser is used (Chrome, Firefox, Safari, Edge)
+- No VPN/firewall blocks WebRTC
+
+## Chat Not Working
+
+Check these:
+
+- Browser console for errors
+- Assistant configuration is valid
+- Assistant works in [Assistant Testing](/en/ai-assistants/testing)
+- Reload page to reset widget session
+
+## Pre-Chat Form Issues
+
+Check these:
+
+- Fields configured in widget settings
+- Each field has name and label
+- Settings were saved
+- Field names match assistant variables
+- Cache cleared and tested in incognito mode
+
+## Configuration Not Updating
+
+Check these:
+
+- Save widget settings explicitly
+- Replace old embed code with fresh snippet
+- Hard refresh browser cache
+- Test in incognito/private window
+
+## WordPress/CMS Issues
+
+Check these:
+
+- Use Custom HTML block/widget
+- Place embed before closing `</body>`
+- Clear caching plugin cache
+- Temporarily disable blocking security plugins for testing
+
+## Still Having Issues?
+
+1. Check browser console logs
+2. Test in incognito mode
+3. Try another browser
+4. Validate assistant behavior in test mode
+5. Contact support with screenshots
+
+## Related Docs
+
+- [Web Widget Setup](/en/ai-assistants/web-widget)
+- [Assistant Testing](/en/ai-assistants/testing)
+- [Support](/en/support)
