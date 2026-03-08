@@ -1,0 +1,114 @@
+---
+title: "Leads Probleme"
+icon: "address-book"
+description: "Lösen Sie häufige Lead-Management- und Importprobleme"
+---
+
+> Lösen Sie häufige Lead-Management- und Importprobleme
+
+## Lead-Import Probleme
+
+### Import schlägt komplett fehl
+
+**Fehler:** "Import failed" oder "File format not supported"
+
+**Lösungen:**
+
+1. Nur CSV/Excel verwenden
+2. Kampagne vor Import auswählen
+3. Dateien unter 10MB halten
+4. CSV als UTF-8 speichern
+
+### Keine Leads importiert
+
+1. Telefonnummer-Spalte korrekt mappen
+2. Telefonnummern validieren
+3. Leere Zeilen entfernen
+4. Pflichtdaten sicherstellen
+5. Header-Zeile verwenden
+
+### Teilweise importiert
+
+1. Fehlerreport herunterladen
+2. Nummern auf internationales Format (`+1234567890`) standardisieren
+3. Duplikate entfernen
+4. Ungültige Zeilen korrigieren
+
+## Lead-Management Probleme
+
+### Lead erscheint nicht in Kampagne
+
+**Prüfen:**
+
+- Status (Created/Scheduled)
+- Filtereinstellungen
+- Lead nicht versehentlich abgeschlossen
+
+**Lösungen:**
+
+1. Status auf Created setzen
+2. Kampagnenzuordnung prüfen
+3. Seite neu laden
+
+### Ungültige Telefonnummern
+
+**Korrekt:** `+1234567890`
+
+**Falsch:** `(123) 456-7890`, `123-456-7890`, `1234567890`
+
+### Doppelte Leads
+
+1. Vor Import deduplizieren
+2. Nummernformat vereinheitlichen
+3. Name+Telefon gemeinsam prüfen
+
+## Variablen- und Datenprobleme
+
+### Fehler beim Variablen-Mapping
+
+1. Jede Spalte korrekt zuordnen
+2. Variablennamen mit Assistenten-Konfiguration abgleichen
+3. Datentypen prüfen
+4. Pflichtvariablen sicherstellen
+
+### Fehlende Lead-Informationen
+
+1. Mapping erneut prüfen
+2. Optionale Felder bewusst mitgeben
+3. Quelldaten auf Vollständigkeit prüfen
+4. Korrigierte Datei neu importieren
+
+## Datei-Format Probleme
+
+### CSV
+
+- Komma als Trennzeichen
+- Header in erster Zeile
+- Quotes korrekt escapen
+- UTF-8 verwenden
+
+### Excel
+
+- Nur erstes Sheet nutzen
+- Keine zusammengeführten Zellen
+- Formeln in Werte umwandeln
+- Versteckte Formatartefakte entfernen
+
+## Hilfe
+
+Vor Support-Kontakt:
+
+1. Fehlerreport prüfen
+2. Dateiformat validieren
+3. Mit kleinem Batch testen (5-10 Zeilen)
+4. Variablenkonfiguration prüfen
+
+<Warning>
+Sensible personenbezogene Daten vor dem Teilen mit Support entfernen.
+</Warning>
+
+## Verwandte Seiten
+
+- [Kampagnen](/de/outbound-calls/campaigns)
+- [Assistenten-Variablen](/de/ai-assistants/prompt-and-tools)
+- [Support](/de/support)

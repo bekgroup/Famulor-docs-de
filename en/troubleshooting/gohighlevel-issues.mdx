@@ -1,0 +1,73 @@
+---
+title: "GoHighLevel Issues"
+icon: "calendar-check"
+description: "Common GoHighLevel integration problems and solutions"
+---
+
+> Common GoHighLevel integration problems and solutions
+
+This page covers common issues when using GoHighLevel integrations with Famulor.
+
+## Appointment Scheduling Issues
+
+### Missing API Key Error
+
+**Problem:** `missing api_key location_id or calendar_id for GoHighLevel`
+
+**Solution:**
+
+1. Go to [Assistant Prompt & Tools](/en/ai-assistants/prompt-and-tools)
+2. Navigate to **Appointment Scheduling**
+3. Click **Disconnect**
+4. Click **Connect** again to re-authorize
+5. Select a calendar from the dropdown
+6. Click **Save**
+7. Confirm the connection remains active
+
+### Connection Problems
+
+**OAuth Authorization Fails:**
+
+- Try incognito mode
+- Verify correct GoHighLevel account selection
+- Confirm admin permissions
+
+### Calendar Not Appearing
+
+**Calendars do not show in assistant settings:**
+
+- Disconnect and reconnect integration
+- Verify calendar exists in GoHighLevel
+- Check calendar permission scope
+
+### Booking Failures
+
+**Appointments are not being scheduled:**
+
+- Ensure assistant can access customer email (required)
+- Verify calendar has open availability
+- Check time zone settings in both systems
+- Review call transcripts for booking attempts
+- Validate GoHighLevel booking restrictions
+
+### Data Mapping Problems
+
+**Lead data not syncing correctly:**
+
+- Verify automation field mapping
+- Check required fields in GoHighLevel
+- Test with sample lead data
+
+## Getting Help
+
+If issues continue:
+
+1. Check call transcripts for exact booking attempts
+2. Run a simple test booking end to end
+3. Contact support with error messages and screenshots
+
+## Related Docs
+
+- [GoHighLevel Scheduling Setup](/en/ai-assistants/gohighlevel-scheduling)
+- [Assistant Prompt & Tools](/en/ai-assistants/prompt-and-tools)
+- [Support](/en/support)

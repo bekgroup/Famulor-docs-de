@@ -243,10 +243,20 @@
               {
                 "group": "Troubleshooting & FAQs",
                 "pages": [
+                  "en/troubleshooting/setup-issues",
                   "en/troubleshooting/voice-problems",
+                  "en/troubleshooting/web-widget-issues",
+                  "en/troubleshooting/sip-integration-issues",
+                  "en/troubleshooting/cal-com-issues",
+                  "en/troubleshooting/calendly-issues",
+                  "en/troubleshooting/gohighlevel-issues",
+                  "en/troubleshooting/campaign-issues",
+                  "en/troubleshooting/leads-issues",
+                  "en/troubleshooting/whatsapp-troubleshooting",
                   "en/troubleshooting/billing",
                   "en/troubleshooting/call-quality",
-                  "en/troubleshooting/ai-behavior"
+                  "en/troubleshooting/ai-behavior",
+                  "en/troubleshooting/byop"
                 ]
               },
               {
@@ -929,10 +939,20 @@
               {
                 "group": "Fehlerbehebung & FAQs",
                 "pages": [
+                  "de/troubleshooting/setup-issues",
                   "de/troubleshooting/voice-problems",
+                  "de/troubleshooting/web-widget-issues",
+                  "de/troubleshooting/sip-integration-issues",
+                  "de/troubleshooting/cal-com-issues",
+                  "de/troubleshooting/calendly-issues",
+                  "de/troubleshooting/gohighlevel-issues",
+                  "de/troubleshooting/campaign-issues",
+                  "de/troubleshooting/leads-issues",
+                  "de/troubleshooting/whatsapp-troubleshooting",
                   "de/troubleshooting/billing",
                   "de/troubleshooting/call-quality",
-                  "de/troubleshooting/ai-behavior"
+                  "de/troubleshooting/ai-behavior",
+                  "de/troubleshooting/byop"
                 ]
               },
               {
