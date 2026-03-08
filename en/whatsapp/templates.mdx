@@ -1,267 +1,266 @@
 ---
-title: "Nachrichten-Templates"
-description: "Erstellen und verwalten Sie WhatsApp-Nachrichtenvorlagen für geschäftlich initiierte Gespräche"
+title: "Message Templates"
+description: "Create and manage WhatsApp message templates for business-initiated conversations"
 ---
 
+Message templates are pre-approved message formats mandated by Meta for business-initiated conversations on WhatsApp. You must have approved templates before you can send outbound messages to customers.
 
-Nachrichtenvorlagen (Templates) sind vorab genehmigte Nachrichtenformate, die von Meta für geschäftlich initiierte Gespräche auf WhatsApp vorgeschrieben sind. Sie müssen über genehmigte Templates verfügen, bevor Sie Outbound-Nachrichten an Kunden senden können.
+## What are Message Templates?
 
-## Was sind Nachrichtenvorlagen?
+Message templates are structured messages that:
 
-Nachrichtenvorlagen sind strukturierte Nachrichten, die:
-
-* Vor der Verwendung zur Genehmigung bei Meta eingereicht werden müssen
-* Es Ihnen ermöglichen, Gespräche mit Kunden zu beginnen
-* Variablen zur Personalisierung enthalten können
-* Für Nachrichten außerhalb des 24-Stunden-Fensters erforderlich sind
+* Must be submitted to Meta for approval before use
+* Allow you to initiate conversations with customers
+* Can include variables for personalization
+* Are required for messages sent outside the 24-hour window
 
 <Info>
-  **Warum Templates?** — WhatsApp schreibt Templates vor, um Spam zu verhindern und sicherzustellen, dass Unternehmen wertvolle, relevante Nachrichten an Kunden senden. Alle geschäftlich initiierten Nachrichten müssen genehmigte Templates verwenden.
+  **Why Templates?** — WhatsApp requires templates to prevent spam and ensure businesses send valuable, relevant messages to customers. All business-initiated messages must use approved templates.
 </Info>
 
-## Wann benötigen Sie Templates?
+## When Do You Need Templates?
 
-| Szenario                          | Template erforderlich?                      |
-| --------------------------------- | ------------------------------------------- |
-| Kunde schreibt Ihnen zuerst       | Nein — freie Antwort innerhalb 24 Std. erlaubt |
-| Antwort innerhalb von 24 Std.     | Nein — jede Nachricht sendbar               |
-| Start eines neuen Gesprächs       | **Ja**                                      |
-| Kontaktaufnahme nach 24 Std.      | **Ja**                                      |
-| Senden von Updates/Benachrichtigungen | **Ja**                                  |
-| Marketing-Nachrichten             | **Ja**                                      |
+| Scenario                         | Template Required?                         |
+| -------------------------------- | ------------------------------------------ |
+| Customer messages you first       | No — free reply allowed within 24 hours    |
+| Reply within 24 hours             | No — any message can be sent                |
+| Starting a new conversation       | **Yes**                                     |
+| Contacting after 24 hours         | **Yes**                                     |
+| Sending updates/notifications     | **Yes**                                     |
+| Marketing messages                | **Yes**                                     |
 
-## Template-Kategorien
+## Template Categories
 
-Templates sind in Kategorien unterteilt, die ihre Genehmigungsanforderungen und Anwendungsfälle bestimmen:
+Templates are divided into categories which determine their approval requirements and use cases:
 
-### Utility-Templates (Nutzen)
+### Utility Templates
 
-Transaktions- und servicebezogene Nachrichten.
+Transactional and service-related messages.
 
-**Verwendung für:**
+**Use for:**
 
-* Bestellbestätigungen
-* Versand-Updates
-* Terminerinnerungen
-* Kontobenachrichtigungen
-* Zahlungsbelege
+* Order confirmations
+* Shipping updates
+* Appointment reminders
+* Account notifications
+* Payment receipts
 
-**Genehmigung:** In der Regel innerhalb von Minuten genehmigt
+**Approval:** Typically approved within minutes
 
-### Marketing-Templates
+### Marketing Templates
 
-Werbe- und vertriebsbezogene Nachrichten.
+Promotional and sales-related messages.
 
-**Verwendung für:**
+**Use for:**
 
-* Werbeangebote
-* Produktankündigungen
-* Newsletter
-* Verkaufskampagnen
-* Re-Engagement-Nachrichten
+* Promotional offers
+* Product announcements
+* Newsletters
+* Sales campaigns
+* Re-engagement messages
 
-**Genehmigung:** Kann länger dauern, strengere Prüfung
+**Approval:** May take longer; stricter review
 
 <Warning>
-  **Keine kategorieübergreifenden Inhalte** — Fügen Sie keine Werbeinhalte in Utility-Templates ein. Meta wird Templates ablehnen, bei denen Kategorie und Inhalt nicht übereinstimmen.
+  **No cross-category content** — Do not include promotional content in Utility templates. Meta will reject templates where category and content do not match.
 </Warning>
 
-### Authentifizierungs-Templates
+### Authentication Templates
 
-Verifizierungs- und Sicherheitsnachrichten.
+Verification and security messages.
 
-**Verwendung für:**
+**Use for:**
 
-* Einmalpasswörter (OTP)
-* Verifizierungscodes
-* Login-Bestätigungen
-* Sicherheitswarnungen
+* One-time passwords (OTP)
+* Verification codes
+* Login confirmations
+* Security alerts
 
-**Genehmigung:** Standardprüfung
+**Approval:** Standard review
 
 ### Voice Call Request Templates
 
-Spezielle Templates zur Anforderung der Erlaubnis für WhatsApp-Sprachanrufe.
+Special templates to request permission for WhatsApp voice calls.
 
-**Verwendung für:**
+**Use for:**
 
-* Anforderung der Erlaubnis, Kunden über WhatsApp-Sprachfunktion anzurufen
-* Muss eine Schaltfläche für die Sprachanrufanforderung enthalten
+* Requesting permission to call customers via WhatsApp voice
+* Must include a button to request voice call permission
 
-**Genehmigung:** Automatisch (bei Verwendung des Standardformats)
+**Approval:** Automatic (when using the standard format)
 
-## Erstellen eines Templates
+## Creating a Template
 
-### Schritt 1: Zu den Templates navigieren
+### Step 1: Navigate to Templates
 
-1. Gehen Sie zu **WhatsApp-Absender** → Wählen Sie Ihren Absender → Tab **Templates**
-2. Oder gehen Sie direkt zu **WhatsApp-Templates**
-3. Klicken Sie auf **Template erstellen**
+1. Go to **WhatsApp Senders** → Select your sender → **Templates** tab  
+2. Or go directly to **WhatsApp Templates**  
+3. Click **Create Template**
 
-### Schritt 2: Grundeinstellungen konfigurieren
+### Step 2: Configure Basic Settings
 
-| Feld           | Beschreibung                                                                           |
-| -------------- | -------------------------------------------------------------------------------------- |
-| **Name**       | Eindeutige Kennung (nur Kleinbuchstaben, Unterstriche). Beispiel: `order_confirmation_v1` |
-| **Kategorie**  | Wählen Sie Utility, Marketing, Authentifizierung oder Voice Call Request               |
-| **Sprache**    | Sprache des Templates (muss mit dem Inhalt übereinstimmen)                             |
+| Field          | Description                                                                          |
+| -------------- | ------------------------------------------------------------------------------------ |
+| **Name**       | Unique identifier (lowercase letters and underscores only). Example: `order_confirmation_v1` |
+| **Category**   | Choose Utility, Marketing, Authentication, or Voice Call Request                    |
+| **Language**   | Language of the template (must match the content)                                   |
 
 <Tip>
-  **Best Practices für die Benennung:**
+  **Naming Best Practices:**
 
-  * Verwenden Sie beschreibende Namen: `appointment_reminder`, `order_shipped`
-  * Fügen Sie Versionsnummern hinzu: `welcome_message_v2`
-  * Vermeiden Sie generische Namen: ~~`template1`~~, ~~`test`~~
+  * Use descriptive names: `appointment_reminder`, `order_shipped`  
+  * Add version numbers: `welcome_message_v2`  
+  * Avoid generic names: ~~`template1`~~, ~~`test`~~  
 </Tip>
 
-### Schritt 3: Template-Inhalte schreiben
+### Step 3: Write Template Content
 
-Templates können aus mehreren Komponenten bestehen:
+Templates can have multiple components:
 
 #### Header (Optional)
 
-* **Text-Header**: Kurze Überschrift (bis zu 60 Zeichen)
-* **Medien-Header**: Bild, Video oder Dokument (demnächst verfügbar)
+* **Text header:** Short title (up to 60 characters)  
+* **Media header:** Image, video, or document (coming soon)  
 
-#### Body (Erforderlich)
+#### Body (Required)
 
-Der Hauptinhalt der Nachricht. Hier schreiben Sie Ihre Nachricht.
+Main message content. Write your message here.
 
-**Verwendung von Variablen:**
-Verwenden Sie `{{1}}`, `{{2}}` usw. für dynamische Inhalte:
+**Using Variables:**  
+Use `{{1}}`, `{{2}}`, etc. for dynamic content:
 
 ```
-Hallo {{1}}, Ihre Bestellung {{2}} wurde versandt!
+Hello {{1}}, your order {{2}} has shipped!
 
-Voraussichtliche Lieferung: {{3}}
-Verfolgen Sie Ihr Paket: {{4}}
+Expected delivery: {{3}}  
+Track your package: {{4}}
 ```
 
 <Info>
-  **Beispielwerte** — Beim Erstellen von Templates müssen Sie Beispielwerte für jede Variable angeben. Diese helfen Meta, den Zweck Ihres Templates zu verstehen, und sind für die Genehmigung erforderlich.
+  **Example Values** — When creating templates, you must provide example values for each variable. These help Meta understand your template's purpose and are required for approval.
 </Info>
 
 #### Footer (Optional)
 
-Eine kurze Zeile am Ende (bis zu 60 Zeichen). Wird oft für Abmeldeinformationen oder Haftungsausschlüsse verwendet.
+A short line at the end (up to 60 characters). Often used for unsubscribe info or disclaimers.
 
 #### Buttons (Optional)
 
-Fügen Sie interaktive Schaltflächen zu Ihrem Template hinzu:
+Add interactive buttons to your template:
 
-* **Quick Reply**: Vordefinierte Antwortbuttons (z. B. „Ja“, „Nein“, „Mehr erfahren“)
-* **Call to Action**: Link zur Website oder Telefonnummer
-* **Voice Call Request**: Schaltfläche zum Anfordern der Erlaubnis für einen Sprachanruf
+* **Quick Reply:** Predefined reply buttons (e.g., "Yes", "No", "Learn more")  
+* **Call to Action:** Link to a website or phone number  
+* **Voice Call Request:** Button to request permission for a voice call  
 
-### Schritt 4: Zur Genehmigung einreichen
+### Step 4: Submit for Approval
 
-1. Überprüfen Sie Ihren Template-Inhalt
-2. Klicken Sie auf **Zur Genehmigung einreichen**
-3. Der Status des Templates ändert sich auf „Wartet auf Genehmigung“ (Pending Approval)
-4. Warten Sie auf die Prüfung durch Meta (Minuten bis 24 Stunden)
+1. Review your template content  
+2. Click **Submit for Approval**  
+3. Template status changes to "Pending Approval"  
+4. Wait for Meta's review (minutes up to 24 hours)  
 
-## Genehmigungsprozess für Templates
+## Template Approval Process
 
 ```mermaid  theme={null}
 flowchart LR
-    A[Template erstellen] --> B[Zur Prüfung einreichen]
-    B --> C{Meta prüft}
-    C -->|Genehmigt| D[Bereit zur Nutzung]
-    C -->|Abgelehnt| E[Bearbeiten & erneut einreichen]
+    A[Create Template] --> B[Submit for Review]
+    B --> C{Meta Reviews}
+    C -->|Approved| D[Ready to Use]
+    C -->|Rejected| E[Edit & Resubmit]
     E --> B
 ```
 
-### Genehmigungszeiten
+### Approval Times
 
-| Kategorie          | Typische Zeit                |
-| ------------------ | ---------------------------- |
-| Utility            | Minuten bis wenige Stunden   |
-| Marketing          | Stunden bis 24 Stunden      |
-| Authentifizierung  | Minuten bis wenige Stunden   |
-| Voice Call Request | In der Regel sofort          |
+| Category          | Typical Time                  |
+| ----------------- | ----------------------------- |
+| Utility           | Minutes to a few hours        |
+| Marketing         | Hours up to 24 hours          |
+| Authentication    | Minutes to a few hours        |
+| Voice Call Request| Usually immediate             |
 
-### Template-Status
+### Template Status
 
-| Status                                               | Beschreibung                                     |
-| ---------------->>---------------------------------- | ------------------------------------------------ |
-| <span style={{color: '#6b7280'}}>**Entwurf**</span>  | Noch nicht eingereicht                           |
-| <span style={{color: '#f59e0b'}}>**Pending**</span>  | Eingereicht, wartet auf Prüfung durch Meta       |
-| <span style={{color: '#22c55e'}}>**Approved**</span> | Bereit zur Verwendung                            |
-| <span style={{color: '#ef4444'}}>**Rejected**</span> | Prüfung fehlgeschlagen, siehe Ablehnungsgrund    |
-| <span style={{color: '#6b7280'}}>**Disabled**</span> | Von Meta wegen geringer Qualität deaktiviert     |
+| Status                                            | Description                                   |
+| ------------------------------------------------- | --------------------------------------------- |
+| <span style={{color: '#6b7280'}}>**Draft**</span> | Not submitted yet                            |
+| <span style={{color: '#f59e0b'}}>**Pending**</span> | Submitted, awaiting review by Meta           |
+| <span style={{color: '#22c55e'}}>**Approved**</span> | Ready for use                               |
+| <span style={{color: '#ef4444'}}>**Rejected**</span> | Review failed, see rejection reason          |
+| <span style={{color: '#6b7280'}}>**Disabled**</span> | Disabled by Meta due to low quality           |
 
-## Häufige Ablehnungsgründe
+## Common Rejection Reasons
 
-Vermeiden Sie diese Fehler, um Ihre Genehmigungsrate zu verbessern:
+Avoid these mistakes to improve approval rates:
 
-### ❌ Werbeinhalte in Utility-Templates
+### ❌ Promotional Content in Utility Templates
 
-**Problem:** Einbeziehung von Rabatten, Angeboten oder Marketingsprache in Utility-Templates.
+**Issue:** Including discounts, offers, or marketing language in Utility templates.
 
-**Lösung:** Nutzen Sie die Marketing-Kategorie für werbliche Inhalte.
+**Solution:** Use the Marketing category for promotional content.
 
-### ❌ Fehlende oder unklare Beispielvariablen
+### ❌ Missing or Unclear Example Variables
 
-**Problem:** Variablen wie `{{1}}` ohne klare Beispielwerte.
+**Issue:** Variables like `{{1}}` without clear sample values.
 
-**Lösung:** Geben Sie realistische Beispielwerte an, die den Zweck der Variable verdeutlichen:
+**Solution:** Provide realistic example values that clarify the variable’s purpose:
 
-* ✅ `{{1}}` = „Max Mustermann“
-* ✅ `{{2}}` = „#12345“
-* ❌ `{{1}}` = „test“
+* ✅ `{{1}}` = "Max Mustermann"  
+* ✅ `{{2}}` = "#12345"  
+* ❌ `{{1}}` = "test"  
 
-### ❌ Aggressive oder drohende Sprache
+### ❌ Aggressive or Threatening Language
 
-**Problem:** Inhalte, die als Belästigung, Drohung oder Spam wahrgenommen werden könnten.
+**Issue:** Content that might be perceived as harassment, threat, or spam.
 
-**Lösung:** Verwenden Sie professionelle, freundliche Sprache. Konzentrieren Sie sich auf den Mehrwert für den Kunden.
+**Solution:** Use professional, friendly language focusing on customer value.
 
-### ❌ URL-Shortener
+### ❌ URL Shorteners
 
-**Problem:** Verwendung von bit.ly, tinyurl oder anderen URL-Verkürzern.
+**Issue:** Using bit.ly, tinyurl, or other URL shorteners.
 
-**Lösung:** Verwenden Sie vollständige, markeneigene URLs Ihrer Domain.
+**Solution:** Use full, branded URLs from your domain.
 
-### ❌ Falsche Kategorieauswahl
+### ❌ Incorrect Category Selection
 
-**Problem:** Wahl der falschen Kategorie für Ihren Inhaltstyp.
+**Issue:** Choosing the wrong category for your content type.
 
-**Lösung:** Stimmen Sie die Kategorie strikt auf den Zweck des Inhalts ab.
+**Solution:** Strictly match the category to the content purpose.
 
-### ❌ Eingeschränkte Inhalte
+### ❌ Restricted Content
 
-**Problem:** Templates über Alkohol, Glücksspiel, Erotikinhalte, politische Botschaften oder illegale Aktivitäten.
+**Issue:** Templates about alcohol, gambling, adult content, political messages, or illegal activities.
 
-**Lösung:** Diese sind nicht erlaubt. Überprüfen Sie die Handelsrichtlinien von Meta.
+**Solution:** These are prohibited. Review Meta's commerce policies.
 
-## Verwendung von Templates
+## Using Templates
 
-### Template-Nachrichten senden
+### Sending Template Messages
 
-Sobald ein Template genehmigt wurde, können Sie es senden:
+Once a template is approved, you can send it:
 
-1. **Über die Automatisierungs-Plattform**: Nutzen Sie die Aktion „WhatsApp-Template senden“
-2. **Über die API**: Rufen Sie den Sende-Endpunkt mit der Template-ID und den Variablen auf
+1. **Via the Automation Platform:** Use the “Send WhatsApp Template” action  
+2. **Via the API:** Call the send endpoint with template ID and variables  
 
-### Variablen-Ersetzung
+### Variable Replacement
 
-Ersetzen Sie beim Senden die Variablen durch tatsächliche Werte:
+Replace variables with actual values when sending:
 
 **Template:**
 
 ```
-Hallo {{1}}, Ihr Termin ist für den {{2}} um {{3}} bestätigt.
+Hello {{1}}, your appointment is confirmed for {{2}} at {{3}}.
 ```
 
-**Gesendete Nachricht:**
+**Sent Message:**
 
 ```
-Hallo Max, Ihr Termin ist für den 15. Januar um 14:00 Uhr bestätigt.
+Hello Max, your appointment is confirmed for January 15 at 2:00 PM.
 ```
 
 ## Best Practices
 
-### 1. Verwenden Sie beschreibende Namen
+### 1. Use Descriptive Names
 
 ```
 ✅ order_confirmation_v1
@@ -272,57 +271,57 @@ Hallo Max, Ihr Termin ist für den 15. Januar um 14:00 Uhr bestätigt.
 ❌ message
 ```
 
-### 2. Nachrichten kurz halten
+### 2. Keep Messages Concise
 
-WhatsApp-Nutzer erwarten schnelle, klare Nachrichten. Kommen Sie zum Punkt und fügen Sie einen klaren Call-to-Action ein.
+WhatsApp users expect fast, clear messages. Get to the point and include a clear call to action.
 
-### 3. Interaktive Buttons nutzen
+### 3. Use Interactive Buttons
 
-Fügen Sie Quick Reply- oder Call-to-Action-Buttons hinzu, um es Kunden zu erleichtern zu antworten:
+Add Quick Reply or Call-to-Action buttons to make it easier for customers to respond:
 
-* „Bestellung verfolgen“
-* „Support kontaktieren“
-* „Details anzeigen“
-* „Termin bestätigen“
+* "Track Order"  
+* "Contact Support"  
+* "View Details"  
+* "Confirm Appointment"  
 
-### 4. Vor dem Massenversand testen
+### 4. Test Before Mass Sending
 
-Testen Sie Ihr Template immer erst mit einem einzelnen Empfänger, bevor Sie es an eine große Zielgruppe senden. Dies hilft, Formatierungsfehler zu finden.
+Always test your template with a single recipient before sending to a large audience. This helps catch formatting errors.
 
-### 5. Templates frühzeitig erstellen
+### 5. Create Templates Early
 
-Die Genehmigung kann bis zu 24 Stunden dauern. Erstellen und übermitteln Sie Templates, bevor Sie sie benötigen.
+Approval can take up to 24 hours. Create and submit templates before you need them.
 
-### 6. Backup-Templates bereithalten
+### 6. Keep Backup Templates Ready
 
-Erstellen Sie mehrere Versionen wichtiger Templates. Falls eines abgelehnt oder deaktiviert wird, haben Sie Alternativen bereit.
+Create multiple versions of important templates. If one gets rejected or disabled, you have alternatives.
 
-## Bearbeiten von Templates
+## Editing Templates
 
 <Warning>
-  **Eingeschränkte Bearbeitung** — Sobald ein Template genehmigt wurde, können Sie es nicht mehr bearbeiten. Um Änderungen vorzunehmen, müssen Sie ein neues Template mit einem anderen Namen erstellen.
+  **Limited Editing** — Once a template is approved, it cannot be edited. To make changes, create a new template with a different name.
 </Warning>
 
-**Kann bearbeitet werden:**
+**Editable:**
 
-* Entwurfs-Templates (noch nicht eingereicht)
-* Abgelehnte Templates (Probleme beheben und erneut einreichen)
+* Draft templates (not submitted yet)  
+* Rejected templates (fix issues and resubmit)  
 
-**Kann NICHT bearbeitet werden:**
+**Not Editable:**
 
-* Genehmigte Templates
-* Ausstehende Templates (muss auf Prüfung gewartet werden)
+* Approved templates  
+* Pending templates (waiting for review)  
 
-## Template-Limits
+## Template Limits
 
-Meta setzt Limits für die Erstellung von Templates:
+Meta enforces limits on template creation:
 
-* Maximale Anzahl an Templates pro WhatsApp Business-Konto: Variiert je nach Kontostufe
-* Template-Namen müssen pro Absender eindeutig sein
-* Abgelehnte Templates zählen zu Ihrem Limit
+* Maximum templates per WhatsApp Business Account vary by account tier  
+* Template names must be unique per sender  
+* Rejected templates count against your limit  
 
-## Nächste Schritte
+## Next Steps
 
-* Richten Sie [Automatisierung-Trigger](/en/whatsapp/automation) ein, um Templates automatisch zu senden
-* Erfahren Sie mehr über [WhatsApp-Absender](/en/whatsapp/senders) und die Absenderverwaltung
-* Überprüfen Sie die [KI-Assistenten-Konfiguration](/en/ai-assistants/what-is-ai-assistant) für Gesprächsantworten
+* Set up [automation triggers](/whatsapp/automation) to send templates automatically  
+* Learn more about [WhatsApp Senders](/whatsapp/senders) and sender management  
+* Review the [AI Assistants Configuration](/ai-assistants/what-is-ai-assistant) for conversation replies
