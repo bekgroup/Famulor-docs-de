@@ -1,55 +1,55 @@
 ---
 title: "JTL-Wawi Integration"
-description: "Vollständige JTL-Wawi ERP-Integration für Artikelverwaltung, Auftragsabwicklung und Versandmanagement"
+description: "Complete JTL-Wawi ERP integration for product management, order processing, and shipping management"
 icon: "boxes"
 ---
 
 
 # JTL-Wawi Integration Template
 
-## Tool 1: Artikelabfrage
+## Tool 1: Product Query
 
-### Konfiguration im Famulor Interface
+### Configuration in the Famulor Interface
 
 <Tabs>
-  <Tab title="Werkzeugdetails">
+  <Tab title="Tool Details">
     | **Name*** | `JTL-Wawi Artikelabfrage` |
-    | **Funktionsname*** | `get_jtl_article` |
-    | **HTTP-Methode** | `GET` |
+    | **Function Name*** | `get_jtl_article` |
+    | **HTTP Method** | `GET` |
     | **Endpoint*** | `https://{{JTL_API_URL}}/api/v1/artikel/{article_id}` |
   </Tab>
 </Tabs>
 
-**Success-Template**: `"{{articleName}} ({{articleNumber}}): {{stock}} Stück auf Lager, Preis: {{price}}€ netto"`
+**Success Template**: `"{{articleName}} ({{articleNumber}}): {{stock}} pieces in stock, price: €{{price}} net"`
 
-## Tool 2: Auftrag anlegen
+## Tool 2: Create Order
 
-### Konfiguration im Famulor Interface
+### Configuration in the Famulor Interface
 
 <Tabs>
-  <Tab title="Werkzeugdetails">
+  <Tab title="Tool Details">
     | **Name*** | `JTL-Wawi Auftrag anlegen` |
-    | **Funktionsname*** | `create_jtl_order` |
-    | **HTTP-Methode** | `POST` |
+    | **Function Name*** | `create_jtl_order` |
+    | **HTTP Method** | `POST` |
     | **Endpoint*** | `https://{{JTL_API_URL}}/api/v1/auftraege` |
   </Tab>
 </Tabs>
 
-**Success-Template**: `"Auftrag {{orderNumber}} wurde angelegt. Der Auftrag wird nun in JTL weiterverarbeitet."`
+**Success Template**: `"Order {{orderNumber}} has been created. The order will now be further processed in JTL."`
 
-## Tool 3: Versandstatus
+## Tool 3: Shipping Status
 
-### Konfiguration im Famulor Interface
+### Configuration in the Famulor Interface
 
 <Tabs>
-  <Tab title="Werkzeugdetails">
+  <Tab title="Tool Details">
     | **Name*** | `JTL Versandstatus` |
-    | **Funktionsname*** | `check_jtl_shipping` |
-    | **HTTP-Methode** | `GET` |
+    | **Function Name*** | `check_jtl_shipping` |
+    | **HTTP Method** | `GET` |
     | **Endpoint*** | `https://{{JTL_API_URL}}/api/v1/auftraege/{order_id}/versand` |
   </Tab>
 </Tabs>
 
-**Success-Template**: `"Versandstatus: {{status}}. {{#if trackingNumber}}Sendungsnummer: {{trackingNumber}} ({{carrier}}), versendet am {{shippedDate}}{{/if}}"`
+**Success Template**: `"Shipping status: {{status}}. {{#if trackingNumber}}Tracking number: {{trackingNumber}} ({{carrier}}), shipped on {{shippedDate}}{{/if}}"`
 
 ---

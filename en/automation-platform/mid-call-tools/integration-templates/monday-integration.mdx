@@ -1,100 +1,100 @@
 ---
 title: "Monday.com Integration"
-description: "Vollständige Monday.com Work OS Integration für Item-Management, Status-Updates und Board-Automation direkt während Kundengesprächem"
+description: "Complete Monday.com Work OS integration for item management, status updates, and board automation directly during customer calls"
 icon: "calendar-days"
 ---
 
 
 # Monday.com Integration Template
 
-Integrieren Sie Monday.com Work OS in Ihre Mid-call Actions mit drei mächtigen Funktionen: Items suchen, Status aktualisieren und neue Items erstellen. Perfekt für Team-Koordination, Projekt-Tracking und agile Workflows.
+Integrate Monday.com Work OS into your Mid-call Actions with three powerful features: searching items, updating status, and creating new items. Perfect for team coordination, project tracking, and agile workflows.
 
-## Überblick & Funktionen
+## Overview & Features
 
 <CardGroup cols={3}>
-  <Card title="Items suchen" icon="magnifying-glass">
-    - GraphQL-basierte Board-Durchsuchung
-    - Multi-Board-Queries möglich
-    - Column-Value-Filtering
-    - Customer-spezifische Item-Lookups
+  <Card title="Search Items" icon="magnifying-glass">
+    - GraphQL-based board search  
+    - Multi-board queries enabled  
+    - Column value filtering  
+    - Customer-specific item lookups  
   </Card>
-  <Card title="Status aktualisieren" icon="chart-line">
-    - Echtzeit-Status-Updates
-    - Column-Value-Modifications
-    - Priority und Assignment-Changes
-    - Progress-Tracking-Integration
+  <Card title="Update Status" icon="chart-line">
+    - Real-time status updates  
+    - Column value modifications  
+    - Priority and assignment changes  
+    - Progress tracking integration  
   </Card>
-  <Card title="Items erstellen" icon="plus-circle">
-    - Automatische Task-Creation aus Gespräch
-    - Group-basierte Organisation
-    - Custom Column-Values setzen
-    - Team-Assignment und Deadline-Setting
+  <Card title="Create Items" icon="plus-circle">
+    - Automatic task creation from conversation  
+    - Group-based organization  
+    - Set custom column values  
+    - Team assignment and deadline setting  
   </Card>
 </CardGroup>
 
 ## Monday.com API & Workspace Setup
 
-### 1. Monday.com API-Zugang einrichten
+### 1. Set up Monday.com API Access
 
 <Steps>
   <Step title="Monday.com Account & Permissions">
-    - Stellen Sie sicher, dass Sie Admin-Rechte in Ihrem Monday.com Account haben
-    - Navigieren Sie zu "Profile" → "Admin" → "API"
-    - Überprüfen Sie verfügbare Boards und deren IDs
+    - Ensure you have admin rights in your Monday.com account  
+    - Navigate to "Profile" → "Admin" → "API"  
+    - Review available boards and their IDs  
   </Step>
   
-  <Step title="API Token generieren">
+  <Step title="Generate API Token">
     ```yaml
-    API-Token-Erstellung:
+    API Token Creation:
       1. "Profile" → "Admin" → "API"
       2. "API v2 Token" → "Generate"
-      3. Token-Name: "Famulor Mid-Call Integration"
-      4. Token kopieren und sicher speichern
-      5. Permissions: Lesen und Schreiben für relevante Boards
+      3. Token Name: "Famulor Mid-Call Integration"
+      4. Copy the token and store it securely
+      5. Permissions: Read and write for relevant boards
     ```
   </Step>
   
-  <Step title="Board-IDs und Struktur analysieren">
+  <Step title="Analyze Board IDs and Structure">
     ```yaml
-    Board-Information sammeln:
-      1. Relevante Boards identifizieren:
+    Collect Board Information:
+      1. Identify relevant boards:
          - Sales Pipeline Board (ID: 1234567890)
          - Support Tickets Board (ID: 2345678901)
          - Feature Requests Board (ID: 3456789012)
       
-      2. Column-IDs dokumentieren:
+      2. Document column IDs:
          - Status Column: "status"
-         - Priority Column: "priority" 
+         - Priority Column: "priority"
          - Assignee Column: "person"
          - Date Column: "date4"
       
-      3. Group-IDs für Organisation:
-         - "new_group" für neue Items
-         - "topics" für Standard-Tasks
+      3. Group IDs for organization:
+         - "new_group" for new items
+         - "topics" for standard tasks
     ```
   </Step>
   
-  <Step title="GraphQL-Schema verstehen">
-    - Monday.com nutzt GraphQL für alle API-Operationen
-    - Queries für Daten-Abruf (search_monday_items)
-    - Mutations für Änderungen (update_monday_status, create_monday_item)
-    - Strukturierte Response-Handling erforderlich
+  <Step title="Understand GraphQL Schema">
+    - Monday.com uses GraphQL for all API operations  
+    - Queries for fetching data (`search_monday_items`)  
+    - Mutations for changes (`update_monday_status`, `create_monday_item`)  
+    - Structured response handling required  
   </Step>
 </Steps>
 
-## Tool 1: Items suchen
+## Tool 1: Search Items
 
-### Konfiguration im Famulor Interface
+### Configuration in the Famulor Interface
 
 <Tabs>
-  <Tab title="Werkzeugdetails">
-    | Feld | Wert |
-    |------|------|
+  <Tab title="Tool Details">
+    | Field | Value |
+    |-------|-------|
     | **Name*** | `Monday.com Items suchen` |
-    | **Beschreibung** | "Sucht Items nach verschiedenen Kriterien in Monday.com Boards für Status-Updates und Follow-ups" |
-    | **Funktionsname*** | `search_monday_items` |
-    | **Funktionsbeschreibung*** | "Durchsucht Monday.com Boards. Verwenden Sie dies, um bestehende Tasks zu finden, Status zu prüfen oder Kundenbezogene Items zu lokalisieren." |
-    | **HTTP-Methode** | `POST` |
+    | **Description** | "Searches items by various criteria in Monday.com boards for status updates and follow-ups" |
+    | **Function Name*** | `search_monday_items` |
+    | **Function Description*** | "Searches Monday.com boards. Use this to find existing tasks, check status, or locate customer-related items." |
+    | **HTTP Method** | `POST` |
     | **Timeout (ms)** | `5000` |
     | **Endpoint*** | `https://api.monday.com/v2` |
   </Tab>
@@ -108,7 +108,7 @@ Integrieren Sie Monday.com Work OS in Ihre Mid-call Actions mit drei mächtigen 
   </Tab>
 </Tabs>
 
-### Parameter-Schema für Item-Suche
+### Parameter Schema for Item Search
 
 ```json
 {
@@ -117,17 +117,17 @@ Integrieren Sie Monday.com Work OS in Ihre Mid-call Actions mit drei mächtigen 
     "board_ids": {
       "type": "array",
       "items": {"type": "integer"},
-      "description": "Monday.com Board IDs zum Durchsuchen",
+      "description": "Monday.com board IDs to search",
       "examples": [[1234567890], [1234567890, 2345678901]]
     },
     "search_term": {
       "type": "string",
-      "description": "Suchbegriff für Item-Namen oder Column-Values (wird in GraphQL-Filter integriert)"
+      "description": "Search term for item names or column values (integrated into GraphQL filter)"
     },
     "status_filter": {
       "type": "string",
       "enum": ["", "Working on it", "Done", "Stuck", "Not Started"],
-      "description": "Filtert Items nach Status-Column"
+      "description": "Filter items by status column"
     },
     "limit": {
       "type": "integer",
@@ -141,7 +141,7 @@ Integrieren Sie Monday.com Work OS in Ihre Mid-call Actions mit drei mächtigen 
 }
 ```
 
-### Response-Mapping
+### Response Mapping
 
 ```json
 {
@@ -150,19 +150,19 @@ Integrieren Sie Monday.com Work OS in Ihre Mid-call Actions mit drei mächtigen 
 }
 ```
 
-## Tool 2: Status aktualisieren
+## Tool 2: Update Status
 
-### Konfiguration im Famulor Interface
+### Configuration in the Famulor Interface
 
 <Tabs>
-  <Tab title="Werkzeugdetails">
-    | Feld | Wert |
-    |------|------|
+  <Tab title="Tool Details">
+    | Field | Value |
+    |-------|-------|
     | **Name*** | `Monday.com Status Update` |
-    | **Beschreibung** | "Aktualisiert den Status oder andere Column-Values eines Monday.com Items" |
-    | **Funktionsname*** | `update_monday_status` |
-    | **Funktionsbeschreibung*** | "Aktualisiert ein Monday.com Item. Verwenden Sie dies, um Task-Status zu ändern, Assignees zu aktualisieren oder Deadline-Änderungen vorzunehmen." |
-    | **HTTP-Methode** | `POST` |
+    | **Description** | "Updates the status or other column values of a Monday.com item" |
+    | **Function Name*** | `update_monday_status` |
+    | **Function Description*** | "Updates a Monday.com item. Use this to change task status, update assignees, or modify deadlines." |
+    | **HTTP Method** | `POST` |
     | **Timeout (ms)** | `5000` |
     | **Endpoint*** | `https://api.monday.com/v2` |
   </Tab>
@@ -176,7 +176,7 @@ Integrieren Sie Monday.com Work OS in Ihre Mid-call Actions mit drei mächtigen 
   </Tab>
 </Tabs>
 
-### Parameter-Schema für Updates
+### Parameter Schema for Updates
 
 ```json
 {
@@ -184,24 +184,24 @@ Integrieren Sie Monday.com Work OS in Ihre Mid-call Actions mit drei mächtigen 
   "properties": {
     "board_id": {
       "type": "integer",
-      "description": "Monday.com Board ID des zu aktualisierenden Items"
+      "description": "Monday.com board ID of the item to update"
     },
     "item_id": {
       "type": "integer", 
-      "description": "Item ID (aus vorheriger Suche oder bekannt)"
+      "description": "Item ID (from previous search or known)"
     },
     "column_id": {
       "type": "string",
-      "description": "Column ID für Update (z.B. 'status', 'priority', 'person')",
+      "description": "Column ID to update (e.g., 'status', 'priority', 'person')",
       "examples": ["status", "priority", "person", "date4", "text"]
     },
     "value": {
       "type": "string",
-      "description": "Neuer Wert für die Column (JSON-String für komplexe Columns)"
+      "description": "New value for the column (JSON string for complex columns)"
     },
     "update_reason": {
       "type": "string",
-      "description": "Grund für das Update (für Audit-Trail)",
+      "description": "Reason for the update (for audit trail)",
       "examples": ["Customer Call Update", "Status Change", "Priority Escalation"]
     }
   },
@@ -209,7 +209,7 @@ Integrieren Sie Monday.com Work OS in Ihre Mid-call Actions mit drei mächtigen 
 }
 ```
 
-### Response-Mapping
+### Response Mapping
 
 ```json
 {
@@ -218,19 +218,19 @@ Integrieren Sie Monday.com Work OS in Ihre Mid-call Actions mit drei mächtigen 
 }
 ```
 
-## Tool 3: Item erstellen
+## Tool 3: Create Item
 
-### Konfiguration im Famulor Interface
+### Configuration in the Famulor Interface
 
 <Tabs>
-  <Tab title="Werkzeugdetails">
-    | Feld | Wert |
-    |------|------|
+  <Tab title="Tool Details">
+    | Field | Value |
+    |-------|-------|
     | **Name*** | `Monday.com Item erstellen` |
-    | **Beschreibung** | "Erstellt ein neues Item (Task) in einem Monday.com Board basierend auf Gesprächsinhalten" |
-    | **Funktionsname*** | `create_monday_item` |
-    | **Funktionsbeschreibung*** | "Erstellt ein neues Item in Monday.com. Verwenden Sie dies für Action Items, Follow-up-Tasks oder Kundenanfragen aus dem Gespräch." |
-    | **HTTP-Methode** | `POST` |
+    | **Description** | "Creates a new item (task) in a Monday.com board based on conversation content" |
+    | **Function Name*** | `create_monday_item` |
+    | **Function Description*** | "Creates a new item in Monday.com. Use this for action items, follow-up tasks, or customer requests resulting from the call." |
+    | **HTTP Method** | `POST` |
     | **Timeout (ms)** | `5000` |
     | **Endpoint*** | `https://api.monday.com/v2` |
   </Tab>
@@ -244,7 +244,7 @@ Integrieren Sie Monday.com Work OS in Ihre Mid-call Actions mit drei mächtigen 
   </Tab>
 </Tabs>
 
-### Parameter-Schema für Item-Creation
+### Parameter Schema for Item Creation
 
 ```json
 {
@@ -252,20 +252,20 @@ Integrieren Sie Monday.com Work OS in Ihre Mid-call Actions mit drei mächtigen 
   "properties": {
     "board_id": {
       "type": "integer",
-      "description": "Monday.com Board ID wo das Item erstellt werden soll"
+      "description": "Monday.com board ID where the item should be created"
     },
     "group_id": {
       "type": "string",
-      "description": "Gruppe/Sektion ID innerhalb des Boards (z.B. 'new_group', 'topics')",
+      "description": "Group/section ID within the board (e.g., 'new_group', 'topics')",
       "examples": ["new_group", "topics", "this_week", "next_week"]
     },
     "item_name": {
       "type": "string", 
-      "description": "Name des neuen Items/Tasks"
+      "description": "Name of the new item/task"
     },
     "column_values": {
       "type": "string",
-      "description": "JSON-String mit Column-Values für Initialisierung",
+      "description": "JSON string with column values for initialization",
       "examples": [
         "{\"status\": {\"label\": \"Working on it\"}, \"priority\": {\"label\": \"High\"}}",
         "{\"person\": {\"personsAndTeams\": [{\"id\": 12345}]}, \"date4\": {\"date\": \"2024-01-20\"}}"
@@ -273,26 +273,26 @@ Integrieren Sie Monday.com Work OS in Ihre Mid-call Actions mit drei mächtigen 
     },
     "customer_name": {
       "type": "string",
-      "description": "Kundenname für Item-Kategorisierung (wird in Text-Column eingefügt)"
+      "description": "Customer name for item categorization (inserted into a text column)"
     },
     "phone_number": {
       "type": "string",
-      "description": "Kundenkontakt für Follow-ups (wird in Text-Column eingefügt)"
+      "description": "Customer contact for follow-ups (inserted into a text column)"
     },
     "priority": {
       "type": "string",
       "enum": ["Critical", "High", "Medium", "Low"],
-      "description": "Prioritätsstufe basierend auf Gesprächskontext",
+      "description": "Priority level based on conversation context",
       "default": "Medium"
     },
     "due_date": {
       "type": "string",
       "format": "date",
-      "description": "Deadline für die Aufgabe (YYYY-MM-DD)"
+      "description": "Deadline for the task (YYYY-MM-DD)"
     },
     "estimated_hours": {
       "type": "number",
-      "description": "Geschätzte Arbeitszeit in Stunden",
+      "description": "Estimated working hours",
       "minimum": 0.5,
       "maximum": 100
     }
@@ -301,16 +301,16 @@ Integrieren Sie Monday.com Work OS in Ihre Mid-call Actions mit drei mächtigen 
 }
 ```
 
-## Praktische Anwendungsszenarien
+## Practical Use Cases
 
-### Szenario 1: Customer-Support-Workflow
+### Scenario 1: Customer Support Workflow
 
 <Steps>
-  <Step title="Problem-Assessment & Item-Lookup">
+  <Step title="Problem Assessment & Item Lookup">
     ```yaml
-    Kunde: "Mein Ticket SUP-123 - gibt es Updates?"
+    Customer: "My ticket SUP-123 – any updates?"
     
-    KI: "Ich schaue nach Ihrem Ticket..."
+    AI: "Checking your ticket..."
     
     search_monday_items:
       board_ids: [2345678901]  # Support Board
@@ -330,14 +330,14 @@ Integrieren Sie Monday.com Work OS in Ihre Mid-call Actions mit drei mächtigen 
     ```
   </Step>
   
-  <Step title="Status-Update basierend auf Gespräch">
+  <Step title="Status Update Based on Conversation">
     ```yaml
-    Wenn Problem gelöst:
-      KI: "Ich markiere Ihr Ticket als erledigt..."
+    If problem resolved:
+      AI: "Marking your ticket as completed..."
       
     update_monday_status:
       board_id: 2345678901
-      item_id: 987654321  # Aus Search-Result
+      item_id: 987654321  # From search result
       column_id: "status"
       value: "{\"label\": \"Done\"}"
     
@@ -356,18 +356,18 @@ Integrieren Sie Monday.com Work OS in Ihre Mid-call Actions mit drei mächtigen 
   </Step>
 </Steps>
 
-### Szenario 2: Sales-Pipeline-Management
+### Scenario 2: Sales Pipeline Management
 
 <AccordionGroup>
-  <Accordion title="Lead-to-Item-Creation">
-    **Sales-Call-Workflow**:
+  <Accordion title="Lead-to-Item Creation">
+    **Sales Call Workflow**:
     ```yaml
-    Kunde zeigt Interesse an Demo:
+    Customer shows interest in demo:
       
     create_monday_item:
       board_id: 1234567890  # Sales Board
       group_id: "new_leads"
-      item_name: "Demo Request - Beispiel AG"
+      item_name: "Demo Request - Example Inc."
       column_values: "{
         \"status\": {\"label\": \"Working on it\"},
         \"priority\": {\"label\": \"High\"},
@@ -376,22 +376,22 @@ Integrieren Sie Monday.com Work OS in Ihre Mid-call Actions mit drei mächtigen 
         \"text\": \"Customer: Max Mustermann, Phone: +49123456789\"
       }"
     
-    Ergebnis:
-      - Item im Sales-Board erstellt
-      - Automatische Assignment an Sales-Rep
-      - Deadline für Demo-Vorbereitung gesetzt
-      - Customer-Kontaktdaten hinterlegt
+    Outcome:
+      - Item created in Sales board  
+      - Automatic assignment to sales rep  
+      - Deadline set for demo preparation  
+      - Customer contact data stored  
     ```
   </Accordion>
   
-  <Accordion title="Deal-Status-Tracking">
-    **Pipeline-Updates während Gespräch**:
+  <Accordion title="Deal Status Tracking">
+    **Pipeline updates during conversation**:
     ```yaml
-    Deal-Progress-Update:
+    Deal progress update:
       
-    Kunde: "Wir haben das Budget genehmigt!"
+    Customer: "We've approved the budget!"
     
-    KI: "Fantastisch! Ich aktualisiere den Deal-Status..."
+    AI: "Great! Updating deal status..."
     
     update_monday_status (Status):
       column_id: "status"
@@ -403,22 +403,22 @@ Integrieren Sie Monday.com Work OS in Ihre Mid-call Actions mit drei mächtigen 
     
     update_monday_status (Notes):
       column_id: "text"
-      value: "Budget approved in call on {date} - ready for contract phase"
+      value: "Budget approved in call on {date} – ready for contract phase"
     ```
   </Accordion>
 </AccordionGroup>
 
-### Szenario 3: Project-Koordination
+### Scenario 3: Project Coordination
 
 ```mermaid
 sequenceDiagram
-    participant C as Kunde
-    participant AI as KI-Assistant
+    participant C as Customer
+    participant AI as AI Assistant
     participant M as Monday.com
     participant T as Team
     participant N as Notifications
     
-    C->>AI: "Wir brauchen Feature X bis Ende des Monats"
+    C->>AI: "We need Feature X by month-end"
     AI->>M: search_monday_items (Feature X exists?)
     M-->>AI: No existing items found
     AI->>M: create_monday_item (New Feature Request)
@@ -427,18 +427,18 @@ sequenceDiagram
     M-->>AI: Status updated
     AI->>T: Automatic team assignment notification
     AI->>N: Slack/Teams notification
-    AI->>C: "Feature-Request wurde erstellt - ID: FEAT-789"
+    AI->>C: "Feature request has been created – ID: FEAT-789"
     
-    Note over M: Board-Updates sichtbar für ganzes Team
-    Note over T: Entwicklungsplanung kann beginnen
+    Note over M: Board updates visible to entire team
+    Note over T: Development planning can start
 ```
 
-## GraphQL-Queries & Mutations im Detail
+## GraphQL Queries & Mutations in Detail
 
-### Erweiterte Search-Queries
+### Advanced Search Queries
 
 <AccordionGroup>
-  <Accordion title="Multi-Board-Search mit Filtering">
+  <Accordion title="Multi-Board Search with Filtering">
     ```graphql
     query SearchCustomerItems($boards: [Int!], $customerName: String!) {
       boards(ids: $boards) {
@@ -459,13 +459,13 @@ sequenceDiagram
     }
     ```
     
-    **Verwendung für Customer-Lookup**:
-    - Customer-Name in Text-Columns suchen
-    - Status-Filter anwenden
-    - Cross-Board-Search möglich
+    **Use for Customer Lookup**:
+    - Search customer name in text columns  
+    - Apply status filter  
+    - Cross-board search supported  
   </Accordion>
   
-  <Accordion title="Status-basierte Filtering">
+  <Accordion title="Status-Based Filtering">
     ```graphql
     query GetOpenTasks($boardId: Int!, $statusLabel: String!) {
       boards(ids: [$boardId]) {
@@ -486,10 +486,10 @@ sequenceDiagram
   </Accordion>
 </AccordionGroup>
 
-### Complex Column-Value-Updates
+### Complex Column Value Updates
 
 <Tabs>
-  <Tab title="Status-Column-Updates">
+  <Tab title="Status Column Updates">
     ```json
     {
       "Status": "{\"label\": \"Working on it\"}",
@@ -520,9 +520,9 @@ sequenceDiagram
   </Tab>
 </Tabs>
 
-## Response-Verarbeitung
+## Response Processing
 
-### Item-Search Response
+### Item Search Response
 
 ```json
 {
@@ -532,7 +532,7 @@ sequenceDiagram
         "items": [
           {
             "id": "987654321",
-            "name": "Demo Request - Beispiel AG",
+            "name": "Demo Request - Example Inc.",
             "column_values": [
               {
                 "id": "status",
@@ -555,106 +555,104 @@ sequenceDiagram
 }
 ```
 
-### Natürliche Sprachintegration
+### Natural Language Integration
 
 <AccordionGroup>
-  <Accordion title="Search-Results-Kommunikation">
-    **Template**: `"{{totalCount}} Items gefunden. Erste Ergebnisse: {{items[0].name}}, {{items[1].name}}"`
-    
-    **Erweiterte Interpretationen**:
+  <Accordion title="Search Results Communication">
+    **Template**: `"{{totalCount}} items found. Top results: {{items[0].name}}, {{items[1].name}}"`
+
+    **Advanced Interpretations**:
     ```yaml
-    Wenn Items gefunden:
-      "Ich habe 3 relevante Aufgaben gefunden. Ihr Demo-Request mit Beispiel AG 
-       ist aktuell in Bearbeitung und wird von unserem Sales-Team betreut."
+    When items found:
+      "I found 3 relevant tasks. Your demo request with Example Inc. is currently in progress and being handled by our sales team."
     
-    Wenn keine Items:
-      "Ich konnte keine passenden Aufgaben finden. Soll ich eine neue erstellen?"
+    When no items:
+      "I couldn't find any matching tasks. Should I create a new one?"
     
-    Mit Status-Context:
-      "Ihr Support-Ticket ist seit gestern in Bearbeitung. 
-       Das Team arbeitet aktiv an der Lösung."
+    With status context:
+      "Your support ticket has been in progress since yesterday. The team is actively working on a solution."
     ```
   </Accordion>
   
-  <Accordion title="Update & Creation-Bestätigungen">
-    **Status-Update-Template**: `"Status aktualisiert für: {{itemName}}"`
-    
-    **Creation-Template**: `"Aufgabe erstellt: {{itemName}} (ID: {{itemId}})"`
-    
-    **Business-Context-Integration**:
+  <Accordion title="Update & Creation Confirmations">
+    **Status Update Template**: `"Status updated for: {{itemName}}"`
+
+    **Creation Template**: `"Task created: {{itemName}} (ID: {{itemId}})"`
+
+    **Business Context Integration**:
     ```yaml
-    Mit Team-Assignment:
-      "Aufgabe wurde erstellt und an das Entwicklungsteam zugewiesen."
+    With team assignment:
+      "The task was created and assigned to the development team."
     
-    Mit Deadline:
-      "Feature-Request wurde mit Deadline Ende Januar eingeplant."
+    With deadline:
+      "Feature request scheduled with a due date at the end of January."
     
-    Mit Priority-Escalation:
-      "Support-Ticket wurde als High-Priority markiert und priorisiert bearbeitet."
+    With priority escalation:
+      "Support ticket marked as high priority and is being addressed urgently."
     ```
   </Accordion>
 </AccordionGroup>
 
-## Erweiterte Monday.com Features
+## Advanced Monday.com Features
 
 ### Automation & Workflows
 
 <AccordionGroup>
-  <Accordion title="Monday.com Automation-Rules">
+  <Accordion title="Monday.com Automation Rules">
     ```yaml
-    Board-Automation-Integration:
+    Board Automation Integration:
       
-    Wenn Mid-Call-Item erstellt:
-      → Automatische Email-Benachrichtigung an Assignee
-      → Slack-Notification in Team-Channel
-      → Due-Date-Reminder 24h vorher
+    When mid-call item is created:
+      → Automatic email notification to assignee
+      → Slack notification in team channel
+      → Due date reminder 24 hours prior
       
-    Wenn Status = "Done":
-      → Customer-Benachrichtigung via Email
-      → Move Item to "Completed" Group
-      → Archive nach 30 Tagen
+    When status = "Done":
+      → Customer notification via email
+      → Move item to "Completed" group
+      → Archive after 30 days
       
-    Wenn Priority = "Critical":
-      → Sofortige Manager-Benachrichtigung
-      → Auto-assign to Senior Team Member
-      → SLA-Timer activation
+    When priority = "Critical":
+      → Immediate manager notification
+      → Auto-assign to senior team member
+      → SLA timer activation
     ```
   </Accordion>
   
-  <Accordion title="Cross-Board-Integration">
+  <Accordion title="Cross-Board Integration">
     ```yaml
-    Multi-Board-Workflows:
+    Multi-board workflows:
       
-    Sales-Support-Bridge:
-      Sales-Item → Create linked Support-Item
-      Support-Resolution → Update Sales-Status
+    Sales-Support Bridge:
+      Sales item → Create linked support item
+      Support resolution → Update sales status
       
-    Development-Planning:
-      Feature-Request → Create Epic in Dev-Board
-      Epic-Progress → Update Customer-Communication-Board
+    Development Planning:
+      Feature request → Create epic in dev board
+      Epic progress → Update customer communication board
       
-    Customer-Success-Tracking:
-      Support-Issue → Create CS-Follow-up-Item
-      Project-Milestone → Create Customer-Check-in
+    Customer Success Tracking:
+      Support issue → Create customer success follow-up item
+      Project milestone → Create customer check-in
     ```
   </Accordion>
 </AccordionGroup>
 
-### Advanced Column-Types
+### Advanced Column Types
 
 <Tabs>
-  <Tab title="Customer-Management-Columns">
+  <Tab title="Customer Management Columns">
     ```yaml
-    Customer-Database-Integration:
+    Customer Database Integration:
       
-    Customer-Info-Columns:
+    Customer Info Columns:
       - "Customer Name": Text field
       - "Contact Email": Email field  
       - "Phone Number": Phone field
       - "Company Size": Dropdown (Small/Medium/Large)
       - "Industry": Dropdown (Tech/Healthcare/Finance/...)
       
-    Business-Context:
+    Business Context:
       - "Deal Size": Numbers (€)
       - "Urgency": Rating (1-5 stars)
       - "Last Contact": Date
@@ -662,11 +660,11 @@ sequenceDiagram
     ```
   </Tab>
   
-  <Tab title="Project-Tracking-Columns">
+  <Tab title="Project Tracking Columns">
     ```yaml
-    Project-Management-Columns:
+    Project Management Columns:
       
-    Progress-Tracking:
+    Progress Tracking:
       - "Completion %": Progress bar
       - "Time Spent": Time tracking
       - "Budget Used": Numbers with currency
@@ -676,7 +674,7 @@ sequenceDiagram
       - "Related Items": Connect boards (Same board)
       - "Parent Epic": Connect boards (Cross-reference)
       
-    Quality-Assurance:
+    Quality Assurance:
       - "Review Status": Dropdown
       - "Testing Notes": Long text
       - "Acceptance Criteria": Checklist
@@ -686,40 +684,40 @@ sequenceDiagram
 
 ## Performance & Analytics
 
-### Monday.com Integration-KPIs
+### Monday.com Integration KPIs
 
-| Metrik | Beschreibung | Zielwert |
-|--------|-------------|----------|
-| **Item Creation Success Rate** | % erfolgreich erstellter Items | &gt;99% |
-| **GraphQL Query Performance** | Durchschnittliche Response-Zeit | &lt;1.5 Sekunden |
-| **Update Success Rate** | % erfolgreiche Column-Updates | &gt;98% |
-| **Team Adoption Rate** | % der Items mit Mid-Call-Origin die bearbeitet werden | &gt;85% |
+| Metric | Description | Target Value |
+|--------|-------------|--------------|
+| **Item Creation Success Rate** | % of successfully created items | &gt;99% |
+| **GraphQL Query Performance** | Average response time | &lt;1.5 seconds |
+| **Update Success Rate** | % of successful column updates | &gt;98% |
+| **Team Adoption Rate** | % of mid-call originated items processed | &gt;85% |
 
 ### Business Impact Tracking
 
 <Steps>
-  <Step title="Workflow-Efficiency">
+  <Step title="Workflow Efficiency">
     ```yaml
-    Productivity-Metriken:
-      - Reduzierte Zeit von Gespräch zu Task-Assignment
-      - Höhere Follow-up-Rate durch automatische Item-Creation
-      - Verbesserte Team-Coordination durch structured Data
-      - Reduzierte "vergessene Action Items"
+    Productivity Metrics:
+      - Reduced time from conversation to task assignment
+      - Higher follow-up rate through automatic item creation
+      - Improved team coordination through structured data
+      - Fewer "forgotten action items"
     ```
   </Step>
   
-  <Step title="Customer-Experience-Impact">
+  <Step title="Customer Experience Impact">
     ```yaml
-    Customer-Satisfaction:
-      - Schnellere Problem-Resolution durch sofortige Ticket-Creation
-      - Höhere Transparenz durch Item-Status-Sharing
-      - Proaktive Updates durch Automation-Rules
-      - Reduzierte "Lost in System"-Erfahrungen
+    Customer Satisfaction:
+      - Faster problem resolution via immediate ticket creation
+      - Greater transparency through item status sharing
+      - Proactive updates via automation rules
+      - Reduced "lost in system" experiences
     ```
   </Step>
 </Steps>
 
-## Fehlerbehandlung
+## Error Handling
 
 ### Monday.com GraphQL Errors
 
@@ -728,47 +726,47 @@ sequenceDiagram
     ```yaml
     Error: "Invalid authentication credentials"
     
-    Ursache: API-Token ungültig oder abgelaufen
+    Cause: API token invalid or expired
     
     Fallback:
-      "Monday.com-Synchronisation ist momentan nicht verfügbar. 
-       Ich dokumentiere die Aufgabe für manuelle Erstellung."
+      "Monday.com synchronization is currently unavailable. 
+       I’m logging the task for manual creation."
     
     Resolution:
-      - API-Token überprüfen und erneuern
-      - Account-Permissions validieren
-      - Board-Access-Rights überprüfen
+      - Check and renew API token
+      - Validate account permissions
+      - Verify board access rights
     ```
   </Accordion>
   
-  <Accordion title="Board/Item nicht gefunden">
+  <Accordion title="Board/Item Not Found">
     ```yaml
     Error: "Resource not found"
     
-    Mögliche Ursachen:
-      - Board-ID falsch oder Board gelöscht
-      - Item-ID existiert nicht
-      - Unzureichende Berechtigungen
+    Possible causes:
+      - Incorrect or deleted board ID
+      - Item ID does not exist
+      - Insufficient permissions
     
-    Intelligent-Fallback:
-      - Alternative Board-IDs versuchen
-      - Default-Board für neue Items verwenden
-      - Admin-Benachrichtigung über Konfigurationsproblem
+    Intelligent fallback:
+      - Try alternative board IDs
+      - Use default board for new items
+      - Notify admin of configuration issue
     ```
   </Accordion>
   
-  <Accordion title="GraphQL-Syntax-Errors">
+  <Accordion title="GraphQL Syntax Errors">
     ```yaml
     Error: "Query error: Syntax error"
     
     Handling:
-      - Fallback auf einfachere Query
-      - Parameter-Validation vor API-Call
-      - Dynamic Query-Building mit Error-Checking
+      - Fallback to simpler query
+      - Parameter validation before API call
+      - Dynamic query building with error checking
     
-    Recovery-Strategy:
-      "Es gab ein technisches Problem mit der Monday.com-Integration. 
-       Ich verwende eine alternative Methode."
+    Recovery strategy:
+      "There was a technical issue with the Monday.com integration. 
+       Using an alternative method."
     ```
   </Accordion>
 </AccordionGroup>
@@ -776,10 +774,9 @@ sequenceDiagram
 ---
 
 <Warning>
-**GraphQL-Komplexität**: Monday.com verwendet GraphQL, was komplexere Query-Strukturen erfordert. Testen Sie alle Queries ausführlich in der Monday.com API-Playground bevor Sie sie in Production verwenden.
+**GraphQL Complexity**: Monday.com uses GraphQL which requires more complex query structures. Test all queries thoroughly in the Monday.com API Playground before using in production.
 </Warning>
 
 <Info>
-**Productivity-Tipp**: Nutzen Sie Monday.com-Automation-Rules in Kombination mit den Mid-call Actions um vollständige Workflow-Automation zu erreichen. Dies maximiert den ROI der Integration.
+**Productivity Tip**: Use Monday.com automation rules combined with Mid-call Actions to achieve full workflow automation. This maximizes the ROI of your integration.
 </Info>
-
