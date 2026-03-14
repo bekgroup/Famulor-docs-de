@@ -19,18 +19,24 @@ Um die strengen Anforderungen des europäischen Marktes (u. a. Art. 9 DSGVO für
 | **Zero-Retention-Modus** | Wir bieten einen „Zero Retention Mode“ für hochsensible Umgebungen: Daten werden im Arbeitsspeicher verarbeitet und unmittelbar nach der Interaktion gelöscht. |
 | **Verschlüsselung** | Alle Daten werden während der Übertragung mit TLS 1.2+ und im Ruhezustand mit AES-256 verschlüsselt. |
 
-## 2. Infrastruktur & Plattform-Hosting
+## 2. Systemstatus & Verfügbarkeit
 
-Diese Anbieter hosten die Famulor.io-Plattform inkl. Backend-Logik und Kunden-Dashboard.
+Transparenz über die Systemperformance ist uns in der Zusammenarbeit wichtig. Unseren Live-Status können Sie jederzeit einsehen:
+
+**Live-Status:** [https://status.famulor.io/](https://status.famulor.io/)
+
+## 3. Infrastruktur & Plattform-Hosting
+
+Diese Anbieter hosten die Famulor.io-Plattform inkl. Backend-Logik, Datenbanken und Kunden-Dashboard.
 
 | Anbieter | Zweck | Verarbeitungsstandort |
 |----------|-------|----------------------|
 | Amazon Web Services (AWS) | Kernplattform, Datenbanken & API-Logik | Frankfurt, Deutschland (EU) |
 | Vercel Inc. | Frontend & Web-Oberfläche | Frankfurt, Deutschland (EU) |
 
-## 3. Künstliche Intelligenz (LLM)
+## 4. Künstliche Intelligenz (LLM)
 
-Diese Modelle übernehmen die Reasoning- und Gesprächslogik. Wir nutzen Enterprise-Instanzen für Datenisolation.
+Diese Modelle übernehmen die Reasoning- und Gesprächslogik. Wir nutzen Enterprise-Instanzen für Datenisolation und -souveränität.
 
 | Anbieter | Modell / Dienst | Verarbeitungsstandort |
 |----------|-----------------|----------------------|
@@ -39,7 +45,7 @@ Diese Modelle übernehmen die Reasoning- und Gesprächslogik. Wir nutzen Enterpr
 | Anthropic, PBC | Claude-3.5-Modelle (über EU-Partner) | EU-Regionen |
 | Microsoft Ireland (Azure) | Meta Llama 3 (Open Source) | EU-Regionen (Schweden/Deutschland) |
 
-## 4. Sprachdienste (STT & TTS)
+## 5. Sprachdienste (STT & TTS)
 
 Spezialisierte Anbieter für Echtzeit-Transkription (Speech-to-Text) und Sprachsynthese (Text-to-Speech).
 
@@ -50,7 +56,7 @@ Spezialisierte Anbieter für Echtzeit-Transkription (Speech-to-Text) und Sprachs
 | Cartesia AI, Inc. | TTS | Ultra-Low-Latency Voice (Sonic) | EU-Region (laut AVV) |
 | Microsoft Ireland (Azure) | STT/TTS | Whisper & Azure Neural Speech | Sweden Central (EU) |
 
-## 5. Geschäftsbetrieb & Abrechnung
+## 6. Geschäftsbetrieb & Abrechnung
 
 Anbieter für transaktionale Sicherheit und administrative Verwaltung.
 
@@ -59,7 +65,7 @@ Anbieter für transaktionale Sicherheit und administrative Verwaltung.
 | Stripe Payments Europe | Sichere Zahlungsabwicklung | Irland (EU) |
 | Postmark / Brevo | Transaktions- und System-E-Mails | EU-Regionen |
 
-## 6. Internationale Datenübermittlungen & Schutzmaßnahmen
+## 7. Internationale Datenübermittlungen & Schutzmaßnahmen
 
 Bei Anbietern mit US-Muttergesellschaften (z. B. Microsoft, Google, Vercel, Soniox) stellt Famulor die Konformität u. a. sicher durch:
 
@@ -67,7 +73,7 @@ Bei Anbietern mit US-Muttergesellschaften (z. B. Microsoft, Google, Vercel, Soni
 - **Rechtsrahmen:** Nutzung des EU-U.S. Data Privacy Framework (DPF) und/oder Standardvertragsklauseln (SVK).
 - **Enterprise-Verträge:** Spezialverträge, die Drittzugriff und Nutzung der Daten für Modelltraining ausschließen.
 
-## 7. Technische und organisatorische Maßnahmen (TOM)
+## 8. Technische und organisatorische Maßnahmen (TOM)
 
 Unser Sicherheitsrahmen zielt auf maximale Nachverfolgbarkeit und Isolierung:
 
@@ -75,7 +81,8 @@ Unser Sicherheitsrahmen zielt auf maximale Nachverfolgbarkeit und Isolierung:
 |----------|--------------|
 | **Multi-Tenancy** | Strenge logische Trennung der Kundendaten. Jeder Account läuft in einer isolierten Umgebung. |
 | **Agency- & Whitelabel-Architektur** | Wir bieten ein Agency Dashboard, mit dem Partner mehrere, vollständig getrennte Sub-Accounts zentral verwalten können. |
-| **Zugriffskontrolle** | Pro Account ist der Zugriff auf einen autorisierten Nutzer beschränkt. Native Multi-Factor Authentication (MFA) ist in unserer Roadmap. |
+| **Zugriffskontrolle** | Pro Account ist der Zugriff auf einen autorisierten Nutzer beschränkt. Native Multi-Factor Authentication (MFA) ist in unserer Roadmap. Wir empfehlen den Zugriff über SSO-Anbieter (Google/Microsoft) mit aktivierter MFA abzusichern. |
+| **Nutzerkontrollierte Datenspeicherung** | Zur Umsetzung des DSGVO-Grundsatzes der Speicherbegrenzung können Nutzer eigenständig automatische Löschfristen (1 bis 24 Monate) für Anrufe, Leads, Chats und SMS konfigurieren. |
 | **Audit-Logging** | Umfassende Protokollierung aller systemkritischen Aktionen zur Nachverfolgbarkeit. |
 | **Kontinuität** | Automatische tägliche Backups, verschlüsselt innerhalb der EU gespeichert. |
 
