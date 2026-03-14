@@ -1,0 +1,77 @@
+---
+title: "Conversation Ended Webhook deaktivieren"
+api: "POST https://app.famulor.de/api/user/assistants/disable-conversation-ended-webhook"
+description: "Conversation-Ended-Webhook-Benachrichtigungen für einen Assistenten deaktivieren"
+---
+
+Deaktivieren Sie die Conversation-Ended-Webhook-Benachrichtigungen für einen Assistenten. Es werden keine Updates mehr gesendet, wenn Chat-Konversationen enden.
+
+### Request Body
+
+<ParamField body="assistant_id" type="integer" required>
+  Die ID des Assistenten, für den der Conversation-Ended-Webhook deaktiviert werden soll
+</ParamField>
+
+### Response
+
+<ResponseField name="message" type="string">
+  Erfolgsmeldung zur Bestätigung, dass der Webhook deaktiviert wurde
+</ResponseField>
+
+<ResponseField name="data" type="array">
+  Leeres Array (für zukünftige Verwendung reserviert)
+</ResponseField>
+
+### Fehlerantworten
+
+<ResponseField name="404 Not Found">
+  <Expandable title="Fehlerantwort">
+    <ResponseField name="message" type="string">
+      Fehlermeldung, wenn der Assistent nicht gefunden wird oder nicht dem authentifizierten Benutzer gehört
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="422 Validation Error">
+  <Expandable title="Fehlerantwort">
+    <ResponseField name="message" type="string">
+      Fehlermeldung bei Validierungsfehler
+    </ResponseField>
+
+    <ResponseField name="errors" type="object">
+      Detaillierte Validierungsfehler pro Feld
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseExample>
+  ```json 200 Success Response theme={null}
+  {
+    "message": "Conversation ended webhook disabled successfully",
+    "data": []
+  }
+  ```
+
+  ```json 404 Not Found theme={null}
+  {
+    "message": "Assistant not found"
+  }
+  ```
+
+  ```json 422 Validation Error theme={null}
+  {
+    "message": "The given data was invalid.",
+    "errors": {
+      "assistant_id": [
+        "The assistant id field is required."
+      ]
+    }
+  }
+  ```
+</ResponseExample>
+
+## Siehe auch
+
+- [Conversation Ended Webhook](/de/api-reference/webhooks/conversation-ended)
+- [Conversation Ended Webhook aktivieren](/de/api-reference/assistants/enable-conversation-ended-webhook)
+- [Assistenten-Webhook deaktivieren](/de/api-reference/assistants/disable-webhook)
