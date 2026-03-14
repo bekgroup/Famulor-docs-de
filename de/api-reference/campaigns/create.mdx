@@ -1,0 +1,209 @@
+---
+title: "Kampagne erstellen"
+api: "POST https://app.famulor.de/api/user/campaigns"
+description: "Eine neue Outbound-Anrufkampagne erstellen"
+---
+
+Dieser Endpunkt ermöglicht es Ihnen, eine neue Outbound-Anrufkampagne mit der angegebenen Konfiguration zu erstellen.
+
+### Request Body
+
+<ParamField body="name" type="string" required>
+  Der Name der Kampagne. Maximal 255 Zeichen.
+</ParamField>
+
+<ParamField body="assistant_id" type="integer" required>
+  Die ID des Assistenten für die Kampagne. Muss ein Outbound-fähiger Assistent sein.
+</ParamField>
+
+<ParamField body="timezone" type="string">
+  Zeitzonen-Kennung für die Kampagne (z. B. `America/New_York`, `Europe/London`). Standard: Zeitzone Ihres Kontos.
+</ParamField>
+
+<ParamField body="max_calls_in_parallel" type="integer" default="3">
+  Maximale Anzahl gleichzeitiger Anrufe. Minimum: 1. Maximum abhängig vom Parallel-Anruf-Limit Ihres Tarifs (bis 10).
+</ParamField>
+
+<ParamField body="allowed_hours_start_time" type="string" default="00:00">
+  Beginn des erlaubten Anrufzeitfensters im Format `H:i` (z. B. `09:00`).
+</ParamField>
+
+<ParamField body="allowed_hours_end_time" type="string" default="23:59">
+  Ende des erlaubten Anrufzeitfensters im Format `H:i` (z. B. `17:00`).
+</ParamField>
+
+<ParamField body="allowed_days" type="array" default="alle 7 Tage">
+  Array mit Wochentagen, an denen Anrufe erlaubt sind. Gültige Werte: `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `sunday`.
+</ParamField>
+
+<ParamField body="max_retries" type="integer" default="3">
+  Maximale Anzahl Wiederholungsversuche bei fehlgeschlagenen Anrufen. Bereich: 1–5.
+</ParamField>
+
+<ParamField body="retry_interval" type="integer" default="60">
+  Abstand in Minuten zwischen Wiederholungsversuchen. Bereich: 10–4320 (bis zu 3 Tage).
+</ParamField>
+
+<ParamField body="retry_on_voicemail" type="boolean">
+  Ob Anrufe, die beim Anrufbeantworter gelandet sind, erneut versucht werden sollen.
+</ParamField>
+
+<ParamField body="retry_on_goal_incomplete" type="boolean">
+  Ob Anrufe wiederholt werden sollen, bei denen das Ziel nicht erreicht wurde.
+</ParamField>
+
+<ParamField body="goal_completion_variable" type="string">
+  Name einer Boolean-Variable aus dem Post-Call-Schema Ihres Assistenten zur Erfassung der Zielerreichung. Maximal 255 Zeichen.
+</ParamField>
+
+<ParamField body="mark_complete_when_no_leads" type="boolean" default="true">
+  Ob die Kampagne automatisch als abgeschlossen markiert werden soll, wenn keine Leads mehr zu verarbeiten sind.
+</ParamField>
+
+<ParamField body="phone_number_ids" type="array">
+  Array mit Telefonnummer-IDs für die Kampagne. Jede ID muss eine eindeutige Ganzzahl sein.
+</ParamField>
+
+### Response
+
+<ResponseField name="message" type="string">
+  Erfolgsmeldung zur Bestätigung der Kampagnenerstellung
+</ResponseField>
+
+<ResponseField name="data" type="object">
+  Die erstellten Kampagnendaten
+
+  <Expandable title="data-Eigenschaften">
+    <ResponseField name="id" type="integer">
+      Die ID der erstellten Kampagne
+    </ResponseField>
+
+    <ResponseField name="name" type="string">
+      Der Name der Kampagne
+    </ResponseField>
+
+    <ResponseField name="status" type="string">
+      Der Status der Kampagne (startet als `draft`)
+    </ResponseField>
+
+    <ResponseField name="max_calls_in_parallel" type="integer">
+      Maximale Anzahl gleichzeitiger Anrufe
+    </ResponseField>
+
+    <ResponseField name="mark_complete_when_no_leads" type="boolean">
+      Ob die Kampagne als abgeschlossen markiert wird, wenn keine Leads mehr vorhanden sind
+    </ResponseField>
+
+    <ResponseField name="allowed_hours_start_time" type="string">
+      Beginn des erlaubten Anrufzeitfensters
+    </ResponseField>
+
+    <ResponseField name="allowed_hours_end_time" type="string">
+      Ende des erlaubten Anrufzeitfensters
+    </ResponseField>
+
+    <ResponseField name="allowed_days" type="array">
+      Wochentage, an denen Anrufe erlaubt sind
+    </ResponseField>
+
+    <ResponseField name="max_retries" type="integer">
+      Maximale Anzahl Wiederholungsversuche
+    </ResponseField>
+
+    <ResponseField name="retry_interval" type="integer">
+      Abstand in Minuten zwischen Wiederholungen
+    </ResponseField>
+
+    <ResponseField name="created_at" type="string">
+      Zeitstempel der Kampagnenerstellung
+    </ResponseField>
+
+    <ResponseField name="updated_at" type="string">
+      Zeitstempel der letzten Aktualisierung der Kampagne
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+### Fehlerantworten
+
+<ResponseField name="403 Forbidden">
+  <Expandable title="Fehlerantwort">
+    <ResponseField name="message" type="string">
+      Fehlermeldung, wenn das Kampagnen-Limit des Tarifs erreicht ist
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="404 Not Found">
+  <Expandable title="Fehlerantwort">
+    <ResponseField name="message" type="string">
+      Fehlermeldung, wenn der angegebene Assistent nicht gefunden wird oder kein Outbound-Assistent ist
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="422 Validation Error">
+  <Expandable title="Fehlerantwort">
+    <ResponseField name="message" type="string">
+      Fehlermeldung bei Validierungsfehler
+    </ResponseField>
+
+    <ResponseField name="errors" type="object">
+      Detaillierte Validierungsfehler pro Feld
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseExample>
+  ```json 201 Created theme={null}
+  {
+    "message": "Campaign created successfully",
+    "data": {
+      "id": 1,
+      "name": "Product Demo Campaign",
+      "status": "draft",
+      "max_calls_in_parallel": 3,
+      "mark_complete_when_no_leads": true,
+      "allowed_hours_start_time": "09:00:00",
+      "allowed_hours_end_time": "17:00:00",
+      "allowed_days": [
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday"
+      ],
+      "max_retries": 3,
+      "retry_interval": 60,
+      "created_at": "2026-02-23T10:00:00.000000Z",
+      "updated_at": "2026-02-23T10:00:00.000000Z"
+    }
+  }
+  ```
+
+  ```json 403 Forbidden theme={null}
+  {
+    "message": "You have reached the maximum number of campaigns allowed by your plan."
+  }
+  ```
+
+  ```json 404 Not Found theme={null}
+  {
+    "message": "Assistant not found or not an outbound assistant."
+  }
+  ```
+
+  ```json 422 Validation Error theme={null}
+  {
+    "message": "The given data was invalid.",
+    "errors": {
+      "name": [
+        "The name field is required."
+      ],
+      "assistant_id": [
+        "The assistant id field is required."
+      ]
+    }
+  }
+  ```
+</ResponseExample>

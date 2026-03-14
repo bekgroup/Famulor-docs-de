@@ -575,6 +575,7 @@
               {
                 "group": "Campaigns",
                 "pages": [
+                  "en/api-reference/campaigns/create",
                   "en/api-reference/campaigns/list",
                   "en/api-reference/campaigns/update-status"
                 ]
@@ -1243,6 +1244,7 @@
               {
                 "group": "Campaigns",
                 "pages": [
+                  "de/api-reference/campaigns/create",
                   "de/api-reference/campaigns/list",
                   "de/api-reference/campaigns/update-status"
                 ]
