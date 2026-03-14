@@ -272,6 +272,7 @@
                 "icon": "users",
                 "pages": [
                   "en/support",
+                  "en/support/trust-center",
                   "en/enterprise",
                   "en/glossary",
                   "en/faq"
@@ -941,6 +942,7 @@
                 "icon": "users",
                 "pages": [
                   "de/support",
+                  "de/support/trust-center",
                   "de/enterprise",
                   "de/glossary",
                   "de/faq"

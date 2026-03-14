@@ -1,0 +1,88 @@
+---
+title: "Trust Center: Subunternehmerliste & Datensouveränität"
+description: "Transparenz zu Infrastruktur, Subunternehmern und technischen Schutzmaßnahmen bei Famulor.io"
+icon: "shield-halved"
+---
+
+Bei Famulor.io ist **Datensouveränität** für uns eine Grundvoraussetzung moderner KI-Kommunikation. Dieses Trust Center gibt vollständige Transparenz über unsere Infrastruktur, unsere spezialisierten Auftragsverarbeiter (Subunternehmer) und die technischen Schutzmaßnahmen zum Schutz sensibler Daten.
+
+Diese Seite dient als dynamischer Anhang zu unserem Auftragsverarbeitungsvertrag (AVV) und wird regelmäßig an unseren aktuellen Technologie-Stack angepasst.
+
+## 1. Unsere Souveränitäts-Verpflichtungen
+
+Um die strengen Anforderungen des europäischen Marktes (u. a. Art. 9 DSGVO für Gesundheitswesen und sensible Branchen) zu erfüllen, handeln wir nach vier Grundsätzen:
+
+| Grundsatz | Beschreibung |
+|-----------|--------------|
+| **EEA-First-Policy** | Die gesamte Kernverarbeitung von Sprach- und Textdaten erfolgt auf Servern innerhalb des Europäischen Wirtschaftsraums (EWR). |
+| **No-Training-Garantie** | Wir stellen vertraglich sicher, dass keiner unserer KI-Anbieter Ihre Daten (Audio, Transkripte oder Prompts) zum Trainieren oder Verbessern seiner Basismodelle nutzen darf. |
+| **Zero-Retention-Modus** | Wir bieten einen „Zero Retention Mode“ für hochsensible Umgebungen: Daten werden im Arbeitsspeicher verarbeitet und unmittelbar nach der Interaktion gelöscht. |
+| **Verschlüsselung** | Alle Daten werden während der Übertragung mit TLS 1.2+ und im Ruhezustand mit AES-256 verschlüsselt. |
+
+## 2. Infrastruktur & Plattform-Hosting
+
+Diese Anbieter hosten die Famulor.io-Plattform inkl. Backend-Logik und Kunden-Dashboard.
+
+| Anbieter | Zweck | Verarbeitungsstandort |
+|----------|-------|----------------------|
+| Amazon Web Services (AWS) | Kernplattform, Datenbanken & API-Logik | Frankfurt, Deutschland (EU) |
+| Vercel Inc. | Frontend & Web-Oberfläche | Frankfurt, Deutschland (EU) |
+
+## 3. Künstliche Intelligenz (LLM)
+
+Diese Modelle übernehmen die Reasoning- und Gesprächslogik. Wir nutzen Enterprise-Instanzen für Datenisolation.
+
+| Anbieter | Modell / Dienst | Verarbeitungsstandort |
+|----------|-----------------|----------------------|
+| Microsoft Ireland (Azure) | OpenAI-Modelle (GPT-4o, o1 usw.) | Sweden Central (EU) |
+| Google Cloud (Vertex AI) | Gemini 1.5 Pro / Flash | EU-Regionen (EU Data Residency) |
+| Anthropic, PBC | Claude-3.5-Modelle (über EU-Partner) | EU-Regionen |
+| Microsoft Ireland (Azure) | Meta Llama 3 (Open Source) | EU-Regionen (Schweden/Deutschland) |
+
+## 4. Sprachdienste (STT & TTS)
+
+Spezialisierte Anbieter für Echtzeit-Transkription (Speech-to-Text) und Sprachsynthese (Text-to-Speech).
+
+| Anbieter | Kategorie | Dienst / Zweck | Verarbeitungsstandort |
+|----------|-----------|----------------|----------------------|
+| Soniox, Inc. | STT | Hochpräzise Transkription | EU-Region (Enterprise Node) |
+| ElevenLabs Inc. | TTS | KI-Sprachmodelle (Enterprise Plan) | Frankfurt, Deutschland (EU) |
+| Cartesia AI, Inc. | TTS | Ultra-Low-Latency Voice (Sonic) | EU-Region (laut AVV) |
+| Microsoft Ireland (Azure) | STT/TTS | Whisper & Azure Neural Speech | Sweden Central (EU) |
+
+## 5. Geschäftsbetrieb & Abrechnung
+
+Anbieter für transaktionale Sicherheit und administrative Verwaltung.
+
+| Anbieter | Zweck | Verarbeitungsstandort |
+|----------|-------|----------------------|
+| Stripe Payments Europe | Sichere Zahlungsabwicklung | Irland (EU) |
+| Postmark / Brevo | Transaktions- und System-E-Mails | EU-Regionen |
+
+## 6. Internationale Datenübermittlungen & Schutzmaßnahmen
+
+Bei Anbietern mit US-Muttergesellschaften (z. B. Microsoft, Google, Vercel, Soniox) stellt Famulor die Konformität u. a. sicher durch:
+
+- **Data Residency:** Konfiguration der Dienste so, dass Daten ausschließlich auf EU-Knoten verarbeitet werden.
+- **Rechtsrahmen:** Nutzung des EU-U.S. Data Privacy Framework (DPF) und/oder Standardvertragsklauseln (SVK).
+- **Enterprise-Verträge:** Spezialverträge, die Drittzugriff und Nutzung der Daten für Modelltraining ausschließen.
+
+## 7. Technische und organisatorische Maßnahmen (TOM)
+
+Unser Sicherheitsrahmen zielt auf maximale Nachverfolgbarkeit und Isolierung:
+
+| Maßnahme | Beschreibung |
+|----------|--------------|
+| **Multi-Tenancy** | Strenge logische Trennung der Kundendaten. Jeder Account läuft in einer isolierten Umgebung. |
+| **Agency- & Whitelabel-Architektur** | Wir bieten ein Agency Dashboard, mit dem Partner mehrere, vollständig getrennte Sub-Accounts zentral verwalten können. |
+| **Zugriffskontrolle** | Pro Account ist der Zugriff auf einen autorisierten Nutzer beschränkt. Native Multi-Factor Authentication (MFA) ist in unserer Roadmap. |
+| **Audit-Logging** | Umfassende Protokollierung aller systemkritischen Aktionen zur Nachverfolgbarkeit. |
+| **Kontinuität** | Automatische tägliche Backups, verschlüsselt innerhalb der EU gespeichert. |
+
+**Zuletzt aktualisiert:** März 2026
+
+## Verwandte Seiten
+
+- [Support](/de/support)
+- [Enterprise](/de/enterprise)
+- [Datenspeicherung](/de/legal/data-retention)

@@ -1,0 +1,88 @@
+---
+title: "Trust Center: Sub-processor List & Data Sovereignty"
+description: "Transparency on infrastructure, sub-processors, and technical safeguards for data protection at Famulor.io"
+icon: "shield-halved"
+---
+
+At Famulor.io, we believe that **Data Sovereignty** is a fundamental requirement for modern AI communication. This Trust Center provides full transparency regarding our infrastructure, our specialized sub-processors, and the technical safeguards we employ to protect sensitive data.
+
+This page serves as the dynamic Annex to our Data Processing Addendum (DPA) and is updated regularly to reflect our current technical stack.
+
+## 1. Our Sovereignty Commitments
+
+To meet the strict requirements of the European market (including Art. 9 GDPR for healthcare and sensitive sectors), we operate under four core principles:
+
+| Principle | Description |
+|-----------|-------------|
+| **EEA-First Policy** | All core processing of voice and text data occurs on servers located within the European Economic Area (EEA). |
+| **No-Training Guarantee** | We contractually ensure that none of our AI providers are permitted to use your data (audio, transcripts, or prompts) to train or improve their foundational models. |
+| **Zero Retention Capability** | We provide a "Zero Retention Mode" for highly sensitive environments, where data is processed in-memory and purged immediately after the interaction. |
+| **Encryption Excellence** | All data is encrypted in transit using TLS 1.2+ and at rest using AES-256. |
+
+## 2. Infrastructure & Platform Hosting
+
+These providers host the Famulor.io platform, including the backend logic and customer dashboard.
+
+| Provider | Purpose | Processing Location |
+|----------|---------|---------------------|
+| Amazon Web Services (AWS) | Core Platform, Databases & API Logic | Frankfurt, Germany (EU) |
+| Vercel Inc. | Frontend & Web Interface | Frankfurt, Germany (EU) |
+
+## 3. Artificial Intelligence (LLM)
+
+These models handle the reasoning and conversation logic. We utilize Enterprise-grade instances to ensure data isolation.
+
+| Provider | Model / Service | Processing Location |
+|----------|-----------------|---------------------|
+| Microsoft Ireland (Azure) | OpenAI Models (GPT-4o, o1, etc.) | Sweden Central (EU) |
+| Google Cloud (Vertex AI) | Gemini 1.5 Pro / Flash | EU Regions (EU Data Residency) |
+| Anthropic, PBC | Claude 3.5 Models (via EU Partners) | EU Regions |
+| Microsoft Ireland (Azure) | Meta Llama 3 (Open Source) | EU Regions (Sweden/Germany) |
+
+## 4. Speech Services (STT & TTS)
+
+Specialized providers for real-time transcription (Speech-to-Text) and voice synthesis (Text-to-Speech).
+
+| Provider | Category | Service / Purpose | Processing Location |
+|----------|----------|-------------------|---------------------|
+| Soniox, Inc. | STT | High-Precision Transcription | EU Region (Enterprise Node) |
+| ElevenLabs Inc. | TTS | AI Voice Models (Enterprise Plan) | Frankfurt, Germany (EU) |
+| Cartesia AI, Inc. | TTS | Ultra-Low Latency Voice (Sonic) | EU Region (per DPA) |
+| Microsoft Ireland (Azure) | STT/TTS | Whisper & Azure Neural Speech | Sweden Central (EU) |
+
+## 5. Business Operations & Billing
+
+Providers used for transactional security and administrative management.
+
+| Provider | Purpose | Processing Location |
+|----------|---------|---------------------|
+| Stripe Payments Europe | Secure Payment Processing | Ireland (EU) |
+| Postmark / Brevo | Transactional & System Emails | EU Regions |
+
+## 6. International Data Transfers & Safeguards
+
+For providers with US-based parent companies (e.g., Microsoft, Google, Vercel, Soniox), Famulor ensures compliance via:
+
+- **Data Residency:** Configuring services to process data exclusively on EU-based nodes.
+- **Legal Frameworks:** Utilization of the EU-U.S. Data Privacy Framework (DPF) and/or Standard Contractual Clauses (SCCs).
+- **Enterprise Agreements:** Specialized contracts that prevent third-party access and data usage for model training.
+
+## 7. Technical and Organizational Measures (TOMs)
+
+Our security framework is designed for maximum accountability and isolation:
+
+| Measure | Description |
+|---------|-------------|
+| **Multi-Tenancy** | Strict logical separation of customer data. Every account operates in an isolated environment. |
+| **Agency & Whitelabel Architecture** | We offer a specialized Agency Dashboard that allows partners to manage multiple, fully isolated sub-accounts from a central interface. |
+| **Access Control** | Access is restricted to one authorized user per account to ensure clear accountability. The implementation of native Multi-Factor Authentication (MFA) is currently on our development roadmap. |
+| **Audit Logging** | Comprehensive logging of all system-critical actions for traceability. |
+| **Continuity** | Automated daily backups stored encrypted within the European Union. |
+
+**Last Updated:** March 2026
+
+## Related
+
+- [Support](/en/support)
+- [Enterprise](/en/enterprise)
+- [Data Retention](/en/legal/data-retention)
