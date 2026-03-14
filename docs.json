@@ -677,9 +677,17 @@
               }
             ]
           }
+        ],
+      "global": {
+        "anchors": [
+          {"anchor": "Platform Status", "icon": "chart-line", "href": "https://status.famulor.io/"},
+          {"anchor": "Book a Demo", "icon": "calendar-days", "href": "https://cal.com/bek-group/demotermine"},
+          {"anchor": "Academy", "icon": "graduation-cap", "href": "https://www.skool.com/famulor/classroom"},
+          {"anchor": "Community", "icon": "users", "href": "https://www.skool.com/famulor/about"}
         ]
-      },
-      {
+      }
+    },
+    {
         "language": "de",
         "tabs": [
           {
@@ -1347,28 +1355,17 @@
               }
             ]
           }
+        ],
+      "global": {
+        "anchors": [
+          {"anchor": "Platform Status", "icon": "chart-line", "href": "https://status.famulor.io/"},
+          {"anchor": "Demo buchen", "icon": "calendar-days", "href": "https://cal.com/bek-group/demotermine"},
+          {"anchor": "Akademy", "icon": "graduation-cap", "href": "https://www.skool.com/famulor/classroom"},
+          {"anchor": "Community", "icon": "users", "href": "https://www.skool.com/famulor/about"}
         ]
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Platform Status",
-          "icon": "chart-line",
-          "href": "https://status.famulor.io/"
-        },
-        {
-          "anchor": "Demo buchen",
-          "icon": "calendar-days",
-          "href": "https://cal.com/bek-group/demotermine"
-        },
-        {
-          "anchor": "Community",
-          "icon": "users",
-          "href": "https://www.skool.com/famulor/about"
-        }
-      ]
     }
+    ]
   },
   "logo": {
     "light": "/resources/logo/light.png",
