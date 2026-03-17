@@ -1433,6 +1433,10 @@
       {
         "label": "Support",
         "href": "/en/support"
+      },
+      {
+        "label": "Platform Status",
+        "href": "https://status.famulor.io/"
       }
     ],
     "primary": {
