@@ -13,6 +13,30 @@
       {
         "language": "en",
         "default": true,
+        "global": {
+          "anchors": [
+            {
+              "anchor": "Platform Status",
+              "icon": "chart-line",
+              "href": "https://status.famulor.io/"
+            },
+            {
+              "anchor": "Book a Demo",
+              "icon": "calendar-days",
+              "href": "https://cal.com/bek-group/demotermine"
+            },
+            {
+              "anchor": "Academy",
+              "icon": "graduation-cap",
+              "href": "https://www.skool.com/famulor/classroom"
+            },
+            {
+              "anchor": "Community",
+              "icon": "users",
+              "href": "https://www.skool.com/famulor/about"
+            }
+          ]
+        },
         "tabs": [
           {
             "tab": "Platform Guide",
@@ -70,39 +94,39 @@
                   },
                   {
                     "group": "Behavior and Modes",
+                    "icon": "sliders",
                     "pages": [
                       "en/ai-assistants/assistant-modes",
                       "en/ai-assistants/custom-gpt",
                       "en/ai-assistants/flow-builder"
-                    ],
-                    "icon": "sliders"
+                    ]
                   },
                   {
                     "group": "Tools and Integrations",
+                    "icon": "plug",
                     "pages": [
                       "en/ai-assistants/tools-and-functions",
                       "en/ai-assistants/custom-mid-call-tools",
                       "en/ai-assistants/cal-com-scheduling",
                       "en/ai-assistants/gohighlevel-scheduling"
-                    ],
-                    "icon": "plug"
+                    ]
                   },
                   {
                     "group": "Voice and Channels",
+                    "icon": "waveform-lines",
                     "pages": [
                       "en/ai-assistants/voice-selection",
                       "en/ai-assistants/filler-audio",
                       "en/ai-assistants/web-widget"
-                    ],
-                    "icon": "waveform-lines"
+                    ]
                   },
                   {
                     "group": "Testing",
+                    "icon": "vial",
                     "pages": [
                       "en/ai-assistants/testing",
                       "en/ai-assistants/cledon"
-                    ],
-                    "icon": "vial"
+                    ]
                   }
                 ]
               },
@@ -292,6 +316,7 @@
             "groups": [
               {
                 "group": "No-Code Automation Platform",
+                "icon": "diagram-project",
                 "pages": [
                   {
                     "group": "Introduction",
@@ -306,8 +331,7 @@
                   "en/automation-platform/debugging-runs",
                   "en/automation-platform/versioning",
                   "en/automation-platform/known-limits"
-                ],
-                "icon": "diagram-project"
+                ]
               },
               {
                 "group": "Call-related",
@@ -683,18 +707,34 @@
               }
             ]
           }
-        ],
-      "global": {
-        "anchors": [
-          {"anchor": "Platform Status", "icon": "chart-line", "href": "https://status.famulor.io/"},
-          {"anchor": "Book a Demo", "icon": "calendar-days", "href": "https://cal.com/bek-group/demotermine"},
-          {"anchor": "Academy", "icon": "graduation-cap", "href": "https://www.skool.com/famulor/classroom"},
-          {"anchor": "Community", "icon": "users", "href": "https://www.skool.com/famulor/about"}
         ]
-      }
-    },
-    {
+      },
+      {
         "language": "de",
+        "global": {
+          "anchors": [
+            {
+              "anchor": "Platform Status",
+              "icon": "chart-line",
+              "href": "https://status.famulor.io/"
+            },
+            {
+              "anchor": "Demo buchen",
+              "icon": "calendar-days",
+              "href": "https://cal.com/bek-group/demotermine"
+            },
+            {
+              "anchor": "Akademy",
+              "icon": "graduation-cap",
+              "href": "https://www.skool.com/famulor/classroom"
+            },
+            {
+              "anchor": "Community",
+              "icon": "users",
+              "href": "https://www.skool.com/famulor/about"
+            }
+          ]
+        },
         "tabs": [
           {
             "tab": "Plattform-Anleitung",
@@ -976,6 +1016,7 @@
             "groups": [
               {
                 "group": "No-Code Automatisierungsplattform",
+                "icon": "diagram-project",
                 "pages": [
                   {
                     "group": "Einführung",
@@ -990,8 +1031,7 @@
                   "de/automation-platform/debugging-runs",
                   "de/automation-platform/versioning",
                   "de/automation-platform/known-limits"
-                ],
-                "icon": "diagram-project"
+                ]
               },
               {
                 "group": "Anruf-bezogen",
@@ -1367,16 +1407,8 @@
               }
             ]
           }
-        ],
-      "global": {
-        "anchors": [
-          {"anchor": "Platform Status", "icon": "chart-line", "href": "https://status.famulor.io/"},
-          {"anchor": "Demo buchen", "icon": "calendar-days", "href": "https://cal.com/bek-group/demotermine"},
-          {"anchor": "Akademy", "icon": "graduation-cap", "href": "https://www.skool.com/famulor/classroom"},
-          {"anchor": "Community", "icon": "users", "href": "https://www.skool.com/famulor/about"}
         ]
       }
-    }
     ]
   },
   "logo": {
@@ -1440,5 +1472,13 @@
       "twitter:card": "summary_large_image"
     }
   },
-  "description": "Famulor AI Phone, Voice, Whatsapp, Livechat and Voice Chat. It comes with everything you need to get started built-in."
+  "description": "Famulor AI Phone, Voice, Whatsapp, Livechat and Voice Chat. It comes with everything you need to get started built-in.",
+  "background": {
+    "color": {
+      "dark": "#13120A"
+    }
+  },
+  "appearance": {
+    "default": "system"
+  }
 }
