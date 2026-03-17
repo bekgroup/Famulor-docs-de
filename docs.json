@@ -1428,11 +1428,11 @@
     "links": [
       {
         "label": "Updates",
-        "href": "/updates/changelog"
+        "href": "/en/updates/changelog"
       },
       {
         "label": "Support",
-        "href": "/support"
+        "href": "/en/support"
       }
     ],
     "primary": {
@@ -1449,6 +1449,9 @@
   "integrations": {
     "ga4": {
       "measurementId": "G-WPTBT13HB0"
+    },
+    "clarity": {
+      "projectId": "sop2kcwotx"
     }
   },
   "contextual": {
@@ -1475,7 +1478,7 @@
   "description": "Famulor AI Phone, Voice, Whatsapp, Livechat and Voice Chat. It comes with everything you need to get started built-in.",
   "background": {
     "color": {
-      "dark": "#13120A"
+      "dark": "#060503"
     }
   },
   "appearance": {
