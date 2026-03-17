@@ -45,6 +45,12 @@
                 ]
               },
               {
+                "group": "Platform",
+                "pages": [
+                  "en/platform/call-history"
+                ]
+              },
+              {
                 "group": "AI Assistants Overview",
                 "pages": [
                   "en/ai-assistants/what-is-ai-assistant",
@@ -718,6 +724,12 @@
                 "pages": [
                   "de/getting-started/core-concepts",
                   "de/getting-started/understanding-billing"
+                ]
+              },
+              {
+                "group": "Platform",
+                "pages": [
+                  "de/platform/anrufliste"
                 ]
               },
               {
