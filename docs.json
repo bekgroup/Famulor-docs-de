@@ -1428,11 +1428,11 @@
     "links": [
       {
         "label": "Updates",
-        "href": "/en/updates/changelog"
+        "href": "/updates/changelog"
       },
       {
         "label": "Support",
-        "href": "/en/support"
+        "href": "/support"
       }
     ],
     "primary": {
