@@ -34,6 +34,16 @@
               "anchor": "Community",
               "icon": "users",
               "href": "https://www.skool.com/famulor/about"
+            },
+            {
+              "anchor": "Updates",
+              "icon": "sparkles",
+              "href": "/en/updates/changelog"
+            },
+            {
+              "anchor": "Support",
+              "icon": "circle-question",
+              "href": "/en/support"
             }
           ]
         },
@@ -732,6 +742,16 @@
               "anchor": "Community",
               "icon": "users",
               "href": "https://www.skool.com/famulor/about"
+            },
+            {
+              "anchor": "Updates",
+              "icon": "sparkles",
+              "href": "/de/updates/changelog"
+            },
+            {
+              "anchor": "Support",
+              "icon": "circle-question",
+              "href": "/de/support"
             }
           ]
         },
