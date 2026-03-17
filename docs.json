@@ -16,11 +16,6 @@
         "global": {
           "anchors": [
             {
-              "anchor": "Platform Status",
-              "icon": "chart-line",
-              "href": "https://status.famulor.io/"
-            },
-            {
               "anchor": "Book a Demo",
               "icon": "calendar-days",
               "href": "https://cal.com/bek-group/demotermine"
@@ -723,11 +718,6 @@
         "language": "de",
         "global": {
           "anchors": [
-            {
-              "anchor": "Platform Status",
-              "icon": "chart-line",
-              "href": "https://status.famulor.io/"
-            },
             {
               "anchor": "Demo buchen",
               "icon": "calendar-days",
