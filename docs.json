@@ -1427,14 +1427,6 @@
   "navbar": {
     "links": [
       {
-        "label": "Updates",
-        "href": "/en/updates/changelog"
-      },
-      {
-        "label": "Support",
-        "href": "/en/support"
-      },
-      {
         "label": "Platform Status",
         "href": "https://status.famulor.io/"
       }
