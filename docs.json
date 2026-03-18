@@ -76,7 +76,8 @@
               {
                 "group": "Platform",
                 "pages": [
-                  "en/platform/call-history"
+                  "en/platform/call-history",
+                  "en/platform/chat-list"
                 ]
               },
               {
@@ -779,7 +780,8 @@
               {
                 "group": "Platform",
                 "pages": [
-                  "de/platform/anrufliste"
+                  "de/platform/anrufliste",
+                  "de/platform/chatverlauf"
                 ]
               },
               {
