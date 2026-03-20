@@ -55,6 +55,7 @@ Specialized providers for real-time transcription (Speech-to-Text) and voice syn
 | ElevenLabs Inc. | TTS | AI Voice Models (Enterprise Plan) | EU-US DPF, EU SCC; processing in Belgium. Under our Enterprise Agreement, all data remains exclusively within Europe and is deleted immediately after audio generation (Zero Retention). |
 | Cartesia AI, Inc. | TTS | Ultra-Low Latency Voice (Sonic) | EU Region (per DPA) |
 | Microsoft Ireland (Azure) | STT/TTS | Whisper & Azure Neural Speech | Sweden Central (EU) |
+| [LiveKit Inc.](https://docs.livekit.io/deploy/admin/regions/region-pinning/) | Realtime Infrastructure | Virtual conversation rooms (realtime sessions) | EU SCC. Famulor uses the most privacy-friendly setup: with region pinning, data does not leave the European region according to the provider. |
 
 ## 6. Business Operations & Billing
 
@@ -65,7 +66,25 @@ Providers used for transactional security and administrative management.
 | Stripe Payments Europe | Secure Payment Processing | Ireland (EU) |
 | SendGrid (Twilio) | Transactional & System Emails | EU Regions |
 
-## 7. International Data Transfers & Safeguards
+## 7. Providers: Legal Entity & Address
+
+Below is the legal entity we use for each provider, including publicly listed company address information (as of March 2026).
+
+| Provider | Legal Entity / Company | Address | Source |
+|----------|-------------------------|---------|--------|
+| AWS | Amazon Web Services EMEA S.à r.l. | 38 Avenue John F. Kennedy, L-1855 Luxembourg, Luxembourg | [ICO Register](https://ico.org.uk/ESDWebPages/Entry/ZA481902) |
+| Vercel | Vercel Inc. | 440 N Barranca Ave #4133, Covina, CA 91723, USA | [Vercel Terms](https://vercel.com/legal/terms) |
+| Microsoft (Azure) | Microsoft Ireland Operations Limited | 70 Sir John Rogerson's Quay, Dublin 2, D02 R296, Ireland | [LEI Register](https://lei.info/549300WCLFVEBTBNRF76) |
+| Google Cloud | Google Cloud EMEA Limited | 70 Sir John Rogerson's Quay, Dublin 2, Ireland | [Google Contracting Entity](https://cloud.google.com/terms/google-entity/index-20210816) |
+| Anthropic | Anthropic, PBC | 548 Market Street, PMB 90375, San Francisco, CA 94104, USA | [OpenGov](https://opengovco.com/business/20241311617) |
+| Soniox | Soniox, Inc. | 1045 Helm Ln, Foster City, CA 94404, USA (EU office: Cesta v Gorice 34B, 1000 Ljubljana, Slovenia) | [Soniox Contact](https://soniox.com/contact) |
+| ElevenLabs | Eleven Labs Inc. | 169 Madison Ave #2484, New York, NY 10016, USA | [ElevenLabs Help](https://help.elevenlabs.io/hc/en-us/articles/21757104682001-What-is-your-billing-address-and-VAT-EIN-number) |
+| Cartesia | Cartesia AI, Inc. | 1766 18th Street, Suite 1200, San Francisco, CA, USA | [Company info](https://www.crunchbase.com/organization/cartesia) |
+| LiveKit | LiveKit Inc. | - | [Region pinning (LiveKit Docs)](https://docs.livekit.io/deploy/admin/regions/region-pinning/) |
+| Stripe | Stripe Payments Europe, Limited | One Wilton Park, Wilton Place, Dublin 2, D02 FX04, Ireland | [LEI Register](https://lei.info/549300DSKP4KJP52XY61) |
+| SendGrid (Twilio) | Twilio Ireland Limited | 70 Sir John Rogerson's Quay, Dublin 2, D02 R296, Ireland | [LEI Register](https://lei.info/635400HZOP3LBSUGAN82) |
+
+## 8. International Data Transfers & Safeguards
 
 For providers with US-based parent companies (e.g., Microsoft, Google, Vercel, Soniox), Famulor ensures compliance via:
 
@@ -73,7 +92,7 @@ For providers with US-based parent companies (e.g., Microsoft, Google, Vercel, S
 - **Legal Frameworks:** Utilization of the EU-U.S. Data Privacy Framework (DPF) and/or Standard Contractual Clauses (SCCs).
 - **Enterprise Agreements:** Specialized contracts that prevent third-party access and data usage for model training.
 
-## 8. Technical and Organizational Measures (TOMs)
+## 9. Technical and Organizational Measures (TOMs)
 
 Our security framework is designed for maximum accountability and isolation:
 
