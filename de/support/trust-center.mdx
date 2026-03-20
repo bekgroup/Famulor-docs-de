@@ -37,7 +37,7 @@ Diese Anbieter hosten die Famulor.io-Plattform inkl. Backend-Logik, Datenbanken 
 ## 4. Künstliche Intelligenz (LLM)
 
 Diese Modelle übernehmen die Reasoning- und Gesprächslogik. Wir nutzen Enterprise-Instanzen für Datenisolation und -souveränität.
-Je nach Use Case können LLM-, STT-, TTS- und SIP-Trunk-Anbieter im Assistenten optional ausgewählt werden.
+**Hinweis:** Anbieter für LLM, STT, TTS und SIP-Trunk sind je nach Use Case pro Assistent optional auswählbar.
 
 | Anbieter | Modell / Dienst | Verarbeitungsstandort |
 |----------|-----------------|----------------------|
@@ -50,6 +50,7 @@ Je nach Use Case können LLM-, STT-, TTS- und SIP-Trunk-Anbieter im Assistenten 
 ## 5. Sprachdienste (STT & TTS)
 
 Spezialisierte Anbieter für Echtzeit-Transkription (Speech-to-Text) und Sprachsynthese (Text-to-Speech).
+**Hinweis:** Anbieter für LLM, STT, TTS und SIP-Trunk sind je nach Use Case pro Assistent optional auswählbar.
 
 | Anbieter | Kategorie | Dienst / Zweck | Verarbeitungsstandort |
 |----------|-----------|----------------|----------------------|
@@ -70,10 +71,21 @@ Anbieter für transaktionale Sicherheit und administrative Verwaltung.
 | Anbieter | Zweck | Verarbeitungsstandort |
 |----------|-------|----------------------|
 | Stripe Payments Europe | Sichere Zahlungsabwicklung | Irland (EU) |
-| [Twilio Ireland Limited](https://www.twilio.com/docs/global-infrastructure/send-an-sms-with-twilio-regions) | Telefonie, SIP Trunk und SMS (Programmable Messaging) | Irland (EU). Regionale Verarbeitung über Twilio Regions (u. a. IE1). |
+| [Twilio Ireland Limited](https://www.twilio.com/docs/global-infrastructure/send-an-sms-with-twilio-regions) | Telefonie, SIP Trunk, SMS und WhatsApp Business Messaging | Irland (EU). Regionale Verarbeitung über Twilio Regions (u. a. IE1). |
 | SendGrid (Twilio) | Transaktions- und System-E-Mails | EU-Regionen (EU Data Processing Locations) |
 
-## 7. Website-Analytics & Tag-Management
+## 7. WhatsApp Business Verarbeitung
+
+Für WhatsApp Business gilt:
+
+- Die WhatsApp-Integration erfolgt über die **Twilio-Anbindung**.
+- Es kann entweder eine **eigene WhatsApp-fähige Telefonnummer** genutzt werden oder eine Nummer aus dem **Famulor-Nummernpool** (abhängig von Setup/Verifizierung).
+- Bei Nutzung einer **eigenen Nummer** muss der Nummerninhaber die Verifizierung direkt im **Meta Business Manager** durchführen.
+- Eingehende WhatsApp-Nachrichten werden über konfigurierbare **LLM-Workflows** verarbeitet.
+- Antworten werden als **KI-generierte Nachricht** zurückgesendet.
+- **Text, Bilder und Sprachnachrichten** können im Rahmen der aktivierten Assistant-Konfiguration verarbeitet und für die Antwortgenerierung genutzt werden.
+
+## 8. Website-Analytics & Tag-Management
 
 Für die Website-/Produktanalyse nutzen wir:
 
@@ -84,7 +96,7 @@ Für die Website-/Produktanalyse nutzen wir:
 | Microsoft Clarity | Produktanalyse und Session Insights | Anbieter: Microsoft Ireland Operations Limited; Verarbeitung im Rahmen der Microsoft-Datenschutz- und Compliance-Dokumentation. |
 | Meta Pixel API (Facebook) | Conversion-Tracking und Kampagnenmessung | Anbieter für EWR: Meta Platforms Ireland Limited; Verarbeitung gemäß Meta Business Tools Terms/DPA. |
 
-## 8. Anbieter: Firmenname & Adresse
+## 9. Anbieter: Firmenname & Adresse
 
 Nachfolgend die jeweils genutzte rechtliche Einheit inkl. öffentlich auffindbarer Firmenadresse (Stand: März 2026).
 
@@ -106,9 +118,9 @@ Nachfolgend die jeweils genutzte rechtliche Einheit inkl. öffentlich auffindbar
 | Twilio | Twilio Ireland Limited | 70 Sir John Rogerson's Quay, Dublin 2, D02 R296, Irland | [LEI-Register](https://lei.info/635400HZOP3LBSUGAN82) |
 | SendGrid (Twilio) | Twilio Ireland Limited | 70 Sir John Rogerson's Quay, Dublin 2, D02 R296, Irland | [LEI-Register](https://lei.info/635400HZOP3LBSUGAN82) |
 | Microsoft Clarity | Microsoft Ireland Operations Limited | 70 Sir John Rogerson's Quay, Dublin 2, D02 R296, Irland | [Microsoft Privacy](https://privacy.microsoft.com/de-de/privacystatement) |
-| Meta Pixel API | Meta Platforms Ireland Limited | 4 Grand Canal Square, Grand Canal Harbour, Dublin 2, Irland | [Meta Business Tools Terms](https://www.facebook.com/legal/technology_terms) |
+| Meta (Pixel API & WhatsApp Business Platform) | Meta Platforms Ireland Limited | 4 Grand Canal Square, Grand Canal Harbour, Dublin 2, Irland | [Meta Business Tools Terms](https://www.facebook.com/legal/technology_terms) |
 
-## 9. Internationale Datenübermittlungen & Schutzmaßnahmen
+## 10. Internationale Datenübermittlungen & Schutzmaßnahmen
 
 Bei Anbietern mit US-Muttergesellschaften (z. B. Microsoft, Google, Vercel, Soniox) stellt Famulor die Konformität u. a. sicher durch:
 
@@ -116,7 +128,7 @@ Bei Anbietern mit US-Muttergesellschaften (z. B. Microsoft, Google, Vercel, Soni
 - **Rechtsrahmen:** Nutzung des EU-U.S. Data Privacy Framework (DPF) und/oder Standardvertragsklauseln (SVK).
 - **Enterprise-Verträge:** Spezialverträge, die Drittzugriff und Nutzung der Daten für Modelltraining ausschließen.
 
-## 10. Technische und organisatorische Maßnahmen (TOM)
+## 11. Technische und organisatorische Maßnahmen (TOM)
 
 Unser Sicherheitsrahmen zielt auf maximale Nachverfolgbarkeit und Isolierung:
 
@@ -129,7 +141,7 @@ Unser Sicherheitsrahmen zielt auf maximale Nachverfolgbarkeit und Isolierung:
 | **Audit-Logging** | Umfassende Protokollierung aller systemkritischen Aktionen zur Nachverfolgbarkeit. |
 | **Kontinuität** | Automatische tägliche Backups, verschlüsselt innerhalb der EU gespeichert. |
 
-## 11. Governance & Pflege
+## 12. Governance & Pflege
 
 - Diese Liste wird **quartalsweise geprüft**.
 - Änderungen am Anbieter-Stack werden im **[Changelog](/de/updates/changelog)** dokumentiert.
