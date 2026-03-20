@@ -40,6 +40,10 @@ description: "A step-by-step guide to connect your DIDLogic account via SIP trun
       <img src="/resources/didlogic-sip-create.png" alt="DIDLogic SIP account edit page with IP restriction" />
     </Frame>
 
+    <Frame>
+      <img src="/resources/didlogic-sip-update-confirmed.png" alt="DIDLogic SIP account with authorized IP and update confirmation" />
+    </Frame>
+
     Scroll to the regional gateway list and copy the SIP URI for your region. You will use it later in Famulor outbound settings.
   </Step>
 
@@ -60,11 +64,19 @@ description: "A step-by-step guide to connect your DIDLogic account via SIP trun
     15551234567@yourfamulor.sip.livekit.cloud
     ```
 
+    <Frame>
+      <img src="/resources/didlogic-destination-sip-uri.png" alt="DIDLogic destination configured as SIP URI" />
+    </Frame>
+
     Click **Add** to save.
   </Step>
 
   <Step title="Import Number to Famulor">
     Go to your Famulor dashboard: **Your Phone Numbers** -> **Integrate SIP trunk**.
+
+    <Frame>
+      <img src="/resources/didlogic-famulor-import-form.png" alt="Famulor SIP trunk import form with DIDLogic credentials" />
+    </Frame>
 
     Fill in:
 
@@ -74,11 +86,19 @@ description: "A step-by-step guide to connect your DIDLogic account via SIP trun
 
     For **Outbound settings**:
 
+    <Frame>
+      <img src="/resources/didlogic-famulor-outbound-settings.png" alt="Famulor outbound SIP settings for DIDLogic trunk" />
+    </Frame>
+
     - Paste the regional SIP URI copied in Step 2
     - Set number format to **International with + in front**
     - Enable **Outbound call will come from a fixed IP address**
 
     For **Inbound settings**:
+
+    <Frame>
+      <img src="/resources/didlogic-famulor-inbound-settings.png" alt="Famulor inbound authorization settings with DIDLogic gateway IPs" />
+    </Frame>
 
     - Set authorization type to **IP Address**
     - Add the gateway IP for your selected DIDLogic region:
