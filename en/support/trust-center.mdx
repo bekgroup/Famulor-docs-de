@@ -37,10 +37,12 @@ These providers host the Famulor.io platform, including the backend logic, datab
 ## 4. Artificial Intelligence (LLM)
 
 These models handle the reasoning and conversation logic. We utilize Enterprise-grade instances to ensure data isolation and sovereignty.
+Depending on the use case, LLM, STT, TTS, and SIP trunk providers can be selected optionally per assistant.
 
 | Provider | Model / Service | Processing Location |
 |----------|-----------------|---------------------|
 | Microsoft Ireland (Azure) | OpenAI Models (GPT-4o, o1, etc.) | Sweden Central (EU) |
+| Microsoft Ireland (Azure) | OpenAI GPT OSS | Sweden Central (EU) |
 | Google Cloud (Vertex AI) | Gemini models | EU Regions (EU Data Residency) |
 | Anthropic, PBC | Claude Models (via EU Partners) | EU Regions |
 | Microsoft Ireland (Azure) | Meta Llama 3 (Open Source) | EU Regions (Sweden/Germany) |
@@ -55,8 +57,10 @@ Specialized providers for real-time transcription (Speech-to-Text) and voice syn
 | [Soniox, Inc.](https://soniox.com/docs/stt/security-and-privacy) | STT | High-Precision Transcription<br />Compliance & Standards: SOC 2 Type 2 – auditing standard that evaluates an organization’s controls for security, availability, processing integrity, confidentiality, and privacy over an extended period of time.<br />ISO/IEC 27001:2022 – internationally recognized standard for Information Security Management Systems (ISMS).<br />GDPR – European Union regulation that governs the collection, processing, and protection of personal data and privacy rights.<br />HIPAA – U.S. regulatory framework that establishes requirements for protecting sensitive healthcare data, including Protected Health Information (PHI). | EU Region (per DPA) |
 | [ElevenLabs Inc.](https://elevenlabs.io/docs/overview/administration/data-residency) | STT & TTS | Scribe (STT) and Voice Models (TTS) | EU data residency (Enterprise) and EU endpoints available; GDPR support options incl. Zero Retention for EU workloads. |
 | [Gladia SAS](https://gladia.io/compliance-hub) | STT | Realtime and batch Speech-to-Text | GDPR-compliant according to Compliance Hub; EU and US workloads are processed separately. |
-| Cartesia AI, Inc. | TTS | Ultra-Low Latency Voice (Sonic) | EU Region (per DPA) |
+| [Cartesia AI, Inc.](https://cartesia.ai/blog/gdpr-compliance) | TTS | Ultra-Low Latency Voice (Sonic) | GDPR compliant according to provider; EU region usage supported. |
 | [Microsoft Ireland (Azure)](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/regions) | TTS | Azure Neural Speech (Text-to-Speech) | Azure Speech supports multiple EU regions; data stays in the region where the resource is created. |
+| Microsoft Ireland (Azure) | STT (Realtime) | OpenAI Realtime speech models | Sweden Central (EU) |
+| Google Cloud (Vertex AI) | STT (Realtime) | Gemini Flash Live models | EU Regions (Vertex AI EU Data Residency) |
 | [LiveKit Inc.](https://docs.livekit.io/deploy/admin/regions/region-pinning/) | Realtime Infrastructure | Virtual conversation rooms (realtime sessions) | EU SCC. Famulor uses the most privacy-friendly setup: with region pinning, data does not leave the European region according to the provider. |
 
 ## 6. Business Operations & Billing
@@ -66,10 +70,21 @@ Providers used for transactional security and administrative management.
 | Provider | Purpose | Processing Location |
 |----------|---------|---------------------|
 | Stripe Payments Europe | Secure Payment Processing | Ireland (EU) |
-| [Twilio Ireland Limited](https://www.twilio.com/docs/global-infrastructure/send-an-sms-with-twilio-regions) | Telephony, SIP trunking, and SMS (Programmable Messaging) | Ireland (EU). Regional processing via Twilio Regions (incl. IE1) possible. |
-| SendGrid (Twilio) | Transactional & System Emails | EU Regions |
+| [Twilio Ireland Limited](https://www.twilio.com/docs/global-infrastructure/send-an-sms-with-twilio-regions) | Telephony, SIP trunking, and SMS (Programmable Messaging) | Ireland (EU). Regional processing via Twilio Regions (incl. IE1). |
+| SendGrid (Twilio) | Transactional & System Emails | EU Regions (EU Data Processing Locations) |
 
-## 7. Providers: Legal Entity & Address
+## 7. Website Analytics & Tag Management
+
+For website and product analytics, we use:
+
+| Provider | Purpose | Note |
+|----------|---------|------|
+| Google Analytics (GA4) | Usage analytics and performance measurement | Measurement ID: `G-WPTBT13HB0`; GDPR-relevant EU contracting/privacy entity: Google Ireland Limited (Dublin). |
+| Google Tag Manager (GTM) | Management of tracking and marketing tags | Container: `GTM-PWRN3XX7` |
+| Microsoft Clarity | Product analytics and session insights | Provider: Microsoft Ireland Operations Limited; processing aligned with Microsoft privacy/compliance documentation. |
+| Meta Pixel API (Facebook) | Conversion tracking and campaign measurement | EEA provider entity: Meta Platforms Ireland Limited; processing under Meta Business Tools Terms/DPA framework. |
+
+## 8. Providers: Legal Entity & Address
 
 Below is the legal entity we use for each provider, including publicly listed company address information (as of March 2026).
 
@@ -79,6 +94,7 @@ Below is the legal entity we use for each provider, including publicly listed co
 | Vercel | Vercel Inc. | 440 N Barranca Ave #4133, Covina, CA 91723, USA | [Vercel Terms](https://vercel.com/legal/terms) |
 | Microsoft (Azure) | Microsoft Ireland Operations Limited | 70 Sir John Rogerson's Quay, Dublin 2, D02 R296, Ireland | [LEI Register](https://lei.info/549300WCLFVEBTBNRF76) |
 | Google Cloud | Google Cloud EMEA Limited | 70 Sir John Rogerson's Quay, Dublin 2, Ireland | [Google Contracting Entity](https://cloud.google.com/terms/google-entity/index-20210816) |
+| Google Analytics / GTM | Google Ireland Limited | Gordon House, Barrow Street, Dublin 4, Ireland | [Google Privacy & Terms](https://policies.google.com/privacy) |
 | Anthropic | Anthropic, PBC | 548 Market Street, PMB 90375, San Francisco, CA 94104, USA | [OpenGov](https://opengovco.com/business/20241311617) |
 | Soniox | Soniox, Inc. | 1045 Helm Ln, Foster City, CA 94404, USA (EU office: Cesta v Gorice 34B, 1000 Ljubljana, Slovenia) | [Soniox Contact](https://soniox.com/contact) |
 | ElevenLabs | Eleven Labs Inc. | 169 Madison Ave #2484, New York, NY 10016, USA | [ElevenLabs Help](https://help.elevenlabs.io/hc/en-us/articles/21757104682001-What-is-your-billing-address-and-VAT-EIN-number) |
@@ -89,8 +105,10 @@ Below is the legal entity we use for each provider, including publicly listed co
 | Stripe | Stripe Payments Europe, Limited | One Wilton Park, Wilton Place, Dublin 2, D02 FX04, Ireland | [LEI Register](https://lei.info/549300DSKP4KJP52XY61) |
 | Twilio | Twilio Ireland Limited | 70 Sir John Rogerson's Quay, Dublin 2, D02 R296, Ireland | [LEI Register](https://lei.info/635400HZOP3LBSUGAN82) |
 | SendGrid (Twilio) | Twilio Ireland Limited | 70 Sir John Rogerson's Quay, Dublin 2, D02 R296, Ireland | [LEI Register](https://lei.info/635400HZOP3LBSUGAN82) |
+| Microsoft Clarity | Microsoft Ireland Operations Limited | 70 Sir John Rogerson's Quay, Dublin 2, D02 R296, Ireland | [Microsoft Privacy](https://privacy.microsoft.com/en-us/privacystatement) |
+| Meta Pixel API | Meta Platforms Ireland Limited | 4 Grand Canal Square, Grand Canal Harbour, Dublin 2, Ireland | [Meta Business Tools Terms](https://www.facebook.com/legal/technology_terms) |
 
-## 8. International Data Transfers & Safeguards
+## 9. International Data Transfers & Safeguards
 
 For providers with US-based parent companies (e.g., Microsoft, Google, Vercel, Soniox), Famulor ensures compliance via:
 
@@ -98,7 +116,7 @@ For providers with US-based parent companies (e.g., Microsoft, Google, Vercel, S
 - **Legal Frameworks:** Utilization of the EU-U.S. Data Privacy Framework (DPF) and/or Standard Contractual Clauses (SCCs).
 - **Enterprise Agreements:** Specialized contracts that prevent third-party access and data usage for model training.
 
-## 9. Technical and Organizational Measures (TOMs)
+## 10. Technical and Organizational Measures (TOMs)
 
 Our security framework is designed for maximum accountability and isolation:
 
@@ -110,6 +128,11 @@ Our security framework is designed for maximum accountability and isolation:
 | **User-Controlled Data Retention** | To support the GDPR principle of storage limitation, users can independently configure automatic deletion schedules (1 to 24 months) for Calls, Leads, Chats, and SMS. |
 | **Audit Logging** | Comprehensive logging of all system-critical actions for traceability. |
 | **Continuity** | Automated daily backups stored encrypted within the European Union. |
+
+## 11. Governance & Maintenance
+
+- This list is reviewed **quarterly**.
+- Changes to the provider stack are documented in the **[changelog](/en/updates/changelog)**.
 
 **Last Updated:** March 2026
 
