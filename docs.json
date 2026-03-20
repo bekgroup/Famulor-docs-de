@@ -230,6 +230,7 @@
                 "pages": [
                   "en/provisioning/sip-ai/sip-integration",
                   "en/provisioning/sip-ai/twilio-integration",
+                  "en/provisioning/sip-ai/didlogic-integration",
                   "en/provisioning/sip-ai/zadarma-integration",
                   "en/provisioning/sip-ai/3cx-integration",
                   "en/provisioning/sip-ai/easybell-integration",
@@ -940,6 +941,7 @@
                 "pages": [
                   "de/provisioning/sip-ai/sip-integration",
                   "de/provisioning/sip-ai/twilio-integration",
+                  "de/provisioning/sip-ai/didlogic-integration",
                   "de/provisioning/sip-ai/zadarma-integration",
                   "de/provisioning/sip-ai/3cx-integration",
                   "de/provisioning/sip-ai/easybell-integration",

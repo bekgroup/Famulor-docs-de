@@ -1,0 +1,142 @@
+---
+title: "DIDLogic Integration"
+description: "Schritt-für-Schritt-Anleitung zur Verbindung Ihres DIDLogic-Kontos per SIP-Trunking"
+---
+
+<Note>
+  Folgen Sie dieser Anleitung, um DIDLogic mit Famulor für eingehende und ausgehende Anrufe zu verbinden.
+</Note>
+
+<Steps>
+  <Step title="Telefonnummer kaufen">
+    Melden Sie sich im DIDLogic-Dashboard unter [app.didlogic.com](https://app.didlogic.com) an und öffnen Sie den Tab **BUY**.
+    Suchen Sie nach Land und Ortsvorwahl, legen Sie eine Nummer in den Warenkorb und schließen Sie den Kauf ab.
+
+    <Frame>
+      <img src="/resources/didlogic-buy-tab.png" alt="DIDLogic BUY-Tab mit verfügbaren Nummern" />
+    </Frame>
+
+    Ihre neue Nummer erscheint anschließend im Tab **PURCHASED**.
+
+    <Frame>
+      <img src="/resources/didlogic-purchased-tab.png" alt="DIDLogic PURCHASED-Tab mit gekaufter Nummer" />
+    </Frame>
+  </Step>
+
+  <Step title="SIP-Konto konfigurieren (Outbound)">
+    Öffnen Sie den Tab **SIP** und klicken Sie bei Ihrem SIP-Konto auf **Edit**.
+
+    <Frame>
+      <img src="/resources/didlogic-sip-accounts.png" alt="DIDLogic SIP-Kontenliste" />
+    </Frame>
+
+    In den SIP-Einstellungen:
+
+    - **Restrict to authorized IPs** aktivieren
+    - `34.195.177.252` hinzufügen
+    - Auf **Add** und danach **Update** klicken
+
+    <Frame>
+      <img src="/resources/didlogic-sip-create.png" alt="DIDLogic SIP-Bearbeitung mit IP-Restriktion" />
+    </Frame>
+
+    Scrollen Sie zur regionalen Gateway-Liste und kopieren Sie die SIP-URI Ihrer Region. Diese benötigen Sie später in den Outbound-Einstellungen in Famulor.
+  </Step>
+
+  <Step title="Inbound-Routing in DIDLogic konfigurieren">
+    Öffnen Sie **PURCHASED** und klicken Sie neben Ihrer Nummer auf **Destination**.
+
+    - Vorhandenes Ziel löschen
+    - Auswahl von **SIP device** auf **SIP URI** ändern
+    - Dieses Format eintragen:
+
+    ```bash
+    <nummer_ohne_plus>@yourfamulor.sip.livekit.cloud
+    ```
+
+    Beispiel:
+
+    ```bash
+    15551234567@yourfamulor.sip.livekit.cloud
+    ```
+
+    Mit **Add** speichern.
+  </Step>
+
+  <Step title="Nummer in Famulor importieren">
+    Gehen Sie im Famulor-Dashboard zu **Your Phone Numbers** -> **Integrate SIP trunk**.
+
+    Tragen Sie ein:
+
+    - **Phone number:** DIDLogic-Nummer im E.164-Format (Beispiel `+15551234567`)
+    - **Username:** SIP-Kontonummer aus Schritt 2 (Beispiel `12345`)
+    - **Password:** Passwort aus Schritt 2
+
+    Für **Outbound settings**:
+
+    - Regionale SIP-URI aus Schritt 2 einfügen
+    - Nummernformat auf **International with + in front** setzen
+    - **Outbound call will come from a fixed IP address** aktivieren
+
+    Für **Inbound settings**:
+
+    - Autorisierungstyp auf **IP Address** setzen
+    - Gateway-IP der genutzten DIDLogic-Region eintragen:
+
+    | Gateway | IP-Adresse |
+    | --- | --- |
+    | sip.nl.didlogic.net | 89.149.192.7 |
+    | sip.uk.didlogic.net | 23.19.63.1 |
+    | sip.se.didlogic.net | 5.150.254.205 |
+    | sip.de.didlogic.net | 157.230.96.24 |
+    | sip.fr.didlogic.net | 159.8.84.235 |
+    | sip.hk.didlogic.net | 188.42.84.76 |
+    | sip.sg.didlogic.net | 188.42.84.76 |
+    | sip.au.didlogic.net | 119.9.12.222 |
+    | sip.nz.didlogic.net | 131.203.181.17 |
+    | sip.ir.didlogic.net | 161.202.135.82 |
+    | sip.ca.didlogic.net | 138.197.143.154 |
+    | sip.lax.didlogic.net | 185.118.62.77 |
+    | sip.nyc.didlogic.net | 192.241.183.87 |
+    | sip.za.didlogic.net | 102.130.116.205 |
+    | sip.br.didlogic.net | 169.57.132.146 |
+
+    Wählen Sie das Land, in dem Ihr SIP-Trunk gehostet ist.
+  </Step>
+
+  <Step title="Einrichtung verifizieren">
+    - Testanruf auf Ihre Nummer durchführen (Inbound)
+    - In Famulor einen Testanruf für Outbound durchführen
+  </Step>
+</Steps>
+
+## Sicherheitsanforderungen
+
+Ihre SIP-Zugangsdaten sollten sicher sein:
+
+- Mindestens 12 Zeichen
+- Zahlen enthalten
+- Groß- und Kleinbuchstaben enthalten
+- Sonderzeichen werden empfohlen
+
+## Häufige Probleme
+
+<AccordionGroup>
+  <Accordion title="Ausgehende Anrufe funktionieren nicht">
+    - Regionale SIP-URI aus Schritt 2 prüfen und eventuelle Leerzeichen am Ende entfernen.
+    - Prüfen, ob der Benutzername die numerische SIP-Kontonummer ist (z. B. `12345`) und nicht E-Mail oder Kontoname.
+    - Prüfen, ob das Passwort in Famulor exakt mit DIDLogic übereinstimmt.
+    - Prüfen, ob `34.195.177.252` in DIDLogic als autorisierte IP eingetragen ist.
+  </Accordion>
+
+  <Accordion title="Eingehende Anrufe funktionieren nicht">
+    - In DIDLogic muss das Ziel auf **SIP URI** stehen (nicht auf SIP device).
+    - Ziel-Format prüfen:
+
+    ```bash
+    <nummer_ohne_plus>@yourfamulor.sip.livekit.cloud
+    ```
+
+    - In den Famulor-Inbound-Einstellungen prüfen, ob die hinterlegte IP zur gewählten DIDLogic-Gateway-Region passt.
+  </Accordion>
+</AccordionGroup>
