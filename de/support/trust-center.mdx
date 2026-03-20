@@ -51,10 +51,12 @@ Spezialisierte Anbieter für Echtzeit-Transkription (Speech-to-Text) und Sprachs
 
 | Anbieter | Kategorie | Dienst / Zweck | Verarbeitungsstandort |
 |----------|-----------|----------------|----------------------|
+| [Deepgram, Inc.](https://deepgram.com/learn/deepgram-eu-endpoint-now-generally-available) | STT | Speech-to-Text (Nova/Flux API) | EU-Endpunkt verfügbar (`api.eu.deepgram.com`); DSGVO-konforme Nutzung über EU-Region möglich. |
 | [Soniox, Inc.](https://soniox.com/docs/stt/security-and-privacy) | STT | Hochpräzise Transkription<br />Konformität & Standards: SOC 2 Type 2 – Prüfstandard, der über einen längeren Zeitraum die Kontrollen eines Unternehmens für Sicherheit, Verfügbarkeit, Verarbeitungssicherheit (processing integrity), Vertraulichkeit und Datenschutz bewertet.<br />ISO/IEC 27001:2022 – international anerkannter Standard für Informationssicherheits-Managementsysteme (ISMS).<br />GDPR – EU-Verordnung, die die Erhebung, Verarbeitung und den Schutz personenbezogener Daten sowie die Datenschutzrechte regelt.<br />HIPAA – US-rechtlicher Rahmen, der Anforderungen zum Schutz sensibler Gesundheitsdaten festlegt, einschließlich Protected Health Information (PHI). | EU-Region (laut AVV) |
-| ElevenLabs Inc. | TTS | KI-Sprachmodelle (Enterprise Plan) | EU-US DPF, EU-SCC; Verarbeitung in Belgien. Im Rahmen eines Enterprise-Vertrags bleiben sämtliche Daten ausschließlich innerhalb Europas und werden unmittelbar nach der Audiogenerierung gelöscht (Zero Retention). |
+| [ElevenLabs Inc.](https://elevenlabs.io/docs/overview/administration/data-residency) | STT & TTS | Scribe (STT) und Voice Models (TTS) | EU Data Residency (Enterprise) und EU-Endpunkte verfügbar; DSGVO-Optionen inkl. Zero Retention für EU-Workloads. |
+| [Gladia SAS](https://gladia.io/compliance-hub) | STT | Realtime und Batch Speech-to-Text | GDPR-konform laut Compliance Hub; EU/US-Workloads werden getrennt verarbeitet. |
 | Cartesia AI, Inc. | TTS | Ultra-Low-Latency Voice (Sonic) | EU-Region (laut AVV) |
-| Microsoft Ireland (Azure) | STT/TTS | Whisper & Azure Neural Speech | Sweden Central (EU) |
+| [Microsoft Ireland (Azure)](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/regions) | TTS | Azure Neural Speech (Text-to-Speech) | Azure Speech unterstützt mehrere EU-Regionen; Daten bleiben in der Region der erstellten Ressource. |
 | [LiveKit Inc.](https://docs.livekit.io/deploy/admin/regions/region-pinning/) | Echtzeit-Infrastruktur | Virtuelle Gesprächsräume (Realtime Sessions) | EU-SCC. Famulor wählt die datenschutzfreundlichste Konfiguration: Durch Region Pinning verlassen Daten laut Anbieter die europäische Region nicht. |
 
 ## 6. Geschäftsbetrieb & Abrechnung
@@ -64,6 +66,7 @@ Anbieter für transaktionale Sicherheit und administrative Verwaltung.
 | Anbieter | Zweck | Verarbeitungsstandort |
 |----------|-------|----------------------|
 | Stripe Payments Europe | Sichere Zahlungsabwicklung | Irland (EU) |
+| [Twilio Ireland Limited](https://www.twilio.com/docs/global-infrastructure/send-an-sms-with-twilio-regions) | Telefonie, SIP Trunk und SMS (Programmable Messaging) | Irland (EU). Regionale Verarbeitung über Twilio Regions (u. a. IE1) möglich. |
 | SendGrid (Twilio) | Transaktions- und System-E-Mails | EU-Regionen |
 
 ## 7. Anbieter: Firmenname & Adresse
@@ -79,9 +82,12 @@ Nachfolgend die jeweils genutzte rechtliche Einheit inkl. öffentlich auffindbar
 | Anthropic | Anthropic, PBC | 548 Market Street, PMB 90375, San Francisco, CA 94104, USA | [OpenGov](https://opengovco.com/business/20241311617) |
 | Soniox | Soniox, Inc. | 1045 Helm Ln, Foster City, CA 94404, USA (EU-Standort: Cesta v Gorice 34B, 1000 Ljubljana, Slowenien) | [Soniox Contact](https://soniox.com/contact) |
 | ElevenLabs | Eleven Labs Inc. | 169 Madison Ave #2484, New York, NY 10016, USA | [ElevenLabs Help](https://help.elevenlabs.io/hc/en-us/articles/21757104682001-What-is-your-billing-address-and-VAT-EIN-number) |
+| Deepgram | Deepgram, Inc. | 548 Market St, Suite 25104, San Francisco, CA 94104-5401, USA | [EU Endpoint Announcement](https://deepgram.com/learn/deepgram-eu-endpoint-now-generally-available) |
+| Gladia | GLADIA SAS | 6B, rue du Bas Village, 35510 Cesson-Sevigne, Frankreich | [Gladia Legal Notice](https://www.gladia.io/legal-notice) |
 | Cartesia | Cartesia AI, Inc. | 1766 18th Street, Suite 1200, San Francisco, CA, USA | [Company info](https://www.crunchbase.com/organization/cartesia) |
 | LiveKit | LiveKit Inc. | - | [Region pinning (LiveKit Docs)](https://docs.livekit.io/deploy/admin/regions/region-pinning/) |
 | Stripe | Stripe Payments Europe, Limited | One Wilton Park, Wilton Place, Dublin 2, D02 FX04, Irland | [LEI-Register](https://lei.info/549300DSKP4KJP52XY61) |
+| Twilio | Twilio Ireland Limited | 70 Sir John Rogerson's Quay, Dublin 2, D02 R296, Irland | [LEI-Register](https://lei.info/635400HZOP3LBSUGAN82) |
 | SendGrid (Twilio) | Twilio Ireland Limited | 70 Sir John Rogerson's Quay, Dublin 2, D02 R296, Irland | [LEI-Register](https://lei.info/635400HZOP3LBSUGAN82) |
 
 ## 8. Internationale Datenübermittlungen & Schutzmaßnahmen
