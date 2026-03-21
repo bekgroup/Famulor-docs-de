@@ -83,7 +83,9 @@
                   "en/platform/campaigns",
                   "en/platform/lead-list-kanban",
                   "en/platform/engine-types",
-                  "en/platform/inbound-vs-outbound"
+                  "en/platform/inbound-vs-outbound",
+                  "en/platform/tts-providers",
+                  "en/platform/ai-coach"
                 ]
               },
               {
@@ -794,7 +796,9 @@
                   "de/platform/kampagnen",
                   "de/platform/leadliste-kanban",
                   "de/platform/engine-typen",
-                  "de/platform/inbound-vs-outbound"
+                  "de/platform/inbound-vs-outbound",
+                  "de/platform/tts-anbieter",
+                  "de/platform/ki-coach"
                 ]
               },
               {
