@@ -1,0 +1,48 @@
+---
+title: "Engine-Typen (Pipeline, Speech-to-Speech, Dualplex)"
+description: "Kurzer Überblick: Wie sich Pipeline, Speech-to-Speech und Dualplex unterscheiden — und wann du welchen Modus wählst."
+icon: "microphone-lines"
+---
+
+Famulor bietet **drei Engine-Typen** für die Sprachverarbeitung deiner Assistenten. Sie unterscheiden sich vor allem dadurch, ob und wo im Ablauf **Text** als Zwischenschritt vorkommt — und wie stark **Latenz** gegen **kontrolliertes Reasoning** gewichtet wird.
+
+<div style={{ position: "relative", paddingBottom: "56.25%", height: 0 }}>
+  <iframe
+    style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: 0 }}
+    src="https://www.tella.tv/video/vid_cmmysv6ir003q04jo3ai0f97y/embed?b=0&title=0&a=1&loop=0&t=0&muted=0&wt=0&o=1"
+    allowFullScreen
+    allowTransparency
+  />
+</div>
+
+## 1. Pipeline (klassisch)
+
+**Ablauf:** Sprache → Text (Transkription) → Verarbeitung durch das Sprachmodell → Antworttext → Sprache (Text-to-Speech).
+
+Das ist die **klassische Pipeline**: Die KI „denkt“ auf Basis von Text, den du bei Bedarf auch nachvollziehen und feinjustieren kannst. Dafür braucht der Ablauf etwas **mehr Zeit** — dafür eignet er sich besonders, wenn **Logik, längere Antworten oder komplexe Automationen** im Vordergrund stehen.
+
+**Typische Einsatzfälle:** ausführliche Erklärungen, strukturierte Workflows, Szenarien, in denen du maximale **Kontrolle über Formulierung und Stimme** willst.
+
+## 2. Speech-to-Speech (Sprache zu Sprache)
+
+Hier wird der **Text-Schritt übersprungen**: Das Modell **hört** direkt und **antwortet** direkt mit gesprochener Sprache — vergleichbar mit dem **Sprachmodus** in ChatGPT (der blaue Kreis).
+
+Das ist in der Regel der **schnellste** Modus mit dem geringsten wahrgenommenen Wartegefühl — ideal, wenn du einen **schnellen Outbound-Caller** oder sehr reaktive, kurze Dialoge brauchst.
+
+## 3. Dualplex
+
+**Dualplex kombiniert** die Stärken beider Welten: Es wird **dynamisch entschieden**, was im jeweiligen Moment **sinnvoll und zeitlich passend** ist — z. B. schnelles Turn-Taking dort, wo es passt, und wo nötig mehr „Raum zum Denken“.
+
+Für **die meisten Anwendungsfälle** ist Dualplex ein guter **Einstieg**. Wenn du merkst, dass dir Genauigkeit, längere Antworten oder feinere Steuerung fehlen, lohnt sich ein Wechsel zu **Pipeline**.
+
+<Tip>
+Ausführliche technische Details, Latenz-Richtwerte und Tabellen findest du unter [Assistenten-Modi](/de/ai-assistants/assistant-modes). Praktische Einstell-Tipps stehen in den [Best Practices für KI-Assistenten](/de/ai-assistants/assistant-best-practices).
+</Tip>
+
+## Kurzentscheidung
+
+| Ziel | Tendenz |
+| --- | --- |
+| Erst einmal ausprobieren, gute Balance | **Dualplex** |
+| Maximale Geschwindigkeit, kurze Dialoge | **Speech-to-Speech** |
+| Starkes Reasoning, lange/komplexe Antworten, volle Pipeline-Kontrolle | **Pipeline** |

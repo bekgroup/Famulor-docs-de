@@ -81,7 +81,8 @@
                   "en/platform/chat-list",
                   "en/platform/blacklist",
                   "en/platform/campaigns",
-                  "en/platform/lead-list-kanban"
+                  "en/platform/lead-list-kanban",
+                  "en/platform/lead-list-kanban-engine-types"
                 ]
               },
               {
@@ -790,7 +791,8 @@
                   "de/platform/chatverlauf",
                   "de/platform/blacklist",
                   "de/platform/kampagnen",
-                  "de/platform/leadliste-kanban"
+                  "de/platform/leadliste-kanban",
+                  "de/platform/leadliste-kanban-engine-typen"
                 ]
               },
               {

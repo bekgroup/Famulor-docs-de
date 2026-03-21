@@ -1,0 +1,48 @@
+---
+title: "Engine types (Pipeline, Speech-to-Speech, Dualplex)"
+description: "Quick overview: how Pipeline, Speech-to-Speech, and Dualplex differ — and when to choose which mode."
+icon: "microphone-lines"
+---
+
+Famulor offers **three engine types** for your assistants’ voice stack. They mainly differ by whether **text** appears as an intermediate step in the flow — and how **latency** is traded against **controlled reasoning**.
+
+<div style={{ position: "relative", paddingBottom: "56.25%", height: 0 }}>
+  <iframe
+    style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: 0 }}
+    src="https://www.tella.tv/video/vid_cmmysv6ir003q04jo3ai0f97y/embed?b=0&title=0&a=1&loop=0&t=0&muted=0&wt=0&o=1"
+    allowFullScreen
+    allowTransparency
+  />
+</div>
+
+## 1. Pipeline (classic)
+
+**Flow:** Speech → text (transcription) → language model → reply text → speech (TTS).
+
+This is the **classic pipeline**: the model reasons over **text**, which you can trace and tune. That path takes a bit **more time**, but it shines when **logic, longer replies, or heavy automation** matter.
+
+**Typical use cases:** detailed explanations, structured workflows, scenarios where you want maximum **control over wording and voice**.
+
+## 2. Speech-to-Speech
+
+Here the **text stage is skipped**: the model **listens** and **speaks** directly — similar to **ChatGPT’s voice mode** (the blue circle).
+
+It is usually the **fastest** mode with the lowest perceived wait — great for a **snappy outbound caller** or short, reactive dialogs.
+
+## 3. Dualplex
+
+**Dualplex combines** both approaches: the system **decides what fits best** at each moment — e.g. fast turn-taking where it helps, and more “thinking room” where needed.
+
+For **most setups**, Dualplex is a strong **default**. If you need more precision, longer answers, or finer control, switch to **Pipeline**.
+
+<Tip>
+For technical detail, latency ranges, and tables, see [Assistant modes](/en/ai-assistants/assistant-modes). Practical tuning tips are in [AI assistant best practices](/en/ai-assistants/assistant-best-practices).
+</Tip>
+
+## Quick decision
+
+| Goal | Lean toward |
+| --- | --- |
+| Good default, balanced | **Dualplex** |
+| Maximum speed, short dialogs | **Speech-to-Speech** |
+| Strong reasoning, long/complex replies, full pipeline control | **Pipeline** |
