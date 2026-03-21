@@ -1,0 +1,152 @@
+[
+  {
+    "source": "en/automation-platform/integrations/crm-hub.mdx",
+    "link": "/automation-platform/integrations/einzelintegrations/hubspot",
+    "expected": "automation-platform/integrations/einzelintegrations/hubspot.mdx"
+  },
+  {
+    "source": "en/automation-platform/integrations/crm-hub.mdx",
+    "link": "/automation-platform/integrations/einzelintegrations/salesforce",
+    "expected": "automation-platform/integrations/einzelintegrations/salesforce.mdx"
+  },
+  {
+    "source": "en/automation-platform/integrations/crm-hub.mdx",
+    "link": "/automation-platform/integrations/crm#zoho-crm",
+    "expected": "automation-platform/integrations/crm.mdx"
+  },
+  {
+    "source": "en/automation-platform/integrations/crm-hub.mdx",
+    "link": "/automation-platform/integrations/crm#pipedrive",
+    "expected": "automation-platform/integrations/crm.mdx"
+  },
+  {
+    "source": "en/automation-platform/integrations/crm-hub.mdx",
+    "link": "/automation-platform/integrations/crm#dynamics",
+    "expected": "automation-platform/integrations/crm.mdx"
+  },
+  {
+    "source": "en/automation-platform/integrations/crm-hub.mdx",
+    "link": "/automation-platform/integrations/crm",
+    "expected": "automation-platform/integrations/crm.mdx"
+  },
+  {
+    "source": "en/automation-platform/integrations/einzelintegrations/stripe.mdx",
+    "link": "/automation-platform/integrations/einzelintegrations/stripe/revenue-calculator",
+    "expected": "automation-platform/integrations/einzelintegrations/stripe/revenue-calculator.mdx"
+  },
+  {
+    "source": "en/automation-platform/integrations/einzelintegrations/stripe.mdx",
+    "link": "/automation-platform/integrations/einzelintegrations/stripe/enterprise",
+    "expected": "automation-platform/integrations/einzelintegrations/stripe/enterprise.mdx"
+  },
+  {
+    "source": "en/automation-platform/integrations/einzelintegrations/trello.mdx",
+    "link": "/automation-platform/integrations/einzelintegrations/trello/templates",
+    "expected": "automation-platform/integrations/einzelintegrations/trello/templates.mdx"
+  },
+  {
+    "source": "en/automation-platform/integrations/einzelintegrations/trello.mdx",
+    "link": "/automation-platform/integrations/einzelintegrations/trello/workflows",
+    "expected": "automation-platform/integrations/einzelintegrations/trello/workflows.mdx"
+  },
+  {
+    "source": "en/essentials/images.mdx",
+    "link": "/path/image.jpg",
+    "expected": "path/image.jpg"
+  },
+  {
+    "source": "en/essentials/markdown.mdx",
+    "link": "/writing-content/text",
+    "expected": "writing-content/text.mdx"
+  },
+  {
+    "source": "en/essentials/markdown.mdx",
+    "link": "../text",
+    "expected": "en/text.mdx"
+  },
+  {
+    "source": "de/automation-platform/integrations/crm-hub.mdx",
+    "link": "/automation-platform/integrations/einzelintegrations/hubspot",
+    "expected": "automation-platform/integrations/einzelintegrations/hubspot.mdx"
+  },
+  {
+    "source": "de/automation-platform/integrations/crm-hub.mdx",
+    "link": "/automation-platform/integrations/einzelintegrations/salesforce",
+    "expected": "automation-platform/integrations/einzelintegrations/salesforce.mdx"
+  },
+  {
+    "source": "de/automation-platform/integrations/crm-hub.mdx",
+    "link": "/automation-platform/integrations/crm#zoho-crm",
+    "expected": "automation-platform/integrations/crm.mdx"
+  },
+  {
+    "source": "de/automation-platform/integrations/crm-hub.mdx",
+    "link": "/automation-platform/integrations/crm#pipedrive",
+    "expected": "automation-platform/integrations/crm.mdx"
+  },
+  {
+    "source": "de/automation-platform/integrations/crm-hub.mdx",
+    "link": "/automation-platform/integrations/crm#dynamics",
+    "expected": "automation-platform/integrations/crm.mdx"
+  },
+  {
+    "source": "de/automation-platform/integrations/crm-hub.mdx",
+    "link": "/automation-platform/integrations/crm",
+    "expected": "automation-platform/integrations/crm.mdx"
+  },
+  {
+    "source": "de/automation-platform/integrations/einzelintegrations/stripe.mdx",
+    "link": "/automation-platform/integrations/einzelintegrations/stripe/revenue-calculator",
+    "expected": "automation-platform/integrations/einzelintegrations/stripe/revenue-calculator.mdx"
+  },
+  {
+    "source": "de/automation-platform/integrations/einzelintegrations/stripe.mdx",
+    "link": "/automation-platform/integrations/einzelintegrations/stripe/enterprise",
+    "expected": "automation-platform/integrations/einzelintegrations/stripe/enterprise.mdx"
+  },
+  {
+    "source": "de/automation-platform/integrations/einzelintegrations/trello.mdx",
+    "link": "/automation-platform/integrations/einzelintegrations/trello/templates",
+    "expected": "automation-platform/integrations/einzelintegrations/trello/templates.mdx"
+  },
+  {
+    "source": "de/automation-platform/integrations/einzelintegrations/trello.mdx",
+    "link": "/automation-platform/integrations/einzelintegrations/trello/workflows",
+    "expected": "automation-platform/integrations/einzelintegrations/trello/workflows.mdx"
+  },
+  {
+    "source": "de/essentials/images.mdx",
+    "link": "/path/image.jpg",
+    "expected": "path/image.jpg"
+  },
+  {
+    "source": "de/essentials/markdown.mdx",
+    "link": "/writing-content/text",
+    "expected": "writing-content/text.mdx"
+  },
+  {
+    "source": "de/essentials/markdown.mdx",
+    "link": "../text",
+    "expected": "de/text.mdx"
+  },
+  {
+    "source": "de/quickstart.mdx",
+    "link": "/essentials/markdown",
+    "expected": "essentials/markdown.mdx"
+  },
+  {
+    "source": "de/quickstart.mdx",
+    "link": "/essentials/settings",
+    "expected": "essentials/settings.mdx"
+  },
+  {
+    "source": "de/quickstart.mdx",
+    "link": "/essentials/code",
+    "expected": "essentials/code.mdx"
+  },
+  {
+    "source": "de/quickstart.mdx",
+    "link": "/api-reference/introduction",
+    "expected": "api-reference/introduction.mdx"
+  }
+]
