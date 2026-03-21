@@ -82,7 +82,8 @@
                   "en/platform/blacklist",
                   "en/platform/campaigns",
                   "en/platform/lead-list-kanban",
-                  "en/platform/lead-list-kanban-engine-types"
+                  "en/platform/engine-types",
+                  "en/platform/inbound-vs-outbound"
                 ]
               },
               {
@@ -792,7 +793,8 @@
                   "de/platform/blacklist",
                   "de/platform/kampagnen",
                   "de/platform/leadliste-kanban",
-                  "de/platform/leadliste-kanban-engine-typen"
+                  "de/platform/engine-typen",
+                  "de/platform/inbound-vs-outbound"
                 ]
               },
               {
