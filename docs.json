@@ -578,6 +578,7 @@
           {
             "tab": "API Reference",
             "icon": "code",
+            "openapi": "https://app.famulor.de/api/openapi.json",
             "groups": [
               {
                 "group": "API Reference",
@@ -1292,6 +1293,7 @@
           {
             "tab": "API Referenz",
             "icon": "code",
+            "openapi": "https://app.famulor.de/api/openapi.json",
             "groups": [
               {
                 "group": "API Referenz",
