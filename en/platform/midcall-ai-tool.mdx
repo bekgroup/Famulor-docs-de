@@ -1,0 +1,68 @@
+---
+title: "Midcall AI Tool"
+description: "Build tools your assistant can trigger during live calls to fetch, create, or update data via API integrations."
+icon: "plug"
+---
+
+With a **midcall tool**, your assistant can trigger automations **during an active call** - for example checking customer records, matching phone numbers, or retrieving appointment availability.
+
+<div style={{ position: "relative", paddingBottom: "56.25%", height: 0 }}>
+  <iframe
+    style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: 0 }}
+    src="https://www.tella.tv/video/automatisierung-wahrend-anrufen-mit-dem-midcall-tool-5c8p/embed"
+    allowFullScreen
+    allowTransparency
+  />
+</div>
+
+## 1. Where to find midcall tools
+
+Use the dedicated **Tools during the call** section (below knowledge bases). There you can create your first tool, e.g. "Check appointment availability".
+
+## 2. Description quality drives trigger quality
+
+The **tool description** acts like a mini-prompt for the model and strongly affects **when** the tool is called.
+
+- State the trigger condition clearly.
+- Explain expected behavior and output.
+- Practical tip: many teams write descriptions in **English** for more consistent model behavior.
+
+## 3. Choose the right HTTP method
+
+- **GET**: fetch data (e.g. available slots)
+- **POST**: create data (e.g. new customer)
+- **PUT**: replace/update a full record
+- **PATCH**: update specific fields only
+- **DELETE**: remove data
+
+## 4. Headers and parameters
+
+Most integrations use JSON, so `Content-Type: application/json` is commonly correct.
+
+For **tool parameters**:
+
+- use parameter names exactly as required by your target API
+- choose the correct type (`text`, `number`, `true/false`)
+- add precise descriptions so the assistant fills values reliably during calls
+
+## 5. Endpoint via webhook + `/sync`
+
+If your direct API requires additional auth handling (for example Bearer token flows), it is often better to route through an **automation webhook**.
+
+Important: append **`/sync`** to the webhook endpoint used by the midcall tool.
+
+Example:
+
+`https://automation.famulor.com/webhook/abc123/sync`
+
+Without `sync`, requests may be sent but the assistant may not reliably receive a synchronous response payload.
+
+## 6. Assign the tool to your assistant
+
+In **Prompt & Tools**, scroll to **Tools during the call** and select your created tool.
+
+Optional best practice: add a short system-prompt rule that explicitly states when the assistant should use the tool.
+
+<Tip>
+Test each midcall tool with realistic call scenarios. If triggering is inconsistent, refine the tool description first.
+</Tip>

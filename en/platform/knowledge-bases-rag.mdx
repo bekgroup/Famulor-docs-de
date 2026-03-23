@@ -1,0 +1,68 @@
+---
+title: "Knowledge Bases (RAG)"
+description: "Teach your assistant with websites, PDFs, text files, and docs so it can answer business-specific questions reliably."
+icon: "database"
+---
+
+With **Knowledge Bases (RAG)**, you can provide your assistant with company-specific information such as pricing, opening hours, policies, and product details.
+
+Supported sources include:
+
+- Websites
+- PDF files
+- Text files
+- Docs files
+
+<div style={{ position: "relative", paddingBottom: "56.25%", height: 0 }}>
+  <iframe
+    style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: 0 }}
+    src="https://www.tella.tv/video/ki-assistent-mit-eigener-wissensdatenbank-trainieren-14f6/embed"
+    allowFullScreen
+    allowTransparency
+  />
+</div>
+
+## 1. Create a knowledge base
+
+1. Open **Knowledge Base** in the left menu.
+2. Click **New knowledge base**.
+3. Add a name and description.
+4. Click **Create**.
+
+Your new knowledge base will then appear in the overview.
+
+## 2. Add documents
+
+Inside the knowledge base, use **Create a new document** to import content.
+
+A common starting approach is a **website**:
+
+1. Paste the URL.
+2. Use **Load links automatically** to include subpages.
+3. Increase rate limit if needed for larger sites.
+4. Create the document.
+
+You can also upload files via **drag and drop**, then name and describe them.
+
+## 3. Performance and latency
+
+Important: very large knowledge bases can increase latency.
+
+If you have many heavy PDFs, converting core content to **text files** often improves processing speed.
+
+## 4. Connect it to your assistant
+
+In your assistant, open **Prompt & Tools** and go to **Knowledge Base**:
+
+1. Select the target knowledge base.
+2. Enable **Function calling** mode.
+
+After that, your assistant can retrieve the stored information live during calls.
+
+## 5. Test it
+
+Use **Test Assistant** and ask targeted questions (for example pricing or opening hours) to verify answer quality and speed.
+
+<Tip>
+Start with your highest-impact information first, then expand gradually to keep quality high and latency stable.
+</Tip>

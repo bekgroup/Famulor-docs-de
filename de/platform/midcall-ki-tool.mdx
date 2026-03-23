@@ -1,0 +1,68 @@
+---
+title: "Midcall KI-Tool"
+description: "So erstellst du Werkzeuge fuer den aktiven Anruf, bindest APIs an und laesst die Assistentin Daten in Echtzeit abrufen oder aktualisieren."
+icon: "plug"
+---
+
+Mit dem **Midcall Tool** kann deine Assistentin **waehrend des Gespraechs** Automationen ausloesen - zum Beispiel Kundendaten abfragen, Telefonnummern abgleichen oder Terminverfuegbarkeit pruefen.
+
+<div style={{ position: "relative", paddingBottom: "56.25%", height: 0 }}>
+  <iframe
+    style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: 0 }}
+    src="https://www.tella.tv/video/automatisierung-wahrend-anrufen-mit-dem-midcall-tool-5c8p/embed"
+    allowFullScreen
+    allowTransparency
+  />
+</div>
+
+## 1. Wo du Midcall Tools findest
+
+Es gibt einen eigenen Bereich **Werkzeuge waehrend des Anrufs** (unterhalb der Wissensdatenbank). Dort kannst du dein erstes Tool anlegen, z. B. "Terminverfuegbarkeit pruefen".
+
+## 2. Beschreibung ist entscheidend
+
+Die **Tool-Beschreibung** ist fuer die KI wie ein Mini-Prompt: Sie entscheidet, **wann** das Tool aufgerufen wird.
+
+- Beschreibe klar den Ausloeser (z. B. "wenn Kunde nach Termin fragt").
+- Definiere gewuenschtes Verhalten und Ziel.
+- Praktischer Tipp: Beschreibungen haeufig auf **Englisch** formulieren, da viele Modelle das sehr stabil auswerten.
+
+## 3. HTTP-Methode richtig waehlen
+
+- **GET**: Daten abrufen (z. B. freie Termine laden)
+- **POST**: neue Daten erstellen (z. B. Neukunde anlegen)
+- **PUT**: Datensatz komplett aktualisieren/ersetzen
+- **PATCH**: einzelne Felder gezielt aendern
+- **DELETE**: Daten loeschen
+
+## 4. Header und Parameter
+
+Viele Integrationen arbeiten mit JSON - `Content-Type: application/json` ist oft bereits passend.
+
+Bei **Werkzeugparametern** gilt:
+
+- Parameternamen exakt wie von der Ziel-API erwartet setzen (1:1)
+- passenden Typ waehlen (`Text`, `Zahl`, `wahr/falsch`)
+- praezise Beschreibung je Parameter hinterlegen, damit die KI am Telefon die richtigen Werte einsetzt
+
+## 5. Endpoint mit Webhook und `/sync`
+
+Wenn deine direkte API z. B. vorgelagerte Authentifizierung braucht (etwa Bearer-Token-Logik), nutze statt des direkten API-Links oft besser eine **Automation mit Webhook-Trigger**.
+
+Wichtig: Den Webhook-Endpunkt fuer Midcall mit **`/sync`** erweitern.
+
+Beispiel:
+
+`https://automation.famulor.de/webhook/abc123/sync`
+
+Ohne `sync` kann die KI oft nur senden, aber keine Antwort sauber zurueckbekommen.
+
+## 6. Tool dem Assistenten zuweisen
+
+Im Assistenten unter **Prompt & Werkzeuge** nach unten zu **Werkzeuge waehrend des Anrufs** scrollen und das Tool auswaehlen.
+
+Optionaler Best Practice: Im System-Prompt zusaetzlich festhalten, **wann** genau das Tool genutzt werden soll (z. B. Termin-Check bei Terminwunsch).
+
+<Tip>
+Teste jedes Midcall Tool mit realistischen Gespraechsfaellen. Wenn Trigger nicht zuverlaessig feuern, liegt es fast immer an einer zu allgemeinen Beschreibung.
+</Tip>

@@ -1,0 +1,54 @@
+---
+title: "LLM Temperature"
+description: "How the creativity slider affects prompt adherence, and when to raise temperature for more improvisation."
+icon: "sliders"
+---
+
+The **creativity slider** (LLM temperature) controls how strictly the model follows your prompt.
+
+- **Lower temperature**: more predictable, more consistent, closer to your prompt.
+- **Higher temperature**: more variation, more improvisation, often more creative phrasing.
+
+<div style={{ position: "relative", paddingBottom: "56.25%", height: 0 }}>
+  <iframe
+    style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: 0 }}
+    src="https://www.tella.tv/video/was-macht-der-kreativitatsregler-0sq4/embed"
+    allowFullScreen
+    allowTransparency
+  />
+</div>
+
+## What does the slider change in practice?
+
+It decides how strongly the assistant stays "on-script" versus adding its own wording.
+
+If replies feel too rigid, increase the value step by step so the assistant can sound more natural, emotional, or playful when appropriate.
+
+## Recommended workflow
+
+1. **Finish your prompt first** (role, goals, boundaries, tone).
+2. **Start with a low temperature**.
+3. Only when the baseline sounds good, **increase in small steps**.
+4. Test and compare after each change.
+
+This usually gives more stable results than changing temperature too early.
+
+## When to raise it
+
+Raise temperature when:
+
+- answers sound too stiff or formulaic,
+- you want more emotional or natural language,
+- your use case benefits from controlled improvisation.
+
+## When to keep it low
+
+Keep it low when:
+
+- consistency and repeatability matter most,
+- compliance and precision are critical,
+- you need tightly controlled output.
+
+<Tip>
+Best practice: use temperature as **final fine-tuning**, not as a substitute for a good prompt. Clear prompt design plus small temperature adjustments usually works best.
+</Tip>

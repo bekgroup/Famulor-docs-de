@@ -1,0 +1,59 @@
+---
+title: "Transcriber Settings"
+description: "Tune endpoint type, endpoint sensitivity, interruption sensitivity, and VAD to reduce latency and improve turn-taking."
+icon: "waveform-lines"
+---
+
+In **transcriber settings**, you define when the assistant decides that the user has finished speaking. This is one of the most effective areas to reduce perceived **latency**.
+
+<div style={{ position: "relative", paddingBottom: "56.25%", height: 0 }}>
+  <iframe
+    style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: 0 }}
+    src="https://www.tella.tv/video/ki-transkriptionseinstellungen-optimieren-6ldx/embed"
+    allowFullScreen
+    allowTransparency
+  />
+</div>
+
+## 1. Endpoint type
+
+With **endpoint type**, you choose how end-of-utterance is detected:
+
+- **Speech detection** (default): usually faster, strong for low latency.
+- **AI detection**: often better for longer user turns with thinking pauses.
+
+For many assistants, start with **speech detection** and switch only if needed.
+
+## 2. Endpoint sensitivity
+
+**Endpoint sensitivity** controls how long the assistant waits before assuming the user is done.
+
+- **Faster setting**: less wait time, quicker responses.
+- **Higher setting**: gives slower speakers more room to finish.
+
+If your audience tends to speak slowly, increase this setting slightly.
+
+## 3. Interruption sensitivity
+
+**Interruption sensitivity** controls how easily the assistant can be interrupted while speaking.
+
+- A common baseline is **0.50**.
+- **Outbound use cases**: usually benefit from easier interruption.
+- **Reception/front-desk use cases**: often benefit from a bit more stability.
+
+## 4. VAD sensitivity (Speech-to-Speech)
+
+For **speech-to-speech models**, you also get **VAD sensitivity**.
+
+When enabled, an additional voice activity logic helps detect pauses and turn changes more naturally, similar to modern voice-chat behavior.
+
+## Recommended workflow
+
+1. Start with defaults (speech detection, moderate slider values).
+2. Test with realistic conversations.
+3. Change only one setting per test run.
+4. Iterate toward your specific use case.
+
+<Tip>
+Every assistant behaves a bit differently. Short iterative tests with real call scenarios give the best final settings.
+</Tip>

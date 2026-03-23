@@ -1,0 +1,59 @@
+---
+title: "Transkriptionseinstellungen"
+description: "Mit Endpunkttyp, Endpunktempfindlichkeit, Unterbrechungsempfindlichkeit und VAD senkst du Latenz und verbesserst den Dialogfluss."
+icon: "waveform-lines"
+---
+
+In den **Transkriptionseinstellungen** legst du fest, wann die KI erkennt, dass der User fertig gesprochen hat. Genau hier kannst du oft spuerbar **Latenz reduzieren**.
+
+<div style={{ position: "relative", paddingBottom: "56.25%", height: 0 }}>
+  <iframe
+    style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: 0 }}
+    src="https://www.tella.tv/video/ki-transkriptionseinstellungen-optimieren-6ldx/embed"
+    allowFullScreen
+    allowTransparency
+  />
+</div>
+
+## 1. Endpunkttyp
+
+Beim **Endpunkttyp** waehlst du, wie das Ende einer Nutzeraussage erkannt wird:
+
+- **Spracherkennung** (Standard): in der Regel schneller, gut fuer geringe Latenz.
+- **KI-Erkennung**: oft besser bei laengeren Erzaehlungen und Denkpausen.
+
+Empfehlung fuer viele Setups: mit **Spracherkennung** starten und nur bei Bedarf auf KI-Erkennung wechseln.
+
+## 2. Endpunktempfindlichkeit
+
+Die **Endpunktempfindlichkeit** bestimmt, wie lange die KI wartet, bevor sie davon ausgeht, dass der User fertig ist.
+
+- **Schneller eingestellt**: weniger Wartezeit, oft bessere Reaktionsgeschwindigkeit.
+- **Hoeher eingestellt**: mehr Sprechspielraum fuer langsamere Sprecher.
+
+Wenn deine Zielgruppe eher langsam spricht (z. B. aeltere Kundschaft), solltest du den Wert etwas anheben.
+
+## 3. Unterbrechungsempfindlichkeit
+
+Die **Unterbrechungsempfindlichkeit** steuert, wie leicht die KI beim Sprechen unterbrochen werden kann.
+
+- Ein haeufiger Ausgangswert ist **0,50**.
+- **Outbound**: meist schneller unterbrechbar sinnvoll.
+- **Rezeption / Empfang**: oft etwas mehr Stabilitaet sinnvoll.
+
+## 4. VAD-Empfindlichkeit (bei Speech-to-Speech)
+
+Bei **Sprache-zu-Sprache-Modellen** gibt es zusaetzlich die **VAD-Empfindlichkeit**.
+
+Wenn aktiviert, hilft eine weitere Logik dabei, Sprachpausen und Sprecherwechsel besser zu erkennen - aehnlich zum Verhalten aus modernen Voice-Modi.
+
+## Empfohlene Vorgehensweise
+
+1. Mit Standardwerten starten (Spracherkennung, moderate Regler).
+2. Auf echten Testdialogen pruefen.
+3. Immer nur einen Regler pro Test aendern.
+4. Dann schrittweise auf deinen Use Case optimieren.
+
+<Tip>
+Jeder Assistent reagiert etwas anders. Die besten Einstellungen findest du durch kurze, iterative Tests mit realistischen Gespraechsszenarien.
+</Tip>

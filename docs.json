@@ -84,8 +84,13 @@
                   "en/platform/lead-list-kanban",
                   "en/platform/engine-types",
                   "en/platform/inbound-vs-outbound",
+                  "en/platform/llm-temperature",
                   "en/platform/tts-providers",
-                  "en/platform/ai-coach"
+                  "en/platform/ai-coach",
+                  "en/platform/synthesizer",
+                  "en/platform/transcriber-settings",
+                  "en/platform/knowledge-bases-rag",
+                  "en/platform/midcall-ai-tool"
                 ]
               },
               {
@@ -796,8 +801,13 @@
                   "de/platform/leadliste-kanban",
                   "de/platform/engine-typen",
                   "de/platform/inbound-vs-outbound",
+                  "de/platform/kreativitaet-llm-temperature",
                   "de/platform/tts-anbieter",
-                  "de/platform/ki-coach"
+                  "de/platform/ki-coach",
+                  "de/platform/synthesizer",
+                  "de/platform/transkriptionseinstellungen",
+                  "de/platform/wissensdatenbank-rag",
+                  "de/platform/midcall-ki-tool"
                 ]
               },
               {
