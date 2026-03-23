@@ -4,7 +4,7 @@ description: "Mit Endpunkttyp, Endpunktempfindlichkeit, Unterbrechungsempfindlic
 icon: "waveform-lines"
 ---
 
-In den **Transkriptionseinstellungen** legst du fest, wann die KI erkennt, dass der User fertig gesprochen hat. Genau hier kannst du oft spuerbar **Latenz reduzieren**.
+In den **Transkriptionseinstellungen** legst du fest, wann die KI erkennt, dass der User fertig gesprochen hat. Genau hier kannst du oft spürbar **Latenz reduzieren**.
 
 <div style={{ position: "relative", paddingBottom: "56.25%", height: 0 }}>
   <iframe
@@ -17,45 +17,45 @@ In den **Transkriptionseinstellungen** legst du fest, wann die KI erkennt, dass 
 
 ## 1. Endpunkttyp
 
-Beim **Endpunkttyp** waehlst du, wie das Ende einer Nutzeraussage erkannt wird:
+Beim **Endpunkttyp** wählst du, wie das Ende einer Nutzeraussage erkannt wird:
 
-- **Spracherkennung** (Standard): in der Regel schneller, gut fuer geringe Latenz.
-- **KI-Erkennung**: oft besser bei laengeren Erzaehlungen und Denkpausen.
+- **Spracherkennung** (Standard): in der Regel schneller, gut für geringe Latenz.
+- **KI-Erkennung**: oft besser bei längeren Erzählungen und Denkpausen.
 
-Empfehlung fuer viele Setups: mit **Spracherkennung** starten und nur bei Bedarf auf KI-Erkennung wechseln.
+Empfehlung für viele Setups: mit **Spracherkennung** starten und nur bei Bedarf auf KI-Erkennung wechseln.
 
 ## 2. Endpunktempfindlichkeit
 
 Die **Endpunktempfindlichkeit** bestimmt, wie lange die KI wartet, bevor sie davon ausgeht, dass der User fertig ist.
 
 - **Schneller eingestellt**: weniger Wartezeit, oft bessere Reaktionsgeschwindigkeit.
-- **Hoeher eingestellt**: mehr Sprechspielraum fuer langsamere Sprecher.
+- **Höher eingestellt**: mehr Sprechspielraum für langsamere Sprecher.
 
-Wenn deine Zielgruppe eher langsam spricht (z. B. aeltere Kundschaft), solltest du den Wert etwas anheben.
+Wenn deine Zielgruppe eher langsam spricht (z. B. ältere Kundschaft), solltest du den Wert etwas anheben.
 
 ## 3. Unterbrechungsempfindlichkeit
 
 Die **Unterbrechungsempfindlichkeit** steuert, wie leicht die KI beim Sprechen unterbrochen werden kann.
 
-- Ein haeufiger Ausgangswert ist **0,50**.
+- Ein häufiger Ausgangswert ist **0,50**.
 - **Outbound**: meist schneller unterbrechbar sinnvoll.
-- **Rezeption / Empfang**: oft etwas mehr Stabilitaet sinnvoll.
+- **Rezeption / Empfang**: oft etwas mehr Stabilität sinnvoll.
 
 ## 4. VAD-Empfindlichkeit (bei Speech-to-Speech)
 
-Bei **Sprache-zu-Sprache-Modellen** gibt es zusaetzlich die **VAD-Empfindlichkeit**.
+Bei **Sprache-zu-Sprache-Modellen** gibt es zusätzlich die **VAD-Empfindlichkeit**.
 
-Wenn aktiviert, hilft eine weitere Logik dabei, Sprachpausen und Sprecherwechsel besser zu erkennen - aehnlich zum Verhalten aus modernen Voice-Modi.
+Wenn aktiviert, hilft eine weitere Logik dabei, Sprachpausen und Sprecherwechsel besser zu erkennen - ähnlich zum Verhalten aus modernen Voice-Modi.
 
 ## Empfohlene Vorgehensweise
 
 1. Mit Standardwerten starten (Spracherkennung, moderate Regler).
-2. Auf echten Testdialogen pruefen.
-3. Immer nur einen Regler pro Test aendern.
+2. Auf echten Testdialogen prüfen.
+3. Immer nur einen Regler pro Test ändern.
 4. Dann schrittweise auf deinen Use Case optimieren.
 
 <Tip>
-Jeder Assistent reagiert etwas anders. Die besten Einstellungen findest du durch kurze, iterative Tests mit realistischen Gespraechsszenarien.
+Jeder Assistent reagiert etwas anders. Die besten Einstellungen findest du durch kurze, iterative Tests mit realistischen Gesprächsszenarien.
 
-Siehe auch: [Engine-Typen](/de/platform/engine-typen), [Call Quality Troubleshooting](/de/troubleshooting/call-quality) und [Transcriber-Provider API](/de/api-reference/assistants/transcriber-providers).
+Siehe auch: [Engine-Typen](/de/platform/engine-typen), [Fehlerbehebung zur Anrufqualität](/de/troubleshooting/call-quality) und [Transcriber-Provider-API](/de/api-reference/assistants/transcriber-providers).
 </Tip>
