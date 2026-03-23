@@ -67,15 +67,9 @@
                 ]
               },
               {
-                "group": "Getting Started",
-                "pages": [
-                  "en/getting-started/core-concepts",
-                  "en/getting-started/understanding-billing"
-                ]
-              },
-              {
                 "group": "Platform",
                 "pages": [
+                  "en/getting-started/core-concepts",
                   "en/platform/call-history",
                   "en/platform/call-export",
                   "en/platform/chat-list",
@@ -229,6 +223,7 @@
               {
                 "group": "Costs & Pricing",
                 "pages": [
+                  "en/getting-started/understanding-billing",
                   "en/pricing/overview",
                   "en/pricing/usage-based",
                   "en/pricing/number-rentals"
@@ -784,15 +779,9 @@
                 ]
               },
               {
-                "group": "Erste Schritte",
-                "pages": [
-                  "de/getting-started/core-concepts",
-                  "de/getting-started/understanding-billing"
-                ]
-              },
-              {
                 "group": "Platform",
                 "pages": [
+                  "de/getting-started/core-concepts",
                   "de/platform/anrufliste",
                   "de/platform/anruf-export",
                   "de/platform/chatverlauf",
@@ -948,6 +937,7 @@
               {
                 "group": "Kosten & Preise",
                 "pages": [
+                  "de/getting-started/understanding-billing",
                   "de/pricing/overview",
                   "de/pricing/usage-based",
                   "de/pricing/number-rentals"
