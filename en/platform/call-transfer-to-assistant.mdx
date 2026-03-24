@@ -1,0 +1,34 @@
+---
+title: "Call transfer to another assistant"
+description: "Hand off live calls to a different AI assistant from Prompt & Tools — language routing, compliance paths, and multi-assistant teams without extra numbers."
+icon: "arrow-right-arrow-left"
+---
+
+Use the **integrated call-transfer tool** to forward an active call **from one assistant to another** inside Famulor. You configure it under **Prompt & Tools** in the **Integrated tools** section: pick a **target assistant** and describe **when** the handoff should happen.
+
+<div style={{ position: "relative", paddingBottom: "56.25%", height: 0 }}>
+  <iframe
+    style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: 0 }}
+    src="https://www.tella.tv/video/neues-famolor-update-anrufe-an-assistenten-weiterleiten-9k2q/embed?b=0&title=0&a=1&loop=0&t=0&muted=0&wt=0&o=1"
+    allowFullScreen
+    allowTransparency
+  />
+</div>
+
+## When to use it
+
+- **Language routing** — e.g. hand off to a Spanish, Russian, or Italian specialist assistant when the model detects that language.
+- **Compliance / consent** — e.g. move the caller to an assistant configured for a path where recording or handling differs from the first line.
+- **Team structure** — chain specialized assistants (sales → onboarding, triage → expert) **without** provisioning a separate phone number per leg.
+
+## Configure
+
+1. Open the **source** assistant → **Prompt & Tools**.
+2. In **Integrated tools**, enable the tool that **forwards the call to another assistant** (see product UI label).
+3. Select the **target assistant**.
+4. In the description field, spell out **exactly when** to transfer (clear conditions make the behavior reliable).
+
+<Tip>
+This is **assistant → assistant**, not transfer to a **human phone number**. For cold/warm transfer to a person, see [Call forwarding (cold vs warm)](/en/platform/assistant-call-forwarding).  
+Related: [Prompt & Tools](/en/ai-assistants/prompt-and-tools), [Product updates](/en/updates/changelog).
+</Tip>
