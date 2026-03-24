@@ -8,10 +8,10 @@ description: "Neueste Features, Verbesserungen und Ankündigungen vom Famulor-Te
 
 > Bleiben Sie auf dem neuesten Stand — Folgen Sie unseren neuesten Produkt-Updates und Verbesserungen. Wir veröffentlichen regelmäßig neue Features, um Ihre KI-Anruf-Erfahrung zu verbessern.
 
-<Update label="24. März 2026" tags={["Call Routing", "Assistenten", "Prompt & Tools", "Integrierte Tools", "NEU"]} description="Neues integriertes Tool: Anrufe an einen anderen Assistenten weiterleiten">
-  ## 🔀 Neues integriertes Tool: Anrufe an einen anderen Assistenten weiterleiten
+<Update label="24. März 2026" tags={["Assistenten-Transfer", "Warm Transfer", "Flow Builder", "GPT-5.4", "Prompt & Tools", "NEU"]} description="Nahtlose Live-Übergabe zwischen KI-Assistenten, Warm-Transfer mit Variablen, GPT-5.4 Mini & Nano, Flow-Builder-Verbesserungen">
+  ## 🔀 Live-Übergabe an einen anderen KI-Assistenten — mitten im Gespräch, ohne Unterbrechung
 
-  Ab sofort können Sie Live-Anrufe direkt in **Prompt & Tools** unter **Integrierte Tools** von einem Assistenten an einen anderen weiterleiten.
+  Ihr KI-Sprachagent kann einen **laufenden Anruf** jetzt an einen **anderen KI-Assistenten** übergeben — mitten im Gespräch und **ohne** spürbare Zwangspause. Der Ziel-Assistent übernimmt mit **eigener Stimme**, **Sprachmodell** und **Transkriptions-Anbieter**, sodass jede Phase des Calls die passende Spezialistin bzw. der passende Spezialist bekommt.
 
   <div style={{ position: "relative", paddingBottom: "56.25%", height: 0 }}>
     <iframe
@@ -22,16 +22,49 @@ description: "Neueste Features, Verbesserungen und Ankündigungen vom Famulor-Te
     />
   </div>
 
-  ## 💡 Was damit möglich ist
+  ### Warum das wichtig ist
 
-  - **DSGVO-Fallbacks**: Wenn ein Anrufer keine Aufzeichnung möchte, kann automatisch an einen anderen Assistenten-Flow weitergeleitet werden.
-  - **Sprach-Routing**: Erkannte Sprache automatisch an einen passenden Assistenten übergeben (z. B. Spanisch, Russisch, Italienisch).
-  - **Skalierbare Teams**: Strukturierte Assistenten-Handoffs für unterschiedliche Szenarien aufbauen.
+  Statt **eines** riesigen Assistenten für alles können Sie **spezialisierte Agenten** pro Gesprächsphase bauen — z. B. ein Vertriebs-Qualifier, der an einen technischen Experten übergibt, eine Rezeption, die an einen Termin-Spezialisten weiterreicht, oder ein Triage-Agent, der an den Support eskaliert.
 
-  ## ⚙️ So richten Sie es ein
+  ### Das können Sie erwarten
+
+  - **Nahtlose Übergabe im laufenden Gespräch**: Der Anrufer bleibt in der Leitung, während die Konversation inkl. Kontext an einen anderen KI-Assistenten übergeht.
+  - **Voller Provider-Wechsel**: Jeder Assistent kann **eigene** Stimme (z. B. ElevenLabs, Cartesia), Sprachmodell (z. B. GPT-4o, GPT-5.4) und Transkriptions-Engine nutzen.
+  - **Übersichtliche Assistenten-Auswahl**: Ziel-Assistent per Dropdown wählen — mit **Avatar**, **Sprache**, **Stimme** und **Modus** auf einen Blick.
+  - **Flow Builder**: Assistenten-Transfers als **Aktionen** in visuellen Call-Flows — ergänzend zu Warm Transfers, DTMF und Keypad-Eingaben.
+  - **Weitere typische Einsätze**: **DSGVO-Fallbacks** (z. B. Weiterleitung bei Ablehnung der Aufzeichnung), **Sprach-Routing** an dedizierte Assistenten und **skalierbare Assistenten-Teams** mit klaren Übergaben.
+
+  ### Beispiel
+
+  Eine **Zahnarztpraxis**: Der Rezeptions-KI-Agent nimmt den Anruf an, qualifiziert die Person und übergibt an einen **Termin-Assistenten**, der in der **Sprache des Anrufers** spricht und direkt in den Kalender bucht — alles in **einem** durchgängigen Gespräch.
+
+  ## 📞 Warm Transfers — jetzt mit Variablen-Injection
+
+  Beim **Warm Transfer** zu einer menschlichen Supervisorin bzw. einem Supervisor können **Anruf-Variablen** in das Briefing eingespeist werden — z. B. **Name des Anrufers**, **Anliegen** oder **Qualifikations-Score**. Die Person, die abnimmt, weiß so **sofort**, wer dran ist und warum.
+
+  ## 🧠 GPT-5.4 Mini und Nano
+
+  Zwei neue Sprachmodelle stehen für Ihre Assistenten zur Verfügung:
+
+  - **GPT-5.4 Mini** — schnellere Antworten zu geringeren Kosten, ideal für einfache Call-Flows wie Terminbuchung und FAQ.
+  - **GPT-5.4 Nano** — die schnellste Option für **hohe Volumina** und wenig komplexe Calls, wenn **Geschwindigkeit** im Vordergrund steht.
+
+  Wählen Sie sie im **Language Model**-Dropdown bei der Assistenten-Konfiguration. Bestehende Prompts und Tools funktionieren **ohne Änderungen**.
+
+  ## 🔧 Flow Builder — Verbesserungen
+
+  Der visuelle Flow Builder erhält mehrere Quality-of-Life-Updates:
+
+  - **Neue Aktionstypen**: Warm Transfer, Assistenten-Transfer, DTMF-Eingabe und **Tastatureingabe erfassen** (Keypad) als Flow-Aktionen.
+  - **Intelligenteres Aktions-Dropdown**: Zeigt, welche Tools am Assistenten konfiguriert sind — inkl. Hinweisen bei **nicht** konfigurierten Tools.
+  - **Kanten löschen per Hover**: Verbindungen zwischen Knoten entfernen, indem Sie über die Kante fahren und auf Löschen klicken.
+  - **Import/Export**: Flows als Datei speichern und in anderen Assistenten oder Konten importieren.
+  - **UI-Fixes**: diverse Oberflächen-Korrekturen.
+
+  ## ⚙️ So richten Sie den Assistenten-Transfer ein
 
   1. Öffnen Sie Ihren Assistenten und gehen Sie zu **Prompt & Tools**.
-  2. Wählen Sie in **Integrierte Tools** das neue Weiterleitungs-Tool.
+  2. Wählen Sie in **Integrierte Tools** das Weiterleitungs-Tool.
   3. Definieren Sie den **Ziel-Assistenten**.
   4. Beschreiben Sie möglichst konkret, **wann** weitergeleitet werden soll (z. B. „Wenn der Anrufer Spanisch spricht, sofort an den spanischen Assistenten weiterleiten“).
 </Update>

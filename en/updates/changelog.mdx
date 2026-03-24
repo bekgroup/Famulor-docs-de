@@ -9,9 +9,9 @@ Stay informed about new capabilities and improvements. We ship updates frequentl
 
 ## March 24, 2026
 
-### 🔀 New Integrated Tool: Forward Calls to Another Assistant
+### 🔀 Mid-call transfer to another AI assistant — seamless handoff
 
-You can now forward live calls from one assistant to another directly from **Prompt & Tools** in the **Integrated Tools** section.
+Your AI voice agent can now transfer a **live call** to a **different AI assistant** mid-conversation, with **zero interruption**. The target assistant takes over with its own **voice**, **language model**, and **transcription provider**, so each step of the call gets the right specialist.
 
 <div style={{ position: "relative", paddingBottom: "56.25%", height: 0 }}>
   <iframe
@@ -22,18 +22,51 @@ You can now forward live calls from one assistant to another directly from **Pro
   />
 </div>
 
-#### What this enables
+#### Why this matters
 
-- **GDPR fallback flows**: If a caller does not want to be recorded, route to another assistant flow.
-- **Language routing**: Detect language and hand over to a dedicated assistant (for example Spanish, Russian, or Italian).
-- **Scalable assistant teams**: Build structured assistant handoff chains without needing separate numbers per scenario.
+Instead of building **one massive assistant** that handles everything, you can create **specialized agents** for each stage of a call — a sales qualifier that hands off to a technical expert, a receptionist that routes to a scheduling specialist, or a triage agent that escalates to support.
 
-#### How to configure it
+#### What you get
+
+- **Seamless mid-call handoff**: The caller stays on the line while the conversation transfers to another AI assistant with **full context**.
+- **Full provider swap**: Each assistant can use its own voice (for example ElevenLabs, Cartesia), language model (for example GPT-4o, GPT-5.4), and transcription engine.
+- **Rich assistant selector**: Pick the target assistant from a dropdown showing **avatar**, **language**, **voice**, and **mode** at a glance.
+- **Works with the Flow Builder**: Add assistant transfers as actions in your visual call flows alongside warm transfers, DTMF, and keypad collection.
+- **Plus proven use cases**: **GDPR fallback flows** when a caller declines recording, **language routing** to dedicated assistants, and **scalable assistant teams** with structured handoffs.
+
+#### Example use case
+
+A **dental clinic**: The receptionist AI answers the call, qualifies the patient, then transfers to a **scheduling assistant** that speaks the patient's language and books directly into the calendar — all in **one seamless call**.
+
+### 📞 Warm call transfers — variable injection
+
+Warm transfers are smarter: when your AI transfers a call to a human supervisor, it can **inject call variables** — like the caller's name, reason for calling, or qualification score — into the briefing. The supervisor picks up already knowing who's on the line and why.
+
+### 🧠 GPT-5.4 Mini and Nano
+
+Two new language models are available for your assistants:
+
+- **GPT-5.4 Mini** — faster responses at lower cost, ideal for simple call flows like appointment booking and FAQ handling.
+- **GPT-5.4 Nano** — the fastest option for high-volume, low-complexity calls where speed matters most.
+
+Select them from the **Language Model** dropdown when configuring your assistant. Existing prompts and tools work **without changes**.
+
+### 🔧 Flow builder improvements
+
+- **New action types**: Warm transfer, assistant transfer, DTMF input, and collect keypad are available as flow actions.
+- **Smarter action dropdown**: Shows which tools are configured on your assistant, with warnings for unconfigured ones.
+- **Edge delete on hover**: Remove connections between nodes by hovering over the edge and clicking delete.
+- **Import/export**: Save flows as files and import them into other assistants or accounts.
+- **UI fixes**: miscellaneous interface improvements.
+
+#### Configure assistant transfer (integrated tool)
+
+You still set this up from **Prompt & Tools → Integrated Tools**.
 
 1. Open your assistant and go to **Prompt & Tools**.
-2. In **Integrated Tools**, choose the new call-forwarding tool.
+2. In **Integrated Tools**, choose the call-forwarding / assistant transfer tool.
 3. Select the **target assistant**.
-4. Describe in detail **when** the call should be forwarded (for example: "if caller speaks Spanish, forward immediately to the Spanish assistant").
+4. Describe clearly **when** the call should transfer (for example: "If the caller speaks Spanish, forward immediately to the Spanish assistant").
 
 ## March 18, 2026
 
