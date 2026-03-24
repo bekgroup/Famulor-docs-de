@@ -1,0 +1,56 @@
+---
+title: "Flow Builder"
+description: "Structured conversation flows vs. the AI Prompt Editor—nodes for speak, prompt, actions, and end call; ideal for outbound and sales."
+icon: "share-nodes"
+---
+
+When editing an assistant, you choose between the **AI Prompt Editor** (large text prompt) and the **Flow Builder** (visual structure). The Flow Builder is built for **clear rules and branching**—especially **outbound** and **sales** calls—while a classic prompt-first setup often fits **receptionist**-style assistants.
+
+<div style={{ position: "relative", paddingBottom: "56.25%", height: 0 }}>
+  <iframe
+    style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: 0 }}
+    src="https://www.tella.tv/video/flow-builder-vs-prompt-editor-explained-67kt/embed?b=0&title=0&a=1&loop=0&t=0&muted=0&wt=0&o=1"
+    allowFullScreen
+    allowTransparency
+  />
+</div>
+
+**Walkthrough:** [Flow Builder vs. Prompt Editor Explained](https://www.tella.tv/video/flow-builder-vs-prompt-editor-explained-67kt) (Tella).
+
+## Prompt Editor vs. Flow Builder (quick guide)
+
+| | **AI Prompt Editor** | **Flow Builder** |
+|---|----------------------|------------------|
+| **Best for** | Receptionists, general inbound helpers, linear dialogue | Outbound, sales scripts, objection handling, big branchy logic |
+| **Shape** | One (or few) consolidated prompts | Nodes and paths on a canvas |
+
+## Starting the Flow Builder
+
+Open the assistant, then launch the Flow Builder (alongside the prompt editor). Pick a **template** or start **from scratch**—same idea as with templates for the text editor.
+
+## Node types
+
+Use **Add node** to insert:
+
+- **Start** — Opening message: how the assistant greets the caller.
+- **Speak** — Exact script for the model to read (options such as word-for-word delivery and phonetic number reading where available).
+- **Prompt** — Flexible instructions (e.g. qualify interest, handle objections). You can add **result branches** (for example “interested” vs. “not interested”) and wire each path to the next step or to **end call**.
+- **Action** — Triggers such as **booking** or **call forwarding** (and other automations, depending on your setup).
+- **End call** — When to hang up (e.g. after a negative response).
+
+## Side settings
+
+In the panel you can adjust **identity**, **first message**, and **conversation type** (e.g. sales, applicant screening, product feedback, customer service). Set **language**, **personality** sliders (e.g. assertiveness, humor), **voicemail** text, **variables** (e.g. first name from a lead list), and **post-call webhooks** for summaries or downstream automation.
+
+## Import / export
+
+**Export** and **import** let you download a flow and reuse it in other assistants (copy into another assistant as needed).
+
+<Warning>
+**Use one or the other:** You work with either the **AI Prompt Editor** or the **Flow Builder**. If you already built a full prompt and then switch on or save the Flow Builder flow, the **prompt-editor content can be replaced**—plan accordingly and export backups if needed.
+</Warning>
+
+<Tip>
+For the full UI reference (toolbar, canvas, node details, shortcuts), see **[Flow Builder](/en/ai-assistants/flow-builder)**.  
+Related: [AI Prompt Editor](/en/ai-assistants/ai-prompt-editor), [Prompt & Tools](/en/ai-assistants/prompt-and-tools).
+</Tip>

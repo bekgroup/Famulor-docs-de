@@ -1,0 +1,56 @@
+---
+title: "Flow Builder"
+description: "Strukturierte Gesprächsflows statt eines Riesen-Prompts — Knoten für Sprechen, Prompt, Aktionen und Anruf beenden; ideal für Outbound und Vertrieb."
+icon: "share-nodes"
+---
+
+Beim Bearbeiten eines Assistenten stehen sich **AI Prompt Editor** (langer Text-Prompt) und **Flow Builder** (lila, strukturierter Aufbau) gegenüber. Der Flow Builder ist dafür da, **klare Regeln und Verzweigungen** zu definieren — besonders für **Outbound-Anrufe** und **Verkaufsgespräche**. Den Prompt-Editor empfehlen wir eher für **Rezeption** und allgemeine **Inbound**-Aufgaben mit linearem Gesprächsverlauf.
+
+<div style={{ position: "relative", paddingBottom: "56.25%", height: 0 }}>
+  <iframe
+    style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: 0 }}
+    src="https://www.tella.tv/video/flow-builder-vs-prompt-editor-explained-67kt/embed?b=0&title=0&a=1&loop=0&t=0&muted=0&wt=0&o=1"
+    allowFullScreen
+    allowTransparency
+  />
+</div>
+
+**Video:** [Flow Builder vs. Prompt Editor Explained](https://www.tella.tv/video/flow-builder-vs-prompt-editor-explained-67kt) (Tella).
+
+## Prompt Editor vs. Flow Builder (Kurzüberblick)
+
+| | **AI Prompt Editor** | **Flow Builder** |
+|---|----------------------|------------------|
+| **Einsatz** | Rezeption, allgemeine Assistenten, eher linearer Dialog | Vertrieb, Outbound, Einwandbehandlung, große Verzweigungslogik |
+| **Form** | Wenige, zusammenhängende Text-Prompts | Knoten und Pfade auf dem Canvas |
+
+## Flow Builder starten
+
+Assistent öffnen, Flow Builder starten. Ihr könnt wie beim Prompt Editor eine **Vorlage** wählen oder **von Null** beginnen.
+
+## Knotentypen
+
+Über **Knoten hinzufügen**:
+
+- **Start** — **Erstnachricht:** wie die KI den Anrufer begrüßt.
+- **Sprechen** — Text **eins zu eins** vom Assistenten aussprechen lassen (z. B. wortgetreu, Zahlen phonetisch — je nach verfügbaren Optionen).
+- **Prompt** — Flexible Anweisungen (Interessen ermitteln, Einwände behandeln). Unten bei **Ergebnisse** z. B. „interessiert“ / „nicht interessiert“ anlegen und die Pfade weiterführen oder mit **Anruf beenden** abschließen.
+- **Aktion** — z. B. **Termin buchen** oder **Anruf weiterleiten** — **Trigger** für Automatisierungen.
+- **Anruf beenden** — wann aufgelegt wird (z. B. bei negativem Feedback).
+
+## Einstellungen rechts
+
+Dort u. a. **Identität**, **erste Nachricht**, **Gesprächstyp** (z. B. Vertrieb, Bewerber-Vorauswahl, Produktbewertung, Kundenservice), **Sprache**, **Persönlichkeit** per Regler (Durchsetzung, Humor), **Voicemail-Text**, **Variablen** (z. B. Vorname aus Leadliste) und **Webhooks** nach dem Anruf für Zusammenfassungen.
+
+## Export / Import
+
+Flows **exportieren** und in **anderen Assistenten** wieder **importieren** / einfügen.
+
+<Warning>
+**Entweder oder:** Es gilt der **AI Prompt Editor** oder der **Flow Builder**. Wenn der Prompt-Editor schon gefüllt ist und ihr den Flow Builder aktiviert bzw. speichert, kann der **Prompt-Editor-Inhalt verworfen werden** — vorher sichern oder exportieren.
+</Warning>
+
+<Tip>
+Ausführliche Oberflächen-Doku: **[Flow Builder](/de/ai-assistants/flow-builder)**.  
+Passend dazu: [AI Prompt Editor](/de/ai-assistants/ai-prompt-editor), [Prompt & Werkzeuge](/de/ai-assistants/prompt-and-tools).
+</Tip>

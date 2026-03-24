@@ -1,0 +1,65 @@
+---
+title: "WhatsApp AI"
+description: "Create a WhatsApp sender, verify your number, link your AI assistant, and set up templates for outreach — including voice-downtime during verification."
+icon: "whatsapp"
+---
+
+Connect your **AI assistant** to **WhatsApp** by creating a **WhatsApp sender** with either a number you already use on Famulor or a number you bring to the platform. Then you can send **outreach** via **Meta-approved message templates** and let the assistant **auto-reply** in chat.
+
+<div style={{ position: "relative", paddingBottom: "56.25%", height: 0 }}>
+  <iframe
+    style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: 0 }}
+    src="https://www.tella.tv/video/ki-assistent-mit-whatsapp-verbinden-1-67k4/embed?b=0&title=0&a=1&loop=0&t=0&muted=0&wt=0&o=1"
+    allowFullScreen
+    allowTransparency
+  />
+</div>
+
+**Walkthrough:** [KI Assistent mit WhatsApp verbinden](https://www.tella.tv/video/ki-assistent-mit-whatsapp-verbinden-1-67k4) (Tella).
+
+## 1. Create a WhatsApp sender
+
+1. In the Famulor dashboard, open **WhatsApp Senders**.
+2. Click **Create WhatsApp sender** (top right).
+3. Either **add and verify your own number** or select a **number purchased on Famulor** to go live quickly.
+
+<Warning>
+While the number is going through **WhatsApp / carrier verification**, your **voice assistant on that number cannot receive or place calls**. If you set this up for a customer, prefer **after business hours** or a maintenance window.
+</Warning>
+
+4. Optionally expand **WhatsApp Business profile**: description, business address, category.
+5. Click **Start verification**. Status shows that verification is in progress — Famulor handles much of the setup; refresh the page as needed (**often ~5–10 minutes**).
+6. Continue to **step 2**, select your number, and proceed to **connect WhatsApp**.
+
+## 2. WhatsApp Business Account (Meta)
+
+You need a **WhatsApp Business Account** in Meta’s flow (shown prominently in the product).
+
+1. Copy the phone number you are connecting.
+2. Use **Login with Facebook**, pick your **business portfolio**, and create a **new WhatsApp account** where prompted.
+3. Enter **business category**, **country**, **website**, **timezone**, then **add the same phone number** you verified for WhatsApp.
+4. For Meta’s **phone verification**, prefer **voice call** over SMS if that fits your setup; if the code is delivered by **voice**, you can cross-check **call history** in Famulor after the call ends to read the code.
+
+## 3. Attach your AI assistant
+
+1. Return to **WhatsApp Senders**, open your sender, click **Edit**.
+2. Under **AI assistant**, choose the assistant that should handle WhatsApp (e.g. auto-reply).
+3. Review **business profile** and **branding** (logo, privacy policy URL, terms URL, contact details such as email or phone).
+4. **Save** changes, then use **Sync with WhatsApp** (when offered) so Meta receives your profile updates.
+
+## 4. Templates for outreach
+
+Outbound messages to new or inactive chats typically require **WhatsApp templates**:
+
+1. Under **WhatsApp Senders**, open **Create template** (or the templates area).
+2. Select your **sender number**, name the template (e.g. “Outreach”).
+3. Build **components**: **Body** for the main text; add **Header** (e.g. image) or **Buttons** via **Add component** if needed.
+4. **Submit for review**. Meta approval timing varies (from minutes to longer).
+
+## 5. Optional: automation after a call
+
+Example pattern: when a **phone call ends**, wait (e.g. **Delay** 5 hours), then **Send WhatsApp template message** — built in the **Automation** area with triggers such as **Phone call ended** on the AI calling platform. See the automation guides for full flow design.
+
+<Tip>
+Deep dives: [WhatsApp Business Integration](/en/whatsapp/integration), [Senders](/en/whatsapp/senders), [Templates](/en/whatsapp/templates), [Automation](/en/whatsapp/automation), [Automation platform introduction](/en/automation-platform/introduction).
+</Tip>

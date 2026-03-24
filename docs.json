@@ -84,7 +84,13 @@
                   "en/platform/synthesizer",
                   "en/platform/transcriber-settings",
                   "en/platform/knowledge-bases-rag",
-                  "en/platform/midcall-ai-tool"
+                  "en/platform/midcall-ai-tool",
+                  "en/platform/assistant-call-forwarding",
+                  "en/platform/end-call-tool",
+                  "en/platform/dtmf-keypad-input",
+                  "en/platform/appointment-scheduling-cal-com",
+                  "en/platform/flow-builder",
+                  "en/platform/ai-whatsapp"
                 ]
               },
               {
@@ -796,7 +802,13 @@
                   "de/platform/synthesizer",
                   "de/platform/transkriptionseinstellungen",
                   "de/platform/wissensdatenbank-rag",
-                  "de/platform/midcall-ki-tool"
+                  "de/platform/midcall-ki-tool",
+                  "de/platform/anrufsweiterleitung",
+                  "de/platform/anruf-beenden-tool",
+                  "de/platform/dtmf-tastatureingabe",
+                  "de/platform/terminvereinbarung-cal-com",
+                  "de/platform/flow-builder",
+                  "de/platform/ki-whatsapp"
                 ]
               },
               {

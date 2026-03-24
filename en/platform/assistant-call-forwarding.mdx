@@ -1,0 +1,51 @@
+---
+title: "Call Forwarding "
+description: "Configure cold and warm call transfers from your AI assistant to a human — destination number, conditions, hold music, and supervisor briefing."
+icon: "phone"
+---
+
+Use **cold** or **warm** call forwarding when callers need a **real person** (for example after asking to speak with someone on your team). You set this up in the assistant under **Prompt & Tools**, in the **Standard tools** section (the highlighted tool tiles).
+
+<div style={{ position: "relative", paddingBottom: "56.25%", height: 0 }}>
+  <iframe
+    style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: 0 }}
+    src="https://www.tella.tv/video/anrufweiterleitung-einrichten-kalt-vs-warmanruf-94dd/embed?b=0&title=0&a=1&loop=0&t=0&muted=0&wt=0&o=1"
+    allowFullScreen
+    allowTransparency
+  />
+</div>
+
+**Walkthrough:** [Anrufweiterleitung einrichten: Kalt- vs. Warmanruf](https://www.tella.tv/video/anrufweiterleitung-einrichten-kalt-vs-warmanruf-94dd) (Tella).
+
+## Cold call forwarding
+
+**What it does:** The caller is connected straight through to the number you define — a simple handoff to a mobile or business line.
+
+### Setup
+
+1. Open the assistant → **Prompt & Tools** and scroll to **Standard tools**.
+2. Enable **Cold call forwarding** (cold transfer).
+3. Enter the **phone number** to transfer to (personal mobile or business number).
+4. In **when the transfer should happen**, describe the trigger in detail — when the assistant should forward the call. **English often works most precisely** for the model; the more specific your wording, the more reliable the behavior.
+5. Optional: use **Expert mode** and enable a **transfer message** — what the assistant says to the caller **right before** the transfer (for example that a manager will be with them shortly).
+
+## Warm call forwarding
+
+**What it does:** Typical “please hold” experience with **hold music** while the AI works with both sides: it **summarizes** the conversation with the caller, **calls** the person who will take over (supervisor/agent), gives them a **summary on the phone**, and they can **accept** or **decline** before the customer is fully connected.
+
+### Setup
+
+1. Open **Warm call forwarding** under the same **Standard tools** area.
+2. Enter the **destination phone number** for the person receiving the transfer.
+3. **Outgoing phone number:** warm transfer needs an **additional outbound number** you configure here — used for the call out to the supervisor.
+4. **Caller ID (shown to the supervisor):** choose whether the supervisor sees the **caller’s number** or **always** the outbound number you configured (useful if you want to recognize that the call is coming from your Famulor assistant).
+5. Configure **hold music** (track) and **volume**.
+6. Again define **when** the transfer runs and the **hold message** (for example: “Please wait a moment, you will be connected shortly”).
+7. **Summary instructions:** instruct the AI what to **say to the supervisor** on the phone so they have context and can act immediately.
+8. **Initial message:** the **first sentence** the supervisor hears when the AI reaches them (for example: “Hello, I have a caller who wants …”).
+9. **Connected message:** what the **caller in the queue** hears once the supervisor has agreed to take the call (for example: “They are ready to speak with you now”).
+
+<Tip>
+**Different from carrier forwarding:** [Setting up call forwarding](/en/phone-numbers/call-forwarding) explains how to forward calls **to** your Famulor AI number from a mobile carrier. This page is about transferring **from** the assistant **to a human** during a live call.
+Related: [Prompt & Tools](/en/ai-assistants/prompt-and-tools), [Inbound calls](/en/inbound-calls/overview).
+</Tip>

@@ -1,0 +1,46 @@
+---
+title: "Appointment scheduling (Cal.com)"
+description: "Connect Cal.com, GoHighLevel, or Calendly from Prompt & Tools so your assistant can book appointments—API key, event selection, and when-to-book rules."
+icon: "calendar-days"
+---
+
+Famulor includes built-in **appointment scheduling** so your voice assistant can work with common online calendars. You enable it per assistant under **Prompt & Tools** in the **Standard tools** section. Besides **Cal.com**, you can choose **GoHighLevel** or **Calendly** — the overall flow is the same.
+
+<div style={{ position: "relative", paddingBottom: "56.25%", height: 0 }}>
+  <iframe
+    style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: 0 }}
+    src="https://www.tella.tv/video/kalenderintegration-fur-ki-terminplanung-gfh7/embed?b=0&title=0&a=1&loop=0&t=0&muted=0&wt=0&o=1"
+    allowFullScreen
+    allowTransparency
+  />
+</div>
+
+**Walkthrough:** [Kalenderintegration für KI-Terminplanung](https://www.tella.tv/video/kalenderintegration-fur-ki-terminplanung-gfh7) (Tella).
+
+## Where to configure it
+
+1. Open your assistant → **Prompt & Tools**.
+2. Scroll to **Standard tools** and select **Appointment scheduling** (scheduling / booking).
+3. Pick your provider: **Cal.com**, **GoHighLevel**, or **Calendly**.
+
+## What to set first: when to book
+
+Define **when** the assistant should offer or complete a booking. Use clear instructions (you can paste a polished prompt into the tool’s description field). Examples: after qualification, when the caller asks for a viewing, or when a specific service is chosen — match this to your industry template (real estate, onboarding call, etc.).
+
+## Cal.com: connect with an API key
+
+1. Log in to [Cal.com](https://cal.com) and create the **event types** you want (for example “Property interest — Zoom” or “Onboarding meeting”).
+2. In Cal.com, open **Settings**, scroll to **Developer**, then **API keys**.
+3. Click **Add**, name the key, set **expiration** as needed (for testing, “never expires” is simple), then **save**.
+4. **Copy** the API key and paste it into the Famulor assistant’s Cal.com field.
+5. If the connection works, the **event** list loads in Famulor — select the right event and **refresh / update fields** so booking fields match.
+
+## Multiple calendars or services
+
+Use **Add** / **+** in the Famulor tool UI to attach **another** calendar connection if you run several offerings (for example different treatments or meeting types). For each entry, describe **when** booking should use that calendar.
+
+<Tip>
+**Full Cal.com guide:** field limits, contact details, and troubleshooting are in [Cal.com appointment scheduling](/en/ai-assistants/cal-com-scheduling).  
+**Other providers:** [GoHighLevel scheduling](/en/ai-assistants/gohighlevel-scheduling), [Calendly in the automation platform](/en/automation-platform/integrations/einzelintegrations/calendly).  
+Industry-specific systems (for example restaurant or vertical tools) often use **custom APIs** — see your integration docs or **[Prompt & Tools](/en/ai-assistants/prompt-and-tools)** for advanced setups.
+</Tip>

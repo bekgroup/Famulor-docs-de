@@ -1,0 +1,50 @@
+---
+title: "DTMF / Tastatureingabe"
+description: "DTMF für Outbound und IVR-Navigation vs. Tastatureingabe zur sicheren Erfassung von Kundendaten — Timeouts, Bestätigungstaste und Prompt-Beispiele."
+icon: "hashtag"
+---
+
+**DTMF-Eingabe** und **Tastatureingabe (Ziffern sammeln)** klingen ähnlich, lösen aber unterschiedliche Aufgaben: DTMF hilft Ihrem **Outbound-Assistenten**, in **fremden** Warteschlangen- und IVR-Systemen Töne zu senden. Die **Tastatureingabe** nutzen Sie, wenn **Ihre Anrufer** Ziffern eingeben sollen — damit die KI **sichere, klare Werte** hat (z. B. PIN, Kundennummer) und weniger von falscher Spracherkennung abhängt.
+
+<div style={{ position: "relative", paddingBottom: "56.25%", height: 0 }}>
+  <iframe
+    style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: 0 }}
+    src="https://www.tella.tv/video/dtmf-vs-tastatureingabe-so-nutzt-du-sie-richtig-af2c/embed?b=0&title=0&a=1&loop=0&t=0&muted=0&wt=0&o=1"
+    allowFullScreen
+    allowTransparency
+  />
+</div>
+
+**Video:** [DTMF vs. Tastatureingabe: So nutzt du sie richtig](https://www.tella.tv/video/dtmf-vs-tastatureingabe-so-nutzt-du-sie-richtig-af2c) (Tella).
+
+## DTMF-Eingabe (Outbound / Warteschlange & IVR)
+
+**Wofür:** Wenn Ihr **Outbound-Caller** in ein **Warteschlangen- oder IVR-System** gerät („Drücken Sie bitte die 1, die 2, die 3…“), kann die **DTMF-Eingabe** diese Töne **selbst mitgeben**, bis das Ziel erreicht ist — z. B. das Gespräch mit einer echten Person.
+
+**Einrichtung:**
+
+1. Bei der Assistentin **Prompt & Werkzeuge** öffnen.
+2. **DTMF-Eingabe** aktivieren (lila Umrandung / ausgewählt).
+3. Der voreingestellte Prompt darunter funktioniert in der Regel **sehr gut** — meist müsst ihr ihn **nicht** anpassen.
+
+## Tastatureingabe — Ziffern vom Kunden erfassen
+
+**Wofür:** Das **Gegenteil**: Ihr **KI-Caller** bietet **bei sich** die Erfassung an. Kunden können z. B. **1 oder 2 wählen**, eine **PIN** oder **Kundennummer** eintippen — die KI hat die Daten **verlässlich** im System, mit weniger **Verwechslungen** oder fehlerhafter Transkription als bei reiner Sprache.
+
+**Einstellungen:**
+
+- **Eingabe-Timeout (Sekunden):** Pause **zwischen einzelnen Tastendrücken**. Beispiel: Kunde tippt langsam seine Kundennummer — nach z. B. 5 Sekunden ohne neuen Tastendruck gilt die Eingabe für die KI als **fertig** und sie macht weiter. Wert je nach Use Case **ausprobieren**.
+- **Bestätigung mit der Raute (#):** Stattdessen kann der Kunde in Ruhe tippen und mit **#** abschließen — wie im Video: Kundennummer eintippen, dann **Raute** drücken. Je nach Setup ist auch eine andere Bestätigungstaste möglich.
+
+**Prompt:** Die **Regeln** stehen im **Prompt** (System- oder Assistenten-Prompt). Klar beschreiben: **wann** die Tastatureingabe genutzt werden soll und **was** der Assistent genau sagen soll (z. B. „bitten Sie um Eingabe über die Telefontastatur und Bestätigung mit #“). Den Block könt ihr z. B. „Tastatureingabe“ nennen — die KI erkennt das in der Praxis flexibel.
+
+**Beispiele:**
+
+- *„Wenn du die Kundennummer brauchst, bitte den Anrufer, sie über die Telefontastatur einzugeben und mit # zu bestätigen.“*  
+  Gesprochener Vorschlag: *„Können Sie mir bitte Ihre Kundennummer über die Telefontastatur eintippen und dann die Raute-Taste drücken?“*  
+  Danach z. B. **Abgleich im CRM**, um den Kunden eindeutig zu kennen.
+- Menüs: *„„Drücken Sie 1 für Support, 2 für …““* — gleiches Prinzip für Auswahl und Weiterleitung.
+
+<Tip>
+Passend dazu: [Prompt & Tools](/de/ai-assistants/prompt-and-tools), [Ausgehende Anrufe](/de/outbound-calls/overview), [Eingehende Anrufe](/de/inbound-calls/overview).
+</Tip>

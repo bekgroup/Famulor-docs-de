@@ -1,0 +1,48 @@
+---
+title: "DTMF & keypad input"
+description: "Use DTMF on outbound calls to navigate IVR queues, or keypad collection to let callers enter digits securely — setup, timeouts, and prompt examples."
+icon: "hashtag"
+---
+
+**DTMF input** and **keypad input (collect digits)** sound similar but solve different problems: one helps your **outbound** assistant press tones in someone else’s phone system; the other lets **callers** type digits so your assistant gets **accurate** values (PINs, customer IDs) without relying on speech transcription alone.
+
+<div style={{ position: "relative", paddingBottom: "56.25%", height: 0 }}>
+  <iframe
+    style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: 0 }}
+    src="https://www.tella.tv/video/dtmf-vs-tastatureingabe-so-nutzt-du-sie-richtig-af2c/embed?b=0&title=0&a=1&loop=0&t=0&muted=0&wt=0&o=1"
+    allowFullScreen
+    allowTransparency
+  />
+</div>
+
+**Walkthrough:** [DTMF vs. Tastatureingabe: So nutzt du sie richtig](https://www.tella.tv/video/dtmf-vs-tastatureingabe-so-nutzt-du-sie-richtig-af2c) (Tella).
+
+## DTMF input (outbound / IVR navigation)
+
+**When to use it:** Your **outbound** assistant reaches an **IVR or queue** (“press 1, press 2, press 3…”). DTMF lets the assistant **send those tones automatically** so the call progresses toward a human (for example a manager).
+
+**Setup:**
+
+1. Open **Prompt & Tools**.
+2. Enable **DTMF input** — it appears in the standard tools row (highlighted when active).
+3. The default instruction under the tool often works well; you **usually don’t need** to change it.
+
+## Keypad input — collect digits from the caller
+
+**When to use it:** The opposite case: your assistant **hosts** the interaction and you want the **customer** to enter digits on their phone — **menu choices** (1 / 2 / 3), **PINs**, **customer numbers**, etc. Values are captured **reliably** in the system and are not dependent on spoken transcription.
+
+**Settings:**
+
+- **Input timeout (seconds):** Pause allowed **between each digit**. Example: the caller types their customer ID slowly — with a 5-second gap, the assistant treats input as **complete** after the timeout and continues.
+- **Confirm with #:** Alternatively, callers can enter at their own pace and **press #** to submit (video example: enter customer number, then **hash** to confirm). Tune timeout and confirm key to your use case.
+
+**Prompt:** Rules live in your **system or assistant prompt**. The model needs clear instructions on **when** to ask for keypad entry and **what** to say (for example: ask for customer number, type on the keypad, press # to confirm). You can name the behavior in the prompt (e.g. “keypad input”) — the assistant can still follow natural phrasing.
+
+**Example patterns:**
+
+- *“If you need the caller’s customer number, ask them to enter it on their phone keypad and confirm with #.”*
+- *IVR-style:* *“Press 1 to reach support, 2 for …”* — same mechanism for **digit capture** and follow-up routing or CRM lookup.
+
+<Tip>
+Related: [Prompt & Tools](/en/ai-assistants/prompt-and-tools), [Outbound calls](/en/outbound-calls/overview), [Inbound calls](/en/inbound-calls/overview).
+</Tip>
