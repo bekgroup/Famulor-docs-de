@@ -128,6 +128,25 @@ For providers with US-based parent companies (e.g., Microsoft, Google, Vercel, S
 - **Data Residency:** Configuring services to process data exclusively on EU-based nodes.
 - **Legal Frameworks:** Utilization of the EU-U.S. Data Privacy Framework (DPF) and/or Standard Contractual Clauses (SCCs).
 - **Enterprise Agreements:** Specialized contracts that prevent third-party access and data usage for model training.
+- **TIA upon request:** For Enterprise customers, Famulor provides a Transfer Impact Assessment (TIA) upon request in line with EDPB Recommendations 01/2020 for all providers with a US parent company. The TIA documents implemented safeguards and the legal risk assessment of the third-country framework.
+
+### Transfer Legal Basis per US Provider
+
+| Provider | Category | Transfer Legal Basis |
+|----------|----------|----------------------|
+| Deepgram | STT | SCCs (2021/914/EU) + EU endpoint (`api.eu.deepgram.com`) |
+| Soniox | STT | SCCs + EU data residency (contractually restricted to EU nodes) |
+| Gladia | STT | SCCs (2021/914/EU), separate EU/US workloads |
+| Cartesia | TTS | SCCs + EU data residency |
+| LiveKit | Realtime | SCCs + region pinning (according to provider, data does not leave EU region) |
+| ElevenLabs | STT/TTS | Enterprise DPA + EU data residency |
+| Vercel | Hosting | DPF (certified) + EU region (Frankfurt) |
+| Anthropic | LLM | SCCs via EU partners |
+| OpenAI (via Azure) | LLM | DPF (via Microsoft) + Azure EU nodes |
+
+For all providers without DPF certification (Deepgram, Soniox, Gladia, Cartesia, LiveKit), Famulor has executed the EU Standard Contractual Clauses under European Commission Decision 2021/914/EU (Module 2: controller to processor). These are available to Enterprise customers upon request.
+
+To independently verify DPF certifications of individual providers, see the official list: [Data Privacy Framework Participants List](https://www.dataprivacyframework.gov/list)
 
 ## 11. Technical and Organizational Measures (TOMs)
 
@@ -147,7 +166,7 @@ Our security framework is designed for maximum accountability and isolation:
 - This list is reviewed **quarterly**.
 - Changes to the provider stack are documented in the **[changelog](/en/updates/changelog)**.
 
-**Last Updated:** March 2026
+**Last Updated:** 26.03.2026
 
 ## Related
 

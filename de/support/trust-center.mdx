@@ -128,6 +128,25 @@ Bei Anbietern mit US-Muttergesellschaften (z. B. Microsoft, Google, Vercel, Soni
 - **Data Residency:** Konfiguration der Dienste so, dass Daten ausschließlich auf EU-Knoten verarbeitet werden.
 - **Rechtsrahmen:** Nutzung des EU-U.S. Data Privacy Framework (DPF) und/oder Standardvertragsklauseln (SVK).
 - **Enterprise-Verträge:** Spezialverträge, die Drittzugriff und Nutzung der Daten für Modelltraining ausschließen.
+- **TIA auf Anfrage:** Für Enterprise-Kunden erstellt Famulor auf Anfrage ein Transfer Impact Assessment (TIA) gemäß den EDPB-Empfehlungen 01/2020 für alle Anbieter mit US-Muttergesellschaft. Das TIA dokumentiert die Schutzmaßnahmen und die Bewertung des Rechtssystems im Drittland.
+
+### Transfer-Rechtsgrundlage pro US-Anbieter
+
+| Anbieter | Kategorie | Transfer-Rechtsgrundlage |
+|----------|-----------|---------------------------|
+| Deepgram | STT | SCCs (2021/914/EU) + EU-Endpunkt (`api.eu.deepgram.com`) |
+| Soniox | STT | SCCs + EU Data Residency (vertraglich auf EU-Knoten beschränkt) |
+| Gladia | STT | SCCs (2021/914/EU), getrennte EU/US-Workloads |
+| Cartesia | TTS | SCCs + EU Data Residency |
+| LiveKit | Realtime | SCCs + Region Pinning (laut Anbieter keine Verarbeitung außerhalb der EU-Region) |
+| ElevenLabs | STT/TTS | Enterprise DPA + EU Data Residency |
+| Vercel | Hosting | DPF (zertifiziert) + EU-Region (Frankfurt) |
+| Anthropic | LLM | SCCs über EU-Partner |
+| OpenAI (via Azure) | LLM | DPF (via Microsoft) + Azure-EU-Knoten |
+
+Für alle Anbieter ohne DPF-Zertifizierung (Deepgram, Soniox, Gladia, Cartesia, LiveKit) hat Famulor die EU-Standardvertragsklauseln gemäß Beschluss 2021/914/EU der EU-Kommission (Modul 2: Verantwortlicher an Auftragsverarbeiter) abgeschlossen. Diese sind Enterprise-Kunden auf Anfrage verfügbar.
+
+Zur eigenständigen Prüfung der DPF-Zertifizierung einzelner Anbieter: [Data Privacy Framework Participants List](https://www.dataprivacyframework.gov/list)
 
 ## 11. Technische und organisatorische Maßnahmen (TOM)
 
@@ -147,7 +166,7 @@ Unser Sicherheitsrahmen zielt auf maximale Nachverfolgbarkeit und Isolierung:
 - Diese Liste wird **quartalsweise geprüft**.
 - Änderungen am Anbieter-Stack werden im **[Changelog](/de/updates/changelog)** dokumentiert.
 
-**Zuletzt aktualisiert:** März 2026
+**Zuletzt aktualisiert:** 26.03.2026
 
 ## Verwandte Seiten
 
