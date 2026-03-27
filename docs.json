@@ -94,7 +94,8 @@
                   "en/platform/ai-whatsapp",
                   "en/platform/edit-whatsapp-sender",
                   "en/platform/test-assistant",
-                  "en/platform/connectors"
+                  "en/platform/connectors",
+                  "en/platform/custom-dashboard"
                 ]
               },
               {
@@ -816,7 +817,8 @@
                   "de/platform/ki-whatsapp",
                   "de/platform/whatsapp-sender-bearbeiten",
                   "de/platform/test-assistent",
-                  "de/platform/connectors"
+                  "de/platform/connectors",
+                  "de/platform/custom-dashboard"
                 ]
               },
               {
