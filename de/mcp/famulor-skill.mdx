@@ -1,0 +1,122 @@
+---
+title: "Famulor Skill"
+icon: "wand-magic-sparkles"
+description: "Installiere und nutze den Famulor.io Skill, damit KI-Agenten Assistenten, Kampagnen, Wissensdatenbanken und Messaging-Workflows direkt über die Famulor API verwalten können."
+---
+
+# Famulor.io Skill
+
+Der **Famulor.io Skill** erlaubt KI-Agenten, echte Aufgaben in Famulor auszuführen statt nur zu erklären.
+
+<Card
+  title="GitHub Repository"
+  icon="github"
+  href="https://github.com/bekservice/Famulor-Skill"
+>
+  Quellcode, Installationsanleitungen und Beispiele
+</Card>
+
+## Was der Skill kann
+
+- KI-Assistenten erstellen und konfigurieren (Inbound, Outbound, Chat, WhatsApp)
+- Outbound-Kampagnen aufsetzen und Leads verwalten
+- Wissensdatenbanken und Dokumente anbinden
+- Mid-Call-Tools (HTTP-Tools) für Live-Integrationen erstellen
+- WhatsApp- und SMS-Workflows ausführen
+- Tests sowie iterative Prompt- und Voice-Optimierung unterstützen
+
+## Wann du den Skill einsetzen solltest
+
+Nutze den Skill bei Themen wie:
+
+- Famulor oder famulor.io Setup
+- Kampagnen, Leads und Outbound Calling
+- WhatsApp Bots, Templates und SMS
+- Wissensdatenbanken, RAG-Dokumente und Webhooks
+- Famulor API Integrationen
+
+## Voraussetzungen
+
+Du brauchst einen gültigen API-Key als Umgebungsvariable:
+
+```bash
+export FAMULOR_API_KEY="your-api-key"
+```
+
+Den API-Key erstellst du in der Famulor Plattform: [app.famulor.de](https://app.famulor.de).
+
+## Installation
+
+### Cursor
+
+```text
+/add-plugin https://github.com/bekservice/Famulor-Skill
+```
+
+Wenn direkte URL-Installation nicht verfügbar ist, importiere `famulor.skill` manuell und starte die Chat-Session neu.
+
+### Codex
+
+```text
+Fetch and follow instructions from https://raw.githubusercontent.com/bekservice/Famulor-Skill/refs/heads/main/.codex/INSTALL.md
+```
+
+### OpenCode
+
+```text
+Fetch and follow instructions from https://raw.githubusercontent.com/bekservice/Famulor-Skill/refs/heads/main/.opencode/INSTALL.md
+```
+
+### Gemini CLI
+
+```bash
+gemini extensions install https://github.com/bekservice/Famulor-Skill
+```
+
+Update:
+
+```bash
+gemini extensions update famulor-skill
+```
+
+### Universelle manuelle Installation
+
+1. Lade `famulor.skill` aus dem Repository herunter.
+2. Importiere/registriere die Datei in deiner Agent-Plattform als Skill oder Plugin.
+3. Starte die Agent-Session neu.
+4. Setze `FAMULOR_API_KEY`.
+5. Lass den Agenten einen Famulor-Workflow ausführen.
+
+## Local Developer Quickstart
+
+1. Repository klonen.
+2. Python 3.10+ sicherstellen.
+3. API-Key setzen:
+
+```bash
+export FAMULOR_API_KEY="your-api-key"
+```
+
+4. Testlauf:
+
+```bash
+python3 scripts/famulor_client.py list_assistants
+```
+
+Bei gültigem API-Key erhältst du JSON-Daten aus der API.
+
+## Installation prüfen
+
+- `echo $FAMULOR_API_KEY` liefert einen nicht-leeren Wert
+- `python3 scripts/famulor_client.py list_assistants` liefert API-Daten
+- Kein `401 Unauthorized` Fehler
+
+## Sicherheitshinweise
+
+- Niemals API-Keys in Git committen.
+- Bevorzugt Umgebungsvariablen oder eine ignorierte `.env` Datei nutzen.
+- API-Keys sofort rotieren, falls sie offengelegt wurden.
+
+<Tip>
+Passende Seiten: [MCP Server](/de/mcp/server), [MCP Client](/de/mcp/client) und [API-Integrationsbeispiele](/de/developers/api-integration-examples).
+</Tip>

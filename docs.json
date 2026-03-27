@@ -727,7 +727,8 @@
                 "group": "MCP",
                 "icon": "plug",
                 "pages": [
-                  "en/mcp/server"
+                  "en/mcp/server",
+                  "en/mcp/famulor-skill"
                 ]
               }
             ]
@@ -1452,7 +1453,8 @@
                 "group": "MCP",
                 "icon": "plug",
                 "pages": [
-                  "de/mcp/server"
+                  "de/mcp/server",
+                  "de/mcp/famulor-skill"
                 ]
               }
             ]
