@@ -91,7 +91,10 @@
                   "en/platform/dtmf-keypad-input",
                   "en/platform/appointment-scheduling-cal-com",
                   "en/platform/flow-builder",
-                  "en/platform/ai-whatsapp"
+                  "en/platform/ai-whatsapp",
+                  "en/platform/edit-whatsapp-sender",
+                  "en/platform/test-assistant",
+                  "en/platform/connectors"
                 ]
               },
               {
@@ -810,7 +813,10 @@
                   "de/platform/dtmf-tastatureingabe",
                   "de/platform/terminvereinbarung-cal-com",
                   "de/platform/flow-builder",
-                  "de/platform/ki-whatsapp"
+                  "de/platform/ki-whatsapp",
+                  "de/platform/whatsapp-sender-bearbeiten",
+                  "de/platform/test-assistent",
+                  "de/platform/connectors"
                 ]
               },
               {
