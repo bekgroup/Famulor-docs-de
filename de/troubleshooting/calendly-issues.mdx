@@ -37,23 +37,23 @@ Lösungen für häufige Probleme mit der Calendly-Integration.
 
 **Problem:** "Failed to book appointment: Specified location kind is not configured for this event type"
 
-**Ursache:** Die Location-Konfiguration im Event passt nicht zur Buchungslogik des Voice-Assistenten.
+**Ursache:** Ihr Calendly Event-Typ hat eine Location-Einstellung (z.B. Google Meet, Zoom), die nicht zu dem passt, was der Voice-Assistent bei der Buchung verwendet.
 
 **Lösung:**
 
-1. Bei [Calendly](https://calendly.com) einloggen
-2. **Event Types** öffnen und Event wählen
+1. Bei [calendly.com](https://calendly.com) einloggen
+2. **Event Types** öffnen und den Event-Typ wählen, der mit Ihrem Assistenten verknüpft ist
 3. **Edit** klicken
 4. Zu **Location** scrollen
-5. Auf eine der Optionen setzen:
-- **Custom** (empfohlen)
-- **Phone Call -> Inbound call**
-- Bei mehreren Locations sicherstellen, dass **Custom** enthalten ist
+5. Location auf eine der Optionen setzen:
+   - **"Custom"** — sicherste Option, funktioniert in allen Fällen
+   - **"Phone Call" → "Inbound call"** — funktioniert ebenfalls für Voice-KI
+   - Bei mehreren Locations sicherstellen, dass **"Custom"** enthalten ist
 6. Event speichern
-7. Buchung erneut testen
+7. Buchung erneut über den Assistenten testen
 
 <Warning>
-Bei reinen Video-Locations (Google Meet, Zoom, Teams) können Buchungen fehlschlagen, da der Voice-Assistent keine Meeting-Links erzeugt. Nutzen Sie "Custom" oder fügen Sie es als Option hinzu.
+  Bei reinen Video-Locations (Google Meet, Zoom, Teams) schlagen Buchungen fehl, da der Voice-Assistent keine Meeting-Links erzeugt. Wechseln Sie zu "Custom" oder fügen Sie "Custom" als zusätzliche Location-Option hinzu.
 </Warning>
 
 ### Zeitzonenprobleme
@@ -70,26 +70,29 @@ Bei reinen Video-Locations (Google Meet, Zoom, Teams) können Buchungen fehlschl
 
 ### Web-Call Buchungen schlagen fehl
 
+**Problem:** Buchungen funktionieren bei Web-Calls inkonsistent
+
 **Lösung:**
 
-- Mit echten Telefonanrufen testen
-- Web-Calls übergeben Telefonnummer teils unzuverlässig
-- Nummer bei Web-Calls im internationalen Format mit `+` angeben
+- Mit echten Telefonanrufen testen (nicht Web-Calls)
+- Web-Calls übergeben die Telefonnummer teils unzuverlässig
+- Nummer bei Web-Calls im internationalen Format mit `+` angeben (z.B. "+49 123 4567890")
 
 ## Hilfe
 
-Wenn das Problem bleibt:
+Wenn das Problem bestehen bleibt:
 
 1. Transkripte auf Buchungsversuche prüfen
 2. Event-Typ im Calendly-Dashboard verifizieren
 3. Mit einfachem Telefonanruf testen
 4. Support kontaktieren mit:
-- Fehler-Screenshot
-- Screenshot der Event-Einstellungen (Location)
-- Transkript mit Buchungsversuch
+   - Fehler-Screenshot
+   - Screenshot der Event-Einstellungen (insbesondere Location)
+   - Transkript mit Buchungsversuch
 
 ## Verwandte Seiten
 
+- [Calendly Terminplanung](/de/ai-assistants/calendly-scheduling)
 - [Assistant Prompt & Tools](/de/ai-assistants/prompt-and-tools)
 - [Assistent testen](/de/ai-assistants/testing)
 - [Support](/de/support)

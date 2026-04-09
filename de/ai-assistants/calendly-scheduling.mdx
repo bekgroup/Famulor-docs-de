@@ -1,0 +1,71 @@
+---
+title: "Calendly Terminplanung"
+icon: "calendar-days"
+description: "Lernen Sie, wie Sie Ihren KI-Assistenten aktivieren, um Termine mit Calendly-Integration zu planen"
+---
+
+Aktivieren Sie Ihren KI-Assistenten, um Meetings mit der Calendly-Integration zu planen. Die KI prüft die Verfügbarkeit und bucht Termine direkt während des Anrufs.
+
+## Voraussetzungen
+
+- Ein aktives Calendly-Konto
+- Mindestens ein aktiver Event-Typ in Calendly konfiguriert
+
+## Einrichtung
+
+### 1. Calendly verbinden
+
+1. In Ihren Assistenten-Einstellungen → **Tools** Tab → **Terminplanung**
+2. Wählen Sie **Calendly** als Kalendertyp
+3. Klicken Sie auf **Mit Calendly verbinden**
+4. Autorisieren Sie die Anwendung auf der Calendly OAuth-Seite
+5. Sie werden zurück zu Ihren Assistenten-Einstellungen weitergeleitet
+
+<Note>
+  Bei Verbindungsproblemen versuchen Sie es in einem **Inkognito-/Privatfenster**, um Authentifizierungskonflikte zu lösen.
+</Note>
+
+### 2. Event-Typ auswählen
+
+1. Klicken Sie nach der Verbindung auf **"Load Events"**, um Ihre Calendly Event-Typen abzurufen
+2. Wählen Sie den Event-Typ, den die KI für Buchungen verwenden soll
+3. Speichern Sie Ihren Assistenten
+
+### 3. Location in Calendly konfigurieren
+
+Die Location-Einstellung Ihres Calendly Event-Typs muss mit dem Voice-Assistenten kompatibel sein.
+
+1. Gehen Sie zu [calendly.com](https://calendly.com) → **Event Types**
+2. Bearbeiten Sie den Event-Typ, der mit Ihrem Assistenten verknüpft ist
+3. Setzen Sie im Abschnitt **Location** eine der folgenden Optionen:
+   - **"Custom"** — empfohlen, funktioniert in allen Fällen
+   - **"Phone Call" → "Inbound call"** — funktioniert ebenfalls für Voice-KI
+
+<Warning>
+  Wenn Ihr Event-Typ nur Videokonferenzen verwendet (Google Meet, Zoom, Teams), schlagen Buchungen fehl. Der Voice-Assistent kann keine Meeting-Links generieren. Wechseln Sie zu "Custom" oder fügen Sie es als zusätzliche Location-Option hinzu.
+</Warning>
+
+## Mehrere Kalender
+
+Klicken Sie auf **"+"** neben Terminplanung, um weitere Kalender-Tools hinzuzufügen (z.B. verschiedene Event-Typen für verschiedene Zwecke). Verwenden Sie die "Wann planen"-Beschreibung, um der KI bei der Auswahl des richtigen Kalenders zu helfen.
+
+## Organisations-Konten
+
+Wenn Ihr Calendly-Konto Teil einer Organisation ist:
+
+- **Admin/Owner-Konten** können alle Event-Typen aller Teammitglieder sehen, einschließlich Round Robin und Collective Events
+- **Reguläre Mitglieder** können nur ihre eigenen Event-Typen sehen
+
+## Testen
+
+1. Führen Sie einen Testanruf durch und bitten Sie um einen Termin
+2. Überprüfen Sie, dass die Buchung in Ihrem Calendly-Dashboard erscheint
+3. Prüfen Sie, dass die Kalendereinladung gesendet wurde
+
+<Note>
+  Zur Fehlerbehebung siehe [Calendly Probleme](/de/troubleshooting/calendly-issues).
+</Note>
+
+<Tip>
+Passende Seiten: [What Is AI Assistant](/de/ai-assistants/what-is-ai-assistant) und [Prompt And Tools](/de/ai-assistants/prompt-and-tools) und [Assistant Best Practices](/de/ai-assistants/assistant-best-practices).
+</Tip>
