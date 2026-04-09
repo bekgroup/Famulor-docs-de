@@ -133,6 +133,7 @@
                       "en/ai-assistants/tools-and-functions",
                       "en/ai-assistants/custom-mid-call-tools",
                       "en/ai-assistants/cal-com-scheduling",
+                      "en/ai-assistants/calendly-scheduling",
                       "en/ai-assistants/gohighlevel-scheduling"
                     ]
                   },
@@ -856,6 +857,7 @@
                       "de/ai-assistants/tools-and-functions",
                       "de/ai-assistants/custom-mid-call-tools",
                       "de/ai-assistants/cal-com-scheduling",
+                      "de/ai-assistants/calendly-scheduling",
                       "de/ai-assistants/gohighlevel-scheduling"
                     ]
                   },

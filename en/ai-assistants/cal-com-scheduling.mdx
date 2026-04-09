@@ -6,86 +6,84 @@ description: "Learn how to enable your AI assistant to schedule appointments usi
 
 Enable your AI assistant to seamlessly schedule meetings and appointments using Cal.com integration. This powerful feature allows your AI to check availability and book meetings directly during calls.
 
-<Warning>
-  Do not make any new fields required in your Cal.com event settings. The
-  integration only supports default fields and the optional phone field. Adding
-  required custom fields will cause the integration to fail.
-</Warning>
-
 ## Prerequisites
 
 Before setting up Cal.com integration, you'll need:
 
-- A Cal.com account (either hosted or self-hosted). If you don't have one yet, you can [sign up at Cal.com](https://refer.cal.com/bek-group-o4pf). We support Cal.com US, Cal.com EU, and self-hosted Cal.com.
+- A Cal.com account (Cal.com US, Cal.com EU, or self-hosted Cal.com)
 - An event type configured in Cal.com
 - An API key from Cal.com
 
-## Setup Process
+## Setup
 
-### 1. Cal.com Configuration
+### 1. Get API Key
 
-1. Sign up or log in to your [Cal.com](https://refer.cal.com/bek-group-o4pf) account
-2. Create a new event type specifically for AI assistant bookings
-   - Give it a clear name like "Meeting with AI Assistant"
-   - Configure duration, availability, and other settings
-3. Once created, note down the event ID from the URL
-   <img height="200" src="/resources/cal-event-id.png" />
-4. Generate an API key:
-   - Go to Cal.com settings
-   - Navigate to Developer Settings
-   - Create a new API key
-   - Copy and securely store the API key
+1. Log in to [Cal.com](https://cal.com/)
+2. Go to **Settings** → **Developer** → **API Keys**
+3. Create a new API key and copy it
 
-### 2. Customer Contact Information
+### 2. Select Your Region
 
-#### Email Configuration
+Cal.com offers different API regions. Choose the one that matches your Cal.com account:
 
-To send calendar invites to customers:
+| Region           | API Endpoint                      |
+| ---------------- | --------------------------------- |
+| **US** (default) | `api.cal.com`                     |
+| **EU**           | `api.cal.eu`                      |
+| **Custom**       | Your self-hosted Cal.com endpoint |
 
-1. Define `email` in your assistant's input variables
-2. Pass the customer's email as the `email` variable when creating the lead
-3. The system will automatically use this email for calendar invitations
+Select your region in the Cal.com configuration panel before connecting. If you're unsure, the US endpoint is the default.
 
-#### Phone Number in Calendar Events
+### 3. Connect Cal.com
 
-To include the caller's phone number in calendar events:
+1. In your assistant settings → **Tools** tab → **Appointment Scheduling**
+2. Select **Cal.com** from calendar type
+3. Choose your API region
+4. Paste your API key
+5. Select an event from the dropdown
 
-1. Go to your event settings in Cal.com
-2. Click on "Add a question"
-   <img height="200" src="/resources/cal-event-settings.jpeg" />
-3. Configure the field with these exact values:
-   - Identifier: `phone` (this must be exact)
-     <img height="200" src="/resources/cal-phone-field.jpeg" />
-4. Save your changes
-   <img height="200" src="/resources/cal-save.jpeg" />
+### 4. Sync Event
 
-### 3. Adding Cal.com to Your Assistant
+Click the **"Sync Event"** button to automatically configure booking fields.
 
-1. In your AI assistant settings, locate the Tools section
-2. Add the Cal.com integration
-3. Configure the tool with:
-   - Your Cal.com API key
-   - The event type ID
+<Check>
+  The sync automatically reads your event type's custom fields and configures them for the AI assistant. Name, email, and phone are set as required. All other custom booking fields are imported automatically.
+</Check>
 
-## Best Practices
+## Event Types
 
-- Create dedicated event types for AI bookings to track their usage
-- Set clear buffer times between meetings
-- Configure appropriate meeting durations
-- Use descriptive event names that make sense to your customers
-- Keep only default fields and the phone field optional
-- Always include customer email in lead creation for calendar invites
+### Personal Events
 
-## Testing
+Select from your personal event types (e.g., 15-minute intro call, 30-minute consultation).
 
-After setup, we recommend:
+### Team Events
 
-1. Making a test call to your AI assistant
-2. Requesting to schedule a meeting
-3. Verifying the booking appears in your Cal.com dashboard
-4. Checking that the phone number appears in the calendar event
-5. Verifying the customer receives the calendar invitation email
-6. Checking the confirmation emails are received
+You can also book into **team event types**. When your API key has access to team calendars, team events appear in the event dropdown grouped separately from personal events.
+
+<Tip>
+  Team events are useful when you want the AI to book meetings that get distributed across your team members based on their availability.
+</Tip>
+
+## Dynamic Booking Fields
+
+When you sync an event, the system automatically reads all custom booking fields configured on that event type in Cal.com. This means:
+
+- **No manual field configuration** — fields are fetched directly from your Cal.com event type
+- **Custom fields supported** — any custom fields you add to your Cal.com event type are automatically available
+- **Auto-refresh on sync** — click "Sync Event" again if you change your Cal.com event's booking fields
+
+## Multiple Calendars
+
+Click **"+"** next to Appointment Scheduling to add more calendars (e.g., 15min, 30min meetings).
+
+## Email Setup
+
+For calendar invites to work:
+
+1. Define `email` in assistant [input variables](/en/ai-assistants/settings/prompt-and-tools#call-variables)
+2. Pass customer email when creating leads
+
+The phone number is automatically included after sync.
 
 ## Fetching Multiple Days at Once
 
@@ -166,19 +164,32 @@ This ensures the AI knows to use the tool when customers ask about availability 
 Make sure the tool name matches what you reference in your system prompt. If you named your tool `get_calendar_slots`, use that exact name in the prompt instructions.
 </Tip>
 
+## Backward Compatibility
+
+If you already have a Cal.com integration configured, your existing settings continue to work without changes. The region defaults to US, and existing field configurations are preserved. You can optionally re-sync to take advantage of dynamic booking fields.
+
 ## Troubleshooting
 
-If you encounter issues:
+**Invalid API Key:** Verify it's active in Cal.com settings and includes `cal_live_` prefix
 
-- Verify your API key is active and has the correct permissions
-- Ensure the event type ID is correct
-- Check that your Cal.com availability is properly configured
-- Confirm no required custom fields are added
-- Verify the phone field identifier is exactly "phone"
-- Confirm the `email` variable is properly set in assistant settings
-- Check that customer email is being passed correctly in leads
-- Confirm your timezone settings are correct
+**Sync Failed:** Click **"Troubleshoot"** button to reset fields
+
+**No Invites Sent:** Ensure `email` variable is defined and passed with leads
+
+**Field Errors:** Use "Troubleshoot" to reset. Only name, email, phone should be required.
+
+**Wrong Region:** If you get authentication errors, check that you selected the correct region (EU accounts must use the EU endpoint).
+
+<Note>
+  For detailed troubleshooting, see [Cal.com Issues](/en/troubleshooting/cal-com-issues).
+</Note>
+
+## Testing
+
+1. Make a test call and request a meeting
+2. Verify booking appears in Cal.com
+3. Check calendar invitation email was received
 
 <Tip>
-Related pages: [What Is AI Assistant](/en/ai-assistants/what-is-ai-assistant) and [Prompt And Tools](/en/ai-assistants/prompt-and-tools), and [Assistant Best Practices](/en/ai-assistants/assistant-best-practices).
+Related pages: [What Is AI Assistant](/en/ai-assistants/what-is-ai-assistant) and [Prompt And Tools](/en/ai-assistants/prompt-and-tools) and [Assistant Best Practices](/en/ai-assistants/assistant-best-practices).
 </Tip>
