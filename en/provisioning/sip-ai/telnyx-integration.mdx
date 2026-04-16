@@ -27,7 +27,7 @@ This guide walks you through connecting your Telnyx phone numbers using SIP trun
 6. Click **Create** - this opens the setup wizard
 
    <Frame>
-     <img src="/images/telnyx/telnyx-create-connection.png" alt="Create SIP connection in Telnyx" width="1949" height="747" />
+     <img src="/images/telnyx/telnyx-create-connection.png" alt="Create SIP connection in Telnyx" style={{ width: '100%', height: 'auto', display: 'block' }} />
    </Frame>
 
 ## Step 2: Authentication and Routing
@@ -43,7 +43,7 @@ The wizard takes you to the **Authentication and routing** step. Here you add th
 2. Click **Save**
 
    <Frame>
-     <img src="/images/telnyx/telnyx-add-fqdn.png" alt="Add FQDN to Telnyx connection" width="1597" height="775" />
+     <img src="/images/telnyx/telnyx-add-fqdn.png" alt="Add FQDN to Telnyx connection" style={{ width: '100%', height: 'auto', display: 'block' }} />
    </Frame>
 
 ### Inbound Calls Routing
@@ -55,7 +55,7 @@ Scroll down to the **Inbound calls routing** section on the same page:
 3. **Primary FQDN**: Select `{famulorsipadress}.sip.livekit.cloud` from the dropdown
 
    <Frame>
-     <img src="/images/telnyx/telnyx-inbound-routing.png" alt="Configure inbound calls routing" width="1564" height="803" />
+     <img src="/images/telnyx/telnyx-inbound-routing.png" alt="Configure inbound calls routing" style={{ width: '100%', height: 'auto', display: 'block' }} />
    </Frame>
 
 ### Outbound Authentication
@@ -66,7 +66,7 @@ Scroll down further to the **Outbound calls authentication** section:
 2. Set a **username** and **password** - save these, you need them when importing the number into Famulor
 
    <Frame>
-     <img src="/images/telnyx/telnyx-outbound-credentials.png" alt="Set outbound credentials" width="638" height="318" />
+     <img src="/images/telnyx/telnyx-outbound-credentials.png" alt="Set outbound credentials" style={{ width: '100%', height: 'auto', display: 'block' }} />
    </Frame>
 
 Click **Next** at the bottom of the page.
@@ -78,7 +78,7 @@ The wizard shows the **Configuration** page with connection details, webhooks, a
 You do not need to change anything here - just verify that the **Type** shows **FQDN Connection** and click **Next**.
 
 <Frame>
-  <img src="/images/telnyx/telnyx-configuration.png" alt="Configuration page" width="1308" height="809" />
+  <img src="/images/telnyx/telnyx-configuration.png" alt="Configuration page" style={{ width: '100%', height: 'auto', display: 'block' }} />
 </Frame>
 
 ## Step 4: Inbound and Outbound
@@ -92,7 +92,7 @@ On the **Outbound** page, make sure:
 3. **Channel limit**: Set to `10` or higher
 
    <Frame>
-     <img src="/images/telnyx/telnyx-outbound-settings.png" alt="Configure outbound settings" width="1590" height="537" />
+     <img src="/images/telnyx/telnyx-outbound-settings.png" alt="Configure outbound settings" style={{ width: '100%', height: 'auto', display: 'block' }} />
    </Frame>
 
 <Note>
@@ -112,14 +112,14 @@ The last step of the wizard is the **Numbers** page:
 2. Click **Edit**
 
    <Frame>
-     <img src="/images/telnyx/telnyx-outbound-voice-profiles.png" alt="Open outbound voice profiles" width="1911" height="722" />
+     <img src="/images/telnyx/telnyx-outbound-voice-profiles.png" alt="Open outbound voice profiles" style={{ width: '100%', height: 'auto', display: 'block' }} />
    </Frame>
 
 3. Click your profile -> **Allowed Destinations**
 4. Enable the countries/regions you need to call
 
    <Frame>
-     <img src="/images/telnyx/telnyx-geographic-permissions.png" alt="Enable geographic permissions" width="1462" height="777" />
+     <img src="/images/telnyx/telnyx-geographic-permissions.png" alt="Enable geographic permissions" style={{ width: '100%', height: 'auto', display: 'block' }} />
    </Frame>
 
 <Warning>
@@ -128,16 +128,14 @@ The last step of the wizard is the **Numbers** page:
 
 ## Step 7: Import Number to Famulor
 
-1. Open the Phone Numbers page directly:
-
-   **[https://app.famulor.de/phone-numbers](https://app.famulor.de/phone-numbers)**
+1. Open **Phone Numbers** directly in your Famulor dashboard.
 
    If it takes you to the login page, log in first - it automatically redirects you to Phone Numbers.
 
 2. Click **"Integrate SIP trunk"** (top-right corner of the page)
 
    <Frame>
-     <img src="/images/telnyx/telnyx-famulor-sip-button.png" alt="Import number via SIP trunk in Famulor" width="1013" height="481" />
+     <img src="/images/telnyx/telnyx-famulor-sip-button.png" alt="Import number via SIP trunk in Famulor" style={{ width: '100%', height: 'auto', display: 'block' }} />
    </Frame>
 
 3. Fill in your phone number and SIP credentials:
@@ -156,7 +154,7 @@ The last step of the wizard is the **Numbers** page:
    ```
 
    <Frame>
-     <img src="/images/telnyx/telnyx-famulor-outbound.png" alt="Configure outbound settings in Famulor" width="979" height="758" />
+     <img src="/images/telnyx/telnyx-famulor-outbound.png" alt="Configure outbound settings in Famulor" style={{ width: '100%', height: 'auto', display: 'block' }} />
    </Frame>
 
 <Warning>
@@ -170,7 +168,7 @@ The last step of the wizard is the **Numbers** page:
    * **Australia**: `103.115.244.145` and `103.115.244.146`
 
    <Frame>
-     <img src="/images/telnyx/telnyx-famulor-inbound.png" alt="Configure inbound IP addresses in Famulor" width="972" height="588" />
+     <img src="/images/telnyx/telnyx-famulor-inbound.png" alt="Configure inbound IP addresses in Famulor" style={{ width: '100%', height: 'auto', display: 'block' }} />
    </Frame>
 
 <Note>
@@ -178,6 +176,10 @@ The last step of the wizard is the **Numbers** page:
 </Note>
 
 6. Select the **country** where your SIP trunk is located.
+
+   <Frame>
+     <img src="/images/telnyx/sip-integration-country.png" alt="Select SIP trunk country in Famulor" style={{ width: '100%', height: 'auto', display: 'block' }} />
+   </Frame>
 
 ## Step 8: Verify Setup
 
@@ -241,3 +243,7 @@ Your SIP credentials need to be secure:
 <Note>
   Need help setting up? Our support team specializes in SIP onboarding and will guide you through the full setup for your specific phone system.
 </Note>
+
+<Tip>
+Related pages: [SIP Integration](/en/provisioning/sip-ai/sip-integration) and [Twilio Integration](/en/provisioning/sip-ai/twilio-integration).
+</Tip>

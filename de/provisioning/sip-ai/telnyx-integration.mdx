@@ -27,7 +27,7 @@ Diese Anleitung zeigt Ihnen, wie Sie Ihre Telnyx-Rufnummern per SIP-Trunking mit
 6. Klicken Sie auf **Create** - dadurch oeffnet sich der Einrichtungsassistent
 
    <Frame>
-     <img src="/images/telnyx/telnyx-create-connection.png" alt="SIP-Verbindung in Telnyx erstellen" width="1949" height="747" />
+     <img src="/images/telnyx/telnyx-create-connection.png" alt="SIP-Verbindung in Telnyx erstellen" style={{ width: '100%', height: 'auto', display: 'block' }} />
    </Frame>
 
 ## Schritt 2: Authentifizierung und Routing
@@ -43,7 +43,7 @@ Der Assistent fuehrt Sie zum Schritt **Authentication and routing**. Hier hinter
 2. Klicken Sie auf **Save**
 
    <Frame>
-     <img src="/images/telnyx/telnyx-add-fqdn.png" alt="FQDN zur Telnyx-Verbindung hinzufuegen" width="1597" height="775" />
+     <img src="/images/telnyx/telnyx-add-fqdn.png" alt="FQDN zur Telnyx-Verbindung hinzufuegen" style={{ width: '100%', height: 'auto', display: 'block' }} />
    </Frame>
 
 ### Routing fuer eingehende Anrufe
@@ -55,7 +55,7 @@ Scrollen Sie auf derselben Seite zum Abschnitt **Inbound calls routing**:
 3. **Primary FQDN**: Waehlen Sie `{famulorsipadress}.sip.livekit.cloud` aus dem Dropdown
 
    <Frame>
-     <img src="/images/telnyx/telnyx-inbound-routing.png" alt="Inbound-Routing konfigurieren" width="1564" height="803" />
+     <img src="/images/telnyx/telnyx-inbound-routing.png" alt="Inbound-Routing konfigurieren" style={{ width: '100%', height: 'auto', display: 'block' }} />
    </Frame>
 
 ### Outbound-Authentifizierung
@@ -66,7 +66,7 @@ Scrollen Sie weiter nach unten zum Abschnitt **Outbound calls authentication**:
 2. Legen Sie **username** und **password** fest - speichern Sie diese, da Sie sie beim Import in Famulor benoetigen
 
    <Frame>
-     <img src="/images/telnyx/telnyx-outbound-credentials.png" alt="Outbound-Zugangsdaten festlegen" width="638" height="318" />
+     <img src="/images/telnyx/telnyx-outbound-credentials.png" alt="Outbound-Zugangsdaten festlegen" style={{ width: '100%', height: 'auto', display: 'block' }} />
    </Frame>
 
 Klicken Sie unten auf **Next**.
@@ -78,7 +78,7 @@ Der Assistent zeigt die Seite **Configuration** mit Verbindungsdetails, Webhooks
 Sie muessen hier nichts aendern - pruefen Sie nur, dass bei **Type** **FQDN Connection** steht, und klicken Sie auf **Next**.
 
 <Frame>
-  <img src="/images/telnyx/telnyx-configuration.png" alt="Konfigurationsseite" width="1308" height="809" />
+  <img src="/images/telnyx/telnyx-configuration.png" alt="Konfigurationsseite" style={{ width: '100%', height: 'auto', display: 'block' }} />
 </Frame>
 
 ## Schritt 4: Inbound und Outbound
@@ -92,7 +92,7 @@ Auf der **Outbound**-Seite stellen Sie sicher:
 3. **Channel limit**: Setzen Sie `10` oder hoeher
 
    <Frame>
-     <img src="/images/telnyx/telnyx-outbound-settings.png" alt="Outbound-Einstellungen konfigurieren" width="1590" height="537" />
+     <img src="/images/telnyx/telnyx-outbound-settings.png" alt="Outbound-Einstellungen konfigurieren" style={{ width: '100%', height: 'auto', display: 'block' }} />
    </Frame>
 
 <Note>
@@ -112,14 +112,14 @@ Der letzte Schritt im Assistenten ist die Seite **Numbers**:
 2. Klicken Sie auf **Edit**
 
    <Frame>
-     <img src="/images/telnyx/telnyx-outbound-voice-profiles.png" alt="Outbound Voice Profiles oeffnen" width="1911" height="722" />
+     <img src="/images/telnyx/telnyx-outbound-voice-profiles.png" alt="Outbound Voice Profiles oeffnen" style={{ width: '100%', height: 'auto', display: 'block' }} />
    </Frame>
 
 3. Oeffnen Sie Ihr Profil -> **Allowed Destinations**
 4. Aktivieren Sie die Laender/Regionen, die Sie anrufen moechten
 
    <Frame>
-     <img src="/images/telnyx/telnyx-geographic-permissions.png" alt="Geografische Berechtigungen aktivieren" width="1462" height="777" />
+     <img src="/images/telnyx/telnyx-geographic-permissions.png" alt="Geografische Berechtigungen aktivieren" style={{ width: '100%', height: 'auto', display: 'block' }} />
    </Frame>
 
 <Warning>
@@ -128,16 +128,14 @@ Der letzte Schritt im Assistenten ist die Seite **Numbers**:
 
 ## Schritt 7: Rufnummer in Famulor importieren
 
-1. Oeffnen Sie direkt die Seite fuer Rufnummern:
-
-   **[https://app.famulor.de/phone-numbers](https://app.famulor.de/phone-numbers)**
+1. Oeffnen Sie **Phone Numbers** direkt in Ihrem Famulor-Dashboard.
 
    Falls Sie zuerst auf der Login-Seite landen, melden Sie sich an - danach werden Sie automatisch zur Rufnummern-Seite weitergeleitet.
 
 2. Klicken Sie auf **"Integrate SIP trunk"** (oben rechts auf der Seite)
 
    <Frame>
-     <img src="/images/telnyx/telnyx-famulor-sip-button.png" alt="Rufnummer per SIP-Trunk in Famulor importieren" width="1013" height="481" />
+     <img src="/images/telnyx/telnyx-famulor-sip-button.png" alt="Rufnummer per SIP-Trunk in Famulor importieren" style={{ width: '100%', height: 'auto', display: 'block' }} />
    </Frame>
 
 3. Tragen Sie Rufnummer und SIP-Zugangsdaten ein:
@@ -156,7 +154,7 @@ Der letzte Schritt im Assistenten ist die Seite **Numbers**:
    ```
 
    <Frame>
-     <img src="/images/telnyx/telnyx-famulor-outbound.png" alt="Outbound-Einstellungen in Famulor konfigurieren" width="979" height="758" />
+     <img src="/images/telnyx/telnyx-famulor-outbound.png" alt="Outbound-Einstellungen in Famulor konfigurieren" style={{ width: '100%', height: 'auto', display: 'block' }} />
    </Frame>
 
 <Warning>
@@ -170,7 +168,7 @@ Der letzte Schritt im Assistenten ist die Seite **Numbers**:
    * **Australia**: `103.115.244.145` und `103.115.244.146`
 
    <Frame>
-     <img src="/images/telnyx/telnyx-famulor-inbound.png" alt="Inbound-IP-Adressen in Famulor konfigurieren" width="972" height="588" />
+     <img src="/images/telnyx/telnyx-famulor-inbound.png" alt="Inbound-IP-Adressen in Famulor konfigurieren" style={{ width: '100%', height: 'auto', display: 'block' }} />
    </Frame>
 
 <Note>
@@ -178,6 +176,10 @@ Der letzte Schritt im Assistenten ist die Seite **Numbers**:
 </Note>
 
 6. Waehlen Sie das **Land**, in dem Ihr SIP-Trunk betrieben wird.
+
+   <Frame>
+     <img src="/images/telnyx/sip-integration-country.png" alt="SIP-Trunk-Land in Famulor auswaehlen" style={{ width: '100%', height: 'auto', display: 'block' }} />
+   </Frame>
 
 ## Schritt 8: Einrichtung pruefen
 
@@ -241,3 +243,7 @@ Ihre SIP-Zugangsdaten sollten sicher sein:
 <Note>
   Sie brauchen Hilfe beim Setup? Unser Support-Team ist auf SIP-Onboarding spezialisiert und begleitet Sie durch die komplette Einrichtung fuer Ihre konkrete Telefonie-Umgebung.
 </Note>
+
+<Tip>
+Passende Seiten: [SIP-Integration](/de/provisioning/sip-ai/sip-integration) und [Twilio-Integration](/de/provisioning/sip-ai/twilio-integration).
+</Tip>
