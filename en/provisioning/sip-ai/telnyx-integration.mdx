@@ -17,6 +17,15 @@ This guide walks you through connecting your Telnyx phone numbers using SIP trun
   **Why FQDN?** The connection type must be **FQDN** - not Credentials or IP Address. Credential connections require SIP REGISTER for inbound calls, which our platform does not send. FQDN connections route inbound calls directly to our SIP server and authenticate outbound calls via credentials.
 </Info>
 
+<Info>
+  **Pricing snapshot:** Telnyx publishes public starting prices for numbers and SIP trunking, while country-specific details are provided through the live pricing sheet.
+
+  * **Inbound / number rental:** local numbers from `$1/month`; inbound local calls from `$0.0035/min`
+  * **Outbound / calling:** international outbound calls from `$0.005/min`
+  * **Germany / Switzerland / United Kingdom / United States:** exact live country-specific rates are available in Telnyx pricing sheets rather than directly on the summary page
+  * **Official pricing:** [Numbers pricing](https://www.telnyx.com/pricing/numbers) and [SIP trunking pricing](https://telnyx.com/pricing/elastic-sip)
+</Info>
+
 ## Step 1: Create SIP Connection
 
 1. Log in to the [Telnyx Mission Control Portal](https://portal.telnyx.com)
