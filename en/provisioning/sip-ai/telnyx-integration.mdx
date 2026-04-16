@@ -1,310 +1,243 @@
 ---
 title: 'Telnyx Integration'
-description: 'Connect your Telnyx phone system to Famulor via SIP Trunking'
+description: 'Step-by-step setup guide to connect Telnyx numbers to Famulor via SIP trunking'
 ---
 
 # Telnyx Integration
 
+> A step-by-step guide to connect your Telnyx phone numbers via SIP trunking
+
+This guide walks you through connecting your Telnyx phone numbers using SIP trunking. You will create an FQDN connection in Telnyx, configure outbound authentication, assign your numbers, and import them into Famulor.
+
+<Tip>
+  **One-time setup:** You only need to create the SIP connection once (Steps 1-5). For each additional phone number after that, simply assign it to your existing connection (Step 5) and import it (Step 7).
+</Tip>
+
+<Info>
+  **Why FQDN?** The connection type must be **FQDN** - not Credentials or IP Address. Credential connections require SIP REGISTER for inbound calls, which our platform does not send. FQDN connections route inbound calls directly to our SIP server and authenticate outbound calls via credentials.
+</Info>
+
+## Step 1: Create SIP Connection
+
+1. Log in to the [Telnyx Mission Control Portal](https://portal.telnyx.com)
+2. Navigate to **Real-Time Communications** -> **Voice** -> **SIP Trunking**
+3. Click **Create SIP Connection**
+4. **Name**: Choose a name (for example, `my-company SIP trunk`)
+5. **Type**: Select **FQDN**
+6. Click **Create** - this opens the setup wizard
+
+   <Frame>
+     <img src="/images/telnyx/telnyx-create-connection.png" alt="Create SIP connection in Telnyx" width="1949" height="747" />
+   </Frame>
+
+## Step 2: Authentication and Routing
+
+The wizard takes you to the **Authentication and routing** step. Here you add the FQDN for inbound call routing and set up outbound credentials.
+
+### Add FQDN
+
+1. Click **"+ Add FQDN"** and enter:
+   * **DNS Record Type**: `A`
+   * **FQDN**: `{famulorsipadress}.sip.livekit.cloud`
+   * **Port**: `5060`
+2. Click **Save**
+
+   <Frame>
+     <img src="/images/telnyx/telnyx-add-fqdn.png" alt="Add FQDN to Telnyx connection" width="1597" height="775" />
+   </Frame>
+
+### Inbound Calls Routing
+
+Scroll down to the **Inbound calls routing** section on the same page:
+
+1. **SIP subdomain**: Enter a name (for example, `yourcompany`) - this creates `yourcompany.sip.telnyx.com`
+2. **Receive SIP Subdomain calls**: Set to **From Anyone**
+3. **Primary FQDN**: Select `{famulorsipadress}.sip.livekit.cloud` from the dropdown
+
+   <Frame>
+     <img src="/images/telnyx/telnyx-inbound-routing.png" alt="Configure inbound calls routing" width="1564" height="803" />
+   </Frame>
+
+### Outbound Authentication
+
+Scroll down further to the **Outbound calls authentication** section:
+
+1. **Method**: Select **Credentials**
+2. Set a **username** and **password** - save these, you need them when importing the number into Famulor
+
+   <Frame>
+     <img src="/images/telnyx/telnyx-outbound-credentials.png" alt="Set outbound credentials" width="638" height="318" />
+   </Frame>
+
+Click **Next** at the bottom of the page.
+
+## Step 3: Configuration
+
+The wizard shows the **Configuration** page with connection details, webhooks, and advanced settings.
+
+You do not need to change anything here - just verify that the **Type** shows **FQDN Connection** and click **Next**.
+
+<Frame>
+  <img src="/images/telnyx/telnyx-configuration.png" alt="Configuration page" width="1308" height="809" />
+</Frame>
+
+## Step 4: Inbound and Outbound
+
+The wizard goes through the **Inbound** and **Outbound** steps. Since you already configured these in Step 2, verify the settings and click **Next** on each page.
+
+On the **Outbound** page, make sure:
+
+1. **Outbound voice profile**: Select your profile (or "Default")
+2. **Localization country**: Select your country
+3. **Channel limit**: Set to `10` or higher
+
+   <Frame>
+     <img src="/images/telnyx/telnyx-outbound-settings.png" alt="Configure outbound settings" width="1590" height="537" />
+   </Frame>
+
 <Note>
-  A step-by-step guide to connecting your Telnyx phone system to Famulor via SIP Trunking
+  If you do not have an Outbound Voice Profile, go to **Voice** -> **Settings** -> **Outbound Voice Profiles** -> **Create Profile**. Make sure to enable the countries you want to call under **Allowed Destinations**.
 </Note>
 
-<CardGroup cols={2}>
-  <Card
-    title="What is Telnyx Integration?"
-    icon="phone-volume"
-    color="blue">
-    Connect your Telnyx phone system to Famulor via SIP Trunking for flexible and scalable telephony integration.
-  </Card>
-  <Card
-    title="Benefits"
-    icon="star"
-    color="green">
-    Leverage Telnyx's robust infrastructure and global reach with our AI assistants for enhanced telephony features.
-  </Card>
-</CardGroup>
+## Step 5: Assign Numbers
 
-## What is Telnyx Integration?
+The last step of the wizard is the **Numbers** page:
 
-Telnyx integration allows you to connect your Telnyx phone system with Famulor. Telnyx provides flexible SIP Trunking solutions with FQDN settings for telephony integration.
+1. Click **Assign numbers**
+2. Select the phone number(s) you want to use
 
-<Steps>
-  <Step title="Create SIP Trunk">
-    Create a SIP Trunk with FQDN settings in Telnyx
-  </Step>
-  <Step title="Adjust Configuration">
-    Adjust the inbound and outbound settings
-  </Step>
-  <Step title="Add Number">
-    Add your purchased number to the trunk
-  </Step>
-  <Step title="Configure Famulor">
-    Create the number in Famulor using the Telnyx settings
-  </Step>
-  <Step title="Assign Assistant">
-    Assign the number to an AI assistant
-  </Step>
-</Steps>
+## Step 6: Enable Geographic Permissions
 
-## How It Works
+1. Go to **Voice** -> **Settings** -> **Outbound Voice Profiles**
+2. Click **Edit**
 
-When you integrate your Telnyx system with Famulor:
+   <Frame>
+     <img src="/images/telnyx/telnyx-outbound-voice-profiles.png" alt="Open outbound voice profiles" width="1911" height="722" />
+   </Frame>
 
-<CardGroup cols={2}>
-  <Card
-    title="Incoming Calls"
-    icon="phone"
-    color="green">
-    Calls to your Telnyx numbers are forwarded via SIP Trunking to our AI assistants
-  </Card>
-  <Card
-    title="Outgoing Calls"
-    icon="phone"
-    color="blue">
-    Our AI assistants can make calls that appear to come from your Telnyx numbers
-  </Card>
-  <Card
-    title="Management"
-    icon="gear"
-    color="purple">
-    You continue to manage your numbers via the Telnyx dashboard
-  </Card>
-  <Card
-    title="Integration"
-    icon="link"
-    color="orange">
-    Seamless integration between Telnyx and Famulor via SIP Trunking
-  </Card>
-</CardGroup>
+3. Click your profile -> **Allowed Destinations**
+4. Enable the countries/regions you need to call
 
-## Setting Up Your Telnyx Integration
+   <Frame>
+     <img src="/images/telnyx/telnyx-geographic-permissions.png" alt="Enable geographic permissions" width="1462" height="777" />
+   </Frame>
 
-<Steps>
-  <Step title="Create SIP Trunk">
-    <Card
-      title="FQDN Setting"
-      icon="plus-circle"
-      color="blue">
-      **Create a SIP Trunk with FQDN setting:**
-      
-        - Add <code>your-unique-id.sip.livekit.cloud</code>
-        
-        <Note>
-          **Important:** You can find the specific Famulor SIP address in your Famulor dashboard under "Phone Numbers" → "Integrate SIP Trunk" → "Our SIP Address".
-        </Note>
-        - Select **SRV** as the record type
-      
-      <Note>
-        The FQDN setting is crucial for correctly routing calls to Famulor.
-      </Note>
-    </Card>
-    
-    <Card
-      title="Credentials (Optional for outgoing calls)"
-      icon="key"
-      color="green">
-      **Add credentials for outgoing calls:**
-      
-      The username and password can be chosen freely.
-      
-      <Note>
-        This setting is optional and only necessary if you plan to use outgoing calls.
-      </Note>
-    </Card>
-  </Step>
-  
-  <Step title="Inbound Settings">
-    <Card
-      title="Inbound Configuration"
-      icon="gear"
-      color="purple">
-      **Configure the inbound settings:**
-      
-        - **Number Format:** Change the number format to <code>+E.164</code> (note: don’t forget the +)
-        - **Protocol:** Select **TCP** as the protocol
-        - **Region:** Set the region to **Europe**
-        - **Codecs:** Restrict codecs to those selected in the screenshot
-      
-      <Note>
-        The +E.164 format is important for correct transmission of international numbers.
-      </Note>
-    </Card>
-  </Step>
-  
-  <Step title="Outbound Settings">
-    <Card
-      title="Outbound Settings V2"
-      icon="phone"
-      color="orange">
-      **Configure the outbound settings:**
-      
-        - **Profile:** Choose **Default** as the profile
-        - **Country:** Select your country
-      
-    </Card>
-  </Step>
-  
-  <Step title="Add Number to Trunk">
-    <Card
-      title="Add Number"
-      icon="phone"
-      color="green">
-      **Finally, add the purchased number to the trunk.**
-      
-      Ensure the number is correctly assigned to the created SIP Trunk.
-    </Card>
-  </Step>
-  
-  <Step title="Create Number in Famulor">
-    <Card
-      title="Famulor Configuration"
-      icon="download"
-      color="blue">
-      **Create the number in Famulor:**
-      
-        - **Number / Name:** Enter exactly the number you added
-        - **Optional for Outbound:**
-          
-            - **Termination URL:** <code>sip.telnyx.eu</code>
-            - **Username:** Username from the configuration
-            - **Password:** Password from the configuration
-        
-    </Card>
-  </Step>
-  
-  <Step title="Assign Assistant">
-    <Card
-      title="Assignment"
-      icon="check-circle"
-      color="purple">
-      **Now you can save the number and assign it to an assistant.**
-      
-      The integration is complete and the number can be used for incoming and outgoing calls.
-    </Card>
-  </Step>
-</Steps>
+<Warning>
+  If you skip this step, outbound calls fail with a `403` error: **"Dialed number is not included in whitelisted countries."**
+</Warning>
 
-## Important Notes
+## Step 7: Import Number to Famulor
 
-<CardGroup cols={2}>
-  <Card
-    title="FQDN Setting"
-    icon="server"
-    color="red">
-    **Important:** The FQDN <code>xxx.eu.sip.livekit.cloud</code> must be correctly configured as an SRV record.
-  </Card>
-  <Card
-    title="E.164 Format"
-    icon="phone"
-    color="orange">
-    **Number Format:** The <code>+E.164</code> format is mandatory for correct call routing.
-  </Card>
-  <Card
-    title="TCP Protocol"
-    icon="shield"
-    color="blue">
-    **Protocol:** TCP must be selected as the protocol for a stable connection.
-  </Card>
-  <Card
-    title="Codec Restriction"
-    icon="gear"
-    color="green">
-    **Codecs:** Codecs must be restricted to the recommended options.
-  </Card>
-</CardGroup>
+1. Open the Phone Numbers page directly:
+
+   **[https://app.famulor.de/phone-numbers](https://app.famulor.de/phone-numbers)**
+
+   If it takes you to the login page, log in first - it automatically redirects you to Phone Numbers.
+
+2. Click **"Integrate SIP trunk"** (top-right corner of the page)
+
+   <Frame>
+     <img src="/images/telnyx/telnyx-famulor-sip-button.png" alt="Import number via SIP trunk in Famulor" width="1013" height="481" />
+   </Frame>
+
+3. Fill in your phone number and SIP credentials:
+
+   ```
+   Phone number: Your Telnyx number (for example, +1 555 0123)
+   Username: The outbound username from Step 2
+   Password: The outbound password from Step 2
+   ```
+
+4. Enter outbound settings:
+
+   ```
+   SIP address: sip.telnyx.com
+   Outbound format: International (with + in front)
+   ```
+
+   <Frame>
+     <img src="/images/telnyx/telnyx-famulor-outbound.png" alt="Configure outbound settings in Famulor" width="979" height="758" />
+   </Frame>
+
+<Warning>
+  **SIP address must be `sip.telnyx.com`** - do NOT use your SIP subdomain (for example, `yourcompany.sip.telnyx.com`). The subdomain is only for inbound routing on the Telnyx side. Using it as the outbound SIP address results in `404 Not Found` errors.
+</Warning>
+
+5. Select **Authorization type**: **IP Address** and add the Telnyx IP addresses for your region:
+
+   * **US**: `192.76.120.10`
+   * **Europe**: `185.246.41.140` and `185.246.41.141`
+   * **Australia**: `103.115.244.145` and `103.115.244.146`
+
+   <Frame>
+     <img src="/images/telnyx/telnyx-famulor-inbound.png" alt="Configure inbound IP addresses in Famulor" width="972" height="588" />
+   </Frame>
+
+<Note>
+  You can add all IP addresses regardless of region - only the relevant ones are used.
+</Note>
+
+6. Select the **country** where your SIP trunk is located.
+
+## Step 8: Verify Setup
+
+To test your Telnyx number, assign it to AI assistants. Inbound and outbound require **separate assistants**:
+
+### Test Inbound
+
+1. Go to **AI Assistants** -> create a new assistant (or use an existing one)
+2. Set assistant type to **Receive phone calls**
+3. Assign your Telnyx phone number to the assistant
+4. Call your Telnyx number from any phone - the AI assistant should answer
+
+### Test Outbound
+
+1. Create a **second assistant** with type **Make phone calls**
+2. Assign the same Telnyx phone number to this assistant
+3. Click **Speak to assistant** -> **Phone call** - Famulor calls your personal phone using the Telnyx number
+
+<Warning>
+  A single assistant cannot handle both directions. You need one **Receive phone calls** assistant and one **Make phone calls** assistant, both with the same phone number assigned.
+</Warning>
 
 ## Security Requirements
 
-<Card
-  title="SIP Credentials Security"
-  icon="shield"
-  color="red">
-  Your SIP credentials must be secure:
-  
-    - **Username:** Your Telnyx username or the provided username
-    - **Password requirements:**
-      
-        - 12 or more characters
-        - Numbers
-        - Uppercase and lowercase letters
-        - Special characters recommended
-      
-</Card>
+Your SIP credentials need to be secure:
+
+* **Username**: Your provider-supplied username
+* **Password must have**:
+  * 12 or more characters
+  * Numbers
+  * Upper and lowercase letters
+  * Special characters recommended
 
 ## Common Issues
 
-<CardGroup cols={2}>
-  <Card
-    title="FQDN Configuration"
-    icon="circle-exclamation"
-    color="red">
-    **FQDN is not recognized correctly?**
-    
-      - Make sure <code>xxx.eu.sip.livekit.cloud</code> is entered correctly
-      - Select **SRV** as the record type
-      - Check for typos
-    
-  </Card>
-  
-  <Card
-    title="E.164 Format Issues"
-    icon="phone-slash"
-    color="orange">
-    **Calls are not routed correctly?**
-    
-      - Verify the <code>+E.164</code> format is chosen
-      - Ensure the "+" is not missing
-      - Test with a simple phone number
-    
-  </Card>
-  
-  <Card
-    title="TCP Protocol"
-    icon="server"
-    color="blue">
-    **Connection problems?**
-    
-      - Confirm TCP is selected as the protocol
-      - Check your firewall settings
-      - Contact Telnyx support if issues persist
-    
-  </Card>
-  
-  <Card
-    title="Codec Issues"
-    icon="gear"
-    color="purple">
-    **Audio quality problems?**
-    
-      - Check that recommended codecs are selected
-      - Ensure codec restriction is enabled
-      - Test with different codec settings
-    
-  </Card>
-</CardGroup>
+<AccordionGroup>
+  <Accordion title="Dialed number is not included in whitelisted countries">
+    Go to **Voice** -> **Settings** -> **Outbound Voice Profiles** -> your profile -> **Allowed Destinations** and enable the destination country you are trying to call.
+  </Accordion>
 
-## Need Help?
+  <Accordion title="Inbound calls not working or 'number is incorrect'">
+    * Make sure the connection type is **FQDN** (not Credentials or IP Address)
+    * Verify the FQDN is set to `{famulorsipadress}.sip.livekit.cloud` on port `5060`
+    * Check that the phone number is assigned to the FQDN connection (not another connection)
+  </Accordion>
 
-<Tip>
-  Our support team specializes in assisting customers with integrating their phone systems. We guide you through the entire process, ensuring a smooth setup with your specific Telnyx configuration.
-</Tip>
+  <Accordion title="Outbound calls not connecting">
+    * Verify the SIP address is `sip.telnyx.com` (not your SIP subdomain)
+    * Check that credentials match between Telnyx and Famulor
+    * Make sure an **Outbound Voice Profile** is attached to the connection
+    * Verify the **Localization country** is set correctly
+  </Accordion>
 
-<Card
-  title="Contact Support"
-  icon="headphones"
-  color="blue"
-  href="mailto:support@famulor.io">
-  Need further assistance? Contact our support team for personalized help with Telnyx integration.
-</Card>
+  <Accordion title="Why can’t I use Credentials connection type?">
+    Credential connections require SIP REGISTER for inbound calls. Famulor uses direct SIP routing (no registration), so FQDN connection type is required. FQDN still supports credential-based authentication for outbound calls.
+  </Accordion>
+</AccordionGroup>
 
-<Card
-  title="Telnyx Support"
-  icon="globe"
-  color="green"
-  href="https://developers.telnyx.com/docs">
-  For technical questions about Telnyx SIP Trunking, visit the <a href="https://developers.telnyx.com/docs" target="_blank">Telnyx documentation</a>.
-</Card>
+***
 
-<Tip>
-Related pages: [Index](/en/index) and [Support](/en/support), and [FAQ](/en/faq).
-</Tip>
+<Note>
+  Need help setting up? Our support team specializes in SIP onboarding and will guide you through the full setup for your specific phone system.
+</Note>
