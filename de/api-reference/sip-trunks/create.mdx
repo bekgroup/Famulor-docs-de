@@ -1,0 +1,148 @@
+---
+title: "SIP-Trunk erstellen"
+api: "POST https://app.famulor.de/api/user/phone-numbers/sip-trunks"
+description: "Neuen SIP-Trunk mit Zugangsdaten, Adresse und Proxy-Einstellungen erstellen"
+---
+
+Dieser Endpunkt erstellt einen neuen SIP-Trunk. Die Plattform provisioniert automatisch Inbound- und Outbound-Trunks in der Voice-Infrastruktur anhand der uebergebenen Daten.
+
+### Body-Parameter
+
+<ParamField body="sip_trunk_type" type="string" required>
+  Der Typ des SIP-Trunks: `extension` fuer eine SIP-Erweiterung oder `number` fuer eine Telefonnummer (DID). Das bestimmt das erwartete Format fuer `phone_number`.
+</ParamField>
+
+<ParamField body="phone_number" type="string" required>
+  SIP-Erweiterung (1-15 Zeichen, z. B. `1000`) bei `sip_trunk_type = extension` oder Telefonnummer im E.164-Format (z. B. `+14155551234`) bei `sip_trunk_type = number`.
+</ParamField>
+
+<ParamField body="sip_username" type="string" required>
+  Benutzername fuer SIP-Authentifizierung (3-128 Zeichen)
+</ParamField>
+
+<ParamField body="sip_password" type="string" required>
+  Passwort fuer SIP-Authentifizierung (mindestens 3 Zeichen)
+</ParamField>
+
+<ParamField body="sip_address" type="string" required>
+  SIP-Serveradresse ohne Port (z. B. `sip.provider.com`)
+</ParamField>
+
+<ParamField body="sip_calling_format" type="string" required>
+  Das ausgehende Rufnummernformat:
+
+  * `+e164` - International mit `+`-Praefix (z. B. `+12025550123`)
+  * `e164` - International ohne `+`-Praefix (z. B. `12025550123`)
+  * `national` - Nationales Format ohne Ländervorwahl (z. B. `0741926265`)
+</ParamField>
+
+<ParamField body="inbound_authorization_type" type="string" required>
+  Authentifizierung fuer eingehende Anrufe:
+
+  * `auth` - Verwendet denselben SIP-Benutzernamen und dasselbe Passwort wie Outbound
+  * `ip` - Whitelistet bestimmte IP-Adressen (erfordert `allowed_inbound_ips`)
+</ParamField>
+
+<ParamField body="allowed_inbound_ips" type="array" optional>
+  Array mit IP-Adressen, die eingehende Anrufe senden duerfen. **Pflichtfeld**, wenn `inbound_authorization_type` auf `ip` steht. Muss mindestens eine gueltige IP enthalten.
+</ParamField>
+
+<ParamField body="country_code" type="string" required>
+  ISO-3166-2-Landercode, in dem sich der SIP-Trunk befindet (z. B. `US`, `GB`, `DE`). Bei `sip_trunk_type = number` wird das Land nach Moeglichkeit aus der Telefonnummer erkannt.
+</ParamField>
+
+<ParamField body="outbound_proxy" type="boolean" optional>
+  Leitet ausgehende Anrufe ueber eine feste IP-Adresse. Standard: `false`. Nur aktivieren, wenn Ihr SIP-Provider IP-basierte Authentifizierung fuer Outbound erfordert.
+</ParamField>
+
+### Antwort
+
+<ResponseField name="message" type="string">
+  Erfolgsmeldung
+</ResponseField>
+
+<ResponseField name="data" type="object">
+  Das erstellte SIP-Trunk-Objekt (gleiche Felder wie bei [SIP-Trunk abrufen](/de/api-reference/sip-trunks/get))
+</ResponseField>
+
+<ResponseExample>
+  ```json 201 Extension with password auth theme={null}
+  {
+    "message": "SIP trunk created successfully.",
+    "data": {
+      "id": 42,
+      "phone_number": "1000",
+      "sip_username": "myuser",
+      "sip_address": "sip.provider.com",
+      "sip_calling_format": "+e164",
+      "inbound_authorization_type": "auth",
+      "allowed_inbound_ips": null,
+      "outbound_proxy": false,
+      "country_code": "US",
+      "inbound_trunk_id": "ST_xxxxxxxxxxxx",
+      "outbound_trunk_id": "ST_yyyyyyyyyyyy",
+      "created_at": "2026-03-31T10:00:00.000000Z",
+      "updated_at": "2026-03-31T10:00:00.000000Z"
+    }
+  }
+  ```
+
+  ```json 201 Phone number (DID) with IP auth theme={null}
+  {
+    "message": "SIP trunk created successfully.",
+    "data": {
+      "id": 43,
+      "phone_number": "+14155551234",
+      "sip_username": "trunk_user",
+      "sip_address": "sip.provider.com",
+      "sip_calling_format": "e164",
+      "inbound_authorization_type": "ip",
+      "allowed_inbound_ips": ["203.0.113.10", "198.51.100.20"],
+      "outbound_proxy": true,
+      "country_code": "US",
+      "inbound_trunk_id": "ST_xxxxxxxxxxxx",
+      "outbound_trunk_id": "ST_yyyyyyyyyyyy",
+      "created_at": "2026-03-31T10:00:00.000000Z",
+      "updated_at": "2026-03-31T10:00:00.000000Z"
+    }
+  }
+  ```
+
+  ```json 409 Duplicate theme={null}
+  {
+    "error": "A SIP trunk with the same phone number, username, and address already exists."
+  }
+  ```
+
+  ```json 422 Validation Error theme={null}
+  {
+    "message": "The given data was invalid.",
+    "errors": {
+      "sip_address": ["SIP server address is required."],
+      "sip_calling_format": ["SIP calling format must be one of: +e164, e164, national."]
+    }
+  }
+  ```
+
+  ```json 500 Provisioning Error theme={null}
+  {
+    "error": "Failed to create SIP trunk. Please try again or contact support."
+  }
+  ```
+</ResponseExample>
+
+### Was nach der Erstellung passiert
+
+Wenn Sie einen SIP-Trunk erstellen, passiert automatisch:
+
+1. **Provisionierung eines Inbound-Trunks** in der Voice-Infrastruktur - je nach `inbound_authorization_type` per Benutzername/Passwort oder IP-Authentifizierung
+2. **Provisionierung eines Outbound-Trunks** - mit der von Ihnen angegebenen SIP-Adresse und den Zugangsdaten, optional ueber den Outbound-Proxy
+
+Falls die Provisionierung fehlschlaegt, wird der SIP-Trunk nicht gespeichert und ein `500`-Fehler zurueckgegeben.
+
+### Naechste Schritte
+
+Nach dem Erstellen koennen Sie den SIP-Trunk einem KI-Assistenten zuweisen:
+
+* **[Assistant erstellen](/de/api-reference/assistants/create)** - Parameter `phone_number_id` verwenden
+* **[Assistant aktualisieren](/de/api-reference/assistants/update)** - Telefonnummer eines bestehenden Assistenten aendern

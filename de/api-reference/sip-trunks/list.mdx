@@ -1,0 +1,98 @@
+---
+title: "SIP-Trunks auflisten"
+api: "GET https://app.famulor.de/api/user/phone-numbers/sip-trunks"
+description: "Alle SIP-Trunks des authentifizierten Benutzers abrufen"
+---
+
+Dieser Endpunkt gibt eine Liste aller SIP-Trunks zurück, die Ihrem Konto zugeordnet sind.
+
+### Antwort
+
+<ResponseField name="data" type="array">
+  Array von SIP-Trunk-Objekten
+
+  <Expandable title="SIP-Trunk-Eigenschaften">
+    <ResponseField name="id" type="integer">
+      Die eindeutige Kennung des SIP-Trunks
+    </ResponseField>
+
+    <ResponseField name="phone_number" type="string">
+      Die SIP-Erweiterung oder Telefonnummer (DID) im E.164-Format
+    </ResponseField>
+
+    <ResponseField name="sip_username" type="string">
+      Der Benutzername fuer die SIP-Authentifizierung
+    </ResponseField>
+
+    <ResponseField name="sip_address" type="string">
+      Die SIP-Serveradresse
+    </ResponseField>
+
+    <ResponseField name="sip_calling_format" type="string">
+      Das ausgehende Rufnummernformat: `+e164`, `e164` oder `national`
+    </ResponseField>
+
+    <ResponseField name="inbound_authorization_type" type="string">
+      Die Methode fuer eingehende Authentifizierung: `auth` (Benutzername/Passwort) oder `ip` (IP-Whitelist)
+    </ResponseField>
+
+    <ResponseField name="allowed_inbound_ips" type="array">
+      Array mit freigegebenen IP-Adressen fuer eingehende Anrufe (nur wenn `inbound_authorization_type` auf `ip` steht)
+    </ResponseField>
+
+    <ResponseField name="outbound_proxy" type="boolean">
+      Ob ausgehende Anrufe ueber eine feste Proxy-IP laufen
+    </ResponseField>
+
+    <ResponseField name="country_code" type="string">
+      ISO-3166-2-Landercode, in dem der SIP-Trunk liegt
+    </ResponseField>
+
+    <ResponseField name="created_at" type="string">
+      ISO-8601-Zeitstempel der Erstellung
+    </ResponseField>
+
+    <ResponseField name="updated_at" type="string">
+      ISO-8601-Zeitstempel der letzten Aktualisierung
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseExample>
+  ```json 200 Response theme={null}
+  {
+    "data": [
+      {
+        "id": 42,
+        "phone_number": "1000",
+        "sip_username": "myuser",
+        "sip_address": "sip.provider.com",
+        "sip_calling_format": "+e164",
+        "inbound_authorization_type": "auth",
+        "allowed_inbound_ips": null,
+        "outbound_proxy": false,
+        "country_code": "US",
+        "created_at": "2026-03-31T10:00:00.000000Z",
+        "updated_at": "2026-03-31T10:00:00.000000Z"
+      },
+      {
+        "id": 43,
+        "phone_number": "+14155551234",
+        "sip_username": "trunk_user",
+        "sip_address": "sip.provider.com",
+        "sip_calling_format": "e164",
+        "inbound_authorization_type": "ip",
+        "allowed_inbound_ips": ["203.0.113.10", "198.51.100.20"],
+        "outbound_proxy": true,
+        "country_code": "US",
+        "created_at": "2026-03-31T11:00:00.000000Z",
+        "updated_at": "2026-03-31T11:00:00.000000Z"
+      }
+    ]
+  }
+  ```
+</ResponseExample>
+
+<Tip>
+Passende Seiten: [SIP-Trunk abrufen](/de/api-reference/sip-trunks/get), [SIP-Trunk erstellen](/de/api-reference/sip-trunks/create) und [SIP-Trunk aktualisieren](/de/api-reference/sip-trunks/update).
+</Tip>

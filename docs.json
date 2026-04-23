@@ -705,6 +705,16 @@
                 ]
               },
               {
+                "group": "SIP Trunks",
+                "pages": [
+                  "en/api-reference/sip-trunks/list",
+                  "en/api-reference/sip-trunks/get",
+                  "en/api-reference/sip-trunks/create",
+                  "en/api-reference/sip-trunks/update",
+                  "en/api-reference/sip-trunks/delete"
+                ]
+              },
+              {
                 "group": "Calls",
                 "pages": [
                   "en/api-reference/calls/list",
@@ -1431,6 +1441,16 @@
                   "de/api-reference/phone-numbers/search",
                   "de/api-reference/phone-numbers/purchase",
                   "de/api-reference/phone-numbers/release"
+                ]
+              },
+              {
+                "group": "SIP Trunks",
+                "pages": [
+                  "de/api-reference/sip-trunks/list",
+                  "de/api-reference/sip-trunks/get",
+                  "de/api-reference/sip-trunks/create",
+                  "de/api-reference/sip-trunks/update",
+                  "de/api-reference/sip-trunks/delete"
                 ]
               },
               {

@@ -1,0 +1,144 @@
+---
+title: "SIP-Trunk aktualisieren"
+api: "PUT https://app.famulor.de/api/user/phone-numbers/sip-trunks/{id}"
+description: "Bestehende SIP-Trunk-Konfiguration aktualisieren"
+---
+
+Dieser Endpunkt aktualisiert einen bestehenden SIP-Trunk. Senden Sie nur die Felder, die Sie aendern moechten - partielle Updates werden unterstuetzt. Aenderungen an Zugangsdaten, Adresse oder Proxy-Einstellungen fuehren automatisch zur erneuten Provisionierung der betroffenen Voice-Trunks.
+
+### Pfad-Parameter
+
+<ParamField path="id" type="integer" required>
+  Die eindeutige Kennung des zu aktualisierenden SIP-Trunks
+</ParamField>
+
+### Body-Parameter
+
+Alle Felder sind optional. Senden Sie nur die Felder, die Sie aendern moechten.
+
+<ParamField body="phone_number" type="string" optional>
+  Die SIP-Erweiterung oder Telefonnummer (1-15 Zeichen)
+</ParamField>
+
+<ParamField body="sip_username" type="string" optional>
+  Benutzername fuer SIP-Authentifizierung (3-128 Zeichen)
+</ParamField>
+
+<ParamField body="sip_password" type="string" optional>
+  Passwort fuer SIP-Authentifizierung (mindestens 3 Zeichen)
+</ParamField>
+
+<ParamField body="sip_address" type="string" optional>
+  SIP-Serveradresse ohne Port
+</ParamField>
+
+<ParamField body="sip_calling_format" type="string" optional>
+  Ausgehendes Rufnummernformat: `+e164`, `e164` oder `national`
+</ParamField>
+
+<ParamField body="inbound_authorization_type" type="string" optional>
+  Authentifizierung fuer eingehende Anrufe: `auth` oder `ip`. Beim Wechsel auf `ip` muss `allowed_inbound_ips` mitgegeben werden. Beim Wechsel auf `auth` wird eine vorhandene IP-Whitelist entfernt.
+</ParamField>
+
+<ParamField body="allowed_inbound_ips" type="array" optional>
+  Array erlaubter IP-Adressen fuer eingehende Anrufe. **Pflichtfeld**, wenn `inbound_authorization_type` auf `ip` gesetzt wird.
+</ParamField>
+
+<ParamField body="country_code" type="string" optional>
+  ISO-3166-2-Landercode
+</ParamField>
+
+<ParamField body="outbound_proxy" type="boolean" optional>
+  Leitet ausgehende Anrufe ueber eine feste IP-Adresse
+</ParamField>
+
+### Antwort
+
+<ResponseField name="message" type="string">
+  Erfolgsmeldung
+</ResponseField>
+
+<ResponseField name="data" type="object">
+  Das aktualisierte SIP-Trunk-Objekt (gleiche Felder wie bei [SIP-Trunk abrufen](/de/api-reference/sip-trunks/get))
+</ResponseField>
+
+<ResponseExample>
+  ```json 200 Updated credentials theme={null}
+  {
+    "message": "SIP trunk updated successfully.",
+    "data": {
+      "id": 42,
+      "phone_number": "1000",
+      "sip_username": "new_username",
+      "sip_address": "sip.provider.com",
+      "sip_calling_format": "+e164",
+      "inbound_authorization_type": "auth",
+      "allowed_inbound_ips": null,
+      "outbound_proxy": false,
+      "country_code": "US",
+      "inbound_trunk_id": "ST_newtrunkid1",
+      "outbound_trunk_id": "ST_newtrunkid2",
+      "created_at": "2026-03-31T10:00:00.000000Z",
+      "updated_at": "2026-03-31T12:00:00.000000Z"
+    }
+  }
+  ```
+
+  ```json 200 Switched to IP auth theme={null}
+  {
+    "message": "SIP trunk updated successfully.",
+    "data": {
+      "id": 42,
+      "phone_number": "1000",
+      "sip_username": "myuser",
+      "sip_address": "sip.provider.com",
+      "sip_calling_format": "+e164",
+      "inbound_authorization_type": "ip",
+      "allowed_inbound_ips": ["203.0.113.10"],
+      "outbound_proxy": false,
+      "country_code": "US",
+      "inbound_trunk_id": "ST_newtrunkid1",
+      "outbound_trunk_id": "ST_yyyyyyyyyyyy",
+      "created_at": "2026-03-31T10:00:00.000000Z",
+      "updated_at": "2026-03-31T12:00:00.000000Z"
+    }
+  }
+  ```
+
+  ```json 404 Not Found theme={null}
+  {
+    "error": "SIP trunk not found."
+  }
+  ```
+
+  ```json 422 Validation Error theme={null}
+  {
+    "message": "The given data was invalid.",
+    "errors": {
+      "allowed_inbound_ips": ["At least one allowed IP address is required when authorization type is \"ip\"."]
+    }
+  }
+  ```
+
+  ```json 500 Provisioning Error theme={null}
+  {
+    "error": "Failed to update SIP trunk. Please try again or contact support."
+  }
+  ```
+</ResponseExample>
+
+### Re-Provisionierungsverhalten
+
+Die folgenden Feld-Aenderungen loesen eine automatische Re-Provisionierung der Voice-Infrastruktur-Trunks aus:
+
+| Geaendertes Feld             | Inbound-Trunk | Outbound-Trunk |
+| ---------------------------- | :-----------: | :------------: |
+| `sip_username`               | Neu erzeugt   | Neu erzeugt    |
+| `sip_password`               | Neu erzeugt   | Neu erzeugt    |
+| `sip_address`                |      -        | Neu erzeugt    |
+| `phone_number`               | Neu erzeugt   | Neu erzeugt    |
+| `inbound_authorization_type` | Neu erzeugt   |       -        |
+| `allowed_inbound_ips`        | Neu erzeugt   |       -        |
+| `outbound_proxy`             |      -        | Neu erzeugt    |
+
+Felder wie `sip_calling_format` oder `country_code` werden nur lokal gespeichert und loesen keine Re-Provisionierung aus.
