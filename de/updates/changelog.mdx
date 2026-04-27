@@ -8,6 +8,69 @@ description: "Neueste Features, Verbesserungen und Ankündigungen vom Famulor-Te
 
 > Bleiben Sie auf dem neuesten Stand — Folgen Sie unseren neuesten Produkt-Updates und Verbesserungen. Wir veröffentlichen regelmäßig neue Features, um Ihre KI-Anruf-Erfahrung zu verbessern.
 
+<Update label="27. April 2026" tags={["Whitelabel", "Analytics Webhook", "Scheduler", "Übersetzungen", "NEU"]} description="Neue Analytics-Webhook-Section für die Whitelabel-Plattform mit flexibler Zeitlogik, erweitertem Scheduling und vollständiger DE/EN-Lokalisierung">
+  ## 🏷️ Whitelabel Plattform: Analytics Webhook ausgebaut
+
+  In der Whitelabel-Plattform wurde eine neue **Analytics-Webhook-Section** in den Einstellungen ergänzt. Damit können Berichte gezielt geplant, gefiltert und direkt aus der Section versendet werden.
+
+  ## ✅ Neu hinzugefügt
+
+  - Neue Section **Analytics Webhook** in den Einstellungen
+  - Aktivierung per Toggle: **Enable Analytics Webhook**
+  - Konfigurierbare Felder:
+    - **Webhook URL**
+    - **Frequenz** (Weekly / Monthly)
+    - **Wochentag** (bei weekly)
+    - **Tag im Monat** (bei monthly)
+    - **Uhrzeit**
+    - **Berichtsmodus** (Letzte X Tage / Aktueller Kalendermonat)
+    - **Berichtszeitraum (Tage)** (nur bei Letzte X Tage)
+    - **Assistenten-Scope** (alle / ausgewählte)
+    - **Benutzer-Scope** (alle / ausgewählte)
+  - Button **Analytics-Webhook jetzt senden** direkt in der Section (nicht mehr unten im globalen Footer)
+
+  ## 🎨 UI/UX verbessert
+
+  - Reihenfolge optimiert: **Berichtsmodus** vor **Berichtszeitraum**
+  - Bei monatlicher Frequenz neue Optionen für **Tag im Monat**:
+    - Erster Tag des Monats
+    - Letzter Tag des Monats
+    - konkrete Tage (2–31)
+  - Info-Hinweise mit **i-Icon + Hover** bei zentralen Feldern (Frequenz, Tag, Uhrzeit, Berichtsmodus/-zeitraum, Scopes)
+
+  ## ⚙️ Logik/Backend erweitert
+
+  Der Webhook-Dispatch-Service unterstützt jetzt:
+
+  - **Rolling Window** (letzte X Tage)
+  - **Kalendermonat** (Monatsanfang bis heute/Versandzeitpunkt)
+  - Korrekte Monatslogik für:
+    - first of month
+    - last of month
+    - sichere Behandlung kurzer Monate (z. B. Februar)
+
+  ## 🗄️ Datenbankänderungen
+
+  - `tenant_settings` um Analytics-Webhook-Felder erweitert (Konfiguration, Scopes, Status/Fehler, letzte Sendung)
+  - Zusätzliches Feld: `analytics_webhook_period_mode` (`rolling_days` / `calendar_month`)
+
+  ## ⏱️ Scheduling/Job
+
+  - Neuer Scheduler-Eintrag: `analytics:webhooks-dispatch` stündlich (`hourlyAt(5)`)
+  - Command/Dispatcher prüft fällige Webhooks und versendet automatisiert
+
+  ## 🌐 Übersetzungen
+
+  - Neue Texte vollständig in **DE/EN** ergänzt
+  - Fix für zwei Sprachpfade (`lang/*.json` und `resources/lang/*.json`), damit die UI zuverlässig lokalisiert ist
+
+  ## 🧪 Verifikation
+
+  - Syntax/Lint/JSON-Checks durchgeführt
+  - Scheduler- und Command-Ausführung getestet
+  - Fälligkeitslogik für weekly/monthly inkl. Monatsende simuliert und validiert
+</Update>
+
 <Update label="23. April 2026" tags={["API", "SIP Trunks", "Endpoints", "Release", "NEU"]} description="Neue SIP-Trunks-API-Endpoints sind live plus API-Referenz in EN/DE">
   ## 📡 Neue SIP-Trunks API-Endpoints sind live
 

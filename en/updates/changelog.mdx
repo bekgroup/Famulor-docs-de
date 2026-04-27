@@ -7,6 +7,69 @@ description: 'Latest features, improvements and announcements from the Famulor t
 
 Stay informed about new capabilities and improvements. We ship updates frequently to elevate your Voice AI and automation workflows.
 
+## April 27, 2026
+
+### 🏷️ Whitelabel platform: Analytics Webhook expanded
+
+We added a dedicated **Analytics Webhook** section in Whitelabel settings, with flexible scheduling, configurable scopes, and direct send controls.
+
+#### ✅ New additions
+
+- New **Analytics Webhook** section in settings
+- Toggle activation: **Enable Analytics Webhook**
+- Configurable fields:
+  - **Webhook URL**
+  - **Frequency** (Weekly / Monthly)
+  - **Weekday** (for weekly)
+  - **Day of month** (for monthly)
+  - **Time**
+  - **Report mode** (Last X days / Current calendar month)
+  - **Report period (days)** (only for Last X days)
+  - **Assistant scope** (all / selected)
+  - **User scope** (all / selected)
+- **Send Analytics Webhook now** button moved directly into the section (no longer in the global footer)
+
+#### 🎨 UI/UX improvements
+
+- Field order optimized: **Report mode** now appears before **Report period**
+- New monthly **Day of month** options:
+  - First day of month
+  - Last day of month
+  - Specific days (2–31)
+- Added info hints using **i-icon + hover** for key fields (frequency, day, time, report mode/period, scopes)
+
+#### ⚙️ Logic/backend enhancements
+
+The webhook dispatch service now supports:
+
+- **Rolling window** (last X days)
+- **Calendar month** (month start to current date/dispatch time)
+- Correct monthly handling for:
+  - first of month
+  - last of month
+  - short-month safety (for example February)
+
+#### 🗄️ Database changes
+
+- Extended `tenant_settings` with analytics webhook fields (configuration, scopes, status/error, last dispatch)
+- Added `analytics_webhook_period_mode` (`rolling_days` / `calendar_month`)
+
+#### ⏱️ Scheduling/job
+
+- New scheduler entry: `analytics:webhooks-dispatch` hourly (`hourlyAt(5)`)
+- Command/dispatcher now checks due webhooks and sends automatically
+
+#### 🌐 Translations
+
+- Added all new texts in **DE/EN**
+- Fixed two translation paths (`lang/*.json` and `resources/lang/*.json`) for reliable UI localization
+
+#### 🧪 Verification
+
+- Completed syntax/lint/JSON checks
+- Tested scheduler and command execution
+- Simulated and validated due logic for weekly/monthly, including month-end behavior
+
 ## April 23, 2026
 
 ### 📡 SIP Trunks API endpoints are now live
