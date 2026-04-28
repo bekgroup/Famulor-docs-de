@@ -1,0 +1,108 @@
+---
+title: 'Sipcall Integration'
+description: 'Step-by-step guide to connecting your Sipcall (Switzerland) account to Famulor via SIP trunking'
+---
+
+# Sipcall Integration
+
+> Connect your Sipcall SIP trunk (Switzerland) to Famulor
+
+This guide walks you through connecting Sipcall numbers (the dominant Swiss SMB SIP provider, operated by Backbone Solutions AG) to Famulor. You will create a static, non-registering SIP trunk in the Sipcall portal, point its outbound destination at the Famulor SIP address, and import the number into Famulor.
+
+<Tip>
+  **One-time setup:** Create the static SIP trunk once, then add additional Sipcall numbers to the same trunk and import them into Famulor.
+</Tip>
+
+<Info>
+  **Why "static" / "Anlagenanschluss"?** Famulor requires a non-registering trunk. Sipcall's `SIP-Trunk Business` in static mode forwards INVITEs to a destination FQDN without requiring SIP REGISTER, which is exactly what Famulor (LiveKit SIP backend) expects.
+</Info>
+
+<Info>
+  **Pricing snapshot (verify in portal):** SIP-Trunk Business from approx. `CHF 5/month per DID`, outbound to CH landline approx. `CHF 0.04/min`, mobile approx. `CHF 0.09/min`. Inbound to Swiss geographic numbers is included.
+
+  * **Official pricing:** [sipcall.ch](https://www.sipcall.ch)
+</Info>
+
+## Step 1: Create a static SIP trunk in Sipcall
+
+1. Sign in to the [Sipcall Customer Portal](https://my.sipcall.ch).
+2. Go to **Telefonie → SIP-Trunks → Trunk hinzufügen**.
+3. Choose **"Statisch (IP-basiert)" / "Anlagenanschluss"** — not the registering "Endgerät" mode.
+4. **Name:** pick anything (e.g. `famulor-trunk`).
+5. **Ziel-Host (Destination):** enter your Famulor SIP address — `xxx.sip.livekit.cloud` (port `5060`, transport TCP recommended; TLS on `5061` if your Famulor project advertises it).
+
+<Note>
+  **Find your Famulor SIP address:** Famulor dashboard → **Phone Numbers → Integrate SIP trunk → Our SIP address**.
+</Note>
+
+## Step 2: Outbound authentication for calls from Famulor
+
+Sipcall verifies inbound INVITEs (i.e. calls initiated by Famulor) either by source IP or by Digest credentials. Famulor's SIP backend does **not** have a fixed egress IP, so we strongly recommend Digest credentials.
+
+1. In the trunk settings, set **Authentifizierung** to **Benutzername/Passwort (Digest)**.
+2. Set a username and a strong password (12+ chars, mixed case, digits, symbols). Save these — you will paste them into Famulor in step 4.
+3. If your contract requires IP-ACL, enable **"FQDN-based ACL"** instead of a strict IP whitelist.
+
+## Step 3: Assign your Swiss numbers to the trunk
+
+1. Go to **Telefonie → Rufnummern**.
+2. Edit each DID you want Famulor to handle and set **Routing-Ziel = your new SIP trunk**.
+3. Sipcall will deliver inbound INVITEs for those numbers to the destination host you set in step 1.
+
+## Step 4: Import the number into Famulor
+
+1. Open your Famulor dashboard and go to **Phone Numbers**.
+2. Click **Integrate SIP trunk** (top right).
+3. Fill in the form:
+
+   ```
+   Phone number:   Your Sipcall DID in E.164 (e.g. +41 44 555 0123)
+   Username:       The Digest username from step 2
+   Password:       The Digest password from step 2
+   ```
+
+4. Outbound settings:
+
+   ```
+   SIP address:           sip.sipcall.ch
+   Outbound number format: International (with +)
+   ```
+
+5. **Authorization type:** Username and password. (Use the same credentials as outbound.)
+
+6. **Country:** Switzerland.
+
+## Step 5: Verify
+
+1. Assign the number to a `Receive phone calls` assistant and call your Sipcall DID — the AI should answer.
+2. Create a `Make phone calls` assistant with the same number and use **Speak to assistant → Phone call** to verify outbound.
+
+<Warning>
+  Sipcall enforces strict outbound caller ID verification. The CLI Famulor sends must be a Sipcall-owned number on your account, or pre-validated via the portal CLI verification flow. Random spoofed CLIs will be blocked at the SBC.
+</Warning>
+
+## Common issues
+
+<AccordionGroup>
+  <Accordion title="Outbound calls return 403 Forbidden">
+    Most often a CLI verification problem. Confirm the From-number is a verified Sipcall DID and that "CLIP no Screening" is enabled on your contract if you need to send a third-party CLI.
+  </Accordion>
+  <Accordion title="Inbound calls don't reach the AI">
+    * Confirm the trunk is in **Statisch / Anlagenanschluss** mode (not "Endgerät").
+    * Confirm the destination host is exactly your Famulor SIP address (no trailing slash, no port duplication).
+    * Confirm the DID's routing target is set to this trunk.
+  </Accordion>
+  <Accordion title="One-way audio">
+    Set the trunk's preferred codec to **G.711 a-law** (Swiss default). Disable Opus and G.722 on the Sipcall side.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+<Note>
+  Need help with setup? Our support team specializes in SIP onboarding and will walk you through the exact configuration for your Sipcall plan.
+</Note>
+
+<Tip>
+Related pages: [SIP Integration](/en/provisioning/sip-ai/sip-integration) and [SIP Troubleshooting](/en/provisioning/sip-ai/sip-troubleshooting).
+</Tip>

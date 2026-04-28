@@ -1,0 +1,118 @@
+---
+title: 'Plivo Integration'
+description: 'Step-by-step guide to connecting Plivo numbers to Famulor via Zentrunk SIP trunking'
+---
+
+# Plivo Integration
+
+> Connect your Plivo Zentrunk SIP trunk to Famulor
+
+This guide walks you through connecting [Plivo Zentrunk](https://www.plivo.com/zentrunk/) — Plivo's pure SIP trunking product — to Famulor. Zentrunk is a first-class match for Famulor's BYOC model: it uses FQDN-based termination URIs and FQDN-based origination, with both ACL and Digest authentication.
+
+<Tip>
+  **One-time setup:** Create the inbound and outbound trunks once. Add new Plivo numbers to the inbound trunk and import them into Famulor.
+</Tip>
+
+<Info>
+  **EU data residency:** Plivo operates EU PoPs (Frankfurt, London, Dublin). For German customers, select the EU region when creating your Plivo account / trunk to keep media in-region.
+</Info>
+
+<Info>
+  **Pricing snapshot (verify in portal):** German DID approx. `$0.80/month`, inbound approx. `$0.0080/min`, outbound DE landline approx. `$0.0140/min`, mobile approx. `$0.0950/min`.
+
+  * **Official pricing:** [Plivo number pricing](https://www.plivo.com/pricing/) and [Zentrunk pricing](https://www.plivo.com/zentrunk/pricing/)
+</Info>
+
+## Step 1: Create an Outbound Trunk (calls from Famulor → PSTN)
+
+1. Sign in to the [Plivo Console](https://console.plivo.com).
+2. Go to **Zentrunk → Outbound Trunks → Create Outbound Trunk**.
+3. **Name:** `famulor-outbound`.
+4. **Termination URI prefix:** `xxx.sip.livekit.cloud` — your Famulor SIP address.
+5. **Authentication:** choose **Digest credentials** (recommended). Create a credentials list with username + password and attach it to this trunk. ACL/IP whitelisting is also supported but Famulor has no static egress IPs, so credentials are the safer pick.
+6. **Transport:** select TLS:5061 if your Famulor project supports it; otherwise TCP:5060.
+
+<Note>
+  **Find your Famulor SIP address:** Famulor dashboard → **Phone Numbers → Integrate SIP trunk → Our SIP address**.
+</Note>
+
+## Step 2: Create an Inbound Trunk (calls from PSTN → Famulor)
+
+1. **Zentrunk → Inbound Trunks → Create Inbound Trunk**.
+2. **Name:** `famulor-inbound`.
+3. **Origination URI:** `sip:xxx.sip.livekit.cloud;transport=tcp` (or `transport=tls` if available).
+4. **Priority:** `10` (default).
+5. Save.
+
+## Step 3: Assign Plivo numbers to the inbound trunk
+
+1. **Phone Numbers → Your Numbers** (or buy new ones).
+2. Edit each DID and set **Application Type = SIP Trunk**, then select your `famulor-inbound` trunk.
+3. Save.
+
+## Step 4: Disable strict caller ID mode (optional)
+
+If Famulor needs to send a CLI other than your Plivo-owned numbers (e.g. a verified third-party number):
+
+1. **Zentrunk → Outbound Trunks → famulor-outbound → DIP Profile**.
+2. Toggle **Strict Caller ID** off, or upload a verified-CLI list.
+
+<Warning>
+  Plivo enforces caller ID compliance. Sending unverified CLIs may result in calls being rejected or your account being flagged for fraud review.
+</Warning>
+
+## Step 5: Import the number into Famulor
+
+1. Open your Famulor dashboard and go to **Phone Numbers**.
+2. Click **Integrate SIP trunk**.
+3. Fill in:
+
+   ```
+   Phone number:   Your Plivo DID in E.164 (e.g. +49 30 555 0123)
+   Username:       The Digest username from step 1
+   Password:       The Digest password from step 1
+   ```
+
+4. Outbound settings:
+
+   ```
+   SIP address:            <your-account>.zt.plivo.com
+   Outbound number format: International (with +)
+   ```
+
+   You'll find your Zentrunk termination address under **Zentrunk → Outbound Trunks**.
+
+5. **Authorization type:** Username and password.
+
+6. **Country:** the country your DID is registered in.
+
+## Step 6: Verify
+
+1. Assign the number to a `Receive phone calls` assistant. Call your Plivo DID — the AI should answer.
+2. Create a `Make phone calls` assistant with the same number. Trigger an outbound test call.
+
+## Common issues
+
+<AccordionGroup>
+  <Accordion title="Outbound calls return 403 / Forbidden">
+    * Confirm the From-number is on your Plivo verified-CLI list, or disable Strict Caller ID.
+    * Confirm the credentials list is attached to the outbound trunk.
+  </Accordion>
+  <Accordion title="Inbound calls fail with 404 Not Found">
+    * Confirm the DID is mapped to the **inbound** trunk (not "PHLO" or "Application").
+    * Confirm the origination URI hostname matches your Famulor SIP address exactly.
+  </Accordion>
+  <Accordion title="One-way audio">
+    Plivo supports PCMU, PCMA, and OPUS. Force PCMU/PCMA at the outbound trunk codec preference list. Disable OPUS unless your Famulor project explicitly supports it.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+<Note>
+  Need help with setup? Our support team specializes in SIP onboarding and will walk you through the exact configuration for your Plivo account.
+</Note>
+
+<Tip>
+Related pages: [SIP Integration](/en/provisioning/sip-ai/sip-integration) and [SIP Troubleshooting](/en/provisioning/sip-ai/sip-troubleshooting).
+</Tip>

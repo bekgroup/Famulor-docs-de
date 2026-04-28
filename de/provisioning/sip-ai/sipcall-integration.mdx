@@ -1,0 +1,108 @@
+---
+title: 'Sipcall-Integration'
+description: 'Schritt-für-Schritt-Anleitung zur Verbindung Ihres Sipcall-Kontos (Schweiz) mit Famulor per SIP-Trunking'
+---
+
+# Sipcall-Integration
+
+> So verbindest du deinen Sipcall-SIP-Trunk (Schweiz) mit Famulor
+
+Diese Anleitung zeigt dir, wie du deine Sipcall-Rufnummern (führender Schweizer SMB-SIP-Anbieter, betrieben von der Backbone Solutions AG) mit Famulor verbindest. Du legst im Sipcall-Portal einen statischen, nicht-registrierenden SIP-Trunk an, zeigst dessen Outbound-Ziel auf die Famulor-SIP-Adresse und importierst die Nummer in Famulor.
+
+<Tip>
+  **Einmalige Einrichtung:** Lege den statischen SIP-Trunk nur einmal an. Weitere Sipcall-Nummern fügst du danach demselben Trunk hinzu und importierst sie in Famulor.
+</Tip>
+
+<Info>
+  **Warum „statisch" / „Anlagenanschluss"?** Famulor benötigt einen Trunk ohne SIP-Registrierung. Sipcalls `SIP-Trunk Business` im statischen Modus leitet INVITEs an eine Ziel-FQDN weiter, ohne dass ein REGISTER nötig ist — genau das, was Famulor (LiveKit-SIP-Backend) erwartet.
+</Info>
+
+<Info>
+  **Preisüberblick (im Portal verifizieren):** SIP-Trunk Business ab ca. `CHF 5/Monat pro DID`, ausgehend Festnetz CH ca. `CHF 0.04/Min`, Mobil ca. `CHF 0.09/Min`. Eingehende Anrufe auf Schweizer Geo-Nummern inklusive.
+
+  * **Offizielle Preise:** [sipcall.ch](https://www.sipcall.ch)
+</Info>
+
+## Schritt 1: Statischen SIP-Trunk in Sipcall anlegen
+
+1. Melde dich im [Sipcall-Kundenportal](https://my.sipcall.ch) an.
+2. Navigiere zu **Telefonie → SIP-Trunks → Trunk hinzufügen**.
+3. Wähle **„Statisch (IP-basiert)" / „Anlagenanschluss"** — **nicht** den registrierenden Modus „Endgerät".
+4. **Name:** beliebig (z. B. `famulor-trunk`).
+5. **Ziel-Host (Destination):** trage deine Famulor-SIP-Adresse ein — `xxx.sip.livekit.cloud` (Port `5060`, Transport TCP empfohlen; TLS auf `5061`, falls dein Famulor-Projekt das anbietet).
+
+<Note>
+  **So findest du deine Famulor-SIP-Adresse:** Famulor-Dashboard → **Telefonnummern → SIP-Trunk integrieren → Unsere SIP-Adresse**.
+</Note>
+
+## Schritt 2: Outbound-Authentifizierung für Anrufe von Famulor
+
+Sipcall prüft eingehende INVITEs (also von Famulor ausgehende Anrufe) entweder per Quell-IP oder per Digest-Zugangsdaten. Das Famulor-SIP-Backend hat **keine** feste Outbound-IP — wir empfehlen daher dringend Digest-Zugangsdaten.
+
+1. Setze in den Trunk-Einstellungen **Authentifizierung** auf **Benutzername/Passwort (Digest)**.
+2. Vergib einen Benutzernamen und ein starkes Passwort (12+ Zeichen, gemischte Groß-/Kleinschreibung, Ziffern, Sonderzeichen). Notiere beide — du brauchst sie in Schritt 4.
+3. Falls dein Vertrag IP-ACL verlangt, aktiviere **„FQDN-basierte ACL"** statt einer harten IP-Whitelist.
+
+## Schritt 3: Schweizer Rufnummern dem Trunk zuweisen
+
+1. Gehe zu **Telefonie → Rufnummern**.
+2. Editiere jede DID, die Famulor übernehmen soll, und setze **Routing-Ziel = dein neuer SIP-Trunk**.
+3. Sipcall liefert dann alle eingehenden INVITEs für diese Nummern an den in Schritt 1 hinterlegten Ziel-Host aus.
+
+## Schritt 4: Nummer in Famulor importieren
+
+1. Öffne dein Famulor-Dashboard und navigiere zu **Telefonnummern**.
+2. Klicke oben rechts auf **SIP-Trunk integrieren**.
+3. Trage Folgendes ein:
+
+   ```
+   Telefonnummer:  Deine Sipcall-DID in E.164 (z. B. +41 44 555 0123)
+   Benutzername:   Der Digest-Username aus Schritt 2
+   Passwort:       Das Digest-Passwort aus Schritt 2
+   ```
+
+4. Outbound-Einstellungen:
+
+   ```
+   SIP-Adresse:            sip.sipcall.ch
+   Outbound-Nummernformat: International (mit +)
+   ```
+
+5. **Autorisierungstyp:** Benutzername und Passwort. (Dieselben Zugangsdaten wie für Outbound.)
+
+6. **Land:** Schweiz.
+
+## Schritt 5: Einrichtung prüfen
+
+1. Weise die Nummer einem `Receive phone calls`-Assistenten zu und rufe deine Sipcall-DID an — die KI sollte antworten.
+2. Erstelle einen zweiten Assistenten vom Typ `Make phone calls` mit derselben Nummer und nutze **Speak to assistant → Phone call**, um Outbound zu testen.
+
+<Warning>
+  Sipcall erzwingt eine strikte Outbound-CLI-Verifikation. Die von Famulor übergebene CLI muss eine Sipcall-DID auf deinem Konto sein oder vorab per Portal-CLI-Verifikation freigegeben werden. Beliebige Spoof-CLIs werden vom SBC blockiert.
+</Warning>
+
+## Häufige Probleme
+
+<AccordionGroup>
+  <Accordion title="Ausgehende Anrufe enden mit 403 Forbidden">
+    Meist ein Problem mit der CLI-Verifikation. Stelle sicher, dass die From-Nummer eine verifizierte Sipcall-DID ist; falls du eine fremde CLI senden willst, muss „CLIP no Screening" auf deinem Vertrag aktiv sein.
+  </Accordion>
+  <Accordion title="Eingehende Anrufe erreichen die KI nicht">
+    * Prüfe, dass der Trunk im Modus **Statisch / Anlagenanschluss** läuft (nicht „Endgerät").
+    * Prüfe, dass der Ziel-Host exakt deiner Famulor-SIP-Adresse entspricht (kein Trailing-Slash, keine doppelte Port-Angabe).
+    * Prüfe, dass das Routing-Ziel der DID auf diesen Trunk zeigt.
+  </Accordion>
+  <Accordion title="Einseitiges Audio">
+    Setze den bevorzugten Codec im Trunk auf **G.711 a-law** (Schweizer Standard). Deaktiviere Opus und G.722 auf der Sipcall-Seite.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+<Note>
+  Brauchst du Hilfe beim Setup? Unser Support-Team ist auf SIP-Onboarding spezialisiert und begleitet dich durch die exakte Konfiguration für deinen Sipcall-Tarif.
+</Note>
+
+<Tip>
+Passende Seiten: [SIP-Integration](/de/provisioning/sip-ai/sip-integration) und [SIP-Troubleshooting](/de/provisioning/sip-ai/sip-troubleshooting).
+</Tip>
