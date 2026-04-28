@@ -61,16 +61,30 @@ Um das zu vermeiden, setze im **SIP-Trunk** die Felder **"From: Display-Name"** 
 
 Nachdem der Trunk mit deiner 3CX-Konfiguration eingerichtet ist, musst du die Nummer in Famulor importieren, damit wir wissen, wie der Anruf weitergeleitet werden soll.
 
-1. Öffne dein Famulor Dashboard
+1. Öffne dein Famulor.ai Dashboard
 2. Navigiere zu **Telefonnummern**
-3. Klicke auf **Nummer hinzufügen** und wähle **SIP-Nummer erstellen**
-4. Erstelle die Nummer in Famulor. Verwende dabei exakt dieselbe Nummer wie in der 3CX-Konfiguration.
+3. Klicke auf "SIP Trunk integrieren"
+
+   <Frame>
+     <img
+       src="/resources/twillio-import-famulor-sip1.png"
+       alt="Nummern in Famulor importieren"
+     />
+   </Frame>
+
+4. Trage die Daten entsprechend deiner 3CX-Konfiguration ein:
+   ```
+   Nummer / Name: Verwende exakt dieselbe Nummer wie in der 3CX-Konfiguration (z. B. +49 151 12345678).
+   Termination URL: Die Adresse deiner 3CX-Anlage, falls ausgehende Anrufe getätigt werden sollen.
+   Username: Leer lassen, wenn kein Username konfiguriert wurde.
+   Passwort: Leer lassen, wenn kein Passwort konfiguriert wurde.
+   ```
+
+   <Frame>
+     <img src="/images/famulor_sip_number_add.png" alt="SIP Nummer in Famulor erstellen" />
+   </Frame>
 
 Falls die Nummer bereits vergeben ist, wähle eine andere.
-
-<Frame>
-  <img src="/images/famulor_sip_number_add.png" alt="SIP Nummer in Famulor erstellen" />
-</Frame>
 
 ### Erstelle eine ausgehende Regel in 3CX
 

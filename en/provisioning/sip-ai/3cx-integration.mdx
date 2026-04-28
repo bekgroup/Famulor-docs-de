@@ -61,16 +61,30 @@ To avoid this, set **"From: Display-Name"** and **"Remote-Party-ID"** to `Origin
 
 After the trunk is set up with your 3CX configuration, you need to import the number into Famulor so we know how to route the call.
 
-1. Open your Famulor Dashboard
+1. Open your Famulor.ai Dashboard
 2. Navigate to **Phone Numbers**
-3. Click on **Add Number** and select **Create SIP Number**
-4. Create the number in Famulor. Use exactly the same number as in your 3CX configuration.
+3. Click on "Integrate SIP trunk"
+
+   <Frame>
+     <img
+       src="/resources/twillio-import-famulor-sip1.png"
+       alt="Import numbers into Famulor"
+     />
+   </Frame>
+
+4. Enter your details according to your 3CX configuration:
+   ```
+   Number / Name: Use exactly the same number as in your 3CX configuration (e.g., +49 151 12345678).
+   Termination URL: The address of your 3CX system, if you want to make outbound calls.
+   Username: Leave blank if no username was configured.
+   Password: Leave blank if no password was configured.
+   ```
+
+   <Frame>
+     <img src="/images/famulor_sip_number_add.png" alt="Create SIP number in Famulor" />
+   </Frame>
 
 If the number is already taken, choose another one.
-
-<Frame>
-  <img src="/images/famulor_sip_number_add.png" alt="Create SIP number in Famulor" />
-</Frame>
 
 ### Create an outbound rule in 3CX
 
