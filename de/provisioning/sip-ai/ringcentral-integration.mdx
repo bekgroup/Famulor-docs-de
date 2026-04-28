@@ -1,0 +1,101 @@
+---
+title: 'RingCentral-Integration'
+description: 'RingCentral-Rufnummern per Generic SIP IP Phone an Famulor anbinden'
+---
+
+# RingCentral-Integration
+
+> So bindest du eine RingCentral-Nummer per „Generic SIP IP Phone"-Provisioning an Famulor an
+
+RingCentral bietet Endkunden keinen klassischen Wholesale-SIP-Trunk an, unterstützt aber **Generic SIP IP Phone**-Provisioning — und genau das nutzt Famulor. Du legst in RingCentral einen virtuellen SIP-Endpunkt an, registrierst ihn von Famulor aus mit den von RingCentral generierten Zugangsdaten und routest eine DID auf diesen Endpunkt.
+
+<Warning>
+  **Plan-Voraussetzung:** Generic SIP IP Phone gibt es nur ab **RingCentral MVP / RingEX Standard** aufwärts — nicht in den Einstiegstarifen. Vor dem Setup im Service Web prüfen.
+</Warning>
+
+<Info>
+  **Warum das wie ein Trunk funktioniert:** RingCentral nennt es zwar „IP Phone", aber die Generic-SIP-Option liefert Username, Passwort und SIP-Domain — alles, was ein standardkonformer SIP-UA zur Registrierung braucht. Famulors LiveKit-basierter SIP-Stack registriert sich als dieser Endpunkt.
+</Info>
+
+## Schritt 1: Generic SIP IP Phone in RingCentral anlegen
+
+1. Melde dich im [RingCentral Service Web](https://service.ringcentral.com) an.
+2. Gehe zu **Phone System → Phones & Devices → User Phones**.
+3. Klicke auf **Add Device → Existing Phone → Other Phone** und wähle **Generic SIP/Other phone (manual provisioning)**.
+4. Weise einen Benutzer zu (dessen Extension/DID wird von der KI beantwortet).
+5. Speichern — RingCentral erzeugt die SIP-Zugangsdaten.
+
+<Note>
+  Ältere Service-Web-Layouts haben das unter **Phone System → Phones, Devices & Numbers → IP Phones / SIP**. Die Bezeichnung wechselt; die Option, die du suchst, heißt immer „Generic SIP" oder „Other Phone".
+</Note>
+
+## Schritt 2: SIP-Zugangsdaten aus RingCentral kopieren
+
+In den Geräte-Einstellungen findest du das Panel **SIP Configuration / Setup details**. Du brauchst:
+
+```
+SIP Domain        z. B. sip.ringcentral.com   (oder regional sipXX.ringcentral.com)
+Outbound Proxy    z. B. sip.ringcentral.com:5060 (oder 5096)
+Authorization ID  lange numerische ID
+Username          lange numerische ID (oft identisch mit Auth ID)
+Password          von RingCentral generiert
+```
+
+<Warning>
+  **Verwende `sip.ringcentral.com`, nicht den regionalen Hostnamen `sip12.ringcentral.com`.** Der regionale Host ist für RingCentral-eigene Tischtelefone gedacht — generische SIP-Clients gehen immer aufs globale Gateway.
+</Warning>
+
+## Schritt 3: Nummer in Famulor importieren
+
+1. Öffne dein Famulor-Dashboard und navigiere zu **Telefonnummern → SIP-Trunk integrieren**.
+2. Trage ein:
+
+   ```
+   Telefonnummer:  Die dem User in RingCentral zugewiesene DID (E.164, z. B. +49 30 555 0123)
+   Benutzername:   Authorization ID aus Schritt 2
+   Passwort:       Password aus Schritt 2
+   ```
+
+3. Outbound-Einstellungen:
+
+   ```
+   SIP-Adresse:            sip.ringcentral.com
+   Outbound-Nummernformat: International (mit +)
+   ```
+
+4. **Autorisierungstyp:** Benutzername und Passwort.
+
+5. **Land:** das Land der zugewiesenen DID.
+
+## Schritt 4: Registrierung abwarten
+
+RingCentrals Antiflood-Logik braucht 1–2 Minuten, um einen frisch angelegten SIP-Endpunkt zu registrieren. Wenn dein erster Testanruf `403` oder `404` bringt, warte zwei Minuten und versuche es erneut — wiederholte Fehlversuche während des Propagationsfensters verlängern die Sperre.
+
+## Schritt 5: Einrichtung prüfen
+
+1. Weise die Nummer einem `Receive phone calls`-Assistenten zu. Rufe die DID an — die KI sollte antworten.
+2. Erstelle einen zweiten Assistenten (`Make phone calls`) mit derselben Nummer und löse einen ausgehenden Testanruf aus.
+
+## Häufige Probleme
+
+<AccordionGroup>
+  <Accordion title="403 Forbidden direkt nach dem Setup">
+    Fast immer das RingCentral-Antiflood. 2 Minuten warten, dann erneut versuchen. Wurden die Zugangsdaten mit einem Leerzeichen kopiert, sperrt RingCentral den Endpunkt für ein längeres Cooldown — sauber neu kopieren.
+  </Accordion>
+  <Accordion title="Outbound funktioniert, Inbound landet beim Softphone des Users statt bei der KI">
+    Die DID muss auf die **Extension geroutet sein, der das Generic SIP IP Phone gehört**, und alle „Simultaneous Ring"-Regeln, die zusätzlich Desk-Apps klingeln lassen, müssen auf dieser Extension deaktiviert werden.
+  </Accordion>
+  <Accordion title="Einseitiges Audio">
+    Erzwinge PCMU/PCMA. Deaktiviere G.722 in den Geräte-Einstellungen — die RingCentral-Media-Server verhandeln gelegentlich G.722, auch wenn der UA G.711 bevorzugt, was zu One-Way-Audio führt, sobald die Upstream-Plattform G.722 nicht unterstützt.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+<Note>
+  Brauchst du Hilfe beim Setup? Unser Support-Team führt dich durch den exakten Service-Web-Pfad für deinen RingCentral-Tarif.
+</Note>
+
+<Tip>
+Passende Seiten: [SIP-Integration](/de/provisioning/sip-ai/sip-integration) und [SIP-Troubleshooting](/de/provisioning/sip-ai/sip-troubleshooting).
+</Tip>

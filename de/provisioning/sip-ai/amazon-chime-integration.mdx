@@ -1,0 +1,125 @@
+---
+title: 'Amazon-Chime-SDK-Voice-Connector-Integration'
+description: 'AWS-provisionierte Rufnummern per Amazon Chime SDK Voice Connector an Famulor anbinden'
+---
+
+# Amazon-Chime-SDK-Voice-Connector-Integration
+
+> So bindest du einen Chime-SDK-Voice-Connector per SIP/TLS an Famulor an
+
+Wenn deine Rufnummern über AWS provisioniert sind, kannst du sie an Famulor routen, indem du einen [Amazon Chime SDK Voice Connector](https://docs.aws.amazon.com/chime-sdk/latest/ag/voice-connectors.html) anlegst und dessen Termination auf deine Famulor-SIP-Adresse zeigen lässt. Eingehende Anrufe landen auf dem Voice Connector und werden an Famulor weitergeleitet; ausgehende Anrufe von Famulor authentifizieren sich am Voice Connector und brechen via AWS ins PSTN aus.
+
+<Tip>
+  **Einmalige Einrichtung:** Voice Connector nur einmal anlegen. Neue AWS-DIDs können zugewiesen werden, ohne die Integration neu zu konfigurieren.
+</Tip>
+
+## Voraussetzungen
+
+- AWS-Account mit aktivem Chime SDK.
+- Mindestens eine über Chime SDK provisionierte Rufnummer in deiner Zielregion (z. B. `us-east-1`, `us-west-2`).
+- Berechtigungen für `chime:*VoiceConnector*` und `chime:*PhoneNumber*`.
+
+## Schritt 1: Voice Connector anlegen
+
+1. Melde dich in der [Amazon Chime SDK-Konsole](https://console.aws.amazon.com/chime-sdk/) an und wähle deine Region.
+2. Navigiere zu **Voice Connectors → Create Voice Connector**.
+3. **Name:** z. B. `famulor-voice-connector`.
+4. **AWS Region:** dieselbe, in der deine Nummern provisioniert sind.
+5. **Encryption:** **Enabled** (Standard — erzwingt TLS für Signalisierung und SRTP für Medien).
+6. **Network Type:** `IPv4 Only`.
+7. Erstellen.
+
+## Schritt 2: Termination konfigurieren (Outbound von Famulor)
+
+Im neuen Voice Connector öffnest du den **Termination**-Tab:
+
+1. **Termination status:** Enabled.
+2. **Allowed CIDRs:** trage Famulors aktuelle SIP-Egress-CIDR-Ranges ein. Diese liefert der Famulor-Support — LiveKits Egress ändert sich gelegentlich.
+3. **Calling Plan:** wähle die Länder/Regionen, die du in deinem AWS-Konto freigeschaltet hast.
+4. **Default phone number:** die DID, die Famulor als Caller ID nutzen soll.
+5. **Termination credentials:** lege ein Username/Passwort-Paar an. Notiere beide — du brauchst sie in Schritt 5.
+
+<Warning>
+  Chime verlangt bei aktivierter Encryption **TLS + SRTP** Ende-zu-Ende. Stelle sicher, dass dein Famulor-Projekt den TLS-Endpoint nutzt (`sip:xxx.sip.livekit.cloud:5061;transport=tls`) — wenn er auf UDP/5060 zurückfällt, fällt der Trunk stumm aus.
+</Warning>
+
+## Schritt 3: Origination konfigurieren (Inbound zu Famulor)
+
+Im selben Voice Connector öffnest du den **Origination**-Tab:
+
+1. **Origination status:** Enabled.
+2. Route hinzufügen:
+
+   ```
+   Host:      xxx.sip.livekit.cloud   (deine Famulor-SIP-Adresse)
+   Port:      5061
+   Protocol:  TLS
+   Priority:  1
+   Weight:    5
+   ```
+
+<Note>
+  **So findest du deine Famulor-SIP-Adresse:** Famulor-Dashboard → **Telefonnummern → SIP-Trunk integrieren → Unsere SIP-Adresse**.
+</Note>
+
+## Schritt 4: Rufnummern dem Voice Connector zuweisen
+
+1. **Phone Numbers → Assignment → Assign to Voice Connector**.
+2. Wähle deinen `famulor-voice-connector`.
+3. Verschiebe die gewünschten DIDs in die zugewiesene Spalte.
+
+## Schritt 5: Nummer in Famulor importieren
+
+1. Öffne dein Famulor-Dashboard und navigiere zu **Telefonnummern → SIP-Trunk integrieren**.
+2. Trage ein:
+
+   ```
+   Telefonnummer:  Deine Chime-DID in E.164 (z. B. +49 30 555 0123)
+   Benutzername:   Der Termination-Username aus Schritt 2
+   Passwort:       Das Termination-Password aus Schritt 2
+   ```
+
+3. Outbound-Einstellungen:
+
+   ```
+   SIP-Adresse:            <voice-connector-id>.voiceconnector.chime.aws
+   Outbound-Nummernformat: International (mit +)
+   ```
+
+   Die per-Voice-Connector-Hostname findest du im **Details**-Tab des Connectors.
+
+4. **Autorisierungstyp:** Benutzername und Passwort.
+
+5. **Land:** das Land der zugewiesenen DID.
+
+## Schritt 6: Einrichtung prüfen
+
+1. Weise die Nummer einem `Receive phone calls`-Assistenten zu. Rufe deine Chime-DID an — die KI sollte antworten.
+2. Erstelle einen zweiten Assistenten (`Make phone calls`) mit derselben Nummer und löse einen ausgehenden Testanruf aus.
+
+## Häufige Probleme
+
+<AccordionGroup>
+  <Accordion title="Eingehende Anrufe erreichen die KI nicht">
+    Prüfe, dass die DID dem Voice Connector **zugewiesen** ist (nicht nur im Account provisioniert) und dass Origination mit der richtigen Host/Port/TLS-Route aktiviert ist.
+  </Accordion>
+  <Accordion title="Ausgehende Anrufe enden mit 403">
+    Famulors Egress-IP fehlt in der Termination-CIDR-Whitelist. Hole die aktuelle Egress-Range vom Famulor-Support und aktualisiere die Allowed CIDRs des Voice Connectors.
+  </Accordion>
+  <Accordion title="Anrufe verbinden, aber keine Medien">
+    Chime verlangt SRTP, wenn Encryption aktiviert ist. Entweder bestätigen, dass dein Famulor-Projekt SRTP anbietet, oder Encryption am Voice Connector deaktivieren (nur für nicht-produktive Tests akzeptabel — Produktion immer mit SRTP).
+  </Accordion>
+  <Accordion title="Calling-Plan-Länderfehler">
+    Dein AWS-Konto hat ausgehende Anrufe ins Zielland nicht aktiviert. **Phone Numbers → Calling rules** → Zugang für das relevante Land beantragen.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+<Note>
+  Brauchst du Hilfe beim Setup? Unser Support-Team liefert die aktuelle Famulor-SIP-Egress-CIDR-Liste für deine Termination-Whitelist.
+</Note>
+
+<Tip>
+Passende Seiten: [SIP-Integration](/de/provisioning/sip-ai/sip-integration) und [SIP-Troubleshooting](/de/provisioning/sip-ai/sip-troubleshooting).
+</Tip>

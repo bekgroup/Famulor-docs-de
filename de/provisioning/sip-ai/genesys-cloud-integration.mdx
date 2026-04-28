@@ -1,0 +1,124 @@
+---
+title: 'Genesys-Cloud-Integration'
+description: 'Genesys Cloud (CX) per BYOC-Carrier-Trunk an Famulor anbinden'
+---
+
+# Genesys-Cloud-Integration
+
+> So bindest du einen Genesys-Cloud-BYOC-Carrier-Trunk an Famulor an
+
+Diese Anleitung zeigt dir, wie du Genesys Cloud (früher Genesys Cloud CX / PureCloud) per **BYOC Carrier**-External-Trunk an Famulor anbindest. Genesys erzeugt auf seiner Seite eine org-spezifische FQDN, und Famulor stellt eine eindeutige SIP-Adresse zur Verfügung, auf die du Genesys zeigen lässt.
+
+<Info>
+  **Zwei-Bein-Setup:** Genesys braucht sowohl einen Inbound Termination Identifier (damit externer Traffic von Famulor in deine Genesys-Org gelangt) als auch einen Outbound SIP Server (damit Genesys Famulor für ausgehende Anrufe erreichen kann). Beides konfigurierst du am selben External Trunk.
+</Info>
+
+<Warning>
+  **Nicht-Standard-Ports:** Genesys-Cloud-Edges nehmen SIP auf **TCP/UDP 32681** und TLS auf **32682** an — nicht den üblichen 5060/5061. Die Destination-FQDN, die du Genesys nennst, ist deine Famulor-SIP-Adresse; Genesys spricht sie auf diesen Ports an, sofern nicht überschrieben. Stelle sicher, dass dein Netzwerk diese Ports freigibt.
+</Warning>
+
+## Schritt 1: BYOC Carrier External Trunk anlegen
+
+1. Melde dich im [Genesys Cloud Admin](https://apps.mypurecloud.com) an.
+2. Navigiere zu **Admin → Telephony → Trunks → External Trunks → Create New**.
+3. **Trunk Type:** `BYOC Carrier` → Subtyp `Generic BYOC Carrier`.
+4. **Name:** z. B. `Famulor AI`.
+5. **Trunk State:** `In Service`.
+6. **Protocol:** `UDP` (oder `TLS` für verschlüsselte Signalisierung — empfohlen).
+
+## Schritt 2: Inbound-Konfiguration
+
+Im selben Trunk füllst du die **Inbound**-Sektion aus:
+
+```
+Inbound SIP Termination Identifier:  famulor   (beliebiges Label, pro Org eindeutig)
+```
+
+Genesys generiert daraus eine FQDN, z. B. `famulor.byoc.usw2.pure.cloud`. Diese FQDN trägst du in Schritt 5 in Famulor ein.
+
+Weise einen **Number Plan / Site** zu, der die DIDs enthält, die die KI bedienen soll.
+
+## Schritt 3: Outbound-Konfiguration (Genesys → Famulor)
+
+In der **Outbound**-Sektion zeigst du Genesys auf deine Famulor-SIP-Adresse:
+
+```
+Outbound SIP Termination FQDN:  xxx.sip.livekit.cloud
+SIP Server hostname:            xxx.sip.livekit.cloud
+Port:                           5060 (TCP) oder 5061 (TLS)
+```
+
+<Note>
+  **So findest du deine Famulor-SIP-Adresse:** Famulor-Dashboard → **Telefonnummern → SIP-Trunk integrieren → Unsere SIP-Adresse**.
+</Note>
+
+Aktiviere **Digest Authentication** und konfiguriere:
+
+```
+Realm:      xxx.sip.livekit.cloud
+Username:   wähle frei — verwendest du gleich auch in Famulor
+Password:   starkes Passwort (12+ Zeichen, gemischt, Ziffern, Sonderzeichen)
+```
+
+## Schritt 4: SIP Access Control
+
+Unter dem **SIP Access Control**-Tab des Trunks trägst du die Famulor-SIP-Quelle ein (LiveKits SIP-Egress-Range, beim Famulor-Support erhältlich).
+
+<Warning>
+  **Niemals „Allow All"** in SIP Access Control aktivieren. Genesys-BYOC-Trunks sind öffentlich erreichbar — ein offener ACL führt innerhalb weniger Stunden zu Toll-Fraud. Immer explizite IPs / CIDRs whitelisten.
+</Warning>
+
+## Schritt 5: Nummer in Famulor importieren
+
+1. Öffne dein Famulor-Dashboard und navigiere zu **Telefonnummern → SIP-Trunk integrieren**.
+2. Trage ein:
+
+   ```
+   Telefonnummer:  Deine Genesys-DID in E.164 (z. B. +49 30 555 0123)
+   Benutzername:   Username aus Schritt 3
+   Passwort:       Password aus Schritt 3
+   ```
+
+3. Outbound-Einstellungen:
+
+   ```
+   SIP-Adresse:            <dein-identifier>.byoc.<region>.pure.cloud
+                           (die in Schritt 2 von Genesys erzeugte FQDN)
+   Outbound-Nummernformat: International (mit +)
+   ```
+
+4. **Autorisierungstyp:** Benutzername und Passwort.
+
+5. **Land:** das Land der zugewiesenen DID.
+
+## Schritt 6: Einrichtung prüfen
+
+1. Weise die Nummer einem `Receive phone calls`-Assistenten zu. Rufe deine Genesys-DID an — die KI sollte antworten.
+2. Erstelle einen zweiten Assistenten (`Make phone calls`) mit derselben Nummer und löse einen ausgehenden Testanruf aus.
+
+## Häufige Probleme
+
+<AccordionGroup>
+  <Accordion title="488 Not Acceptable Here">
+    Codec-Mismatch. Der Genesys-BYOC-Trunk unterstützt PCMU, PCMA und G.722. Famulors LiveKit-Backend bevorzugt PCMU/PCMA. Setze die Codec-Präferenzen des Trunks auf PCMU zuerst, PCMA als zweites, und entferne G.722, falls der Fehler bestehen bleibt.
+  </Accordion>
+  <Accordion title="Anrufe verbinden, aber kein Audio in beide Richtungen">
+    RTP-Firewall. Der Trunk nutzt bidirektionales RTP über UDP — stelle sicher, dass Outbound-UDP von Genesys zu Famulor offen ist und dass keine Corporate-Firewall vor dem Genesys-Edge RTP entfernt.
+  </Accordion>
+  <Accordion title="403 Forbidden bei Outbound">
+    SIP Access Control hat den Anruf abgewiesen. Prüfe, dass die Famulor-Egress-IPs in der ACL des Trunks stehen und dass Realm/Username/Password exakt dem entsprechen, was du in Famulor eingetragen hast.
+  </Accordion>
+  <Accordion title="Eingehende Anrufe landen in der falschen Queue">
+    Die DID-Routung läuft über deine Number-Plan / Site-Zuweisung. Prüfe, dass die Site einen passenden Outbound-Routes-Eintrag hat, der das DID-Präfix dem Famulor-BYOC-Trunk zuordnet.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+<Note>
+  Brauchst du Hilfe beim Setup? Unser Support-Team liefert dir die aktuellen Famulor-SIP-Egress-IP-Ranges und führt dich durch die Genesys-ACL.
+</Note>
+
+<Tip>
+Passende Seiten: [SIP-Integration](/de/provisioning/sip-ai/sip-integration) und [SIP-Troubleshooting](/de/provisioning/sip-ai/sip-troubleshooting).
+</Tip>

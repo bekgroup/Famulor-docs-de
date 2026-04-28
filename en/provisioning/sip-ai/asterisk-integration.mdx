@@ -1,0 +1,149 @@
+---
+title: 'Asterisk / FreePBX Integration'
+description: 'Connect a self-hosted Asterisk or FreePBX PBX to Famulor via SIP'
+---
+
+# Asterisk / FreePBX Integration
+
+> Connect your self-hosted Asterisk or FreePBX PBX to Famulor as a SIP trunk
+
+This guide shows how to add Famulor as a generic outbound SIP trunk on Asterisk (chan_pjsip) or FreePBX. Famulor exposes an FQDN like `xxx.sip.livekit.cloud`; you create a trunk that registers — or, preferred, statically routes — to that host with credentials you control.
+
+<Tip>
+  **Recommended:** use **chan_pjsip** (the modern Asterisk SIP stack) and **static IP-routed trunks without registration**. Famulor does not need REGISTER, and avoiding it means one less moving part.
+</Tip>
+
+## Prerequisites
+
+- Asterisk 16+ (or FreePBX 15+).
+- Outbound UDP/TCP 5060 (or TLS 5061) reachable from your PBX to `xxx.sip.livekit.cloud`.
+- An RTP port range opened on your firewall (Asterisk default `10000–20000`).
+
+<Note>
+  **Find your Famulor SIP address:** Famulor dashboard → **Phone Numbers → Integrate SIP trunk → Our SIP address**.
+</Note>
+
+## Option A: FreePBX (GUI)
+
+1. **Connectivity → Trunks → Add Trunk → Add SIP (chan_pjsip) Trunk**.
+2. **General tab:**
+   - **Trunk Name:** `famulor`
+   - **Outbound Caller ID:** the DID Famulor should present, e.g. `+49305550123`
+3. **pjsip Settings → General:**
+   - **SIP Server:** `xxx.sip.livekit.cloud`
+   - **SIP Server Port:** `5060` (or `5061` with TLS)
+   - **Transport:** `udp` (or `tls` if your Famulor project supports it)
+   - **Authentication:** `Outbound`
+   - **Registration:** `None`
+   - **Username** and **Secret:** the credentials you'll re-use in Famulor
+4. **pjsip Settings → Advanced:**
+   - **From Domain:** `xxx.sip.livekit.cloud`
+   - **From User:** the DID's E.164 number, no `+`
+   - **Codecs:** `ulaw, alaw` (force G.711)
+5. **Submit → Apply Config**.
+
+## Option B: Asterisk pjsip.conf (manual)
+
+Add to `/etc/asterisk/pjsip.conf` (or split across the conf.d files):
+
+```ini
+[famulor]
+type=endpoint
+context=from-famulor
+disallow=all
+allow=ulaw
+allow=alaw
+outbound_auth=famulor-auth
+aors=famulor-aor
+from_domain=xxx.sip.livekit.cloud
+from_user=49305550123
+direct_media=no
+
+[famulor-auth]
+type=auth
+auth_type=userpass
+username=YOUR_USERNAME
+password=YOUR_STRONG_PASSWORD
+
+[famulor-aor]
+type=aor
+contact=sip:xxx.sip.livekit.cloud:5060
+qualify_frequency=60
+
+[famulor-identify]
+type=identify
+endpoint=famulor
+match=xxx.sip.livekit.cloud
+```
+
+Reload: `asterisk -rx 'pjsip reload'`.
+
+## Step 2: Outbound route
+
+Send selected destinations through the trunk:
+
+- **FreePBX:** **Connectivity → Outbound Routes → Add → Trunk Sequence: `famulor`**, dial pattern `+.` or whatever you want routed to AI.
+- **Asterisk dialplan:**
+
+  ```
+  exten => _+X.,1,Dial(PJSIP/${EXTEN:1}@famulor)
+  ```
+
+## Step 3: Inbound route
+
+- **FreePBX:** **Connectivity → Inbound Routes → Add → DID Number: your E.164 DID** → destination = the extension or IVR you want the AI to answer as.
+- **Asterisk:** in the `from-famulor` context, `exten => _+X.,1,Goto(your-ivr,s,1)`.
+
+## Step 4: Import the number into Famulor
+
+1. Open your Famulor dashboard and go to **Phone Numbers → Integrate SIP trunk**.
+2. Fill in:
+
+   ```
+   Phone number:   The DID your PBX delivers to Famulor (E.164)
+   Username:       The same username you set in the PBX
+   Password:       The same password you set in the PBX
+   ```
+
+3. Outbound settings:
+
+   ```
+   SIP address:            your-pbx.example.com    (your PBX's public hostname)
+   Outbound number format: International (with +)
+   ```
+
+4. **Authorization type:** Username and password.
+
+5. **Country:** the country your DID belongs to.
+
+## Step 5: Verify
+
+1. Assign the number to a `Receive phone calls` assistant. Call the DID — the AI should answer.
+2. Create a `Make phone calls` assistant with the same number and trigger an outbound test call.
+
+## Common issues
+
+<AccordionGroup>
+  <Accordion title="One-way audio (NAT)">
+    Most common Asterisk problem. In `pjsip.conf` set `external_media_address` and `external_signaling_address` to your PBX's public IP, and add your LAN to `local_net`. Make sure RTP UDP `10000–20000` is forwarded to the PBX.
+  </Accordion>
+  <Accordion title="488 Not Acceptable Here">
+    Codec mismatch — leave only `ulaw, alaw` allowed on the endpoint. Disable G.722, Opus, and any video codecs.
+  </Accordion>
+  <Accordion title="401 / 407 on outbound">
+    The username/password Asterisk sends doesn't match what Famulor has. Re-paste the credentials in both places carefully — Asterisk silently strips trailing whitespace from `pjsip.conf` but FreePBX does not, so confirm by hand.
+  </Accordion>
+  <Accordion title="Calls drop after 30 seconds">
+    Re-INVITE / direct-media issue. Add `direct_media=no` and `rewrite_contact=yes` to the endpoint. This forces Asterisk to stay in the media path, which avoids the LiveKit ↔ PSTN endpoint trying to talk RTP to a NAT'd address.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+<Note>
+  Need help with setup? Our support team can review your `pjsip.conf` snippets and help debug NAT/codec issues.
+</Note>
+
+<Tip>
+Related pages: [SIP Integration](/en/provisioning/sip-ai/sip-integration) and [SIP Troubleshooting](/en/provisioning/sip-ai/sip-troubleshooting).
+</Tip>

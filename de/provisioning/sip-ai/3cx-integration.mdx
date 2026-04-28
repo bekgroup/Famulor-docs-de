@@ -21,7 +21,11 @@ Navigiere in der 3CX-Admin-Oberfläche zu **"Trunks & Chat"** und erstelle über
   <img src="/images/famulor_3cx_trunk_create_new.png" alt="3CX Trunk erstellen" />
 </Frame>
 
-Wähle die Option **"Generic SIP Trunk (IP Based)"**. Achtung: Diese Option ist nur bei gehosteten 3CX-Anlagen verfügbar.
+Wähle die Option **"Generic SIP Trunk (IP Based)"**.
+
+<Warning>
+  **Plan-Voraussetzung:** „Generic SIP Trunk (IP Based)" ist im gehosteten **StartUP Pro** sowie in self-managed/Dedicated-Installationen verfügbar. Im Einstiegstarif **StartUP** ist das Template **nicht** enthalten — dann brauchst du ein Upgrade oder die 3CX-SBC.
+</Warning>
 
 <Frame>
   <img src="/images/famulor_3cx_trunk_creation.png" alt="Generic SIP Trunk auswählen" />
@@ -47,6 +51,20 @@ Wähle die Option **"Generic SIP Trunk (IP Based)"**. Achtung: Diese Option ist 
 <Frame>
   <img src="/images/famulor_3cx_tcp_protocol.png" alt="TCP als Transportprotokoll" />
 </Frame>
+
+<Note>
+  TCP ist das sichere Minimum für LiveKit-basiertes SIP. Wenn dein Famulor-Projekt einen TLS-Endpunkt anbietet (`*.sip.livekit.cloud:5061`), kannst du TLS für verschlüsselte Signalisierung nutzen — UDP solltest du vermeiden, weil Opus/ICE-INVITEs häufig fragmentieren.
+</Note>
+
+### Erforderliche Trunk-Einstellungen
+
+Ein paar Nicht-Default-Einstellungen auf der 3CX-Seite sind kritisch, damit der Trunk zuverlässig mit Famulor läuft:
+
+- **Type of Authentication:** `Do not require - IP based` (kein SIP REGISTER).
+- **Disable Registration:** AN. Famulor sendet niemals REGISTER — bleibt Registration aktiv, gibt es stille Retries und der Trunk-Status flappt.
+- **Audio-Codecs:** `PCMA`, `PCMU`, plus RFC2833 / `telephone-event` für DTMF. **Opus und G.722 auf diesem Trunk deaktivieren** — LiveKits SIP-Gateway behandelt G.711 sauber, Opus über 3CX führt regelmäßig zu One-Way-Audio.
+- **Kein SRV-Record nötig.** Eine normale A-Record-Auflösung von `xxx.sip.livekit.cloud` reicht.
+- **Self-hosted 3CX hinter NAT:** **Public IP** und **STUN** in den SBC-Einstellungen setzen und den RTP-UDP-Range (Default `9000–10999`) weiterleiten — auch wenn die Signalisierung über TCP läuft, ist RTP UDP.
 
 ### Optional: Korrekte Anrufernummer an Famulor übergeben
 
@@ -101,6 +119,23 @@ Du kannst z. B. `999` als Präfix nutzen; wichtig ist, dass die Ziffern danach w
   <img src="/images/famulor_3cx_outbound_rule_order.png" alt="Reihenfolge der ausgehenden Regeln" />
 </Frame>
 
+### Inbound-DID-Routing
+
+Damit ein externer Anruf auf eine 3CX-DID tatsächlich bei Famulor landet, musst du die DID über den eben angelegten Outbound-Trunk routen. In 3CX:
+
+1. Öffne die **Inbound Rule** der DID (oder die User/Queue, der die DID gehört).
+2. Setze **„Office Hours"**- und **„Out of Office"**-Routing-Ziel auf **„External"** mit dem Wahlstring `999<deine-famulor-nummer>` (mit dem Präfix aus der Outbound-Regel oben).
+3. Die Outbound-Regel strippt das `999`-Präfix und schickt den Call an Famulor.
+
+Erst das schließt den Kreis — ohne diesen Schritt existiert die Outbound-Regel zwar, aber kein Inbound-Traffic nutzt sie.
+
+### Outbound von Famulor → 3CX
+
+Wenn Famulor ausgehend telefoniert (z. B. ein Make-phone-calls-Assistent), spricht es deinen 3CX-Trunk über denselben SIP-Host an. Stelle sicher, dass 3CX diese INVITEs annimmt:
+
+- Entweder die aktuellen Famulor-SIP-Egress-IP-Ranges in die Allow-List des Trunks eintragen (Liste vom Famulor-Support anfordern), oder
+- 3CX-seitig Digest-Zugangsdaten einrichten und sie beim Import der Nummer in Famulor in **Username / Password** eintragen.
+
 ### Nutzung der Nummer
 
 Jetzt kannst du die Nummer z. B. bei Abwesenheit oder in deinen Routing-Regeln in 3CX verwenden.
@@ -108,3 +143,7 @@ Jetzt kannst du die Nummer z. B. bei Abwesenheit oder in deinen Routing-Regeln i
 <Frame>
   <img src="/images/famulor_3cx_number_usage.png" alt="Nummer in 3CX nutzen" />
 </Frame>
+
+<Tip>
+Passende Seiten: [SIP-Integration](/de/provisioning/sip-ai/sip-integration) und [SIP-Troubleshooting](/de/provisioning/sip-ai/sip-troubleshooting).
+</Tip>

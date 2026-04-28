@@ -1,0 +1,105 @@
+---
+title: 'Five9-Integration'
+description: 'Five9-Contact-Center-Seat per SIP an Famulor anbinden'
+---
+
+# Five9-Integration
+
+> So bindest du einen Five9-Contact-Center-Seat per direktem SIP an Famulor an
+
+Five9 ist Carrier für seine eigenen Contact-Center-Kunden. Um Famulor als KI-Handler vor (oder hinter) einem Five9-Seat anzubinden, lässt du Famulor in Five9s SBC als externes SIP-Ziel provisionieren und routest bestimmte DIDs darauf.
+
+<Warning>
+  **Enterprise-Plan + Five9-Support erforderlich.** Direkte SIP-Termination ist im Five9-Portal nicht self-service. Du musst ein Ticket bei Five9 öffnen, damit Famulors Egress-IPs gewhitelistet werden und die Destination-FQDN freigeschaltet wird. Plane mehrere Werktage ein.
+</Warning>
+
+<Info>
+  **Kein 302 / REFER für Transfers nutzen.** Five9 honoriert keine SIP-302-Redirects. Wenn dein Famulor-Flow einen Call an einen Menschen übergeben muss, nutze SIP REFER statt 302.
+</Info>
+
+<Warning>
+  **12-Stunden-Cap.** Five9 trennt Sessions hart nach 12 Stunden, unabhängig von Aktivität. Bei lang laufenden Flows mit einplanen.
+</Warning>
+
+## Schritt 1: Five9-Ticket öffnen
+
+Schreibe oder rufe den Five9-Support und liefere:
+
+- Die DIDs, die zu Famulor geroutet werden sollen.
+- Deine Famulor-SIP-Adresse: `xxx.sip.livekit.cloud`.
+- Den gewünschten Transport: TCP/5060 oder TLS/5061.
+- Authentifizierung: per IP-Allowlist oder per Digest-Zugangsdaten. (Digest ist zu bevorzugen — Famulor hat keine festen Egress-IPs.)
+- Die aktuellen Famulor-SIP-Egress-IP-Ranges, die du beim Famulor-Support bekommst.
+
+<Note>
+  **So findest du deine Famulor-SIP-Adresse:** Famulor-Dashboard → **Telefonnummern → SIP-Trunk integrieren → Unsere SIP-Adresse**.
+</Note>
+
+## Schritt 2: Five9-Outbound-Destination konfigurieren
+
+Sobald Five9 das Ziel freigeschaltet hat, bekommst du:
+
+```
+Five9 SBC FQDN:    z. B. sbc-{region}.five9.com
+Username:          (Digest) von Five9 generiert
+Password:          (Digest) von Five9 generiert
+DID-Liste:         die DIDs, die über Famulor laufen
+```
+
+## Schritt 3: Nummer in Famulor importieren
+
+1. Öffne dein Famulor-Dashboard und navigiere zu **Telefonnummern → SIP-Trunk integrieren**.
+2. Trage ein:
+
+   ```
+   Telefonnummer:  Deine Five9-DID in E.164 (z. B. +49 30 555 0123)
+   Benutzername:   Der Five9-Digest-Username
+   Passwort:       Das Five9-Digest-Password
+   ```
+
+3. Outbound-Einstellungen:
+
+   ```
+   SIP-Adresse:            sbc-{region}.five9.com   (die von Five9 gelieferte FQDN)
+   Outbound-Nummernformat: International (mit +)
+   ```
+
+4. **Autorisierungstyp:** Benutzername und Passwort.
+
+5. **Land:** das Land der zugewiesenen DID.
+
+## Schritt 4: Codec-Parität
+
+Setze Famulors Codec-Präferenz auf **G.711 (PCMU/PCMA)** ausschließlich — Five9 erzwingt G.711. Deaktiviere Opus und G.722, falls dein Famulor-Projekt sie anbietet, sonst verhandelt der Trunk `488 Not Acceptable Here`.
+
+## Schritt 5: Einrichtung prüfen
+
+1. Weise die Nummer einem `Receive phone calls`-Assistenten zu. Rufe deine Five9-DID an — die KI sollte nach 1–2 Klingelzeichen antworten.
+2. Erstelle einen zweiten Assistenten (`Make phone calls`) mit derselben Nummer und löse einen ausgehenden Testanruf aus.
+
+## Häufige Probleme
+
+<AccordionGroup>
+  <Accordion title="Einseitiges Audio">
+    Fast immer eine RTP-Firewall-Sache. Five9 nutzt einen weiten UDP-RTP-Range — stelle sicher, dass dein Netzwerk Outbound-UDP vom Famulor-Egress zu den Five9-SBC-IPs nicht blockiert.
+  </Accordion>
+  <Accordion title="Anrufe brechen nach exakt 12 Stunden ab">
+    Das ist ein Five9-Designlimit, kein Famulor-Bug. Bei langen Kampagnen den Flow so designen, dass er sich neu aufbaut, oder das Cap akzeptieren.
+  </Accordion>
+  <Accordion title="SIP-REFER-Transfer löst keinen Agenten aus">
+    Five9 erwartet als REFER-Ziel eine voll qualifizierte `sip:`-URI, die auf eine Inbound-IVR-Queue zeigt. Bare Extensions werden stillschweigend verworfen — immer `sip:queue@sbc-{region}.five9.com` senden.
+  </Accordion>
+  <Accordion title="403 bei Outbound">
+    Entweder passen die Digest-Zugangsdaten nicht, oder Five9 hat den Famulor-Egress noch nicht im Destination-ACL eingetragen. Mit dem Five9-Support beides gegenchecken.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+<Note>
+  Brauchst du Hilfe beim Setup? Unser Support-Team liefert die SIP-Egress-IP-Ranges für das Five9-Ticket und unterstützt bei der Formulierung.
+</Note>
+
+<Tip>
+Passende Seiten: [SIP-Integration](/de/provisioning/sip-ai/sip-integration) und [SIP-Troubleshooting](/de/provisioning/sip-ai/sip-troubleshooting).
+</Tip>

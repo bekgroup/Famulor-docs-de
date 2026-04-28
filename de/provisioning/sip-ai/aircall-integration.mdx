@@ -1,0 +1,89 @@
+---
+title: 'Aircall-Integration'
+description: 'Aircall-Rufnummern per SIP-Forwarding an Famulor anbinden'
+---
+
+# Aircall-Integration
+
+> So bindest du Aircall-Rufnummern per SIP-Forwarding an Famulor an
+
+Aircall stellt keinen klassischen Wholesale-SIP-Trunk bereit. Um Aircall-Nummern an Famulor anzubinden, nutzt du Aircalls **SIP Forwarding**-Option (ab Enterprise) — Aircall liefert eingehende Anrufe an ein generisches SIP-Ziel deiner Wahl, also an deine Famulor-SIP-Adresse.
+
+<Warning>
+  **Plan-Voraussetzung:** SIP Forwarding ist nur in Aircalls **Custom / Enterprise**-Plänen verfügbar. Vor dem Setup mit deinem Aircall-Account-Manager bestätigen.
+</Warning>
+
+<Warning>
+  **Kein SIP-REFER-Support.** Aircall honoriert REFER für Cold Transfers nicht. Wenn dein Famulor-Flow an einen Menschen übergeben muss, plane einen frischen Outbound-Call ein.
+</Warning>
+
+## Schritt 1: SIP Forwarding auf der Aircall-Nummer aktivieren
+
+1. Melde dich im [Aircall Dashboard](https://dashboard.aircall.io) an.
+2. Gehe zu **Numbers → Nummer auswählen → Settings → Routing**.
+3. Wähle als Routing-Typ **SIP Forwarding**. (Fehlt die Option, ist sie in deinem Plan nicht enthalten — Aircall kontaktieren.)
+4. Trage deine Famulor-SIP-Adresse als Ziel ein:
+
+   ```
+   sip:xxx.sip.livekit.cloud
+   ```
+
+   Nutze TCP-Transport, sofern dein Famulor-Projekt nicht explizit TLS anbietet.
+
+<Note>
+  **So findest du deine Famulor-SIP-Adresse:** Famulor-Dashboard → **Telefonnummern → SIP-Trunk integrieren → Unsere SIP-Adresse**.
+</Note>
+
+## Schritt 2: Outbound konfigurieren (Famulor → Aircall)
+
+Damit Famulor ausgehend mit einer Aircall-Nummer als Caller ID telefonieren kann, hast du zwei Wege:
+
+- **Aircall Outbound API** — Aircall bietet eine Outbound Calling API; das ist keine SIP-Integration und nicht Teil dieser Anleitung.
+- **Carrier-seitig outbound** — Portiere die Nummer zu einem SIP-Trunking-fähigen Carrier (Telnyx, Twilio, Plivo etc.) und route Outbound darüber. Die Aircall-Nummer bleibt nur für Inbound „live"; Outbound läuft über den neuen Carrier.
+
+<Note>
+  Die meisten Famulor-Kunden mit Aircall wählen den zweiten Weg, weil Aircalls Outbound-API für KI-Call-Orchestrierung schlecht passt. Sprich uns bei der Portierungsplanung gerne an.
+</Note>
+
+## Schritt 3: Nummer in Famulor importieren
+
+1. Öffne dein Famulor-Dashboard und navigiere zu **Telefonnummern → SIP-Trunk integrieren**.
+2. Trage ein:
+
+   ```
+   Telefonnummer:  Deine Aircall-Nummer in E.164 (z. B. +49 30 555 0123)
+   Benutzername:   Leer lassen (Aircall-SIP-Forwarding nutzt keine Digest-Auth)
+   Passwort:       Leer lassen
+   ```
+
+3. **Autorisierungstyp:** IP-Adresse. Trage Aircalls SIP-Egress-IP-Ranges ein (aktuelle Liste vom Aircall-Support anfordern — Aircall committet sich nicht auf einen festen, öffentlich dokumentierten Range).
+
+4. **Land:** das Land der Aircall-Nummer.
+
+## Schritt 4: Einrichtung prüfen
+
+Rufe die Aircall-Nummer an — die KI sollte antworten. Im Aircall-Anrufprotokoll prüfen, dass SIP Forwarding tatsächlich genutzt wurde (nicht das Default-App-Routing).
+
+## Häufige Probleme
+
+<AccordionGroup>
+  <Accordion title="Eingehende Anrufe klingeln weiter in der Aircall-App statt zu forwarden">
+    Das Primär-Routing der Nummer steht noch auf „Ring users" oder einem Team. Stelle sicher, dass **SIP Forwarding** der aktive Routing-Typ ist — nicht nur ein Fallback.
+  </Accordion>
+  <Accordion title="Ausgehende Caller ID zeigt nicht die Aircall-Nummer">
+    Aircall-Nummern können per SIP nicht als Outbound-Caller-ID genutzt werden — nur per Aircall Outbound API oder per Portierung. Siehe Schritt 2.
+  </Accordion>
+  <Accordion title="Einseitiges Audio">
+    Aircall-seitig G.711 (PCMU/PCMA) erzwingen und prüfen, dass keine Corporate-Firewall vor dem Famulor-Egress RTP entfernt.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+<Note>
+  Brauchst du Hilfe beim Setup? Unser Support-Team berät, ob SIP Forwarding oder Portierung der richtige Weg für dein Aircall-Setup ist.
+</Note>
+
+<Tip>
+Passende Seiten: [SIP-Integration](/de/provisioning/sip-ai/sip-integration) und [SIP-Troubleshooting](/de/provisioning/sip-ai/sip-troubleshooting).
+</Tip>

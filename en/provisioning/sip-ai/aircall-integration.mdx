@@ -1,0 +1,89 @@
+---
+title: 'Aircall Integration'
+description: 'Connect Aircall numbers to Famulor via SIP forwarding'
+---
+
+# Aircall Integration
+
+> Connect Aircall numbers to Famulor via SIP forwarding
+
+Aircall does not expose a wholesale SIP trunk. To connect Aircall numbers to Famulor, you use Aircall's **SIP Forwarding** option (Enterprise plan and above) — Aircall delivers inbound calls to a generic SIP destination of your choosing, which is your Famulor SIP address.
+
+<Warning>
+  **Plan requirement:** SIP Forwarding is only available on Aircall **Custom / Enterprise** plans. Confirm with your Aircall account manager before starting.
+</Warning>
+
+<Warning>
+  **No SIP REFER support.** Aircall does not honor REFER for cold transfers. If your Famulor flow needs to transfer to a human, design the flow to place a fresh outbound call instead.
+</Warning>
+
+## Step 1: Enable SIP Forwarding on the Aircall number
+
+1. Sign in to the [Aircall Dashboard](https://dashboard.aircall.io).
+2. Go to **Numbers → Select the number → Settings → Routing**.
+3. Choose **SIP Forwarding** as the routing type. (If the option is missing, your plan does not include it — contact Aircall.)
+4. Enter your Famulor SIP address as the destination:
+
+   ```
+   sip:xxx.sip.livekit.cloud
+   ```
+
+   Use TCP transport unless your Famulor project advertises TLS.
+
+<Note>
+  **Find your Famulor SIP address:** Famulor dashboard → **Phone Numbers → Integrate SIP trunk → Our SIP address**.
+</Note>
+
+## Step 2: Configure outbound (Famulor → Aircall)
+
+For Famulor to place outbound calls that present an Aircall number as caller ID, you have two paths:
+
+- **Aircall Outbound API** — Aircall offers an Outbound Calling API; this is not a SIP integration and is out of scope for this guide.
+- **Carrier-side outbound** — port the number to a SIP-trunking-capable carrier (Telnyx, Twilio, Plivo, etc.) and route outbound through them. The Aircall number remains "live" only for inbound; outbound uses the new carrier.
+
+<Note>
+  Most Famulor customers using Aircall pick the second path because Aircall's outbound API doesn't fit AI-call orchestration well. Talk to support if you need help planning the port.
+</Note>
+
+## Step 3: Import the number into Famulor
+
+1. Open your Famulor dashboard and go to **Phone Numbers → Integrate SIP trunk**.
+2. Fill in:
+
+   ```
+   Phone number:   Your Aircall number in E.164 (e.g. +49 30 555 0123)
+   Username:       Leave empty (Aircall SIP forwarding does not use digest auth)
+   Password:       Leave empty
+   ```
+
+3. **Authorization type:** IP address. Add Aircall's published SIP egress IP ranges (request the current list from Aircall support — Aircall does not commit to a public, fixed range).
+
+4. **Country:** the country of the Aircall number.
+
+## Step 4: Verify
+
+Call the Aircall number — the AI should answer. Check the Aircall call log to confirm SIP Forwarding is being used (not the default app routing).
+
+## Common issues
+
+<AccordionGroup>
+  <Accordion title="Inbound calls still ring the Aircall app instead of forwarding">
+    The number's primary routing is still set to "Ring users" or a team. Make sure **SIP Forwarding** is the active routing type, not just configured as a fallback.
+  </Accordion>
+  <Accordion title="Outbound caller ID doesn't show the Aircall number">
+    Aircall numbers cannot be used as outbound caller ID via SIP — only via Aircall's Outbound API or by porting. See step 2.
+  </Accordion>
+  <Accordion title="One-way audio">
+    Force G.711 (PCMU/PCMA) on the Aircall side and confirm that any corporate firewall in front of your Famulor egress is not stripping RTP.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+<Note>
+  Need help with setup? Our support team can advise on whether SIP Forwarding or porting is the right path for your Aircall setup.
+</Note>
+
+<Tip>
+Related pages: [SIP Integration](/en/provisioning/sip-ai/sip-integration) and [SIP Troubleshooting](/en/provisioning/sip-ai/sip-troubleshooting).
+</Tip>
