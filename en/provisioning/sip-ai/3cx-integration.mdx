@@ -18,13 +18,13 @@ description: 'How to connect your 3CX system with Famulor'
 In the 3CX admin interface, go to **"Trunks & Chat"** and create a new trunk using **+Trunk**.
 
 <Frame>
-  <img src="/images/famulor_3cx_trunk_create_new.png" alt="Create 3CX trunk" />
+  <img src="/images/famulor_3cx_trunk_create_new_en.png" alt="Create 3CX trunk" />
 </Frame>
 
 Choose **"Generic SIP Trunk (IP Based)"**. Note: this option is only available on hosted systems.
 
 <Frame>
-  <img src="/images/famulor_3cx_trunk_creation.png" alt="Select Generic SIP Trunk" />
+  <img src="/images/famulor_3cx_trunk_creation_en.png" alt="Select Generic SIP Trunk" />
 </Frame>
 
 ### Configure the 3CX trunk
@@ -39,13 +39,13 @@ Choose **"Generic SIP Trunk (IP Based)"**. Note: this option is only available o
 </Note>
 
 <Frame>
-  <img src="/images/famulor_3cx_trunk_config.png" alt="Configure 3CX trunk" />
+  <img src="/images/famulor_3cx_trunk_config_en.png" alt="Configure 3CX trunk" />
 </Frame>
 
 ### Restrict transport protocol to TCP
 
 <Frame>
-  <img src="/images/famulor_3cx_tcp_protocol.png" alt="Set TCP transport protocol" />
+  <img src="/images/famulor_3cx_tcp_protocol_en.png" alt="Set TCP transport protocol" />
 </Frame>
 
 ### Optional: Ensure the correct caller number reaches Famulor
@@ -54,7 +54,7 @@ If Famulor is used behind a 3CX phone system, the assistant may receive the 3CX 
 To avoid this, set **"From: Display-Name"** and **"Remote-Party-ID"** to `OriginatorCallerID` in the SIP trunk.
 
 <Frame>
-  <img src="/images/famulor_3cx_caller_id_settings.png" alt="Set OriginatorCallerID" />
+  <img src="/images/famulor_3cx_caller_id_settings_en.png" alt="Set OriginatorCallerID" />
 </Frame>
 
 ### Create the SIP number in Famulor
@@ -92,7 +92,7 @@ Now create an outbound rule that defines when this trunk should be used.
 For example, you can use `999` as a prefix; just make sure those digits are stripped before dialing.
 
 <Frame>
-  <img src="/images/famulor_3cx_outbound_rule.png" alt="Create outbound rule" />
+  <img src="/images/famulor_3cx_outbound_rule_en.png" alt="Create outbound rule" />
 </Frame>
 
 **Important:** Place this outbound rule above other rules that could otherwise override it.
