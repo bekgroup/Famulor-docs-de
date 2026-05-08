@@ -6,6 +6,21 @@ description: "Create a new mid-call tool for AI assistant integration"
 
 Create a new mid-call tool that enables your AI assistants to interact with external APIs during phone conversations.
 
+### Headers
+
+<ParamField header="Authorization" type="string" required>
+  Must be `Bearer YOUR_API_KEY`
+</ParamField>
+
+<ParamField header="Content-Type" type="string" required default="application/json">
+  Must be `application/json`
+</ParamField>
+
+<ParamField header="Accept" type="string" required default="application/json">
+  Must be `application/json`
+</ParamField>
+
+
 ### Body Parameters
 
 <ParamField body="name" type="string" required>
