@@ -1,6 +1,6 @@
 ---
 title: "Update mid call tool"
-api: "PUT /user/tools/{id}"
+api: "PUT https://app.famulor.de/api/user/tools/{id}"
 description: "Modify an existing mid-call tool"
 ---
 
@@ -11,21 +11,6 @@ Update one or more fields of an existing mid-call tool. Only the fields you prov
 <ParamField path="id" type="integer" required>
   The unique identifier of the tool to update
 </ParamField>
-
-### Headers
-
-<ParamField header="Authorization" type="string" required>
-  Must be `Bearer YOUR_API_KEY`
-</ParamField>
-
-<ParamField header="Content-Type" type="string" required default="application/json">
-  Must be `application/json`
-</ParamField>
-
-<ParamField header="Accept" type="string" required default="application/json">
-  Must be `application/json`
-</ParamField>
-
 
 ### Body Parameters
 

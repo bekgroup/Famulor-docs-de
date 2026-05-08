@@ -1,6 +1,6 @@
 ---
 title: "Mid-call Action aktualisieren"
-api: "PUT /user/tools/{id}"
+api: "PUT https://app.famulor.de/api/user/tools/{id}"
 description: "Ein bestehendes Mid-call Action aktualisieren"
 ---
 
@@ -12,21 +12,6 @@ Dieser Endpunkt ermöglicht es Ihnen, ein bestehendes Mid-call Action zu aktuali
 <ParamField path="id" type="integer" required>
   Die eindeutige Kennung des zu aktualisierenden Tools
 </ParamField>
-
-### Header
-
-<ParamField header="Authorization" type="string" required>
-  Muss `Bearer YOUR_API_KEY` sein
-</ParamField>
-
-<ParamField header="Content-Type" type="string" required default="application/json">
-  Muss `application/json` sein
-</ParamField>
-
-<ParamField header="Accept" type="string" required default="application/json">
-  Muss `application/json` sein
-</ParamField>
-
 
 ### Body-Parameter
 

@@ -1,24 +1,10 @@
 ---
 title: "Delete mid call tool"
-api: "DELETE /user/tools/{id}"
+api: "DELETE https://app.famulor.de/api/user/tools/{id}"
 description: "Permanently remove a mid-call tool"
 ---
 
 Permanently delete a mid-call tool from your account. This also removes the tool from all assistants where it was previously assigned.
-
-### Headers
-
-<ParamField header="Authorization" type="string" required>
-  Must be `Bearer YOUR_API_KEY`
-</ParamField>
-
-<ParamField header="Content-Type" type="string" required default="application/json">
-  Must be `application/json`
-</ParamField>
-
-<ParamField header="Accept" type="string" required default="application/json">
-  Must be `application/json`
-</ParamField>
 
 ### Path Parameters
 
