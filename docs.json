@@ -661,6 +661,8 @@
                 "group": "AI Chatbot",
                 "pages": [
                   "en/api-reference/conversations/list",
+                  "en/api-reference/conversations/disable-ai",
+                  "en/api-reference/conversations/enable-ai",
                   "en/api-reference/ai-chatbot/create-conversation",
                   "en/api-reference/ai-chatbot/get-conversation",
                   "en/api-reference/ai-chatbot/send-conversation"
@@ -1408,6 +1410,8 @@
                 "group": "AI Chatbot",
                 "pages": [
                   "de/api-reference/conversations/list",
+                  "de/api-reference/conversations/disable-ai",
+                  "de/api-reference/conversations/enable-ai",
                   "de/api-reference/ai-chatbot/create-conversation",
                   "de/api-reference/ai-chatbot/get-conversation",
                   "de/api-reference/ai-chatbot/send-conversation"
