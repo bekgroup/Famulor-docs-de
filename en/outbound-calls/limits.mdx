@@ -4,37 +4,49 @@ icon: "gauge-high"
 description: "How Famulor’s daily outbound limit works, what stays unlimited, and how to ask for a higher limit."
 ---
 
+import SipDoneForYou from '/en/snippets/sip-done-for-you-partner-en.mdx';
+
+<SipDoneForYou />
+
+
 We want everyone to understand limits in plain language—no telecom jargon required.
 
-## What you’ll see
+## The idea in one sentence
 
-Open **[Limits](https://app.famulor.de/limits)** in your dashboard. There you can track how many outbound calls you still have for today and when your counter resets.
+Famulor enforces a **daily outbound quota only for calls that leave through our integrated (shared) carrier**. Traffic on **your own SIP trunk**, **inbound** PSTN traffic, and **browser-based web calls** are **not** subject to that same daily cap.
+
+Your workspace’s live counters and renewal time are under **[Limits](https://app.famulor.de/limits)**.
 
 ![Limits overview in the Famulor app](/images/limits-outboundcalls.png)
 
-## Outbound calls through Famulor (integrated carrier)
+## What the integrated-carrier daily quota is
 
-If you place outbound calls using **Famulor’s built-in carrier**, those calls share a **daily allowance**. A common default is **1,000 calls per day**—your screen always shows the number that applies to **your** workspace.
+**Integrated carrier** means: Famulor provisions PSTN connectivity for you (for example a number from us plus routing over our built-in provider). For that path, outbound calls draw from a **shared daily pool** per workspace so the platform stays fair and predictable.
 
-**What counts toward this limit**
+- **Allowance** — the maximum number of those integrated outbound calls in the current period (often around **1,000 per day**; your workspace may differ).
+- **Usage** — how many of those calls you have already placed in the period; **remaining** is allowance minus usage.
+- **Renewal** — the quota rolls forward on a **rolling ~24 hour** basis; the moment of renewal is per account and is the one Famulor applies for enforcement.
 
-- Calls from **numbers you got through Famulor** (integrated dedicated numbers).
-- Calls where you use **your own number as caller ID**, once that number is set up correctly in the app.
+**What counts toward the quota**
 
-**What resets**
+- Outbound calls from **numbers supplied by Famulor** on the integrated path.
+- Outbound calls where **your own number appears as caller ID**, when that setup still goes out through the **integrated** carrier (you are using our trunk while presenting your CLI).
 
-The page shows when your allowance **resets** (on a rolling basis, roughly every **24 hours**). The exact time on screen is what matters for your account.
+**What does not count**
 
-## What stays unlimited
+Anything that does **not** use that integrated outbound trunk for PSTN—see the next section.
 
-Some things are **not** capped by that daily outbound allowance:
+## What stays outside the daily outbound quota
 
-- **Inbound calls** — answering calls is unlimited on our side.
-- **Outbound over your own SIP trunk** — traffic through **your** carrier follows **your** limits, not a Famulor daily outbound cap.
+These categories are **not** limited by Famulor’s integrated daily outbound cap:
+
+- **Inbound PSTN calls** — calls **to** your assistant’s number are not debited against integrated outbound allowance.
+- **Outbound via your SIP trunk** — signaling and media go to **your** carrier (Twilio, Telnyx, Zadarma, DIDLogic, etc.). Famulor does not apply its integrated **per-day outbound** cap there; your carrier’s own limits and billing apply.
+- **Web calls** — sessions started in the **browser** (embeddable widget or public demo) use a different access pattern than “dial out over our integrated PSTN trunk,” so they are **not** tallied like integrated outbound for this quota.
 
 ## Need more outbound capacity? Send a request
 
-Yes. If your volume grows and you need a **higher daily limit**, tap **Request increase** on the Limits page. A short form opens—we use your answers to review the change quickly.
+Yes. If your volume grows and you need a **higher daily limit** on the **integrated** trunk, use **Request increase** in the dashboard (linked from **[Limits](https://app.famulor.de/limits)**). A short form opens—we use your answers to review the change quickly.
 
 You’ll be asked for:
 
@@ -50,8 +62,8 @@ We review requests manually. If something is unclear, we may reach out through y
 
 ## Prefer no daily cap on outbound?
 
-You can connect **your own SIP trunk** (for example Twilio, Telnyx, Zadarma, or DIDLogic). Your carrier, your numbers, your billing—and outbound through that path isn’t limited by Famulor’s integrated daily quota. In the app, use **Connect SIP trunk**, or start here: [SIP integration](/en/provisioning/sip-ai/sip-integration).
+Connecting **your own SIP trunk** means outbound PSTN is originated by **your** carrier. Famulor’s integrated **daily outbound** quota no longer applies to that traffic; you keep the same **per-minute AI** usage model while voice minutes are between you and the carrier. Setup is guided in the product, or start in the docs: [SIP integration](/en/provisioning/sip-ai/sip-integration).
 
 <Tip>
-Numbers and reset times change per account. Always trust what you see on [app.famulor.de/limits](https://app.famulor.de/limits).
+Allowance, usage, and renewal time are **per workspace**. The values under [app.famulor.de/limits](https://app.famulor.de/limits) are what Famulor enforces.
 </Tip>

@@ -4,37 +4,49 @@ icon: "gauge-high"
 description: "So funktionieren tägliche Ausgehend-Limits bei Famulor, was unbegrenzt bleibt und wie Sie mehr Kapazität anfragen können."
 ---
 
+import SipDoneForYou from '/de/snippets/sip-done-for-you-partner-de.mdx';
+
+<SipDoneForYou />
+
+
 Wir erklären Limits so, dass es jede Person verstehen kann—ohne Fachbegriffe aus der Telefonie.
 
-## Was Sie in der App sehen
+## Kurz erklärt
 
-Öffnen Sie **[Limits](https://app.famulor.de/limits)** im Dashboard. Dort sehen Sie, wie viele ausgehende Anrufe Ihnen **heute** noch bleiben und wann sich der Zähler **zurücksetzt**.
+Famulor setzt ein **tägliches Ausgehend-Limit nur für Anrufe, die über den integrierten (gemeinsamen) Carrier** abgehen. Verkehr über **Ihren eigenen SIP-Trunk**, **eingehende** PSTN-Anrufe und **Web-Anrufe im Browser** unterliegen **diesem** Tageskontingent **nicht**.
+
+Aktuelle Zähler und die nächste Erneuerung finden Sie unter **[Limits](https://app.famulor.de/limits)**.
 
 ![Übersicht Limits in der Famulor-App](/images/limits-outboundcalls.png)
 
-## Ausgehende Anrufe über Famulor (integrierter Anbieter)
+## Was das tägliche Kontingent für den integrierten Carrier ist
 
-Wenn Sie ausgehend über den **integrierten Anbieter** von Famulor telefonieren, teilen sich diese Anrufe ein **tagesbezogenes Kontingent**. Häufig liegt das bei **1.000 Anrufen pro Tag**—auf Ihrem Bildschirm gilt immer die Zahl, die **für Ihren Workspace** vorgesehen ist.
+**Integrierter Carrier** heißt: Famulor stellt Ihnen PSTN-Anbindung bereit (z. B. eine Nummer von uns plus Routing über den eingebauten Anbieter). Auf diesem Weg ziehen ausgehende Anrufe pro Workspace aus einem **gemeinsamen Tageskontingent**, damit die Plattform fair und planbar bleibt.
 
-**Wozu das Limit zählt**
+- **Kontingent (Allowance)** — die Obergrenze solcher integrierten Ausgehend-Anrufe in der laufenden Periode (häufig in der Größenordnung **1.000 pro Tag**; Ihr Workspace kann abweichen).
+- **Verbrauch (Usage)** — wie viele dieser Anrufe Sie in der Periode bereits getätigt haben; **verbleibend** ist Kontingent minus Verbrauch.
+- **Erneuerung** — das Kontingent läuft im **rollierenden ~24-Stunden**-Rhythmus weiter; der genaue Zeitpunkt ist **pro Konto** festgelegt und für die Durchsetzung maßgeblich.
 
-- Anrufe über **Nummern, die Sie über Famulor** bezogen haben (integrierte dedizierte Nummern).
-- Anrufe, bei denen Sie **eine eigene Nummer als Anruferkennung** nutzen, sobald diese in der App korrekt eingerichtet ist.
+**Wozu das Kontingent zählt**
 
-**Zurücksetzen**
+- Ausgehende Anrufe von **Nummern, die Famulor auf dem integrierten Weg** bereitstellt.
+- Ausgehende Anrufe mit **Ihrer eigenen Nummer als Anruferkennung**, wenn der Abgang technisch weiterhin über den **integrierten** Carrier läuft (Sie nutzen unseren Trunk mit Ihrer CLI).
 
-Die Seite zeigt, wann Ihr Kontingent **erneuert** wird (in der Regel im **24-Stunden**-Rhythmus). Maßgeblich sind **Uhrzeit und Stand**, die Sie in der App sehen.
+**Wozu es nicht zählt**
 
-## Was bei uns unbegrenzt bleibt
+Alles, was diesen integrierten Ausgehend-Trunk für PSTN **nicht** nutzt — siehe nächster Abschnitt.
 
-Folgendes fällt **nicht** unter das tägliche Ausgehend-Limit des integrierten Anbieters:
+## Was außerhalb des täglichen Ausgehend-Kontingents liegt
 
-- **Eingehende Anrufe** — Annehmen von Anrufen ist auf unserer Seite unbegrenzt.
-- **Ausgehend über Ihren eigenen SIP-Trunk** — der Verkehr läuft über **Ihren** Carrier; dort gelten **Ihre** Regeln, nicht unser tägliches Ausgehend-Kontingent für den integrierten Weg.
+Diese Kategorien sind durch das integrierte **tägliche Ausgehend-Limit von Famulor nicht begrenzt**:
+
+- **Eingehende PSTN-Anrufe** — Anrufe **an** die Nummer Ihres Assistenten mindern das integrierte Ausgehend-Kontingent **nicht**.
+- **Ausgehend über Ihren SIP-Trunk** — Signalisierung und Medien laufen zu **Ihrem** Carrier (Twilio, Telnyx, Zadarma, DIDLogic usw.). Das integrierte **Tageslimit für Ausgehend** von Famulor gilt dort **nicht**; es gelten die Limits und die Abrechnung **Ihres** Anbieters.
+- **Web-Anrufe** — Sitzungen, die Sie im **Browser** starten (einbettbares Widget oder öffentliche Demo), folgen einem anderen Zugriffsmuster als „Auswahl über unseren integrierten PSTN-Trunk“ und werden **nicht** wie integriertes PSTN-Ausgehend auf dieses Kontingent angerechnet.
 
 ## Mehr ausgehende Anrufe nötig? Eine Anfrage senden
 
-Ja. Wenn Ihr Volumen wächst und Sie ein **höheres Tageslimit** brauchen, tippen Sie auf der Limits-Seite auf **Request increase**. Es öffnet sich ein kurzes Formular—mit Ihren Angaben können wir die Anfrage **schnell** prüfen.
+Ja. Wenn Ihr Volumen wächst und Sie ein **höheres Tageslimit** auf dem **integrierten** Trunk brauchen, nutzen Sie im Dashboard **Request increase** (verlinkt von **[Limits](https://app.famulor.de/limits)**). Es öffnet sich ein kurzes Formular—mit Ihren Angaben können wir die Anfrage **schnell** prüfen.
 
 Gefragt wird nach:
 
@@ -50,8 +62,8 @@ Wir prüfen Anfragen **manuell**. Wenn etwas unklar ist, melden wir uns über Ih
 
 ## Lieber kein Tageslimit für ausgehend?
 
-Sie können einen **eigenen SIP-Trunk** anbinden (z. B. Twilio, Telnyx, Zadarma oder DIDLogic). Ihr Anbieter, Ihre Nummern, Ihre Abrechnung—und ausgehend über diesen Weg gilt **nicht** das tägliche Kontingent des integrierten Famulor-Carriers. In der App: **Connect SIP trunk**, oder starten Sie in der Doku: [SIP-Integration](/de/provisioning/sip-ai/sip-integration).
+Wenn Sie einen **eigenen SIP-Trunk** anbinden, wird ausgehendes PSTN von **Ihrem** Carrier ausgeliefert. Das integrierte **tägliche Ausgehend-Limit** von Famulor gilt für diesen Verkehr **nicht**; das **Minutenmodell für die KI-Nutzung** bleibt gleich, während Sprachminuten zwischen Ihnen und Ihrem Anbieter abgerechnet werden. Die Einrichtung ist im Produkt geführt, oder Sie starten in der Doku: [SIP-Integration](/de/provisioning/sip-ai/sip-integration).
 
 <Tip>
-Zahlen und Reset-Zeiten gelten pro Konto. Verlassen Sie sich auf das, was unter [app.famulor.de/limits](https://app.famulor.de/limits) steht.
+Kontingent, Verbrauch und Erneuerungszeitpunkt gelten **pro Workspace**. Maßgeblich sind die Werte unter [app.famulor.de/limits](https://app.famulor.de/limits).
 </Tip>
