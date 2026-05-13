@@ -21,6 +21,38 @@ Connect your existing phone system and numbers with Famulor.
 
 This guide will help you understand and set up the SIP integration. If you need assistance during the setup, our support team is available to help.
 
+## Bring Your Own Carrier (BYOC): automatic number import
+
+Famulor supports **Bring Your Own Carrier (BYOC)** for major SIP trunk providers. You can connect **Twilio**, **Telnyx**, **Zadarma**, and **DIDLogic** in the dashboard and **import numbers automatically**—pick your carrier, enter your account credentials, then select one or more numbers to attach to your agents. No support ticket is required for this standard self-service path.
+
+<Frame>
+  <img
+    src="/images/import-numbers.png"
+    alt="BYOC carrier picker: Twilio, Telnyx, Zadarma, and DIDLogic with guided import steps"
+  />
+</Frame>
+
+### Two ways to add numbers to Famulor
+
+1. **Guided import (recommended for Twilio, Telnyx, Zadarma, DIDLogic)** — Use the wizard under **Your Phone Numbers → Integrate SIP trunk**. The flow walks you through carrier credentials, in-product help (FAQs and quick setup tips), and number selection. This is the fastest way to sync existing inventory from your carrier account.
+2. **Manual SIP / generic trunk** — Use the classic SIP form (SIP Extension or Phone Number DID) and provider-specific guides when you want full hands-on control, use a carrier outside the picker, or follow the same steps you use today for manual Famulor configuration.
+
+### Twilio
+
+Connect an existing Twilio account with **Elastic SIP Trunking** credentials. The wizard highlights what you need (for example account SID and auth token) and common checks such as balance, geo permissions, and transfer behavior. For a fully manual Elastic SIP setup (termination, origination, IP ACLs), see the [Twilio SIP trunking guide](/en/provisioning/sip-trunking/twilio).
+
+### Telnyx
+
+Connect your **Telnyx** account through the same BYOC experience: enter your Telnyx API credentials in the wizard, then import the numbers you already host on Telnyx. Telnyx-specific guidance appears in the panel while you connect.
+
+### Zadarma
+
+**Zadarma** is available in the carrier picker for teams that use Zadarma trunks and numbering. Use the guided flow to supply Zadarma credentials and import eligible numbers without retyping SIP URIs by hand where the integration supports it.
+
+### DIDLogic
+
+**DIDLogic** is included for additional regional and pricing options. Choose DIDLogic in the wizard, complete authentication, and import your DIDLogic numbers into Famulor alongside the other carriers.
+
 ## What is SIP Integration?
 
 SIP (Session Initiation Protocol) integration allows you to connect your existing phone system with Famulor. Think of it as building a bridge between your current phone setup and our AI platform. This means you can:
@@ -158,7 +190,7 @@ Password: Provided by your telephony provider
 
 1. Go to your Famulor dashboard
 2. Navigate to "Your Phone Numbers"
-3. Click on "Integrate SIP Trunk"
+3. Click on "Integrate SIP Trunk". If you use **Twilio**, **Telnyx**, **Zadarma**, or **DIDLogic**, start with the **guided BYOC import** described in the section above (carrier selection and automatic number import). For any other provider—or to configure SIP fields manually—continue with the trunk type and fields in the next steps.
 
 ### Step 3: Select SIP Trunk Type
 

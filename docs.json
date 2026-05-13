@@ -343,6 +343,13 @@
                   "en/glossary",
                   "en/faq"
                 ]
+              },
+              {
+                "group": "Limits",
+                "icon": "gauge-high",
+                "pages": [
+                  "en/outbound-calls/limits"
+                ]
               }
             ]
           },
@@ -1091,6 +1098,13 @@
                   "de/enterprise",
                   "de/glossary",
                   "de/faq"
+                ]
+              },
+              {
+                "group": "Limits",
+                "icon": "gauge-high",
+                "pages": [
+                  "de/outbound-calls/limits"
                 ]
               }
             ]
