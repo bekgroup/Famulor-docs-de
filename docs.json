@@ -1537,6 +1537,12 @@
       "href": "https://app.famulor.de"
     }
   },
+  "redirects": [
+    {
+      "source": "/provisioning/sip-trunking/twilio",
+      "destination": "/en/provisioning/sip-trunking/twilio"
+    }
+  ],
   "footer": {
     "socials": {
       "linkedin": "https://www.linkedin.com/company/Famulor/"
