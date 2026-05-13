@@ -1540,7 +1540,7 @@
   "redirects": [
     {
       "source": "/provisioning/sip-trunking/twilio",
-      "destination": "/en/provisioning/sip-trunking/twilio"
+      "destination": "/en/provisioning/sip-ai/sip-integration#bring-your-own-carrier-byoc--automatic-number-import"
     }
   ],
   "footer": {
