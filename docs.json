@@ -204,7 +204,8 @@
                   "en/outbound-calls/caller-id",
                   "en/outbound-calls/voicemail-handling",
                   "en/outbound-calls/scripts-and-prompts",
-                  "en/outbound-calls/mass-dialing"
+                  "en/outbound-calls/mass-dialing",
+                  "en/outbound-calls/limits"
                 ]
               },
               {
@@ -342,13 +343,6 @@
                   "en/enterprise",
                   "en/glossary",
                   "en/faq"
-                ]
-              },
-              {
-                "group": "Limits",
-                "icon": "gauge-high",
-                "pages": [
-                  "en/outbound-calls/limits"
                 ]
               }
             ]
@@ -960,7 +954,8 @@
                   "de/outbound-calls/caller-id",
                   "de/outbound-calls/voicemail-handling",
                   "de/outbound-calls/scripts-and-prompts",
-                  "de/outbound-calls/mass-dialing"
+                  "de/outbound-calls/mass-dialing",
+                  "de/outbound-calls/limits"
                 ]
               },
               {
@@ -1098,13 +1093,6 @@
                   "de/enterprise",
                   "de/glossary",
                   "de/faq"
-                ]
-              },
-              {
-                "group": "Limits",
-                "icon": "gauge-high",
-                "pages": [
-                  "de/outbound-calls/limits"
                 ]
               }
             ]
