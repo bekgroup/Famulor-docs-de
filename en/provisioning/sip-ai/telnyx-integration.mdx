@@ -17,6 +17,10 @@ This guide walks you through connecting your Telnyx phone numbers using SIP trun
   **Why FQDN?** The connection type must be **FQDN** - not Credentials or IP Address. Credential connections require SIP REGISTER for inbound calls, which our platform does not send. FQDN connections route inbound calls directly to our SIP server and authenticate outbound calls via credentials.
 </Info>
 
+<Note>
+**Phone number import (BYOC):** In the Famulor dashboard, open **Your Phone Numbers → Integrate SIP trunk**, pick **Telnyx** in the carrier list, and use the guided flow to connect your account and import numbers automatically. The steps below are the **manual** SIP trunking setup. Overview: [SIP Integration](/en/provisioning/sip-ai/sip-integration).
+</Note>
+
 <Info>
   **Pricing snapshot:** Telnyx publishes public starting prices for numbers and SIP trunking, while country-specific details are provided through the live pricing sheet.
 
