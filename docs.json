@@ -1522,6 +1522,15 @@
       "auth": {
         "method": "bearer"
       }
+    },
+    "playground": {
+      "display": "interactive",
+      "proxy": true
+    },
+    "examples": {
+      "languages": ["bash", "javascript", "python", "php", "go"],
+      "defaults": "required",
+      "prefill": true
     }
   },
   "navbar": {
@@ -1571,7 +1580,7 @@
     ]
   },
   "seo": {
-    "indexing": "all",
+    "indexing": "navigable",
     "metatags": {
       "og:site_name": "Famulor Docs",
       "og:type": "website",
