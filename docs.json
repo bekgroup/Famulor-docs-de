@@ -1602,9 +1602,6 @@
   "styling": {
     "eyebrows": "breadcrumbs"
   },
-  "search": {
-    "prompt": "Famulor durchsuchen oder Frage stellen…"
-  },
   "thumbnails": {
     "background": "/images/famulor-platform-voice-ai.webp"
   },
@@ -1616,5 +1613,8 @@
     "body": {
       "family": "Inter"
     }
+  },
+  "search": {
+    "prompt": "Search or Ask..."
   }
 }
