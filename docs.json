@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Famulor AI",
+  "name": "Famulor",
   "colors": {
     "primary": "#1FD5F9",
     "light": "#1FD5F9",
@@ -1616,8 +1616,5 @@
     "body": {
       "family": "Inter"
     }
-  },
-  "banner": {
-    "dismissible": false
   }
 }
