@@ -12,7 +12,6 @@
     "languages": [
       {
         "language": "en",
-        "default": true,
         "global": {
           "anchors": [
             {
@@ -761,6 +760,7 @@
       },
       {
         "language": "de",
+        "default": true,
         "global": {
           "anchors": [
             {
@@ -1574,10 +1574,23 @@
     "indexing": "all",
     "metatags": {
       "og:site_name": "Famulor Docs",
-      "twitter:card": "summary_large_image"
+      "og:type": "website",
+      "og:image": "https://docs.famulor.de/images/famulor-platform-voice-ai.webp",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "twitter:card": "summary_large_image",
+      "twitter:site": "@famulor",
+      "twitter:image": "https://docs.famulor.de/images/famulor-platform-voice-ai.webp",
+      "author": "Famulor",
+      "robots": "index, follow",
+      "googlebot": "index, follow",
+      "theme-color": "#1FD5F9",
+      "color-scheme": "light dark",
+      "canonical": "https://docs.famulor.de",
+      "keywords": "Famulor, KI-Telefonie, Voice AI, AI Phone Agent, Inbound Calls, Outbound Calls, WhatsApp Business AI, Voice Bot, Conversational AI, KI Anrufbeantworter, AI Receptionist, SIP Integration"
     }
   },
-  "description": "Famulor AI Phone, Voice, Whatsapp, Livechat and Voice Chat. It comes with everything you need to get started built-in.",
+  "description": "Famulor AI Phone, Voice, WhatsApp, Livechat and Voice Chat — die KI-Telefonie-Plattform für Inbound- und Outbound-Anrufe, Lead-Management, SIP-Integration und automatisierte Conversational AI Workflows. Alles eingebaut, was du brauchst.",
   "background": {
     "color": {
       "dark": "#141414"
@@ -1585,5 +1598,23 @@
   },
   "appearance": {
     "default": "system"
+  },
+  "styling": {
+    "eyebrows": "breadcrumbs"
+  },
+  "search": {
+    "prompt": "Famulor durchsuchen oder Frage stellen…"
+  },
+  "thumbnails": {
+    "background": "/images/famulor-platform-voice-ai.webp"
+  },
+  "fonts": {
+    "heading": {
+      "family": "Inter",
+      "weight": 600
+    },
+    "body": {
+      "family": "Inter"
+    }
   }
 }
