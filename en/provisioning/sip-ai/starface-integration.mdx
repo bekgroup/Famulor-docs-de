@@ -20,7 +20,7 @@ This guide shows how to connect your **Starface** phone system to **Famulor** us
 - Starface system with admin access to **Configuration → Lines (Leitungen)**
 - Famulor account
 - A **free phone number** not already used elsewhere in Starface
-- Your **Famulor SIP address** (LiveKit hostname) from the dashboard
+- Your **Famulor SIP address** from the dashboard
 
 ---
 
@@ -39,26 +39,41 @@ This guide shows how to connect your **Starface** phone system to **Famulor** us
   />
 </Frame>
 
-### 1.2 Configure the SIP provider
+### 1.2 Find your Famulor SIP address
+
+Use this address for **host** and **fromdomain** in Starface:
+
+1. Open [app.famulor.de/phone-numbers](https://app.famulor.de/phone-numbers?lang=en).
+2. Click **+ Integrate SIP trunk** (or open **SIP integration** on an existing number).
+3. Under **Inbound settings**, copy **Our SIP address** (for Germany/Europe, usually the **France, Germany, Zurich** region).
+
+<Frame>
+  <img
+    src="/images/starface/starface-famulor-sip-adresse.png"
+    alt="Famulor phone numbers: Our SIP address under inbound settings for Starface host and fromdomain"
+  />
+</Frame>
+
+<Note>
+  In Starface, enter only the hostname (e.g. `yourproject.eu.sip.livekit.cloud`) — **without** a `sip:` prefix.
+</Note>
+
+### 1.3 Configure the SIP provider in Starface
 
 1. Select the new line and open the **Provider** sub-tab.
 2. Under **SIP configuration**, set:
 
 | Field | Value |
 | --- | --- |
-| **host** | Your Famulor SIP address, e.g. `yourproject.eu.sip.livekit.cloud` |
+| **host** | **Our SIP address** copied from Famulor |
 | **fromdomain** | Same value as **host** |
 | **transport** | **tcp** |
 | **nat** | **Yes** (recommended; see [Troubleshooting](#troubleshooting-no-audio--nat)) |
 
-<Note>
-  **Find your Famulor SIP address:** Dashboard → **Phone numbers** → **Integrate SIP trunk**, or on the number’s SIP integration page. Format: `<project>.eu.sip.livekit.cloud` (no `sip:` prefix in Starface host field).
-</Note>
-
 <Frame>
   <img
     src="/images/starface/starface-provider-sip.png"
-    alt="Starface edit provider: host, fromdomain, and transport tcp for Famulor LiveKit SIP"
+    alt="Starface edit provider: host, fromdomain, and transport tcp for Famulor SIP"
   />
 </Frame>
 
@@ -66,7 +81,7 @@ This guide shows how to connect your **Starface** phone system to **Famulor** us
   Status **“not registered”** is normal. Famulor does **not** use SIP REGISTER for this setup — connectivity is host/IP-based.
 </Warning>
 
-### 1.3 Add a phone number to the line
+### 1.4 Add a phone number to the line
 
 1. Stay on the line and open the **Rufnummern** (Phone numbers) sub-tab.
 2. Add the number as **Einzelrufnummer** (single number) with country code **49** and the correct area code and subscriber number.
@@ -79,7 +94,7 @@ This guide shows how to connect your **Starface** phone system to **Famulor** us
   />
 </Frame>
 
-### 1.4 Enable CLIP No Screening
+### 1.5 Enable CLIP No Screening
 
 1. In line settings ( **Leitungen** tab, line selected), enable **CLIP No Screening**.
 2. Note the **line prefix** (e.g. `**2*` or `**3*`) — you need it for time-based forwarding.
@@ -113,13 +128,13 @@ This guide shows how to connect your **Starface** phone system to **Famulor** us
 
 1. Open the assistant → **Tools** → **Call transfer**.
 2. Enable **(Advanced) Is custom SIP transfer?**
-3. Enter the target SIP address in the required format (e.g. `tel:` or `sip:` depending on the destination).
-4. Set **When to transfer** to define when the handoff happens.
+3. Under **Custom SIP transfer**, enter the destination (e.g. `tel:…` or Starface format `**<line-digit>*<phone-number>`).
+4. Set **When to transfer** to define when the handoff happens (e.g. when the caller asks for a human).
 
 <Frame>
   <img
     src="/images/starface/starface-famulor-sip-transfer.png"
-    alt="Famulor call transfer: enable custom SIP transfer for Starface without loops"
+    alt="Famulor call transfer: custom SIP transfer enabled with destination and transfer condition for Starface"
   />
 </Frame>
 
@@ -163,7 +178,7 @@ Configure routing (e.g. **Modules → Zeitgesteuerte Umleitung** / time-based fo
 </Frame>
 
 <Note>
-  Digits after `*` use the **international dial string without +** (`00` + country code + number). The prefix comes from step 1.4.
+  Digits after `*` use the **international dial string without +** (`00` + country code + number). The prefix comes from step 1.5.
 </Note>
 
 ---

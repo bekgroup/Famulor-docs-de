@@ -20,7 +20,7 @@ In dieser Anleitung verbindest du deine **Starface**-Telefonanlage per **SIP-Tru
 - Starface-Anlage mit Admin-Zugriff auf **Konfiguration → Leitungen**
 - Famulor-Konto
 - Eine **freie Rufnummer**, die in Starface noch keinem anderen Dienst zugewiesen ist
-- Deine **Famulor-SIP-Adresse** (LiveKit-Hostname) aus dem Dashboard
+- Deine **Famulor-SIP-Adresse** aus dem Dashboard
 
 ---
 
@@ -39,26 +39,41 @@ In dieser Anleitung verbindest du deine **Starface**-Telefonanlage per **SIP-Tru
   />
 </Frame>
 
-### 1.2 SIP-Provider konfigurieren
+### 1.2 Famulor-SIP-Adresse finden
+
+Die Adresse für **host** und **fromdomain** in Starface findest du in Famulor so:
+
+1. Öffne [app.famulor.de/phone-numbers](https://app.famulor.de/phone-numbers?lang=de).
+2. Klicke auf **+ SIP-Trunk integrieren** (oder öffne bei einer bestehenden Nummer die **SIP-Integration**).
+3. Unter **Einstellungen für eingehende Anrufe** kopiere **Unsere SIP-Adresse** (für Deutschland/Europa meist die Region **France, Germany, Zurich**).
+
+<Frame>
+  <img
+    src="/images/starface/starface-famulor-sip-adresse.png"
+    alt="Famulor Telefonnummern: Unsere SIP-Adresse unter Einstellungen für eingehende Anrufe für Starface host und fromdomain"
+  />
+</Frame>
+
+<Note>
+  Trage in Starface nur den Hostnamen ein (z. B. `deinprojekt.eu.sip.livekit.cloud`) – **ohne** `sip:`-Präfix.
+</Note>
+
+### 1.3 SIP-Provider in Starface konfigurieren
 
 1. Wähle die neue Leitung und öffne den Unter-Tab **Provider**.
 2. Trage unter **SIP-Konfiguration** ein:
 
 | Feld | Wert |
 | --- | --- |
-| **host** | Deine Famulor-SIP-Adresse, z. B. `deinprojekt.eu.sip.livekit.cloud` |
+| **host** | Kopierte **Unsere SIP-Adresse** aus Famulor |
 | **fromdomain** | Dieselbe Adresse wie bei **host** |
 | **transport** | **tcp** |
 | **nat** | **Ja** (empfohlen, siehe auch [Fehlerbehebung](#fehlerbehebung-kein-audio-nat)) |
 
-<Note>
-  **Famulor-SIP-Adresse finden:** Im Dashboard unter **Telefonnummern → SIP-Trunk integrieren** bzw. bei der SIP-Integration der Nummer. Format: `<projekt>.eu.sip.livekit.cloud` (ohne `sip:`-Präfix im Starface-Host-Feld).
-</Note>
-
 <Frame>
   <img
     src="/images/starface/starface-provider-sip.png"
-    alt="Starface Provider bearbeiten: host, fromdomain und transport tcp für Famulor LiveKit SIP"
+    alt="Starface Provider bearbeiten: host, fromdomain und transport tcp für Famulor SIP"
   />
 </Frame>
 
@@ -66,7 +81,7 @@ In dieser Anleitung verbindest du deine **Starface**-Telefonanlage per **SIP-Tru
   Der Leitungsstatus **„nicht registriert“** ist bei dieser Anbindung erwartbar. Famulor nutzt **kein SIP-REGISTER** – die Verbindung läuft IP-/Host-basiert.
 </Warning>
 
-### 1.3 Rufnummer zur Leitung hinzufügen
+### 1.4 Rufnummer zur Leitung hinzufügen
 
 1. Bleibe bei der Leitung und öffne den Unter-Tab **Rufnummern**.
 2. Lege die Nummer als **Einzelrufnummer** an (Landesvorwahl **49**, Vorwahl und Rufnummer passend zu deinem Nummernblock).
@@ -79,7 +94,7 @@ In dieser Anleitung verbindest du deine **Starface**-Telefonanlage per **SIP-Tru
   />
 </Frame>
 
-### 1.4 CLIP No Screening aktivieren
+### 1.5 CLIP No Screening aktivieren
 
 1. In den Leitungseinstellungen (Tab **Leitungen**, Leitung ausgewählt) aktiviere **CLIP No Screening**.
 2. Notiere dir das **Leitungspräfix** (z. B. `**2*` oder `**3*`) – du brauchst es für die zeitgesteuerte Umleitung.
@@ -113,13 +128,13 @@ In dieser Anleitung verbindest du deine **Starface**-Telefonanlage per **SIP-Tru
 
 1. Öffne den Assistenten → **Tools** → **Call transfer** (Anrufweiterleitung).
 2. Aktiviere **(Advanced) Is custom SIP transfer?**
-3. Trage die Ziel-SIP-Adresse im geforderten Format ein (z. B. `tel:` oder `sip:` je nach Ziel).
-4. Definiere unter **When to transfer**, wann weitergeleitet wird.
+3. Trage unter **Custom SIP transfer** die Zieladresse ein (Format je nach Ziel, z. B. `tel:…` oder Starface-intern `**<Leitungsnummer>*<Telefonnummer>`).
+4. Definiere unter **When to transfer**, wann weitergeleitet wird (z. B. wenn der Kunde einen Mitarbeiter wünscht).
 
 <Frame>
   <img
     src="/images/starface/starface-famulor-sip-transfer.png"
-    alt="Famulor Call transfer: Custom SIP transfer aktivieren für Starface ohne Rufschleife"
+    alt="Famulor Call transfer: Custom SIP transfer aktivieren, Zieladresse und Weiterleitungsbedingung für Starface"
   />
 </Frame>
 
@@ -163,7 +178,7 @@ Richte z. B. unter **Module → Zeitgesteuerte Umleitung** (oder vergleichbares 
 </Frame>
 
 <Note>
-  Die Ziffern nach `*` sind die **internationale Wahlfolge ohne Plus** (`00` + Landesvorwahl + Nummer). Das Leitungspräfix stammt aus Schritt 1.4.
+  Die Ziffern nach `*` sind die **internationale Wahlfolge ohne Plus** (`00` + Landesvorwahl + Nummer). Das Leitungspräfix stammt aus Schritt 1.5.
 </Note>
 
 ---
