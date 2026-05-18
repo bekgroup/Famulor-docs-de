@@ -1,0 +1,206 @@
+---
+title: 'Starface-Integration'
+description: 'Starface-Telefonanlage per SIP-Trunk mit Famulor KI-Voice-Agents verbinden – Leitung, Rufnummer, Umleitung und SIP-Weiterleitung Schritt für Schritt.'
+---
+
+import SipDoneForYou from '/de/snippets/sip-done-for-you-partner-de.mdx';
+
+<SipDoneForYou />
+
+# Starface mit Famulor verbinden
+
+In dieser Anleitung verbindest du deine **Starface**-Telefonanlage per **SIP-Trunk** mit **Famulor**. Dein KI-Assistent nimmt eingehende Anrufe entgegen; Weiterleitungen aus Famulor laufen über **SIP**, damit keine Rufschleifen entstehen.
+
+<Info>
+  Die Starface-Leitung erscheint als **„nicht registriert“** – das ist bei IP-basierter SIP-Anbindung an Famulor **normal** und kein Fehler.
+</Info>
+
+## Voraussetzungen
+
+- Starface-Anlage mit Admin-Zugriff auf **Konfiguration → Leitungen**
+- Famulor-Konto
+- Eine **freie Rufnummer**, die in Starface noch keinem anderen Dienst zugewiesen ist
+- Deine **Famulor-SIP-Adresse** (LiveKit-Hostname) aus dem Dashboard
+
+---
+
+## Schritt 1: Leitung in Starface erstellen
+
+### 1.1 Neue Leitung anlegen
+
+1. Öffne in Starface **Konfiguration → Leitungen**.
+2. Wechsle zum Tab **Leitungen**.
+3. Klicke unten links auf **+ Neue Leitung**.
+
+<Frame>
+  <img
+    src="/images/starface/starface-neue-leitung.png"
+    alt="Starface Konfiguration: Leitungen-Tab und Button Neue Leitung für Famulor SIP-Trunk"
+  />
+</Frame>
+
+### 1.2 SIP-Provider konfigurieren
+
+1. Wähle die neue Leitung und öffne den Unter-Tab **Provider**.
+2. Trage unter **SIP-Konfiguration** ein:
+
+| Feld | Wert |
+| --- | --- |
+| **host** | Deine Famulor-SIP-Adresse, z. B. `deinprojekt.eu.sip.livekit.cloud` |
+| **fromdomain** | Dieselbe Adresse wie bei **host** |
+| **transport** | **tcp** |
+| **nat** | **Ja** (empfohlen, siehe auch [Fehlerbehebung](#fehlerbehebung-kein-audio-nat)) |
+
+<Note>
+  **Famulor-SIP-Adresse finden:** Im Dashboard unter **Telefonnummern → SIP-Trunk integrieren** bzw. bei der SIP-Integration der Nummer. Format: `<projekt>.eu.sip.livekit.cloud` (ohne `sip:`-Präfix im Starface-Host-Feld).
+</Note>
+
+<Frame>
+  <img
+    src="/images/starface/starface-provider-sip.png"
+    alt="Starface Provider bearbeiten: host, fromdomain und transport tcp für Famulor LiveKit SIP"
+  />
+</Frame>
+
+<Warning>
+  Der Leitungsstatus **„nicht registriert“** ist bei dieser Anbindung erwartbar. Famulor nutzt **kein SIP-REGISTER** – die Verbindung läuft IP-/Host-basiert.
+</Warning>
+
+### 1.3 Rufnummer zur Leitung hinzufügen
+
+1. Bleibe bei der Leitung und öffne den Unter-Tab **Rufnummern**.
+2. Lege die Nummer als **Einzelrufnummer** an (Landesvorwahl **49**, Vorwahl und Rufnummer passend zu deinem Nummernblock).
+3. Die Nummer darf **nicht bereits** an einer anderen Leitung oder einem anderen Dienst in Verwendung sein.
+
+<Frame>
+  <img
+    src="/images/starface/starface-rufnummern.png"
+    alt="Starface Leitung Rufnummern-Tab: Einzelrufnummer für Famulor SIP-Trunk hinzufügen"
+  />
+</Frame>
+
+### 1.4 CLIP No Screening aktivieren
+
+1. In den Leitungseinstellungen (Tab **Leitungen**, Leitung ausgewählt) aktiviere **CLIP No Screening**.
+2. Notiere dir das **Leitungspräfix** (z. B. `**2*` oder `**3*`) – du brauchst es für die zeitgesteuerte Umleitung.
+
+<Frame>
+  <img
+    src="/images/starface/starface-clip-no-screening.png"
+    alt="Starface Leitungspräfix und CLIP No Screening für Famulor aktivieren"
+  />
+</Frame>
+
+<Warning>
+  **Leitungspräfix merken:** Für die Umleitung gilt das Format `**Leitungsnummer*Telefonnummer` (Beispiel: `**2*004915112345678`).
+</Warning>
+
+---
+
+## Schritt 2: Nummer in Famulor anlegen
+
+1. Öffne [app.famulor.de/phone-numbers](https://app.famulor.de/phone-numbers?lang=de).
+2. Klicke auf **+ SIP-Trunk integrieren**.
+3. Trage die **gleiche Rufnummer** ein, die du in Starface unter der Leitung hinterlegt hast (E.164, z. B. `+4915112345678`).
+4. **SIP-Adresse / Termination:** nur nötig, wenn Famulor **ausgehend** über Starface telefonieren soll – sonst Felder leer lassen, wenn dein Setup rein inbound ist.
+5. Speichere die Nummer und kopiere bei Bedarf **Unsere SIP-Adresse** für Starface-Weiterleitungen.
+
+### Weiterleitungen nur über SIP
+
+<Warning>
+  **Keine PSTN-Weiterleitung vom Assistenten:** Normale Anrufweiterleitungen über das Festnetz/Mobilfunk erzeugen mit Starface eine **Rufschleife**. Alle Weiterleitungen aus Famulor müssen als **SIP-Transfer** konfiguriert werden.
+</Warning>
+
+1. Öffne den Assistenten → **Tools** → **Call transfer** (Anrufweiterleitung).
+2. Aktiviere **(Advanced) Is custom SIP transfer?**
+3. Trage die Ziel-SIP-Adresse im geforderten Format ein (z. B. `tel:` oder `sip:` je nach Ziel).
+4. Definiere unter **When to transfer**, wann weitergeleitet wird.
+
+<Frame>
+  <img
+    src="/images/starface/starface-famulor-sip-transfer.png"
+    alt="Famulor Call transfer: Custom SIP transfer aktivieren für Starface ohne Rufschleife"
+  />
+</Frame>
+
+Weitere Details: [SIP-Fehlerbehebung – Call-Transfer](/de/provisioning/sip-ai/sip-troubleshooting#call-transfer-funktioniert-nicht).
+
+---
+
+## Schritt 3: Benutzer in Starface zuweisen
+
+Ohne Benutzerzuweisung kann Starface die SIP-Rufnummer nicht für Anrufe und Regeln nutzen.
+
+1. Gehe zu **Konfiguration → Benutzer** und wähle den gewünschten Benutzer.
+2. Öffne den Tab **Rufnummern**.
+3. Weise die **externe SIP-Rufnummer** der Leitung dem Benutzer zu (in der Liste sichtbar, Regel z. B. **Normaler Anruf**).
+
+<Frame>
+  <img
+    src="/images/starface/starface-benutzer-rufnummer.png"
+    alt="Starface Benutzer Rufnummern: SIP-Rufnummer für Famulor dem Benutzer zuweisen"
+  />
+</Frame>
+
+---
+
+## Schritt 4: Zeitgesteuerte Umleitung einrichten
+
+Richte z. B. unter **Module → Zeitgesteuerte Umleitung** (oder vergleichbares Routing) die Weiterleitung zur Famulor-Leitung ein.
+
+1. **Angerufene Nummer:** die Starface-Nummer, die an Famulor gehen soll.
+2. **Umleitungsziel:** **Rufnummer**.
+3. **Rufnummer** exakt in diesem Format: `**<Leitungsnummer>*<Telefonnummer>`  
+   Beispiel mit Leitungspräfix `**2*` und Nummer `004915112345678`:  
+   `**2*004915112345678`
+4. Zeitfenster nach Bedarf (z. B. Mo–Fr 07:00–16:00).
+
+<Frame>
+  <img
+    src="/images/starface/starface-zeitgesteuerte-umleitung.png"
+    alt="Starface zeitgesteuerte Umleitung: Ziel Rufnummer im Format Leitungspräfix mal Telefonnummer"
+  />
+</Frame>
+
+<Note>
+  Die Ziffern nach `*` sind die **internationale Wahlfolge ohne Plus** (`00` + Landesvorwahl + Nummer). Das Leitungspräfix stammt aus Schritt 1.4.
+</Note>
+
+---
+
+## Schritt 5: Assistenten zuweisen und testen
+
+1. In Famulor unter **Assistenten** den gewünschten Assistenten bearbeiten.
+2. **Empfangstyp** und die importierte **Telefonnummer** wählen.
+3. **Assistent speichern** und einen **Testanruf** durchführen.
+
+---
+
+## Fehlerbehebung: Kein Audio / NAT
+
+**Symptom:** In Starface Cloud oder beim Assistenten ist nur **eine Richtung hörbar** oder es gibt **Stille**.
+
+**Lösung:** NAT in Starface aktivieren, damit RTP (Audio) das richtige Ziel erreicht.
+
+1. Öffne **Serverkonfiguration → Netzwerk**.
+2. Unter **SIP-Einstellungen** setze **Hinter NAT?** auf **ja**.
+3. Prüfe die **externe Adresse** bzw. **IP eintragen**, falls die automatische Erkennung nicht passt.
+4. In der Leitung (**Provider**) sollte **nat: Ja** gesetzt sein.
+
+<Frame>
+  <img
+    src="/images/starface/starface-nat.png"
+    alt="Starface Serverkonfiguration Netzwerk: Hinter NAT auf ja für Famulor Audio"
+  />
+</Frame>
+
+Weitere SIP-Hinweise: [SIP-Integration – Fehlerbehebung](/de/provisioning/sip-ai/sip-troubleshooting).
+
+---
+
+## Hilfe
+
+<Tip>
+  Bei Fragen zur Starface-Konfiguration: [Starface Hilfe & Support](https://www.starface.com/de/support/).  
+  Bei Famulor: [support@famulor.io](mailto:support@famulor.io) oder [SIP-Integration Übersicht](/de/provisioning/sip-ai/sip-integration).
+</Tip>
