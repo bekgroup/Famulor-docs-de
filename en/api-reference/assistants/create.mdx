@@ -218,6 +218,10 @@ The API supports three engine modes with different capabilities:
     }
   ]
   ```
+
+  <Note>
+    When you [list assistants](/en/api-reference/assistants/list), each configured tool is returned as `{ "type": "...", "data": { ... } }` with the same field names nested under `data` (not top-level).
+  </Note>
 </ParamField>
 
 ### Voice and TTS Settings

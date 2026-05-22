@@ -217,6 +217,10 @@ Dieser Endpunkt ermöglicht es Ihnen, die Konfiguration eines bestehenden KI-Ass
     }
   ]
   ```
+
+  <Note>
+    In der [Assistenten-Liste](/de/api-reference/assistants/list) wird jedes konfigurierte Tool als `{ "type": "...", "data": { ... } }` zurückgegeben — dieselben Feldnamen wie im Request, aber unter `data` verschachtelt (nicht top-level).
+  </Note>
 </ParamField>
 
 #### Sprach- und TTS-Einstellungen

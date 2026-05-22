@@ -360,7 +360,16 @@ print(response.json())
         {
           "type": "end_call",
           "data": {
-            "description": "End the call after saying goodbye to the customer."
+            "description": "End call when done"
+          }
+        },
+        {
+          "type": "assistant_transfer",
+          "data": {
+            "description": "Transfer to the Support Assistant when the customer needs technical help.",
+            "assistant_id": 13766,
+            "message_before_transfer": "Sure — let me transfer you to our support specialist.",
+            "speak_transfer_greeting": true
           }
         },
         {
@@ -377,15 +386,6 @@ print(response.json())
             "summary_instructions": "Introduce the conversation from your perspective:\n- WHO is calling (name, company if mentioned)\n- WHY they called (their goal or problem)\n- WHY a human is needed at this point\n\nKeep it brief (2-3 sentences).",
             "briefing_initial_message": "Hello! I have a caller on the line who needs your assistance. May I brief you on the situation?",
             "connected_message": "You are now connected with a supervisor. I'll leave you to it."
-          }
-        },
-        {
-          "type": "assistant_transfer",
-          "data": {
-            "assistant_id": 14765,
-            "description": "Transfer to the Support Assistant when the customer needs technical help.",
-            "message_before_transfer": "Sure — let me transfer you to our support specialist.",
-            "speak_transfer_greeting": true
           }
         }
       ],

@@ -216,6 +216,10 @@ This endpoint allows you to update the configuration of an existing AI assistant
     }
   ]
   ```
+
+  <Note>
+    When you [list assistants](/en/api-reference/assistants/list), each configured tool is returned as `{ "type": "...", "data": { ... } }` with the same field names nested under `data` (not top-level).
+  </Note>
 </ParamField>
 
 #### Speech and TTS Settings

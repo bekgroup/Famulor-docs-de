@@ -361,7 +361,16 @@ print(response.json())
         {
           "type": "end_call",
           "data": {
-            "description": "Anruf beenden, nachdem Sie sich vom Kunden verabschiedet haben."
+            "description": "Anruf beenden wenn fertig"
+          }
+        },
+        {
+          "type": "assistant_transfer",
+          "data": {
+            "description": "An den Support-Assistenten übergeben, wenn der Kunde technische Hilfe braucht.",
+            "assistant_id": 13766,
+            "message_before_transfer": "Gerne — ich verbinde Sie mit unserem Support-Spezialisten.",
+            "speak_transfer_greeting": true
           }
         },
         {
@@ -378,15 +387,6 @@ print(response.json())
             "summary_instructions": "Stellen Sie das Gespräch aus Ihrer Sicht vor:\n- WER ruft an (Name, Firma falls erwähnt)\n- WARUM sie angerufen haben (Ziel oder Problem)\n- WARUM jetzt ein Mensch nötig ist\n\nHalten Sie es kurz (2-3 Sätze).",
             "briefing_initial_message": "Hallo! Ich habe einen Anrufer in der Leitung, der Ihre Hilfe braucht. Darf ich Sie kurz einweisen?",
             "connected_message": "Sie sind jetzt mit einem Supervisor verbunden. Ich überlasse Sie ihm."
-          }
-        },
-        {
-          "type": "assistant_transfer",
-          "data": {
-            "assistant_id": 14765,
-            "description": "An den Support-Assistenten übergeben, wenn der Kunde technische Hilfe braucht.",
-            "message_before_transfer": "Gerne — ich verbinde Sie mit unserem Support-Spezialisten.",
-            "speak_transfer_greeting": true
           }
         }
       ],
