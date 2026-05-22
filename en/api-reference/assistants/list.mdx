@@ -75,7 +75,12 @@ This endpoint allows you to retrieve all AI assistants belonging to the authenti
     </ResponseField>
 
     <ResponseField name="tools" type="array">
-      Array of tools available to the assistant
+      Array of built-in tools configured on the assistant. Each item has `type` (tool identifier) and `data` (tool-specific settings). This response shape differs from the flat object used in [Create](/en/api-reference/assistants/create) and [Update](/en/api-reference/assistants/update) requests.
+
+      <Expandable title="Response item shape">
+        * `type` — e.g. `end_call`, `call_transfer`, `warm_call_transfer`, `dtmf_input`, `collect_keypad`, `calendar_integration`, `assistant_transfer`
+        * `data` — object with the tool’s configuration fields (same names as in the request body, nested under `data` instead of top-level)
+      </Expandable>
     </ResponseField>
 
     <ResponseField name="is_webhook_active" type="boolean">
@@ -351,7 +356,39 @@ print(response.json())
           "description": "Is the customer interested?"
         }
       ],
-      "tools": ["calendar_booking", "crm_integration"],
+      "tools": [
+        {
+          "type": "end_call",
+          "data": {
+            "description": "End the call after saying goodbye to the customer."
+          }
+        },
+        {
+          "type": "warm_call_transfer",
+          "data": {
+            "supervisor_phone": "+14155552001",
+            "outbound_phone_id": "7",
+            "description": "Transfer the call to a human supervisor when the customer requests to speak with a real person.",
+            "custom_sip": false,
+            "caller_id_mode": "outbound_number",
+            "hold_music": "hold_music",
+            "hold_music_volume": 80,
+            "hold_message": "Please hold while I connect you with a supervisor.",
+            "summary_instructions": "Introduce the conversation from your perspective:\n- WHO is calling (name, company if mentioned)\n- WHY they called (their goal or problem)\n- WHY a human is needed at this point\n\nKeep it brief (2-3 sentences).",
+            "briefing_initial_message": "Hello! I have a caller on the line who needs your assistance. May I brief you on the situation?",
+            "connected_message": "You are now connected with a supervisor. I'll leave you to it."
+          }
+        },
+        {
+          "type": "assistant_transfer",
+          "data": {
+            "assistant_id": 14765,
+            "description": "Transfer to the Support Assistant when the customer needs technical help.",
+            "message_before_transfer": "Sure — let me transfer you to our support specialist.",
+            "speak_transfer_greeting": true
+          }
+        }
+      ],
       "is_webhook_active": true,
       "webhook_url": "https://example.com/webhook",
       "inbound_webhook_url": "https://example.com/inbound-webhook",
