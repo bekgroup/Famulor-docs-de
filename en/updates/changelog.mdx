@@ -9,6 +9,51 @@ keywords: ["Famulor changelog", "product updates", "release notes", "AI telephon
 
 Stay informed about new capabilities and improvements. We ship updates frequently to elevate your Voice AI and automation workflows.
 
+## May 22, 2026
+
+### 💬 WhatsApp Coexistence — keep the Business app on your phone
+
+You can now connect a WhatsApp sender in **Coexistence mode**. Your team keeps using the official WhatsApp Business app on their phones — your AI assistant runs on Famulor in parallel.
+
+Chats, contacts, and labels stay where they are. No migration, no re-training the team.
+
+<Frame>
+<img src="/images/whatsapp-coexistence-en.png" alt="Create WhatsApp Sender — Coexistence with WhatsApp Business app option" />
+</Frame>
+
+Pick **Coexistence with WhatsApp Business app** when creating a sender — no phone number entry required.
+
+### ⏱ Response delay for WhatsApp — wait for the full message
+
+Customers rarely send one clean message. It's three quick texts, a photo, then a question. Until now, the assistant replied to each piece separately.
+
+With **response delay** (0–300 seconds), the assistant waits before replying so the full thought lands in one turn.
+
+- **Per assistant** — set the delay in the assistant form; leave at **0** for instant replies
+
+### 📞 Outbound limits — clear view, fair rules
+
+Shared platform numbers follow carrier daily limits. The new **Limits** page in the user menu (next to **My profile**) shows your allowance, today's usage, and your trust tier.
+
+<Frame>
+<img src="/images/limits-outboundcalls.png" alt="Outbound call limits overview in the Famulor app" />
+</Frame>
+
+- **Inbound & SIP trunk** — not counted against the daily outbound cap
+- **Request an increase** — workflow on the page; verified accounts can move up tiers
+- **Your own carrier** — banner links to BYO Telephony for unlimited outbound on your trunk
+- **Campaigns** — hit the cap today, resume automatically tomorrow
+
+### 🚀 Voice engine upgrade — smoother calls everywhere
+
+We've upgraded the core voice engine. Expect smoother audio, fewer mid-call drops, and faster turn-taking — across every voice mode.
+
+### 🛠 Other improvements & fixes
+
+- **Delete campaigns via API** — new `DELETE /campaign/{id}` endpoint; running campaigns stop automatically before deletion
+- **Assistant transfer over API** — `assistant_transfer` now persists when configured via the assistant API; self-transfers are blocked
+- **Mid-call tool test** — test tool configs during a live call without leaving the assistant setup
+
 ## May 10, 2026
 
 ### 🧠 GPT Realtime 2 — better prompt following
