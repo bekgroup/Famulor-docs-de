@@ -1,0 +1,63 @@
+---
+title: "Kampagne löschen"
+api: "DELETE https://app.famulor.de/api/user/campaign/{id}"
+description: "Eine Outbound-Kampagne per API löschen. Laufende Kampagnen werden vor dem Löschen automatisch gestoppt; Leads und Telefonnummern-Zuweisungen werden freigegeben."
+---
+
+Dieser Endpunkt ermöglicht es Ihnen, eine Kampagne zu löschen, die dem authentifizierten Benutzer gehört. Ist die Kampagne gerade aktiv, wird sie vor dem Löschen automatisch gestoppt.
+
+### Pfad-Parameter
+
+<ParamField path="id" type="integer" required>
+  Die eindeutige ID der zu löschenden Kampagne
+</ParamField>
+
+### Antwort-Felder
+
+<ResponseField name="message" type="string">
+  Bestätigung, dass die Kampagne erfolgreich gelöscht wurde
+</ResponseField>
+
+### Fehlerantworten
+
+<ResponseField name="404 Not Found">
+  <Expandable title="Fehlerantwort">
+    <ResponseField name="message" type="string">
+      Fehlermeldung, wenn die Kampagne nicht gefunden wurde oder nicht dem authentifizierten Benutzer gehört
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<CodeGroup>
+```bash cURL
+curl -X DELETE "https://app.famulor.de/api/user/campaign/2324" \
+  -H "Authorization: Bearer YOUR_API_TOKEN"
+```
+</CodeGroup>
+
+<ResponseExample>
+
+```json 200 Erfolg
+{
+  "message": "Campaign deleted successfully"
+}
+```
+
+```json 404 Nicht gefunden
+{
+  "message": "Campaign not found"
+}
+```
+
+</ResponseExample>
+
+### Hinweise
+
+- Es können nur Kampagnen gelöscht werden, die dem authentifizierten Benutzer gehören
+- Laufende Kampagnen werden vor dem Löschen automatisch gestoppt
+- Alle mit der Kampagne verknüpften Leads werden entfernt
+- Telefonnummern-Zuweisungen der Kampagne werden freigegeben
+
+<Tip>
+Passende Seiten: [Introduction](/de/api-reference/introduction) und [Authentication Guide](/de/developers/authentication-guide) und [API Integration Examples](/de/developers/api-integration-examples).
+</Tip>

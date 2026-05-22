@@ -645,7 +645,8 @@
                 "pages": [
                   "en/api-reference/campaigns/create",
                   "en/api-reference/campaigns/list",
-                  "en/api-reference/campaigns/update-status"
+                  "en/api-reference/campaigns/update-status",
+                  "en/api-reference/campaigns/delete"
                 ]
               },
               {
@@ -1397,7 +1398,8 @@
                 "pages": [
                   "de/api-reference/campaigns/create",
                   "de/api-reference/campaigns/list",
-                  "de/api-reference/campaigns/update-status"
+                  "de/api-reference/campaigns/update-status",
+                  "de/api-reference/campaigns/delete"
                 ]
               },
               {
