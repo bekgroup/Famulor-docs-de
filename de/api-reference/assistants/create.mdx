@@ -123,32 +123,32 @@ Die API unterstützt drei Engine-Modi mit unterschiedlichen Fähigkeiten:
 ### Built-in Tools
 
 <ParamField body="tools" type="array">
-  Array aktivierter Built-in Tools. Jedes Tool hat ein `type`-Feld und tool-spezifische Felder.
+  Array integrierter Tools. Jedes Tool hat ein `type`-Feld und tool-spezifische Felder. Bei [Assistent aktualisieren](/de/api-reference/assistants/update) **ersetzt dies alle bestehenden integrierten Tools** — übergeben Sie ein leeres Array `[]`, um alle Tools zu entfernen.
 
   <Expandable title="Tool-Typen">
     **call\_transfer** - Den Anruf an eine andere Telefonnummer weiterleiten
 
-    * `phone_number` (erforderlich): Zielnummer (z.B. "+1234567890")
-    * `description`: Wann weitergeleitet werden soll
-    * `custom`: Wenn true, kann die KI die Transfer-Nummer dynamisch bestimmen
-    * `timezone`: Zeitzone für Verfügbarkeiten
-    * `warm_transfer`: Nachricht an den Kunden vor der Weiterleitung (Standard: `false`)
-    * `warm_transfer_message`: Prompt, was die KI vor der Weiterleitung sagen soll (z.B. „Sagen Sie dem Kunden, dass der Anruf weitergeleitet wird.“)
+    * `phone_number` (erforderlich): Telefonnummer für die Weiterleitung
+    * `description`: Wann der Anruf weitergeleitet werden soll
+    * `custom`: Wenn true, kann die KI die Weiterleitungsnummer dynamisch bestimmen
+    * `timezone`: Zeitzone für die Erreichbarkeit der Weiterleitung
+    * `warm_transfer`: Nachricht an den Kunden vor der Weiterleitung senden (Standard: `false`)
+    * `warm_transfer_message`: Prompt, was die KI vor der Weiterleitung sagen soll (z. B. „Sagen Sie dem Kunden, dass der Anruf weitergeleitet wird.“)
 
     **warm\_call\_transfer** - Warm-Transfer mit Supervisor-Briefing
 
-    * `supervisor_phone` (erforderlich): Telefonnummer für den Warm-Transfer (z.B. "+14155552001"). Bei `custom_sip` stattdessen SIP-Adresse oder interne Durchwahl.
+    * `supervisor_phone` (erforderlich): Telefonnummer für den Warm-Transfer (z. B. „+14155552001“). Bei aktiviertem `custom_sip` stattdessen SIP-Adresse oder interne Durchwahl.
     * `outbound_phone_id` (erforderlich): ID der Telefonnummer, mit der der Supervisor angerufen wird. Siehe [Telefonnummern abrufen](/de/api-reference/assistants/phone-numbers).
-    * `description` (erforderlich): **Wann transferieren** – wann die KI den Warm-Transfer auslösen soll (z.B. „An einen menschlichen Ansprechpartner weiterleiten, wenn der Kunde mit einer echten Person sprechen möchte.“)
-    * `custom_sip`: Custom-SIP-Adresse oder interne Durchwahl statt Telefonnummer (Standard: `false`)
-    * `caller_id_mode`: Welche Nummer der Supervisor sieht. Optionen: `outbound_number` (Standard), `customer_number`, `custom`
+    * `description` (erforderlich): Wann transferieren — beschreibt, wann die KI den Warm-Transfer auslösen soll (z. B. „An einen menschlichen Supervisor weiterleiten, wenn der Kunde mit einer echten Person sprechen möchte.“)
+    * `custom_sip`: Eigene SIP-Adresse oder interne Durchwahl statt Telefonnummer (Standard: `false`)
+    * `caller_id_mode`: Welche Nummer der Supervisor beim Anruf sieht. Optionen: `outbound_number` (Standard — Outbound-Nummer), `customer_number` (Anrufernummer), `custom` (eigene Nummer)
     * `custom_caller_id`: Eigene Nummer für den Supervisor. Nur bei `caller_id_mode: custom`.
-    * `hold_music`: Wartemusik. Optionen: `hold_music` (Standard), `none`
-    * `hold_music_volume`: Lautstärke der Wartemusik 0–100 (Standard: `80`)
-    * `hold_message`: Ansage an den Anrufer vor dem Halten (Standard: „Bitte warten Sie, während ich Sie mit einem Ansprechpartner verbinde.“)
-    * `summary_instructions`: Anweisung, wie die KI den Supervisor einweisen soll (Standard: Wer ruft an, warum, warum Mensch nötig – 2–3 Sätze.)
-    * `briefing_initial_message`: Erste Ansage der KI an den Supervisor (Standard: „Hallo! Ich habe einen Anrufer, der Unterstützung braucht. Darf ich die Situation kurz schildern?“)
-    * `connected_message`: Ansage an den Anrufer nach Verbindung mit dem Supervisor (Standard: „Sie sind jetzt mit einem Ansprechpartner verbunden.“)
+    * `hold_music`: Audio während des Wartens. Optionen: `hold_music` (Standard — Standard-Wartemusik), `none` (Stille)
+    * `hold_music_volume`: Lautstärke der Wartemusik, 0–100 (Standard: `80`)
+    * `hold_message`: Ansage an den Anrufer vor dem Halten (Standard: „Bitte warten Sie, während ich Sie mit einem Supervisor verbinde.“)
+    * `summary_instructions`: Anweisung, wie die KI den Supervisor briefen soll (Standard: „Stellen Sie das Gespräch aus Ihrer Sicht vor:\n- WER ruft an (Name, Firma falls erwähnt)\n- WARUM sie angerufen haben (Ziel oder Problem)\n- WARUM jetzt ein Mensch nötig ist\n\nHalten Sie es kurz (2-3 Sätze).“)
+    * `briefing_initial_message`: Erste Nachricht der KI an den Supervisor (Standard: „Hallo! Ich habe einen Anrufer in der Leitung, der Ihre Hilfe braucht. Darf ich Sie kurz einweisen?“)
+    * `connected_message`: Ansage an den Anrufer nach Verbindung mit dem Supervisor (Standard: „Sie sind jetzt mit einem Supervisor verbunden. Ich überlasse Sie ihm.“)
 
     **end\_call** - Den Anruf programmgesteuert beenden
 
@@ -156,11 +156,11 @@ Die API unterstützt drei Engine-Modi mit unterschiedlichen Fähigkeiten:
 
     **dtmf\_input** - DTMF-Töne senden (Tastatureingabe)
 
-    * `description`: Wann DTMF genutzt werden soll (z.B. IVR-Navigation)
+    * `description`: Wann DTMF-Eingabe verwendet werden soll (z. B. IVR-Navigation)
 
     **collect\_keypad** - Tastatureingabe vom Anrufer erfassen
 
-    * `timeout`: Wartezeit in Sekunden, 1–30 (Standard: 5)
+    * `timeout`: Sekunden bis zur Eingabe, 1–30 (Standard: `5`)
     * `stop_key`: Taste zum Beenden. Optionen: `#` (Standard), `*`
 
     **calendar\_integration** - Termine über Cal.com planen
@@ -168,32 +168,38 @@ Die API unterstützt drei Engine-Modi mit unterschiedlichen Fähigkeiten:
     * `calcom_api_key` (erforderlich): Ihr Cal.com API-Schlüssel
     * `calcom_event_slug` (erforderlich): Event-Typ-Slug von Cal.com
     * `calcom_team_slug`: Team-Slug, wenn der Event zu einem Cal.com-Team gehört
-    * `calcom_endpoint`: API-Region. Optionen: `us` (Standard – `https://api.cal.com`), `eu` (`https://api.cal.eu`), `custom` (nutzt `calcom_custom_endpoint`)
-    * `calcom_custom_endpoint`: Eigene Cal.com API-URL. Nur bei `calcom_endpoint: custom` (z.B. `https://my-calcom-instance.com`).
-    * `calcom_booking_fields`: Array benutzerdefinierter Buchungsfelder. Pro Feld: `slug`, `type`, `label`, optional `required`, `options` für Select.
+    * `calcom_endpoint`: Cal.com API-Region. Optionen: `us` (Standard — `https://api.cal.com`), `eu` (`https://api.cal.eu`), `custom` (nutzt `calcom_custom_endpoint`)
+    * `calcom_custom_endpoint`: Eigene Cal.com API-Basis-URL. Nur bei `calcom_endpoint: custom` (z. B. `https://my-calcom-instance.com`).
+    * `calcom_booking_fields`: Array benutzerdefinierter Buchungsfelder. Pro Feld: `slug` (erforderlich), `type` (erforderlich, z. B. „text“, „email“, „phone“, „select“), `label` (erforderlich), `required` (Standard: `false`), `options` (Optionen für Select-Felder)
     * `description`: Wann Terminbuchung angeboten werden soll
+
+    **assistant\_transfer** - Gespräch während des Anrufs an einen anderen KI-Assistenten übergeben (tauscht Stimme, LLM und STT zum Ziel-Assistenten)
+
+    * `assistant_id` (erforderlich): ID des Ziel-Assistenten. Muss zu Ihrem Konto gehören und darf nicht der aktualisierte Assistent selbst sein (kein Self-Transfer).
+    * `description`: Wann transferiert werden soll (max. 500 Zeichen, Standard: „Übergeben Sie das Gespräch an diesen Assistenten, wenn es passend ist.“)
+    * `message_before_transfer`: Optionale Nachricht, die die KI vor dem Wechsel spricht (max. 500 Zeichen).
+    * `speak_transfer_greeting`: Wenn true, spricht der Ziel-Assistent nach dem Transfer seine konfigurierte Erstnachricht (Standard: `true`)
   </Expandable>
 
   ```json  theme={null}
   "tools": [
     {
-      "type": "call_transfer",
-      "phone_number": "+1234567890",
-      "description": "Weiterleiten, wenn der Kunde menschlichen Support wünscht"
+      "type": "dtmf_input",
+      "description": "IVR bei Bedarf navigieren"
     },
     {
       "type": "warm_call_transfer",
-      "supervisor_phone": "+1234567891",
+      "supervisor_phone": "+1234567890",
       "outbound_phone_id": 7,
-      "description": "An einen menschlichen Ansprechpartner weiterleiten, wenn der Kunde mit einer echten Person sprechen möchte.",
+      "description": "An einen menschlichen Supervisor weiterleiten, wenn der Kunde mit einer echten Person sprechen möchte.",
       "custom_sip": false,
       "caller_id_mode": "outbound_number",
       "hold_music": "hold_music",
       "hold_music_volume": 80,
-      "hold_message": "Bitte warten Sie, während ich Sie mit einem Ansprechpartner verbinde.",
-      "summary_instructions": "Kurz aus Ihrer Sicht: Wer ruft an, warum, warum wird ein Mensch benötigt. 2–3 Sätze.",
-      "briefing_initial_message": "Hallo! Ich habe einen Anrufer, der Unterstützung braucht. Darf ich die Situation kurz schildern?",
-      "connected_message": "Sie sind jetzt mit einem Ansprechpartner verbunden."
+      "hold_message": "Bitte warten Sie, während ich Sie mit einem Supervisor verbinde.",
+      "summary_instructions": "Stellen Sie das Gespräch aus Ihrer Sicht vor:\n- WER ruft an (Name, Firma falls erwähnt)\n- WARUM sie angerufen haben (Ziel oder Problem)\n- WARUM jetzt ein Mensch nötig ist\n\nHalten Sie es kurz (2-3 Sätze).",
+      "briefing_initial_message": "Hallo! Ich habe einen Anrufer in der Leitung, der Ihre Hilfe braucht. Darf ich Sie kurz einweisen?",
+      "connected_message": "Sie sind jetzt mit einem Supervisor verbunden. Ich überlasse Sie ihm."
     },
     {
       "type": "collect_keypad",
@@ -201,8 +207,15 @@ Die API unterstützt drei Engine-Modi mit unterschiedlichen Fähigkeiten:
       "stop_key": "#"
     },
     {
+      "type": "assistant_transfer",
+      "assistant_id": 14765,
+      "description": "An den Support-Assistenten übergeben, wenn der Kunde technische Hilfe braucht.",
+      "message_before_transfer": "Gerne — ich verbinde Sie mit unserem Support-Spezialisten.",
+      "speak_transfer_greeting": true
+    },
+    {
       "type": "end_call",
-      "description": "Anruf beenden, wenn der Kunde die Zufriedenheit bestätigt"
+      "description": "Anruf beenden wenn fertig"
     }
   ]
   ```
@@ -456,23 +469,30 @@ Die API unterstützt drei Engine-Modi mit unterschiedlichen Fähigkeiten:
   },
   "tool_ids": [1, 5],
   "tools": [
-    {"type": "end_call", "description": "Anruf beenden, wenn der Kunde zufrieden ist"},
-    {"type": "call_transfer", "phone_number": "+1234567890", "description": "Weiterleiten an Support"},
+    {"type": "dtmf_input", "description": "IVR bei Bedarf navigieren"},
     {
       "type": "warm_call_transfer",
       "supervisor_phone": "+1234567891",
       "outbound_phone_id": 7,
-      "description": "An einen menschlichen Ansprechpartner weiterleiten, wenn der Kunde mit einer echten Person sprechen möchte.",
+      "description": "An einen menschlichen Supervisor weiterleiten, wenn der Kunde mit einer echten Person sprechen möchte.",
       "custom_sip": false,
       "caller_id_mode": "outbound_number",
       "hold_music": "hold_music",
       "hold_music_volume": 80,
-      "hold_message": "Bitte warten Sie, während ich Sie mit einem Ansprechpartner verbinde.",
-      "summary_instructions": "Kurz aus Ihrer Sicht: Wer ruft an, warum, warum wird ein Mensch benötigt. 2–3 Sätze.",
-      "briefing_initial_message": "Hallo! Ich habe einen Anrufer, der Unterstützung braucht. Darf ich die Situation kurz schildern?",
-      "connected_message": "Sie sind jetzt mit einem Ansprechpartner verbunden."
+      "hold_message": "Bitte warten Sie, während ich Sie mit einem Supervisor verbinde.",
+      "summary_instructions": "Stellen Sie das Gespräch aus Ihrer Sicht vor:\n- WER ruft an (Name, Firma falls erwähnt)\n- WARUM sie angerufen haben (Ziel oder Problem)\n- WARUM jetzt ein Mensch nötig ist\n\nHalten Sie es kurz (2-3 Sätze).",
+      "briefing_initial_message": "Hallo! Ich habe einen Anrufer in der Leitung, der Ihre Hilfe braucht. Darf ich Sie kurz einweisen?",
+      "connected_message": "Sie sind jetzt mit einem Supervisor verbunden. Ich überlasse Sie ihm."
     },
-    {"type": "collect_keypad", "timeout": 5, "stop_key": "#"}
+    {"type": "collect_keypad", "timeout": 5, "stop_key": "#"},
+    {
+      "type": "assistant_transfer",
+      "assistant_id": 14765,
+      "description": "An den Support-Assistenten übergeben, wenn der Kunde technische Hilfe braucht.",
+      "message_before_transfer": "Gerne — ich verbinde Sie mit unserem Support-Spezialisten.",
+      "speak_transfer_greeting": true
+    },
+    {"type": "end_call", "description": "Anruf beenden, wenn der Kunde zufrieden ist"}
   ],
   "reengagement_interval": 20,
   "reengagement_prompt": "Sind Sie noch dran?"

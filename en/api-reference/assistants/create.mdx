@@ -122,77 +122,83 @@ The API supports three engine modes with different capabilities:
 ### Built-in Tools
 
 <ParamField body="tools" type="array">
-  Array of activated built-in tools. Each tool has a `type` field and tool-specific fields.
+  Array of built-in tools. Each tool has a `type` field and tool-specific fields. On [Update Assistant](/en/api-reference/assistants/update), this **replaces all existing built-in tools** — pass an empty array `[]` to remove all tools.
 
   <Expandable title="Tool Types">
     **call_transfer** - Transfer the call to another phone number
 
-    * `phone_number` (required): Destination number (e.g., "+1234567890")
-    * `description`: When to transfer
-    * `custom`: If true, the AI can dynamically determine the transfer number
-    * `timezone`: Time zone for availabilities
-    * `warm_transfer`: Message to the customer before transfer (default: `false`)
-    * `warm_transfer_message`: Prompt for what the AI should say before the transfer (e.g., "Inform the customer the call is being transferred.")
+    * `phone_number` (required): Phone number to transfer to
+    * `description`: When to transfer the call
+    * `custom`: If true, AI can determine transfer number dynamically
+    * `timezone`: Timezone for transfer availability
+    * `warm_transfer`: Send a message to the customer before transferring (default: `false`)
+    * `warm_transfer_message`: Prompt telling the AI what to say before transferring (e.g., “Tell the customer that the call is being transferred.”)
 
     **warm_call_transfer** - Warm transfer with supervisor briefing
 
-    * `supervisor_phone` (required): Phone number for the warm transfer (e.g., "+14155552001"). For `custom_sip` instead SIP address or internal extension.
-    * `outbound_phone_id` (required): ID of the phone number used to call the supervisor. See [Retrieve Phone Numbers](/en/api-reference/assistants/phone-numbers).
-    * `description` (required): **When to transfer** – when the AI should trigger the warm transfer (e.g., "Transfer to a human agent if the customer wants to speak to a real person.")
-    * `custom_sip`: Custom SIP address or internal extension instead of phone number (default: `false`)
-    * `caller_id_mode`: Which number the supervisor sees. Options: `outbound_number` (default), `customer_number`, `custom`
-    * `custom_caller_id`: Custom number for the supervisor, only with `caller_id_mode: custom`.
-    * `hold_music`: Hold music. Options: `hold_music` (default), `none`
-    * `hold_music_volume`: Hold music volume 0–100 (default: `80`)
-    * `hold_message`: Announcement to the caller before hold (default: "Please wait while I connect you to an agent.")
-    * `summary_instructions`: Instruction on how the AI should brief the supervisor (default: who is calling, why, why a human is needed – 2–3 sentences.)
-    * `briefing_initial_message`: AI’s initial message to the supervisor (default: "Hello! I have a caller who needs assistance. May I briefly explain the situation?")
-    * `connected_message`: Message to the caller after connection with the supervisor (default: "You are now connected to an agent.")
+    * `supervisor_phone` (required): Phone number to dial for the warm transfer (e.g., “+14155552001”). If `custom_sip` is enabled, this is a SIP address or internal extension instead.
+    * `outbound_phone_id` (required): ID of the phone number used to dial the supervisor. See [Retrieve Phone Numbers](/en/api-reference/assistants/phone-numbers).
+    * `description` (required): When to transfer — describes when the AI should initiate the warm transfer (e.g., “Transfer the call to a human supervisor when the customer requests to speak with a real person.”)
+    * `custom_sip`: Enable to enter a custom SIP address or internal extension instead of a phone number (default: `false`)
+    * `caller_id_mode`: What phone number the supervisor sees when receiving the call. Options: `outbound_number` (default — shows the outbound phone number), `customer_number` (shows the caller’s number), `custom` (shows a custom number)
+    * `custom_caller_id`: Custom phone number shown to supervisor. Only used when `caller_id_mode` is `custom`.
+    * `hold_music`: Audio played to the caller while on hold. Options: `hold_music` (default — plays default hold music), `none` (silence, no music)
+    * `hold_music_volume`: Volume level for hold music, 0–100 (default: `80`)
+    * `hold_message`: Message spoken to caller before placing them on hold (default: “Please hold while I connect you with a supervisor.”)
+    * `summary_instructions`: Instructions for how the AI should brief the supervisor about the call (default: “Introduce the conversation from your perspective:\n- WHO is calling (name, company if mentioned)\n- WHY they called (their goal or problem)\n- WHY a human is needed at this point\n\nKeep it brief (2-3 sentences).”)
+    * `briefing_initial_message`: The first message the AI says to the supervisor when they answer (default: “Hello! I have a caller on the line who needs your assistance. May I brief you on the situation?”)
+    * `connected_message`: Message spoken to caller after supervisor is connected (default: “You are now connected with a supervisor. I’ll leave you to it.”)
 
-    **end_call** - Programmatically end the call
+    **end_call** - End the call programmatically
 
     * `description`: When the AI should end the call
 
     **dtmf_input** - Send DTMF tones (keypad input)
 
-    * `description`: When to use DTMF (e.g., IVR navigation)
+    * `description`: When to use DTMF input (for IVR navigation)
 
     **collect_keypad** - Collect keypad input from the caller
 
-    * `timeout`: Wait time in seconds, 1–30 (default: 5)
-    * `stop_key`: Key to end input. Options: `#` (default), `*`
+    * `timeout`: Seconds to wait for input, 1–30 (default: `5`)
+    * `stop_key`: Key that ends input. Options: `#` (default), `*`
 
     **calendar_integration** - Schedule appointments via Cal.com
 
     * `calcom_api_key` (required): Your Cal.com API key
-    * `calcom_event_slug` (required): Event type slug from Cal.com
+    * `calcom_event_slug` (required): The event type slug from Cal.com
     * `calcom_team_slug`: Team slug if the event belongs to a Cal.com team
-    * `calcom_endpoint`: API region. Options: `us` (default – `https://api.cal.com`), `eu` (`https://api.cal.eu`), `custom` (uses `calcom_custom_endpoint`)
-    * `calcom_custom_endpoint`: Custom Cal.com API URL. Only for `calcom_endpoint: custom` (e.g., `https://my-calcom-instance.com`).
-    * `calcom_booking_fields`: Array of custom booking fields. Each field: `slug`, `type`, `label`, optionally `required`, `options` for select.
-    * `description`: When to offer appointment booking
+    * `calcom_endpoint`: Cal.com API region. Options: `us` (default — `https://api.cal.com`), `eu` (`https://api.cal.eu`), `custom` (uses `calcom_custom_endpoint`)
+    * `calcom_custom_endpoint`: Custom Cal.com API base URL. Only used when `calcom_endpoint` is `custom` (e.g., `https://my-calcom-instance.com`).
+    * `calcom_booking_fields`: Array of custom booking fields for the event. Each field has: `slug` (required), `type` (required, e.g. “text”, “email”, “phone”, “select”), `label` (required), `required` (default: `false`), `options` (array of options for select fields)
+    * `description`: When to offer scheduling
+
+    **assistant_transfer** - Hand off the conversation to a different AI assistant mid-call (swaps voice, LLM, and STT to the target assistant)
+
+    * `assistant_id` (required): ID of the target assistant. Must belong to your account and cannot be the assistant being updated (no self-transfer).
+    * `description`: When to transfer (max 500 chars, default: “Transfer the conversation to this assistant when appropriate.”)
+    * `message_before_transfer`: Optional message the AI speaks before switching to the target assistant (max 500 chars).
+    * `speak_transfer_greeting`: If true, the target assistant speaks its configured initial message after the transfer completes (default: `true`)
   </Expandable>
 
   ```json  theme={null}
   "tools": [
     {
-      "type": "call_transfer",
-      "phone_number": "+1234567890",
-      "description": "Transfer when customer requests human support"
+      "type": "dtmf_input",
+      "description": "Navigate IVR when needed"
     },
     {
       "type": "warm_call_transfer",
-      "supervisor_phone": "+1234567891",
+      "supervisor_phone": "+1234567890",
       "outbound_phone_id": 7,
-      "description": "Transfer to a human agent if the customer wants to speak to a real person.",
+      "description": "Transfer the call to a human supervisor when the customer requests to speak with a real person.",
       "custom_sip": false,
       "caller_id_mode": "outbound_number",
       "hold_music": "hold_music",
       "hold_music_volume": 80,
-      "hold_message": "Please wait while I connect you to an agent.",
-      "summary_instructions": "Briefly from your perspective: Who is calling, why, why a human is needed. 2–3 sentences.",
-      "briefing_initial_message": "Hello! I have a caller who needs assistance. May I briefly explain the situation?",
-      "connected_message": "You are now connected to an agent."
+      "hold_message": "Please hold while I connect you with a supervisor.",
+      "summary_instructions": "Introduce the conversation from your perspective:\n- WHO is calling (name, company if mentioned)\n- WHY they called (their goal or problem)\n- WHY a human is needed at this point\n\nKeep it brief (2-3 sentences).",
+      "briefing_initial_message": "Hello! I have a caller on the line who needs your assistance. May I brief you on the situation?",
+      "connected_message": "You are now connected with a supervisor. I'll leave you to it."
     },
     {
       "type": "collect_keypad",
@@ -200,8 +206,15 @@ The API supports three engine modes with different capabilities:
       "stop_key": "#"
     },
     {
+      "type": "assistant_transfer",
+      "assistant_id": 14765,
+      "description": "Transfer to the Support Assistant when the customer needs technical help.",
+      "message_before_transfer": "Sure — let me transfer you to our support specialist.",
+      "speak_transfer_greeting": true
+    },
+    {
       "type": "end_call",
-      "description": "End call when customer confirms satisfaction"
+      "description": "End call when done"
     }
   ]
   ```
@@ -455,23 +468,30 @@ The API supports three engine modes with different capabilities:
   },
   "tool_ids": [1, 5],
   "tools": [
-    {"type": "end_call", "description": "End call when the customer is satisfied"},
-    {"type": "call_transfer", "phone_number": "+1234567890", "description": "Transfer to support"},
+    {"type": "dtmf_input", "description": "Navigate IVR when needed"},
     {
       "type": "warm_call_transfer",
       "supervisor_phone": "+1234567891",
       "outbound_phone_id": 7,
-      "description": "Transfer to a human agent if the customer wants to speak to a real person.",
+      "description": "Transfer the call to a human supervisor when the customer requests to speak with a real person.",
       "custom_sip": false,
       "caller_id_mode": "outbound_number",
       "hold_music": "hold_music",
       "hold_music_volume": 80,
-      "hold_message": "Please wait while I connect you to an agent.",
-      "summary_instructions": "Briefly from your perspective: Who is calling, why, why a human is needed. 2–3 sentences.",
-      "briefing_initial_message": "Hello! I have a caller who needs assistance. May I briefly explain the situation?",
-      "connected_message": "You are now connected to an agent."
+      "hold_message": "Please hold while I connect you with a supervisor.",
+      "summary_instructions": "Introduce the conversation from your perspective:\n- WHO is calling (name, company if mentioned)\n- WHY they called (their goal or problem)\n- WHY a human is needed at this point\n\nKeep it brief (2-3 sentences).",
+      "briefing_initial_message": "Hello! I have a caller on the line who needs your assistance. May I brief you on the situation?",
+      "connected_message": "You are now connected with a supervisor. I'll leave you to it."
     },
-    {"type": "collect_keypad", "timeout": 5, "stop_key": "#"}
+    {"type": "collect_keypad", "timeout": 5, "stop_key": "#"},
+    {
+      "type": "assistant_transfer",
+      "assistant_id": 14765,
+      "description": "Transfer to the Support Assistant when the customer needs technical help.",
+      "message_before_transfer": "Sure — let me transfer you to our support specialist.",
+      "speak_transfer_greeting": true
+    },
+    {"type": "end_call", "description": "End call when the customer is satisfied"}
   ],
   "reengagement_interval": 20,
   "reengagement_prompt": "Are you still there?"
