@@ -25,7 +25,7 @@ Sowohl `https://mcp.famulor.io/` als auch `https://mcp.famulor.io/mcp` funktioni
 
 ## Schnellstart
 
-1. Server im Client hinzufügen (siehe [Client-spezifische Einrichtung](#client-spezifische-einrichtung)).
+1. Server im Client hinzufügen (siehe [ChatGPT](#chatgpt), [Claude](#claude) oder [weitere Clients](#weitere-clients)).
 2. Bei Aufforderung OAuth-Anmeldung im Browser abschließen und Ihren Famulor API-Schlüssel einfügen.
 3. In natürlicher Sprache fragen, z. B. *„Zeige meine letzten 10 Anrufe“* oder *„Liste meine Assistenten“*.
 
@@ -69,7 +69,37 @@ Famulor ist in **ChatGPT** (Web) als **eigene App** verfügbar. Sie benötigen e
   alt="ChatGPT listet mit Famulor MCP die letzten Anrufe auf"
 />
 
-## Client-spezifische Einrichtung
+## Claude
+
+Famulor funktioniert in **Claude Desktop** (eigener Connector) und **Claude Code** (CLI). Beide nutzen OAuth — melden Sie sich mit Ihrem [API-Schlüssel](https://app.famulor.de/api-keys) an, wenn Sie dazu aufgefordert werden.
+
+### Claude Desktop
+
+1. **Claude** → **Einstellungen** → **Connectors** öffnen.
+2. **Benutzerdefinierten Connector hinzufügen** wählen.
+3. Ausfüllen:
+
+| Feld | Wert |
+| --- | --- |
+| **Name** | `Famulor` |
+| **URL** | `https://mcp.famulor.io/mcp` |
+
+4. **Hinzufügen** klicken und OAuth-Anmeldung im Browser abschließen.
+
+<img
+  src="/images/mcp/claude-add-connector.png"
+  alt="Famulor als benutzerdefinierten MCP-Connector in Claude Desktop hinzufügen"
+/>
+
+### Famulor in Claude nutzen
+
+1. Neuen Chat starten und den Connector **Famulor** für die Konversation aktivieren.
+2. In natürlicher Sprache fragen — z. B. *„Nutze Famulor und zeige mir meine letzten Anrufe“*.
+
+<img
+  src="/images/mcp/claude-famulor-calls.png"
+  alt="Claude listet mit Famulor MCP die letzten Anrufe in einer Tabelle auf"
+/>
 
 ### Claude Code
 
@@ -79,17 +109,7 @@ claude mcp add --transport http famulor https://mcp.famulor.io/mcp
 
 Server zuerst hinzufügen — bei Aufforderung mit Ihrem [API-Schlüssel](https://app.famulor.de/api-keys) anmelden.
 
-### Claude Desktop
-
-**Einstellungen → Connectors → Benutzerdefinierten Connector hinzufügen**
-
-```
-https://mcp.famulor.io/mcp
-```
-
-URL einfügen und bei Aufforderung anmelden.
-
-### Cursor
+## Weitere Clients
 
 **Global:** Cursor **Einstellungen → Tools & MCP → New MCP Server** (öffnet `~/.cursor/mcp.json`)
 

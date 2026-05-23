@@ -25,7 +25,7 @@ Both `https://mcp.famulor.io/` and `https://mcp.famulor.io/mcp` work — paste e
 
 ## Quick start
 
-1. Add the server in your client (see [client-specific setup](#client-specific-setup) below).
+1. Add the server in your client (see [ChatGPT](#chatgpt), [Claude](#claude), or [other clients](#other-clients) below).
 2. When prompted, complete OAuth sign-in in the browser and paste your Famulor API key.
 3. Ask in natural language, e.g. *"Show my last 10 calls"* or *"List my assistants"*.
 
@@ -69,7 +69,37 @@ Famulor is available as a **custom app** in ChatGPT (web). You need a ChatGPT pl
   alt="ChatGPT using Famulor MCP to list recent calls"
 />
 
-## Client-specific setup
+## Claude
+
+Famulor works in **Claude Desktop** (custom connector) and **Claude Code** (CLI). Both use OAuth — sign in with your [API key](https://app.famulor.de/api-keys) when prompted.
+
+### Claude Desktop
+
+1. Open **Claude** → **Settings** → **Connectors**.
+2. Click **Add custom connector**.
+3. Fill in:
+
+| Field | Value |
+| --- | --- |
+| **Name** | `Famulor` |
+| **URL** | `https://mcp.famulor.io/mcp` |
+
+4. Click **Add**, then complete OAuth sign-in in the browser.
+
+<img
+  src="/images/mcp/claude-add-connector.png"
+  alt="Add Famulor as a custom MCP connector in Claude Desktop"
+/>
+
+### Use Famulor in Claude
+
+1. Start a new chat and enable the **Famulor** connector for the conversation.
+2. Ask in natural language — e.g. *"Use Famulor and show me my last calls"*.
+
+<img
+  src="/images/mcp/claude-famulor-calls.png"
+  alt="Claude using Famulor MCP to list recent calls in a table"
+/>
 
 ### Claude Code
 
@@ -79,17 +109,7 @@ claude mcp add --transport http famulor https://mcp.famulor.io/mcp
 
 Add the server first — authenticate with your [API key](https://app.famulor.de/api-keys) when prompted.
 
-### Claude Desktop
-
-**Settings → Connectors → Add custom connector**
-
-```
-https://mcp.famulor.io/mcp
-```
-
-Paste the URL, then sign in when prompted.
-
-### Cursor
+## Other clients
 
 **Global:** Cursor **Settings → Tools & MCP → New MCP Server** (opens `~/.cursor/mcp.json`)
 
