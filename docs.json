@@ -298,13 +298,6 @@
                 ]
               },
               {
-                "group": "MCP",
-                "icon": "plug",
-                "pages": [
-                  "en/mcp/client"
-                ]
-              },
-              {
                 "group": "Whitepapers & Resources",
                 "icon": "graduation-cap",
                 "pages": [
@@ -1049,13 +1042,6 @@
                   "de/troubleshooting/ai-behavior",
                   "de/troubleshooting/byop",
                   "de/troubleshooting/automatic-forwarding-on-rejection"
-                ]
-              },
-              {
-                "group": "MCP",
-                "icon": "plug",
-                "pages": [
-                  "de/mcp/client"
                 ]
               },
               {
