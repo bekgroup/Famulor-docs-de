@@ -1,37 +1,94 @@
 ---
 title: "MCP Server"
 icon: "plug"
-description: "Model Context Protocol Server for the Famulor Voice Agent Platform"
+description: "Famulor Model Context Protocol server — control voice agents, calls, campaigns, and more from any MCP client"
 ---
 
+# Famulor MCP Server
 
-# 🤖 Famulor MCP Server
-
-An MCP (Model Context Protocol) Server for the **Famulor Voice Agent Platform** that enables AI-powered phone calls, assistant management, and call data retrieval via ChatGPT and other MCP-compatible clients.
+Control your Famulor AI voice agents — calls, leads, campaigns, knowledge bases, conversations, WhatsApp, SIP trunks — directly from **ChatGPT**, **Claude**, **Cursor**, **Windsurf**, **VS Code**, and any other MCP-compatible client.
 
 <img
   src="/images/provisioning/sip-ai/famulor-mcp-server.png"
   alt="Famulor MCP Server"
 />
 
-<CardGroup cols={2}>
-  <Card
-    title="GitHub Repository"
-    icon="github"
-    href="https://github.com/bekservice/Famulor-MCP"
-  >
-    Source code and documentation
+<CardGroup cols={3}>
+  <Card title="Connect a client" icon="desktop" href="/en/mcp/client">
+    Setup for ChatGPT, Claude, Cursor, and more
   </Card>
-  <Card
-    title="Online MCP Server"
-    icon="globe"
-    href="https://mcp.famulor.io"
-  >
-    Hosted server without installation
+  <Card title="Hosted server" icon="globe" href="https://mcp.famulor.io">
+    mcp.famulor.io — no install required
+  </Card>
+  <Card title="GitHub" icon="github" href="https://github.com/bekservice/Famulor-MCP">
+    Source code and deployment
   </Card>
 </CardGroup>
 
-## Demo Video
+## Overview
+
+The Famulor MCP server exposes the full Famulor platform as **66 tools** your AI assistant can call. Ask in plain language — the model chooses the right tools.
+
+**Example prompts:**
+
+- *"Create a German sales assistant using GPT-4.1-mini and the Susi voice"*
+- *"Start campaign #42 and add these 50 leads"*
+- *"Show me all calls today where the goal wasn't reached"*
+
+<Note>
+New to MCP? Start with [MCP Client setup](/en/mcp/client) — add the server URL, then sign in with OAuth and your API key in the browser.
+</Note>
+
+## Hosted endpoints
+
+| Endpoint | URL |
+| --- | --- |
+| **MCP (canonical)** | `https://mcp.famulor.io/mcp` |
+| **Base URL** | `https://mcp.famulor.io/` (also accepted) |
+| **Health** | [https://mcp.famulor.io/health](https://mcp.famulor.io/health) |
+| **OAuth metadata** | `https://mcp.famulor.io/.well-known/oauth-authorization-server` |
+
+Both `https://mcp.famulor.io/` and `https://mcp.famulor.io/mcp` work as MCP URLs in connector dialogs.
+
+## What you can do
+
+| Area | Capabilities |
+| --- | --- |
+| **Assistants** | Create, update, delete AI voice agents · list voices, languages, LLM/multimodal models, TTS/STT providers · toggle inbound and conversation-ended webhooks |
+| **Calls** | Make outbound calls · list / get / delete call records |
+| **Campaigns** | Create campaigns, retry rules, allowed-hours windows · start, stop, delete |
+| **Leads** | Add leads (incl. secondary contacts) · update status and merge variables · delete |
+| **Knowledge bases** | Create knowledge bases · upload website-scraped documents · update / delete |
+| **Phone numbers** | Search by country and dial pattern · purchase · release · SIP trunk CRUD |
+| **Conversations** | List, read, reply to chats · enable/disable AI per conversation (human takeover) |
+| **WhatsApp** | List senders and templates · check 24h session window · send template or freeform messages |
+| **SMS** | Send via your purchased numbers |
+| **Mid-call tools** | Register custom HTTP integrations the assistant can call mid-conversation |
+| **AI Replies** | Generate context-aware replies for external chat platforms |
+
+## Authentication
+
+The server uses **MCP OAuth 2.1** (RFC 8414 metadata, RFC 7591 Dynamic Client Registration, PKCE S256):
+
+1. Your MCP client opens a browser tab.
+2. You paste your [Famulor API key](https://app.famulor.de/api-keys).
+3. The client receives an access token; the server encrypts it with **AES-256-GCM**.
+
+**Your API key never lands in any database** — it lives only inside the token your client stores. Tokens expire after **30 days**; your client re-prompts for sign-in.
+
+<Warning>
+Do not put your API key in `mcp.json`, environment variables in shared configs, or version control. Use OAuth sign-in through your client.
+</Warning>
+
+## Supported clients
+
+- **ChatGPT** — custom app with OAuth ([setup guide](/en/mcp/client#chatgpt))
+- **Claude** — Desktop connectors and Claude Code CLI
+- **Cursor**, **Windsurf**, **VS Code**, **Cline**, **Continue**, **Zed**
+
+See [MCP Client](/en/mcp/client) for step-by-step instructions per client.
+
+## Demo video
 
 <iframe
   className="w-full aspect-video rounded-xl"
@@ -42,405 +99,57 @@ An MCP (Model Context Protocol) Server for the **Famulor Voice Agent Platform** 
   allowFullScreen
 ></iframe>
 
-## Overview
+## Self-hosting
 
-This MCP Server provides access to the Famulor Voice Agent Platform, allowing users to make AI-powered phone calls, manage voice assistants, and retrieve call transcripts and recordings — all directly from any MCP-compatible client such as ChatGPT Desktop, Claude Desktop, or other MCP-compliant applications.
+The hosted server at `https://mcp.famulor.io` works out of the box. To run your own instance:
 
-### 🌐 Online MCP Server
-
-**You can use the hosted MCP server without any local installation:**
-
-- **Server URL**: [https://mcp.famulor.io](https://mcp.famulor.io)
-- **SSE Endpoint**: [https://mcp.famulor.io/sse](https://mcp.famulor.io/sse)
-- **Health Check**: [https://mcp.famulor.io/health](https://mcp.famulor.io/health)
-
-The server is ready to use! For instructions on online usage, see the [Online Deployment Guide](https://github.com/bekservice/Famulor-MCP/blob/main/ONLINE_DEPLOYMENT.md).
-
-## Features
-
-- 📞 **Make Calls** – Initiate AI-powered phone calls
-- 🤖 **Manage Assistants** – Retrieve and manage your AI assistants
-- 📊 **Fetch Call Data** – Get transcripts, recordings, and metadata
-- 🔒 **Secure Authentication** – User-based API key authentication
-
-## Development
+### Deploy to Vercel
 
 ```bash
-# Development with hot reload
-npm run dev
-
-# Build for production
-npm run build
-
-# Start production build
-npm start
-
-# Lint code
-npm run lint
-
-# Format code
-npm run format
+git clone https://github.com/bekservice/Famulor-MCP.git
+cd Famulor-MCP
+vercel --prod
 ```
 
-## Available Tools
+Set these environment variables in the Vercel project:
 
-### Call Tools
+| Variable | Required | Value |
+| --- | --- | --- |
+| `MCP_SECRET` | yes | `openssl rand -hex 32` — encrypts OAuth tokens |
+| `MCP_ISSUER` | recommended | Your public URL, e.g. `https://mcp.example.com` |
 
-<AccordionGroup>
-  <Accordion title="make_call">
-    Initiates a phone call with an AI assistant
-    
-    **Parameters:**
-    - `assistant_id` (required) - The assistant's ID
-    - `phone_number` (required) - Phone number in E.164 format
-    - `variables` (optional) - Variables to pass to the assistant
-  </Accordion>
+Point your domain at the deployment. See the [DEPLOYMENT.md](https://github.com/bekservice/Famulor-MCP/blob/main/DEPLOYMENT.md) guide in the repository for stdio mode and full details.
 
-  <Accordion title="get_call">
-    Retrieves details of a specific call
-    
-    **Parameters:**
-    - `call_id` (required) - Call ID
-  </Accordion>
+### Local development
 
-  <Accordion title="list_calls">
-    Lists all calls with optional filters (paginated)
-    
-    **Parameters:**
-    - `assistant_id` (optional) - Filter by assistant ID
-    - `page` (optional) - Page number (default: 1)
-    - `per_page` (optional) - Calls per page (default: 15)
-    
-    **Returns:** Paginated response with a `data` array containing calls and pagination metadata
-  </Accordion>
-</AccordionGroup>
-
-### Assistant Tools
-
-<AccordionGroup>
-  <Accordion title="get_assistants">
-    Retrieves all available AI assistants (paginated)
-    
-    **Parameters:**
-    - `page` (optional) - Page number (default: 1)
-    - `per_page` (optional) - Assistants per page (default: 10)
-    
-    **Returns:** Paginated response with a `data` array containing assistants and pagination metadata (`current_page`, `per_page`, `total`, `last_page`, `next_page_url`, etc.)
-  </Accordion>
-
-  <Accordion title="get_phone_numbers">
-    Retrieves all available phone numbers for assistant assignment
-    
-    **Parameters:**
-    - `type` (optional) - Filter phone numbers by assistant type: 'inbound' or 'outbound'
-    
-    **Returns:** Array of available phone numbers with details including ID, phone number, country code, type label, and availability status
-  </Accordion>
-
-  <Accordion title="get_models">
-    Retrieves all available LLM models for assistant configuration
-    
-    **Parameters:** None
-    
-    **Returns:** Array of available LLM models with ID and name
-  </Accordion>
-
-  <Accordion title="get_voices">
-    Retrieves all available voices for assistant configuration
-    
-    **Parameters:**
-    - `mode` (optional) - Filter voices by assistant mode: 'pipeline' or 'multimodal'
-    
-    **Returns:** Array of available voices with ID, name, and mode compatibility
-  </Accordion>
-
-  <Accordion title="get_languages">
-    Retrieves all available languages for assistant configuration
-    
-    **Parameters:** None
-    
-    **Returns:** Array of available languages with ID, name, and ISO 639-1 two-letter language code (`iso_2`)
-  </Accordion>
-
-  <Accordion title="update_assistant">
-    Updates the configuration of an existing AI assistant
-    
-    **Parameters:**
-    - `id` (required) - Unique ID of the assistant to update
-    - All other parameters are optional — only specified fields are updated:
-      - `assistant_name` – Assistant name (max 255 chars)
-      - `voice_id` – Voice ID (must exist in available voices)
-      - `language` – Language name (max 100 chars)
-      - `llm_model` – LLM model name (max 100 chars)
-      - `calls_direction` – Call direction type: 'receive' or 'make'
-      - `engine_type` – Engine type: 'pipeline' or 'multimodal'
-      - `timezone` – Timezone (e.g., "Europe/Berlin")
-      - `initial_message` – Initial message the assistant speaks at call start
-      - `system_prompt` – System prompt defining assistant behavior and personality
-      - `phone_number_id` – Phone number ID to assign (set null to remove)
-      - `tool_ids` – Array of mid-call action IDs to sync with the assistant
-      - `endpoint_type` – Voice Activity Detection type: 'vad' or 'ai'
-      - `endpoint_sensitivity` – Endpoint sensitivity level (0-5)
-      - `interrupt_sensitivity` – Interrupt sensitivity level (0-5)
-      - `ambient_sound_volume` – Ambient noise volume (0-1)
-      - `post_call_evaluation` – Whether post-call evaluation is enabled
-      - `send_webhook_only_on_completed` – Whether webhooks are sent only on completed calls
-      - `include_recording_in_webhook` – Whether the recording URL is included in webhook payloads
-      - `is_webhook_active` – Whether webhook notifications are active
-      - `webhook_url` – Webhook URL for post-call notifications (set null to remove)
-      - `use_min_interrupt_words` – Whether minimum interrupt words setting is used
-      - `min_interrupt_words` – Minimum words before an allowed interruption (0-10)
-      - `variables` – Key-value pairs of custom variables for the assistant
-      - `post_call_schema` – Schema definition for post-call data extraction
-      - `end_call_tool` – End-call tool configuration
-      - `llm_temperature` – LLM temperature setting (0-1)
-      - `voice_stability` – Voice stability setting (0-1)
-      - `voice_similarity` – Voice similarity setting (0-1)
-      - `speech_speed` – Speech speed multiplier (0.7-1.2)
-      - `allow_interruptions` – Whether interruptions by callers are allowed
-      - `filler_audios` – Whether filler audio is played during processing
-      - `re_engagement_interval` – Re-engagement interval in seconds (7-600)
-      - `max_call_duration` – Maximum call duration in seconds (20-1200)
-      - `max_silence_duration` – Maximum silence duration in seconds (1-120)
-      - `end_call_on_voicemail` – Whether to end calls upon voicemail detection
-      - `noise_cancellation` – Whether noise cancellation is enabled
-      - `record_call` – Whether the call should be recorded
-      - `who_speaks_first` – Who speaks first in the call: 'AI assistant' or 'Customer'
-    
-    **Returns:** Success message and updated assistant data
-  </Accordion>
-</AccordionGroup>
-
-### Conversation Tools
-
-<AccordionGroup>
-  <Accordion title="get_conversation">
-    Retrieves the full message history of an existing Famulor conversation
-    
-    **Parameters:**
-    - `uuid` (required) – The UUID of the conversation to retrieve
-    
-    **Returns:** Complete conversation history with messages, roles, and function calls
-  </Accordion>
-
-  <Accordion title="create_conversation">
-    Starts a new chat session with an AI assistant
-    
-    **Parameters:**
-    - `assistant_id` (required) – UUID of the assistant handling the conversation
-    - `type` (optional) – Conversation type: 'widget' (paid) or 'test' (free for development)
-    - `variables` (optional) – Custom variables to inject into the assistant context (accessible via template syntax in the system prompt)
-    
-    **Returns:** Conversation ID, status, and initial history (if the assistant has a start message)
-    
-    **Note:** Widget conversations are paid; test conversations are free for development
-  </Accordion>
-
-  <Accordion title="send_message">
-    Sends a user message to an existing conversation and receives the assistant’s reply
-    
-    **Parameters:**
-    - `uuid` (required) – UUID of the existing conversation
-    - `message` (required) – User message to send (max 2000 characters)
-    
-    **Returns:** Assistant reply message and any function calls executed during the response
-    
-    **Note:** Widget conversations cost $0.01 per user message; test conversations are free
-  </Accordion>
-</AccordionGroup>
-
-### Campaign Tools
-
-<AccordionGroup>
-  <Accordion title="list_campaigns">
-    Lists all campaigns from the Famulor account
-    
-    **Parameters:** None
-    
-    **Returns:** Array of all campaigns with details including status, settings, and scheduling info
-  </Accordion>
-
-  <Accordion title="update_campaign_status">
-    Starts or stops a campaign within the Famulor system
-    
-    **Parameters:**
-    - `campaign_id` (required) – ID of the campaign to update
-    - `action` (required) – Action to perform: 'start' or 'stop'
-    
-    **Returns:** Success message and updated campaign status
-    
-    **Note:** Starting a campaign requires sufficient leads and balance. Stopping a campaign cancels any ongoing calls.
-  </Accordion>
-</AccordionGroup>
-
-### Lead Tools
-
-<AccordionGroup>
-  <Accordion title="list_leads">
-    Lists all leads for the authenticated user (paginated)
-    
-    **Parameters:**
-    - `page` (optional) – Page number (default: 1)
-    - `per_page` (optional) – Leads per page (default: 15)
-    
-    **Returns:** Paginated response with a `data` array containing leads and pagination metadata
-  </Accordion>
-
-  <Accordion title="create_lead">
-    Creates a new lead in the Famulor system
-    
-    **Parameters:**
-    - `phone_number` (required) – Phone number in E.164 format
-    - `campaign_id` (required) – Campaign ID
-    - `variables` (optional) – Array of variables to pass to the lead
-    - `allow_dupplicate` (optional) – Whether duplicate leads within a campaign are allowed
-    
-    **Returns:** Created lead information with ID
-    
-    **Note:** Use `get_assistants` to obtain assistant information and variables usable when creating leads
-  </Accordion>
-
-  <Accordion title="update_lead">
-    Updates an existing lead in your campaigns
-    
-    **Parameters:**
-    - `id` (required) – ID of the lead to update
-    - `campaign_id` (optional) – ID of the campaign to assign the lead to
-    - `phone_number` (optional) – Phone number (automatically formatted in E.164)
-    - `status` (optional) – Status: 'created', 'completed', or 'reached-max-retries'
-    - `variables` (optional) – Custom variables to merge with existing lead variables
-    
-    **Returns:** Success message confirming the lead was updated
-  </Accordion>
-</AccordionGroup>
-
-### SMS Tools
-
-<AccordionGroup>
-  <Accordion title="send_sms">
-    Sends an SMS message via your phone number
-    
-    **Parameters:**
-    - `from` (required) – ID of your phone number to send from (must be SMS-capable)
-    - `to` (required) – Recipient phone number in international format (e.g., "+4915123456789")
-    - `body` (required) – SMS message content (max 300 characters)
-    
-    **Returns:** Success message and SMS data including SMS ID, segments, costs, and status
-    
-    **Note:**
-    - The sender phone number must belong to the authenticated user and be SMS-capable
-    - Sufficient account balance is required to cover SMS costs
-    - SMS costs vary by destination country and are charged per segment
-    - Long messages may be split into multiple segments, increasing costs
-  </Accordion>
-</AccordionGroup>
-
-### Mid-Call Tools
-
-<AccordionGroup>
-  <Accordion title="list_mid_call_tools">
-    Lists all mid-call tools enabling AI assistants to interact with external APIs during calls
-    
-    **Parameters:** None
-    
-    **Returns:** Array of all mid-call tools with details including name, description, endpoint, method, timeout, headers, and schema
-  </Accordion>
-
-  <Accordion title="get_mid_call_tool">
-    Retrieves detailed information about a specific mid-call tool
-    
-    **Parameters:**
-    - `id` (required) – Unique ID of the mid-call tool
-    
-    **Returns:** Full tool information including configuration and schema
-  </Accordion>
-
-  <Accordion title="update_mid_call_tool">
-    Updates an existing mid-call tool
-    
-    **Parameters:**
-    - `id` (required) – Unique ID of the tool to update
-    - `name` (optional) – Tool name (lowercase letters and underscores only)
-    - `description` (optional) – Detailed explanation of when and how the AI should use this tool
-    - `endpoint` (optional) – Valid URL of the API endpoint to call
-    - `method` (optional) – HTTP method: GET, POST, PUT, PATCH, or DELETE
-    - `timeout` (optional) – Request timeout in seconds (1-30)
-    - `headers` (optional) – HTTP headers to send with the request
-    - `schema` (optional) – Parameter schema that AI will extract and send
-    
-    **Returns:** Success message and updated tool data
-  </Accordion>
-</AccordionGroup>
-
-## Project Structure
-
+```bash
+npm install
+echo "MCP_SECRET=$(openssl rand -hex 32)" > .env
+npm run dev:http
+# server on http://localhost:8787
 ```
-Famulor-MCP/
-├── src/
-│   ├── index.ts          # MCP Server entry point
-│   ├── server.ts         # MCP Server setup
-│   ├── tools/            # Famulor API tools
-│   │   ├── calls.ts      # Call operations
-│   │   ├── assistants.ts # Assistant operations
-│   │   ├── conversations.ts # Conversation operations
-│   │   ├── campaigns.ts   # Campaign operations
-│   │   ├── leads.ts       # Lead operations
-│   │   ├── sms.ts         # SMS operations
-│   │   ├── midCallTools.ts # Mid-call tools operations
-│   │   └── index.ts      # Tools export
-│   ├── auth/             # Authentication
-│   │   └── famulor.ts    # Famulor API client
-│   └── types/            # TypeScript types
-│       └── famulor.ts    # Famulor API types
-├── dist/                 # Compiled JavaScript (generated)
-├── package.json
-├── tsconfig.json
-├── README.md
-├── QUICKSTART.md         # Quick start guide
-├── MCP_SETUP.md          # Detailed setup guide
-├── DEPLOYMENT.md          # Deployment guide
-└── ONLINE_DEPLOYMENT.md   # Online deployment guide
+
+```bash
+curl http://localhost:8787/health
+curl http://localhost:8787/.well-known/oauth-authorization-server
 ```
 
 ## About MCP
 
-This is a **Model Context Protocol (MCP) Server** providing access to the Famulor Voice Agent Platform. MCP is a protocol that allows AI assistants like ChatGPT, Claude, and other AI tools to securely connect with external data sources and tools.
-
-The server exposes Famulor’s voice agent capabilities as MCP tools, enabling any MCP-compatible client (ChatGPT Desktop, Claude Desktop, or others) to interact with the Famulor platform.
-
-## Security
-
-- ✅ Each user configures their own API key
-- ✅ API keys are stored locally in your MCP config file (encrypted by your MCP client)
-- ✅ No API keys are sent over the network (stdio is local)
-- ❌ **Never commit your MCP config file with API keys to version control**
-- ❌ **Never share your API key publicly**
+[Model Context Protocol (MCP)](https://modelcontextprotocol.io/) lets AI assistants securely connect to external tools and data. The Famulor MCP server maps platform APIs to MCP tools so clients like ChatGPT and Claude can manage your voice agents on your behalf — after you authenticate with your API key via OAuth.
 
 ## Resources
 
-- 🌐 **Online MCP Server**: [https://mcp.famulor.io](https://mcp.famulor.io)
-- [Famulor Voice Agent Homepage](https://www.famulor.io)
-- [Famulor Voice Agent Platform](https://app.famulor.de)
-- [Famulor API Documentation](https://docs.famulor.io/api-reference/)
-- [MCP Protocol Documentation](https://modelcontextprotocol.io/)
-- [ChatGPT Desktop App](https://chatgpt.com/download)
-- [Claude Desktop App](https://claude.ai/download)
-- [GitHub Repository](https://github.com/bekservice/Famulor-MCP)
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a pull request.
+- [MCP Client setup](/en/mcp/client)
+- [Famulor API reference](/en/api-reference/)
+- [Get an API key](https://app.famulor.de/api-keys)
+- [GitHub — Famulor-MCP](https://github.com/bekservice/Famulor-MCP)
+- [Famulor platform](https://app.famulor.de)
 
 ## License
 
-Proprietary license – use only permitted for Famulor users
-
-This software may only be used, copied, and modified if you are using the Famulor Voice Agent Platform. See the [LICENSE](https://github.com/bekservice/Famulor-MCP/blob/main/LICENSE) file for full details.
-
-## Author
-
-[bekservice](https://github.com/bekservice)
+[MIT](https://github.com/bekservice/Famulor-MCP/blob/main/LICENSE) — see the GitHub repository for details.
 
 <Tip>
-Related pages: [Client](/en/mcp/client), and [Overview](/en/developers/overview).
+Related pages: [MCP Client](/en/mcp/client), [Famulor Skill](/en/mcp/famulor-skill).
 </Tip>
