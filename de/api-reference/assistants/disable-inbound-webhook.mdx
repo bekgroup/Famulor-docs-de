@@ -33,16 +33,6 @@ Dieser Endpunkt deaktiviert Inbound-Webhook-Benachrichtigungen für einen Assist
   Detaillierte Validierungsfehler für jedes Feld
 </ResponseField>
 
-<CodeGroup>
-```bash Inbound-Webhook deaktivieren
-curl -X POST "https://app.famulor.de/api/user/assistants/disable-inbound-webhook" \
-  -H "Authorization: Bearer YOUR_API_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "assistant_id": 123
-  }'
-```
-</CodeGroup>
 
 <ResponseExample>
 

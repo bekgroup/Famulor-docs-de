@@ -87,17 +87,10 @@ Dieser Endpunkt ermöglicht es Ihnen, detaillierte Informationen über einen bes
   Datum und Uhrzeit der letzten Aktualisierung des Anrufs
 </ResponseField>
 
-<CodeGroup>
-```bash Anruf abrufen
-curl -X GET "https://app.famulor.de/api/user/calls/123" \
-     -H "Authorization: Bearer YOUR_API_KEY" \
-     -H "Content-Type: application/json"
-```
-</CodeGroup>
 
 <ResponseExample>
 
-```json 200 Response
+```json 200 Response theme={null}
 {
   "id": 123,
   "assistant_name": "Sales Assistant",
@@ -130,6 +123,12 @@ curl -X GET "https://app.famulor.de/api/user/calls/123" \
   "recording_url": "https://awsstorage.famulor.de/calls/123.mp3",
   "created_at": "2025-08-04 14:30:00",
   "updated_at": "2025-08-04 14:34:05"
+}
+```
+
+```json 404 Response theme={null}
+{
+  "message": "Call not found"
 }
 ```
 

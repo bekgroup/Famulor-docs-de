@@ -89,7 +89,7 @@ This endpoint allows you to retrieve detailed information about a specific call 
 
 <ResponseExample>
 
-```json 200 Response
+```json 200 Response theme={null}
 {
   "id": 123,
   "assistant_name": "Sales Assistant",
@@ -122,6 +122,12 @@ This endpoint allows you to retrieve detailed information about a specific call 
   "recording_url": "https://awsstorage.famulor.de/calls/123.mp3",
   "created_at": "2025-08-04 14:30:00",
   "updated_at": "2025-08-04 14:34:05"
+}
+```
+
+```json 404 Response theme={null}
+{
+  "message": "Call not found"
 }
 ```
 

@@ -63,54 +63,6 @@ Dieser Endpunkt aktualisiert den Namen und/oder die Beschreibung einer bestehend
   Das Aktualisieren des Namens oder der Beschreibung einer Wissensdatenbank hat keinen Einfluss auf ihre Dokumente oder den Verarbeitungsstatus.
 </Note>
 
-<CodeGroup>
-```bash cURL
-curl -X PUT "https://app.famulor.de/api/user/knowledgebases/1" \
-  -H "Authorization: Bearer YOUR_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "name": "Aktualisierte Produktdokumentation",
-    "description": "Aktualisierte Beschreibung für unsere technischen Dokumente"
-  }'
-```
-
-```javascript JavaScript
-const response = await fetch("https://app.famulor.de/api/user/knowledgebases/1", {
-  method: "PUT",
-  headers: {
-    "Content-Type": "application/json",
-    Authorization: "Bearer YOUR_API_KEY",
-  },
-  body: JSON.stringify({
-    name: "Aktualisierte Produktdokumentation",
-    description: "Aktualisierte Beschreibung für unsere technischen Dokumente",
-  }),
-});
-
-const data = await response.json();
-```
-
-```python Python
-import requests
-
-payload = {
-    "name": "Aktualisierte Produktdokumentation",
-    "description": "Aktualisierte Beschreibung für unsere technischen Dokumente",
-}
-
-response = requests.put(
-    "https://app.famulor.de/api/user/knowledgebases/1",
-    headers={
-        "Content-Type": "application/json",
-        "Authorization": "Bearer YOUR_API_KEY",
-    },
-    json=payload,
-    timeout=10,
-)
-
-print(response.json())
-```
-</CodeGroup>
 
 <ResponseExample>
 

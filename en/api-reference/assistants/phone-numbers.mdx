@@ -50,22 +50,6 @@ The API returns a direct array of available phone numbers:
 - Phone numbers are returned in a values collection format (indexed array)
 - Use the `id` field when assigning phone numbers to assistants
 
-<CodeGroup>
-```bash Retrieve all available phone numbers
-curl -H "Authorization: Bearer YOUR_API_TOKEN" \
-  "https://app.famulor.de/api/user/assistants/phone-numbers"
-```
-
-```bash Retrieve numbers available only for inbound assistants
-curl -H "Authorization: Bearer YOUR_API_TOKEN" \
-  "https://app.famulor.de/api/user/assistants/phone-numbers?type=inbound"
-```
-
-```bash Retrieve numbers available only for outbound assistants
-curl -H "Authorization: Bearer YOUR_API_TOKEN" \
-  "https://app.famulor.de/api/user/assistants/phone-numbers?type=outbound"
-```
-</CodeGroup>
 
 <ResponseExample>
 
