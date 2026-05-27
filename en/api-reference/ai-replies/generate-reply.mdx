@@ -1,6 +1,6 @@
 ---
 title: "Generate AI Reply"
-api: "POST https://app.famulor.de/api/ai/generate-reply"
+api: "POST https://app.famulor.de/api/user/ai/generate-reply"
 description: "Generates an AI reply using an assistant based on a customer identifier"
 ---
 
@@ -141,14 +141,78 @@ Conversations are automatically stored based on the combination of `assistant_id
 - **Store conversation IDs**: Save the returned `conversation_id` for later reference or debugging
 - **Monitor costs**: Track usage to manage costs, especially for high-volume integrations
 
+<CodeGroup>
+```bash cURL
+curl -X POST "https://app.famulor.de/api/user/ai/generate-reply" \
+  -H "Authorization: Bearer YOUR_API_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "assistant_id": 123,
+    "customer_identifier": "+14155551234",
+    "message": "Hi, I would like to schedule an appointment",
+    "variables": {
+      "customer_name": "John Smith",
+      "source": "whatsapp"
+    }
+  }'
+```
+
+```javascript JavaScript
+const response = await fetch("https://app.famulor.de/api/user/ai/generate-reply", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: "Bearer YOUR_API_TOKEN",
+  },
+  body: JSON.stringify({
+    assistant_id: 123,
+    customer_identifier: "+14155551234",
+    message: "Hi, I would like to schedule an appointment",
+    variables: {
+      customer_name: "John Smith",
+      source: "whatsapp",
+    },
+  }),
+});
+
+const data = await response.json();
+```
+
+```python Python
+import requests
+
+payload = {
+    "assistant_id": 123,
+    "customer_identifier": "+14155551234",
+    "message": "Hi, I would like to schedule an appointment",
+    "variables": {
+        "customer_name": "John Smith",
+        "source": "whatsapp",
+    },
+}
+
+response = requests.post(
+    "https://app.famulor.de/api/user/ai/generate-reply",
+    headers={
+        "Content-Type": "application/json",
+        "Authorization": "Bearer YOUR_API_TOKEN",
+    },
+    json=payload,
+    timeout=10,
+)
+
+print(response.json())
+```
+</CodeGroup>
+
 
 <ResponseExample>
 
 ```json 200 Success
 {
   "success": true,
-  "conversation_id": "f3wqsa-asd23-grt4-ggg34-derf4",
-  "customer_identifier": "+49155551234",
+  "conversation_id": "7c9e6679-7425-40de-944b-e07fc1f90ae7",
+  "customer_identifier": "+14155551234",
   "reply": "Hi John! I'd be happy to help you schedule an appointment. What day and time work best for you?",
   "function_calls": [],
   "ai_disabled": false
@@ -158,8 +222,8 @@ Conversations are automatically stored based on the combination of `assistant_id
 ```json 200 Success (With Function Calls)
 {
   "success": true,
-  "conversation_id": "f3wqsa-asd23-grt4-ggg34-derf4",
-  "customer_identifier": "+49155551234",
+  "conversation_id": "7c9e6679-7425-40de-944b-e07fc1f90ae7",
+  "customer_identifier": "+14155551234",
   "reply": "I've checked our calendar and we have availability tomorrow at 2 PM and Friday at 10 AM. Which works better for you?",
   "function_calls": [
     {

@@ -1,6 +1,6 @@
 ---
 title: "KI-Antwort generieren"
-api: "POST https://app.famulor.de/api/ai/generate-reply"
+api: "POST https://app.famulor.de/api/user/ai/generate-reply"
 description: "Generiert eine KI-Antwort mit einem Assistenten basierend auf einer Kundenkennung"
 ---
 
@@ -144,12 +144,12 @@ Konversationen werden automatisch basierend auf der Kombination aus `assistant_i
 
 <CodeGroup>
 ```bash cURL
-curl -X POST "https://app.famulor.de/api/ai/generate-reply" \
+curl -X POST "https://app.famulor.de/api/user/ai/generate-reply" \
   -H "Authorization: Bearer YOUR_API_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
     "assistant_id": 123,
-    "customer_identifier": "+49155551234",
+    "customer_identifier": "+14155551234",
     "message": "Hi, I would like to schedule an appointment",
     "variables": {
       "customer_name": "John Smith",
@@ -159,7 +159,7 @@ curl -X POST "https://app.famulor.de/api/ai/generate-reply" \
 ```
 
 ```javascript JavaScript
-const response = await fetch("https://app.famulor.de/api/ai/generate-reply", {
+const response = await fetch("https://app.famulor.de/api/user/ai/generate-reply", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -167,7 +167,7 @@ const response = await fetch("https://app.famulor.de/api/ai/generate-reply", {
   },
   body: JSON.stringify({
     assistant_id: 123,
-    customer_identifier: "+49155551234",
+    customer_identifier: "+14155551234",
     message: "Hi, I would like to schedule an appointment",
     variables: {
       customer_name: "John Smith",
@@ -184,7 +184,7 @@ import requests
 
 payload = {
     "assistant_id": 123,
-    "customer_identifier": "+49155551234",
+    "customer_identifier": "+14155551234",
     "message": "Hi, I would like to schedule an appointment",
     "variables": {
         "customer_name": "John Smith",
@@ -193,7 +193,7 @@ payload = {
 }
 
 response = requests.post(
-    "https://app.famulor.de/api/ai/generate-reply",
+    "https://app.famulor.de/api/user/ai/generate-reply",
     headers={
         "Content-Type": "application/json",
         "Authorization": "Bearer YOUR_API_TOKEN",
@@ -211,8 +211,8 @@ print(response.json())
 ```json 200 Success
 {
   "success": true,
-  "conversation_id": "f3wqsa-asd23-grt4-ggg34-derf4",
-  "customer_identifier": "+49155551234",
+  "conversation_id": "7c9e6679-7425-40de-944b-e07fc1f90ae7",
+  "customer_identifier": "+14155551234",
   "reply": "Hi John! I'd be happy to help you schedule an appointment. What day and time work best for you?",
   "function_calls": [],
   "ai_disabled": false
@@ -222,8 +222,8 @@ print(response.json())
 ```json 200 Success (Mit Funktionsaufrufen)
 {
   "success": true,
-  "conversation_id": "f3wqsa-asd23-grt4-ggg34-derf4",
-  "customer_identifier": "+49155551234",
+  "conversation_id": "7c9e6679-7425-40de-944b-e07fc1f90ae7",
+  "customer_identifier": "+14155551234",
   "reply": "I've checked our calendar and we have availability tomorrow at 2 PM and Friday at 10 AM. Which works better for you?",
   "function_calls": [
     {
