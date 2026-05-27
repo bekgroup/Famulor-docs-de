@@ -47,32 +47,32 @@ Dieser Endpunkt ermöglicht es Ihnen, detaillierte Informationen über einen bes
   Der aktuelle Status des Anrufs
 </ResponseField>
 
-<ResponseField name="transcript" type="string">
-  Das Transkript der Anrufkonversation
+<ResponseField name="transcript" type="array">
+  Das Transkript der Anrufkonversation als Array von Eintraegen
 </ResponseField>
 
 <ResponseField name="variables" type="object">
   Während des Anrufs gesammelte Variablen
 </ResponseField>
 
-<ResponseField name="evaluation" type="object">
-  Bewertungsdaten für die Anrufleistung
+<ResponseField name="evaluation" type="array">
+  Bewertungsdaten fuer die Anrufleistung als Array von Feldern
 </ResponseField>
 
 <ResponseField name="webhook_response" type="object">
   Antwort von konfigurierten Webhooks
 </ResponseField>
 
-<ResponseField name="carrier_cost" type="number">
+<ResponseField name="carrier_cost" type="string">
   Die vom Anbieter berechneten Kosten für diesen Anruf
 </ResponseField>
 
-<ResponseField name="total_cost" type="number">
+<ResponseField name="total_cost" type="string">
   Die Gesamtkosten des Anrufs inklusive aller Gebühren
 </ResponseField>
 
 <ResponseField name="answered_by" type="string">
-  Wer den Anruf beantwortet hat (human, machine oder unknown)
+  Wer den Anruf beantwortet hat (human, machine oder unknown), oder `null`
 </ResponseField>
 
 <ResponseField name="recording_url" type="string">
@@ -100,27 +100,33 @@ Dieser Endpunkt ermöglicht es Ihnen, detaillierte Informationen über einen bes
   "assistant_phone_number": "+1234567890",
   "client_phone_number": "+1987654321",
   "status": "completed",
-  "transcript": "Hello, this is Sarah from Famulor. How are you doing today?...",
-  "variables": {
-    "customer_name": "John Smith",
-    "interest_level": "high",
-    "follow_up_date": "2025-08-15"
-  },
-  "evaluation": {
-    "sentiment": "positive",
-    "outcome": "qualified_lead",
-    "score": 8.5
-  },
+  "transcript": [
+    {
+      "text": "Hello, this is Sarah from Famulor. How are you doing today?",
+      "type": "transcript",
+      "sender": "bot",
+      "timestamp": 1754055268.525861
+    }
+  ],
+  "variables": [],
+  "evaluation": [
+    {
+      "name": "status",
+      "type": "string",
+      "value": "qualified_lead",
+      "description": "Outcome of the call"
+    }
+  ],
   "webhook_response": {
     "status": "success",
     "data": {
       "crm_contact_id": "abc123"
     }
   },
-  "carrier_cost": 0.02,
-  "total_cost": 0.025,
-  "answered_by": "human",
-  "recording_url": "https://awsstorage.famulor.de/calls/123.mp3",
+  "carrier_cost": "0.02000000",
+  "total_cost": "0.02500000",
+  "answered_by": null,
+  "recording_url": "https://app.famulor.de/media/public/123/call_+491234567890_example.mp4",
   "created_at": "2025-08-04 14:30:00",
   "updated_at": "2025-08-04 14:34:05"
 }

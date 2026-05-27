@@ -98,11 +98,11 @@ This endpoint allows you to list all calls belonging to the authenticated user w
       Response from configured webhooks
     </ResponseField>
 
-    <ResponseField name="carrier_cost" type="number">
+    <ResponseField name="carrier_cost" type="string">
       The cost charged by the carrier for this call
     </ResponseField>
 
-    <ResponseField name="total_cost" type="number">
+    <ResponseField name="total_cost" type="string">
       The total cost of the call including all fees
     </ResponseField>
 
@@ -138,6 +138,26 @@ This endpoint allows you to list all calls belonging to the authenticated user w
 
 <ResponseField name="last_page" type="integer">
   The last page number
+</ResponseField>
+
+<ResponseField name="first_page_url" type="string">
+  URL of the first page
+</ResponseField>
+
+<ResponseField name="last_page_url" type="string">
+  URL of the last page
+</ResponseField>
+
+<ResponseField name="next_page_url" type="string">
+  URL of the next page, or `null`
+</ResponseField>
+
+<ResponseField name="prev_page_url" type="string">
+  URL of the previous page, or `null`
+</ResponseField>
+
+<ResponseField name="path" type="string">
+  Base pagination path
 </ResponseField>
 
 
@@ -190,8 +210,8 @@ This endpoint allows you to list all calls belonging to the authenticated user w
         "crm_updated": true,
         "lead_score": 75
       },
-      "carrier_cost": 0.08,
-      "total_cost": 0.12,
+      "carrier_cost": "0.08000000",
+      "total_cost": "0.12000000",
       "answered_by": "human",
       "recording_url": "https://recordings.famulor.de/call-123456.mp3",
       "created_at": "2024-01-15T10:30:00Z",
@@ -239,8 +259,8 @@ This endpoint allows you to list all calls belonging to the authenticated user w
         }
       ],
       "webhook_response": null,
-      "carrier_cost": 0.05,
-      "total_cost": 0.08,
+      "carrier_cost": "0.05000000",
+      "total_cost": "0.08000000",
       "answered_by": "human",
       "recording_url": null,
       "created_at": "2024-01-15T14:20:00Z",
@@ -248,9 +268,28 @@ This endpoint allows you to list all calls belonging to the authenticated user w
     }
   ],
   "current_page": 1,
+  "first_page_url": "https://app.famulor.de/api/user/calls?page=1",
+  "from": 1,
+  "last_page": 4,
+  "last_page_url": "https://app.famulor.de/api/user/calls?page=4",
+  "links": [
+    {
+      "url": null,
+      "label": "&laquo; Previous",
+      "active": false
+    },
+    {
+      "url": "https://app.famulor.de/api/user/calls?page=1",
+      "label": "1",
+      "active": true
+    }
+  ],
+  "next_page_url": "https://app.famulor.de/api/user/calls?page=2",
+  "path": "https://app.famulor.de/api/user/calls",
   "per_page": 15,
-  "total": 2,
-  "last_page": 1
+  "prev_page_url": null,
+  "to": 15,
+  "total": 52
 }
 ```
 

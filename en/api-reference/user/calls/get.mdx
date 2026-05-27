@@ -46,32 +46,32 @@ This endpoint allows you to retrieve detailed information about a specific call 
   The current status of the call
 </ResponseField>
 
-<ResponseField name="transcript" type="string">
-  The transcript of the call conversation
+<ResponseField name="transcript" type="array">
+  The transcript of the call conversation as an array of entries
 </ResponseField>
 
 <ResponseField name="variables" type="object">
   Variables collected during the call
 </ResponseField>
 
-<ResponseField name="evaluation" type="object">
-  Evaluation data for call performance
+<ResponseField name="evaluation" type="array">
+  Evaluation data for call performance as an array of fields
 </ResponseField>
 
 <ResponseField name="webhook_response" type="object">
   Response from configured webhooks
 </ResponseField>
 
-<ResponseField name="carrier_cost" type="number">
+<ResponseField name="carrier_cost" type="string">
   The carrier-calculated costs for this call
 </ResponseField>
 
-<ResponseField name="total_cost" type="number">
+<ResponseField name="total_cost" type="string">
   The total cost of the call including all fees
 </ResponseField>
 
 <ResponseField name="answered_by" type="string">
-  Who answered the call (human, machine or unknown)
+  Who answered the call (human, machine or unknown), or `null`
 </ResponseField>
 
 <ResponseField name="recording_url" type="string">
@@ -99,27 +99,33 @@ This endpoint allows you to retrieve detailed information about a specific call 
   "assistant_phone_number": "+1234567890",
   "client_phone_number": "+1987654321",
   "status": "completed",
-  "transcript": "Hello, this is Sarah from Famulor. How are you doing today?...",
-  "variables": {
-    "customer_name": "John Smith",
-    "interest_level": "high",
-    "follow_up_date": "2025-08-15"
-  },
-  "evaluation": {
-    "sentiment": "positive",
-    "outcome": "qualified_lead",
-    "score": 8.5
-  },
+  "transcript": [
+    {
+      "text": "Hello, this is Sarah from Famulor. How are you doing today?",
+      "type": "transcript",
+      "sender": "bot",
+      "timestamp": 1754055268.525861
+    }
+  ],
+  "variables": [],
+  "evaluation": [
+    {
+      "name": "status",
+      "type": "string",
+      "value": "qualified_lead",
+      "description": "Outcome of the call"
+    }
+  ],
   "webhook_response": {
     "status": "success",
     "data": {
       "crm_contact_id": "abc123"
     }
   },
-  "carrier_cost": 0.02,
-  "total_cost": 0.025,
-  "answered_by": "human",
-  "recording_url": "https://awsstorage.famulor.de/calls/123.mp3",
+  "carrier_cost": "0.02000000",
+  "total_cost": "0.02500000",
+  "answered_by": null,
+  "recording_url": "https://app.famulor.de/media/public/123/call_+491234567890_example.mp4",
   "created_at": "2025-08-04 14:30:00",
   "updated_at": "2025-08-04 14:34:05"
 }
