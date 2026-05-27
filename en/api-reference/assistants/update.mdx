@@ -125,73 +125,101 @@ This endpoint allows you to update the configuration of an existing AI assistant
   <Expandable title="Tool Types">
     **call_transfer** - Transfer the call to another phone number
 
-    * `phone_number` (required): Phone number for transfer
+    * `phone_number` (required): Phone number to transfer to
     * `description`: When to transfer the call
-    * `custom`: If true, AI can dynamically determine the transfer number
-    * `timezone`: Timezone for the transfer’s availability
-    * `warm_transfer`: Message to the customer before transfer (default: `false`)
-    * `warm_transfer_message`: Prompt what AI should say before transfer (e.g., “Let the customer know the call is being transferred.”)
+    * `custom`: If true, AI can determine transfer number dynamically
+    * `timezone`: Timezone for transfer availability
+    * `warm_transfer`: Send a message to the customer before transferring (default: `false`)
+    * `warm_transfer_message`: Prompt telling the AI what to say before transferring (e.g., “Tell the customer that the call is being transferred.”)
 
     **warm_call_transfer** - Warm transfer with supervisor briefing
 
-    * `supervisor_phone` (required): Phone number for warm transfer (e.g., "+14155552001"). For `custom_sip`, use SIP address or internal extension.
-    * `outbound_phone_id` (required): ID of the phone number used to call the supervisor. See [Get Phone Numbers](/en/api-reference/assistants/phone-numbers).
-    * `description` (required): **When to transfer** – when AI should trigger the warm transfer (e.g., “Transfer to human agent when customer wants to speak to a real person.”)
-    * `custom_sip`: Custom SIP address or internal extension instead of phone number (default: `false`)
-    * `caller_id_mode`: Which number the supervisor sees. Options: `outbound_number` (default), `customer_number`, `custom`
-    * `custom_caller_id`: Custom number for supervisor. Only with `caller_id_mode: custom`.
-    * `hold_music`: Hold music. Options: `hold_music` (default), `none`
-    * `hold_music_volume`: Volume of hold music 0–100 (default: `80`)
-    * `hold_message`: Message to caller before hold (default: “Please wait while I connect you to an agent.”)
-    * `summary_instructions`: Instruction on how AI should brief supervisor (default summary: Who is calling, why, why a human is needed.)
-    * `briefing_initial_message`: AI’s initial message to supervisor (default: “Hello! I have a caller who needs assistance. May I briefly explain the situation?”)
-    * `connected_message`: Message to caller after connecting with supervisor (default: “You are now connected to an agent.”)
+    * `supervisor_phone` (required): Phone number to dial for the warm transfer (e.g., “+14155552001”). If `custom_sip` is enabled, this is a SIP address or internal extension instead.
+    * `outbound_phone_id` (required): ID of the phone number used to dial the supervisor. See [Get Phone Numbers](/en/api-reference/assistants/phone-numbers).
+    * `description` (required): When to transfer — describes when the AI should initiate the warm transfer (e.g., “Transfer the call to a human supervisor when the customer requests to speak with a real person.”)
+    * `custom_sip`: Enable to enter a custom SIP address or internal extension instead of a phone number (default: `false`)
+    * `caller_id_mode`: What phone number the supervisor sees when receiving the call. Options: `outbound_number` (default — shows the outbound phone number), `customer_number` (shows the caller’s number), `custom` (shows a custom number)
+    * `custom_caller_id`: Custom phone number shown to supervisor. Only used when `caller_id_mode` is `custom`.
+    * `hold_music`: Audio played to the caller while on hold. Options: `hold_music` (default — plays default hold music), `none` (silence, no music)
+    * `hold_music_volume`: Volume level for hold music, 0–100 (default: `80`)
+    * `hold_message`: Message spoken to caller before placing them on hold (default: “Please hold while I connect you with a supervisor.”)
+    * `summary_instructions`: Instructions for how the AI should brief the supervisor about the call (default: “Introduce the conversation from your perspective:\n- WHO is calling (name, company if mentioned)\n- WHY they called (their goal or problem)\n- WHY a human is needed at this point\n\nKeep it brief (2-3 sentences).”)
+    * `briefing_initial_message`: The first message the AI says to the supervisor when they answer (default: “Hello! I have a caller on the line who needs your assistance. May I brief you on the situation?”)
+    * `connected_message`: Message spoken to caller after supervisor is connected (default: “You are now connected with a supervisor. I’ll leave you to it.”)
 
-    **end_call** - Programmatically end the call
+    **end_call** - End the call programmatically
 
-    * `description`: When AI should end the call
+    * `description`: When the AI should end the call
 
     **dtmf_input** - Send DTMF tones (keypad input)
 
-    * `description`: When DTMF input is used (e.g., IVR navigation)
+    * `description`: When to use DTMF input (for IVR navigation)
 
-    **collect_keypad** - Collect keypad input from caller
+    **collect_keypad** - Collect keypad input from the caller
 
-    * `timeout`: Wait time in seconds, 1–30 (default: 5)
-    * `stop_key`: Key to end input. Options: `#` (default), `*`
+    * `timeout`: Seconds to wait for input, 1–30 (default: `5`)
+    * `stop_key`: Key that ends input. Options: `#` (default), `*`
 
     **calendar_integration** - Schedule appointments via Cal.com
 
     * `calcom_api_key` (required): Your Cal.com API key
-    * `calcom_event_slug` (required): Cal.com event type slug
+    * `calcom_event_slug` (required): The event type slug from Cal.com
     * `calcom_team_slug`: Team slug if the event belongs to a Cal.com team
-    * `calcom_endpoint`: API region. Options: `us` (default – `https://api.cal.com`), `eu` (`https://api.cal.eu`), `custom` (uses `calcom_custom_endpoint`)
-    * `calcom_custom_endpoint`: Custom Cal.com API URL. Only for `calcom_endpoint: custom` (e.g., `https://my-calcom-instance.com`).
-    * `calcom_booking_fields`: Array of custom booking fields. Each field: `slug`, `type`, `label`, optionally `required`, `options` for Select.
-    * `description`: When to offer appointment booking
+    * `calcom_endpoint`: Cal.com API region. Options: `us` (default — `https://api.cal.com`), `eu` (`https://api.cal.eu`), `custom` (uses `calcom_custom_endpoint`)
+    * `calcom_custom_endpoint`: Custom Cal.com API base URL. Only used when `calcom_endpoint` is `custom` (e.g., `https://my-calcom-instance.com`).
+    * `calcom_booking_fields`: Array of custom booking fields for the event. Each field has: `slug` (required), `type` (required, e.g. “text”, “email”, “phone”, “select”), `label` (required), `required` (default: `false`), `options` (array of options for select fields)
+    * `description`: When to offer scheduling
+
+    **assistant_transfer** - Hand off the conversation to a different AI assistant mid-call (swaps voice, LLM, and STT to the target assistant)
+
+    * `assistant_id` (required): ID of the target assistant. Must belong to your account and cannot be the assistant being updated (no self-transfer).
+    * `description`: When to transfer (max 500 chars, default: “Transfer the conversation to this assistant when appropriate.”)
+    * `message_before_transfer`: Optional message the AI speaks before switching to the target assistant (max 500 chars).
+    * `speak_transfer_greeting`: If true, the target assistant speaks its configured initial message after the transfer completes (default: `true`)
   </Expandable>
 
   ```json  theme={null}
   "tools": [
-    {"type": "dtmf_input", "description": "Navigate IVR as needed"},
+    {
+      "type": "dtmf_input",
+      "description": "Navigate IVR when needed"
+    },
     {
       "type": "warm_call_transfer",
       "supervisor_phone": "+1234567890",
       "outbound_phone_id": 7,
-      "description": "Transfer to a human agent when the customer wants to speak to a real person.",
+      "description": "Transfer the call to a human supervisor when the customer requests to speak with a real person.",
       "custom_sip": false,
       "caller_id_mode": "outbound_number",
       "hold_music": "hold_music",
       "hold_music_volume": 80,
-      "hold_message": "Please wait while I connect you to an agent.",
-      "summary_instructions": "Briefly from your perspective: Who is calling, why, why a human is needed. 2–3 sentences.",
-      "briefing_initial_message": "Hello! I have a caller who needs assistance. May I briefly explain the situation?",
-      "connected_message": "You are now connected to an agent."
+      "hold_message": "Please hold while I connect you with a supervisor.",
+      "summary_instructions": "Introduce the conversation from your perspective:\n- WHO is calling (name, company if mentioned)\n- WHY they called (their goal or problem)\n- WHY a human is needed at this point\n\nKeep it brief (2-3 sentences).",
+      "briefing_initial_message": "Hello! I have a caller on the line who needs your assistance. May I brief you on the situation?",
+      "connected_message": "You are now connected with a supervisor. I'll leave you to it."
     },
-    {"type": "collect_keypad", "timeout": 5, "stop_key": "#"},
-    {"type": "end_call", "description": "End call when done"}
+    {
+      "type": "collect_keypad",
+      "timeout": 5,
+      "stop_key": "#"
+    },
+    {
+      "type": "assistant_transfer",
+      "assistant_id": 14765,
+      "description": "Transfer to the Support Assistant when the customer needs technical help.",
+      "message_before_transfer": "Sure — let me transfer you to our support specialist.",
+      "speak_transfer_greeting": true
+    },
+    {
+      "type": "end_call",
+      "description": "End call when done"
+    }
   ]
   ```
+
+  <Note>
+    When you [list assistants](/en/api-reference/assistants/list), each configured tool is returned as `{ "type": "...", "data": { ... } }` with the same field names nested under `data` (not top-level).
+  </Note>
 </ParamField>
 
 #### Speech and TTS Settings

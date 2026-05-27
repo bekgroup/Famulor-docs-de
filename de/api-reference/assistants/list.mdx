@@ -76,7 +76,12 @@ Dieser Endpunkt ermöglicht es Ihnen, alle KI-Assistenten abzurufen, die dem aut
     </ResponseField>
 
     <ResponseField name="tools" type="array">
-      Array von Tools, die dem Assistenten zur Verfügung stehen
+      Array der konfigurierten Built-in-Tools des Assistenten. Jedes Element hat `type` (Tool-Kennung) und `data` (tool-spezifische Einstellungen). Dieses Response-Format unterscheidet sich vom flachen Objekt in [Create](/de/api-reference/assistants/create)- und [Update](/de/api-reference/assistants/update)-Requests.
+
+      <Expandable title="Response-Element">
+        * `type` — z. B. `end_call`, `call_transfer`, `warm_call_transfer`, `dtmf_input`, `collect_keypad`, `calendar_integration`, `assistant_transfer`
+        * `data` — Objekt mit den Konfigurationsfeldern (gleiche Namen wie im Request-Body, aber unter `data` verschachtelt)
+      </Expandable>
     </ResponseField>
 
     <ResponseField name="is_webhook_active" type="boolean">
@@ -352,7 +357,39 @@ print(response.json())
           "description": "Ist der Kunde interessiert?"
         }
       ],
-      "tools": ["calendar_booking", "crm_integration"],
+      "tools": [
+        {
+          "type": "end_call",
+          "data": {
+            "description": "Anruf beenden wenn fertig"
+          }
+        },
+        {
+          "type": "assistant_transfer",
+          "data": {
+            "description": "An den Support-Assistenten übergeben, wenn der Kunde technische Hilfe braucht.",
+            "assistant_id": 13766,
+            "message_before_transfer": "Gerne — ich verbinde Sie mit unserem Support-Spezialisten.",
+            "speak_transfer_greeting": true
+          }
+        },
+        {
+          "type": "warm_call_transfer",
+          "data": {
+            "supervisor_phone": "+14155552001",
+            "outbound_phone_id": "7",
+            "description": "An einen menschlichen Supervisor weiterleiten, wenn der Kunde mit einer echten Person sprechen möchte.",
+            "custom_sip": false,
+            "caller_id_mode": "outbound_number",
+            "hold_music": "hold_music",
+            "hold_music_volume": 80,
+            "hold_message": "Bitte warten Sie, während ich Sie mit einem Supervisor verbinde.",
+            "summary_instructions": "Stellen Sie das Gespräch aus Ihrer Sicht vor:\n- WER ruft an (Name, Firma falls erwähnt)\n- WARUM sie angerufen haben (Ziel oder Problem)\n- WARUM jetzt ein Mensch nötig ist\n\nHalten Sie es kurz (2-3 Sätze).",
+            "briefing_initial_message": "Hallo! Ich habe einen Anrufer in der Leitung, der Ihre Hilfe braucht. Darf ich Sie kurz einweisen?",
+            "connected_message": "Sie sind jetzt mit einem Supervisor verbunden. Ich überlasse Sie ihm."
+          }
+        }
+      ],
       "is_webhook_active": true,
       "webhook_url": "https://example.com/webhook",
       "inbound_webhook_url": "https://example.com/inbound-webhook",

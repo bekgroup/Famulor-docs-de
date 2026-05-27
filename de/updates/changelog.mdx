@@ -10,6 +10,51 @@ keywords: ["Famulor Changelog", "Produkt-Updates", "Release Notes", "KI-Telefoni
 
 > Bleiben Sie auf dem neuesten Stand — Folgen Sie unseren neuesten Produkt-Updates und Verbesserungen. Wir veröffentlichen regelmäßig neue Features, um Ihre KI-Anruf-Erfahrung zu verbessern.
 
+<Update label="22. Mai 2026" tags={["WhatsApp", "Koexistenz", "Antwortverzögerung", "Outbound Limits", "Voice Engine", "API", "NEU"]} description="WhatsApp-Koexistenz mit Business-App, Antwortverzögerung für WhatsApp, neue Limits-Seite, Voice-Engine-Upgrade und API-Fixes">
+  ## 💬 WhatsApp-Koexistenz — Business-App auf dem Handy behalten
+
+  Sie können jetzt einen WhatsApp-Sender im **Koexistenz-Modus** verbinden. Ihr Team arbeitet weiter in der offiziellen WhatsApp-Business-App — parallel läuft der KI-Assistent auf Famulor.
+
+  Chats, Kontakte und Labels bleiben unverändert. Kein Migrationsprojekt, kein Umgewöhnen für das Team.
+
+  <Frame>
+  <img src="/images/whatsapp-coexistence-de.png" alt="WhatsApp-Sender erstellen — Option Koexistenz mit der WhatsApp-Business-App" />
+  </Frame>
+
+  Beim Erstellen des Senders **Koexistenz mit der WhatsApp-Business-App** wählen — keine Telefonnummer-Eingabe nötig.
+
+  ## ⏱ Antwortverzögerung für WhatsApp — auf die vollständige Nachricht warten
+
+  Kunden schicken selten eine saubere Einzelnachricht. Eher drei kurze Texte, ein Foto, dann die eigentliche Frage. Bisher antwortete der Assistent auf jedes Stück einzeln.
+
+  Mit **Antwortverzögerung** (0–300 Sekunden) wartet der Assistent, bevor er antwortet — der Gedanke kommt in einem Zug an.
+
+  - **Pro Assistent** — Verzögerung im Assistenten-Formular setzen; bei **0** bleibt das Sofort-Antwort-Verhalten
+
+  ## 📞 Ausgehende Limits — transparent, fair geregelt
+
+  Gemeinsame Plattformnummern unterliegen täglichen Carrier-Limits. Die neue Seite **Limits** im Benutzermenü (neben **Mein Profil**) zeigt Kontingent, heutige Nutzung und Ihre Trust-Stufe.
+
+  <Frame>
+  <img src="/images/limits-outboundcalls.png" alt="Übersicht ausgehende Anruflimits in der Famulor-App" />
+  </Frame>
+
+  - **Eingehend & SIP-Trunk** — zählen nicht gegen das tägliche Ausgehend-Kontingent
+  - **Erhöhung anfragen** — Workflow direkt auf der Seite; verifizierte Accounts können in höhere Stufen
+  - **Eigener Carrier** — Banner verlinkt zu BYO Telephony für unbegrenzt ausgehend über Ihren Trunk
+  - **Kampagnen** — Limit heute erreicht, morgen automatisch dort weitermachen, wo Sie aufgehört haben
+
+  ## 🚀 Voice-Engine-Upgrade — flüssigere Calls überall
+
+  Wir haben die Voice Engine im Kern aktualisiert. Erwarten Sie ruhigeres Audio, weniger Abbrüche mitten im Gespräch und schnellere Turn-Taking-Zeiten — in allen Voice-Modi.
+
+  ## 🛠 Weitere Verbesserungen & Fixes
+
+  - **Kampagnen per API löschen** — neuer Endpoint [`DELETE /user/campaign/{id}`](/de/api-reference/campaigns/delete); laufende Kampagnen werden vor dem Löschen automatisch gestoppt
+  - **Assistenten-Transfer per API** — `assistant_transfer` bleibt bei Konfiguration über die Assistant-API erhalten; Self-Transfers werden blockiert
+  - **Mid-Call Tool-Test** — Tool-Konfiguration während eines Live-Calls testen, ohne die Assistenten-Einrichtung zu verlassen
+</Update>
+
 <Update label="10. Mai 2026" tags={["GPT Realtime 2", "Dualplex™", "Cartesia Sonic 3.5", "GPT-5.5", "BYOC", "Telephony", "Changelog", "NEU"]} description="GPT Realtime 2 mit stärkerem Prompt-Following, Cartesia Sonic 3.5, GPT-5.5 im Pipeline-Modus, BYOC-Self-Service, Re-Transkription, Split-View, API-Erweiterungen und Telephony-Fixes">
   ## 🧠 GPT Realtime 2 — Besseres Prompt-Following
 

@@ -298,13 +298,6 @@
                 ]
               },
               {
-                "group": "MCP",
-                "icon": "plug",
-                "pages": [
-                  "en/mcp/client"
-                ]
-              },
-              {
                 "group": "Whitepapers & Resources",
                 "icon": "graduation-cap",
                 "pages": [
@@ -645,7 +638,8 @@
                 "pages": [
                   "en/api-reference/campaigns/create",
                   "en/api-reference/campaigns/list",
-                  "en/api-reference/campaigns/update-status"
+                  "en/api-reference/campaigns/update-status",
+                  "en/api-reference/campaigns/delete"
                 ]
               },
               {
@@ -751,6 +745,7 @@
                 "group": "MCP",
                 "icon": "plug",
                 "pages": [
+                  "en/mcp/client",
                   "en/mcp/server",
                   "en/mcp/famulor-skill"
                 ]
@@ -1047,13 +1042,6 @@
                   "de/troubleshooting/ai-behavior",
                   "de/troubleshooting/byop",
                   "de/troubleshooting/automatic-forwarding-on-rejection"
-                ]
-              },
-              {
-                "group": "MCP",
-                "icon": "plug",
-                "pages": [
-                  "de/mcp/client"
                 ]
               },
               {
@@ -1397,7 +1385,8 @@
                 "pages": [
                   "de/api-reference/campaigns/create",
                   "de/api-reference/campaigns/list",
-                  "de/api-reference/campaigns/update-status"
+                  "de/api-reference/campaigns/update-status",
+                  "de/api-reference/campaigns/delete"
                 ]
               },
               {
@@ -1503,6 +1492,7 @@
                 "group": "MCP",
                 "icon": "plug",
                 "pages": [
+                  "de/mcp/client",
                   "de/mcp/server",
                   "de/mcp/famulor-skill"
                 ]
