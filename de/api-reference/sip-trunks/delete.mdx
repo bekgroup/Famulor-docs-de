@@ -1,21 +1,21 @@
 ---
-title: "SIP-Trunk loeschen"
+title: "SIP-Trunk löschen"
 api: "DELETE https://app.famulor.de/api/user/phone-numbers/{id}"
-description: "SIP-Trunk loeschen und Voice-Infrastruktur bereinigen"
+description: "SIP-Trunk löschen und Voice-Infrastruktur bereinigen"
 ---
 
-Loescht einen SIP-Trunk und entfernt die zugehoerigen Inbound- und Outbound-Trunks aus der Voice-Infrastruktur.
+Löscht einen SIP-Trunk und entfernt die zugehörigen Inbound- und Outbound-Trunks aus der Voice-Infrastruktur.
 
-Hier wird derselbe Endpunkt wie beim Freigeben allgemeiner Telefonnummern verwendet. Bei SIP-Trunks erfolgt die Loeschung sofort (kein Abrechnungszeitraum).
+Hier wird derselbe Endpunkt wie beim Freigeben allgemeiner Telefonnummern verwendet. Bei SIP-Trunks erfolgt die Löschung sofort (kein Abrechnungszeitraum).
 
 <Note>
-  Siehe [Telefonnummer freigeben](/de/api-reference/phone-numbers/release) fuer die vollstaendige Endpunkt-Dokumentation. SIP-Trunks werden sofort geloescht und liefern `"Phone number deleted successfully."` zurueck.
+  Siehe [Telefonnummer freigeben](/de/api-reference/phone-numbers/release) für die vollständige Endpunkt-Dokumentation. SIP-Trunks werden sofort gelöscht und liefern `"Phone number deleted successfully."` zurück.
 </Note>
 
 ### Pfad-Parameter
 
 <ParamField path="id" type="integer" required>
-  Die eindeutige Kennung des zu loeschenden SIP-Trunks
+  Die eindeutige Kennung des zu löschenden SIP-Trunks
 </ParamField>
 
 ### Antwort
@@ -34,9 +34,9 @@ Hier wird derselbe Endpunkt wie beim Freigeben allgemeiner Telefonnummern verwen
   ```
 </ResponseExample>
 
-### Was beim Loeschen passiert
+### Was beim Löschen passiert
 
-Wenn Sie einen SIP-Trunk loeschen:
+Wenn Sie einen SIP-Trunk löschen:
 
 * **Inbound- und Outbound-Trunks** werden aus der Voice-Infrastruktur entfernt
 * **Assistenten**, die diesen SIP-Trunk nutzen, verlieren die zugewiesene Telefonnummer
