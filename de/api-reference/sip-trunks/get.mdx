@@ -4,7 +4,7 @@ api: "GET https://app.famulor.de/api/user/phone-numbers/sip-trunks/{id}"
 description: "Rufen Sie die komplette Konfiguration eines SIP-Trunks per ID in Famulor ab. Credentials, Routing und zugewiesene Rufnummern für Ihre KI-Voice-Telefonie."
 ---
 
-Dieser Endpunkt liefert detaillierte Informationen zu einem bestimmten SIP-Trunk, inklusive interner Trunk-IDs fuer Debugging.
+Dieser Endpunkt liefert detaillierte Informationen zu einem bestimmten SIP-Trunk, inklusive interner Trunk-IDs für Debugging.
 
 ### Pfad-Parameter
 
@@ -27,7 +27,7 @@ Dieser Endpunkt liefert detaillierte Informationen zu einem bestimmten SIP-Trunk
     </ResponseField>
 
     <ResponseField name="sip_username" type="string">
-      Der Benutzername fuer die SIP-Authentifizierung
+      Der Benutzername für die SIP-Authentifizierung
     </ResponseField>
 
     <ResponseField name="sip_address" type="string">
@@ -39,7 +39,7 @@ Dieser Endpunkt liefert detaillierte Informationen zu einem bestimmten SIP-Trunk
     </ResponseField>
 
     <ResponseField name="inbound_authorization_type" type="string">
-      Die Methode fuer eingehende Authentifizierung: `auth` oder `ip`
+      Die Methode für eingehende Authentifizierung: `auth` oder `ip`
     </ResponseField>
 
     <ResponseField name="allowed_inbound_ips" type="array">
@@ -47,19 +47,19 @@ Dieser Endpunkt liefert detaillierte Informationen zu einem bestimmten SIP-Trunk
     </ResponseField>
 
     <ResponseField name="outbound_proxy" type="boolean">
-      Ob ausgehende Anrufe ueber eine feste Proxy-IP laufen
+      Ob ausgehende Anrufe über eine feste Proxy-IP laufen
     </ResponseField>
 
     <ResponseField name="country_code" type="string">
-      Der ISO-3166-2-Landercode
+      Der ISO-3166-2-Ländercode
     </ResponseField>
 
     <ResponseField name="inbound_trunk_id" type="string">
-      Interne Kennung des Inbound-Voice-Trunks (hilfreich fuer Debugging)
+      Interne Kennung des Inbound-Voice-Trunks (hilfreich für Debugging)
     </ResponseField>
 
     <ResponseField name="outbound_trunk_id" type="string">
-      Interne Kennung des Outbound-Voice-Trunks (hilfreich fuer Debugging)
+      Interne Kennung des Outbound-Voice-Trunks (hilfreich für Debugging)
     </ResponseField>
 
     <ResponseField name="created_at" type="string">

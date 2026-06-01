@@ -4,12 +4,12 @@ api: "POST https://app.famulor.de/api/user/phone-numbers/sip-trunks"
 description: "Neuen SIP-Trunk mit Zugangsdaten, Adresse und Proxy-Einstellungen erstellen"
 ---
 
-Dieser Endpunkt erstellt einen neuen SIP-Trunk. Die Plattform provisioniert automatisch Inbound- und Outbound-Trunks in der Voice-Infrastruktur anhand der uebergebenen Daten.
+Dieser Endpunkt erstellt einen neuen SIP-Trunk. Die Plattform provisioniert automatisch Inbound- und Outbound-Trunks in der Voice-Infrastruktur anhand der übergebenen Daten.
 
 ### Body-Parameter
 
 <ParamField body="sip_trunk_type" type="string" required>
-  Der Typ des SIP-Trunks: `extension` fuer eine SIP-Erweiterung oder `number` fuer eine Telefonnummer (DID). Das bestimmt das erwartete Format fuer `phone_number`.
+  Der Typ des SIP-Trunks: `extension` für eine SIP-Erweiterung oder `number` für eine Telefonnummer (DID). Das bestimmt das erwartete Format für `phone_number`.
 </ParamField>
 
 <ParamField body="phone_number" type="string" required>
@@ -17,11 +17,11 @@ Dieser Endpunkt erstellt einen neuen SIP-Trunk. Die Plattform provisioniert auto
 </ParamField>
 
 <ParamField body="sip_username" type="string" required>
-  Benutzername fuer SIP-Authentifizierung (3-128 Zeichen)
+  Benutzername für SIP-Authentifizierung (3-128 Zeichen)
 </ParamField>
 
 <ParamField body="sip_password" type="string" required>
-  Passwort fuer SIP-Authentifizierung (mindestens 3 Zeichen)
+  Passwort für SIP-Authentifizierung (mindestens 3 Zeichen)
 </ParamField>
 
 <ParamField body="sip_address" type="string" required>
@@ -31,28 +31,28 @@ Dieser Endpunkt erstellt einen neuen SIP-Trunk. Die Plattform provisioniert auto
 <ParamField body="sip_calling_format" type="string" required>
   Das ausgehende Rufnummernformat:
 
-  * `+e164` - International mit `+`-Praefix (z. B. `+12025550123`)
-  * `e164` - International ohne `+`-Praefix (z. B. `12025550123`)
+  * `+e164` - International mit `+`-Präfix (z. B. `+12025550123`)
+  * `e164` - International ohne `+`-Präfix (z. B. `12025550123`)
   * `national` - Nationales Format ohne Ländervorwahl (z. B. `0741926265`)
 </ParamField>
 
 <ParamField body="inbound_authorization_type" type="string" required>
-  Authentifizierung fuer eingehende Anrufe:
+  Authentifizierung für eingehende Anrufe:
 
   * `auth` - Verwendet denselben SIP-Benutzernamen und dasselbe Passwort wie Outbound
   * `ip` - Whitelistet bestimmte IP-Adressen (erfordert `allowed_inbound_ips`)
 </ParamField>
 
 <ParamField body="allowed_inbound_ips" type="array" optional>
-  Array mit IP-Adressen, die eingehende Anrufe senden duerfen. **Pflichtfeld**, wenn `inbound_authorization_type` auf `ip` steht. Muss mindestens eine gueltige IP enthalten.
+  Array mit IP-Adressen, die eingehende Anrufe senden dürfen. **Pflichtfeld**, wenn `inbound_authorization_type` auf `ip` steht. Muss mindestens eine gültige IP enthalten.
 </ParamField>
 
 <ParamField body="country_code" type="string" required>
-  ISO-3166-2-Landercode, in dem sich der SIP-Trunk befindet (z. B. `US`, `GB`, `DE`). Bei `sip_trunk_type = number` wird das Land nach Moeglichkeit aus der Telefonnummer erkannt.
+  ISO-3166-2-Ländercode, in dem sich der SIP-Trunk befindet (z. B. `US`, `GB`, `DE`). Bei `sip_trunk_type = number` wird das Land nach Möglichkeit aus der Telefonnummer erkannt.
 </ParamField>
 
 <ParamField body="outbound_proxy" type="boolean" optional>
-  Leitet ausgehende Anrufe ueber eine feste IP-Adresse. Standard: `false`. Nur aktivieren, wenn Ihr SIP-Provider IP-basierte Authentifizierung fuer Outbound erfordert.
+  Leitet ausgehende Anrufe über eine feste IP-Adresse. Standard: `false`. Nur aktivieren, wenn Ihr SIP-Provider IP-basierte Authentifizierung für Outbound erfordert.
 </ParamField>
 
 ### Antwort
@@ -136,13 +136,13 @@ Dieser Endpunkt erstellt einen neuen SIP-Trunk. Die Plattform provisioniert auto
 Wenn Sie einen SIP-Trunk erstellen, passiert automatisch:
 
 1. **Provisionierung eines Inbound-Trunks** in der Voice-Infrastruktur - je nach `inbound_authorization_type` per Benutzername/Passwort oder IP-Authentifizierung
-2. **Provisionierung eines Outbound-Trunks** - mit der von Ihnen angegebenen SIP-Adresse und den Zugangsdaten, optional ueber den Outbound-Proxy
+2. **Provisionierung eines Outbound-Trunks** - mit der von Ihnen angegebenen SIP-Adresse und den Zugangsdaten, optional über den Outbound-Proxy
 
-Falls die Provisionierung fehlschlaegt, wird der SIP-Trunk nicht gespeichert und ein `500`-Fehler zurueckgegeben.
+Falls die Provisionierung fehlschlägt, wird der SIP-Trunk nicht gespeichert und ein `500`-Fehler zurückgegeben.
 
-### Naechste Schritte
+### Nächste Schritte
 
-Nach dem Erstellen koennen Sie den SIP-Trunk einem KI-Assistenten zuweisen:
+Nach dem Erstellen können Sie den SIP-Trunk einem KI-Assistenten zuweisen:
 
 * **[Assistant erstellen](/de/api-reference/assistants/create)** - Parameter `phone_number_id` verwenden
-* **[Assistant aktualisieren](/de/api-reference/assistants/update)** - Telefonnummer eines bestehenden Assistenten aendern
+* **[Assistant aktualisieren](/de/api-reference/assistants/update)** - Telefonnummer eines bestehenden Assistenten ändern

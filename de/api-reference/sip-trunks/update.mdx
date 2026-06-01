@@ -4,7 +4,7 @@ api: "PUT https://app.famulor.de/api/user/phone-numbers/sip-trunks/{id}"
 description: "Aktualisieren Sie eine bestehende SIP-Trunk-Konfiguration in Famulor per API. Ändern Sie Credentials, Routing-Regeln und Rufnummern für KI-Voice-Telefonie."
 ---
 
-Dieser Endpunkt aktualisiert einen bestehenden SIP-Trunk. Senden Sie nur die Felder, die Sie aendern moechten - partielle Updates werden unterstuetzt. Aenderungen an Zugangsdaten, Adresse oder Proxy-Einstellungen fuehren automatisch zur erneuten Provisionierung der betroffenen Voice-Trunks.
+Dieser Endpunkt aktualisiert einen bestehenden SIP-Trunk. Senden Sie nur die Felder, die Sie ändern möchten - partielle Updates werden unterstützt. Änderungen an Zugangsdaten, Adresse oder Proxy-Einstellungen führen automatisch zur erneuten Provisionierung der betroffenen Voice-Trunks.
 
 ### Pfad-Parameter
 
@@ -14,18 +14,18 @@ Dieser Endpunkt aktualisiert einen bestehenden SIP-Trunk. Senden Sie nur die Fel
 
 ### Body-Parameter
 
-Alle Felder sind optional. Senden Sie nur die Felder, die Sie aendern moechten.
+Alle Felder sind optional. Senden Sie nur die Felder, die Sie ändern möchten.
 
 <ParamField body="phone_number" type="string" optional>
   Die SIP-Erweiterung oder Telefonnummer (1-15 Zeichen)
 </ParamField>
 
 <ParamField body="sip_username" type="string" optional>
-  Benutzername fuer SIP-Authentifizierung (3-128 Zeichen)
+  Benutzername für SIP-Authentifizierung (3-128 Zeichen)
 </ParamField>
 
 <ParamField body="sip_password" type="string" optional>
-  Passwort fuer SIP-Authentifizierung (mindestens 3 Zeichen)
+  Passwort für SIP-Authentifizierung (mindestens 3 Zeichen)
 </ParamField>
 
 <ParamField body="sip_address" type="string" optional>
@@ -37,19 +37,19 @@ Alle Felder sind optional. Senden Sie nur die Felder, die Sie aendern moechten.
 </ParamField>
 
 <ParamField body="inbound_authorization_type" type="string" optional>
-  Authentifizierung fuer eingehende Anrufe: `auth` oder `ip`. Beim Wechsel auf `ip` muss `allowed_inbound_ips` mitgegeben werden. Beim Wechsel auf `auth` wird eine vorhandene IP-Whitelist entfernt.
+  Authentifizierung für eingehende Anrufe: `auth` oder `ip`. Beim Wechsel auf `ip` muss `allowed_inbound_ips` mitgegeben werden. Beim Wechsel auf `auth` wird eine vorhandene IP-Whitelist entfernt.
 </ParamField>
 
 <ParamField body="allowed_inbound_ips" type="array" optional>
-  Array erlaubter IP-Adressen fuer eingehende Anrufe. **Pflichtfeld**, wenn `inbound_authorization_type` auf `ip` gesetzt wird.
+  Array erlaubter IP-Adressen für eingehende Anrufe. **Pflichtfeld**, wenn `inbound_authorization_type` auf `ip` gesetzt wird.
 </ParamField>
 
 <ParamField body="country_code" type="string" optional>
-  ISO-3166-2-Landercode
+  ISO-3166-2-Ländercode
 </ParamField>
 
 <ParamField body="outbound_proxy" type="boolean" optional>
-  Leitet ausgehende Anrufe ueber eine feste IP-Adresse
+  Leitet ausgehende Anrufe über eine feste IP-Adresse
 </ParamField>
 
 ### Antwort
@@ -129,9 +129,9 @@ Alle Felder sind optional. Senden Sie nur die Felder, die Sie aendern moechten.
 
 ### Re-Provisionierungsverhalten
 
-Die folgenden Feld-Aenderungen loesen eine automatische Re-Provisionierung der Voice-Infrastruktur-Trunks aus:
+Die folgenden Feld-Änderungen lösen eine automatische Re-Provisionierung der Voice-Infrastruktur-Trunks aus:
 
-| Geaendertes Feld             | Inbound-Trunk | Outbound-Trunk |
+| Geändertes Feld              | Inbound-Trunk | Outbound-Trunk |
 | ---------------------------- | :-----------: | :------------: |
 | `sip_username`               | Neu erzeugt   | Neu erzeugt    |
 | `sip_password`               | Neu erzeugt   | Neu erzeugt    |
@@ -141,4 +141,4 @@ Die folgenden Feld-Aenderungen loesen eine automatische Re-Provisionierung der V
 | `allowed_inbound_ips`        | Neu erzeugt   |       -        |
 | `outbound_proxy`             |      -        | Neu erzeugt    |
 
-Felder wie `sip_calling_format` oder `country_code` werden nur lokal gespeichert und loesen keine Re-Provisionierung aus.
+Felder wie `sip_calling_format` oder `country_code` werden nur lokal gespeichert und lösen keine Re-Provisionierung aus.
