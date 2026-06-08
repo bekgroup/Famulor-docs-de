@@ -96,8 +96,22 @@ Die API unterstützt drei Engine-Modi mit unterschiedlichen Fähigkeiten:
 <ParamField body="knowledgebase_mode" type="string">
   Wie die Knowledgebase verwendet wird. Optionen:
 
-  * `function_call` - Die KI ruft eine Funktion zur Suche auf (erforderlich für `multimodal`/`dualplex`)
-  * `prompt` - Wissen wird in den Prompt injiziert (nur `pipeline`)
+  * `function_call` - Die KI ruft eine Funktion zur Suche auf (erforderlich für multimodal/dualplex)
+  * `prompt` - Wissen wird in den Prompt injiziert (nur pipeline)
+</ParamField>
+
+### Organisation
+
+<ParamField body="folder_id" type="integer">
+  ID eines [Ordners](/de/api-reference/folders/create), in den dieser Assistent eingeordnet werden soll. Muss zu Ihrem Konto gehören. Senden Sie `null`, um den Assistenten unkategorisiert zu lassen.
+</ParamField>
+
+<ParamField body="label_ids" type="integer[]">
+  Array von [Label](/de/api-reference/labels/create)-IDs, die diesem Assistenten zugewiesen werden sollen. Jedes Label muss zu Ihrem Konto gehören.
+
+  ```json theme={null}
+  "label_ids": [3, 5]
+  ```
 </ParamField>
 
 ### Telefonnummer

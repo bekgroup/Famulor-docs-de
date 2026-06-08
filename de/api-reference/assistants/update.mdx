@@ -94,8 +94,22 @@ Dieser Endpunkt ermöglicht es Ihnen, die Konfiguration eines bestehenden KI-Ass
 <ParamField body="knowledgebase_mode" type="string">
   Wie die Knowledgebase verwendet werden soll. Optionen:
 
-  * `function_call` - KI nutzt eine Funktion zur Suche (erforderlich für multimodal/dualplex)
+  * `function_call` - KI ruft eine Funktion zur Suche auf (erforderlich für multimodal/dualplex)
   * `prompt` - Wissen wird in den Prompt injiziert (nur pipeline)
+</ParamField>
+
+#### Organisation
+
+<ParamField body="folder_id" type="integer">
+  ID eines [Ordners](/de/api-reference/folders/create), in den dieser Assistent verschoben werden soll. Muss zu Ihrem Konto gehören. Auf `null` setzen, um ihn unkategorisiert zu machen. Weglassen, um den Ordner unverändert zu lassen.
+</ParamField>
+
+<ParamField body="label_ids" type="integer[]">
+  Array von [Label](/de/api-reference/labels/create)-IDs für diesen Assistenten. Jedes Label muss zu Ihrem Konto gehören. Wenn angegeben, **ersetzt** dies die aktuellen Labels des Assistenten. Weglassen, um Labels unverändert zu lassen; `[]` senden, um alle Labels zu entfernen.
+
+  ```json theme={null}
+  "label_ids": [3, 5]
+  ```
 </ParamField>
 
 #### Telefonnummer

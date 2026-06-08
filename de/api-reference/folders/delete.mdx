@@ -1,0 +1,23 @@
+---
+title: "Ordner löschen"
+api: "DELETE https://app.famulor.de/api/user/folder/{id}"
+description: "Ordner löschen"
+---
+
+Löschen Sie einen Ordner. Assistenten, die sich in diesem Ordner befanden, werden **nicht** gelöscht — sie werden einfach unkategorisiert.
+
+### Pfad-Parameter
+
+<ParamField path="id" type="integer" required>
+  Die Ordner-ID. Muss zu Ihrem Konto gehören.
+</ParamField>
+
+<ResponseExample>
+  ```json 200 Success Response theme={null}
+  { "message": "Folder deleted successfully" }
+  ```
+
+  ```json 404 Not Found theme={null}
+  { "message": "Folder not found" }
+  ```
+</ResponseExample>

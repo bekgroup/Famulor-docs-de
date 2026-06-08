@@ -1,0 +1,46 @@
+---
+title: "Label erstellen"
+api: "POST https://app.famulor.de/api/user/label"
+description: "Label zum Taggen Ihrer Assistenten erstellen"
+---
+
+Erstellen Sie ein Label, um Assistenten über Ordner hinweg zu taggen (z. B. `inbound` oder `outbound`). Weisen Sie Labels Assistenten über das Feld `label_ids` bei [Assistent erstellen](/de/api-reference/assistants/create) und [Assistent aktualisieren](/de/api-reference/assistants/update) zu.
+
+### Request Body
+
+<ParamField body="name" type="string" required>
+  Der Label-Name (max. 255 Zeichen). Muss innerhalb Ihres Kontos eindeutig sein.
+</ParamField>
+
+<ParamField body="color" type="string">
+  Farbe für das Label-Badge. Einer von: `gray`, `slate`, `red`, `orange`, `amber`, `green`, `teal`, `blue`, `purple`, `pink`.
+</ParamField>
+
+### Antwort
+
+<ResponseField name="message" type="string">Erfolgsmeldung</ResponseField>
+
+<ResponseField name="data" type="object">
+  <Expandable title="Eigenschaften">
+    <ResponseField name="id" type="integer">Die eindeutige Kennung des erstellten Labels</ResponseField>
+    <ResponseField name="name" type="string">Der Label-Name</ResponseField>
+    <ResponseField name="color" type="string">Die Label-Farbe (oder `null`)</ResponseField>
+    <ResponseField name="assistants_count" type="integer">Anzahl der Assistenten, denen dieses Label zugewiesen ist (bei einem neuen Label immer `0`)</ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseExample>
+  ```json 201 Success Response theme={null}
+  {
+    "message": "Label created successfully",
+    "data": { "id": 3, "name": "Inbound", "color": "green", "assistants_count": 0 }
+  }
+  ```
+
+  ```json 422 Validation Error theme={null}
+  {
+    "message": "The name has already been taken.",
+    "errors": { "name": ["The name has already been taken."] }
+  }
+  ```
+</ResponseExample>

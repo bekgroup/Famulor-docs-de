@@ -1,0 +1,49 @@
+---
+title: "Label aktualisieren"
+api: "PUT https://app.famulor.de/api/user/label/{id}"
+description: "Label umbenennen oder Farbe ändern"
+---
+
+Aktualisieren Sie den Namen oder die Farbe eines Labels. Es werden nur die Felder geändert, die Sie senden.
+
+### Pfad-Parameter
+
+<ParamField path="id" type="integer" required>
+  Die Label-ID. Muss zu Ihrem Konto gehören.
+</ParamField>
+
+### Request Body
+
+<ParamField body="name" type="string">
+  Neuer Name (max. 255 Zeichen). Muss innerhalb Ihres Kontos eindeutig sein.
+</ParamField>
+
+<ParamField body="color" type="string">
+  Neue Farbe. Einer von: `gray`, `slate`, `red`, `orange`, `amber`, `green`, `teal`, `blue`, `purple`, `pink`. Senden Sie `null`, um sie zu entfernen.
+</ParamField>
+
+### Antwort
+
+<ResponseField name="message" type="string">Erfolgsmeldung</ResponseField>
+
+<ResponseField name="data" type="object">
+  <Expandable title="Eigenschaften">
+    <ResponseField name="id" type="integer">Die Label-ID</ResponseField>
+    <ResponseField name="name" type="string">Der Label-Name</ResponseField>
+    <ResponseField name="color" type="string">Die Label-Farbe (oder `null`)</ResponseField>
+    <ResponseField name="assistants_count" type="integer">Anzahl der Assistenten, denen dieses Label zugewiesen ist</ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseExample>
+  ```json 200 Success Response theme={null}
+  {
+    "message": "Label updated successfully",
+    "data": { "id": 3, "name": "Inbound calls", "color": "teal", "assistants_count": 7 }
+  }
+  ```
+
+  ```json 404 Not Found theme={null}
+  { "message": "Label not found" }
+  ```
+</ResponseExample>

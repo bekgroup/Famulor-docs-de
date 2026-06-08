@@ -1,0 +1,23 @@
+---
+title: "Delete Label"
+api: "DELETE https://app.famulor.de/api/user/label/{id}"
+description: "Delete a label"
+---
+
+Delete a label. The label is removed from any assistants it was applied to — the assistants themselves are **not** affected.
+
+### Path Parameters
+
+<ParamField path="id" type="integer" required>
+  The label ID. Must belong to your account.
+</ParamField>
+
+<ResponseExample>
+  ```json 200 Success Response theme={null}
+  { "message": "Label deleted successfully" }
+  ```
+
+  ```json 404 Not Found theme={null}
+  { "message": "Label not found" }
+  ```
+</ResponseExample>

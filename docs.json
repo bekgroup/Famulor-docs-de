@@ -625,6 +625,24 @@
                 ]
               },
               {
+                "group": "Folders",
+                "pages": [
+                  "en/api-reference/folders/list",
+                  "en/api-reference/folders/create",
+                  "en/api-reference/folders/update",
+                  "en/api-reference/folders/delete"
+                ]
+              },
+              {
+                "group": "Labels",
+                "pages": [
+                  "en/api-reference/labels/list",
+                  "en/api-reference/labels/create",
+                  "en/api-reference/labels/update",
+                  "en/api-reference/labels/delete"
+                ]
+              },
+              {
                 "group": "Leads",
                 "pages": [
                   "en/api-reference/leads/list",
@@ -1370,6 +1388,24 @@
                   "de/api-reference/assistants/transcriber-providers",
                   "de/api-reference/assistants/update",
                   "de/api-reference/assistants/voices"
+                ]
+              },
+              {
+                "group": "Ordner",
+                "pages": [
+                  "de/api-reference/folders/list",
+                  "de/api-reference/folders/create",
+                  "de/api-reference/folders/update",
+                  "de/api-reference/folders/delete"
+                ]
+              },
+              {
+                "group": "Labels",
+                "pages": [
+                  "de/api-reference/labels/list",
+                  "de/api-reference/labels/create",
+                  "de/api-reference/labels/update",
+                  "de/api-reference/labels/delete"
                 ]
               },
               {

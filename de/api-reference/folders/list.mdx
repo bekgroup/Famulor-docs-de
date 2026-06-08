@@ -1,0 +1,44 @@
+---
+title: "Ordner auflisten"
+api: "GET https://app.famulor.de/api/user/folders"
+description: "Ordner in Ihrem Konto auflisten"
+---
+
+Ordner ermöglichen es, Assistenten zu gruppieren (z. B. nach Kunde oder Marke). Jeder Assistent kann genau einem Ordner zugeordnet sein. Ordner sind nur für Ihr Konto sichtbar.
+
+Dieser Endpunkt gibt Ihre Ordner (paginiert) zurück, jeweils mit der Anzahl der enthaltenen Assistenten.
+
+### Query-Parameter
+
+<ParamField query="per_page" type="integer">
+  Anzahl der Ordner pro Seite (1-100, Standard: 15)
+</ParamField>
+
+<ParamField query="page" type="integer">
+  Seitennummer (Standard: 1)
+</ParamField>
+
+### Antwort-Felder
+
+<ResponseField name="data" type="array">
+  <Expandable title="Eigenschaften">
+    <ResponseField name="id" type="integer">Die eindeutige Kennung des Ordners</ResponseField>
+    <ResponseField name="name" type="string">Der Ordnername</ResponseField>
+    <ResponseField name="color" type="string">Die Ordnerfarbe (oder `null`)</ResponseField>
+    <ResponseField name="assistants_count" type="integer">Anzahl der Assistenten in diesem Ordner</ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseExample>
+  ```json 200 Success Response theme={null}
+  {
+    "data": [
+      { "id": 12, "name": "Acme Corp", "color": "blue", "assistants_count": 4 },
+      { "id": 18, "name": "Globex", "color": "teal", "assistants_count": 0 }
+    ],
+    "current_page": 1,
+    "per_page": 15,
+    "total": 2
+  }
+  ```
+</ResponseExample>

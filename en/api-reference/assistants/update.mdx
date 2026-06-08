@@ -91,10 +91,24 @@ This endpoint allows you to update the configuration of an existing AI assistant
 </ParamField>
 
 <ParamField body="knowledgebase_mode" type="string">
-  How the knowledgebase should be used. Options:
+  How to use the knowledgebase. Options:
 
-  * `function_call` - AI uses a function to search (required for multimodal/dualplex)
-  * `prompt` - knowledge is injected into the prompt (pipeline only)
+  * `function_call` - AI calls a function to search (required for multimodal/dualplex)
+  * `prompt` - Knowledge is injected into prompt (pipeline only)
+</ParamField>
+
+#### Organization
+
+<ParamField body="folder_id" type="integer">
+  ID of a [folder](/en/api-reference/folders/create) to move this assistant into. Must belong to your account. Set to `null` to make it uncategorized. Omit to leave the folder unchanged.
+</ParamField>
+
+<ParamField body="label_ids" type="integer[]">
+  Array of [label](/en/api-reference/labels/create) IDs for this assistant. Each label must belong to your account. When provided, this **replaces** the assistant's current labels. Omit to leave labels unchanged; send `[]` to remove all labels.
+
+  ```json theme={null}
+  "label_ids": [3, 5]
+  ```
 </ParamField>
 
 #### Phone Number

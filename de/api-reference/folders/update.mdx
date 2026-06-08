@@ -1,0 +1,49 @@
+---
+title: "Ordner aktualisieren"
+api: "PUT https://app.famulor.de/api/user/folder/{id}"
+description: "Ordner umbenennen oder Farbe ändern"
+---
+
+Aktualisieren Sie den Namen oder die Farbe eines Ordners. Es werden nur die Felder geändert, die Sie senden.
+
+### Pfad-Parameter
+
+<ParamField path="id" type="integer" required>
+  Die Ordner-ID. Muss zu Ihrem Konto gehören.
+</ParamField>
+
+### Request Body
+
+<ParamField body="name" type="string">
+  Neuer Name (max. 255 Zeichen). Muss innerhalb Ihres Kontos eindeutig sein.
+</ParamField>
+
+<ParamField body="color" type="string">
+  Neue Farbe. Einer von: `gray`, `slate`, `red`, `orange`, `amber`, `green`, `teal`, `blue`, `purple`, `pink`. Senden Sie `null`, um sie zu entfernen.
+</ParamField>
+
+### Antwort
+
+<ResponseField name="message" type="string">Erfolgsmeldung</ResponseField>
+
+<ResponseField name="data" type="object">
+  <Expandable title="Eigenschaften">
+    <ResponseField name="id" type="integer">Die Ordner-ID</ResponseField>
+    <ResponseField name="name" type="string">Der Ordnername</ResponseField>
+    <ResponseField name="color" type="string">Die Ordnerfarbe (oder `null`)</ResponseField>
+    <ResponseField name="assistants_count" type="integer">Anzahl der Assistenten in diesem Ordner</ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseExample>
+  ```json 200 Success Response theme={null}
+  {
+    "message": "Folder updated successfully",
+    "data": { "id": 12, "name": "Acme Inc.", "color": "pink", "assistants_count": 4 }
+  }
+  ```
+
+  ```json 404 Not Found theme={null}
+  { "message": "Folder not found" }
+  ```
+</ResponseExample>

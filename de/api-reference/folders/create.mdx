@@ -1,0 +1,46 @@
+---
+title: "Ordner erstellen"
+api: "POST https://app.famulor.de/api/user/folder"
+description: "Ordner zur Organisation Ihrer Assistenten erstellen"
+---
+
+Erstellen Sie einen Ordner, um Ihre Assistenten zu gruppieren. Weisen Sie Assistenten einem Ordner über das Feld `folder_id` bei [Assistent erstellen](/de/api-reference/assistants/create) und [Assistent aktualisieren](/de/api-reference/assistants/update) zu.
+
+### Request Body
+
+<ParamField body="name" type="string" required>
+  Der Ordnername (max. 255 Zeichen). Muss innerhalb Ihres Kontos eindeutig sein.
+</ParamField>
+
+<ParamField body="color" type="string">
+  Farbe für das Ordner-Badge. Einer von: `gray`, `slate`, `red`, `orange`, `amber`, `green`, `teal`, `blue`, `purple`, `pink`.
+</ParamField>
+
+### Antwort
+
+<ResponseField name="message" type="string">Erfolgsmeldung</ResponseField>
+
+<ResponseField name="data" type="object">
+  <Expandable title="Eigenschaften">
+    <ResponseField name="id" type="integer">Die eindeutige Kennung des erstellten Ordners</ResponseField>
+    <ResponseField name="name" type="string">Der Ordnername</ResponseField>
+    <ResponseField name="color" type="string">Die Ordnerfarbe (oder `null`)</ResponseField>
+    <ResponseField name="assistants_count" type="integer">Anzahl der Assistenten in diesem Ordner (bei einem neuen Ordner immer `0`)</ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseExample>
+  ```json 201 Success Response theme={null}
+  {
+    "message": "Folder created successfully",
+    "data": { "id": 12, "name": "Acme Corp", "color": "blue", "assistants_count": 0 }
+  }
+  ```
+
+  ```json 422 Validation Error theme={null}
+  {
+    "message": "The name has already been taken.",
+    "errors": { "name": ["The name has already been taken."] }
+  }
+  ```
+</ResponseExample>

@@ -1,0 +1,44 @@
+---
+title: "Labels auflisten"
+api: "GET https://app.famulor.de/api/user/labels"
+description: "Labels in Ihrem Konto auflisten"
+---
+
+Labels sind Tags, die Sie Assistenten zuweisen können. Im Gegensatz zu Ordnern kann ein Assistent mehrere Labels haben, und ein Label kann vielen Assistenten zugeordnet sein. Labels sind nur für Ihr Konto sichtbar.
+
+Dieser Endpunkt gibt Ihre Labels (paginiert) zurück, jeweils mit der Anzahl der Assistenten, denen sie zugewiesen sind.
+
+### Query-Parameter
+
+<ParamField query="per_page" type="integer">
+  Anzahl der Labels pro Seite (1-100, Standard: 15)
+</ParamField>
+
+<ParamField query="page" type="integer">
+  Seitennummer (Standard: 1)
+</ParamField>
+
+### Antwort-Felder
+
+<ResponseField name="data" type="array">
+  <Expandable title="Eigenschaften">
+    <ResponseField name="id" type="integer">Die eindeutige Kennung des Labels</ResponseField>
+    <ResponseField name="name" type="string">Der Label-Name</ResponseField>
+    <ResponseField name="color" type="string">Die Label-Farbe (oder `null`)</ResponseField>
+    <ResponseField name="assistants_count" type="integer">Anzahl der Assistenten, denen dieses Label zugewiesen ist</ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseExample>
+  ```json 200 Success Response theme={null}
+  {
+    "data": [
+      { "id": 3, "name": "Inbound", "color": "green", "assistants_count": 7 },
+      { "id": 5, "name": "Outbound", "color": "blue", "assistants_count": 2 }
+    ],
+    "current_page": 1,
+    "per_page": 15,
+    "total": 2
+  }
+  ```
+</ResponseExample>
