@@ -704,6 +704,7 @@
                 "group": "Phone Numbers",
                 "pages": [
                   "en/api-reference/phone-numbers/list",
+                  "en/api-reference/phone-numbers/update",
                   "en/api-reference/phone-numbers/search",
                   "en/api-reference/phone-numbers/purchase",
                   "en/api-reference/phone-numbers/release"
@@ -1451,6 +1452,7 @@
                 "group": "Phone Numbers",
                 "pages": [
                   "de/api-reference/phone-numbers/list",
+                  "de/api-reference/phone-numbers/update",
                   "de/api-reference/phone-numbers/search",
                   "de/api-reference/phone-numbers/purchase",
                   "de/api-reference/phone-numbers/release"

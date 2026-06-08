@@ -20,6 +20,10 @@ This endpoint returns a list of all SIP trunks associated with your account.
       The SIP extension or phone number (DID) in E.164 format
     </ResponseField>
 
+    <ResponseField name="nickname" type="string">
+      A short, human-friendly label for the trunk (or `null` if not set)
+    </ResponseField>
+
     <ResponseField name="sip_username" type="string">
       The username used for SIP authentication
     </ResponseField>
@@ -65,6 +69,7 @@ This endpoint returns a list of all SIP trunks associated with your account.
       {
         "id": 42,
         "phone_number": "1000",
+        "nickname": "Provider X — Main",
         "sip_username": "myuser",
         "sip_address": "sip.provider.com",
         "sip_calling_format": "+e164",
@@ -78,6 +83,7 @@ This endpoint returns a list of all SIP trunks associated with your account.
       {
         "id": 43,
         "phone_number": "+14155551234",
+        "nickname": null,
         "sip_username": "trunk_user",
         "sip_address": "sip.provider.com",
         "sip_calling_format": "e164",

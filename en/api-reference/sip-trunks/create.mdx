@@ -16,6 +16,10 @@ This endpoint creates a new SIP trunk. The platform automatically provisions inb
   The SIP extension (1-15 characters, e.g. `1000`) when `sip_trunk_type` is `extension`, or a phone number in E.164 format (e.g. `+14155551234`) when `sip_trunk_type` is `number`.
 </ParamField>
 
+<ParamField body="nickname" type="string" optional>
+  A short, human-friendly label for the trunk (e.g. "Provider X — Main"). Maximum 50 characters.
+</ParamField>
+
 <ParamField body="sip_username" type="string" required>
   Username for SIP authentication (3-128 characters)
 </ParamField>
@@ -72,6 +76,7 @@ This endpoint creates a new SIP trunk. The platform automatically provisions inb
     "data": {
       "id": 42,
       "phone_number": "1000",
+      "nickname": "Provider X — Main",
       "sip_username": "myuser",
       "sip_address": "sip.provider.com",
       "sip_calling_format": "+e164",
@@ -93,6 +98,7 @@ This endpoint creates a new SIP trunk. The platform automatically provisions inb
     "data": {
       "id": 43,
       "phone_number": "+14155551234",
+      "nickname": null,
       "sip_username": "trunk_user",
       "sip_address": "sip.provider.com",
       "sip_calling_format": "e164",

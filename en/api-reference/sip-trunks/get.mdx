@@ -26,6 +26,10 @@ This endpoint returns detailed information about a specific SIP trunk, including
       The SIP extension or phone number (DID) in E.164 format
     </ResponseField>
 
+    <ResponseField name="nickname" type="string">
+      A short, human-friendly label for the trunk (or `null` if not set)
+    </ResponseField>
+
     <ResponseField name="sip_username" type="string">
       The username used for SIP authentication
     </ResponseField>
@@ -78,6 +82,7 @@ This endpoint returns detailed information about a specific SIP trunk, including
     "data": {
       "id": 42,
       "phone_number": "1000",
+      "nickname": "Provider X — Main",
       "sip_username": "myuser",
       "sip_address": "sip.provider.com",
       "sip_calling_format": "+e164",

@@ -24,6 +24,10 @@ There is also a legacy endpoint `GET /user/phone-numbers` that only returns SMS-
       The phone number in E.164 format (e.g. +49155551234)
     </ResponseField>
 
+    <ResponseField name="nickname" type="string">
+      A short, human-friendly label for the number (or `null` if not set)
+    </ResponseField>
+
     <ResponseField name="country_code" type="string">
       The ISO 3166-1 alpha-2 country code (e.g. DE, GB, AU)
     </ResponseField>
@@ -63,6 +67,7 @@ There is also a legacy endpoint `GET /user/phone-numbers` that only returns SMS-
     {
       "id": 1,
       "phone_number": "+49155551234",
+      "nickname": "Sales line",
       "country_code": "DE",
       "type": "normal",
       "type_label": "Dedicated Number",
@@ -74,6 +79,7 @@ There is also a legacy endpoint `GET /user/phone-numbers` that only returns SMS-
     {
       "id": 2,
       "phone_number": "+442071234567",
+      "nickname": null,
       "country_code": "GB",
       "type": "normal",
       "type_label": "Dedicated Number",

@@ -25,6 +25,10 @@ Es gibt auch einen Legacy-Endpunkt `GET /user/phone-numbers`, der nur SMS-fähig
       Die Telefonnummer im E.164-Format (z.B. +49155551234)
     </ResponseField>
 
+    <ResponseField name="nickname" type="string">
+      Ein kurzes, menschenlesbares Label für die Nummer (oder `null`, wenn nicht gesetzt)
+    </ResponseField>
+
     <ResponseField name="country_code" type="string">
       Der ISO 3166-1 alpha-2 Ländercode (z.B. DE, GB, AU)
     </ResponseField>
@@ -64,6 +68,7 @@ Es gibt auch einen Legacy-Endpunkt `GET /user/phone-numbers`, der nur SMS-fähig
     {
       "id": 1,
       "phone_number": "+49155551234",
+      "nickname": "Vertrieb",
       "country_code": "DE",
       "type": "normal",
       "type_label": "Dedicated Number",
@@ -75,6 +80,7 @@ Es gibt auch einen Legacy-Endpunkt `GET /user/phone-numbers`, der nur SMS-fähig
     {
       "id": 2,
       "phone_number": "+442071234567",
+      "nickname": null,
       "country_code": "GB",
       "type": "normal",
       "type_label": "Dedicated Number",

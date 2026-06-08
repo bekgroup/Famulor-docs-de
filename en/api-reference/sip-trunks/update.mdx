@@ -20,6 +20,10 @@ All fields are optional. Only send the fields you want to update.
   The SIP extension or phone number (1-15 characters)
 </ParamField>
 
+<ParamField body="nickname" type="string" optional>
+  A short, human-friendly label for the trunk. Maximum 50 characters. Send `null` to clear it.
+</ParamField>
+
 <ParamField body="sip_username" type="string" optional>
   Username for SIP authentication (3-128 characters)
 </ParamField>
@@ -69,6 +73,7 @@ All fields are optional. Only send the fields you want to update.
     "data": {
       "id": 42,
       "phone_number": "1000",
+      "nickname": "Provider X — Main",
       "sip_username": "new_username",
       "sip_address": "sip.provider.com",
       "sip_calling_format": "+e164",
@@ -90,6 +95,7 @@ All fields are optional. Only send the fields you want to update.
     "data": {
       "id": 42,
       "phone_number": "1000",
+      "nickname": "Provider X — Main",
       "sip_username": "myuser",
       "sip_address": "sip.provider.com",
       "sip_calling_format": "+e164",

@@ -20,6 +20,10 @@ Dieser Endpunkt gibt eine Liste aller SIP-Trunks zurück, die Ihrem Konto zugeor
       Die SIP-Erweiterung oder Telefonnummer (DID) im E.164-Format
     </ResponseField>
 
+    <ResponseField name="nickname" type="string">
+      Ein kurzes, menschenlesbares Label für den Trunk (oder `null`, wenn nicht gesetzt)
+    </ResponseField>
+
     <ResponseField name="sip_username" type="string">
       Der Benutzername für die SIP-Authentifizierung
     </ResponseField>
@@ -65,6 +69,7 @@ Dieser Endpunkt gibt eine Liste aller SIP-Trunks zurück, die Ihrem Konto zugeor
       {
         "id": 42,
         "phone_number": "1000",
+        "nickname": "Provider X — Haupt",
         "sip_username": "myuser",
         "sip_address": "sip.provider.com",
         "sip_calling_format": "+e164",
@@ -78,6 +83,7 @@ Dieser Endpunkt gibt eine Liste aller SIP-Trunks zurück, die Ihrem Konto zugeor
       {
         "id": 43,
         "phone_number": "+14155551234",
+        "nickname": null,
         "sip_username": "trunk_user",
         "sip_address": "sip.provider.com",
         "sip_calling_format": "e164",

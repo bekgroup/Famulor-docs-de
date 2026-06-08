@@ -16,6 +16,10 @@ Dieser Endpunkt erstellt einen neuen SIP-Trunk. Die Plattform provisioniert auto
   SIP-Erweiterung (1-15 Zeichen, z. B. `1000`) bei `sip_trunk_type = extension` oder Telefonnummer im E.164-Format (z. B. `+14155551234`) bei `sip_trunk_type = number`.
 </ParamField>
 
+<ParamField body="nickname" type="string" optional>
+  Ein kurzes, menschenlesbares Label für den Trunk (z. B. „Provider X — Haupt“). Maximal 50 Zeichen.
+</ParamField>
+
 <ParamField body="sip_username" type="string" required>
   Benutzername für SIP-Authentifizierung (3-128 Zeichen)
 </ParamField>
@@ -72,6 +76,7 @@ Dieser Endpunkt erstellt einen neuen SIP-Trunk. Die Plattform provisioniert auto
     "data": {
       "id": 42,
       "phone_number": "1000",
+      "nickname": "Provider X — Haupt",
       "sip_username": "myuser",
       "sip_address": "sip.provider.com",
       "sip_calling_format": "+e164",
@@ -93,6 +98,7 @@ Dieser Endpunkt erstellt einen neuen SIP-Trunk. Die Plattform provisioniert auto
     "data": {
       "id": 43,
       "phone_number": "+14155551234",
+      "nickname": null,
       "sip_username": "trunk_user",
       "sip_address": "sip.provider.com",
       "sip_calling_format": "e164",

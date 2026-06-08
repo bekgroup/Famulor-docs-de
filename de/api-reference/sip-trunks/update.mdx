@@ -20,6 +20,10 @@ Alle Felder sind optional. Senden Sie nur die Felder, die Sie ändern möchten.
   Die SIP-Erweiterung oder Telefonnummer (1-15 Zeichen)
 </ParamField>
 
+<ParamField body="nickname" type="string" optional>
+  Ein kurzes, menschenlesbares Label für den Trunk. Maximal 50 Zeichen. Senden Sie `null`, um es zu löschen.
+</ParamField>
+
 <ParamField body="sip_username" type="string" optional>
   Benutzername für SIP-Authentifizierung (3-128 Zeichen)
 </ParamField>
@@ -69,6 +73,7 @@ Alle Felder sind optional. Senden Sie nur die Felder, die Sie ändern möchten.
     "data": {
       "id": 42,
       "phone_number": "1000",
+      "nickname": "Provider X — Haupt",
       "sip_username": "new_username",
       "sip_address": "sip.provider.com",
       "sip_calling_format": "+e164",
@@ -90,6 +95,7 @@ Alle Felder sind optional. Senden Sie nur die Felder, die Sie ändern möchten.
     "data": {
       "id": 42,
       "phone_number": "1000",
+      "nickname": "Provider X — Haupt",
       "sip_username": "myuser",
       "sip_address": "sip.provider.com",
       "sip_calling_format": "+e164",

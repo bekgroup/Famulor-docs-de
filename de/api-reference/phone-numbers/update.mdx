@@ -1,0 +1,87 @@
+---
+title: "Telefonnummer aktualisieren"
+api: "PUT https://app.famulor.de/api/user/phone-numbers/{id}"
+description: "Spitzname einer Telefonnummer aktualisieren"
+---
+
+Dieser Endpunkt aktualisiert die bearbeitbaren Attribute einer Telefonnummer, die Ihnen gehört. Derzeit ist dies der **Spitzname** — ein kurzes, menschenlesbares Label (z. B. „Vertrieb“, „Support — US“), das neben der Nummer im Dashboard angezeigt wird.
+
+Nur der **Eigentümer** der Nummer kann sie aktualisieren. Mit Ihnen geteilte Nummern (granted) zeigen den Spitznamen an, können aber von Ihnen nicht geändert werden.
+
+### Pfad-Parameter
+
+<ParamField path="id" type="integer" required>
+  Die eindeutige Kennung der zu aktualisierenden Telefonnummer
+</ParamField>
+
+### Body-Parameter
+
+<ParamField body="nickname" type="string">
+  Ein kurzes Label für die Telefonnummer. Maximal 50 Zeichen. Senden Sie `null` oder einen leeren String, um es zu löschen.
+</ParamField>
+
+### Antwort
+
+<ResponseField name="message" type="string">
+  Erfolgsmeldung
+</ResponseField>
+
+<ResponseField name="data" type="object">
+  Die aktualisierte Telefonnummer
+
+  <Expandable title="Eigenschaften">
+    <ResponseField name="id" type="integer">
+      Die eindeutige Kennung der Telefonnummer
+    </ResponseField>
+
+    <ResponseField name="phone_number" type="string">
+      Die Telefonnummer im E.164-Format
+    </ResponseField>
+
+    <ResponseField name="nickname" type="string">
+      Der Spitzname der Telefonnummer (oder `null`, wenn nicht gesetzt)
+    </ResponseField>
+
+    <ResponseField name="country_code" type="string">
+      Der ISO 3166-1 alpha-2 Ländercode
+    </ResponseField>
+
+    <ResponseField name="type" type="string">
+      Der Typ der Telefonnummer: `normal`, `sip` oder `caller_id`
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseExample>
+  ```json 200 Response theme={null}
+  {
+    "message": "Phone number updated successfully.",
+    "data": {
+      "id": 1,
+      "phone_number": "+14155551234",
+      "nickname": "Vertrieb",
+      "country_code": "US",
+      "type": "normal"
+    }
+  }
+  ```
+
+  ```json 404 Not Found theme={null}
+  {
+    "error": "Phone number not found."
+  }
+  ```
+
+  ```json 422 Validation Error theme={null}
+  {
+    "message": "The nickname must not exceed 50 characters.",
+    "errors": {
+      "nickname": ["The nickname must not exceed 50 characters."]
+    }
+  }
+  ```
+</ResponseExample>
+
+<Note>
+  Der Spitzname ist dasselbe Label, das Sie im Dashboard setzen können. Er wird von den Auflistungs-Endpunkten (`GET /user/phone-numbers/all`, `GET /user/phone-numbers/sip-trunks`) zurückgegeben, sodass andere Ressourcen, die eine Nummer per `phone_number_id` referenzieren, den Spitznamen dort auflösen können.
+</Note>
