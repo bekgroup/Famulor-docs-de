@@ -10,6 +10,62 @@ keywords: ["Famulor Changelog", "Produkt-Updates", "Release Notes", "KI-Telefoni
 
 > Bleiben Sie auf dem neuesten Stand — Folgen Sie unseren neuesten Produkt-Updates und Verbesserungen. Wir veröffentlichen regelmäßig neue Features, um Ihre KI-Anruf-Erfahrung zu verbessern.
 
+<Update label="6. Juni 2026" tags={["Ordner", "Labels", "Voice Picker", "Telefonnummern", "WhatsApp", "Koexistenz", "Webhooks", "NEU"]} description="Assistenten-Ordner & Labels, neuer Voice Picker, Telefonnummer-Spitznamen, WhatsApp-Human-Takeover, Conversation-Ended-Webhook-Upgrade und weitere Fixes">
+  ## 📁 Assistenten-Ordner & Labels — Ihren Workspace strukturieren
+
+  Wer mehr als ein paar Assistenten betreibt, kennt das: Scrollen, Suchen, „Welcher war nochmal der für Kunde X?". Ab heute ordnen Sie Assistenten in **Ordnern** und markieren sie mit **farbigen Labels**.
+
+  - **Ordner-Tabs** — Die Assistentenliste zeigt Tabs pro Ordner (plus „Alle"), mit durchsuchbarem Dropdown bei vielen Ordnern
+  - **Labels für Querschnittsthemen** — Jeder Assistent kann mehrere Labels tragen (z. B. „Produktion", „Testing", „Kunde X") — als Badges auf den Karten und filterbar in der Liste
+  - **Bulk-Aktionen** — Mehrere Assistenten auswählen und in einen Ordner verschieben oder Labels hinzufügen/entfernen — in einem Schritt
+  - **Direkt anlegen** — Neue Ordner und Labels erstellen Sie direkt auf der Assistenten-Seite, ohne Umweg über die Einstellungen
+  - **Volle API-Unterstützung** — Ordner und Labels per API verwalten; Zuweisung beim [Erstellen](/de/api-reference/assistants/create) oder [Aktualisieren](/de/api-reference/assistants/update) von Assistenten
+
+  ## 🎙 Neuer Voice Picker — die passende Stimme in Sekunden
+
+  Das Voice-Dropdown ist Geschichte. Die Stimmenauswahl öffnet jetzt einen **vollständigen Picker** — gebaut für Hunderte Optionen, ohne endloses Scrollen.
+
+  - **Filter nach Geschlecht, Alter und Akzent** — Katalog eingrenzen, plus Freitextsuche
+  - **Provider-Tabs** — Stimmen nach Speech Engine gruppiert; jede Karte zeigt ein Provider-Badge
+  - **Sprachbewusst** — Der Picker folgt der Assistenten-Sprache und warnt, bevor Sie eine inkompatible Stimme wählen
+  - **Stimmen klonen vor Ort** — Voice Cloning lebt jetzt im Picker; gelöschte Klone mit sauberer Bestätigung
+  - **Smarter Sync** — Stimme wählen setzt automatisch die passende Speech Engine — kein doppeltes Konfigurieren
+
+  ## 🏷 Telefonnummer-Spitznamen
+
+  Telefonnummern können jetzt einen **Spitznamen und eine Farbe** haben — damit „die Support-Leitung" nicht mehr „+1 555 0182 … welche war das nochmal?" heißt.
+
+  - **Überall sichtbar** — Spitznamen erscheinen in der Nummernliste, auf Assistenten-Karten, in Anrufdetails, SMS-Verlauf und überall, wo Sie eine Nummer wählen (Assistenten-Setup, Warm Transfers, Kampagnen-Pools)
+  - **Durchsuchbare Selektoren** — Nummer per Spitzname oder Rufnummer finden
+  - **API-Support** — Spitznamen in allen Telefonnummer-Responses; setzbar per API, auch für [SIP-Trunks](/de/api-reference/phone-numbers/update)
+
+  ## 🤝 WhatsApp-Koexistenz — automatischer Human Takeover
+
+  Der größte Quality-of-Life-Sprung im Koexistenz-Modus: Antwortet jemand aus Ihrem Team direkt in der WhatsApp-Business-App, erkennt die KI das und **tritt für diese Konversation zurück**.
+
+  - **Kein Durcheinander mehr** — Sobald ein Mensch vom Handy übernimmt, antwortet die KI in diesem Chat nicht mehr
+  - **Klarer Audit-Trail** — Eine Systemnotiz im Verlauf erklärt, warum die KI pausiert hat
+  - **Sprachnotizen & Bilder gefixt** — Audio und Bilder von Kunden kommen im Koexistenz-Modus zuverlässig an
+  - **Keine Kosten für Sync-Historie** — Beim Verbinden eines bestehenden WhatsApp-Kontos werden alte Konversationen beim Setup nie abgerechnet
+
+  ## 🔔 Webhook- & Integrations-Upgrades
+
+  Der [Conversation-Ended-Webhook](/de/api-reference/webhooks/conversation-ended) bekommt ein großes Upgrade — für alle, die Automatisierungen auf Chat-Konversationen bauen.
+
+  - **Medien-Anhänge inklusive** — Bilder, Audio und Dateien aus der Konversation sind jetzt Teil des Webhook-Payloads
+  - **Conversation ID & Zeitstempel** — Payload mit Conversation ID und Zeitstempeln pro Nachricht (lesbar und Unix) — Transkripte präzise rekonstruierbar
+  - **Erneut senden per Klick** — Jede Konversation hat eine Aktion „Webhook erneut senden"; Zustellstatus und Antwort werden gespeichert
+  - **Bulk-Aktionen** — Webhooks für viele Konversationen auf einmal neu auswerten oder erneut senden — direkt aus der Konversationsliste
+
+  ## 🛠 Weitere Verbesserungen & Fixes
+
+  - **Keine technischen Daten mehr vorgelesen** — In seltenen Fällen konnte die KI bei Tool-Nutzung Rohdaten mitten im Anruf sprechen; das wird jetzt aus Sprache und Transkript entfernt
+  - **Tages-Trenner in Konversationen** — Lange Chat-Verläufe zeigen Datums-Divider — schnelleres Scannen vergangener Gespräche
+  - **Chat-Widget-Button gefixt** — Der kleine Launcher-Button wird auf manchen Sites nicht mehr abgeschnitten
+  - **Webhook-Zuverlässigkeit** — Timing-Problem behoben, das den Conversation-Ended-Webhook bei manchen WhatsApp-Chats still überspringen konnte
+  - **Template-Sender-Anzeige** — WhatsApp-Templates zeigen ihren Sender in der Template-Liste klarer
+</Update>
+
 <Update label="6. Juni 2026" tags={["Whitelabel", "Assistenten", "Login", "Logout", "Sprachen", "Tags", "Wissensdatenbanken", "Mid-Call Tools", "Custom Dashboard", "Zugriffskontrolle", "NEU"]} description="Whitelabel-Update: überarbeitete Assistenten, anpassbare Login-Seite, Logout-Weiterleitung, 8 Sprachen, farbige Tags, Wissensdatenbank-Fix, Mid-Call-Tool-Tests, Custom Dashboard und Admin-Zugriffskontrolle pro User">
   ## 🏷️ Whitelabel Plattform — großes Update
 

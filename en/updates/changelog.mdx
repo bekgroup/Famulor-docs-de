@@ -9,6 +9,63 @@ keywords: ["Famulor changelog", "product updates", "release notes", "AI telephon
 
 Stay informed about new capabilities and improvements. We ship updates frequently to elevate your Voice AI and automation workflows.
 
+<Update label="June 6, 2026" tags={["Folders", "Labels", "Voice Picker", "Phone Numbers", "WhatsApp", "Coexistence", "Webhooks", "NEW"]} description="Assistant folders & labels, new voice picker, phone number nicknames, WhatsApp human takeover, conversation ended webhook upgrade and more fixes">
+
+## 📁 Assistant folders & labels — organize your workspace
+
+If you manage more than a handful of assistants, finding the right one just got much easier. You can now organize assistants into **folders** and tag them with **color-coded labels**.
+
+- **Folder tabs** — The assistants list shows tabs for each folder (plus an "All" view), with a searchable dropdown when you have many folders
+- **Labels for cross-cutting tags** — Each assistant can carry multiple labels (for example "Production", "Testing", "Client X"), shown as badges on assistant cards and filterable from the list
+- **Bulk actions** — Select multiple assistants and move them to a folder or add/remove labels in one go
+- **Create on the fly** — New folders and labels can be created right from the assistants page, no detour through settings
+- **Full API support** — Folders and labels can be managed via the API, and assistants can be assigned on [create](/en/api-reference/assistants/create) or [update](/en/api-reference/assistants/update)
+
+## 🎙 New voice picker — find the perfect voice in seconds
+
+The voice dropdown is gone. Choosing a voice now opens a **full picker** built for browsing hundreds of options without scrolling through an endless list.
+
+- **Filter by gender, age, and accent** — Narrow the catalog to exactly the kind of voice you're looking for, with free-text search on top
+- **Provider tabs** — Voices are grouped by speech engine, and each card shows a provider badge so you always know what you're selecting
+- **Language-aware** — The picker follows your assistant's language and warns you before selecting a voice that doesn't support it
+- **Clone voices in place** — Voice cloning now lives inside the picker, and deleting a cloned voice uses a proper styled confirmation
+- **Smarter syncing** — Selecting a voice automatically sets the matching speech engine on the assistant, so there's nothing to configure twice
+
+## 🏷 Phone number nicknames
+
+Phone numbers can now have a **nickname and a color**, so "the support line" stops being "+1 555 0182 … which one was that again?"
+
+- **Visible everywhere** — Nicknames show up in the phone numbers list, assistant cards, call details, SMS history, and every place you select a number (assistant setup, warm transfers, campaign pools)
+- **Searchable selectors** — Find a number by its nickname or by the number itself
+- **API support** — Nicknames are included in all phone number responses and can be set via the API, including for [SIP trunks](/en/api-reference/phone-numbers/update)
+
+## 🤝 WhatsApp coexistence — automatic human takeover
+
+Coexistence mode gets its biggest quality-of-life upgrade yet: when someone on your team replies to a customer directly from the WhatsApp Business app, the AI now detects it and **automatically steps aside** for that conversation.
+
+- **No more talking over each other** — The moment a human takes over from the phone, the AI stops responding in that chat
+- **Clear audit trail** — A system note appears in the conversation explaining why the AI paused, so everyone knows what happened
+- **Voice notes & images fixed** — Audio messages and images from customers now come through reliably in coexistence mode
+- **No charges for synced history** — When you connect an existing WhatsApp account, old conversations that stream in during setup are never billed
+
+## 🔔 Webhook & integration upgrades
+
+The [conversation ended webhook](/en/api-reference/webhooks/conversation-ended) got a major upgrade for anyone building automations on top of chat conversations.
+
+- **Media attachments included** — Images, audio, and files exchanged in the conversation are now part of the webhook payload
+- **Conversation ID & timestamps** — The payload now carries the conversation ID and per-message timestamps (human-readable and unix), so transcripts can be reconstructed precisely
+- **Re-send with one click** — Every conversation now has a "Re-send webhook" action, and the delivery result (status and response) is stored so you can see exactly what your endpoint received
+- **Bulk actions** — Re-evaluate or re-send webhooks for many conversations at once, straight from the conversations list
+
+## 🛠 Other improvements & fixes
+
+- **No more technical data read out loud** — In rare cases the AI could speak fragments of raw technical output mid-call when using tools; this is now stripped from both speech and transcripts
+- **Day separators in conversations** — Long chat histories now show date dividers, making it much easier to scan past conversations
+- **Chat widget button fix** — The small launcher button no longer appears clipped on some sites
+- **Webhook reliability** — Fixed a timing issue that could cause the conversation ended webhook to silently skip for some WhatsApp chats
+- **Template sender display** — WhatsApp templates now show their sender more clearly in the templates list
+</Update>
+
 <Update label="June 6, 2026" tags={["Whitelabel", "Assistants", "Login", "Logout", "Languages", "Tags", "Knowledgebases", "Mid-Call Tools", "Custom Dashboard", "Access Control", "NEW"]} description="Whitelabel update: refreshed assistant create/edit, customizable login page, logout redirect URL, 8 languages, colorful tags, knowledgebase fix, mid-call tool testing, custom dashboards and per-user admin access control">
 
 ## 🏷️ Whitelabel platform — major update
