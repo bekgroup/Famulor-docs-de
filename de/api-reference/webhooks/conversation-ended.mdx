@@ -22,6 +22,10 @@ Der Webhook wird als POST-Request an Ihre konfigurierte URL mit dem folgenden JS
 
 ### Payload-Struktur
 
+<ResponseField name="id" type="integer">
+  Numerische Kennung der Konversation (dieselbe `id` wie in der Dashboard-Konversations-URL). Verwenden Sie `conversation_id` (UUID), wenn Sie die API aufrufen.
+</ResponseField>
+
 <ResponseField name="conversation_id" type="string">
   Eindeutige Kennung (UUID) der Konversation
 </ResponseField>
@@ -65,21 +69,47 @@ Der Webhook wird als POST-Request an Ihre konfigurierte URL mit dem folgenden JS
 </ResponseField>
 
 <ResponseField name="transcript" type="array">
-  Array von Nachrichtenobjekten, das die vollständige Konversation abbildet
+  Array von Nachrichtenobjekten, das die vollständige Konversation abbildet, sortiert von ältest nach neuest
 
   <Expandable title="Nachrichten-Eigenschaften">
     <ResponseField name="role" type="string">
-      Senderrolle: `assistant` oder `user`
+      Senderrolle: `user`, `assistant` oder `system` (`system`-Nachrichten markieren Ereignisse wie die Übernahme durch einen menschlichen Agenten)
     </ResponseField>
 
     <ResponseField name="content" type="string">
-      Nachrichteninhalt
+      Nachrichtentext. Bei Medien-Nachrichten ist dies die Bildunterschrift oder ein kurzer Platzhalter (z. B. `[Image]`); Sprachnotizen enthalten den transkribierten Text
+    </ResponseField>
+
+    <ResponseField name="timestamp" type="string">
+      ISO-8601-Zeitstempel der einzelnen Nachricht in der konfigurierten Zeitzone des Nutzers. Ermöglicht die Sortierung und zeigt, wie lange eine Konversation gedauert hat (nützlich bei Chats über mehrere Tage)
+    </ResponseField>
+
+    <ResponseField name="timestamp_unix" type="integer">
+      Unix-Zeitstempel (Sekunden seit Epoch) der einzelnen Nachricht. Praktisch für Berechnungen — z. B. die Zeitspanne zwischen zwei Nachrichten ohne Parsen des ISO-Strings
     </ResponseField>
   </Expandable>
 </ResponseField>
 
 <ResponseField name="formatted_transcript" type="string">
   Lesbares, formatiertes Transkript mit den Präfixen `AI:` und `Customer:`
+</ResponseField>
+
+<ResponseField name="attachments" type="array">
+  Medien-Dateien (Bilder, Videos, Dokumente), die während der Konversation geteilt wurden. Jeder Eintrag enthält eine direkte URL, die Sie an externe Dienste weitergeben können (z. B. Bild- oder Videoanalyse). Ein leeres Array, wenn keine Medien geteilt wurden — Medien sind typischerweise bei WhatsApp-Konversationen vorhanden.
+
+  <Expandable title="Anhang-Eigenschaften">
+    <ResponseField name="type" type="string">
+      Medienkategorie. Mögliche Werte: `image`, `video`, `audio`, `document`
+    </ResponseField>
+
+    <ResponseField name="url" type="string">
+      Direkte URL zum Herunterladen der Mediendatei
+    </ResponseField>
+
+    <ResponseField name="filename" type="string">
+      Originaldateiname der Mediendatei
+    </ResponseField>
+  </Expandable>
 </ResponseField>
 
 <ResponseField name="customer_phone" type="string">
@@ -115,6 +145,7 @@ Der Webhook wird als POST-Request an Ihre konfigurierte URL mit dem folgenden JS
 <ResponseExample>
   ```json Conversation Ended Webhook Payload theme={null}
   {
+    "id": 1042,
     "conversation_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
     "assistant_id": "f9e8d7c6-b5a4-3210-fedc-ba9876543210",
     "type": "widget",
@@ -131,22 +162,31 @@ Der Webhook wird als POST-Request an Ihre konfigurierte URL mit dem folgenden JS
     "transcript": [
       {
         "role": "assistant",
-        "content": "Hi! How can I help you today?"
+        "content": "Hi! How can I help you today?",
+        "timestamp": "2026-02-23T09:30:00+01:00",
+        "timestamp_unix": 1740299400
       },
       {
         "role": "user",
-        "content": "I have a question about your service."
+        "content": "I have a question about your service.",
+        "timestamp": "2026-02-23T09:31:12+01:00",
+        "timestamp_unix": 1740299472
       },
       {
         "role": "assistant",
-        "content": "Of course! I'd be happy to help. What would you like to know?"
+        "content": "Of course! I'd be happy to help. What would you like to know?",
+        "timestamp": "2026-02-23T09:31:18+01:00",
+        "timestamp_unix": 1740299478
       },
       {
         "role": "user",
-        "content": "What are your pricing plans?"
+        "content": "What are your pricing plans?",
+        "timestamp": "2026-02-23T09:32:05+01:00",
+        "timestamp_unix": 1740299525
       }
     ],
     "formatted_transcript": "AI: Hi! How can I help you today?\nCustomer: I have a question about your service.\nAI: Of course! I'd be happy to help. What would you like to know?\nCustomer: What are your pricing plans?",
+    "attachments": [],
     "customer_phone": null,
     "customer_name": "John Doe",
     "sender": null,
@@ -157,6 +197,7 @@ Der Webhook wird als POST-Request an Ihre konfigurierte URL mit dem folgenden JS
 
   ```json WhatsApp Conversation Ended Webhook theme={null}
   {
+    "id": 1043,
     "conversation_id": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
     "assistant_id": "f9e8d7c6-b5a4-3210-fedc-ba9876543210",
     "type": "whatsapp",
@@ -170,14 +211,31 @@ Der Webhook wird als POST-Request an Ihre konfigurierte URL mit dem folgenden JS
     "transcript": [
       {
         "role": "user",
-        "content": "Hello, I'd like to book an appointment"
+        "content": "Hello, I'd like to book an appointment",
+        "timestamp": "2026-02-23T14:00:00+01:00",
+        "timestamp_unix": 1740315600
       },
       {
         "role": "assistant",
-        "content": "Hi! I'd be happy to help you book an appointment. What date works best for you?"
+        "content": "Hi! I'd be happy to help you book an appointment. What date works best for you?",
+        "timestamp": "2026-02-23T14:00:08+01:00",
+        "timestamp_unix": 1740315608
+      },
+      {
+        "role": "user",
+        "content": "[Image]",
+        "timestamp": "2026-02-23T14:05:30+01:00",
+        "timestamp_unix": 1740315930
       }
     ],
-    "formatted_transcript": "Customer: Hello, I'd like to book an appointment\nAI: Hi! I'd be happy to help you book an appointment. What date works best for you?",
+    "formatted_transcript": "Customer: Hello, I'd like to book an appointment\nAI: Hi! I'd be happy to help you book an appointment. What date works best for you?\nCustomer: [Image]",
+    "attachments": [
+      {
+        "type": "image",
+        "url": "https://storage.famulor.de/conversations/attachments/abc123.jpg",
+        "filename": "appointment-form.jpg"
+      }
+    ],
     "customer_phone": "+1234567890",
     "customer_name": null,
     "sender": {
@@ -211,3 +269,4 @@ Nach 3 fehlgeschlagenen Versuchen wird die Webhook-Zustellung als fehlgeschlagen
 * Zeitstempel verwenden die konfigurierte Zeitzone des Nutzers (ISO-8601-Format)
 * `extracted_variables` werden aus der Post-Call-Schema-Auswertung Ihres Assistenten befüllt
 * `input_variables` enthalten Daten aus Pre-Chat-Formularen (Web Widget) oder Automatisierungs-Flows
+* Das `attachments`-Array listet Medien (Bilder, Videos, Dokumente) auf, die während der Konversation geteilt wurden — jeweils mit einer herunterladbaren `url`, nützlich zur Weiterleitung an externe Analyse-Tools. Es ist ein leeres Array, wenn keine Medien geteilt wurden (am häufigsten bei Web-Widget-Konversationen)
