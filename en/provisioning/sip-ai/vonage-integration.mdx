@@ -1,6 +1,6 @@
 ---
 title: 'Vonage Integration'
-description: 'A step-by-step guide to connecting your Vonage account via SIP trunking'
+description: 'Connect a Vonage phone number to Famulor via Elastic SIP Trunking'
 ---
 
 import SipDoneForYou from '/en/snippets/sip-done-for-you-partner-en.mdx';
@@ -8,222 +8,177 @@ import SipDoneForYou from '/en/snippets/sip-done-for-you-partner-en.mdx';
 <SipDoneForYou />
 
 
+# Connect a Vonage Number to Famulor
 
-# Vonage Integration
+This guide connects a **Vonage** phone number to Famulor via **Elastic SIP Trunking**.
 
 <Note>
-  A step-by-step guide to connecting your Vonage account via SIP trunking with Famulor.
+  Famulor has **no** dedicated Vonage import feature. You set up an **Elastic SIP Trunk** in Vonage and connect it through **Integrate SIP trunk** in Famulor.
+
+  The trunk has two directions:
+  - **Termination** (outbound calls): Vonage gives you a SIP domain + credentials that Famulor uses to send outbound calls.
+  - **Origination** (inbound calls): Vonage forwards calls to **Famulor's SIP address**.
 </Note>
 
-## Overview
+## How it works
 
-<Card
-  title="What is Vonage?"
-  icon="building"
-  color="blue">
-  Vonage is a leading provider of cloud communication solutions. With the SIP trunking integration, you can connect your existing Vonage phone numbers with Famulor and benefit from AI-powered call management.
-</Card>
+```mermaid theme={null}
+sequenceDiagram
+    participant C as Caller
+    participant V as Vonage
+    participant FA as Famulor
+    participant A as AI assistant
 
-## Step 1: Create Elastic SIP Trunking
+    Note over V,FA: Inbound – origination to „Our SIP address"
+    C->>V: Call to your Vonage number
+    V->>FA: SIP call to „Our SIP address"
+    FA->>A: Call routed to assigned assistant
+    A->>FA: Voice response (real time)
+    FA->>C: Conversation with AI assistant
+    Note over FA,V: Outbound – termination to <prefix>.sip.vonage.com
+```
 
-<Card
-  title="Set up SIP trunk in Vonage"
-  icon="gear"
-  color="green">
-  
-    - Navigate to the **SIP section** in the Vonage dashboard
-    - Select **"Other"** as provider
-    - Follow the step-by-step instructions
-  
-</Card>
+- **Inbound:** Famulor does **not** register via SIP REGISTER. Vonage sends calls through the **origination** to „Our SIP address".
+- **Outbound:** Famulor sends calls to Vonage's **termination** SIP domain and authenticates with username and password.
 
-### Configure Termination (for outgoing calls)
+## Prerequisites
 
-<Card
-  title="Note important information"
-  icon="edit"
-  color="orange">
-  When setting up termination (outgoing calls), the following information is important:
-  
-    - **Termination SIP URI**
-    - **Username**
-    - **Password**
-  
-  **Important:** Note down this information as you will need it in later steps.
-</Card>
+- An active **Vonage** account with access to **Programmable SIP / Elastic SIP Trunking**
+- At least one Vonage phone number (or a new number to purchase)
+- A Famulor account
 
-### Configure Origination (for incoming calls)
+---
 
-<Card
-  title="Configure Famulor SIP server"
-  icon="server"
-  color="purple">
-  Here, enter the Famulor SIP server address as the Origination SIP URI:
-  <CodeGroup>
-    <CodeGroupItem title="SIP Server">
-      ```bash
-      sip:your-unique-id.sip.livekit.cloud
-      ```
-    </CodeGroupItem>
-  </CodeGroup>
-  
-  <Note>
-    **Important:** The specific Famulor SIP address can be found in your Famulor dashboard under "Phone Numbers" → "Integrate SIP Trunk" → "Our SIP Address".
-  </Note>
-</Card>
+## Step 1: Create an Elastic SIP Trunk in Vonage
 
-## Step 2: Move numbers to Elastic SIP Trunking
+1. Open the **Vonage dashboard** and navigate to the **SIP** section.
 
-<Card
-  title="Link numbers"
-  icon="phone"
-  color="blue">
-  After creating the Elastic SIP trunk, you need to:
-  
-    - Purchase new numbers **OR**
-    - Link existing numbers to this trunk
-  
-</Card>
+<img
+  src="/images/vonage/vonage-sip-section.png"
+  alt="Vonage dashboard: navigating to the SIP section"
+/>
 
-## Step 3: Import numbers into Famulor
+2. Create a new SIP trunk and select **„Something else"** as the provider (i.e. not a preset provider).
 
-<Card
-  title="Complete integration in Famulor"
-  icon="download"
-  color="green">
-  Now that the number is configured with your Elastic SIP trunking, you need to import it into Famulor so that we know how to route the calls.
-</Card>
+<img
+  src="/images/vonage/vonage-choose-provider.png"
+  alt="Vonage: provider selection with the „Something else“ option"
+/>
 
-### Required information
+---
 
-<Card
-  title="Enter Vonage data"
-  icon="database"
-  color="red">
-  Enter the following information you set up in Step 1:
-  
-    - **Termination SIP URI** from Step 1
-    - **Username** from Step 1
-    - **Password** from Step 1
-  
-</Card>
+## Step 2: Set up Termination (outbound calls)
 
-### Programmatic import
+**Termination** provides the SIP domain and credentials Famulor uses to send outbound calls.
 
-<Card
-  title="API import available"
-  icon="code"
-  color="indigo">
-  You can also import numbers programmatically via the **Import Number API**.
-</Card>
+1. Follow the **Termination** setup in Vonage.
+2. Note the displayed values:
 
-## After the import
+| Field | Example / meaning |
+| --- | --- |
+| **SIP domain** | `<your-prefix>.sip.vonage.com` (Termination SIP URI) |
+| **User name** | Credentials for outbound calls |
+| **Password** | Credentials for outbound calls |
 
-<Card
-  title="Full functionality"
-  icon="check-circle"
-  color="green">
-  Once the number is imported, you can:
-  
-    - Make and receive calls with this number
-    - See the number in your dashboard
-    - Bind assistants to the number
-    - Make calls directly from the dashboard
-  
-</Card>
+<img
+  src="/images/vonage/vonage-termination.png"
+  alt="Vonage: termination with SIP domain (.sip.vonage.com), username and password"
+/>
 
-<Card
-  title="Additional information"
-  icon="book-open"
-  color="blue">
-  Check out the **Call Guide** to learn how to make calls.
-</Card>
+<Note>
+  Store the **SIP domain**, **username** and **password** safely. You need them in **Step 5** for the Famulor setup.
+</Note>
 
-## Technical details
+---
 
-<CardGroup cols={2}>
-  <Card
-    title="SIP Protocol"
-    icon="gear"
-    color="blue">
-    
-      - Uses standard SIP trunking
-      - Supports incoming and outgoing calls
-      - Fully integrated with Famulor
-    
-  </Card>
-  
-  <Card
-    title="Authentication"
-    icon="shield"
-    color="green">
-    
-      - Username/password-based authentication
-      - Secure connection via SIP
-      - Encrypted communication
-    
-  </Card>
-</CardGroup>
+## Step 3: Set up Origination (inbound calls)
 
-## Common issues and solutions
+In **Origination** you define where Vonage forwards incoming calls – to **Famulor's SIP address**.
 
-<Card
-  title="Troubleshooting"
-  icon="circle-question"
-  color="orange">
-  
-    - **Connection issues:** Check the SIP URI and login credentials
-    - **Calls not working:** Make sure the trunk is enabled
-    - **Missing incoming calls:** Verify the origination settings
-    - **Missing outgoing calls:** Verify the termination settings
-  
-</Card>
+1. In a second tab, open Famulor at [app.famulor.de/phone-numbers?lang=en](https://app.famulor.de/phone-numbers?lang=en) → **Your phone numbers → + Integrate SIP trunk** and, under **Incoming call settings**, copy the value **Our SIP address** (e.g. `xxxxxx.eu.sip.livekit.cloud`).
+2. Paste this address into Vonage under **Origination** as the **SIP-URI**.
 
-## Setup in Famulor
+<img
+  src="/images/vonage/vonage-origination.png"
+  alt="Vonage: origination – paste Famulor's SIP-URI (e.g. xxxxxx.sip.livekit.cloud)"
+/>
 
-<Card
-  title="Setup steps"
-  icon="gear"
-  color="purple">
-  
-    - Go to **Phone Numbers** → **Integrate SIP Trunk**
-    - Select **"Vonage"** as provider
-    - Enter the **Termination SIP URI**
-    - Enter the **Username**
-    - Enter the **Password**
-    - Click **"Save"**
-    - Test the connection by placing a call
-  
-</Card>
+<Note>
+  Use the **exact** „Our SIP address" from Famulor – no spaces.
+</Note>
 
-## Need help?
+---
+
+## Step 4: Assign a number to the trunk
+
+Link a phone number to your Elastic SIP Trunk – either an **existing number** or a **newly purchased** one.
+
+<img
+  src="/images/vonage/vonage-add-number.png"
+  alt="Vonage: assigning a number to the Elastic SIP Trunk"
+/>
+
+<Note>
+  Note the Vonage number in **E.164 format** with country code (e.g. `+12025550123`). You need it in Step 5.
+</Note>
+
+---
+
+## Step 5: Set up the SIP trunk in Famulor
+
+1. In Famulor, go to **Your phone numbers** and click **+ Integrate SIP trunk**.
+2. Enter the data as follows:
+
+| Field | Value |
+| --- | --- |
+| **SIP trunk type** | **Phone number (DID)** |
+| **Phone number** | Your Vonage number in E.164 format (e.g. `+12025550123`) |
+| **Username** | The **termination** username from Step 2 |
+| **Password** | The **termination** password from Step 2 |
+| **SIP address** (outbound) | The Vonage **SIP domain** from Step 2 (e.g. `<your-prefix>.sip.vonage.com`, without port) |
+| **Outgoing phone number format** | **International (with leading +)** |
+| **Country** | The country of your Vonage trunk |
+
+3. Under **Incoming call settings**, you'll see **Our SIP address** – the same address you entered as the Vonage origination in **Step 3**.
+4. Click **Add SIP number**.
+
+<img
+  src="/images/famulor_sip_number_integrate.png"
+  alt="Famulor: „Integrate SIP trunk“ dialog with authentication, outbound SIP address and the „Our SIP address“ field for incoming calls"
+/>
+
+---
+
+## Step 6: Assign an assistant and test
+
+1. Open **Assistants** in Famulor and edit the assistant you want to use.
+2. Select the correct **inbound type** (incoming calls).
+3. Choose your connected Vonage phone number from the list.
+4. Click **Save assistant**.
+5. Place a **test call** to your Vonage number and check that the AI assistant answers.
+
+---
+
+## Common issues
+
+<AccordionGroup>
+  <Accordion title="Inbound calls do not arrive" icon="phone-slash">
+    Check the **origination** in Vonage (Step 3): it must contain the **exact** „Our SIP address" from Famulor. Also make sure the **number is assigned to the trunk** (Step 4).
+  </Accordion>
+
+  <Accordion title="Outbound calls fail" icon="arrow-up-right-from-square">
+    Check the **termination** values from Step 2 in Famulor: **SIP address** (`<your-prefix>.sip.vonage.com`), **username** and **password**. Set the number format to **International (with leading +)**.
+  </Accordion>
+
+  <Accordion title="Wrong or unknown SIP address" icon="server">
+    Always use the **exact** „Our SIP address" from Famulor (Phone numbers → Integrate SIP trunk → Incoming call settings).
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Help
 
 <Tip>
-  Our support team can assist you with setting up the Vonage integration.
-</Tip>
-
-<Card
-  title="Contact support"
-  icon="headphones"
-  color="blue"
-  href="mailto:support@famulor.io">
-  Need help with the Vonage integration? Contact our support team.
-</Card>
-
-## Next steps
-
-<Card
-  title="Further resources"
-  icon="arrow-right"
-  color="green">
-  
-    - Learn more about **SIP integration**
-    - Explore other **telephony providers**
-    - Test your integration with **call tests**
-    - Configure **AI assistants** for your numbers
-  
-</Card>
-
-<Tip>
-Related pages: [Index](/en/index) and [Support](/en/support), and [FAQ](/en/faq).
+  If you need help, contact our support team at [support@famulor.io](mailto:support@famulor.io). For general guidance, see [SIP Integration](/en/provisioning/sip-ai/sip-integration) and [SIP integration issues](/en/troubleshooting/sip-integration-issues).
 </Tip>

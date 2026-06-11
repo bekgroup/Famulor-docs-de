@@ -1,6 +1,6 @@
 ---
 title: 'Vonage Integration'
-description: 'Eine Schritt-für-Schritt-Anleitung zur Verbindung mit Ihrem Vonage-Konto über SIP-Trunking'
+description: 'Vonage-Telefonnummer per Elastic SIP Trunking mit Famulor verbinden'
 ---
 
 import SipDoneForYou from '/de/snippets/sip-done-for-you-partner-de.mdx';
@@ -8,222 +8,177 @@ import SipDoneForYou from '/de/snippets/sip-done-for-you-partner-de.mdx';
 <SipDoneForYou />
 
 
+# Vonage-Nummer mit Famulor verbinden
 
-# Vonage Integration
+In dieser Anleitung verbindest du eine **Vonage**-Telefonnummer über **Elastic SIP Trunking** mit Famulor.
 
 <Note>
-  Eine Schritt-für-Schritt-Anleitung zur Verbindung mit Ihrem Vonage-Konto über SIP-Trunking mit Famulor.
+  Famulor hat **kein** spezielles Vonage-Import-Feature. Du richtest in Vonage einen **Elastic SIP Trunk** ein und verbindest ihn über **SIP-Trunk integrieren** in Famulor.
+
+  Der Trunk hat zwei Richtungen:
+  - **Termination** (ausgehende Anrufe): Vonage gibt dir eine SIP-Domain + Zugangsdaten, an die Famulor ausgehende Anrufe sendet.
+  - **Origination** (eingehende Anrufe): Vonage leitet Anrufe an die **SIP-Adresse von Famulor** weiter.
 </Note>
 
-## Übersicht
+## Funktionsweise
 
-<Card
-  title="Was ist Vonage?"
-  icon="building"
-  color="blue">
-  Vonage ist ein führender Anbieter für Cloud-Kommunikationslösungen. Mit der SIP-Trunking-Integration können Sie Ihre bestehenden Vonage-Telefonnummern mit Famulor verbinden und von der KI-gestützten Anrufverwaltung profitieren.
-</Card>
+```mermaid theme={null}
+sequenceDiagram
+    participant K as Anrufer
+    participant V as Vonage
+    participant FA as Famulor
+    participant A as KI-Assistent
 
-## Schritt 1: Elastic SIP Trunking erstellen
+    Note over V,FA: Eingehend – Origination an „Unsere SIP-Adresse"
+    K->>V: Anruf an deine Vonage-Nummer
+    V->>FA: SIP-Anruf an „Unsere SIP-Adresse"
+    FA->>A: Anruf an zugewiesenen Assistenten
+    A->>FA: Sprachantwort (Echtzeit)
+    FA->>K: Gespräch mit KI-Assistent
+    Note over FA,V: Ausgehend – Termination an <prefix>.sip.vonage.com
+```
 
-<Card
-  title="SIP-Trunk in Vonage einrichten"
-  icon="gear"
-  color="green">
-  
-    - Navigieren Sie zum **SIP-Bereich** im Vonage-Dashboard
-    - Wählen Sie **"Other"** als Anbieter aus
-    - Folgen Sie den Anweisungen Schritt für Schritt
-  
-</Card>
+- **Eingehend:** Famulor **registriert sich nicht** per SIP REGISTER. Vonage schickt Anrufe über die **Origination** an „Unsere SIP-Adresse".
+- **Ausgehend:** Famulor sendet Anrufe an die **Termination**-SIP-Domain von Vonage und authentifiziert sich mit Benutzername und Passwort.
 
-### Termination einrichten (für ausgehende Anrufe)
+## Voraussetzungen
 
-<Card
-  title="Wichtige Informationen notieren"
-  icon="edit"
-  color="orange">
-  Bei der Einrichtung der Termination (ausgehende Anrufe) sind folgende Informationen wichtig:
-  
-    - **Termination SIP URI**
-    - **Benutzername**
-    - **Passwort**
-  
-  **Wichtig:** Notieren Sie sich diese Informationen, da Sie sie in den späteren Schritten benötigen werden.
-</Card>
+- Aktives **Vonage**-Konto mit Zugriff auf **Programmable SIP / Elastic SIP Trunking**
+- Mindestens eine Vonage-Telefonnummer (oder eine neue Nummer zum Kaufen)
+- Famulor-Konto
 
-### Origination einrichten (für eingehende Anrufe)
+---
 
-<Card
-  title="Famulor SIP-Server konfigurieren"
-  icon="server"
-  color="purple">
-  Hier geben Sie die Famulor SIP-Server-Adresse als Origination SIP URI an:
-  <CodeGroup>
-    <CodeGroupItem title="SIP-Server">
-      ```bash
-      sip:ihre-unique-id.sip.livekit.cloud
-      ```
-    </CodeGroupItem>
-  </CodeGroup>
-  
-  <Note>
-    **Wichtig:** Die spezifische Famulor SIP-Adresse finden Sie in Ihrem Famulor-Dashboard unter "Telefonnummern" → "SIP-Trunk integrieren" → "Unsere SIP-Adresse".
-  </Note>
-</Card>
+## Schritt 1: Elastic SIP Trunk in Vonage erstellen
 
-## Schritt 2: Nummern zu Elastic SIP Trunking verschieben
+1. Öffne das **Vonage-Dashboard** und navigiere zum Bereich **SIP**.
 
-<Card
-  title="Nummern verknüpfen"
-  icon="phone"
-  color="blue">
-  Nachdem Sie den Elastic SIP-Trunk erstellt haben, müssen Sie:
-  
-    - Neue Nummern kaufen **ODER**
-    - Bestehende Nummern mit diesem Trunk verknüpfen
-  
-</Card>
+<img
+  src="/images/vonage/vonage-sip-section.png"
+  alt="Vonage-Dashboard: Navigation zum SIP-Bereich"
+/>
 
-## Schritt 3: Nummern in Famulor importieren
+2. Lege einen neuen SIP-Trunk an und wähle als Anbieter **„Something else"** (also keinen vordefinierten Anbieter).
 
-<Card
-  title="Integration in Famulor abschließen"
-  icon="download"
-  color="green">
-  Jetzt, da die Nummer mit Ihrem Elastic SIP-Trunking eingerichtet ist, müssen Sie sie in Famulor importieren, damit wir wissen, wie wir die Anrufe routen können.
-</Card>
+<img
+  src="/images/vonage/vonage-choose-provider.png"
+  alt="Vonage: Anbieterauswahl mit Option „Something else“"
+/>
 
-### Benötigte Informationen
+---
 
-<Card
-  title="Vonage-Daten eingeben"
-  icon="database"
-  color="red">
-  Geben Sie hier die folgenden Informationen ein, die Sie in Schritt 1 eingerichtet haben:
-  
-    - **Termination SIP URI** aus Schritt 1
-    - **Benutzername** aus Schritt 1
-    - **Passwort** aus Schritt 1
-  
-</Card>
+## Schritt 2: Termination einrichten (ausgehende Anrufe)
 
-### Programmgesteuerter Import
+Die **Termination** liefert die SIP-Domain und die Zugangsdaten, mit denen Famulor ausgehende Anrufe sendet.
 
-<Card
-  title="API-Import verfügbar"
-  icon="code"
-  color="indigo">
-  Sie können Nummern auch programmgesteuert über die **Import Number API** importieren.
-</Card>
+1. Folge in Vonage der Einrichtung der **Termination**.
+2. Notiere dir die angezeigten Werte:
 
-## Nach dem Import
+| Feld | Beispiel / Bedeutung |
+| --- | --- |
+| **SIP-Domain** | `<dein-prefix>.sip.vonage.com` (Termination SIP URI) |
+| **Benutzername (User name)** | Zugangsdaten für ausgehende Anrufe |
+| **Passwort (Password)** | Zugangsdaten für ausgehende Anrufe |
 
-<Card
-  title="Vollständige Funktionalität"
-  icon="check-circle"
-  color="green">
-  Sobald die Nummer importiert ist, können Sie:
-  
-    - Anrufe mit dieser Nummer tätigen und empfangen
-    - Die Nummer wird in Ihrem Dashboard angezeigt
-    - Sie können Assistenten an die Nummer binden
-    - Direkt vom Dashboard aus Anrufe tätigen
-  
-</Card>
+<img
+  src="/images/vonage/vonage-termination.png"
+  alt="Vonage: Termination mit SIP-Domain (.sip.vonage.com), Benutzername und Passwort"
+/>
 
-<Card
-  title="Weiterführende Informationen"
-  icon="book-open"
-  color="blue">
-  Schauen Sie sich den **Anruf-Guide** an, um zu lernen, wie Sie Anrufe tätigen können.
-</Card>
+<Note>
+  Speichere **SIP-Domain**, **Benutzername** und **Passwort** sicher. Du brauchst sie in **Schritt 5** für die Famulor-Einrichtung.
+</Note>
 
-## Technische Details
+---
 
-<CardGroup cols={2}>
-  <Card
-    title="SIP-Protokoll"
-    icon="gear"
-    color="blue">
-    
-      - Verwendet Standard SIP-Trunking
-      - Unterstützt eingehende und ausgehende Anrufe
-      - Vollständige Integration mit Famulor
-    
-  </Card>
-  
-  <Card
-    title="Authentifizierung"
-    icon="shield"
-    color="green">
-    
-      - Benutzername/Passwort-basierte Authentifizierung
-      - Sichere Verbindung über SIP
-      - Verschlüsselte Kommunikation
-    
-  </Card>
-</CardGroup>
+## Schritt 3: Origination einrichten (eingehende Anrufe)
 
-## Häufige Probleme und Lösungen
+Bei der **Origination** legst du fest, wohin Vonage eingehende Anrufe weiterleitet – nämlich an die **SIP-Adresse von Famulor**.
 
-<Card
-  title="Troubleshooting"
-  icon="circle-question"
-  color="orange">
-  
-    - **Verbindungsprobleme:** Überprüfen Sie die SIP-URI und Anmeldedaten
-    - **Anrufe funktionieren nicht:** Stellen Sie sicher, dass der Trunk aktiviert ist
-    - **Eingehende Anrufe fehlen:** Überprüfen Sie die Origination-Einstellungen
-    - **Ausgehende Anrufe fehlen:** Überprüfen Sie die Termination-Einstellungen
-  
-</Card>
+1. Öffne in einem zweiten Tab Famulor unter [app.famulor.de/phone-numbers?lang=de](https://app.famulor.de/phone-numbers?lang=de) → **Deine Telefonnummern → + SIP-Trunk integrieren** und kopiere unter **Einstellungen für eingehende Anrufe** den Wert **Unsere SIP-Adresse** (z. B. `xxxxxx.eu.sip.livekit.cloud`).
+2. Füge diese Adresse in Vonage unter **Origination** als **SIP-URI** ein.
 
-## Einrichtung in Famulor
+<img
+  src="/images/vonage/vonage-origination.png"
+  alt="Vonage: Origination – SIP-URI von Famulor (z. B. xxxxxx.sip.livekit.cloud) einfügen"
+/>
 
-<Card
-  title="Schritte zur Einrichtung"
-  icon="gear"
-  color="purple">
-  
-    - Gehen Sie zu **Telefonnummern** → **SIP-Trunk integrieren**
-    - Wählen Sie **"Vonage"** als Anbieter
-    - Geben Sie die **Termination SIP URI** ein
-    - Geben Sie den **Benutzernamen** ein
-    - Geben Sie das **Passwort** ein
-    - Klicken Sie auf **"Speichern"**
-    - Testen Sie die Verbindung mit einem Anruf
-  
-</Card>
+<Note>
+  Übernimm die **genaue** „Unsere SIP-Adresse" aus Famulor – ohne Leerzeichen.
+</Note>
 
-## Hilfe benötigt?
+---
+
+## Schritt 4: Nummer dem Trunk zuordnen
+
+Verknüpfe eine Telefonnummer mit deinem Elastic SIP Trunk – entweder eine **bestehende Nummer** oder eine **neu gekaufte**.
+
+<img
+  src="/images/vonage/vonage-add-number.png"
+  alt="Vonage: Nummer dem Elastic SIP Trunk zuordnen"
+/>
+
+<Note>
+  Notiere dir die Vonage-Nummer im **E.164-Format** mit Landesvorwahl (z. B. `+12025550123`). Du brauchst sie in Schritt 5.
+</Note>
+
+---
+
+## Schritt 5: SIP-Trunk in Famulor einrichten
+
+1. Gehe in Famulor zu **Deine Telefonnummern** und klicke auf **+ SIP-Trunk integrieren**.
+2. Trage die Daten wie folgt ein:
+
+| Feld | Wert |
+| --- | --- |
+| **SIP-Trunk-Typ** | **Telefonnummer (DID)** |
+| **Telefonnummer** | Deine Vonage-Nummer im E.164-Format (z. B. `+12025550123`) |
+| **Benutzername** | Der **Termination**-Benutzername aus Schritt 2 |
+| **Passwort** | Das **Termination**-Passwort aus Schritt 2 |
+| **SIP-Adresse** (ausgehend) | Die Vonage-**SIP-Domain** aus Schritt 2 (z. B. `<dein-prefix>.sip.vonage.com`, ohne Port) |
+| **Format der ausgehenden Telefonnummer** | **International (mit + vorne)** |
+| **Land** | Das Land deines Vonage-Trunks |
+
+3. Unter **Einstellungen für eingehende Anrufe** steht **Unsere SIP-Adresse** – dieselbe Adresse, die du in **Schritt 3** als Vonage-Origination eingetragen hast.
+4. Klicke auf **SIP-Nummer hinzufügen**.
+
+<img
+  src="/images/famulor_sip_number_integrate.png"
+  alt="Famulor: Dialog „SIP-Trunk integrieren“ mit Authentifizierung, ausgehender SIP-Adresse und „Unsere SIP-Adresse“ für eingehende Anrufe"
+/>
+
+---
+
+## Schritt 6: Assistenten zuweisen und testen
+
+1. Öffne in Famulor den Bereich **Assistenten** und bearbeite den gewünschten Assistenten.
+2. Wähle den passenden **Empfangstyp** (eingehende Anrufe).
+3. Wähle deine verbundene Vonage-Telefonnummer aus der Liste.
+4. Klicke auf **Assistent speichern**.
+5. Führe einen **Testanruf** auf deine Vonage-Nummer durch und prüfe, ob der KI-Assistent antwortet.
+
+---
+
+## Häufige Probleme
+
+<AccordionGroup>
+  <Accordion title="Eingehende Anrufe kommen nicht an" icon="phone-slash">
+    Prüfe die **Origination** in Vonage (Schritt 3): Dort muss die **genaue** „Unsere SIP-Adresse" aus Famulor stehen. Stelle außerdem sicher, dass die **Nummer dem Trunk zugeordnet** ist (Schritt 4).
+  </Accordion>
+
+  <Accordion title="Ausgehende Anrufe schlagen fehl" icon="arrow-up-right-from-square">
+    Prüfe in Famulor die **Termination**-Werte aus Schritt 2: **SIP-Adresse** (`<dein-prefix>.sip.vonage.com`), **Benutzername** und **Passwort**. Wähle als Rufnummernformat **International (mit + vorne)**.
+  </Accordion>
+
+  <Accordion title="Falsche oder unbekannte SIP-Adresse" icon="server">
+    Verwende immer die **exakte** „Unsere SIP-Adresse" aus Famulor (Telefonnummern → SIP-Trunk integrieren → Einstellungen für eingehende Anrufe).
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Hilfe
 
 <Tip>
-  Unser Support-Team kann Ihnen bei der Einrichtung der Vonage-Integration helfen.
-</Tip>
-
-<Card
-  title="Support kontaktieren"
-  icon="headphones"
-  color="blue"
-  href="mailto:support@famulor.io">
-  Benötigen Sie Hilfe bei der Vonage-Integration? Kontaktieren Sie unser Support-Team.
-</Card>
-
-## Nächste Schritte
-
-<Card
-  title="Weiterführende Ressourcen"
-  icon="arrow-right"
-  color="green">
-  
-    - Lernen Sie mehr über **SIP-Integration**
-    - Entdecken Sie andere **Telefonie-Anbieter**
-    - Testen Sie Ihre Integration mit **Anruf-Tests**
-    - Konfigurieren Sie **KI-Assistenten** für Ihre Nummern
-  
-</Card>
-
-<Tip>
-Passende Seiten: [Index](/de/index) und [Support](/de/support) und [FAQ](/de/faq).
+  Bei Problemen kontaktiere unser Support-Team unter [support@famulor.io](mailto:support@famulor.io). Allgemeine Hinweise findest du auch unter [SIP-Integration](/de/provisioning/sip-ai/sip-integration) und [SIP-Integrationsprobleme](/de/troubleshooting/sip-integration-issues).
 </Tip>
