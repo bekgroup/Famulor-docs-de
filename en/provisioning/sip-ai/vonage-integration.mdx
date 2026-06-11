@@ -166,7 +166,7 @@ Famulor can hand off an ongoing call to a real person – as a **cold transfer**
 <Warning>
   **Vonage does not support SIP REFER.** Famulor performs **cold transfers** via **SIP REFER** – the carrier connects the caller onward directly. Because Vonage SIP trunks do **not** support REFER, **cold transfer over the Vonage trunk does not work reliably**.
 
-  **Recommendation for Vonage:** use the **warm transfer**. Famulor places a **separate outbound call** to the contact through the Vonage trunk and bridges both parties – this needs **no** REFER and works with Vonage.
+  **Recommendation for Vonage:** use the **warm transfer**. Famulor creates a **new SIP INVITE** (a separate outbound call through the Vonage trunk) and **merges the two calls** – this needs **no** REFER and therefore also works with SIP trunks that lack REFER support, such as Vonage.
 </Warning>
 
 ### Options per transfer target
@@ -208,7 +208,7 @@ For each transfer target (cold or warm) you have two choices:
   </Accordion>
 
   <Accordion title="Cold transfer does not work" icon="phone-arrow-up-right">
-    **Vonage does not support SIP REFER**, which Famulor uses for cold transfer. Use the **warm transfer** instead – it places a separate outbound call and works with Vonage. Details: [Assistant call forwarding](/en/platform/assistant-call-forwarding).
+    **Vonage does not support SIP REFER**, which Famulor uses for cold transfer. Use the **warm transfer** instead – it creates a new SIP INVITE and merges the calls (no REFER), so it works with Vonage. Details: [Assistant call forwarding](/en/platform/assistant-call-forwarding).
   </Accordion>
 </AccordionGroup>
 

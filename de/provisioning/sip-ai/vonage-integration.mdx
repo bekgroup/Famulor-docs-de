@@ -166,7 +166,7 @@ Famulor kann ein laufendes Gespräch an einen echten Ansprechpartner übergeben 
 <Warning>
   **Vonage unterstützt kein SIP REFER.** Famulor führt **Kaltweiterleitungen** über **SIP REFER** durch – der Carrier verbindet den Anrufer dabei direkt weiter. Da Vonage-SIP-Trunks REFER **nicht** unterstützen, funktioniert die **Kaltweiterleitung über den Vonage-Trunk nicht zuverlässig**.
 
-  **Empfehlung für Vonage:** Nutze die **Warmweiterleitung**. Dabei baut Famulor einen **separaten ausgehenden Anruf** zum Ansprechpartner über den Vonage-Trunk auf und verbindet beide Seiten – das benötigt **kein** REFER und funktioniert mit Vonage.
+  **Empfehlung für Vonage:** Nutze die **Warmweiterleitung**. Dabei erstellt Famulor ein **neues SIP INVITE** (einen separaten ausgehenden Anruf über den Vonage-Trunk) und **führt die beiden Gespräche zusammen** – das benötigt **kein** REFER und funktioniert daher auch mit SIP-Trunks ohne REFER-Unterstützung wie Vonage.
 </Warning>
 
 ### Optionen pro Weiterleitungsziel
@@ -208,7 +208,7 @@ Bei jedem Weiterleitungsziel (Kalt wie Warm) hast du zwei Möglichkeiten:
   </Accordion>
 
   <Accordion title="Kaltweiterleitung funktioniert nicht" icon="phone-arrow-up-right">
-    **Vonage unterstützt kein SIP REFER**, das Famulor für die Kaltweiterleitung nutzt. Verwende stattdessen die **Warmweiterleitung** – sie baut einen separaten ausgehenden Anruf auf und funktioniert mit Vonage. Details: [Anrufsweiterleitung](/de/platform/anrufsweiterleitung).
+    **Vonage unterstützt kein SIP REFER**, das Famulor für die Kaltweiterleitung nutzt. Verwende stattdessen die **Warmweiterleitung** – sie erstellt ein neues SIP INVITE und führt die Gespräche zusammen (kein REFER), funktioniert also mit Vonage. Details: [Anrufsweiterleitung](/de/platform/anrufsweiterleitung).
   </Accordion>
 </AccordionGroup>
 
