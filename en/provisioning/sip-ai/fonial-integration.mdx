@@ -13,33 +13,18 @@ import SipDoneForYou from '/en/snippets/sip-done-for-you-partner-en.mdx';
 This guide walks you through connecting a Fonial phone number to Famulor step by step.
 
 <Note>
-  Famulor has **no** dedicated „Fonial import". You connect your Fonial number like any other provider through the **Integrate SIP trunk** feature in Famulor. There are **two ways** to do this – choose your path below and follow the matching step-by-step guide.
+  Famulor has **no** dedicated „Fonial import". You connect your Fonial number like any other provider through the **Integrate SIP trunk** feature in Famulor.
+
+  The full setup has two parts that work together:
+  - **Outbound calls:** a **SIP user** in Fonial provides the credentials Famulor uses to authenticate to Fonial.
+  - **Inbound calls:** a **forwarding to SIP-URI** in Fonial sends calls to Famulor's SIP address.
 </Note>
 
 <Warning>
   **fonial PLUS customers only:** The Voice AI integration can only be used by **PLUS customers** of Fonial. If you are currently a **FREE customer**, you need to upgrade your plan to use this feature. Contact Fonial support by phone at **0221 66966966** or by email at [support@fonial.de](mailto:support@fonial.de) and ask whether the feature is included in your package.
 </Warning>
 
-## Which path to choose?
-
-| You want to … | Then follow … |
-|---------------|---------------|
-| Connect Famulor with **SIP credentials** (SIP user / registration) | [Path 1: SIP extension](#path-1-sip-extension-sip-user) |
-| Forward calls to Famulor via **Forward to SIP-URI** (like the official Fonial guide) | [Path 2: Forward to SIP-URI](#path-2-forward-to-sip-uri) |
-
-- **Path 1 (SIP extension):** Famulor registers with username and password at Fonial. Recommended if you create a SIP user in Fonial.
-- **Path 2 (Forward to SIP-URI):** Fonial forwards incoming calls to Famulor's SIP address. Matches Fonial's official Voice AI guide.
-
-## Prerequisites
-
-- An active Fonial account with at least one phone number
-- **SIP trunking / SIP user** available in your Fonial plan (see [Fonial help: Trunking setup](https://www.fonial.de/hilfe/trunking/einrichtung-trunking))
-- A Famulor account
-- Access to the Fonial customer portal at [kundenkonto.fonial.de](https://kundenkonto.fonial.de)
-
 ## How it works
-
-Incoming calls flow through Fonial to Famulor, where they are routed to your AI assistant.
 
 ```mermaid theme={null}
 sequenceDiagram
@@ -48,20 +33,34 @@ sequenceDiagram
     participant FA as Famulor
     participant A as AI assistant
 
+    Note over F,FA: Inbound – forwarding to SIP-URI
     C->>F: Call to your Fonial number
-    F->>FA: SIP call (SIP user or forwarding)
+    F->>FA: Forward to „Our SIP address"
     FA->>A: Call routed to assigned assistant
     A->>FA: Voice response (real time)
     FA->>C: Conversation with AI assistant
+    Note over FA,F: Outbound – auth with SIP user (sip.plusnet.de)
 ```
+
+- **Inbound:** Famulor does **not** register via SIP REGISTER at Fonial. Incoming calls reach Famulor through the **forwarding to SIP-URI** (Step 5).
+- **Outbound:** Famulor authenticates per call with the **SIP user credentials** at `sip.plusnet.de`.
+
+<Note>
+  The **SIP user stays „Offline" in Fonial** – this is correct and not an error. Famulor does not register, so the status never switches to „Online". Incoming calls run through the forwarding, **not** through registration.
+</Note>
+
+## Prerequisites
+
+- An active Fonial account with at least one phone number
+- **SIP trunking / SIP user** available in your Fonial plan (see [Fonial help: Trunking setup](https://www.fonial.de/hilfe/trunking/einrichtung-trunking))
+- A Famulor account
+- Access to the Fonial customer portal at [kundenkonto.fonial.de](https://kundenkonto.fonial.de)
 
 ---
 
-## Path 1: SIP extension (SIP user)
+## Step 1: Create a SIP user in Fonial
 
-With this path, you create a **SIP user** in Fonial and enter its credentials in Famulor. Famulor registers at Fonial's SIP server (`sip.plusnet.de`).
-
-### Step 1: Create a SIP user in Fonial
+The SIP user provides the credentials for **outbound** calls.
 
 1. Sign in to your [Fonial customer account](https://kundenkonto.fonial.de).
 2. In the sidebar, open **SIP-Benutzer** (SIP users).
@@ -79,14 +78,16 @@ With this path, you create a **SIP user** in Fonial and enter its credentials in
   alt="Fonial: „SIP-Benutzer anlegen“ dialog with name field and „Speichern“ button"
 />
 
-5. The new SIP user appears in the list. Its **status** is **Offline** at first – this is normal as long as no device is connected yet.
+5. The new SIP user appears in the list with **status Offline**. It stays Offline even after setup – see the note above.
 
 <img
   src="/images/fonial/fonial-sip-3.png"
   alt="Fonial: list of SIP users showing the newly created user with status Offline"
 />
 
-### Step 2: Open the SIP user credentials
+---
+
+## Step 2: Open the SIP user credentials
 
 1. In the SIP user row, under **Aktionen** (Actions), click the **credentials** icon.
 
@@ -112,9 +113,9 @@ With this path, you create a **SIP user** in Fonial and enter its credentials in
   Keep the **username** and **password** safe. You need both in **Step 4** for the Famulor SIP trunk setup.
 </Note>
 
-### Step 3: Assign the phone number to the SIP user
+---
 
-To route incoming calls through the SIP user, assign your Fonial phone number to it.
+## Step 3: Assign the phone number to the SIP user
 
 1. In the sidebar, open **Rufnummern** (Phone numbers).
 2. Tick the **checkbox** next to the number you want to connect to Famulor.
@@ -133,10 +134,12 @@ To route incoming calls through the SIP user, assign your Fonial phone number to
 />
 
 <Note>
-  Note your Fonial number in **E.164 format** with country code, e.g. `+498956546546`. You need it in the next step in Famulor.
+  Note your Fonial number in **E.164 format** with country code, e.g. `+498956546546`. You need it in the next steps.
 </Note>
 
-### Step 4: Set up the SIP trunk in Famulor
+---
+
+## Step 4: Set up the SIP trunk in Famulor
 
 1. Open Famulor at [app.famulor.de/phone-numbers?lang=en](https://app.famulor.de/phone-numbers?lang=en).
 2. In the sidebar, go to **Your phone numbers**.
@@ -151,48 +154,35 @@ To route incoming calls through the SIP user, assign your Fonial phone number to
 | **Password** | The **password** of the Fonial SIP user (from Step 2) |
 | **SIP address** (outbound) | `sip.plusnet.de` (the Server URL from Step 2, without port) |
 | **Outgoing phone number format** | **International (with leading +)** |
-| **Authentication method** (inbound) | **Username and password** (same credentials as outbound) |
 | **Country** | **Germany (DE)** |
 
-5. Click **Add SIP number**.
+5. Under **Incoming call settings**, copy the value **Our SIP address** (e.g. `xxxxxx.eu.sip.livekit.cloud`). You need it in Step 5.
+6. Click **Add SIP number**.
 
 <img
   src="/images/fonial/fonial-famulor-sip-integration.png"
-  alt="Famulor: „Integrate SIP trunk“ dialog with SIP extension, authentication, SIP address sip.plusnet.de and username/password authentication"
+  alt="Famulor: „Integrate SIP trunk“ dialog with SIP extension, authentication, SIP address sip.plusnet.de and the „Our SIP address“ field for incoming calls"
 />
 
 <Note>
-  With the trunk type **SIP extension**, Famulor registers directly with the username and password at Fonial. You do **not** need to set up any forwarding or SIP-URI in Fonial – assigning the number to the SIP user (Step 3) is enough.
+  With this configuration, **outbound** calls are already covered: Famulor authenticates with username and password at `sip.plusnet.de`. For **inbound** calls, set up the forwarding in Fonial in Step 5.
 </Note>
-
-### Step 5: Verify the connection
-
-In Fonial, under **SIP-Benutzer**, check that the **status** switches to **Online**. This confirms Famulor is connected successfully.
-
-<img
-  src="/images/fonial/fonial-ruf-3.png"
-  alt="Fonial: SIP user list, status Online after a successful connection with Famulor"
-/>
-
-Then continue with [Assign an assistant and test](#assign-an-assistant-and-test).
 
 ---
 
-## Path 2: Forward to SIP-URI
+## Step 5: Create the forwarding to SIP-URI in Fonial (inbound calls)
 
-With this path, you create your AI phone assistant as a **target** (forwarding) in Fonial. Fonial forwards incoming calls to **Famulor's SIP address**. This matches Fonial's official Voice AI guide – except you use the **SIP address from Famulor** instead of an „Origination URL".
+To make incoming calls arrive at Famulor, create your AI phone assistant as a **target** in Fonial. Fonial then forwards calls to Famulor's SIP address.
 
-### Step 1: Get your SIP address from Famulor
+### Build the SIP-URI from „Our SIP address"
 
-1. Open Famulor at [app.famulor.de/phone-numbers?lang=en](https://app.famulor.de/phone-numbers?lang=en) and go to **Your phone numbers → + Integrate SIP trunk**.
-2. Add your Fonial number as a trunk and, under **Incoming call settings**, copy the value **Our SIP address** (e.g. `xxxxxx.eu.sip.livekit.cloud`).
-3. Build the **SIP-URI** for Fonial from it:
+Build the SIP-URI from your Fonial number and the **Our SIP address** value you copied in Step 4:
 
 ```text
 sip:<Fonial number without +>@<Our SIP address>
 ```
 
-**Example:** the number `+498956546546` and the address `xxxxxx.eu.sip.livekit.cloud` become:
+**Example:** `+498956546546` and `xxxxxx.eu.sip.livekit.cloud` become:
 
 ```text
 sip:498956546546@xxxxxx.eu.sip.livekit.cloud
@@ -202,9 +192,7 @@ sip:498956546546@xxxxxx.eu.sip.livekit.cloud
   The phone number in the SIP-URI must be entered **without the plus sign (`+`)**.
 </Note>
 
-### Step 2: Create a target in the Fonial customer account
-
-Next, create your AI phone assistant as a target in your phone system.
+### Create the target in the Fonial customer account
 
 1. In the navigation menu, under **Telefonanlage**, select **Ziele** (Targets).
 2. Click **Neues Ziel anlegen** (Create new target).
@@ -214,27 +202,23 @@ Next, create your AI phone assistant as a target in your phone system.
   alt="Fonial customer account: Telefonanlage → Ziele with „Neues Ziel anlegen“ button"
 />
 
-### Step 3: Configure the forwarding to SIP-URI
-
-1. Choose **Weiterleitung (Mobilfunk, Festnetz, Fax oder SIP-URI)** as the target type.
-2. Enter a **name** for the forwarding target (e.g. `Famulor`).
-3. In the dropdown, select **Weiterleitung auf SIP-URI** (Forward to SIP-URI).
-4. Under **SIP-URI**, paste the SIP address from Famulor you built in Step 1.
-5. As the **outgoing phone number** (Ausgehende Rufnummer), select the Fonial number you want to connect to Famulor.
-6. Finally, click **Speichern** (Save).
+3. Choose **Weiterleitung (Mobilfunk, Festnetz, Fax oder SIP-URI)** as the target type.
+4. Enter a **name** for the forwarding target (e.g. `Famulor`).
+5. In the dropdown, select **Weiterleitung auf SIP-URI** (Forward to SIP-URI).
+6. Under **SIP-URI**, paste the SIP address you built above.
+7. As the **outgoing phone number** (Ausgehende Rufnummer), select the Fonial number you want to connect to Famulor.
+8. Finally, click **Speichern** (Save).
 
 <img
   src="/images/fonial/fonial-ziel-2.png"
   alt="Fonial: „Neues Ziel anlegen“ dialog with type Weiterleitung, „Weiterleitung auf SIP-URI“, SIP-URI field and outgoing phone number"
 />
 
-Then continue with [Assign an assistant and test](#assign-an-assistant-and-test).
-
 ---
 
-## Assign an assistant and test
+## Step 6: Assign an assistant and test
 
-To have incoming calls answered by your AI assistant, assign the connected number to an assistant.
+To have incoming calls answered by your AI assistant, assign the number to an assistant.
 
 1. Open **Assistants** in Famulor and edit the assistant you want to use.
 2. Select the correct **inbound type** (incoming calls).
@@ -247,22 +231,20 @@ To have incoming calls answered by your AI assistant, assign the connected numbe
 ## Common issues
 
 <AccordionGroup>
-  <Accordion title="SIP user stays Offline (Path 1)" icon="plug-circle-xmark">
-    As long as no device is connected, **Offline** is normal. Once the Famulor SIP trunk is set up (Path 1, Step 4), the status should switch to **Online**. Otherwise check the **username**, **password** and **SIP address** (`sip.plusnet.de`) in Famulor.
+  <Accordion title="SIP user shows „Offline“" icon="circle-info">
+    This is **normal and not an error**. Famulor does **not** register via SIP REGISTER at Fonial, so the SIP user stays „Offline". Incoming calls run through the **forwarding to SIP-URI** (Step 5), not through registration.
   </Accordion>
 
-  <Accordion title="Calls do not arrive" icon="phone-slash">
-    **Path 1:** Make sure the number in Fonial is **assigned to the correct SIP user** and that the correct **SIP extension** (your Fonial number in E.164 format) is entered in Famulor.
-
-    **Path 2:** Check the **SIP-URI** in the Fonial target – format `sip:<number without +>@<Our SIP address>` – and that the correct **outgoing phone number** is selected.
+  <Accordion title="Inbound calls do not arrive" icon="phone-slash">
+    Check the **forwarding to SIP-URI** in Fonial (Step 5): SIP-URI in the format `sip:<number without +>@<Our SIP address>`, the correct **outgoing phone number**, and the **exact** „Our SIP address" from Famulor (no second `sip:`, no spaces).
   </Accordion>
 
-  <Accordion title="Wrong or unknown SIP address (Path 2)" icon="server">
+  <Accordion title="Outbound calls fail" icon="arrow-up-right-from-square">
+    Check the **username**, **password** and **SIP address** (`sip.plusnet.de`) from the Fonial credentials (Step 2) in Famulor. Set the **Outgoing phone number format** to **International (with leading +)**.
+  </Accordion>
+
+  <Accordion title="Wrong or unknown SIP address" icon="server">
     Use the **exact** „Our SIP address" from Famulor (Phone numbers → Integrate SIP trunk → Incoming call settings). The phone number in the SIP-URI must be entered **without** the plus sign.
-  </Accordion>
-
-  <Accordion title="Wrong caller ID on outbound calls" icon="id-card">
-    In Famulor, set the **Outgoing phone number format** to **International (with leading +)**.
   </Accordion>
 </AccordionGroup>
 
@@ -271,5 +253,5 @@ To have incoming calls answered by your AI assistant, assign the connected numbe
 ## Help
 
 <Tip>
-  If you need help, contact our support team: [support@famulor.io](mailto:support@famulor.io). You can reach Fonial support by phone at **0221 66966966** or by email at [support@fonial.de](mailto:support@fonial.de) – more info in the [Fonial help center](https://www.fonial.de/hilfe/trunking/einrichtung-trunking).
+  If you need help, contact our support team at [support@famulor.io](mailto:support@famulor.io). You can reach Fonial support by phone at **0221 66966966** or by email at [support@fonial.de](mailto:support@fonial.de) – more info in the [Fonial help center](https://www.fonial.de/hilfe/trunking/einrichtung-trunking).
 </Tip>
