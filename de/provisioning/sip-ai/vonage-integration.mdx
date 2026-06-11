@@ -143,8 +143,8 @@ Verknüpfe eine Telefonnummer mit deinem Elastic SIP Trunk – entweder eine **b
 4. Klicke auf **SIP-Nummer hinzufügen**.
 
 <img
-  src="/images/famulor_sip_number_integrate.png"
-  alt="Famulor: Dialog „SIP-Trunk integrieren“ mit Authentifizierung, ausgehender SIP-Adresse und „Unsere SIP-Adresse“ für eingehende Anrufe"
+  src="/images/vonage/famulor-sip-trunk-vonage.png"
+  alt="Famulor: Dialog „SIP-Trunk integrieren“ mit Trunk-Typ „Telefonnummer (DID)“, ausgehender SIP-Adresse (sip-eu.vonage.com) und „Unsere SIP-Adresse“ für eingehende Anrufe"
 />
 
 ---
@@ -156,6 +156,39 @@ Verknüpfe eine Telefonnummer mit deinem Elastic SIP Trunk – entweder eine **b
 3. Wähle deine verbundene Vonage-Telefonnummer aus der Liste.
 4. Klicke auf **Assistent speichern**.
 5. Führe einen **Testanruf** auf deine Vonage-Nummer durch und prüfe, ob der KI-Assistent antwortet.
+
+---
+
+## Anrufweiterleitung an einen Menschen (kalt & warm)
+
+Famulor kann ein laufendes Gespräch an einen echten Ansprechpartner übergeben – als **Kaltweiterleitung** oder **Warmweiterleitung**. Die vollständige Einrichtung findest du unter [Anrufsweiterleitung](/de/platform/anrufsweiterleitung). Für **Vonage** gibt es eine wichtige Besonderheit.
+
+<Warning>
+  **Vonage unterstützt kein SIP REFER.** Famulor führt **Kaltweiterleitungen** über **SIP REFER** durch – der Carrier verbindet den Anrufer dabei direkt weiter. Da Vonage-SIP-Trunks REFER **nicht** unterstützen, funktioniert die **Kaltweiterleitung über den Vonage-Trunk nicht zuverlässig**.
+
+  **Empfehlung für Vonage:** Nutze die **Warmweiterleitung**. Dabei baut Famulor einen **separaten ausgehenden Anruf** zum Ansprechpartner über den Vonage-Trunk auf und verbindet beide Seiten – das benötigt **kein** REFER und funktioniert mit Vonage.
+</Warning>
+
+### Optionen pro Weiterleitungsziel
+
+Bei jedem Weiterleitungsziel (Kalt wie Warm) hast du zwei Möglichkeiten:
+
+- **Telefonnummer:** Die Rufnummer des echten Ansprechpartners, an die übergeben wird (z. B. `+49 1512 3456789`).
+- **(Advanced) Is custom SIP transfer?** Aktiviere diese Option, um statt einer Telefonnummer eine **eigene SIP-Anfrage** anzugeben (Feld **Custom SIP transfer**). Nützlich, wenn dein SIP-Trunk-Anbieter ein bestimmtes Format verlangt – z. B. `tel:1234567890` oder eine SIP-URI wie `sip:200@dein-anbieter`.
+
+<img
+  src="/images/vonage/famulor-call-transfer.png"
+  alt="Famulor: Kalt- und Warmweiterleitung mit Telefonnummer oder Option „(Advanced) Is custom SIP transfer?“"
+/>
+
+<img
+  src="/images/vonage/famulor-custom-sip-transfer.png"
+  alt="Famulor: aktivierte Option „(Advanced) Is custom SIP transfer?“ mit Feld „Custom SIP transfer“"
+/>
+
+<Note>
+  **Custom SIP transfer** hebt die REFER-Beschränkung von Vonage **nicht** auf: Auch eine eigene SIP-Anfrage wird bei der Kaltweiterleitung per REFER gesendet. Für Vonage bleibt die **Warmweiterleitung** der zuverlässige Weg, um an einen Menschen zu übergeben.
+</Note>
 
 ---
 
@@ -172,6 +205,10 @@ Verknüpfe eine Telefonnummer mit deinem Elastic SIP Trunk – entweder eine **b
 
   <Accordion title="Falsche oder unbekannte SIP-Adresse" icon="server">
     Verwende immer die **exakte** „Unsere SIP-Adresse" aus Famulor (Telefonnummern → SIP-Trunk integrieren → Einstellungen für eingehende Anrufe).
+  </Accordion>
+
+  <Accordion title="Kaltweiterleitung funktioniert nicht" icon="phone-arrow-up-right">
+    **Vonage unterstützt kein SIP REFER**, das Famulor für die Kaltweiterleitung nutzt. Verwende stattdessen die **Warmweiterleitung** – sie baut einen separaten ausgehenden Anruf auf und funktioniert mit Vonage. Details: [Anrufsweiterleitung](/de/platform/anrufsweiterleitung).
   </Accordion>
 </AccordionGroup>
 

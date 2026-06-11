@@ -143,8 +143,8 @@ Link a phone number to your Elastic SIP Trunk – either an **existing number** 
 4. Click **Add SIP number**.
 
 <img
-  src="/images/famulor_sip_number_integrate.png"
-  alt="Famulor: „Integrate SIP trunk“ dialog with authentication, outbound SIP address and the „Our SIP address“ field for incoming calls"
+  src="/images/vonage/famulor-sip-trunk-vonage.png"
+  alt="Famulor: „Integrate SIP trunk“ dialog with trunk type „Phone number (DID)“, outbound SIP address (sip-eu.vonage.com) and the „Our SIP address“ field for incoming calls"
 />
 
 ---
@@ -156,6 +156,39 @@ Link a phone number to your Elastic SIP Trunk – either an **existing number** 
 3. Choose your connected Vonage phone number from the list.
 4. Click **Save assistant**.
 5. Place a **test call** to your Vonage number and check that the AI assistant answers.
+
+---
+
+## Call transfer to a human (cold & warm)
+
+Famulor can hand off an ongoing call to a real person – as a **cold transfer** or a **warm transfer**. For the full setup, see [Assistant call forwarding](/en/platform/assistant-call-forwarding). For **Vonage** there is one important caveat.
+
+<Warning>
+  **Vonage does not support SIP REFER.** Famulor performs **cold transfers** via **SIP REFER** – the carrier connects the caller onward directly. Because Vonage SIP trunks do **not** support REFER, **cold transfer over the Vonage trunk does not work reliably**.
+
+  **Recommendation for Vonage:** use the **warm transfer**. Famulor places a **separate outbound call** to the contact through the Vonage trunk and bridges both parties – this needs **no** REFER and works with Vonage.
+</Warning>
+
+### Options per transfer target
+
+For each transfer target (cold or warm) you have two choices:
+
+- **Phone number:** the number of the real contact the call is handed off to (e.g. `+49 1512 3456789`).
+- **(Advanced) Is custom SIP transfer?** Enable this to specify a **custom SIP request** instead of a phone number (field **Custom SIP transfer**). Useful when your SIP trunk provider requires a specific format – e.g. `tel:1234567890` or a SIP-URI like `sip:200@your-provider`.
+
+<img
+  src="/images/vonage/famulor-call-transfer.png"
+  alt="Famulor: cold and warm transfer with a phone number or the „(Advanced) Is custom SIP transfer?“ option"
+/>
+
+<img
+  src="/images/vonage/famulor-custom-sip-transfer.png"
+  alt="Famulor: enabled „(Advanced) Is custom SIP transfer?“ option with the „Custom SIP transfer“ field"
+/>
+
+<Note>
+  **Custom SIP transfer** does **not** remove Vonage's REFER limitation: a custom SIP request is still sent via REFER for a cold transfer. For Vonage, the **warm transfer** remains the reliable way to hand off to a human.
+</Note>
 
 ---
 
@@ -172,6 +205,10 @@ Link a phone number to your Elastic SIP Trunk – either an **existing number** 
 
   <Accordion title="Wrong or unknown SIP address" icon="server">
     Always use the **exact** „Our SIP address" from Famulor (Phone numbers → Integrate SIP trunk → Incoming call settings).
+  </Accordion>
+
+  <Accordion title="Cold transfer does not work" icon="phone-arrow-up-right">
+    **Vonage does not support SIP REFER**, which Famulor uses for cold transfer. Use the **warm transfer** instead – it places a separate outbound call and works with Vonage. Details: [Assistant call forwarding](/en/platform/assistant-call-forwarding).
   </Accordion>
 </AccordionGroup>
 
