@@ -1,0 +1,69 @@
+---
+title: "iOS 26 Anrufüberprüfung (Call Screening)"
+icon: "shield-halved"
+description: "Mit deinem KI-Assistenten die iOS-26-Anrufüberprüfung von iPhones bestehen"
+---
+
+iPhones mit **iOS 26** können die [Anrufüberprüfung (Call Screening)](https://support.apple.com/de-de/guide/iphone/iphe4b3f7823/ios) aktiviert haben. Bei einem Anruf von einer **unbekannten Nummer** nimmt das iPhone den Anruf zunächst selbst an: **Siri** fragt den Anrufer nach **Name** und **Grund des Anrufs**, bevor das Telefon des Empfängers überhaupt klingelt.
+
+<Note>
+  Das betrifft vor allem **ausgehende Anrufe** deines KI-Assistenten an iPhone-Nutzer. Wenn dein Assistent nicht auf die Frage von Siri reagiert, wird der Anruf möglicherweise **nicht durchgestellt**.
+</Note>
+
+<Frame>
+  <img
+    src="/images/ios-26-call-screening.png"
+    alt="iOS 26 Anrufüberprüfung: Siri fragt unbekannte Anrufer nach Name und Grund des Anrufs"
+    style={{ maxWidth: "320px" }}
+  />
+</Frame>
+
+## Lösung: FAQ-Block im System-Prompt ergänzen
+
+Damit dein Assistent die Anrufüberprüfung reibungslos besteht, ergänzt du in seinem **System-Prompt** einen kurzen **FAQ-Block**. Darin weist du den Assistenten an, sich in **einem Satz** vorzustellen und den Grund des Anrufs zu nennen, sobald er nach Name und Grund gefragt wird.
+
+Füge folgenden Block in den **System-Prompt** deines Assistenten ein:
+
+```text
+## FAQ
+F: Hi, if you record your name and reason for calling, I'll see if this person is available
+A: Stelle dich in einem Satz vor und erkläre kurz, warum du anrufst. <warte auf Antwort>
+```
+
+<Tip>
+  Die Anrufüberprüfung erscheint in der **Sprache des Empfängers**. Rufst du deutschsprachige Kontakte an, ergänze zusätzlich eine deutsche Variante der Frage, z. B.:
+
+  ```text
+  F: Bitte nennen Sie Ihren Namen und den Grund Ihres Anrufs, dann sehe ich, ob die Person verfügbar ist.
+  A: Stelle dich in einem Satz vor und erkläre kurz, warum du anrufst. <warte auf Antwort>
+  ```
+</Tip>
+
+## Hinweise für eine reibungslose Übergabe
+
+- **Kurz halten:** Eine einzige, klare Vorstellung funktioniert am besten („Hallo, hier ist [Name] von [Firma], ich rufe wegen [Grund] an.").
+- **Auf Antwort warten:** Nach der Vorstellung wartet der Assistent, bis der Empfänger den Anruf annimmt – erst dann beginnt das eigentliche Gespräch.
+- **Begrüßung nicht doppeln:** Achte darauf, dass die normale Begrüßung deines Assistenten nicht mit der Vorstellung kollidiert.
+
+## Änderungen testen
+
+1. Aktiviere die **Anrufüberprüfung** auf einem iPhone mit iOS 26 (Einstellungen → Apps → Telefon → Unbekannte Anrufer überprüfen).
+2. Starte einen **Testanruf** von deinem Assistenten an diese Nummer.
+3. Prüfe, ob der Assistent sich vorstellt, die Überprüfung besteht und das Gespräch anschließend normal weiterläuft.
+
+---
+
+## Verwandte Themen
+
+<CardGroup cols={2}>
+<Card title="System-Prompt optimieren" icon="pen" href="/de/ai-assistants/system-prompt">
+Verbessere die Anweisungen für deinen Assistenten
+</Card>
+<Card title="KI-Verhaltensprobleme" icon="robot" href="/de/troubleshooting/ai-behavior">
+Verhalten und Antworten feinabstimmen
+</Card>
+</CardGroup>
+
+<Tip>
+  Bei anhaltenden Problemen kontaktiere unser Support-Team unter [support@famulor.io](mailto:support@famulor.io).
+</Tip>
