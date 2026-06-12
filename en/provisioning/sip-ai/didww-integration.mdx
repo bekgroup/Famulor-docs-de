@@ -63,6 +63,11 @@ sequenceDiagram
    - **Transport Protocol Type:** TCP/UDP (port 5060) or TLS (port 5061)
 4. Click **Create**.
 
+<img
+  src="/images/didww/didww-inbound-settings.png"
+  alt="DIDWW: inbound SIP trunk – Friendly Name, SIP Endpoint Hostname (your „Our SIP address“) and Transport"
+/>
+
 ---
 
 ## Step 2: Assign the phone number to the inbound trunk
@@ -75,6 +80,11 @@ sequenceDiagram
 <img
   src="/images/didww/didww-numbers-batch.png"
   alt="DIDWW: Phone Numbers → My Numbers, number selected, Batch Actions → Update Trunks"
+/>
+
+<img
+  src="/images/didww/didww-assign-trunk.png"
+  alt="DIDWW: „Update Voice IN Trunk“ dialog – select the inbound trunk for the number"
 />
 
 ---
@@ -93,6 +103,16 @@ sequenceDiagram
 4. Under **Allowed SIP IP addresses**, enter Famulor's **fixed outbound IP** (currently `34.195.177.252/32`).
 5. Click **Create**.
 6. Then open the **key icon** in the **Credentials** column and note the **Username** and **Password** (reveal the password with the eye icon).
+
+<img
+  src="/images/didww/didww-outbound-ip.png"
+  alt="DIDWW: outbound trunk – „Credentials & IP-Based“ authentication and Allowed SIP IP addresses"
+/>
+
+<img
+  src="/images/didww/didww-outbound-credentials.png"
+  alt="DIDWW: outbound trunk list – open credentials via the key icon"
+/>
 
 <Note>
   Confirm the **fixed outbound IP** currently shown in the Famulor dialog in case it differs from `34.195.177.252`.

@@ -63,6 +63,11 @@ sequenceDiagram
    - **Transport Protocol Type:** TCP/UDP (Port 5060) oder TLS (Port 5061)
 4. Klicke auf **Create**.
 
+<img
+  src="/images/didww/didww-inbound-settings.png"
+  alt="DIDWW: Inbound-SIP-Trunk – Friendly Name, SIP Endpoint Hostname (deine „Unsere SIP-Adresse“) und Transport"
+/>
+
 ---
 
 ## Schritt 2: Rufnummer dem Inbound-Trunk zuordnen
@@ -75,6 +80,11 @@ sequenceDiagram
 <img
   src="/images/didww/didww-numbers-batch.png"
   alt="DIDWW: Phone Numbers → My Numbers, Nummer markiert, Batch Actions → Update Trunks"
+/>
+
+<img
+  src="/images/didww/didww-assign-trunk.png"
+  alt="DIDWW: Dialog „Update Voice IN Trunk“ – Inbound-Trunk für die Nummer auswählen"
 />
 
 ---
@@ -93,6 +103,16 @@ sequenceDiagram
 4. Trage unter **Allowed SIP IP addresses** die **feste Outbound-IP von Famulor** ein (aktuell `34.195.177.252/32`).
 5. Klicke auf **Create**.
 6. Öffne anschließend in der Spalte **Credentials** das **Schlüssel-Symbol** und notiere dir **Username** und **Password** (Passwort über das Augensymbol einblenden).
+
+<img
+  src="/images/didww/didww-outbound-ip.png"
+  alt="DIDWW: Outbound-Trunk – Authentifizierung „Credentials & IP-Based“ und Allowed SIP IP addresses"
+/>
+
+<img
+  src="/images/didww/didww-outbound-credentials.png"
+  alt="DIDWW: Outbound-Trunk-Liste – Credentials über das Schlüssel-Symbol öffnen"
+/>
 
 <Note>
   Bestätige die aktuell angezeigte **feste Outbound-IP** direkt im Famulor-Dialog, falls sie von `34.195.177.252` abweicht.
