@@ -1,0 +1,214 @@
+---
+title: "Leads verwalten"
+icon: "user-pen"
+description: "Erstelle, bearbeite und organisiere Leads mit benutzerdefinierten Variablen und sekundären Kontakten"
+---
+
+Erfahre, wie du Leads für deine Famulor-Kampagnen effektiv erstellst, bearbeitest und verwaltest – mit korrekter Variablen-Einrichtung und Verwaltung sekundärer Kontakte.
+
+## Neuen Lead erstellen
+
+### Basisinformationen
+
+1. **Telefonnummer:** Gib die primäre Kontaktnummer im internationalen Format ein
+2. **Kampagnen-Zuweisung:** Wähle, zu welcher Kampagne dieser Lead gehört
+3. **Status:** Wird bei neuen Leads automatisch auf „Erstellt“ gesetzt
+
+<Note>
+  **Telefonnummern-Format:** Verwende das internationale Format ohne Leerzeichen oder Klammern (+491701234567) – auch für Automations-Importe und Datei-Uploads.
+</Note>
+
+### Variablen einrichten
+
+#### Standard-Variablen des Assistenten
+
+Wenn du eine Kampagne auswählst, erbt der Lead automatisch die Variablen aus der [Assistenten-Konfiguration](/de/ai-assistants/prompt-and-tools#anruf-variablen):
+
+* **Vorausgefüllte Werte:** Die Standard-Variablen des Assistenten erscheinen im Formular
+* **Anpassung:** Ändere Werte speziell für diesen Lead
+* **Pflichtfelder:** Einige Variablen können für die Kampagnen-Funktionalität erforderlich sein
+
+#### Benutzerdefinierte Variablen
+
+Füge personalisierte Informationen hinzu, die dein KI-Assistent nutzen kann:
+
+**Gängige Variablen-Typen:**
+
+* **customer_name:** Name der Person für personalisierte Begrüßungen
+* **company:** Firmenname für B2B-Gespräche
+* **last_interaction:** Kontext aus dem letzten Gespräch
+* **preferences:** Kundenpräferenzen oder Anforderungen
+* **budget_range:** Finanzielle Informationen für Vertriebsanrufe
+
+**Beispiel für das Variablen-Format:**
+
+```json
+{
+  "customer_name": "Sarah Johnson",
+  "company": "TechStart Solutions",
+  "last_interaction": "Demo der Premium-Funktionen angefragt",
+  "preferred_contact_time": "Nachmittags MEZ",
+  "industry": "Softwareentwicklung"
+}
+```
+
+### Sekundäre Kontakte
+
+Füge zusätzliche Telefonnummern für denselben Lead hinzu, wenn du mehrere Wege hast, ihn zu erreichen.
+
+#### Wann sekundäre Kontakte sinnvoll sind
+
+* **Entscheider:** Mehrere Personen sind an der Entscheidung beteiligt
+* **Ausweichnummern:** Mobil-, Büro- und Privatnummer derselben Person
+* **Abteilungskontakte:** Verschiedene Abteilungen im selben Unternehmen
+* **Zeitabhängige Kontakte:** Unterschiedliche Nummern zu unterschiedlichen Zeiten
+
+#### Sekundären Kontakt einrichten
+
+1. **Sekundären Kontakt hinzufügen:** Klicke im Formular auf „Sekundären Kontakt hinzufügen“
+2. **Telefonnummer:** Gib die zusätzliche Telefonnummer ein
+3. **Variablen:** Lege spezifische Variablen für diesen Kontakt fest (optional)
+4. **Reihenfolge:** Kontakte werden in der Reihenfolge angerufen, in der du sie hinzufügst
+
+<Tip>
+  **Die Reihenfolge zählt:** Die Kampagne ruft die Kontakte nacheinander an. Setze den Kontakt mit der höchsten Erreichbarkeit an die erste Stelle.
+</Tip>
+
+#### Variablen für sekundäre Kontakte
+
+Jeder sekundäre Kontakt kann eigene Variablen haben:
+
+* **Andere Person:** Verwende andere Namens- und Rollen-Variablen
+* **Dieselbe Person:** Gleiche persönliche Daten, aber andere Kontaktpräferenzen
+* **Abteilungsspezifisch:** Anpassung an die Bedürfnisse der jeweiligen Abteilung
+
+**Beispiel – Mehrere Entscheider:**
+
+```json
+// Primär: CEO
+{
+  "contact_name": "Max Mustermann",
+  "role": "CEO",
+  "decision_authority": "Finale Freigabe"
+}
+
+// Sekundär: CTO
+{
+  "contact_name": "Erika Musterfrau",
+  "role": "CTO",
+  "decision_authority": "Technische Entscheidungen"
+}
+```
+
+## Bestehende Leads bearbeiten
+
+### Lead-Informationen ändern
+
+* **Telefonnummer:** Aktualisieren, wenn sich Kontaktdaten ändern
+* **Kampagne:** Lead bei Bedarf in eine andere Kampagne verschieben
+* **Status:** Status manuell ändern, um die Kampagne zu steuern
+
+### Variablen-Verwaltung
+
+* **Werte aktualisieren:** Bestehende Variablen-Werte ändern
+* **Variablen hinzufügen:** Neue Informationen für besseren KI-Kontext ergänzen
+* **Variablen entfernen:** Veraltete oder irrelevante Daten löschen
+
+<Warning>
+  **Kampagnen-Kompatibilität:** Stelle beim Kampagnenwechsel sicher, dass die Variablen zur Konfiguration des neuen Assistenten passen.
+</Warning>
+
+### Verwaltung sekundärer Kontakte
+
+* **Kontakte hinzufügen:** Zusätzliche Telefonnummern ergänzen
+* **Kontakte entfernen:** Ungültige oder unnötige Nummern löschen
+* **Kontakte neu ordnen:** Die Anruf-Reihenfolge ändern
+* **Variablen aktualisieren:** Kontaktspezifische Informationen anpassen
+
+## Lead-Status verwalten
+
+### Statusänderungen verstehen
+
+Der Lead-Status aktualisiert sich automatisch basierend auf der Kampagnen-Aktivität:
+
+* **Erstellt → In Bearbeitung:** Wenn die Kampagne mit dem Anrufen beginnt
+* **In Bearbeitung → Abgeschlossen:** Wenn der Anruf erfolgreich war oder das Ziel erreicht wurde
+* **In Bearbeitung → Neu geplant:** Wenn der Anruf wiederholt werden muss
+* **Neu geplant → Max. Versuche:** Wenn das Wiederholungslimit erreicht ist
+
+### Manuelle Status-Steuerung
+
+Du kannst den Lead-Status bei Bedarf manuell ändern:
+
+#### Für erneuten Anruf zurücksetzen
+
+**Auf „Erstellt“ setzen:** Setzt den Lead zurück, damit er erneut angerufen wird
+
+* **Anwendungsfall:** Lead hat einen Rückruf zu einer bestimmten Zeit gewünscht
+* **Effekt:** Lead kommt zurück in die Kampagnen-Warteschlange
+* **Hinweis:** Wiederholungslimits der Kampagne werden berücksichtigt
+
+#### Als abgeschlossen markieren
+
+**Auf „Abgeschlossen“ setzen:** Verhindert, dass die Kampagne diesen Lead weiter anruft
+
+* **Anwendungsfall:** Ziel wurde über andere Kanäle erreicht
+* **Effekt:** Lead wird von zukünftigen Kampagnen-Anrufen ausgeschlossen
+* **Hinweis:** Kann von der Kampagne nicht automatisch zurückgesetzt werden
+
+#### Weitere Statusänderungen
+
+* **„Geplant“:** Für den nächsten Wiederholungsversuch einreihen
+* **„Max. Versuche“:** Manuell als ausgeschöpft markieren
+* **„Neu geplant“:** Wiederholungs-Timer zurücksetzen
+
+<Tip>
+  **Status-Strategie:** Setze manuelle Statusänderungen sparsam ein. Überlasse die meisten Status-Updates der Kampagnen-Automatik. Leads lassen sich auch visuell in der [Kanban-Ansicht](/de/platform/leadliste-kanban) verschieben.
+</Tip>
+
+## Massenoperationen
+
+### Massenlöschung
+
+Wähle mehrere Leads aus und lösche sie:
+
+1. **Leads filtern:** Nutze die Tabellenfilter, um bestimmte Leads auszuwählen
+2. **Leads auswählen:** Setze die Häkchen bei den zu löschenden Leads
+3. **Massenlöschung:** Wähle die Löschaktion im Menü für Massenaktionen
+4. **Bestätigen:** Prüfe die Änderungen vor der Ausführung
+
+### Massenexport
+
+Exportiere gefilterte Lead-Daten zur externen Verarbeitung:
+
+* **Filter anwenden:** Nach Kampagne, Status oder Zeitraum filtern
+* **Spalten auswählen:** Wähle, welche Daten exportiert werden
+* **Sekundäre einschließen:** Option, sekundäre Kontakte mit zu exportieren
+* **Download:** CSV-Format für Tabellenkalkulationen
+
+## Lead-Organisation
+
+Nutze Tabellenfilter, Sortierung und Suche, um Leads nach Kampagne, Status, Zeitraum oder Variablen-Inhalten zu organisieren.
+
+## Kampagnen-Integration
+
+* **Zuweisung zu einer Kampagne** pro Lead
+* **Variablen-Vererbung** aus der Assistenten-Konfiguration
+* **Automatische Abstimmung** mit Kampagnen-Zeitplan und Wiederholungslogik
+
+## Best Practices
+
+### Das Wichtigste
+
+* **Telefonformat:** Internationales Format ohne Leerzeichen (+491701234567)
+* **Variablen:** Konsistente Benennung und relevante Informationen verwenden
+* **Sekundäre Kontakte:** Nach Priorität ordnen, Duplikate vermeiden
+* **Datenschutz:** Datenschutzanforderungen (DSGVO) einhalten
+
+<Note>
+  Hilfe bei häufigen Lead-Problemen findest du im [Leads-Troubleshooting](/de/troubleshooting/leads-issues).
+</Note>
+
+<Note>
+  Informationen zum Massenimport von Leads findest du unter [Leads importieren](/de/leads/importing-leads).
+</Note>

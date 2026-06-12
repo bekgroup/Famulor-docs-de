@@ -1,0 +1,215 @@
+---
+title: "Leads importieren"
+icon: "file-import"
+description: "Importiere Leads aus CSV- und Excel-Dateien mit Validierung und Fehlerbehandlung"
+---
+
+Importiere große Mengen an Leads aus CSV- oder Excel-Dateien in Famulor – mit automatischer Validierung, Hintergrundverarbeitung und umfassenden Fehlerberichten.
+
+## Überblick über den Import-Prozess
+
+Das Lead-Import-System unterstützt:
+
+* **CSV- und Excel-Dateien** (.csv, .xlsx, .xls)
+* **Hintergrundverarbeitung** für große Dateien
+* **Automatische Validierung** mit Fehlerberichten
+* **Sekundäre Kontakte** im selben Import
+* **Variablen-Mapping** aus der Assistenten-Konfiguration
+
+## Import-Datei vorbereiten
+
+### Erforderliche Spalten
+
+Deine Import-Datei muss enthalten:
+
+* **phone_number:** Telefonnummer des primären Kontakts (erforderlich)
+* **Variablen:** Spalten, die den [konfigurierten Variablen deines Assistenten](/de/ai-assistants/prompt-and-tools#anruf-variablen) entsprechen
+
+### Optionale Spalten
+
+* **Spalten für sekundäre Kontakte:** Zusätzliche Telefonnummern
+* **Variablen-Überschreibungen:** Individuelle Werte für einzelne Leads
+
+### Beispiel für das Dateiformat
+
+```csv
+phone_number,customer_name,company,budget_range,secondary_phone_1,secondary_phone_2
++491701234567,Max Mustermann,ABC GmbH,10k-50k,+491701234568,+491701234569
++491707654321,Erika Musterfrau,XYZ AG,50k-100k,+491707654322,
++491704567890,Bernd Beispiel,Tech Start,5k-10k,,
+```
+
+## Import-Konfiguration
+
+### 1. Kampagne auswählen
+
+Wähle die Ziel-Kampagne aus dem Dropdown. Die Variablen des Assistenten bestimmen, welche Spalten beim Mapping erwartet werden.
+
+### 2. Sekundäre Kontakte
+
+Lege fest, wie viele sekundäre Telefonnummern jeder Lead hat (0–10). Wenn deine Datei zusätzliche Telefonnummern neben dem primären Kontakt enthält, gib hier die Anzahl an.
+
+### 3. Telefonnummern-Format
+
+Wähle das Format deiner Telefonnummern:
+
+**Internationales Format (empfohlen)**
+
+* Nummern enthalten bereits die Ländervorwahl mit +-Präfix
+* Beispiel: `+491701234567`, `+431234567890`
+* Keine Länderauswahl nötig
+* Mehrere Länder können in derselben Datei gemischt werden
+
+**Nationales Format**
+
+* Nummern ohne Ländervorwahl
+* Beispiel: `01701234567`
+* **Ländervorwahl muss beim Import ausgewählt werden**
+* **Wichtig:** Teile deine Dateien nach Ländern auf – alle Nummern in einer Datei müssen aus demselben Land stammen
+* Das System ergänzt die gewählte Ländervorwahl bei allen Nummern
+
+<Warning>
+  Beim nationalen Format musst du pro Land eine eigene Datei importieren. Mische keine Nummern aus verschiedenen Ländern in derselben Datei.
+</Warning>
+
+### 4. Auswahl der Ländervorwahl
+
+Erscheint nur, wenn „Nationales Format“ ausgewählt ist. Wähle das Land, das zu allen Telefonnummern in deiner Datei passt. Das System stellt die Ländervorwahl automatisch allen Nummern voran.
+
+## Import-Schritte
+
+### 1. Import starten
+
+1. **Navigiere zum Bereich Leads** oder zum Leads-Tab der Kampagne
+2. **Klicke auf „Leads importieren“**
+3. **Wähle die Kampagne** für die Lead-Zuweisung
+4. **Lade die Beispieldatei herunter**, um das erwartete Format zu sehen
+
+### 2. Hochladen und Spalten zuordnen
+
+1. **Datei auswählen:** Wähle deine CSV- oder Excel-Datei
+2. **Spalten-Mapping:** Ordne deine Dateispalten den Systemfeldern zu:
+   * **Telefonnummer (erforderlich):** Wähle die Spalte mit den Telefonnummern
+   * **Assistenten-Variablen:** Ordne jeder Variable die passende Spalte zu
+   * **Sekundäre Kontakte:** Falls konfiguriert, ordne sekundäre Telefonnummern und Variablen zu
+3. **Auto-Erkennung:** Das System erkennt Zuordnungen automatisch anhand gängiger Spaltennamen
+4. **Prüfen und importieren:** Bestätige die Zuordnungen und klicke auf „Importieren“
+
+### 3. Hintergrundverarbeitung
+
+* **Warteschlangen-Verarbeitung:** Große Dateien werden im Hintergrund verarbeitet
+* **Fortschrittsanzeige:** Der Import-Status aktualisiert sich automatisch
+* **Benachrichtigung:** E-Mail-Benachrichtigung nach Abschluss des Imports
+* **Fehlerbericht:** Lade einen Bericht über fehlgeschlagene Zeilen herunter
+
+## Validierungsregeln
+
+### Telefonnummern-Validierung
+
+* **Formatprüfung:** Internationales Format bevorzugt (+491701234567)
+* **Duplikat-Erkennung:** Verhindert doppelte Telefonnummern
+* **Ungültige Nummern:** Werden automatisch markiert und übersprungen
+
+### Variablen-Validierung
+
+* **Pflichtfelder:** Als erforderlich markierte Variablen müssen Werte haben
+* **Datentypen:** Text-, Zahlen- und Boolean-Validierung, wo zutreffend
+* **Längenbegrenzungen:** Maximale Zeichenlimits werden durchgesetzt
+
+### Validierung sekundärer Kontakte
+
+* **Telefonformat:** Gleiche Validierung wie bei primären Nummern
+* **Eindeutige Nummern:** Sekundäre Kontakte müssen sich vom primären unterscheiden
+* **Variablen-Konsistenz:** Variablen sekundärer Kontakte werden unabhängig validiert
+
+## Fehlerbehandlung
+
+### Automatische Fehlerbehandlung
+
+Das Import-System behandelt Validierungsfehler automatisch:
+
+* **Gültige Zeilen importiert:** Erfolgreich validierte Leads werden der Kampagne hinzugefügt
+* **Ungültige Zeilen übersprungen:** Zeilen, die die Validierung nicht bestehen, werden automatisch ausgeschlossen
+* **Fehlerbericht erstellt:** Ein detaillierter Bericht über alle fehlgeschlagenen Zeilen wird generiert
+* **Teilerfolg:** Der Import wird mit allen gültigen Leads erfolgreich abgeschlossen; fehlgeschlagene Zeilen werden protokolliert
+
+### Häufige Validierungsfehler
+
+* **Ungültige Telefonnummern:** Falsches Format oder nicht existierende Nummern
+* **Fehlende Pflichtfelder:** Leere Werte bei erforderlichen Variablen
+* **Doppelte Telefonnummern:** Telefonnummer existiert bereits im System
+* **Dateiformat-Probleme:** Beschädigtes oder nicht unterstütztes Dateiformat
+
+### Fehlerbericht herunterladen
+
+Nach Abschluss des Imports:
+
+* **Download-Link** in der Benachrichtigung
+* **Detaillierte Fehlerbeschreibungen** für jede fehlgeschlagene Zeile
+* **Korrektur-Hinweise** zur Behebung der Probleme
+* **Erneuter Import** mit korrigierten Daten möglich
+
+## Import sekundärer Kontakte
+
+### Mehrere Telefonnummern pro Lead
+
+Füge zusätzliche Spalten für sekundäre Kontakte hinzu:
+
+```csv
+phone_number,customer_name,secondary_phone_1,secondary_phone_2,secondary_phone_3
++491701234567,Max Mustermann,+491701234568,+491701234569,+491701234570
+```
+
+### Variablen für sekundäre Kontakte
+
+Füge Variablen hinzu, die spezifisch für sekundäre Kontakte sind:
+
+```csv
+phone_number,customer_name,secondary_phone_1,secondary_1_name,secondary_1_role
++491701234567,Max Mustermann,+491701234568,Erika Musterfrau,Entscheiderin
+```
+
+### Kontakt-Reihenfolge
+
+* **Primärer Kontakt:** Wird immer zuerst angerufen
+* **Sekundäre Reihenfolge:** Anrufe in Spaltenreihenfolge (secondary_phone_1, dann secondary_phone_2 usw.)
+* **Kampagnen-Koordination:** Berücksichtigt die Wiederholungs-Einstellungen der Kampagne zwischen Kontakten
+
+## Umgang mit großen Dateien
+
+### Hintergrundverarbeitung
+
+* **Automatische Warteschlange:** Dateien mit über 1.000 Zeilen werden im Hintergrund verarbeitet
+* **Speichereffizienz:** Streaming-Verarbeitung verhindert Timeouts
+* **Fortschrittsanzeige:** Status-Updates in Echtzeit
+* **Systemleistung:** Keine Auswirkungen auf die Plattform-Performance während des Imports
+
+### Benachrichtigungssystem
+
+* **E-Mail-Benachrichtigungen:** Werden nach Abschluss des Imports versendet
+* **Erfolgs-Zusammenfassung:** Anzahl erfolgreich importierter Leads
+* **Fehler-Zusammenfassung:** Anzahl und Details fehlgeschlagener Zeilen
+* **Download-Links:** Zugriff auf Fehlerberichte und importierte Daten
+
+### Verarbeitungszeit
+
+* **Kleine Dateien (< 100 Zeilen):** Meist innerhalb von 1 Minute abgeschlossen
+* **Mittlere Dateien (100–1.000 Zeilen):** Typischerweise 2–5 Minuten
+* **Große Dateien (1.000+ Zeilen):** 10–30 Minuten je nach Komplexität
+* **Sehr große Dateien (10k+ Zeilen):** Können mehrere Stunden dauern
+
+## Best Practices
+
+* **Beispieldatei nutzen:** Lade die bereitgestellte Vorlage für das korrekte Format herunter
+* **Telefonformat:** Internationales Format ohne Trennzeichen (+491701234567)
+* **Saubere Daten:** Entferne leere Zeilen und prüfe die Inhalte
+* **Erst testen:** Starte mit einem kleinen Batch, um das Format zu verifizieren
+* **Variablen abgleichen:** Stelle sicher, dass die Spalten zur Assistenten-Konfiguration passen
+
+<Note>
+  Detaillierte Hilfe bei häufigen Import-Problemen findest du im [Leads-Troubleshooting](/de/troubleshooting/leads-issues).
+</Note>
+
+<Note>
+  Informationen zur Verwaltung importierter Leads findest du unter [Leads verwalten](/de/leads/managing-leads).
+</Note>

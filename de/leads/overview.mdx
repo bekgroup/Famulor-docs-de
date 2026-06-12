@@ -1,0 +1,125 @@
+---
+title: "Leads – Übersicht"
+icon: "users"
+description: "Verwalte deine Kampagnen-Kontakte mit primären Leads, sekundären Kontakten und benutzerdefinierten Variablen"
+---
+
+Leads sind die Kontakte, die deine Famulor-Kampagnen anrufen. Jeder Lead kann mehrere Telefonnummern (sekundäre Kontakte) und benutzerdefinierte Variablen haben, die dein KI-Assistent während der Gespräche nutzen kann.
+
+## Was sind Leads?
+
+Leads repräsentieren die Personen oder Unternehmen, die du über deine Kampagnen kontaktieren möchtest. Das Famulor Lead-System unterstützt:
+
+<CardGroup cols={2}>
+  <Card title="Primäre Kontakte" icon="user">
+    **Hauptkontakt** für jeden Lead
+
+    Die primäre Telefonnummer und Kontaktinformationen
+  </Card>
+
+  <Card title="Sekundäre Kontakte" icon="users">
+    **Zusätzliche Telefonnummern** für denselben Lead
+
+    Ausweichnummern, Entscheider oder alternative Nummern
+  </Card>
+
+  <Card title="Benutzerdefinierte Variablen" icon="code">
+    **Personalisierte Informationen** für KI-Gespräche
+
+    Namen, Präferenzen, Historie oder beliebige Daten, die dein Assistent benötigt
+  </Card>
+
+  <Card title="Status-Tracking" icon="chart-line">
+    **Fortschrittsüberwachung** über den gesamten Kampagnen-Lebenszyklus
+
+    Verfolge Anrufversuche, Abschlüsse und Wiederholungsstatus
+  </Card>
+</CardGroup>
+
+## Lead-Status-System
+
+Jeder Lead durchläuft während der Kampagnenausführung verschiedene Status:
+
+<AccordionGroup>
+  <Accordion title="Erstellt (Created)" icon="plus">
+    **Bereit zum Anruf** – Lead ist für den ersten Kontaktversuch in der Warteschlange
+  </Accordion>
+
+  <Accordion title="Geplant (Scheduled)" icon="calendar">
+    **Für Wiederholung eingeplant** – Nächster Anrufversuch gemäß Kampagnen-Einstellungen geplant
+  </Accordion>
+
+  <Accordion title="In Bearbeitung (Processing)" icon="phone">
+    **Wird gerade angerufen** – Anruf läuft
+  </Accordion>
+
+  <Accordion title="Neu geplant (Rescheduled)" icon="clock">
+    **Wartet auf Wiederholung** – Wird nach dem Wiederholungsintervall erneut angerufen
+  </Accordion>
+
+  <Accordion title="Max. Versuche (Max Retries)" icon="ban">
+    **Wiederholungslimit erreicht** – Maximale Anzahl an Anrufversuchen überschritten
+  </Accordion>
+
+  <Accordion title="Abgeschlossen (Completed)" icon="check">
+    **Erfolgreich kontaktiert** – Anruf abgeschlossen oder Ziel erreicht
+  </Accordion>
+</AccordionGroup>
+
+<Tip>
+  Du kannst Leads auch visuell zwischen Status-Spalten verschieben – mit der [Leadliste in der Kanban-Ansicht](/de/platform/leadliste-kanban).
+</Tip>
+
+## Primäre vs. sekundäre Kontakte
+
+### Primäre Kontakte
+
+* **Haupt-Lead-Datensatz** mit vollständigen Informationen
+* **Wird als Erstes angerufen** in der Kampagnen-Sequenz
+* **Erbt Kampagnen-Variablen** aus den Assistenten-Einstellungen
+* **Steuert den Gesamtstatus** und den Abschluss des Leads
+
+### Sekundäre Kontakte
+
+* **Zusätzliche Telefonnummern** für dieselbe Person / dasselbe Unternehmen
+* **Werden angerufen, wenn der primäre Kontakt nicht antwortet** (gemäß Wiederholungs-Einstellungen der Kampagne)
+* **Unabhängiges Status-Tracking** vom primären Kontakt
+* **Können eigene Variablen haben**, die sich vom primären Kontakt unterscheiden
+
+<Tip>
+  **Anwendungsbeispiel:** Ein Geschäftskunden-Lead kann die zentrale Büronummer als primären Kontakt haben, während Durchwahl und Mobilnummer des Entscheiders als sekundäre Kontakte hinterlegt sind.
+</Tip>
+
+## Variablen-System
+
+Variablen personalisieren KI-Gespräche mit Lead-spezifischen Informationen. Sie werden aus der [Assistenten-Konfiguration](/de/ai-assistants/prompt-and-tools#anruf-variablen) geerbt und können pro Lead angepasst werden.
+
+**Verwendung im Gespräch:** Der Assistent nutzt Variablen wie `{customer_name}` und `{company}` für personalisierte Antworten.
+
+## Wichtigste Funktionen
+
+### Lead-Verwaltung
+
+* **Manuelle Erstellung** oder **CSV/Excel-Import** mit Validierung
+* **Status-Tracking** über den gesamten Kampagnen-Lebenszyklus
+* **Export-Funktionen** mit Filteroptionen
+
+### Kampagnen-Integration
+
+* **Zuweisung zu einer Kampagne** pro Lead
+* **Automatische Status-Updates** basierend auf Anrufergebnissen
+* **Manuelle Status-Steuerung** für das Kampagnen-Management
+
+### Best Practices
+
+* **Telefonformat:** Internationales Format ohne Leerzeichen (+491701234567)
+* **Saubere Daten:** Korrekte, aktuelle Kontaktinformationen
+* **Logische Organisation:** Sekundäre Kontakte sinnvoll priorisieren
+
+<Note>
+  Bei Problemen mit der Lead-Verwaltung hilft dir das [Leads-Troubleshooting](/de/troubleshooting/leads-issues).
+</Note>
+
+<Note>
+  Detaillierte Anleitungen findest du unter [Leads verwalten](/de/leads/managing-leads) und [Leads importieren](/de/leads/importing-leads).
+</Note>

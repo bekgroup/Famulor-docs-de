@@ -1,0 +1,125 @@
+---
+title: "Leads Overview"
+icon: "users"
+description: "Manage your campaign contacts with primary leads, secondary contacts, and custom variables"
+---
+
+Leads are the contacts your Famulor campaigns will call. Each lead can have multiple phone numbers (secondary contacts) and custom variables that your AI assistant can use during conversations.
+
+## What are Leads?
+
+Leads represent the people or businesses you want to contact through your campaigns. The Famulor lead system supports:
+
+<CardGroup cols={2}>
+  <Card title="Primary Contacts" icon="user">
+    **Main contact** for each lead
+
+    The primary phone number and contact information
+  </Card>
+
+  <Card title="Secondary Contacts" icon="users">
+    **Additional phone numbers** for the same lead
+
+    Backup contacts, decision makers, or alternative numbers
+  </Card>
+
+  <Card title="Custom Variables" icon="code">
+    **Personalized information** for AI conversations
+
+    Names, preferences, history, or any data your assistant needs
+  </Card>
+
+  <Card title="Status Tracking" icon="chart-line">
+    **Progress monitoring** through the campaign lifecycle
+
+    Track call attempts, completions, and retry status
+  </Card>
+</CardGroup>
+
+## Lead Status System
+
+Every lead moves through different statuses during campaign execution:
+
+<AccordionGroup>
+  <Accordion title="Created" icon="plus">
+    **Ready to call** – Lead is queued for the first contact attempt
+  </Accordion>
+
+  <Accordion title="Scheduled" icon="calendar">
+    **Queued for retry** – Scheduled for the next call attempt based on campaign settings
+  </Accordion>
+
+  <Accordion title="Processing" icon="phone">
+    **Currently being called** – Call is in progress
+  </Accordion>
+
+  <Accordion title="Rescheduled" icon="clock">
+    **Waiting for retry** – Will be called again after the retry interval
+  </Accordion>
+
+  <Accordion title="Max Retries" icon="ban">
+    **Retry limit reached** – Maximum call attempts exceeded
+  </Accordion>
+
+  <Accordion title="Completed" icon="check">
+    **Successfully contacted** – Call completed or goal achieved
+  </Accordion>
+</AccordionGroup>
+
+<Tip>
+  You can also track and move leads visually between status columns using the [Lead list Kanban view](/en/platform/lead-list-kanban).
+</Tip>
+
+## Primary vs Secondary Contacts
+
+### Primary Contacts
+
+* **Main lead record** with complete information
+* **First to be called** in the campaign sequence
+* **Inherits campaign variables** from assistant settings
+* **Controls the overall lead status** and completion
+
+### Secondary Contacts
+
+* **Additional phone numbers** for the same person/business
+* **Called if the primary doesn't answer** (based on campaign retry settings)
+* **Independent status tracking** from the primary contact
+* **Can have unique variables** different from the primary
+
+<Tip>
+  **Use case example:** A business lead might have the main office number as the primary contact, with the decision maker's direct line and mobile as secondary contacts.
+</Tip>
+
+## Variables System
+
+Variables personalize AI conversations with lead-specific information. They are inherited from the [assistant configuration](/en/ai-assistants/prompt-and-tools#call-variables) and can be customized per lead.
+
+**Usage in conversations:** The assistant uses variables like `{customer_name}` and `{company}` for personalized responses.
+
+## Key Features
+
+### Lead Management
+
+* **Manual creation** or **CSV/Excel import** with validation
+* **Status tracking** through the campaign lifecycle
+* **Export capabilities** with filtering options
+
+### Campaign Integration
+
+* **Single campaign** assignment per lead
+* **Automatic status updates** based on call outcomes
+* **Manual status control** for campaign management
+
+### Best Practices
+
+* **Phone format:** International format without spaces (+491701234567)
+* **Clean data:** Accurate, current contact information
+* **Logical organization:** Prioritize secondary contacts appropriately
+
+<Note>
+  For troubleshooting lead management issues, see [Leads Troubleshooting](/en/troubleshooting/leads-issues).
+</Note>
+
+<Note>
+  For detailed setup instructions, see [Managing Leads](/en/leads/managing-leads) and [Importing Leads](/en/leads/importing-leads).
+</Note>

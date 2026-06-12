@@ -150,6 +150,7 @@
                     "icon": "vial",
                     "pages": [
                       "en/ai-assistants/testing",
+                      "en/ai-assistants/test-chat",
                       "en/ai-assistants/cledon"
                     ]
                   }
@@ -205,6 +206,14 @@
                   "en/outbound-calls/scripts-and-prompts",
                   "en/outbound-calls/mass-dialing",
                   "en/outbound-calls/limits"
+                ]
+              },
+              {
+                "group": "Leads",
+                "pages": [
+                  "en/leads/overview",
+                  "en/leads/importing-leads",
+                  "en/leads/managing-leads"
                 ]
               },
               {
@@ -920,6 +929,7 @@
                     "group": "Testing",
                     "pages": [
                       "de/ai-assistants/testing",
+                      "de/ai-assistants/test-chat",
                       "de/ai-assistants/cledon"
                     ]
                   }
@@ -981,6 +991,14 @@
                   "de/outbound-calls/scripts-and-prompts",
                   "de/outbound-calls/mass-dialing",
                   "de/outbound-calls/limits"
+                ]
+              },
+              {
+                "group": "Leads",
+                "pages": [
+                  "de/leads/overview",
+                  "de/leads/importing-leads",
+                  "de/leads/managing-leads"
                 ]
               },
               {
@@ -1578,7 +1596,13 @@
       "proxy": true
     },
     "examples": {
-      "languages": ["bash", "javascript", "python", "php", "go"],
+      "languages": [
+        "bash",
+        "javascript",
+        "python",
+        "php",
+        "go"
+      ],
       "defaults": "required",
       "prefill": true
     }
