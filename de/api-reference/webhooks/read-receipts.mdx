@@ -1,0 +1,237 @@
+---
+title: "Read Receipts Webhook"
+icon: "link"
+description: "Signierter Webhook bei jeder Zustellstatusänderung (sent, delivered, read, failed) einer von Ihnen gesendeten WhatsApp-Nachricht"
+---
+
+> Signierter Webhook bei jeder Zustellstatusänderung (sent, delivered, read, failed) einer von Ihnen gesendeten WhatsApp-Nachricht
+
+Der Read Receipts Webhook liefert einen signierten HTTP-Callback an Ihren Server, sobald sich der Status einer von Ihnen gesendeten WhatsApp-Nachricht ändert — `sent`, `delivered`, `read` oder `failed`. Nutzen Sie ihn für Zustellverfolgung, Lesebestätigungen und Audit-Trails.
+
+Er wird **pro WhatsApp-Sender** konfiguriert, sodass verschiedene Sender auf unterschiedliche Endpunkte zeigen können.
+
+## Webhook-Konfiguration
+
+So aktivieren Sie Read Receipts für einen Sender:
+
+1. Bearbeiten Sie Ihren [WhatsApp-Sender](/de/whatsapp/senders) und öffnen Sie den Bereich **Read Receipts Webhook**
+2. Tragen Sie Ihre **Webhook-URL** ein und speichern Sie
+3. Ein **Signing Secret** wird automatisch generiert — verwenden Sie es, um die Signatur jeder Anfrage zu verifizieren
+
+Jeder Payload enthält die `whatsapp_message_id`, die von den Endpunkten [Send Template](/de/api-reference/whatsapp/send-template) und [Send Free-form](/de/api-reference/whatsapp/send-freeform) zurückgegeben wird, sodass Sie jedes Update der ursprünglichen Nachricht zuordnen können.
+
+## Request-Format
+
+Der Webhook wird als POST-Request an Ihre konfigurierte URL mit einem JSON-Body und einem `X-Signature-256`-Header gesendet.
+
+### Payload-Struktur
+
+<ResponseField name="event" type="string">
+  Der Ereignistyp. Wert: `message_status`
+</ResponseField>
+
+<ResponseField name="whatsapp_message_id" type="integer">
+  Numerische Kennung der Nachricht — dieselbe `whatsapp_message_id`, die beim Senden zurückgegeben wurde. Verwenden Sie sie, um das Status-Update der ursprünglichen Nachricht zuzuordnen.
+</ResponseField>
+
+<ResponseField name="message_sid" type="string">
+  Provider-Nachrichtenkennung für über Twilio gesendete Nachrichten, sonst `null`
+</ResponseField>
+
+<ResponseField name="meta_message_id" type="string">
+  Provider-Nachrichtenkennung (WhatsApp `wamid`) für über die Meta Cloud API gesendete Nachrichten, sonst `null`
+</ResponseField>
+
+<ResponseField name="conversation_id" type="string">
+  Eindeutige Kennung (UUID) der Konversation, zu der die Nachricht gehört, oder `null`
+</ResponseField>
+
+<ResponseField name="assistant_id" type="string">
+  Eindeutige Kennung (UUID) des mit dem Sender verbundenen Assistenten, oder `null`
+</ResponseField>
+
+<ResponseField name="sender" type="object">
+  Der WhatsApp-Sender, von dem die Nachricht gesendet wurde
+
+  <Expandable title="Sender-Eigenschaften">
+    <ResponseField name="id" type="integer">
+      Numerische Kennung des Senders
+    </ResponseField>
+
+    <ResponseField name="phone_number" type="string">
+      WhatsApp-Telefonnummer des Senders
+    </ResponseField>
+
+    <ResponseField name="display_name" type="string">
+      Anzeigename des Senders
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="to" type="string">
+  Telefonnummer des Empfängers
+</ResponseField>
+
+<ResponseField name="from" type="string">
+  Telefonnummer des Senders
+</ResponseField>
+
+<ResponseField name="direction" type="string">
+  Nachrichtenrichtung. Wert: `outbound`
+</ResponseField>
+
+<ResponseField name="status" type="string">
+  Der neue Zustellstatus. Mögliche Werte: `sent`, `delivered`, `read`, `failed`, `undelivered`
+</ResponseField>
+
+<ResponseField name="error_code" type="integer">
+  Provider-Fehlercode, wenn `status` `failed` oder `undelivered` ist, sonst `null`
+</ResponseField>
+
+<ResponseField name="error_message" type="string">
+  Rohe Provider-Fehlermeldung, wenn die Nachricht fehlgeschlagen ist, sonst `null`
+</ResponseField>
+
+<ResponseField name="error_description" type="string">
+  Menschenlesbare Fehlerbeschreibung, sonst `null`
+</ResponseField>
+
+<ResponseField name="timestamp" type="string">
+  ISO-8601-Zeitstempel, wann die Plattform die Statusänderung erfasst hat, in der konfigurierten Zeitzone des WhatsApp-Nummerninhabers
+</ResponseField>
+
+<ResponseField name="provider_timestamp" type="string">
+  ISO-8601-Zeitstempel der eigenen Ereigniszeit des Carriers, in der konfigurierten Zeitzone des Inhabers. Vorhanden bei über die Meta Cloud API gesendeten Nachrichten; `null` bei Twilio (der Twilio-Status-Callback enthält keine Ereigniszeit). Bevorzugen Sie diesen Wert, wenn er vorhanden ist — er ist die autoritative Zeit des Carriers.
+</ResponseField>
+
+<ResponseExample>
+  ```json Delivered theme={null}
+  {
+    "event": "message_status",
+    "whatsapp_message_id": 890,
+    "message_sid": "SMxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "meta_message_id": null,
+    "conversation_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "assistant_id": "f9e8d7c6-b5a4-3210-fedc-ba9876543210",
+    "sender": {
+      "id": 42,
+      "phone_number": "+19876543210",
+      "display_name": "My Business"
+    },
+    "to": "+1234567890",
+    "from": "+19876543210",
+    "direction": "outbound",
+    "status": "delivered",
+    "error_code": null,
+    "error_message": null,
+    "error_description": null,
+    "timestamp": "2026-06-08T09:30:02+00:00",
+    "provider_timestamp": "2026-06-08T09:30:00+00:00"
+  }
+  ```
+
+  ```json Read theme={null}
+  {
+    "event": "message_status",
+    "whatsapp_message_id": 890,
+    "message_sid": null,
+    "meta_message_id": "wamid.HBgLMTIzNDU2Nzg5MBUCABEYEjk...",
+    "conversation_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "assistant_id": "f9e8d7c6-b5a4-3210-fedc-ba9876543210",
+    "sender": {
+      "id": 42,
+      "phone_number": "+19876543210",
+      "display_name": "My Business"
+    },
+    "to": "+1234567890",
+    "from": "+19876543210",
+    "direction": "outbound",
+    "status": "read",
+    "error_code": null,
+    "error_message": null,
+    "error_description": null,
+    "timestamp": "2026-06-08T09:31:12+00:00",
+    "provider_timestamp": "2026-06-08T09:31:10+00:00"
+  }
+  ```
+
+  ```json Failed theme={null}
+  {
+    "event": "message_status",
+    "whatsapp_message_id": 891,
+    "message_sid": "SMxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "meta_message_id": null,
+    "conversation_id": null,
+    "assistant_id": "f9e8d7c6-b5a4-3210-fedc-ba9876543210",
+    "sender": {
+      "id": 42,
+      "phone_number": "+19876543210",
+      "display_name": "My Business"
+    },
+    "to": "+1234567890",
+    "from": "+19876543210",
+    "direction": "outbound",
+    "status": "failed",
+    "error_code": 63016,
+    "error_message": "Template message 24h window expired",
+    "error_description": "Template message 24h window expired - customer must reply first",
+    "timestamp": "2026-06-08T09:32:00+00:00",
+    "provider_timestamp": null
+  }
+  ```
+</ResponseExample>
+
+## Signatur verifizieren
+
+Jede Anfrage enthält einen `X-Signature-256`-Header mit einem HMAC-SHA256 über den **rohen Request-Body**, signiert mit dem **Signing Secret** Ihres Senders:
+
+```
+X-Signature-256: sha256=<hmac_sha256(raw_body, signing_secret)>
+```
+
+Berechnen Sie die Signatur über den rohen Body neu und vergleichen Sie sie mit einem Constant-Time-Vergleich. Lehnt die Anfrage ab, wenn sie nicht übereinstimmt.
+
+<CodeGroup>
+  ```javascript Node.js theme={null}
+  import crypto from "crypto";
+
+  function isValid(rawBody, signatureHeader, secret) {
+    const expected =
+      "sha256=" + crypto.createHmac("sha256", secret).update(rawBody).digest("hex");
+    return crypto.timingSafeEqual(
+      Buffer.from(expected),
+      Buffer.from(signatureHeader || "")
+    );
+  }
+  ```
+
+  ```php PHP theme={null}
+  function isValid(string $rawBody, ?string $signatureHeader, string $secret): bool
+  {
+      $expected = 'sha256=' . hash_hmac('sha256', $rawBody, $secret);
+
+      return hash_equals($expected, (string) $signatureHeader);
+  }
+  ```
+</CodeGroup>
+
+## Retry-Verhalten
+
+Wenn Ihr Endpunkt einen Nicht-2xx-Status zurückgibt oder die Anfrage fehlschlägt, wird die Zustellung wiederholt:
+
+| Versuch    | Verzögerung |
+| ---------- | ----------- |
+| 1. Retry   | 30 Sekunden |
+| 2. Retry   | 60 Sekunden |
+| 3. Retry   | 120 Sekunden |
+
+Serverfehler (5xx) und Rate Limits (429) werden erneut versucht. Clientfehler (4xx) gelten als falsch konfigurierter Endpunkt und werden nicht erneut versucht.
+
+## Wichtige Hinweise
+
+* Der Webhook wird **pro Sender** konfiguriert — jeder Sender kann eine eigene URL und ein eigenes Secret haben.
+* Ereignisse, die über die Schaltfläche **Make test request** in den Sender-Einstellungen ausgelöst werden, enthalten ein zusätzliches Feld `test: true` und Platzhalterwerte. Echte Status-Updates enthalten niemals `test`.
+* `read` wird nur ausgelöst, wenn der Empfänger Lesebestätigungen in seinen WhatsApp-Datenschutzeinstellungen aktiviert hat. `delivered` wird immer ausgelöst.
+* Status können in falscher Reihenfolge ankommen oder vom Provider erneut gesendet werden. Wir leiten nur echte Fortschritte weiter, sodass Sie für dieselbe Nachricht kein `delivered` nach `read` erhalten — behandeln Sie den Webhook dennoch als Quelle der Wahrheit und deduplizieren Sie nach `whatsapp_message_id` + `status`.
+* `timestamp` ist immer der Zeitpunkt, zu dem die Plattform die Änderung erfasst hat (in der Zeitzone des Nummerninhabers). `provider_timestamp` ist die autoritative Ereigniszeit des Carriers, wenn verfügbar — bevorzugen Sie sie für Genauigkeit und fallen Sie auf `timestamp` zurück, wenn sie `null` ist.
+* Verwenden Sie **Regenerate** in den Sender-Einstellungen, um das Signing Secret zu rotieren, falls es jemals offengelegt wurde.

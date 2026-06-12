@@ -760,7 +760,8 @@
                 "group": "Webhooks",
                 "pages": [
                   "en/api-reference/webhooks/post-call",
-                  "en/api-reference/webhooks/conversation-ended"
+                  "en/api-reference/webhooks/conversation-ended",
+                  "en/api-reference/webhooks/read-receipts"
                 ]
               }
             ]
@@ -1535,7 +1536,8 @@
                 "group": "Webhooks",
                 "pages": [
                   "de/api-reference/webhooks/post-call",
-                  "de/api-reference/webhooks/conversation-ended"
+                  "de/api-reference/webhooks/conversation-ended",
+                  "de/api-reference/webhooks/read-receipts"
                 ]
               }
             ]
