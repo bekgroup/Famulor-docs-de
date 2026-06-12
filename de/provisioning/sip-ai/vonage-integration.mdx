@@ -159,9 +159,9 @@ Verknüpfe eine Telefonnummer mit deinem Elastic SIP Trunk – entweder eine **b
 
 ---
 
-## Anrufweiterleitung an einen Menschen (kalt & warm)
+## Anrufweiterleitung an einen Menschen (Warmweiterleitung)
 
-Famulor kann ein laufendes Gespräch an einen echten Ansprechpartner übergeben – als **Kaltweiterleitung** oder **Warmweiterleitung**. Die vollständige Einrichtung findest du unter [Anrufsweiterleitung](/de/platform/anrufsweiterleitung). Für **Vonage** gibt es eine wichtige Besonderheit.
+Famulor kann ein laufendes Gespräch an einen echten Ansprechpartner übergeben. **Bei Vonage nutzt du dafür ausschließlich die Warmweiterleitung** – die Kaltweiterleitung funktioniert über den Vonage-Trunk nicht (siehe Hinweis). Die allgemeine Einrichtung findest du unter [Anrufsweiterleitung](/de/platform/anrufsweiterleitung).
 
 <Warning>
   **Vonage unterstützt kein SIP REFER.** Famulor führt **Kaltweiterleitungen** über **SIP REFER** durch – der Carrier verbindet den Anrufer dabei direkt weiter. Da Vonage-SIP-Trunks REFER **nicht** unterstützen, funktioniert die **Kaltweiterleitung über den Vonage-Trunk nicht zuverlässig**.
@@ -169,25 +169,39 @@ Famulor kann ein laufendes Gespräch an einen echten Ansprechpartner übergeben 
   **Empfehlung für Vonage:** Nutze die **Warmweiterleitung**. Dabei erstellt Famulor ein **neues SIP INVITE** (einen separaten ausgehenden Anruf über den Vonage-Trunk) und **führt die beiden Gespräche zusammen** – das benötigt **kein** REFER und funktioniert daher auch mit SIP-Trunks ohne REFER-Unterstützung wie Vonage.
 </Warning>
 
-### Optionen pro Weiterleitungsziel
+### Weiterleitungsziel: Telefonnummer oder Custom SIP
 
-Bei jedem Weiterleitungsziel (Kalt wie Warm) hast du zwei Möglichkeiten:
+Das Ziel der Warmweiterleitung gibst du auf eine von zwei Arten an:
 
-- **Telefonnummer:** Die Rufnummer des echten Ansprechpartners, an die übergeben wird (z. B. `+49 1512 3456789`).
-- **(Advanced) Is custom SIP transfer?** Aktiviere diese Option, um statt einer Telefonnummer eine **eigene SIP-Anfrage** anzugeben (Feld **Custom SIP transfer**). Nützlich, wenn dein SIP-Trunk-Anbieter ein bestimmtes Format verlangt – z. B. `tel:1234567890` oder eine SIP-URI wie `sip:200@dein-anbieter`.
+- **Supervisor-Telefonnummer:** Die Rufnummer des Ansprechpartners (z. B. `+49 1512 3456789`).
+- **(Advanced) Custom SIP/Extension:** Aktiviere diese Option, um statt einer Telefonnummer eine **eigene SIP-Adresse oder interne Nebenstelle** anzugeben (Feld **Custom SIP transfer**, z. B. `sip:number@sip-server`).
 
 <img
-  src="/images/vonage/famulor-call-transfer.png"
-  alt="Famulor: Kalt- und Warmweiterleitung mit Telefonnummer oder Option „(Advanced) Is custom SIP transfer?“"
+  src="/images/vonage/famulor-warm-transfer.png"
+  alt="Famulor: Warmweiterleitung mit Supervisor-Telefonnummer (Custom SIP/Extension deaktiviert)"
 />
 
 <img
-  src="/images/vonage/famulor-custom-sip-transfer.png"
-  alt="Famulor: aktivierte Option „(Advanced) Is custom SIP transfer?“ mit Feld „Custom SIP transfer“"
+  src="/images/vonage/famulor-warm-transfer-custom-sip.png"
+  alt="Famulor: Warmweiterleitung mit aktiviertem „(Advanced) Custom SIP/Extension“ und Feld „Custom SIP transfer“"
 />
+
+### Einstellungen der Warmweiterleitung
+
+| Feld | Bedeutung |
+| --- | --- |
+| **Supervisor phone number** / **Custom SIP transfer** | Ziel des Transfers: Telefonnummer **oder** – bei aktiviertem **Custom SIP/Extension** – SIP-Adresse bzw. Nebenstelle |
+| **Outbound phone number** | Nummer, über die der Supervisor angerufen wird (benötigt einen ausgehenden Trunk) |
+| **Caller ID shown to supervisor** | Welche Nummer der Supervisor beim Anruf sieht (z. B. die ausgehende Nummer) |
+| **Hold music** / **Hold music volume** | Wartemusik für den Anrufer und Lautstärke (0–100) |
+| **When to transfer** | Beschreibung, wann die KI die Warmweiterleitung auslösen soll |
+| **Hold message** | Was die KI dem Anrufer sagt, bevor er in die Warteschleife kommt |
+| **Summary instructions** | Wie die KI den Supervisor briefen soll (wer ruft an, warum, warum ein Mensch nötig ist) |
+| **Briefing initial message** | Erster Satz, den der Supervisor hört |
+| **Connected message** | Was der Anrufer hört, sobald der Supervisor verbunden ist |
 
 <Note>
-  **Custom SIP transfer** hebt die REFER-Beschränkung von Vonage **nicht** auf: Auch eine eigene SIP-Anfrage wird bei der Kaltweiterleitung per REFER gesendet. Für Vonage bleibt die **Warmweiterleitung** der zuverlässige Weg, um an einen Menschen zu übergeben.
+  In **Summary instructions**, **Briefing initial message** und ähnlichen Feldern kannst du Variablen verwenden: `{customer_phone}` (Rufnummer des Anrufers) sowie Lead-Variablen wie `{name}` oder `{email}`.
 </Note>
 
 ---
