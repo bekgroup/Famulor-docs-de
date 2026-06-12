@@ -27,13 +27,16 @@ Steuern Sie Ihre Famulor-KI-Voice-Agents — Anrufe, Leads, Kampagnen, Wissensda
 
 ## Übersicht
 
-Der Famulor-MCP-Server stellt die gesamte Famulor-Plattform als **66 Tools** bereit, die Ihr KI-Assistent aufrufen kann. Fragen Sie in natürlicher Sprache — das Modell wählt die passenden Tools.
+Der Famulor-MCP-Server stellt die gesamte Famulor-Plattform als **76 Tools** bereit, die Ihr KI-Assistent aufrufen kann. Fragen Sie in natürlicher Sprache — das Modell wählt die passenden Tools. Alle Tools liefern strukturierte Ausgaben (Output-Schemas + `structuredContent`) und Title-Annotations für Directory-kompatible Clients.
 
 **Beispiel-Prompts:**
 
 - *„Erstelle einen deutschen Vertriebsassistenten mit GPT-4.1-mini und der Stimme Susi“*
 - *„Starte Kampagne #42 und füge diese 50 Leads hinzu“*
 - *„Zeige alle Anrufe von heute, bei denen das Ziel nicht erreicht wurde“*
+- *„Lege einen Ordner ‚Kunden‘ an und verschiebe alle Inbound-Assistenten hinein“*
+
+Mehr Inspiration: [Use Cases & Prompts](/de/mcp/use-cases) — gruppierte Anwendungsfälle mit fertigen Prompts und Best Practices.
 
 <Note>
 Neu bei MCP? Starten Sie mit [MCP Client einrichten](/de/mcp/client) — Server-URL hinzufügen, dann per OAuth und API-Schlüssel im Browser anmelden.
@@ -54,12 +57,13 @@ Sowohl `https://mcp.famulor.io/` als auch `https://mcp.famulor.io/mcp` funktioni
 
 | Bereich | Funktionen |
 | --- | --- |
-| **Assistenten** | Voice Agents anlegen, aktualisieren, löschen · Stimmen, Sprachen, LLM-/Multimodal-Modelle, TTS/STT · Webhooks für eingehende Anrufe und Gesprächsende |
+| **Assistenten** | Voice Agents anlegen, aktualisieren, löschen · Stimmen, Sprachen, LLM-/Multimodal-Modelle, TTS/STT · Webhooks für eingehende Anrufe und Gesprächsende · per `folder_id` / `label_ids` organisieren |
+| **Ordner & Labels** | Assistenten in Ordner organisieren (ein Ordner pro Assistent) · Labels mit Farben taggen (mehrere pro Assistent) · anlegen, umbenennen, löschen |
 | **Anrufe** | Outbound-Anrufe · Anrufliste abrufen, Details, löschen |
 | **Kampagnen** | Kampagnen anlegen, Retry-Regeln, erlaubte Zeitfenster · starten, stoppen, löschen |
 | **Leads** | Leads hinzufügen (inkl. Sekundärkontakte) · Status und Variablen · löschen |
 | **Wissensdatenbanken** | Anlegen · Website-Dokumente · aktualisieren / löschen |
-| **Telefonnummern** | Suche nach Land und Vorwahl · kaufen · freigeben · SIP-Trunk CRUD |
+| **Telefonnummern** | Suche nach Land und Vorwahl · kaufen · Nickname setzen (`update_phone_number`) · freigeben · SIP-Trunk CRUD |
 | **Konversationen** | Chats listen, lesen, beantworten · KI pro Konversation ein/aus (Human Takeover) |
 | **WhatsApp** | Sender und Templates · 24h-Fenster · Template- oder Freitext-Nachrichten |
 | **SMS** | Versand über gekaufte Nummern |
@@ -140,6 +144,7 @@ Das [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) verbindet K
 
 ## Ressourcen
 
+- [Use Cases & Prompts](/de/mcp/use-cases)
 - [MCP Client einrichten](/de/mcp/client)
 - [Famulor API-Referenz](/de/api-reference/)
 - [API-Schlüssel erstellen](https://app.famulor.de/api-keys)
@@ -151,5 +156,5 @@ Das [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) verbindet K
 [MIT](https://github.com/bekservice/Famulor-MCP/blob/main/LICENSE) — Details im GitHub-Repository.
 
 <Tip>
-Passende Seiten: [MCP Client](/de/mcp/client), [Famulor Skill](/de/mcp/famulor-skill).
+Passende Seiten: [Use Cases & Prompts](/de/mcp/use-cases), [MCP Client](/de/mcp/client), [Famulor Skill](/de/mcp/famulor-skill).
 </Tip>

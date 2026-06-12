@@ -1,0 +1,275 @@
+---
+title: "Use Cases & Prompts"
+icon: "lightbulb"
+description: "Praxisnahe Anwendungsfälle für den Famulor MCP Server und Skill — mit fertigen Prompts und Best Practices für ChatGPT, Claude, Cursor & Co."
+---
+
+# Use Cases & Prompts
+
+Der [Famulor MCP Server](/de/mcp/server) und der [Famulor Skill](/de/mcp/famulor-skill) machen Ihre gesamte Plattform per natürlicher Sprache steuerbar. Diese Seite zeigt, was damit im Alltag möglich ist — gruppiert nach Anwendungsfall, mit Prompts zum Kopieren.
+
+<Note>
+Alle Prompts funktionieren in ChatGPT, Claude, Cursor und jedem anderen verbundenen MCP-Client. Einrichtung: [MCP Client](/de/mcp/client).
+</Note>
+
+## Assistenten erstellen & optimieren
+
+Der häufigste Einstieg: Voice Agents anlegen, testen und schrittweise verbessern — ohne die Plattform-UI zu öffnen.
+
+**Prompts:**
+
+```text
+Erstelle einen deutschen Inbound-Assistenten "Lisa" für meinen Friseursalon.
+Pipeline-Modus, weibliche Stimme, GPT-4.1-mini. Aufgaben: Terminwünsche
+aufnehmen, Preise nennen, Öffnungszeiten beantworten.
+```
+
+```text
+Zeige mir alle verfügbaren deutschen Stimmen und Multimodal-Modelle.
+```
+
+```text
+Mein Assistent #123 unterbricht Kunden zu oft. Deaktiviere Unterbrechungen
+und kürze die Initial Message auf einen Satz.
+```
+
+```text
+Aktiviere für Assistent "Lisa" einen Webhook an https://example.com/hook,
+der nach jedem Gesprächsende feuert.
+```
+
+**Best Practice:** Lassen Sie das Modell zuerst `get_voices`, `get_languages` und `get_models` abrufen, statt IDs zu raten — z. B. mit „Zeig mir erst die Optionen, dann erstelle…".
+
+## Outbound-Kampagnen & Lead-Management
+
+Kampagnen aufsetzen, Leads importieren und steuern — auch in großen Mengen.
+
+**Prompts:**
+
+```text
+Erstelle eine Kampagne "Reaktivierung Q3" mit Assistent #45.
+Anrufe nur Mo–Fr 10–17 Uhr, maximal 2 Wiederholungsversuche.
+```
+
+```text
+Füge diese Leads zur Kampagne hinzu: [Liste mit Name + Telefonnummer].
+Setze bei allen die Variable "produkt" auf "Premium-Paket".
+```
+
+```text
+Pausiere alle laufenden Kampagnen — wir haben einen Feiertag vergessen.
+```
+
+```text
+Welche Leads in Kampagne #12 haben den Status "nicht erreicht"?
+Erhöhe deren Priorität.
+```
+
+**Best Practice:** Telefonnummern immer im E.164-Format angeben (`+49170…`). Lead-Variablen müssen zu den im Assistenten definierten Variablen passen — neue Variablennamen können nicht pro Lead erfunden werden.
+
+## Anrufanalyse & Reporting
+
+Anrufdaten abfragen und auswerten lassen — das Modell filtert, aggregiert und fasst zusammen.
+
+**Prompts:**
+
+```text
+Zeige alle Anrufe von heute. Bei welchen wurde das Gesprächsziel
+nicht erreicht und warum?
+```
+
+```text
+Fasse die letzten 20 Anrufe von Assistent "Lisa" zusammen:
+Was waren die häufigsten Kundenanliegen?
+```
+
+```text
+Hole das Transkript von Anruf #9876 und schlage konkrete
+Verbesserungen am System-Prompt vor.
+```
+
+**Best Practice:** Kombinieren Sie Analyse und Aktion in einem Prompt: „Analysiere die Anrufe der Woche und passe den System-Prompt entsprechend an — zeig mir die Änderung vor dem Speichern."
+
+## Wissensdatenbanken (RAG)
+
+Wissen anbinden, damit Assistenten faktenbasiert antworten.
+
+**Prompts:**
+
+```text
+Erstelle eine Wissensdatenbank "Speisekarte" und lies dafür
+https://mein-restaurant.de/menu als Dokument ein.
+```
+
+```text
+Verbinde die Wissensdatenbank "Speisekarte" mit Assistent #88
+im Modus "prompt", damit er die Karte immer parat hat.
+```
+
+```text
+Unsere Preise haben sich geändert — aktualisiere das Dokument
+"Preisliste" in der Wissensdatenbank #5.
+```
+
+**Best Practice:** `function_call`-Modus (Standard) für punktuelle Fakten, `prompt`-Modus wenn der Bot Inhalte permanent braucht (Speisekarten, Lieferdienste). Bei Multimodal-/Dualplex-Assistenten ist `function_call` Pflicht.
+
+## Konversationen, WhatsApp & SMS
+
+Chat-Kanäle steuern — inklusive Human Takeover.
+
+**Prompts:**
+
+```text
+Zeige alle offenen Konversationen. Bei welchen wartet ein Kunde
+auf Antwort?
+```
+
+```text
+Übernimm Konversation #321: Deaktiviere die KI und sende
+"Ein Kollege meldet sich gleich persönlich."
+```
+
+```text
+Sende das WhatsApp-Template "termin_erinnerung" an +49170…
+mit dem Termin morgen 14 Uhr.
+```
+
+```text
+Schicke eine SMS an +49171…: "Ihr Rückruf-Wunsch ist eingegangen."
+```
+
+**Best Practice:** Vor Freitext-WhatsApp prüfen lassen, ob das 24h-Fenster offen ist (`get_whatsapp_session_status`) — außerhalb des Fensters sind nur Templates zustellbar.
+
+## Telefonnummern & SIP
+
+Nummern suchen, kaufen und verwalten.
+
+**Prompts:**
+
+```text
+Suche eine deutsche Telefonnummer mit Vorwahl 030 und kaufe sie.
+```
+
+```text
+Gib der Nummer +4930… den Nicknamen "Support-Hotline Berlin".
+```
+
+```text
+Lege einen SIP-Trunk für unsere bestehende Telefonanlage an:
+[Zugangsdaten].
+```
+
+**Best Practice:** Nummernkauf ist kostenpflichtig und `release_phone_number` unwiderruflich — lassen Sie sich vor beidem die Details bestätigen.
+
+## Ordnung & Organisation
+
+Mit Ordnern und Labels behalten Agenturen und Teams den Überblick — gerade bei vielen Assistenten.
+
+**Prompts:**
+
+```text
+Lege Ordner "Kunde: Zahnarzt Dr. Meier" an und verschiebe
+die Assistenten #12 und #13 hinein.
+```
+
+```text
+Erstelle die Labels "Produktion" (grün) und "Test" (gelb)
+und tagge alle Assistenten entsprechend.
+```
+
+```text
+Welche Assistenten haben noch keinen Ordner? Schlage eine
+sinnvolle Struktur vor.
+```
+
+**Best Practice:** Ein Assistent kann in genau einem Ordner liegen, aber mehrere Labels tragen — Ordner für Kunden/Projekte, Labels für Status oder Umgebung.
+
+## Mid-Call-Tools & Automatisierung
+
+Eigene HTTP-Integrationen, die der Assistent live im Gespräch aufruft.
+
+**Prompts:**
+
+```text
+Erstelle ein Mid-Call-Tool "verfuegbarkeit_pruefen", das
+GET https://api.example.com/slots aufruft und dem Bot freie
+Termine liefert.
+```
+
+```text
+Baue ein Tool, das Bestellstatus per Bestellnummer abfragt,
+und hänge es an Assistent "Support-Bot".
+```
+
+**Best Practice:** Tool-Beschreibungen aus Sicht des Bots formulieren („Rufe dieses Tool auf, wenn der Kunde nach … fragt") — sie steuern, wann das LLM das Tool nutzt.
+
+## Geführtes Onboarding mit dem Famulor Skill
+
+Der [Famulor Skill](/de/mcp/famulor-skill) ergänzt den MCP Server um **Branchen-Wissen und einen strukturierten 4-Phasen-Flow** — ideal, wenn ein kompletter Assistent für einen neuen Kunden entstehen soll. Läuft in Cursor, Claude Code, Codex, OpenCode und Gemini CLI.
+
+**Prompts:**
+
+```text
+Onboarde einen neuen Kunden: Zahnarztpraxis Dr. Meier in Berlin.
+```
+
+```text
+Erstelle einen Inbound-Bot für mein Restaurant — führe mich
+Schritt für Schritt durch die Einrichtung.
+```
+
+```text
+Neuer Kunde, Branche Handwerk (Sanitär-Notdienst). Schlage mir
+die typischen Aufgaben, ein Post-Call-Schema und eine
+end_call-Beschreibung vor.
+```
+
+```text
+Teste den Assistenten "Sofia" per Chat: Buche einen Tisch für
+4 Personen am Freitag um 19 Uhr und prüfe, ob alle Daten im
+Post-Call-Schema landen.
+```
+
+```text
+Der Kunde findet den Bot zu förmlich. Überarbeite den
+System-Prompt lockerer und zeig mir den Diff.
+```
+
+**Best Practice:** Den Skill den Flow führen lassen — er fragt Phase für Phase (Kennenlernen → Technik → Branche → System-Prompt) und schlägt pro Nische die richtigen Defaults vor (Stimme, Hintergrundgeräusch, Guardrails). Vor dem Deployment immer den System-Prompt bestätigen lassen.
+
+## Komplette Workflows
+
+Die eigentliche Stärke: mehrere Schritte in einem Auftrag.
+
+```text
+Onboarde einen neuen Kunden: Restaurant "Bella Vista".
+1. Erstelle eine Wissensdatenbank aus https://bellavista.de
+2. Erstelle einen Inbound-Assistenten "Sofia" (weiblich, deutsch,
+   Pipeline) für Reservierungen und Fragen zur Karte
+3. Verbinde beides, lege den Ordner "Bella Vista" an
+4. Zeig mir zum Schluss eine Zusammenfassung der Konfiguration
+```
+
+```text
+Wochenreport: Liste alle Anrufe der letzten 7 Tage pro Assistent,
+fasse Erfolgsquoten zusammen und nenne die 3 häufigsten Gründe
+für nicht erreichte Ziele.
+```
+
+## Allgemeine Best Practices
+
+| Regel | Warum |
+| --- | --- |
+| **Erst lesen, dann schreiben** | „Zeig mir zuerst…" vor Änderungen — das Modell holt echte IDs statt zu raten |
+| **Destruktive Aktionen bestätigen** | Bei `delete_*`, Kampagnen-Stopps und Nummern-Freigabe explizit um Bestätigung bitten |
+| **E.164 überall** | Telefonnummern immer als `+49…` — andere Formate schlagen fehl |
+| **Änderungen vorab anzeigen** | „Zeig mir den neuen System-Prompt, bevor du speicherst" |
+| **Ein Workflow, ein Prompt** | Mehrschrittige Aufträge als nummerierte Liste formulieren — das Modell arbeitet sie der Reihe nach ab |
+| **API-Key nur per OAuth** | Niemals den Key in Configs oder Prompts einfügen — Anmeldung läuft über den Browser |
+
+## Ressourcen
+
+- [MCP Server](/de/mcp/server) — alle 76 Tools im Überblick
+- [MCP Client einrichten](/de/mcp/client)
+- [Famulor Skill](/de/mcp/famulor-skill) — geführtes Onboarding
+- [API-Referenz](/de/api-reference/)

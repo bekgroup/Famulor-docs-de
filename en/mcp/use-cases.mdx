@@ -1,0 +1,270 @@
+---
+title: "Use Cases & Prompts"
+icon: "lightbulb"
+description: "Practical use cases for the Famulor MCP server and skill — with ready-to-use prompts and best practices for ChatGPT, Claude, Cursor & co."
+---
+
+# Use Cases & Prompts
+
+The [Famulor MCP server](/en/mcp/server) and the [Famulor Skill](/en/mcp/famulor-skill) let you control the entire platform in plain language. This page shows what that looks like in practice — grouped by use case, with copy-paste prompts.
+
+<Note>
+All prompts work in ChatGPT, Claude, Cursor, and any other connected MCP client. Setup: [MCP Client](/en/mcp/client).
+</Note>
+
+## Creating & optimizing assistants
+
+The most common starting point: create, test, and iterate on voice agents — without opening the platform UI.
+
+**Prompts:**
+
+```text
+Create a German inbound assistant "Lisa" for my hair salon.
+Pipeline mode, female voice, GPT-4.1-mini. Tasks: take appointment
+requests, quote prices, answer opening-hours questions.
+```
+
+```text
+Show me all available German voices and multimodal models.
+```
+
+```text
+My assistant #123 interrupts customers too often. Disable
+interruptions and shorten the initial message to one sentence.
+```
+
+```text
+Enable a conversation-ended webhook for assistant "Lisa"
+pointing at https://example.com/hook.
+```
+
+**Best practice:** Have the model call `get_voices`, `get_languages`, and `get_models` first instead of guessing IDs — e.g. "Show me the options first, then create…".
+
+## Outbound campaigns & lead management
+
+Set up campaigns, import leads, and control them — at scale.
+
+**Prompts:**
+
+```text
+Create a campaign "Reactivation Q3" with assistant #45.
+Calls Mon–Fri 10am–5pm only, max 2 retry attempts.
+```
+
+```text
+Add these leads to the campaign: [list of name + phone number].
+Set the variable "product" to "Premium plan" on all of them.
+```
+
+```text
+Pause all running campaigns — we forgot about a public holiday.
+```
+
+```text
+Which leads in campaign #12 have status "not reached"?
+Bump their priority.
+```
+
+**Best practice:** Always pass phone numbers in E.164 format (`+49170…`). Lead variables must match the variables defined on the assistant — you can't invent new variable names per lead.
+
+## Call analysis & reporting
+
+Query and analyze call data — the model filters, aggregates, and summarizes.
+
+**Prompts:**
+
+```text
+Show all calls from today. On which ones was the call goal
+not reached, and why?
+```
+
+```text
+Summarize the last 20 calls of assistant "Lisa":
+what were the most common customer requests?
+```
+
+```text
+Get the transcript of call #9876 and suggest concrete
+improvements to the system prompt.
+```
+
+**Best practice:** Combine analysis and action in one prompt: "Analyze this week's calls and adjust the system prompt accordingly — show me the change before saving."
+
+## Knowledge bases (RAG)
+
+Connect knowledge so assistants answer from facts.
+
+**Prompts:**
+
+```text
+Create a knowledge base "Menu" and ingest
+https://my-restaurant.com/menu as a document.
+```
+
+```text
+Attach the knowledge base "Menu" to assistant #88 in
+"prompt" mode so it always has the menu at hand.
+```
+
+```text
+Our prices changed — update the "Price list" document
+in knowledge base #5.
+```
+
+**Best practice:** Use `function_call` mode (default) for on-demand facts, `prompt` mode when the bot needs content permanently (menus, delivery services). For multimodal/dualplex assistants, `function_call` is required.
+
+## Conversations, WhatsApp & SMS
+
+Run chat channels — including human takeover.
+
+**Prompts:**
+
+```text
+Show all open conversations. Where is a customer waiting
+for a reply?
+```
+
+```text
+Take over conversation #321: disable the AI and send
+"A colleague will be with you personally in a moment."
+```
+
+```text
+Send the WhatsApp template "appointment_reminder" to +49170…
+with tomorrow's 2pm slot.
+```
+
+```text
+Send an SMS to +49171…: "We received your callback request."
+```
+
+**Best practice:** Before freeform WhatsApp, have the model check whether the 24h session window is open (`get_whatsapp_session_status`) — outside the window only templates are deliverable.
+
+## Phone numbers & SIP
+
+Search, purchase, and manage numbers.
+
+**Prompts:**
+
+```text
+Search for a German phone number with the 030 area code and buy it.
+```
+
+```text
+Give the number +4930… the nickname "Support Hotline Berlin".
+```
+
+```text
+Create a SIP trunk for our existing PBX: [credentials].
+```
+
+**Best practice:** Number purchases cost money and `release_phone_number` is irreversible — ask for a confirmation step before both.
+
+## Folders & organization
+
+Folders and labels keep agencies and teams organized — especially with many assistants.
+
+**Prompts:**
+
+```text
+Create a folder "Client: Dr. Meier Dental" and move
+assistants #12 and #13 into it.
+```
+
+```text
+Create the labels "Production" (green) and "Test" (yellow)
+and tag all assistants accordingly.
+```
+
+```text
+Which assistants have no folder yet? Suggest a sensible structure.
+```
+
+**Best practice:** An assistant lives in exactly one folder but can carry multiple labels — use folders for clients/projects, labels for status or environment.
+
+## Mid-call tools & automation
+
+Custom HTTP integrations the assistant calls live during a conversation.
+
+**Prompts:**
+
+```text
+Create a mid-call tool "check_availability" that calls
+GET https://api.example.com/slots and returns free slots to the bot.
+```
+
+```text
+Build a tool that looks up order status by order number,
+and attach it to assistant "Support Bot".
+```
+
+**Best practice:** Write tool descriptions from the bot's perspective ("Call this tool when the customer asks about…") — they control when the LLM uses the tool.
+
+## Guided onboarding with the Famulor Skill
+
+The [Famulor Skill](/en/mcp/famulor-skill) complements the MCP server with **industry knowledge and a structured 4-phase flow** — ideal when a complete assistant needs to be built for a new client. Runs in Cursor, Claude Code, Codex, OpenCode, and Gemini CLI.
+
+**Prompts:**
+
+```text
+Onboard a new client: Dr. Meier dental practice in Berlin.
+```
+
+```text
+Create an inbound bot for my restaurant — walk me through
+the setup step by step.
+```
+
+```text
+New client, trades industry (emergency plumbing). Suggest the
+typical tasks, a post-call schema, and an end_call description.
+```
+
+```text
+Test the assistant "Sofia" via chat: book a table for 4 on
+Friday at 7pm and verify all data lands in the post-call schema.
+```
+
+```text
+The client finds the bot too formal. Rewrite the system prompt
+in a more casual tone and show me the diff.
+```
+
+**Best practice:** Let the skill drive the flow — it asks phase by phase (discovery → tech → industry → system prompt) and proposes the right defaults per niche (voice, ambient sound, guardrails). Always have the system prompt confirmed before deployment.
+
+## End-to-end workflows
+
+The real strength: multiple steps in a single request.
+
+```text
+Onboard a new client: restaurant "Bella Vista".
+1. Create a knowledge base from https://bellavista.de
+2. Create an inbound assistant "Sofia" (female, German, pipeline)
+   for reservations and menu questions
+3. Connect both, create the folder "Bella Vista"
+4. Finish with a summary of the configuration
+```
+
+```text
+Weekly report: list all calls from the last 7 days per assistant,
+summarize success rates, and name the top 3 reasons goals
+weren't reached.
+```
+
+## General best practices
+
+| Rule | Why |
+| --- | --- |
+| **Read before write** | "Show me first…" before changes — the model fetches real IDs instead of guessing |
+| **Confirm destructive actions** | Ask for explicit confirmation on `delete_*`, campaign stops, and number releases |
+| **E.164 everywhere** | Phone numbers always as `+49…` — other formats fail |
+| **Preview changes** | "Show me the new system prompt before you save it" |
+| **One workflow, one prompt** | Phrase multi-step jobs as a numbered list — the model works through it in order |
+| **API key via OAuth only** | Never paste the key into configs or prompts — sign-in happens in the browser |
+
+## Resources
+
+- [MCP Server](/en/mcp/server) — all 76 tools at a glance
+- [MCP Client setup](/en/mcp/client)
+- [Famulor Skill](/en/mcp/famulor-skill) — guided onboarding
+- [API reference](/en/api-reference/)

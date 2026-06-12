@@ -27,13 +27,16 @@ Control your Famulor AI voice agents — calls, leads, campaigns, knowledge base
 
 ## Overview
 
-The Famulor MCP server exposes the full Famulor platform as **66 tools** your AI assistant can call. Ask in plain language — the model chooses the right tools.
+The Famulor MCP server exposes the full Famulor platform as **76 tools** your AI assistant can call. Ask in plain language — the model chooses the right tools. All tools return structured output (output schemas + `structuredContent`) and carry title annotations for directory-compatible clients.
 
 **Example prompts:**
 
 - *"Create a German sales assistant using GPT-4.1-mini and the Susi voice"*
 - *"Start campaign #42 and add these 50 leads"*
 - *"Show me all calls today where the goal wasn't reached"*
+- *"Create a 'Clients' folder and move all inbound assistants into it"*
+
+Need inspiration? See [Use Cases & Prompts](/en/mcp/use-cases) — grouped scenarios with ready-to-use prompts and best practices.
 
 <Note>
 New to MCP? Start with [MCP Client setup](/en/mcp/client) — add the server URL, then sign in with OAuth and your API key in the browser.
@@ -54,12 +57,13 @@ Both `https://mcp.famulor.io/` and `https://mcp.famulor.io/mcp` work as MCP URLs
 
 | Area | Capabilities |
 | --- | --- |
-| **Assistants** | Create, update, delete AI voice agents · list voices, languages, LLM/multimodal models, TTS/STT providers · toggle inbound and conversation-ended webhooks |
+| **Assistants** | Create, update, delete AI voice agents · list voices, languages, LLM/multimodal models, TTS/STT providers · toggle inbound and conversation-ended webhooks · organize via `folder_id` / `label_ids` |
+| **Folders & Labels** | Organize assistants into folders (one folder per assistant) · tag with colored labels (multiple per assistant) · create, rename, delete |
 | **Calls** | Make outbound calls · list / get / delete call records |
 | **Campaigns** | Create campaigns, retry rules, allowed-hours windows · start, stop, delete |
 | **Leads** | Add leads (incl. secondary contacts) · update status and merge variables · delete |
 | **Knowledge bases** | Create knowledge bases · upload website-scraped documents · update / delete |
-| **Phone numbers** | Search by country and dial pattern · purchase · release · SIP trunk CRUD |
+| **Phone numbers** | Search by country and dial pattern · purchase · set nickname (`update_phone_number`) · release · SIP trunk CRUD |
 | **Conversations** | List, read, reply to chats · enable/disable AI per conversation (human takeover) |
 | **WhatsApp** | List senders and templates · check 24h session window · send template or freeform messages |
 | **SMS** | Send via your purchased numbers |
@@ -140,6 +144,7 @@ curl http://localhost:8787/.well-known/oauth-authorization-server
 
 ## Resources
 
+- [Use Cases & Prompts](/en/mcp/use-cases)
 - [MCP Client setup](/en/mcp/client)
 - [Famulor API reference](/en/api-reference/)
 - [Get an API key](https://app.famulor.de/api-keys)
@@ -151,5 +156,5 @@ curl http://localhost:8787/.well-known/oauth-authorization-server
 [MIT](https://github.com/bekservice/Famulor-MCP/blob/main/LICENSE) — see the GitHub repository for details.
 
 <Tip>
-Related pages: [MCP Client](/en/mcp/client), [Famulor Skill](/en/mcp/famulor-skill).
+Related pages: [Use Cases & Prompts](/en/mcp/use-cases), [MCP Client](/en/mcp/client), [Famulor Skill](/en/mcp/famulor-skill).
 </Tip>

@@ -34,15 +34,120 @@ The **Famulor.io Skill** enables AI agents to execute real tasks in Famulor, not
 - Run WhatsApp and SMS workflows
 - Support testing and iterative prompt and voice optimization
 
+## The guided onboarding flow
+
+The heart of the skill: a structured **4-phase flow** that turns a client conversation into a fully deployed assistant. The agent asks phase by phase — not everything at once.
+
+| Phase | Content |
+| --- | --- |
+| **1 — Discovery** | Company name, industry, assistant name, call direction (inbound/outbound) |
+| **2 — Technical configuration** | Engine type (pipeline / multimodal / dualplex), primary and secondary languages, voice (male/female), ambient sound |
+| **3 — Intelligent configuration** | Industry-specific tasks, knowledge base (website/documents), post-call schema, initial greeting |
+| **4 — System prompt & creation** | Generate a tailored system prompt, client confirms, assistant is created via API |
+
+Behind it sits **niche intelligence**: a bundled knowledge base (`references/nischen_intelligenz.md`) with industry know-how for hair salons, medical practices, restaurants, real estate, trades, law firms, and more — the agent proactively asks the right follow-up questions per industry.
+
+## All functions
+
+The skill ships with a Python client (`scripts/famulor_client.py`) that calls the Famulor API directly:
+
+| Area | Functions |
+| --- | --- |
+| **Assistants** | `create_assistant` · `update_assistant` · `list_assistants` |
+| **Configuration data** | `get_languages` · `get_voices` · `get_models` · `get_synthesizer_providers` · `get_transcriber_providers` |
+| **Knowledge bases** | `create_knowledgebase` · `list_knowledgebases` · `create_document` (website import & files) |
+| **Phone numbers** | `get_phone_numbers` · `list_phone_numbers` |
+| **Webhooks** | `enable_webhook` (inbound) · `enable_conversation_ended_webhook` (conversation ended) |
+| **Testing** | `create_test_conversation` · `send_test_message` — test the assistant via chat before going live |
+
+### Built-in assistant tools
+
+During creation the skill configures the built-in conversation tools with industry-specific descriptions:
+
+| Tool | Purpose |
+| --- | --- |
+| **`end_call`** | ALWAYS enabled — defines, per niche, when the bot should hang up |
+| **`call_transfer`** | Call forwarding to a fallback number (emergencies, urgent cases, request for a human) |
+| **`calendar_integration`** | Direct appointment booking via Cal.com / Calendly |
+
+The skill also applies proven defaults: GPT-4.1-mini, ElevenLabs TTS, interruptions and fillers enabled, noise cancellation, call recording, post-call evaluation with a custom schema.
+
+## How the skill is built
+
+The skill follows the [Open Plugins specification](https://open-plugins.com) and consists of four building blocks:
+
+```text
+skills/famulor-skill/
+├── SKILL.md                          # Agent instructions: the 4-phase flow
+├── references/
+│   └── nischen_intelligenz.md        # Industry knowledge (10+ niche profiles)
+├── scripts/
+│   └── famulor_client.py             # Python client for the Famulor API
+└── templates/
+    └── example_template.txt          # System prompt templates
+```
+
+| File | Role |
+| --- | --- |
+| **`SKILL.md`** | Main instruction with frontmatter (`name`, `description` — controls when the agent activates the skill) and the full onboarding flow |
+| **`nischen_intelligenz.md`** | Profiles for hair salons/beauty, real estate, medical practices, restaurants, car dealers, trades, hotels, gyms, law firms, vets + a fallback for unknown niches — each with typical tasks, proactive questions, post-call schema, and recommended configuration |
+| **`famulor_client.py`** | API client, also usable as a CLI: `python3 famulor_client.py <method> key=value` |
+| **`templates/`** | Reusable system prompt templates (support, appointment booking, sales, lead qualification) with `{{placeholders}}` |
+
+On top of that: manifests for each platform (`.plugin/plugin.json`, `.claude-plugin/`, `.cursor-plugin/`, `gemini-extension.json`, `GEMINI.md`) and the packaged archive `famulor.skill` for manual installation.
+
+## Extending the skill or building your own
+
+The repository is designed as a template — three typical customizations:
+
+**Add a new industry:** Add your own profile to `references/nischen_intelligenz.md` following the existing pattern: typical tasks, proactive questions, recommended configuration (knowledge base yes/no + mode, post-call schema with max 16 characters per field name, ambient sound), system prompt priorities, and an `end_call` description.
+
+**Custom prompt templates:** Drop additional templates into `templates/` and reference them in `SKILL.md` — the agent uses them as a starting point instead of writing from scratch.
+
+**Extend API functions:** Add new methods to `famulor_client.py` (e.g. campaigns or leads) — every public method is automatically callable via the CLI. Endpoints: [API reference](/en/api-reference/).
+
+Then repackage and bump the version:
+
+```bash
+# Bump version in .plugin/plugin.json, .claude-plugin/, .cursor-plugin/,
+# gemini-extension.json, then:
+zip -r famulor.skill skills/
+```
+
+<Tip>
+For building entirely new skills (different platform, different use case): reuse the structure — `SKILL.md` with a precise `description` (it controls triggering), knowledge in `references/`, executable code in `scripts/`. A good `description` names concrete trigger phrases.
+</Tip>
+
 ## When to use this skill
 
 Use this skill for requests related to:
 
+- New client onboarding ("new client", "create a bot", "set up a phone bot")
 - Famulor or famulor.io setup
 - Campaigns, leads, and outbound calling
 - WhatsApp bots, templates, and SMS
 - Knowledge bases, RAG documents, and webhooks
 - Famulor API integrations
+
+**Example prompts:**
+
+```text
+Onboard a new client: Dr. Meier dental practice in Berlin.
+```
+
+```text
+Create an inbound bot for my restaurant — walk me through the setup.
+```
+
+```text
+Test the assistant "Sofia" via chat: book a table for 4 on Friday.
+```
+
+More scenarios: [Use Cases & Prompts](/en/mcp/use-cases).
+
+<Note>
+**Skill vs. MCP server:** The [MCP server](/en/mcp/server) exposes 76 tools across the whole platform (calls, campaigns, conversations, …) via OAuth. The skill focuses on **guided onboarding with industry knowledge** and runs in coding agents (Cursor, Codex, Gemini CLI) via API key. They complement each other.
+</Note>
 
 ## Requirements
 
@@ -127,5 +232,5 @@ If your key is valid, you receive API data as JSON.
 - Rotate API keys immediately if exposed.
 
 <Tip>
-Related pages: [MCP Server](/en/mcp/server), [MCP Client](/en/mcp/client), and [API integration examples](/en/developers/api-integration-examples).
+Related pages: [Use Cases & Prompts](/en/mcp/use-cases), [MCP Server](/en/mcp/server), [MCP Client](/en/mcp/client), and [API integration examples](/en/developers/api-integration-examples).
 </Tip>

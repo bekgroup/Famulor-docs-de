@@ -785,6 +785,7 @@
                 "pages": [
                   "en/mcp/client",
                   "en/mcp/server",
+                  "en/mcp/use-cases",
                   "en/mcp/famulor-skill"
                 ]
               }
@@ -1570,6 +1571,7 @@
                 "pages": [
                   "de/mcp/client",
                   "de/mcp/server",
+                  "de/mcp/use-cases",
                   "de/mcp/famulor-skill"
                 ]
               }
