@@ -51,6 +51,12 @@ sequenceDiagram
 
 1. First, in a second tab, open Famulor at [app.famulor.de/phone-numbers?lang=en](https://app.famulor.de/phone-numbers?lang=en) → **Your phone numbers → + Integrate SIP trunk** and, under **Incoming call settings**, copy the value **Our SIP address** (e.g. `xxxxxx.eu.sip.livekit.cloud`).
 2. In the DIDWW portal, go to **Voice → Inbound Trunks** and click **Create New → SIP Trunk**.
+
+<img
+  src="/images/didww/didww-inbound-create.png"
+  alt="DIDWW: Voice → Inbound Trunks → Create New → SIP Trunk"
+/>
+
 3. Enter:
    - **Friendly Name:** e.g. `Famulor`
    - **SIP Endpoint Hostname:** your **Our SIP address** from Famulor
@@ -66,11 +72,22 @@ sequenceDiagram
 3. Click **Batch Actions → Update Trunks**.
 4. Choose the **Famulor** inbound trunk you just created and confirm with **Confirm**.
 
+<img
+  src="/images/didww/didww-numbers-batch.png"
+  alt="DIDWW: Phone Numbers → My Numbers, number selected, Batch Actions → Update Trunks"
+/>
+
 ---
 
 ## Step 3: Create an outbound trunk in DIDWW (outgoing calls)
 
 1. Go to **Voice → Outbound Trunks** and click **Create New**.
+
+<img
+  src="/images/didww/didww-outbound-create.png"
+  alt="DIDWW: Voice → Outbound Trunks → Create New"
+/>
+
 2. Enter a **Friendly Name** (e.g. `Famulor`).
 3. Keep authentication on **Credentials & IP-based**.
 4. Under **Allowed SIP IP addresses**, enter Famulor's **fixed outbound IP** (currently `34.195.177.252/32`).
