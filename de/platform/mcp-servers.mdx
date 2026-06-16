@@ -1,0 +1,225 @@
+---
+title: "MCP-Server"
+description: "Verbinde externe Model Context Protocol (MCP)-Server, damit dein KI-Assistent externe Tools während Sprach- und Chat-Gesprächen nutzen kann"
+icon: "share-nodes"
+---
+
+<Note>
+Mit MCP-Servern kann dein KI-Assistent mitten im Gespräch Live-Daten abrufen und Aktionen in externen Systemen auslösen — z. B. HubSpot, eigene APIs oder Wissens-Tools. Server einmal verbinden, Assistenten zuweisen — die Tools stehen der KI automatisch zur Verfügung.
+</Note>
+
+## Was ist ein MCP-Server?
+
+Das [Model Context Protocol](https://modelcontextprotocol.io) (MCP) ist ein offener Standard, um Tools für KI-Modelle bereitzustellen. Ein **MCP-Server** ist schlicht ein entfernter HTTP-Endpunkt, der dieses Protokoll spricht. Nichts installieren — Server-URL einfügen (plus optionale Auth-Header) — und der Assistent kann die Tools nutzen, während er mit deinem Kunden spricht.
+
+<Card title="Warum MCP-Server?" icon="bolt">
+  * Ganze Toolsets (z. B. HubSpot oder Notion) in einem Schritt statt Tool für Tool
+  * Tools, Beschreibungen und Parameter werden automatisch vom Server erkannt
+  * Funktioniert in Sprachanrufen, Web-Widget und Chat
+  * Einen Server für viele Assistenten wiederverwenden
+</Card>
+
+## Mid-Call Tools vs. MCP-Server
+
+Beides lebt auf der **Tools**-Seite. Nimm, was passt:
+
+<CardGroup cols={2}>
+  <Card title="Mid-Call Tools" icon="plug" href="/de/ai-assistants/custom-mid-call-tools">
+    Ein einzelner Custom-HTTP-Endpunkt, den du von Hand definierst (URL, Methode, Parameter). Ideal für einmalige Aufrufe deiner eigenen API. Siehe [Custom Mid-Call Tools](/de/ai-assistants/custom-mid-call-tools).
+  </Card>
+
+  <Card title="MCP-Server" icon="share-nodes">
+    Ein Remote-Server, der **viele** Tools auf einmal bereitstellt — automatisch erkannt. Ideal für Plattformen oder geteilte Integrationen.
+  </Card>
+</CardGroup>
+
+## Server verbinden
+
+<Frame>
+<img src="/images/mcp-server-form.png" alt="MCP-Server-Konfigurationsformular — Anzeigename, Identifier, Server-URL, Transport und Auth-Header" />
+</Frame>
+
+<Steps>
+  <Step title="Tools-Seite öffnen">
+    Gehe in der Sidebar zu **Tools**, wechsle zum Tab **MCP servers** und klicke **New MCP server**.
+  </Step>
+
+  <Step title="Details ausfüllen">
+    * **Display name**: Anzeigename bei der Zuweisung (z. B. `HubSpot CRM`)
+    * **Identifier**: interne ID, nur Kleinbuchstaben und Unterstriche (z. B. `hubspot`)
+    * **Description**: optional, für deine eigene Referenz
+    * **Server URL**: der Remote-MCP-Endpunkt
+    * **Timeout**: Wartezeit beim Verbinden zum Server
+  </Step>
+
+  <Step title="Transport wählen">
+    **Auto-detect** lassen, sofern du nichts anderes weißt. Auto-detect wählt den Transport anhand der URL:
+
+    ```
+    URL endet mit /mcp  →  Streamable HTTP
+    URL endet mit /sse  →  SSE (Server-Sent Events)
+    ```
+  </Step>
+
+  <Step title="Auth-Header hinzufügen (optional)">
+    Braucht der Server ein Token, als Header setzen. Header werden **verschlüsselt gespeichert**.
+
+    ```
+    Authorization: Bearer dein_token_hier
+    ```
+  </Step>
+</Steps>
+
+Beim Speichern wird der Server automatisch getestet — eine Benachrichtigung listet die verfügbaren Tools.
+
+### Kostenlos ausprobieren
+
+<Tip>
+**Beispiel 1 — DeepWiki (ohne Authentifizierung)**
+
+MCP ohne Setup testen? Den öffentlichen **DeepWiki**-Server verbinden:
+
+* **Display name**: `DeepWiki`
+* **Identifier**: `deepwiki`
+* **Server URL**: `https://mcp.deepwiki.com/mcp`
+* **Headers**: (keine)
+
+Dann den Assistenten fragen, z. B. *„Nutze DeepWiki und fasse das facebook/react Repository zusammen."*
+</Tip>
+
+<Tip>
+**Beispiel 2 — [AllAIThink](https://allaithink.com) (API-Key erforderlich)**
+
+Den öffentlichen AllAIThink-MCP-Server für AI Council, Architektur-Review, Code-Review und mehr verbinden:
+
+* **Display name**: `AllAIThink`
+* **Identifier**: `allaithink`
+* **Server URL**: `https://www.allaithink.com/mcp`
+* **Headers**:
+
+```
+Authorization: Bearer <paste-key>
+```
+
+Verfügbare Tools u. a.: `consult-council`, `design-architecture`, `review-code`, `debug-issue`, `plan-implementation`, `assess-tradeoffs`, `list-models`, `check-usage`.
+
+Dann z. B. fragen: *„Nutze AllAIThink für ein Architecture Review zu dieser Entscheidung."*
+</Tip>
+
+## Verbindungsstatus & erkannte Tools
+
+Jeder Server erscheint als Karte mit Live-Verbindungsstatus.
+
+<Frame>
+<img src="/images/mcp-servers-list.png" alt="MCP-Server-Liste mit Verbindungsstatus und erkannten Tools" />
+</Frame>
+
+<CardGroup cols={3}>
+  <Card title="Connected" icon="circle-check">
+    Server erreichbar. Verfügbare Tools sind auf der Karte gelistet.
+  </Card>
+
+  <Card title="Disconnected" icon="circle-exclamation">
+    Server nicht erreichbar. Fehlermeldung zeigt, was du an URL oder Headern anpassen musst.
+  </Card>
+
+  <Card title="Not tested" icon="circle-question">
+    Server wurde noch nicht geprüft.
+  </Card>
+</CardGroup>
+
+**Test connection** jederzeit nutzen, um einen Server erneut zu prüfen und die Tool-Liste zu aktualisieren.
+
+## Auswahl, welche Tools freigegeben werden
+
+Standardmäßig sind **alle** Tools eines Servers für Assistenten verfügbar. Unter **Manage tools** (auf der Bearbeitungsseite des Servers) Beschreibung und Parameter jedes Tools einsehen und einzelne Tools ein- oder ausschalten.
+
+<Info>
+Deaktivierte Tools sind für die KI unsichtbar. Sollen **keine** Tools verfügbar sein, den Server einfach vom Assistenten entfernen.
+</Info>
+
+## Server einem Assistenten zuweisen
+
+<Steps>
+  <Step title="Assistent öffnen">
+    Assistent bearbeiten und zum Schritt **Prompt & Tools** gehen.
+  </Step>
+
+  <Step title="MCP-Server zuweisen">
+    Im Bereich **MCP servers** einen oder mehrere Server wählen. Die Liste zeigt Verbindungsstatus und Tool-Anzahl.
+  </Step>
+
+  <Step title="Speichern">
+    Der Assistent kann die freigegebenen Tools jetzt in Sprachanrufen, Web-Widget und Chat nutzen.
+  </Step>
+</Steps>
+
+## Authentifizierung
+
+Die Integration sendet **statische Header** mit jedem Request. Es gibt **keinen** interaktiven OAuth-Login.
+
+| Server-Authentifizierung | Unterstützt | So geht's |
+| --- | --- | --- |
+| Keine Authentifizierung | ✅ | Nichts konfigurieren |
+| API-Key / Token | ✅ | `Authorization`- (oder Custom-) Header setzen |
+| Token in der URL (z. B. Zapier, Composio) | ✅ | Vollständige URL einfügen |
+| Interaktiver OAuth-Login | ❌ | Stattdessen Personal Access Token im Header |
+
+## Praxisbeispiele
+
+<AccordionGroup>
+  <Accordion title="Dokumentation nachschlagen (DeepWiki)" icon="book">
+    ```
+    Display name: DeepWiki
+    Identifier: deepwiki
+    Server URL: https://mcp.deepwiki.com/mcp
+    Headers: (keine)
+    Tools: read_wiki_structure, read_wiki_contents, ask_question
+    ```
+
+    Der Assistent kann Fragen zu jedem öffentlichen GitHub-Repository beantworten.
+  </Accordion>
+
+  <Accordion title="AI Council & Code Review (AllAIThink)" icon="brain">
+    ```
+    Display name: AllAIThink
+    Identifier: allaithink
+    Server URL: https://www.allaithink.com/mcp
+    Headers:
+      Authorization: Bearer <paste-key>
+    Tools: consult-council, design-architecture, review-code, debug-issue,
+           plan-implementation, assess-tradeoffs, list-models, check-usage
+    ```
+
+    Der Assistent kann Multi-Model-Reviews, Architektur-Checks und Debugging-Workflows mitten im Gespräch ausführen. API-Key unter [allaithink.com](https://allaithink.com).
+  </Accordion>
+
+  <Accordion title="CRM-Zugriff (HubSpot-Stil)" icon="address-book">
+    ```
+    Display name: HubSpot CRM
+    Identifier: hubspot
+    Server URL: https://your-mcp-host.example.com/mcp
+    Headers:
+      Authorization: Bearer pat-xxxxxxxx
+    ```
+
+    Der Assistent kann Kontakte nachschlagen, Deals anlegen oder Datensätze während des Anrufs aktualisieren.
+  </Accordion>
+</AccordionGroup>
+
+## Best Practices & Sicherheit
+
+<Warning>
+Verbinde nur MCP-Server, denen du vertraust. Tools und zurückgegebene Daten kommen vom Remote-Server und werden in Live-Gesprächen an die KI weitergegeben.
+</Warning>
+
+* Tokens auf die minimal nötigen Rechte beschränken.
+* **Manage tools** nutzen, um nur die Tools freizugeben, die der Assistent wirklich braucht.
+* Jedes Tool auf dem Server mit klarem Namen und Beschreibung versehen, damit die KI weiß, wann es passt.
+* Verfügbare Fähigkeiten im [System-Prompt](/de/ai-assistants/system-prompt) erwähnen, damit der Assistent sie zum richtigen Zeitpunkt nutzt.
+
+<Tip>
+Zuerst mit einfachen Gesprächen testen und prüfen, ob der Assistent das richtige Tool mit den richtigen Parametern aufruft — bevor du live gehst.
+
+Passende Seiten: [Custom Mid-Call Tools](/de/ai-assistants/custom-mid-call-tools), [Prompt & Tools](/de/ai-assistants/prompt-and-tools) und [MCP Client](/de/mcp/client).
+</Tip>
