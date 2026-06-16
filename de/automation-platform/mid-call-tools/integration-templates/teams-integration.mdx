@@ -7,7 +7,7 @@ icon: "microsoft"
 
 # Microsoft Teams Integration Template
 
-Integrieren Sie Microsoft Teams Messaging in Ihre Mid-call Actions und ermöglichen Sie es Ihrem KI-Assistenten, während Kundengesprächem automatisch Nachrichten und Updates an Teams-Channels zu senden - perfekt für Enterprise-Umgebungen.
+Integriere Microsoft Teams Messaging in deine Mid-call Actions und ermögliche es deinem KI-Assistenten, während Kundengesprächem automatisch Nachrichten und Updates an Teams-Channels zu senden - perfekt für Enterprise-Umgebungen.
 
 ## Überblick & Funktionen
 
@@ -32,9 +32,9 @@ Integrieren Sie Microsoft Teams Messaging in Ihre Mid-call Actions und ermöglic
 
 <Steps>
   <Step title="Teams-Channel vorbereiten">
-    - Öffnen Sie Microsoft Teams
-    - Navigieren Sie zum gewünschten Channel (z.B. "Sales", "Support")
-    - Klicken Sie auf "..." (Mehr Optionen) neben dem Channel-Namen
+    - Öffne Microsoft Teams
+    - Navigiere zum gewünschten Channel (z.B. "Sales", "Support")
+    - Klicke auf "..." (Mehr Optionen) neben dem Channel-Namen
   </Step>
   
   <Step title="Webhook konfigurieren">
@@ -79,7 +79,7 @@ Integrieren Sie Microsoft Teams Messaging in Ihre Mid-call Actions und ermöglic
     | **Name*** | `Microsoft Teams Nachricht` |
     | **Beschreibung** | "Sendet automatisch formatierte Nachrichten an Microsoft Teams-Channels für Enterprise-Team-Koordination" |
     | **Funktionsname*** | `send_teams_message` |
-    | **Funktionsbeschreibung*** | "Sendet eine Nachricht an einen Teams-Channel via Webhook. Verwenden Sie dies für wichtige Business-Updates, Lead-Benachrichtigungen oder Support-Eskalationen." |
+    | **Funktionsbeschreibung*** | "Sendet eine Nachricht an einen Teams-Channel via Webhook. Verwende dies für wichtige Business-Updates, Lead-Benachrichtigungen oder Support-Eskalationen." |
     | **HTTP-Methode** | `POST` |
     | **Timeout (ms)** | `5000` |
     | **Endpoint*** | `{{TEAMS_WEBHOOK_URL}}` |
@@ -403,7 +403,7 @@ Body: "1" (Teams antwortet nur mit "1" bei Erfolg)
             {
               "@type": "TextInput",
               "id": "note",
-              "title": "Ihre Notiz",
+              "title": "Deine Notiz",
               "isMultiline": true
             }
           ],
@@ -612,11 +612,11 @@ Body: "1" (Teams antwortet nur mit "1" bei Erfolg)
 ---
 
 <Warning>
-**Enterprise-Hinweis**: Stellen Sie sicher, dass Ihre Teams-Webhooks den IT-Security-Richtlinien Ihres Unternehmens entsprechen und regelmäßig auf Sicherheitslücken überprüft werden.
+**Enterprise-Hinweis**: Stelle sicher, dass deine Teams-Webhooks den IT-Security-Richtlinien deines Unternehmens entsprechen und regelmäßig auf Sicherheitslücken überprüft werden.
 </Warning>
 
 <Info>
-**Integration-Tipp**: Verwenden Sie verschiedene Webhook-URLs für verschiedene Channel-Typen (Sales, Support, etc.) um bessere Kontrolle über Nachrichten-Routing und -Formatierung zu haben.
+**Integration-Tipp**: Verwende verschiedene Webhook-URLs für verschiedene Channel-Typen (Sales, Support, etc.) um bessere Kontrolle über Nachrichten-Routing und -Formatierung zu haben.
 </Info>
 
 <Tip>

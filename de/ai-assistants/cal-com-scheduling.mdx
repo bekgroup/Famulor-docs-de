@@ -1,7 +1,7 @@
 ---
 title: "Cal.com Terminplanung"
 icon: "calendar-days"
-description: "Lernen Sie, wie Sie Ihren KI-Assistenten aktivieren, um Termine mit Cal.com-Integration zu planen"
+description: "Lerne, wie du deinen KI-Assistenten aktivierst, um Termine mit Cal.com-Integration zu planen"
 ---
 
 <iframe
@@ -13,11 +13,11 @@ description: "Lernen Sie, wie Sie Ihren KI-Assistenten aktivieren, um Termine mi
   allowFullScreen
 ></iframe>
 
-Aktivieren Sie Ihren KI-Assistenten, um nahtlos Meetings und Termine mit Cal.com-Integration zu planen. Diese leistungsstarke Funktion ermöglicht es Ihrer KI, Verfügbarkeit zu überprüfen und Meetings direkt während Anrufen zu buchen.
+Aktiviere deinen KI-Assistenten, um nahtlos Meetings und Termine mit Cal.com-Integration zu planen. Diese leistungsstarke Funktion ermöglicht es deiner KI, Verfügbarkeit zu überprüfen und Meetings direkt während Anrufen zu buchen.
 
 ## Voraussetzungen
 
-Vor der Einrichtung der Cal.com-Integration benötigen Sie:
+Vor der Einrichtung der Cal.com-Integration benötigst du:
 
 - Ein Cal.com-Konto (Cal.com US, Cal.com EU oder self-hosted Cal.com)
 - Einen konfigurierten Ereignistyp in Cal.com
@@ -27,115 +27,115 @@ Vor der Einrichtung der Cal.com-Integration benötigen Sie:
 
 ### 1. API-Schlüssel erstellen
 
-1. Melden Sie sich bei [Cal.com](https://cal.com/) an
-2. Gehen Sie zu **Einstellungen** → **Developer** → **API Keys**
-3. Erstellen Sie einen neuen API-Schlüssel und kopieren Sie ihn
+1. Melde dich bei [Cal.com](https://cal.com/) an
+2. Geh zu **Einstellungen** → **Developer** → **API Keys**
+3. Erstelle einen neuen API-Schlüssel und kopiere ihn
 
 ### 2. Region auswählen
 
-Cal.com bietet verschiedene API-Regionen. Wählen Sie die passende für Ihr Cal.com-Konto:
+Cal.com bietet verschiedene API-Regionen. Wähle die passende für dein Cal.com-Konto:
 
 | Region              | API-Endpunkt                      |
 | ------------------- | --------------------------------- |
 | **US** (Standard)   | `api.cal.com`                     |
 | **EU**              | `api.cal.eu`                      |
-| **Benutzerdefiniert** | Ihr self-hosted Cal.com-Endpunkt |
+| **Benutzerdefiniert** | Dein self-hosted Cal.com-Endpunkt |
 
-Wählen Sie Ihre Region im Cal.com-Konfigurationspanel aus, bevor Sie eine Verbindung herstellen. Falls unsicher, ist der US-Endpunkt der Standard.
+Wähle deine Region im Cal.com-Konfigurationspanel aus, bevor du eine Verbindung herstellst. Falls unsicher, ist der US-Endpunkt der Standard.
 
 ### 3. Cal.com verbinden
 
-1. In Ihren Assistenten-Einstellungen → **Tools** Tab → **Terminplanung**
-2. Wählen Sie **Cal.com** als Kalendertyp
-3. Wählen Sie Ihre API-Region
-4. Fügen Sie Ihren API-Schlüssel ein
-5. Wählen Sie ein Event aus dem Dropdown
+1. In deinen Assistenten-Einstellungen → **Tools** Tab → **Terminplanung**
+2. Wähle **Cal.com** als Kalendertyp
+3. Wähle deine API-Region
+4. Füge deinen API-Schlüssel ein
+5. Wähle ein Event aus dem Dropdown
 
 ### 4. Event synchronisieren
 
-Klicken Sie auf **"Sync Event"**, um Buchungsfelder automatisch zu konfigurieren.
+Klicke auf **"Sync Event"**, um Buchungsfelder automatisch zu konfigurieren.
 
 <Check>
-  Die Synchronisierung liest automatisch die benutzerdefinierten Felder Ihres Event-Typs und konfiguriert sie für den KI-Assistenten. Name, E-Mail und Telefon werden als erforderlich gesetzt. Alle anderen benutzerdefinierten Buchungsfelder werden automatisch importiert.
+  Die Synchronisierung liest automatisch die benutzerdefinierten Felder deines Event-Typs und konfiguriert sie für den KI-Assistenten. Name, E-Mail und Telefon werden als erforderlich gesetzt. Alle anderen benutzerdefinierten Buchungsfelder werden automatisch importiert.
 </Check>
 
 ## Event-Typen
 
 ### Persönliche Events
 
-Wählen Sie aus Ihren persönlichen Event-Typen (z.B. 15-Minuten-Kennenlerngespräch, 30-Minuten-Beratung).
+Wähle aus deinen persönlichen Event-Typen (z.B. 15-Minuten-Kennenlerngespräch, 30-Minuten-Beratung).
 
 ### Team Events
 
-Sie können auch **Team Event-Typen** buchen. Wenn Ihr API-Schlüssel Zugriff auf Team-Kalender hat, erscheinen Team-Events im Event-Dropdown separat von persönlichen Events.
+Du kannst auch **Team Event-Typen** buchen. Wenn dein API-Schlüssel Zugriff auf Team-Kalender hat, erscheinen Team-Events im Event-Dropdown separat von persönlichen Events.
 
 <Tip>
-  Team Events sind nützlich, wenn Sie möchten, dass die KI Meetings bucht, die basierend auf Verfügbarkeit an Ihre Teammitglieder verteilt werden.
+  Team Events sind nützlich, wenn du möchtest, dass die KI Meetings bucht, die basierend auf Verfügbarkeit an deine Teammitglieder verteilt werden.
 </Tip>
 
 ## Dynamische Buchungsfelder
 
-Wenn Sie ein Event synchronisieren, liest das System automatisch alle benutzerdefinierten Buchungsfelder, die für diesen Event-Typ in Cal.com konfiguriert sind. Das bedeutet:
+Wenn du ein Event synchronisierst, liest das System automatisch alle benutzerdefinierten Buchungsfelder, die für diesen Event-Typ in Cal.com konfiguriert sind. Das bedeutet:
 
-- **Keine manuelle Feldkonfiguration** — Felder werden direkt von Ihrem Cal.com Event-Typ abgerufen
-- **Benutzerdefinierte Felder unterstützt** — alle benutzerdefinierten Felder, die Sie Ihrem Cal.com Event-Typ hinzufügen, sind automatisch verfügbar
-- **Auto-Aktualisierung bei Sync** — klicken Sie erneut auf "Sync Event", wenn Sie die Buchungsfelder Ihres Cal.com Events ändern
+- **Keine manuelle Feldkonfiguration** — Felder werden direkt von deinem Cal.com Event-Typ abgerufen
+- **Benutzerdefinierte Felder unterstützt** — alle benutzerdefinierten Felder, die du deinem Cal.com Event-Typ hinzufügst, sind automatisch verfügbar
+- **Auto-Aktualisierung bei Sync** — klicke erneut auf "Sync Event", wenn du die Buchungsfelder deines Cal.com Events änderst
 
 ## Mehrere Kalender
 
-Klicken Sie auf **"+"** neben Terminplanung, um weitere Kalender hinzuzufügen (z.B. 15-Min, 30-Min Meetings).
+Klicke auf **"+"** neben Terminplanung, um weitere Kalender hinzuzufügen (z.B. 15-Min, 30-Min Meetings).
 
 ## E-Mail-Einrichtung
 
 Damit Kalendereinladungen funktionieren:
 
-1. Definieren Sie `email` in den [Eingabevariablen](/de/ai-assistants/settings/prompt-and-tools#call-variables) des Assistenten
-2. Übergeben Sie die Kunden-E-Mail beim Erstellen von Leads
+1. Definiere `email` in den [Eingabevariablen](/de/ai-assistants/settings/prompt-and-tools#call-variables) des Assistenten
+2. Übergib die Kunden-E-Mail beim Erstellen von Leads
 
 Die Telefonnummer wird nach der Synchronisierung automatisch eingefügt.
 
 ## Verfügbarkeit für mehrere Tage abrufen
 
-Um Ihrem KI-Assistenten zu ermöglichen, verfügbare Zeitslots über mehrere Tage abzurufen, müssen Sie eine benutzerdefinierte Mid-Call-Aktion erstellen, die die Cal.com Slots-API aufruft.
+Um deinem KI-Assistenten zu ermöglichen, verfügbare Zeitslots über mehrere Tage abzurufen, musst du eine benutzerdefinierte Mid-Call-Aktion erstellen, die die Cal.com Slots-API aufruft.
 
 <Steps>
 <Step title="Mid-Call-Aktion erstellen">
 
-1. Navigieren Sie zu Ihren Assistenten-Einstellungen und erstellen Sie eine neue Mid-Call-Aktion
-2. Konfigurieren Sie das Tool mit folgenden Details:
+1. Navigiere zu deinen Assistenten-Einstellungen und erstelle eine neue Mid-Call-Aktion
+2. Konfiguriere das Tool mit folgenden Details:
    - **Endpoint**: `https://api.cal.com/v2/slots?eventTypeId=YOUR_EVENT_ID&timeZone=YOUR_TIMEZONE`
    - **Methode**: GET
-   - **Headers**: Fügen Sie den Header `cal-api-version` mit dem Wert `2024-09-04` hinzu
+   - **Headers**: Füge den Header `cal-api-version` mit dem Wert `2024-09-04` hinzu
 
 <Frame>
 <img src="/images/mid-call-cal-com.png" alt="Mid-Call-Aktion Konfiguration für Cal.com Slots API" />
 </Frame>
 
 <Info>
-Die `eventTypeId` in der Endpoint-URL ist ein Beispiel. Ersetzen Sie sie durch Ihre tatsächliche Event-Typ-ID von Cal.com.
+Die `eventTypeId` in der Endpoint-URL ist ein Beispiel. Ersetze sie durch deine tatsächliche Event-Typ-ID von Cal.com.
 </Info>
 
 </Step>
 
 <Step title="Event-Typ-ID ermitteln">
 
-1. Gehen Sie zu [Cal.com](https://refer.cal.com/bek-group-o4pf) und navigieren Sie zu Ihrem Event
-2. Klicken Sie auf das Event, das Sie verwenden möchten
-3. Schauen Sie in die URL in Ihrem Browser — die Event-ID ist die Zahl in der URL
+1. Geh zu [Cal.com](https://refer.cal.com/bek-group-o4pf) und navigiere zu deinem Event
+2. Klicke auf das Event, das du verwenden möchtest
+3. Schau in die URL in deinem Browser — die Event-ID ist die Zahl in der URL
    <img height="200" src="/resources/cal-event-id.png" />
-4. Kopieren Sie diese ID und ersetzen Sie `YOUR_EVENT_ID` in der Endpoint-URL
+4. Kopiere diese ID und ersetze `YOUR_EVENT_ID` in der Endpoint-URL
 
 </Step>
 
 <Step title="Zeitzone festlegen">
 
-Ersetzen Sie `YOUR_TIMEZONE` in der Endpoint-URL mit Ihrer Zeitzone im Format `Kontinent/Stadt` (z.B. `europe/berlin`, `america/new_york`, `asia/tokyo`).
+Ersetze `YOUR_TIMEZONE` in der Endpoint-URL mit deiner Zeitzone im Format `Kontinent/Stadt` (z.B. `europe/berlin`, `america/new_york`, `asia/tokyo`).
 
 </Step>
 
 <Step title="Tool-Parameter hinzufügen">
 
-Konfigurieren Sie folgende Parameter für Ihr Tool:
+Konfiguriere folgende Parameter für dein Tool:
 
 - **start** (String): Startdatum für die Kalenderabfrage, z.B. `2025-11-10`
 - **end** (String): Enddatum für die Kalenderabfrage, z.B. `2025-11-17`
@@ -146,10 +146,10 @@ Diese Parameter ermöglichen es der KI, den Datumsbereich dynamisch anzugeben.
 
 <Step title="Tool dem Assistenten zuweisen">
 
-1. Öffnen Sie Ihre Assistenten-Einstellungen
-2. Navigieren Sie zum Tab "Prompt & Tools" (zweiter Tab)
-3. Im Bereich "Custom mid call tools" klicken Sie auf "+ Create tool" oder wählen Sie Ihr erstelltes Tool
-4. Fügen Sie das Tool Ihrem Assistenten hinzu
+1. Öffne deine Assistenten-Einstellungen
+2. Navigiere zum Tab "Prompt & Tools" (zweiter Tab)
+3. Im Bereich "Custom mid call tools" klicke auf "+ Create tool" oder wähle dein erstelltes Tool
+4. Füge das Tool deinem Assistenten hinzu
 
 <Frame>
 <img src="/images/cal-com-multi-days-slof-finder.png" alt="Benutzerdefiniertes Tool im Prompt & Tools Bereich zuweisen" />
@@ -159,7 +159,7 @@ Diese Parameter ermöglichen es der KI, den Datumsbereich dynamisch anzugeben.
 
 <Step title="System-Prompt aktualisieren">
 
-Fügen Sie in Ihrem System-Prompt eine Anweisung hinzu, die der KI sagt, wann und wie sie dieses Tool verwenden soll:
+Füge in deinem System-Prompt eine Anweisung hinzu, die der KI sagt, wann und wie sie dieses Tool verwenden soll:
 
 ```
 Perform a function call using get_calendar_slots to retrieve true available time slots across multiple days.
@@ -171,24 +171,24 @@ Dies stellt sicher, dass die KI das Tool nutzt, wenn Kunden nach Verfügbarkeit 
 </Steps>
 
 <Tip>
-Stellen Sie sicher, dass der Tool-Name mit dem übereinstimmt, was Sie in Ihrem System-Prompt referenzieren. Wenn Sie Ihr Tool `get_calendar_slots` genannt haben, verwenden Sie genau diesen Namen in den Prompt-Anweisungen.
+Stelle sicher, dass der Tool-Name mit dem übereinstimmt, was du in deinem System-Prompt referenzierst. Wenn du dein Tool `get_calendar_slots` genannt hast, verwende genau diesen Namen in den Prompt-Anweisungen.
 </Tip>
 
 ## Abwärtskompatibilität
 
-Wenn Sie bereits eine Cal.com-Integration konfiguriert haben, funktionieren Ihre bestehenden Einstellungen weiterhin ohne Änderungen. Die Region ist standardmäßig auf US gesetzt, und bestehende Feldkonfigurationen bleiben erhalten. Optional können Sie erneut synchronisieren, um dynamische Buchungsfelder zu nutzen.
+Wenn du bereits eine Cal.com-Integration konfiguriert hast, funktionieren deine bestehenden Einstellungen weiterhin ohne Änderungen. Die Region ist standardmäßig auf US gesetzt, und bestehende Feldkonfigurationen bleiben erhalten. Optional kannst du erneut synchronisieren, um dynamische Buchungsfelder zu nutzen.
 
 ## Fehlerbehebung
 
-**Ungültiger API-Schlüssel:** Überprüfen Sie, ob er in den Cal.com-Einstellungen aktiv ist und das Präfix `cal_live_` enthält
+**Ungültiger API-Schlüssel:** Überprüfe, ob er in den Cal.com-Einstellungen aktiv ist und das Präfix `cal_live_` enthält
 
-**Synchronisierung fehlgeschlagen:** Klicken Sie auf **"Troubleshoot"**, um Felder zurückzusetzen
+**Synchronisierung fehlgeschlagen:** Klicke auf **"Troubleshoot"**, um Felder zurückzusetzen
 
-**Keine Einladungen gesendet:** Stellen Sie sicher, dass die `email`-Variable definiert und mit Leads übergeben wird
+**Keine Einladungen gesendet:** Stelle sicher, dass die `email`-Variable definiert und mit Leads übergeben wird
 
-**Feldfehler:** Verwenden Sie "Troubleshoot" zum Zurücksetzen. Nur Name, E-Mail, Telefon sollten erforderlich sein.
+**Feldfehler:** Verwende "Troubleshoot" zum Zurücksetzen. Nur Name, E-Mail, Telefon sollten erforderlich sein.
 
-**Falsche Region:** Bei Authentifizierungsfehlern überprüfen Sie, ob die richtige Region ausgewählt ist (EU-Konten müssen den EU-Endpunkt verwenden).
+**Falsche Region:** Bei Authentifizierungsfehlern überprüfe, ob die richtige Region ausgewählt ist (EU-Konten müssen den EU-Endpunkt verwenden).
 
 <Note>
   Für detaillierte Fehlerbehebung siehe [Cal.com Probleme](/de/troubleshooting/cal-com-issues).
@@ -196,9 +196,9 @@ Wenn Sie bereits eine Cal.com-Integration konfiguriert haben, funktionieren Ihre
 
 ## Testen
 
-1. Führen Sie einen Testanruf durch und bitten Sie um einen Termin
-2. Überprüfen Sie, dass die Buchung in Cal.com erscheint
-3. Prüfen Sie, dass die Kalendereinladungs-E-Mail empfangen wurde
+1. Führe einen Testanruf durch und bitte um einen Termin
+2. Überprüfe, dass die Buchung in Cal.com erscheint
+3. Prüfe, dass die Kalendereinladungs-E-Mail empfangen wurde
 
 <Tip>
 Passende Seiten: [What Is AI Assistant](/de/ai-assistants/what-is-ai-assistant) und [Prompt And Tools](/de/ai-assistants/prompt-and-tools) und [Assistant Best Practices](/de/ai-assistants/assistant-best-practices).

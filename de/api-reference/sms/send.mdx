@@ -1,16 +1,16 @@
 ---
 title: "SMS senden"
 api: "POST https://app.famulor.de/api/user/sms"
-description: "Senden Sie eine SMS über Ihre Famulor-Telefonnummer per API. Triggern Sie transaktionale Texte oder Follow-ups nach KI-Anrufen, Lead-Capture oder Kampagnen."
+description: "Sende eine SMS über deine Famulor-Telefonnummer per API. Triggere transaktionale Texte oder Follow-ups nach KI-Anrufen, Lead-Capture oder Kampagnen."
 ---
 
 
-Dieser Endpunkt ermöglicht es Ihnen, SMS-Nachrichten über Ihre erworbenen Telefonnummern zu senden. Die SMS wird über Twilio versendet und die Kosten werden automatisch von Ihrem Kontoguthaben abgezogen.
+Dieser Endpunkt ermöglicht es dir, SMS-Nachrichten über deine erworbenen Telefonnummern zu senden. Die SMS wird über Twilio versendet und die Kosten werden automatisch von deinem Kontoguthaben abgezogen.
 
 ### Anfrage-Body
 
 <ParamField body="from" type="integer" required>
-  Die ID Ihrer Telefonnummer, von der die SMS gesendet werden soll (muss SMS-fähig sein)
+  Die ID deiner Telefonnummer, von der die SMS gesendet werden soll (muss SMS-fähig sein)
 </ParamField>
 
 <ParamField body="to" type="string" required>

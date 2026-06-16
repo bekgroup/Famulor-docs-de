@@ -1,6 +1,6 @@
 ---
 title: 'SIP-Integration'
-description: 'Verbinden Sie Ihr bestehendes Telefonsystem und Ihre Nummern mit Famulor'
+description: 'Verbinde dein bestehendes Telefonsystem und deine Nummern mit Famulor'
 ---
 
 import SipDoneForYou from '/de/snippets/sip-done-for-you-partner-de.mdx';
@@ -22,13 +22,13 @@ import SipDoneForYou from '/de/snippets/sip-done-for-you-partner-de.mdx';
 
 ## Übersicht
 
-Verbinden Sie Ihr bestehendes Telefonsystem und Ihre Nummern mit Famulor
+Verbinde dein bestehendes Telefonsystem und deine Nummern mit Famulor
 
-Dieser Leitfaden hilft Ihnen dabei, die SIP-Integration zu verstehen und einzurichten. Falls Sie während der Einrichtung Klärung benötigen, steht unser Support-Team zur Verfügung, um Ihnen zu helfen.
+Dieser Leitfaden hilft dir dabei, die SIP-Integration zu verstehen und einzurichten. Falls du während der Einrichtung Klärung benötigst, steht unser Support-Team zur Verfügung, um dir zu helfen.
 
 ## Bring Your Own Carrier (BYOC): automatischer Nummern-Import
 
-Famulor unterstützt **Bring Your Own Carrier (BYOC)** für gängige SIP-Trunk-Anbieter. Sie können **Twilio**, **Telnyx**, **Zadarma** und **DIDLogic** im Dashboard verbinden und **Nummern automatisch importieren**: Carrier wählen, Zugangsdaten Ihres Kontos eingeben, anschließend eine oder mehrere Rufnummern auswählen und Ihren Assistenten zuordnen. Für diesen Standard-Self-Service ist in der Regel kein Support-Ticket nötig.
+Famulor unterstützt **Bring Your Own Carrier (BYOC)** für gängige SIP-Trunk-Anbieter. Du kannst **Twilio**, **Telnyx**, **Zadarma** und **DIDLogic** im Dashboard verbinden und **Nummern automatisch importieren**: Carrier wählen, Zugangsdaten deines Kontos eingeben, anschließend eine oder mehrere Rufnummern auswählen und deinem Assistenten zuordnen. Für diesen Standard-Self-Service ist in der Regel kein Support-Ticket nötig.
 
 <Frame>
   <img
@@ -39,66 +39,66 @@ Famulor unterstützt **Bring Your Own Carrier (BYOC)** für gängige SIP-Trunk-A
 
 ### Zwei Wege, Nummern in Famulor zu nutzen
 
-1. **Geführter Import (empfohlen für Twilio, Telnyx, Zadarma, DIDLogic)** — Nutzen Sie den Assistenten unter **Ihre Telefonnummern → SIP-Trunk integrieren**. Der Ablauf führt Sie durch Carrier-Zugangsdaten, kontextbezogene Hilfe (FAQ und Kurzanleitung) und die Nummernauswahl. So synchronisieren Sie am schnellsten den Bestand aus Ihrem Anbieterkonto.
-2. **Manueller SIP- / generischer Trunk** — Nutzen Sie das klassische SIP-Formular (**SIP-Erweiterung** oder **Telefonnummer (DID)**) und die anbieterspezifischen Anleitungen, wenn Sie die Kontrolle komplett selbst behalten möchten, ein Carrier außerhalb der Auswahl genutzt wird oder Sie wie bisher manuell in Famulor konfigurieren.
+1. **Geführter Import (empfohlen für Twilio, Telnyx, Zadarma, DIDLogic)** — Nutze den Assistenten unter **Deine Telefonnummern → SIP-Trunk integrieren**. Der Ablauf führt dich durch Carrier-Zugangsdaten, kontextbezogene Hilfe (FAQ und Kurzanleitung) und die Nummernauswahl. So synchronisierst du am schnellsten den Bestand aus deinem Anbieterkonto.
+2. **Manueller SIP- / generischer Trunk** — Nutze das klassische SIP-Formular (**SIP-Erweiterung** oder **Telefonnummer (DID)**) und die anbieterspezifischen Anleitungen, wenn du die Kontrolle komplett selbst behalten möchtest, ein Carrier außerhalb der Auswahl genutzt wird oder du wie bisher manuell in Famulor konfigurierst.
 
 ### Twilio
 
-Verbinden Sie ein bestehendes Twilio-Konto mit den Zugangsdaten für **Elastic SIP Trunking**. Der Assistent zeigt, was Sie benötigen (z. B. Account SID und Auth Token), und verweist auf typische Prüfpunkte wie Guthaben, Geo-Berechtigungen und Transfer-Verhalten. Für eine vollständig manuelle Elastic-SIP-Einrichtung (Termination, Origination, IP-ACLs) siehe die [Twilio-SIP-Trunking-Anleitung](/de/provisioning/sip-trunking/twilio).
+Verbinde ein bestehendes Twilio-Konto mit den Zugangsdaten für **Elastic SIP Trunking**. Der Assistent zeigt, was du benötigst (z. B. Account SID und Auth Token), und verweist auf typische Prüfpunkte wie Guthaben, Geo-Berechtigungen und Transfer-Verhalten. Für eine vollständig manuelle Elastic-SIP-Einrichtung (Termination, Origination, IP-ACLs) siehe die [Twilio-SIP-Trunking-Anleitung](/de/provisioning/sip-trunking/twilio).
 
 ### Telnyx
 
-Verbinden Sie Ihr **Telnyx**-Konto über dieselbe BYOC-Oberfläche: Telnyx-API-Zugangsdaten im Assistenten eingeben und die bei Telnyx geführten Nummern importieren. Telnyx-spezifische Hinweise erscheinen im Hilfebereich während der Einrichtung.
+Verbinde dein **Telnyx**-Konto über dieselbe BYOC-Oberfläche: Telnyx-API-Zugangsdaten im Assistenten eingeben und die bei Telnyx geführten Nummern importieren. Telnyx-spezifische Hinweise erscheinen im Hilfebereich während der Einrichtung.
 
 ### Zadarma
 
-**Zadarma** steht in der Carrier-Auswahl für Teams, die Zadarma-Trunks und Rufnummern nutzen. Mit dem geführten Ablauf tragen Sie die Zadarma-Zugangsdaten ein und importieren berechtigte Nummern—ohne SIP-URIs dort manuell einzutippen, wo die Integration das abdeckt.
+**Zadarma** steht in der Carrier-Auswahl für Teams, die Zadarma-Trunks und Rufnummern nutzen. Mit dem geführten Ablauf trägst du die Zadarma-Zugangsdaten ein und importierst berechtigte Nummern—ohne SIP-URIs dort manuell einzutippen, wo die Integration das abdeckt.
 
 ### DIDLogic
 
-**DIDLogic** ergänzt die Auswahl für weitere Regionen und Preismodelle. Wählen Sie DIDLogic im Assistenten, schließen Sie die Authentifizierung ab und importieren Sie Ihre DIDLogic-Nummern in Famulor wie bei den anderen Anbietern.
+**DIDLogic** ergänzt die Auswahl für weitere Regionen und Preismodelle. Wähle DIDLogic im Assistenten, schließe die Authentifizierung ab und importiere deine DIDLogic-Nummern in Famulor wie bei den anderen Anbietern.
 
 ## Was ist SIP-Integration?
 
-SIP (Session Initiation Protocol) Integration ermöglicht es Ihnen, Ihr bestehendes Telefonsystem mit Famulor zu verbinden. Stellen Sie sich das als den Bau einer Brücke zwischen Ihrem aktuellen Telefon-Setup und unserer KI-Plattform vor. Das bedeutet, Sie können:
+SIP (Session Initiation Protocol) Integration ermöglicht es dir, dein bestehendes Telefonsystem mit Famulor zu verbinden. Stell dir das als den Bau einer Brücke zwischen deinem aktuellen Telefon-Setup und unserer KI-Plattform vor. Das bedeutet, du kannst:
 
-- Ihre bestehenden Telefonnummern mit unseren KI-Assistenten nutzen
-- Ihr aktuelles Telefonsystem und Ihren Anbieter beibehalten
-- Anrufe über Ihr bestehendes Setup tätigen und empfangen
-- Die vollständige Kontrolle über Ihre Nummern behalten
-- Carrier-Kosten reduzieren, indem Sie lokale VoIP-Anbieter mit besseren Tarifen nutzen
+- Deine bestehenden Telefonnummern mit unseren KI-Assistenten nutzen
+- Dein aktuelles Telefonsystem und deinen Anbieter beibehalten
+- Anrufe über dein bestehendes Setup tätigen und empfangen
+- Die vollständige Kontrolle über deine Nummern behalten
+- Carrier-Kosten reduzieren, indem du lokale VoIP-Anbieter mit besseren Tarifen nutzt
 
 ## Wie es funktioniert
 
-Wenn Sie Ihr Telefonsystem mit Famulor integrieren:
+Wenn du dein Telefonsystem mit Famulor integrierst:
 
-**Eingehende Anrufe:** Anrufe an Ihre Nummern werden über Ihr Telefonsystem zu unseren KI-Assistenten weitergeleitet
+**Eingehende Anrufe:** Anrufe an deine Nummern werden über dein Telefonsystem zu unseren KI-Assistenten weitergeleitet
 
-**Ausgehende Anrufe:** Unsere KI-Assistenten können Anrufe tätigen, die von Ihren Nummern zu kommen scheinen
+**Ausgehende Anrufe:** Unsere KI-Assistenten können Anrufe tätigen, die von deinen Nummern zu kommen scheinen
 
-**Verwaltung:** Sie verwalten Ihre Nummern weiterhin über Ihren aktuellen Anbieter
+**Verwaltung:** Du verwaltest deine Nummern weiterhin über deinen aktuellen Anbieter
 
-**Kosteneffizienz:** Nutzen Sie die wettbewerbsfähigen Tarife Ihres VoIP-Anbieters für die Anrufbeendigung
+**Kosteneffizienz:** Nutze die wettbewerbsfähigen Tarife deines VoIP-Anbieters für die Anrufbeendigung
 
 ## Integrationsoptionen
 
-Sie können Ihr Telefonsystem auf zwei Arten mit Famulor verbinden:
+Du kannst dein Telefonsystem auf zwei Arten mit Famulor verbinden:
 
 ### 1. PBX-Erweiterungsintegration
 
-Das ist, als würden Sie unserer KI-Plattform eine "Erweiterung" auf Ihrem Telefonsystem geben:
+Das ist, als würdest du unserer KI-Plattform eine "Erweiterung" auf deinem Telefonsystem geben:
 
-**Was es ist:** Verbinden Sie eine spezifische Erweiterung von Ihrem PBX/Telefonsystem
+**Was es ist:** Verbinde eine spezifische Erweiterung von deinem PBX/Telefonsystem
 
 **Perfekt für:**
 - Testen der Integration
 - Weiterleitung spezifischer Erweiterungen an die KI
 - Einfache Einrichtung mit bestehenden Telefonsystemen
 
-**Sie benötigen:**
-- Ihre Erweiterungsnummer (z.B. 1000)
+**Du benötigst:**
+- Deine Erweiterungsnummer (z.B. 1000)
 - Erweiterungs-Benutzername und Passwort
-- Ihre PBX-Server-Adresse (z.B. pbx.ihrefirma.com)
+- Deine PBX-Server-Adresse (z.B. pbx.ihrefirma.com)
 
 **Beispiel aus der Praxis:**
 
@@ -113,16 +113,16 @@ Die KI kann Anrufe tätigen, die als Erweiterung 1011 erscheinen
 
 Dies verbindet spezifische Telefonnummern mit unserer Plattform:
 
-**Was es ist:** Leiten Sie eine oder mehrere Ihrer Telefonnummern an unsere KI weiter
+**Was es ist:** Leite eine oder mehrere deiner Telefonnummern an unsere KI weiter
 
 **Perfekt für:**
 - Dedizierte KI-Telefonleitungen
 - Kundenservice-Nummern
 - Vertriebs- oder Support-Leitungen
 
-**Sie benötigen:**
-- Ihre Telefonnummer (z.B. +49 30 123456)
-- SIP-Anmeldedaten von Ihrem Anbieter
+**Du benötigst:**
+- Deine Telefonnummer (z.B. +49 30 123456)
+- SIP-Anmeldedaten von deinem Anbieter
 - SIP-Server-Adresse des Anbieters
 
 **Beispiel aus der Praxis:**
@@ -164,14 +164,14 @@ Anruf erreicht Ziel
 
 Damit die Integration ordnungsgemäß funktioniert:
 
-- Die Anmeldedaten, die Sie im Famulor-Dashboard festlegen, müssen exakt mit Ihrer VoIP-Konfiguration übereinstimmen
+- Die Anmeldedaten, die du im Famulor-Dashboard festlegst, müssen exakt mit deiner VoIP-Konfiguration übereinstimmen
 - Dieselbe Benutzername/Passwort-Kombination wird für beide Richtungen verwendet
 - Alle Änderungen an den Anmeldedaten müssen in beiden Systemen aktualisiert werden
-- Wenn Sie Anmeldedaten in Ihrem VoIP-System ändern, denken Sie daran, sie im Famulor-Dashboard zu aktualisieren (und umgekehrt), um die Verbindung aufrechtzuerhalten
+- Wenn du Anmeldedaten in deinem VoIP-System änderst, denk daran, sie im Famulor-Dashboard zu aktualisieren (und umgekehrt), um die Verbindung aufrechtzuerhalten
 
-## Einrichtung Ihrer Integration
+## Einrichtung deiner Integration
 
-### Schritt 1: Sammeln Sie Ihre Informationen
+### Schritt 1: Sammle deine Informationen
 
 **Für PBX-Erweiterung:**
 
@@ -193,16 +193,16 @@ Passwort: Von Ihrer Telefongesellschaft bereitgestellt
 
 ### Schritt 2: Konfiguration im Dashboard
 
-1. Gehen Sie zu Ihrem Famulor-Dashboard
-2. Navigieren Sie zu "Ihre Telefonnummern"
-3. Klicken Sie auf "SIP-Trunk integrieren". Nutzen Sie bei **Twilio**, **Telnyx**, **Zadarma** oder **DIDLogic** zuerst den **geführten BYOC-Import** aus dem Abschnitt oben (Carrier-Auswahl und automatischer Nummern-Import). Für jeden anderen Anbieter oder zur manuellen SIP-Konfiguration fahren Sie mit Trunk-Typ und Feldern in den folgenden Schritten fort.
+1. Geh zu deinem Famulor-Dashboard
+2. Navigiere zu "Deine Telefonnummern"
+3. Klicke auf "SIP-Trunk integrieren". Nutze bei **Twilio**, **Telnyx**, **Zadarma** oder **DIDLogic** zuerst den **geführten BYOC-Import** aus dem Abschnitt oben (Carrier-Auswahl und automatischer Nummern-Import). Für jeden anderen Anbieter oder zur manuellen SIP-Konfiguration fahre mit Trunk-Typ und Feldern in den folgenden Schritten fort.
 
 ### Schritt 3: SIP-Trunk-Typ auswählen
 
-Wählen Sie oben im Formular einen dieser Trunk-Typen:
+Wähle oben im Formular einen dieser Trunk-Typen:
 
-- **SIP-Erweiterung** - Verwenden Sie dies, wenn Sie bereits bestehende SIP-Anmeldedaten (eine Erweiterung) haben, die von Ihrem VoIP-Anbieter bereitgestellt werden
-- **Telefonnummer (DID)** - Verwenden Sie dies, wenn Sie eine dedizierte Direct Inward Dial (DID) Nummer anstelle einer generischen SIP-Erweiterung integrieren möchten
+- **SIP-Erweiterung** - Verwende dies, wenn du bereits bestehende SIP-Anmeldedaten (eine Erweiterung) hast, die von deinem VoIP-Anbieter bereitgestellt werden
+- **Telefonnummer (DID)** - Verwende dies, wenn du eine dedizierte Direct Inward Dial (DID) Nummer anstelle einer generischen SIP-Erweiterung integrieren möchtest
 
 **Für PBX-Erweiterung:**
 
@@ -222,14 +222,14 @@ Passwort: Von Ihrer Telefongesellschaft bereitgestellt
 
 ### Schritt 4: Ausgehende Einstellungen
 
-Diese Einstellungen steuern, wie Famulor ausgehende Anrufe über Ihren SIP-Anbieter sendet.
+Diese Einstellungen steuern, wie Famulor ausgehende Anrufe über deinen SIP-Anbieter sendet.
 
-**SIP-Adresse** - Geben Sie die Adresse/den Server des SIP-Trunks ohne den Port ein.
+**SIP-Adresse** - Gib die Adresse/den Server des SIP-Trunks ohne den Port ein.
 
-**Ausgehender Proxy (Feste IP)** - Einige SIP-Anbieter verlangen, dass Anrufe von einer einzigen, whitelisteten IP-Adresse ausgehen. Konfigurieren Sie dies wie folgt:
+**Ausgehender Proxy (Feste IP)** - Einige SIP-Anbieter verlangen, dass Anrufe von einer einzigen, whitelisteten IP-Adresse ausgehen. Konfiguriere dies wie folgt:
 
-- **Toggle EIN** - Wenn Ihr SIP-Anbieter eine feste Quell-IP verlangt, aktivieren Sie "Ausgehender Proxy kommt von einer festen IP-Adresse". Famulor sendet dann alle ausgehenden Anfragen über eine bekannte statische IP. Verwenden Sie diese Option nur, wenn Ihr Anbieter explizit eine einzige Quell-IP verlangt.
-- **Toggle AUS** - Wenn Ihr Anbieter Anrufe von beliebigen IPs akzeptiert, lassen Sie diese Option aus. In diesem Fall sendet Famulor Anrufe von dynamischen IPs.
+- **Toggle EIN** - Wenn dein SIP-Anbieter eine feste Quell-IP verlangt, aktiviere "Ausgehender Proxy kommt von einer festen IP-Adresse". Famulor sendet dann alle ausgehenden Anfragen über eine bekannte statische IP. Verwende diese Option nur, wenn dein Anbieter explizit eine einzige Quell-IP verlangt.
+- **Toggle AUS** - Wenn dein Anbieter Anrufe von beliebigen IPs akzeptiert, lass diese Option aus. In diesem Fall sendet Famulor Anrufe von dynamischen IPs.
 
 ```
 SIP-Adresse: (z.B. pbx.firma.com/sip.anbieter.com)
@@ -237,7 +237,7 @@ SIP-Adresse: (z.B. pbx.firma.com/sip.anbieter.com)
 
 ### Schritt 5: Nummernformat-Konfiguration
 
-Dies teilt unserem System mit, wie Telefonnummern beim Tätigen von Anrufen formatiert werden sollen. Wählen Sie basierend auf den Anforderungen Ihres Anbieters:
+Dies teilt unserem System mit, wie Telefonnummern beim Tätigen von Anrufen formatiert werden sollen. Wähle basierend auf den Anforderungen deines Anbieters:
 
 **International mit +**
 
@@ -265,39 +265,39 @@ SIP-Anfrage: sip:030123456@ihr.pbx.com
 
 ### Schritt 6: Eingehende Einstellungen
 
-Diese Einstellungen bestimmen, wie Famulor eingehende Anrufe von Ihrem SIP-Anbieter empfängt und authentifiziert.
+Diese Einstellungen bestimmen, wie Famulor eingehende Anrufe von deinem SIP-Anbieter empfängt und authentifiziert.
 
-**Unsere SIP-Adresse** - Famulor weist eine eindeutige eingehende SIP-URI zu (z.B. `ihre-unique-id.sip.livekit.cloud`). Ihr SIP-Anbieter muss so konfiguriert sein, dass er eingehende Anrufe an diese Adresse sendet, indem er seinen ausgehenden Trunk oder seine Routing-Regel auf diese URI zeigt.
+**Unsere SIP-Adresse** - Famulor weist eine eindeutige eingehende SIP-URI zu (z.B. `ihre-unique-id.sip.livekit.cloud`). Dein SIP-Anbieter muss so konfiguriert sein, dass er eingehende Anrufe an diese Adresse sendet, indem er seinen ausgehenden Trunk oder seine Routing-Regel auf diese URI zeigt.
 
 <Note>
-  **Wichtig:** Die spezifische Sip-URL finden Sie in Ihrem Famulor-Dashboard unter "Telefonnummern" → "SIP-Trunk integrieren" → "Unsere SIP-Adresse".
+  **Wichtig:** Die spezifische Sip-URL findest du in deinem Famulor-Dashboard unter "Telefonnummern" → "SIP-Trunk integrieren" → "Unsere SIP-Adresse".
 </Note>
 
-**IP-Adresse (Whitelist-IPs)** - Wenn Ihr SIP-Anbieter Anrufe von einer bekannten Menge öffentlicher IP-Adressen senden kann, wählen Sie "IP-Adresse". Fügen Sie dann jede Anbieter-IP zur Whitelist unter "Eingehende Authentifizierung" hinzu.
+**IP-Adresse (Whitelist-IPs)** - Wenn dein SIP-Anbieter Anrufe von einer bekannten Menge öffentlicher IP-Adressen senden kann, wähle "IP-Adresse". Füge dann jede Anbieter-IP zur Whitelist unter "Eingehende Authentifizierung" hinzu.
 
-**Benutzername und Passwort** - Wenn Ihr Anbieter SIP-Auth unterstützt, wählen Sie "Benutzername und Passwort". Dieselben Anmeldedaten, die Sie unter "Ausgehende Einstellungen" eingegeben haben (Benutzername/Passwort), werden zur Authentifizierung eingehender Anrufe verwendet. Stellen Sie sicher, dass die PBX Ihres Anbieters so konfiguriert ist, dass sie diese Anmeldedaten enthält.
+**Benutzername und Passwort** - Wenn dein Anbieter SIP-Auth unterstützt, wähle "Benutzername und Passwort". Dieselben Anmeldedaten, die du unter "Ausgehende Einstellungen" eingegeben hast (Benutzername/Passwort), werden zur Authentifizierung eingehender Anrufe verwendet. Stelle sicher, dass die PBX deines Anbieters so konfiguriert ist, dass sie diese Anmeldedaten enthält.
 
 ### Schritt 7: Länderauswahl
 
-Wählen Sie das Land aus, in dem Ihr SIP-Trunk bereitgestellt ist.
+Wähle das Land aus, in dem dein SIP-Trunk bereitgestellt ist.
 
 ### Schritt 8: Einrichtung verifizieren
 
 Nach der Konfiguration:
 
-1. Tätigen Sie einen Testanruf an Ihre Nummer/Erweiterung
-2. Überprüfen Sie, dass der KI-Assistent antwortet
-3. Verwenden Sie die Testanruf-Funktion, um ausgehende Anrufe zu verifizieren
+1. Tätige einen Testanruf an deine Nummer/Erweiterung
+2. Überprüfe, dass der KI-Assistent antwortet
+3. Verwende die Testanruf-Funktion, um ausgehende Anrufe zu verifizieren
 
 <Warning>
-  **Verbindungs- oder Anrufprobleme?** Wenn ausgehende/eingehende Anrufe fehlschlagen, Transfers nicht funktionieren oder der SIP-Trunk keine Verbindung herstellt, folgen Sie der Fehlerbehebung: [SIP Integrationsprobleme](/de/troubleshooting/sip-integration-issues).
+  **Verbindungs- oder Anrufprobleme?** Wenn ausgehende/eingehende Anrufe fehlschlagen, Transfers nicht funktionieren oder der SIP-Trunk keine Verbindung herstellt, folge der Fehlerbehebung: [SIP Integrationsprobleme](/de/troubleshooting/sip-integration-issues).
 </Warning>
 
 ## Sicherheitsanforderungen
 
-Ihre SIP-Anmeldedaten müssen sicher sein:
+Deine SIP-Anmeldedaten müssen sicher sein:
 
-- **Benutzername:** Ihre Erweiterungsnummer oder vom Anbieter bereitgestellter Benutzername
+- **Benutzername:** Deine Erweiterungsnummer oder vom Anbieter bereitgestellter Benutzername
 - **Passwort muss haben:**
   - 12 oder mehr Zeichen
   - Zahlen
@@ -308,29 +308,29 @@ Ihre SIP-Anmeldedaten müssen sicher sein:
 
 **Kann ich mehrere Nummern verwenden?**
 
-Ja! Sie können mehrere Erweiterungen oder direkte Nummern mit unserer Plattform integrieren.
+Ja! Du kannst mehrere Erweiterungen oder direkte Nummern mit unserer Plattform integrieren.
 
 **Verliere ich die Kontrolle über meine Nummern?**
 
-Nein, Sie behalten die vollständige Kontrolle über Ihren aktuellen Anbieter. Die Integration stellt nur eine Verbindung zwischen Ihrem System und unserer Plattform her.
+Nein, du behältst die vollständige Kontrolle über deinen aktuellen Anbieter. Die Integration stellt nur eine Verbindung zwischen deinem System und unserer Plattform her.
 
 **Kann ich meine Nummern weiterhin für reguläre Anrufe verwenden?**
 
-Ja, Sie können Routing-Regeln in Ihrem Telefonsystem einrichten, um zu entscheiden, welche Anrufe an die KI gehen und welche an Ihr reguläres Telefonsystem.
+Ja, du kannst Routing-Regeln in deinem Telefonsystem einrichten, um zu entscheiden, welche Anrufe an die KI gehen und welche an dein reguläres Telefonsystem.
 
 **Was, wenn ich Einstellungen später ändern muss?**
 
-Sie können Ihre Integrations-Einstellungen jederzeit über das Dashboard aktualisieren. Alle Konfigurationsoptionen bleiben nach der ersten Einrichtung zugänglich.
+Du kannst deine Integrations-Einstellungen jederzeit über das Dashboard aktualisieren. Alle Konfigurationsoptionen bleiben nach der ersten Einrichtung zugänglich.
 
 **Wie hilft das bei Anrufkosten?**
 
-Indem Sie Ihren eigenen VoIP-Anbieter nutzen, können Sie von deren lokalen Tarifen und bestehenden Vereinbarungen profitieren, die oft wettbewerbsfähiger sind als Standard-Carrier-Tarife. Dies ist besonders vorteilhaft für internationale Anrufe.
+Indem du deinen eigenen VoIP-Anbieter nutzt, kannst du von deren lokalen Tarifen und bestehenden Vereinbarungen profitieren, die oft wettbewerbsfähiger sind als Standard-Carrier-Tarife. Dies ist besonders vorteilhaft für internationale Anrufe.
 
 ## Hilfe benötigt?
 
-Unser Support-Team ist darauf spezialisiert, Kunden bei der Integration ihrer Telefonsysteme zu helfen. Wir führen Sie durch den gesamten Prozess und stellen eine reibungslose Einrichtung mit Ihrer spezifischen Telefonsystem-Konfiguration sicher.
+Unser Support-Team ist darauf spezialisiert, Kunden bei der Integration ihrer Telefonsysteme zu helfen. Wir führen dich durch den gesamten Prozess und stellen eine reibungslose Einrichtung mit deiner spezifischen Telefonsystem-Konfiguration sicher.
 
-Bei Problemen nach der Einrichtung starten Sie mit [SIP Integrationsprobleme](/de/troubleshooting/sip-integration-issues) — dort finden Sie Hilfe zu Outbound/Inbound-Authentifizierung, Transfer-Fehlern und einer Checkliste vor dem Support-Kontakt.
+Bei Problemen nach der Einrichtung starte mit [SIP Integrationsprobleme](/de/troubleshooting/sip-integration-issues) — dort findest du Hilfe zu Outbound/Inbound-Authentifizierung, Transfer-Fehlern und einer Checkliste vor dem Support-Kontakt.
 
 <Tip>
 Passende Seiten: [SIP Integrationsprobleme](/de/troubleshooting/sip-integration-issues), [Index](/de/index), [Support](/de/support) und [FAQ](/de/faq).

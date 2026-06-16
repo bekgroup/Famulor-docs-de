@@ -7,7 +7,7 @@ icon: "slack"
 
 # Slack Integration Template
 
-Integrieren Sie Slack-Messaging in Ihre Mid-call Actions und ermöglichen Sie es Ihrem KI-Assistenten, während Kundengesprächem automatisch Nachrichten, Benachrichtigungen und Updates an die relevanten Team-Channels zu senden.
+Integriere Slack-Messaging in deine Mid-call Actions und ermögliche es deinem KI-Assistenten, während Kundengesprächem automatisch Nachrichten, Benachrichtigungen und Updates an die relevanten Team-Channels zu senden.
 
 ## Überblick & Funktionen
 
@@ -32,16 +32,16 @@ Integrieren Sie Slack-Messaging in Ihre Mid-call Actions und ermöglichen Sie es
 
 <Steps>
   <Step title="Workspace Admin-Zugang">
-    - Melden Sie sich als Workspace-Admin bei Slack an
-    - Navigieren Sie zu [api.slack.com/apps](https://api.slack.com/apps)
-    - Klicken Sie auf "Create New App"
+    - Melde dich als Workspace-Admin bei Slack an
+    - Navigiere zu [api.slack.com/apps](https://api.slack.com/apps)
+    - Klicke auf "Create New App"
   </Step>
   
   <Step title="App-Konfiguration">
     ```yaml
     App-Details:
       App Name: "Famulor Mid-Call Integration"
-      Development Workspace: [Ihr Workspace]
+      Development Workspace: [Dein Workspace]
       App Icon: Famulor Logo (optional)
       
     OAuth & Permissions:
@@ -81,7 +81,7 @@ Integrieren Sie Slack-Messaging in Ihre Mid-call Actions und ermöglichen Sie es
     | **Name*** | `Slack Nachricht senden` |
     | **Beschreibung** | "Sendet automatisch Nachrichten an Slack-Channels für Team-Koordination und Benachrichtigungen" |
     | **Funktionsname*** | `send_slack_message` |
-    | **Funktionsbeschreibung*** | "Sendet eine Nachricht an einen Slack-Channel. Verwenden Sie dies für Team-Benachrichtigungen, Lead-Alerts oder wichtige Updates während des Gesprächs." |
+    | **Funktionsbeschreibung*** | "Sendet eine Nachricht an einen Slack-Channel. Verwende dies für Team-Benachrichtigungen, Lead-Alerts oder wichtige Updates während des Gesprächs." |
     | **HTTP-Methode** | `POST` |
     | **Timeout (ms)** | `5000` |
     | **Endpoint*** | `https://slack.com/api/chat.postMessage` |
@@ -553,11 +553,11 @@ sequenceDiagram
 ---
 
 <Warning>
-**Datenschutz-Hinweis**: Stellen Sie sicher, dass sensible Kundendaten nur in privaten Channels geteilt werden und Ihr Slack-Workspace den Unternehmens-Compliance-Richtlinien entspricht.
+**Datenschutz-Hinweis**: Stelle sicher, dass sensible Kundendaten nur in privaten Channels geteilt werden und dein Slack-Workspace den Unternehmens-Compliance-Richtlinien entspricht.
 </Warning>
 
 <Info>
-**Pro-Tipp**: Beginnen Sie mit einem dedizierten Test-Channel für die Slack-Integration, bevor Sie sie in produktiven Channels verwenden. Dies hilft beim Fine-Tuning der Nachrichten-Templates und -Frequenz.
+**Pro-Tipp**: Beginne mit einem dedizierten Test-Channel für die Slack-Integration, bevor du sie in produktiven Channels verwendest. Dies hilft beim Fine-Tuning der Nachrichten-Templates und -Frequenz.
 </Info>
 
 <Tip>

@@ -1,10 +1,10 @@
 ---
 title: "SIP-Trunk aktualisieren"
 api: "PUT https://app.famulor.de/api/user/phone-numbers/sip-trunks/{id}"
-description: "Aktualisieren Sie eine bestehende SIP-Trunk-Konfiguration in Famulor per API. Ändern Sie Credentials, Routing-Regeln und Rufnummern für KI-Voice-Telefonie."
+description: "Aktualisiere eine bestehende SIP-Trunk-Konfiguration in Famulor per API. Ändere Credentials, Routing-Regeln und Rufnummern für KI-Voice-Telefonie."
 ---
 
-Dieser Endpunkt aktualisiert einen bestehenden SIP-Trunk. Senden Sie nur die Felder, die Sie ändern möchten - partielle Updates werden unterstützt. Änderungen an Zugangsdaten, Adresse oder Proxy-Einstellungen führen automatisch zur erneuten Provisionierung der betroffenen Voice-Trunks.
+Dieser Endpunkt aktualisiert einen bestehenden SIP-Trunk. Sende nur die Felder, die du ändern möchtest - partielle Updates werden unterstützt. Änderungen an Zugangsdaten, Adresse oder Proxy-Einstellungen führen automatisch zur erneuten Provisionierung der betroffenen Voice-Trunks.
 
 ### Pfad-Parameter
 
@@ -14,14 +14,14 @@ Dieser Endpunkt aktualisiert einen bestehenden SIP-Trunk. Senden Sie nur die Fel
 
 ### Body-Parameter
 
-Alle Felder sind optional. Senden Sie nur die Felder, die Sie ändern möchten.
+Alle Felder sind optional. Sende nur die Felder, die du ändern möchtest.
 
 <ParamField body="phone_number" type="string" optional>
   Die SIP-Erweiterung oder Telefonnummer (1-15 Zeichen)
 </ParamField>
 
 <ParamField body="nickname" type="string" optional>
-  Ein kurzes, menschenlesbares Label für den Trunk. Maximal 50 Zeichen. Senden Sie `null`, um es zu löschen.
+  Ein kurzes, menschenlesbares Label für den Trunk. Maximal 50 Zeichen. Sende `null`, um es zu löschen.
 </ParamField>
 
 <ParamField body="sip_username" type="string" optional>

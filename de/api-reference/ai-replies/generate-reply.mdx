@@ -5,7 +5,7 @@ description: "Generiert eine KI-Antwort mit einem Assistenten basierend auf eine
 ---
 
 
-Dieser Endpunkt erzeugt automatisch eine intelligente Antwort auf eine Kundennachricht mithilfe Ihres konfigurierten KI-Assistenten. Das System verwaltet dabei automatisch den Gesprächskontext für jeden Kunden, sodass der Assistent sich an vorherige Nachrichten erinnert und kontextbezogen antworten kann. Ideal für die Integration in externe Messaging-Plattformen, CRMs oder eigene Chat-Oberflächen.
+Dieser Endpunkt erzeugt automatisch eine intelligente Antwort auf eine Kundennachricht mithilfe deines konfigurierten KI-Assistenten. Das System verwaltet dabei automatisch den Gesprächskontext für jeden Kunden, sodass der Assistent sich an vorherige Nachrichten erinnert und kontextbezogen antworten kann. Ideal für die Integration in externe Messaging-Plattformen, CRMs oder eigene Chat-Oberflächen.
 
 <Warning>
 **Rate Limit**: Dieser Endpunkt ist auf 5 Anfragen pro Minute pro API-Token begrenzt, um Missbrauch zu verhindern.
@@ -14,7 +14,7 @@ Dieser Endpunkt erzeugt automatisch eine intelligente Antwort auf eine Kundennac
 ### Request Body
 
 <ParamField body="assistant_id" type="integer" required>
-  Die ID des Assistenten, der für die Antwortgenerierung verwendet werden soll. Muss zu Ihrem Konto gehören.
+  Die ID des Assistenten, der für die Antwortgenerierung verwendet werden soll. Muss zu deinem Konto gehören.
 </ParamField>
 
 <ParamField body="customer_identifier" type="string" required>
@@ -24,7 +24,7 @@ Dieser Endpunkt erzeugt automatisch eine intelligente Antwort auf eine Kundennac
   
   **Maximale Länge**: 255 Zeichen.
   
-  **Wichtig**: Verwenden Sie immer dasselbe Format für denselben Kunden, damit der Kontext korrekt zugeordnet wird.
+  **Wichtig**: Verwende immer dasselbe Format für denselben Kunden, damit der Kontext korrekt zugeordnet wird.
 </ParamField>
 
 <ParamField body="message" type="string" required>
@@ -58,7 +58,7 @@ Dieser Endpunkt erzeugt automatisch eine intelligente Antwort auf eine Kundennac
 </ResponseField>
 
 <ResponseField name="conversation_id" type="string">
-  Die UUID der Konversation. Verwenden Sie diese, um die Konversation später zu verfolgen oder darauf zu verweisen.
+  Die UUID der Konversation. Verwende diese, um die Konversation später zu verfolgen oder darauf zu verweisen.
 </ResponseField>
 
 <ResponseField name="customer_identifier" type="string">
@@ -104,29 +104,29 @@ Dieser Endpunkt erzeugt automatisch eine intelligente Antwort auf eine Kundennac
 <ResponseField name="error_code" type="string">
   Maschinenlesbarer Fehlercode. Mögliche Werte:
   
-  - `ASSISTANT_NOT_FOUND` - Die Assistenten-ID ist ungültig oder gehört nicht zu Ihrem Konto
-  - `INSUFFICIENT_BALANCE` - Ihr Kontoguthaben ist zu niedrig, um die Nachricht zu verarbeiten
+  - `ASSISTANT_NOT_FOUND` - Die Assistenten-ID ist ungültig oder gehört nicht zu deinem Konto
+  - `INSUFFICIENT_BALANCE` - Dein Kontoguthaben ist zu niedrig, um die Nachricht zu verarbeiten
 </ResponseField>
 
 ### Anwendungsfälle
 
 #### Multi-Channel KI-Antworten
-Nutzen Sie diesen Endpunkt, um KI-Antworten zu jeder Messaging-Plattform hinzuzufügen:
-1. Empfangen Sie eine Nachricht von WhatsApp, Facebook, SMS oder einem anderen Kanal
-2. Rufen Sie diesen Endpunkt mit der Nachricht und der Kundenkennung auf
-3. Senden Sie die KI-Antwort über den ursprünglichen Kanal zurück
+Nutze diesen Endpunkt, um KI-Antworten zu jeder Messaging-Plattform hinzuzufügen:
+1. Empfange eine Nachricht von WhatsApp, Facebook, SMS oder einem anderen Kanal
+2. Rufe diesen Endpunkt mit der Nachricht und der Kundenkennung auf
+3. Sende die KI-Antwort über den ursprünglichen Kanal zurück
 
 #### CRM-Integration
-Integrieren Sie KI-Antworten in Ihr CRM oder Helpdesk-System:
-- Verwenden Sie die CRM-Kontakt-ID als `customer_identifier`
-- Übergeben Sie Kundendaten als Variablen für personalisierte Antworten
+Integriere KI-Antworten in dein CRM oder Helpdesk-System:
+- Verwende die CRM-Kontakt-ID als `customer_identifier`
+- Übergib Kundendaten als Variablen für personalisierte Antworten
 - Die Konversation bleibt über Sitzungen hinweg erhalten, wenn dieselbe Kennung verwendet wird
 
 #### Eigene Chat-Oberflächen
-Erstellen Sie Ihre eigene Chat-Oberfläche, die von Ihrem Famulor-Assistenten angetrieben wird:
-- Generieren Sie eine eindeutige Kennung für jede Benutzersitzung
-- Senden Sie Nachrichten über diesen Endpunkt
-- Zeigen Sie die KI-Antworten in Ihrer Oberfläche an
+Erstelle deine eigene Chat-Oberfläche, die von deinem Famulor-Assistenten angetrieben wird:
+- Generiere eine eindeutige Kennung für jede Benutzersitzung
+- Sende Nachrichten über diesen Endpunkt
+- Zeige die KI-Antworten in deiner Oberfläche an
 
 #### Konversations-Persistenz
 Konversationen werden automatisch basierend auf der Kombination aus `assistant_id` und `customer_identifier` gespeichert:
@@ -136,11 +136,11 @@ Konversationen werden automatisch basierend auf der Kombination aus `assistant_i
 
 ### Best Practices
 
-- **Konsistente Kennungen verwenden**: Verwenden Sie immer dasselbe Format für Kundenkennungen (z.B. immer E.164 für Telefonnummern)
-- **Relevanten Kontext übergeben**: Nutzen Sie das `variables`-Feld, um Kundendaten bereitzustellen, die der KI helfen, Antworten zu personalisieren
-- **Rate Limits handhaben**: Implementieren Sie Wiederholungslogik mit exponentiellem Backoff für rate-limitierte Anfragen
-- **Konversations-IDs speichern**: Speichern Sie die zurückgegebene `conversation_id` für spätere Referenz oder Fehlerbehebung
-- **Kosten überwachen**: Verfolgen Sie die Nutzung, um Kosten zu verwalten, insbesondere bei Integrationen mit hohem Volumen
+- **Konsistente Kennungen verwenden**: Verwende immer dasselbe Format für Kundenkennungen (z.B. immer E.164 für Telefonnummern)
+- **Relevanten Kontext übergeben**: Nutze das `variables`-Feld, um Kundendaten bereitzustellen, die der KI helfen, Antworten zu personalisieren
+- **Rate Limits handhaben**: Implementiere Wiederholungslogik mit exponentiellem Backoff für rate-limitierte Anfragen
+- **Konversations-IDs speichern**: Speichere die zurückgegebene `conversation_id` für spätere Referenz oder Fehlerbehebung
+- **Kosten überwachen**: Verfolge die Nutzung, um Kosten zu verwalten, insbesondere bei Integrationen mit hohem Volumen
 
 
 <ResponseExample>

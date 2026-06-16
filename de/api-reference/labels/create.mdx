@@ -1,15 +1,15 @@
 ---
 title: "Label erstellen"
 api: "POST https://app.famulor.de/api/user/label"
-description: "Label zum Taggen Ihrer Assistenten erstellen"
+description: "Label zum Taggen deiner Assistenten erstellen"
 ---
 
-Erstellen Sie ein Label, um Assistenten über Ordner hinweg zu taggen (z. B. `inbound` oder `outbound`). Weisen Sie Labels Assistenten über das Feld `label_ids` bei [Assistent erstellen](/de/api-reference/assistants/create) und [Assistent aktualisieren](/de/api-reference/assistants/update) zu.
+Erstelle ein Label, um Assistenten über Ordner hinweg zu taggen (z. B. `inbound` oder `outbound`). Weise Labels Assistenten über das Feld `label_ids` bei [Assistent erstellen](/de/api-reference/assistants/create) und [Assistent aktualisieren](/de/api-reference/assistants/update) zu.
 
 ### Request Body
 
 <ParamField body="name" type="string" required>
-  Der Label-Name (max. 255 Zeichen). Muss innerhalb Ihres Kontos eindeutig sein.
+  Der Label-Name (max. 255 Zeichen). Muss innerhalb deines Kontos eindeutig sein.
 </ParamField>
 
 <ParamField body="color" type="string">

@@ -1,7 +1,7 @@
 ---
 title: "Limits für ausgehende Anrufe"
 icon: "gauge-high"
-description: "So funktionieren tägliche Ausgehend-Limits bei Famulor, was unbegrenzt bleibt und wie Sie mehr Kapazität anfragen können."
+description: "So funktionieren tägliche Ausgehend-Limits bei Famulor, was unbegrenzt bleibt und wie du mehr Kapazität anfragen kannst."
 ---
 
 import SipDoneForYou from '/de/snippets/sip-done-for-you-partner-de.mdx';
@@ -13,24 +13,24 @@ Wir erklären Limits so, dass es jede Person verstehen kann—ohne Fachbegriffe 
 
 ## Kurz erklärt
 
-Famulor setzt ein **tägliches Ausgehend-Limit nur für Anrufe, die über den integrierten (gemeinsamen) Carrier** abgehen. Verkehr über **Ihren eigenen SIP-Trunk**, **eingehende** PSTN-Anrufe und **Web-Anrufe im Browser** unterliegen **diesem** Tageskontingent **nicht**.
+Famulor setzt ein **tägliches Ausgehend-Limit nur für Anrufe, die über den integrierten (gemeinsamen) Carrier** abgehen. Verkehr über **deinen eigenen SIP-Trunk**, **eingehende** PSTN-Anrufe und **Web-Anrufe im Browser** unterliegen **diesem** Tageskontingent **nicht**.
 
-Aktuelle Zähler und die nächste Erneuerung finden Sie unter **[Limits](https://app.famulor.de/limits)**.
+Aktuelle Zähler und die nächste Erneuerung findest du unter **[Limits](https://app.famulor.de/limits)**.
 
 ![Übersicht Limits in der Famulor-App](/images/limits-outboundcalls.png)
 
 ## Was das tägliche Kontingent für den integrierten Carrier ist
 
-**Integrierter Carrier** heißt: Famulor stellt Ihnen PSTN-Anbindung bereit (z. B. eine Nummer von uns plus Routing über den eingebauten Anbieter). Auf diesem Weg ziehen ausgehende Anrufe pro Workspace aus einem **gemeinsamen Tageskontingent**, damit die Plattform fair und planbar bleibt.
+**Integrierter Carrier** heißt: Famulor stellt dir PSTN-Anbindung bereit (z. B. eine Nummer von uns plus Routing über den eingebauten Anbieter). Auf diesem Weg ziehen ausgehende Anrufe pro Workspace aus einem **gemeinsamen Tageskontingent**, damit die Plattform fair und planbar bleibt.
 
-- **Kontingent (Allowance)** — die Obergrenze solcher integrierten Ausgehend-Anrufe in der laufenden Periode (häufig in der Größenordnung **1.000 pro Tag**; Ihr Workspace kann abweichen).
-- **Verbrauch (Usage)** — wie viele dieser Anrufe Sie in der Periode bereits getätigt haben; **verbleibend** ist Kontingent minus Verbrauch.
+- **Kontingent (Allowance)** — die Obergrenze solcher integrierten Ausgehend-Anrufe in der laufenden Periode (häufig in der Größenordnung **1.000 pro Tag**; dein Workspace kann abweichen).
+- **Verbrauch (Usage)** — wie viele dieser Anrufe du in der Periode bereits getätigt hast; **verbleibend** ist Kontingent minus Verbrauch.
 - **Erneuerung** — das Kontingent läuft im **rollierenden ~24-Stunden**-Rhythmus weiter; der genaue Zeitpunkt ist **pro Konto** festgelegt und für die Durchsetzung maßgeblich.
 
 **Wozu das Kontingent zählt**
 
 - Ausgehende Anrufe von **Nummern, die Famulor auf dem integrierten Weg** bereitstellt.
-- Ausgehende Anrufe mit **Ihrer eigenen Nummer als Anruferkennung**, wenn der Abgang technisch weiterhin über den **integrierten** Carrier läuft (Sie nutzen unseren Trunk mit Ihrer CLI).
+- Ausgehende Anrufe mit **deiner eigenen Nummer als Anruferkennung**, wenn der Abgang technisch weiterhin über den **integrierten** Carrier läuft (du nutzt unseren Trunk mit deiner CLI).
 
 **Wozu es nicht zählt**
 
@@ -40,29 +40,29 @@ Alles, was diesen integrierten Ausgehend-Trunk für PSTN **nicht** nutzt — sie
 
 Diese Kategorien sind durch das integrierte **tägliche Ausgehend-Limit von Famulor nicht begrenzt**:
 
-- **Eingehende PSTN-Anrufe** — Anrufe **an** die Nummer Ihres Assistenten mindern das integrierte Ausgehend-Kontingent **nicht**.
-- **Ausgehend über Ihren SIP-Trunk** — Signalisierung und Medien laufen zu **Ihrem** Carrier (Twilio, Telnyx, Zadarma, DIDLogic usw.). Das integrierte **Tageslimit für Ausgehend** von Famulor gilt dort **nicht**; es gelten die Limits und die Abrechnung **Ihres** Anbieters.
-- **Web-Anrufe** — Sitzungen, die Sie im **Browser** starten (einbettbares Widget oder öffentliche Demo), folgen einem anderen Zugriffsmuster als „Auswahl über unseren integrierten PSTN-Trunk“ und werden **nicht** wie integriertes PSTN-Ausgehend auf dieses Kontingent angerechnet.
+- **Eingehende PSTN-Anrufe** — Anrufe **an** die Nummer deines Assistenten mindern das integrierte Ausgehend-Kontingent **nicht**.
+- **Ausgehend über deinen SIP-Trunk** — Signalisierung und Medien laufen zu **deinem** Carrier (Twilio, Telnyx, Zadarma, DIDLogic usw.). Das integrierte **Tageslimit für Ausgehend** von Famulor gilt dort **nicht**; es gelten die Limits und die Abrechnung **deines** Anbieters.
+- **Web-Anrufe** — Sitzungen, die du im **Browser** startest (einbettbares Widget oder öffentliche Demo), folgen einem anderen Zugriffsmuster als „Auswahl über unseren integrierten PSTN-Trunk“ und werden **nicht** wie integriertes PSTN-Ausgehend auf dieses Kontingent angerechnet.
 
 ## Mehr ausgehende Anrufe nötig? Eine Anfrage senden
 
-Ja. Wenn Ihr Volumen wächst und Sie ein **höheres Tageslimit** auf dem **integrierten** Trunk brauchen, nutzen Sie im Dashboard **Request increase** (verlinkt von **[Limits](https://app.famulor.de/limits)**). Es öffnet sich ein kurzes Formular—mit Ihren Angaben können wir die Anfrage **schnell** prüfen.
+Ja. Wenn dein Volumen wächst und du ein **höheres Tageslimit** auf dem **integrierten** Trunk brauchst, nutze im Dashboard **Request increase** (verlinkt von **[Limits](https://app.famulor.de/limits)**). Es öffnet sich ein kurzes Formular—mit deinen Angaben können wir die Anfrage **schnell** prüfen.
 
 Gefragt wird nach:
 
-- **Requested daily limit** — wie viele ausgehende Anrufe pro Tag Sie anstreben (Pflichtfeld).
-- **Why do you need a higher limit?** — ein paar Sätze zu Ihrem Anwendungsfall (Pflichtfeld). Ehrlicher Kontext hilft uns, schneller zuzustimmen.
-- **Business website** — optional, aber hilfreich, wenn wir uns ein Bild von Ihrer Nutzung machen wollen.
+- **Requested daily limit** — wie viele ausgehende Anrufe pro Tag du anstrebst (Pflichtfeld).
+- **Why do you need a higher limit?** — ein paar Sätze zu deinem Anwendungsfall (Pflichtfeld). Ehrlicher Kontext hilft uns, schneller zuzustimmen.
+- **Business website** — optional, aber hilfreich, wenn wir uns ein Bild von deiner Nutzung machen wollen.
 
-Danach wählen Sie **Submit request** oder **Cancel**.
+Danach wählst du **Submit request** oder **Cancel**.
 
 ![Formular „Request Outbound Limit Increase“](/images/limits-request-increase.png)
 
-Wir prüfen Anfragen **manuell**. Wenn etwas unklar ist, melden wir uns über Ihren gewohnten Supportweg.
+Wir prüfen Anfragen **manuell**. Wenn etwas unklar ist, melden wir uns über deinen gewohnten Supportweg.
 
 ## Lieber kein Tageslimit für ausgehend?
 
-Wenn Sie einen **eigenen SIP-Trunk** anbinden, wird ausgehendes PSTN von **Ihrem** Carrier ausgeliefert. Das integrierte **tägliche Ausgehend-Limit** von Famulor gilt für diesen Verkehr **nicht**; das **Minutenmodell für die KI-Nutzung** bleibt gleich, während Sprachminuten zwischen Ihnen und Ihrem Anbieter abgerechnet werden. Die Einrichtung ist im Produkt geführt, oder Sie starten in der Doku: [SIP-Integration](/de/provisioning/sip-ai/sip-integration).
+Wenn du einen **eigenen SIP-Trunk** anbindest, wird ausgehendes PSTN von **deinem** Carrier ausgeliefert. Das integrierte **tägliche Ausgehend-Limit** von Famulor gilt für diesen Verkehr **nicht**; das **Minutenmodell für die KI-Nutzung** bleibt gleich, während Sprachminuten zwischen dir und deinem Anbieter abgerechnet werden. Die Einrichtung ist im Produkt geführt, oder du startest in der Doku: [SIP-Integration](/de/provisioning/sip-ai/sip-integration).
 
 <Tip>
 Kontingent, Verbrauch und Erneuerungszeitpunkt gelten **pro Workspace**. Maßgeblich sind die Werte unter [app.famulor.de/limits](https://app.famulor.de/limits).

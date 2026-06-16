@@ -1,12 +1,12 @@
 ---
 title: "Authentifizierung"
 icon: "key"
-description: "Erfahren Sie, wie Sie Ihre Famulor-API-Anfragen mit Bearer-Token authentifizieren. Generieren Sie API-Keys und greifen Sie sicher auf Voice-Agent-Endpoints zu."
+description: "Erfahre, wie du deine Famulor-API-Anfragen mit Bearer-Token authentifizierst. Generiere API-Keys und greife sicher auf Voice-Agent-Endpoints zu."
 keywords: ["Famulor API Authentifizierung", "Bearer Token", "API Key", "REST API Auth", "Voice Agent API", "API Sicherheit", "Authorization Header"]
 ---
 
 
-Die Famulor API verwendet API-Schlüssel zur Authentifizierung von Anfragen. Sie müssen Ihren API-Schlüssel im Header jeder Anfrage an die API einbeziehen.
+Die Famulor API verwendet API-Schlüssel zur Authentifizierung von Anfragen. Du musst deinen API-Schlüssel im Header jeder Anfrage an die API einbeziehen.
 
 <Info>
 Für eine umfassende Anleitung mit Code-Beispielen, Sicherheits-Best-Practices und Fehlerbehebung siehe unseren [vollständigen Authentifizierungs-Leitfaden](/de/developers/authentication-guide).
@@ -16,35 +16,35 @@ Für eine umfassende Anleitung mit Code-Beispielen, Sicherheits-Best-Practices u
 
 Um einen API-Schlüssel zu erhalten:
 
-1. Melden Sie sich bei Ihrem Famulor-Konto an unter [https://app.famulor.de](https://app.famulor.de)
-2. Navigieren Sie zur "API-Schlüssel" Seite
-3. Klicken Sie auf den "Neuen API-Schlüssel erstellen" Button
-4. Kopieren Sie Ihren neuen API-Schlüssel und speichern Sie ihn sicher
+1. Melde dich bei deinem Famulor-Konto an unter [https://app.famulor.de](https://app.famulor.de)
+2. Navigiere zur "API-Schlüssel" Seite
+3. Klicke auf den "Neuen API-Schlüssel erstellen" Button
+4. Kopiere deinen neuen API-Schlüssel und speichere ihn sicher
 
 <Warning>
-  Halten Sie Ihren API-Schlüssel vertraulich und sicher. Teilen Sie ihn nicht öffentlich oder committen Sie ihn nicht in Versionskontrollsysteme.
+  Halte deinen API-Schlüssel vertraulich und sicher. Teile ihn nicht öffentlich und committe ihn nicht in Versionskontrollsysteme.
 </Warning>
 
 ## API-Schlüssel verwenden
 
-Fügen Sie Ihren API-Schlüssel in den `Authorization` Header jeder Anfrage ein:
+Füge deinen API-Schlüssel in den `Authorization` Header jeder Anfrage ein:
 
 ```
 Authorization: Bearer YOUR_API_KEY
 ```
 
-Ersetzen Sie `YOUR_API_KEY` mit Ihrem tatsächlichen API-Schlüssel.
+Ersetze `YOUR_API_KEY` durch deinen tatsächlichen API-Schlüssel.
 
 ## Beispiel-Anfrage
 
-Hier ist ein Beispiel, wie Sie den API-Schlüssel in einer cURL-Anfrage einbeziehen:
+Hier ist ein Beispiel, wie du den API-Schlüssel in einer cURL-Anfrage einbeziehst:
 
 ```bash
 curl -X GET "https://app.famulor.de/api/user/campaigns" \
      -H "Authorization: Bearer YOUR_API_KEY"
 ```
 
-Ersetzen Sie `YOUR_API_KEY` mit Ihrem tatsächlichen API-Schlüssel bei Anfragen.
+Ersetze `YOUR_API_KEY` durch deinen tatsächlichen API-Schlüssel bei Anfragen.
 
 ---
 

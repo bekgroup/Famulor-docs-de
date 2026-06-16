@@ -6,12 +6,12 @@ description: "DSGVO-konforme automatische Löschung von Anrufdaten nach konfigur
 
 
 <Warning>
-Diese Seite stellt keine Rechtsberatung dar. Prüfen Sie stets Ihren konkreten Anwendungsfall mit Rechtsbeistand und beachten Sie die geltenden gesetzlichen Aufbewahrungspflichten in Ihrem Land.
+Diese Seite stellt keine Rechtsberatung dar. Prüfe stets deinen konkreten Anwendungsfall mit Rechtsbeistand und beachte die geltenden gesetzlichen Aufbewahrungspflichten in deinem Land.
 </Warning>
 
 ## Überblick
 
-Die **automatische Löschung von Anrufdaten** ist ein wichtiger Bestandteil der DSGVO-konformen Datenverwaltung. Mit dem Famulor Workflow-Template können Sie Anrufdaten und zugehörige Informationen automatisch nach einer konfigurierbaren Frist (Standard: 180 Tage) löschen lassen.
+Die **automatische Löschung von Anrufdaten** ist ein wichtiger Bestandteil der DSGVO-konformen Datenverwaltung. Mit dem Famulor Workflow-Template kannst du Anrufdaten und zugehörige Informationen automatisch nach einer konfigurierbaren Frist (Standard: 180 Tage) löschen lassen.
 
 <CardGroup cols={2}>
   <Card title="DSGVO-Konformität" icon="shield-halved">
@@ -38,7 +38,7 @@ Der **Automatische Lösch-Workflow** ist ein vorkonfiguriertes Template für die
 - **Täglich ausgeführt** wird, um kontinuierliche Compliance zu gewährleisten
 
 <Info>
-**Standard-Konfiguration:** Der Workflow ist standardmäßig auf 180 Tage Aufbewahrungsfrist eingestellt. Sie können diese Dauer in der Code-Node anpassen.
+**Standard-Konfiguration:** Der Workflow ist standardmäßig auf 180 Tage Aufbewahrungsfrist eingestellt. Du kannst diese Dauer in der Code-Node anpassen.
 </Info>
 
 ## Warum automatisches Löschen wichtig ist
@@ -142,7 +142,7 @@ Das **Telekommunikationsgesetz (TKG)** regelt zusätzlich spezifische Aspekte de
 ### Aufbewahrungspflichten beachten
 
 <Warning>
-**Wichtig:** Bevor Sie automatische Löschfristen konfigurieren, prüfen Sie, ob für Ihre Branche oder Ihren Anwendungsfall gesetzliche **Aufbewahrungspflichten** bestehen (z.B. aus Handelsrecht, Steuerrecht, Medizinrecht).
+**Wichtig:** Bevor du automatische Löschfristen konfigurierst, prüfe, ob für deine Branche oder deinen Anwendungsfall gesetzliche **Aufbewahrungspflichten** bestehen (z.B. aus Handelsrecht, Steuerrecht, Medizinrecht).
 </Warning>
 
 <CardGroup cols={2}>
@@ -164,17 +164,17 @@ Das **Telekommunikationsgesetz (TKG)** regelt zusätzlich spezifische Aspekte de
 
 ### Schritt 1: Zugriff auf die Automatisierungsplattform
 
-1. **Famulor Platform öffnen:** Navigieren Sie zu [https://app.famulor.de](https://app.famulor.de)
-2. **Anmelden:** Loggen Sie sich mit Ihren Zugangsdaten ein
-3. **Automation-Menü öffnen:** Klicken Sie im Hauptmenü auf **"Automation"**
+1. **Famulor Platform öffnen:** Navigiere zu [https://app.famulor.de](https://app.famulor.de)
+2. **Anmelden:** Logge dich mit deinen Zugangsdaten ein
+3. **Automation-Menü öffnen:** Klicke im Hauptmenü auf **"Automation"**
 
 <Info>
-Stellen Sie sicher, dass Sie Zugriff auf die Automatisierungsplattform haben. Falls nicht, kontaktieren Sie den Support.
+Stelle sicher, dass du Zugriff auf die Automatisierungsplattform hast. Falls nicht, kontaktiere den Support.
 </Info>
 
 ### Schritt 2: Workflow-Template öffnen
 
-Öffnen Sie das Workflow-Template über folgenden Link:
+Öffne das Workflow-Template über folgenden Link:
 
 **Workflow Template:** [https://automate.famulor.de/templates/EQ2ZaUGJARERwPH4IeLoh](https://automate.famulor.de/templates/EQ2ZaUGJARERwPH4IeLoh)
 
@@ -185,37 +185,37 @@ Der Link öffnet das vorkonfigurierte Template direkt in der Automatisierungspla
 ### Schritt 3: API-Schlüssel hinzufügen
 
 1. **API-Schlüssel abrufen:** 
-   - Navigieren Sie in der Famulor Platform zu **Einstellungen** → **API-Schlüssel**
-   - Erstellen Sie einen neuen API-Schlüssel oder verwenden Sie einen bestehenden
-   - Kopieren Sie den API-Schlüssel
+   - Navigiere in der Famulor Platform zu **Einstellungen** → **API-Schlüssel**
+   - Erstelle einen neuen API-Schlüssel oder verwende einen bestehenden
+   - Kopiere den API-Schlüssel
 
 2. **Im Workflow einfügen:**
-   - Suchen Sie im Workflow die **API-Authentifizierung Node**
-   - Fügen Sie Ihren API-Schlüssel in das entsprechende Feld ein
+   - Suche im Workflow die **API-Authentifizierung Node**
+   - Füge deinen API-Schlüssel in das entsprechende Feld ein
 
 <Warning>
-**Sicherheit:** Bewahren Sie Ihren API-Schlüssel sicher auf und teilen Sie ihn nicht mit Dritten. Bei Verlust können Sie den Schlüssel in den Einstellungen neu generieren.
+**Sicherheit:** Bewahre deinen API-Schlüssel sicher auf und teile ihn nicht mit Dritten. Bei Verlust kannst du den Schlüssel in den Einstellungen neu generieren.
 </Warning>
 
 ### Schritt 4: Aufbewahrungsfrist anpassen
 
-1. **Code-Node öffnen:** Suchen Sie die **Code-Node** im Workflow
+1. **Code-Node öffnen:** Suche die **Code-Node** im Workflow
 2. **Aufbewahrungsdauer ändern:**
    - Standard: **180 Tage** (6 Monate)
-   - Passen Sie den Wert an Ihre Anforderungen an
+   - Passe den Wert an deine Anforderungen an
    - Beispiel: `const retentionDays = 90;` für 90 Tage
 
 <Accordion title="Empfohlene Aufbewahrungsfristen">
 - **Allgemeine Geschäftsdaten:** 90-180 Tage (DSGVO-konform)
 - **Kundenservice-Aufzeichnungen:** 30-90 Tage (nach Qualitätssicherung)
 - **Verkaufsgespräche:** 180-365 Tage (je nach Vertragslaufzeit)
-- **Compliance-Aufzeichnungen:** Prüfen Sie gesetzliche Anforderungen
+- **Compliance-Aufzeichnungen:** Prüfe gesetzliche Anforderungen
 </Accordion>
 
 ### Schritt 5: Workflow aktivieren
 
-1. **Workflow speichern:** Klicken Sie auf **"Speichern"**
-2. **Workflow veröffentlichen:** Klicken Sie auf **"Veröffentlichen"**
+1. **Workflow speichern:** Klicke auf **"Speichern"**
+2. **Workflow veröffentlichen:** Klicke auf **"Veröffentlichen"**
 3. **Automatische Ausführung:** Der Workflow wird täglich automatisch ausgeführt
 
 <Info>
@@ -232,42 +232,42 @@ Der Workflow löscht automatisch:
 - **Zugehörige Lead-Informationen** (je nach Konfiguration)
 
 <Warning>
-**Irreversibel:** Die Löschung ist endgültig und kann nicht rückgängig gemacht werden. Stellen Sie sicher, dass Sie wichtige Daten vor Ablauf der Frist exportiert haben, falls erforderlich.
+**Irreversibel:** Die Löschung ist endgültig und kann nicht rückgängig gemacht werden. Stelle sicher, dass du wichtige Daten vor Ablauf der Frist exportiert hast, falls erforderlich.
 </Warning>
 
 ## Best Practices
 
 <CardGroup cols={2}>
   <Card title="Rechtliche Prüfung" icon="gavel">
-    Prüfen Sie vor der Konfiguration alle gesetzlichen Aufbewahrungspflichten für Ihre Branche
+    Prüfe vor der Konfiguration alle gesetzlichen Aufbewahrungspflichten für deine Branche
   </Card>
   <Card title="Dokumentation" icon="clipboard-list">
-    Dokumentieren Sie die konfigurierte Aufbewahrungsfrist in Ihrem Verzeichnis der Verarbeitungstätigkeiten
+    Dokumentiere die konfigurierte Aufbewahrungsfrist in deinem Verzeichnis der Verarbeitungstätigkeiten
   </Card>
   <Card title="Regelmäßige Überprüfung" icon="magnifying-glass">
-    Überprüfen Sie regelmäßig, ob die Frist noch angemessen ist
+    Überprüfe regelmäßig, ob die Frist noch angemessen ist
   </Card>
   <Card title="Backup-Strategie" icon="floppy-disk">
-    Erwägen Sie ein Backup wichtiger Daten vor automatischer Löschung
+    Erwäge ein Backup wichtiger Daten vor automatischer Löschung
   </Card>
 </CardGroup>
 
 ## Häufige Fragen
 
 <Accordion title="Kann ich bestimmte Anrufe von der automatischen Löschung ausschließen?">
-Ja, Sie können den Workflow anpassen, um bestimmte Anrufe basierend auf Kriterien (z.B. Tags, Kampagnen, Status) von der Löschung auszunehmen. Dies erfordert eine Anpassung der Code-Node.
+Ja, du kannst den Workflow anpassen, um bestimmte Anrufe basierend auf Kriterien (z.B. Tags, Kampagnen, Status) von der Löschung auszunehmen. Dies erfordert eine Anpassung der Code-Node.
 </Accordion>
 
 <Accordion title="Wie kann ich die Löschung rückgängig machen?">
-Die automatische Löschung ist endgültig. Stellen Sie sicher, dass Sie wichtige Daten vor Ablauf der Frist exportiert oder gesichert haben.
+Die automatische Löschung ist endgültig. Stelle sicher, dass du wichtige Daten vor Ablauf der Frist exportiert oder gesichert hast.
 </Accordion>
 
 <Accordion title="Wird der Workflow auch bei gesetzlichen Aufbewahrungspflichten ausgeführt?">
-Der Workflow berücksichtigt keine gesetzlichen Aufbewahrungspflichten automatisch. Sie müssen die Aufbewahrungsfrist entsprechend anpassen oder bestimmte Daten von der Löschung ausschließen.
+Der Workflow berücksichtigt keine gesetzlichen Aufbewahrungspflichten automatisch. Du musst die Aufbewahrungsfrist entsprechend anpassen oder bestimmte Daten von der Löschung ausschließen.
 </Accordion>
 
 <Accordion title="Wie oft wird der Workflow ausgeführt?">
-Der Workflow wird standardmäßig täglich ausgeführt. Sie können die Häufigkeit in den Workflow-Einstellungen anpassen.
+Der Workflow wird standardmäßig täglich ausgeführt. Du kannst die Häufigkeit in den Workflow-Einstellungen anpassen.
 </Accordion>
 
 ## Weiterführende Informationen
@@ -290,7 +290,7 @@ Der Workflow wird standardmäßig täglich ausgeführt. Sie können die Häufigk
 ---
 
 <Info>
-**Hinweis:** Bei Fragen zur Konfiguration oder rechtlichen Anforderungen kontaktieren Sie bitte den [Famulor Support](mailto:support@famulor.io) oder konsultieren Sie einen Rechtsbeistand.
+**Hinweis:** Bei Fragen zur Konfiguration oder rechtlichen Anforderungen kontaktiere bitte den [Famulor Support](mailto:support@famulor.io) oder konsultiere einen Rechtsbeistand.
 </Info>
 
 <Tip>

@@ -5,12 +5,12 @@ description: "Verfügbare TTS- (Text-to-Speech-) Synthesizer-Provider abrufen"
 ---
 
 
-Dieser Endpunkt gibt eine Liste verfügbarer Synthesizer-Provider zurück, die beim Erstellen oder Aktualisieren von Assistenten verwendet werden können. Verwenden Sie die zurückgegebene `id` als `synthesizer_provider_id` bei der Assistenten-Konfiguration.
+Dieser Endpunkt gibt eine Liste verfügbarer Synthesizer-Provider zurück, die beim Erstellen oder Aktualisieren von Assistenten verwendet werden können. Verwende die zurückgegebene `id` als `synthesizer_provider_id` bei der Assistenten-Konfiguration.
 
 ### Query-Parameter
 
 <ParamField query="language_id" type="integer">
-  Provider nach Sprachunterstützung filtern. Es werden nur Provider zurückgegeben, die die angegebene Sprache unterstützen. Verwenden Sie den Endpunkt [Sprachen abrufen](/de/api-reference/assistants/languages), um verfügbare Sprach-IDs zu erhalten.
+  Provider nach Sprachunterstützung filtern. Es werden nur Provider zurückgegeben, die die angegebene Sprache unterstützen. Verwende den Endpunkt [Sprachen abrufen](/de/api-reference/assistants/languages), um verfügbare Sprach-IDs zu erhalten.
 </ParamField>
 
 ### Antwort-Felder
@@ -18,7 +18,7 @@ Dieser Endpunkt gibt eine Liste verfügbarer Synthesizer-Provider zurück, die b
 <ResponseField name="data" type="array">
   <Expandable title="Eigenschaften">
     <ResponseField name="id" type="integer">
-      Die eindeutige Kennung des Providers. Verwenden Sie diese als `synthesizer_provider_id` beim Erstellen oder Aktualisieren von Assistenten.
+      Die eindeutige Kennung des Providers. Verwende diese als `synthesizer_provider_id` beim Erstellen oder Aktualisieren von Assistenten.
     </ResponseField>
 
     <ResponseField name="name" type="string">
@@ -71,6 +71,6 @@ Dieser Endpunkt gibt eine Liste verfügbarer Synthesizer-Provider zurück, die b
 ### Hinweise
 
 * Ohne Angabe von `language_id` werden alle Provider zurückgegeben
-* Nicht jeder Provider unterstützt alle Sprachen – nutzen Sie den Filter `language_id` für kompatible Provider
+* Nicht jeder Provider unterstützt alle Sprachen – nutze den Filter `language_id` für kompatible Provider
 * Synthesizer-Provider sind nur für die Modi `pipeline` und `dualplex` relevant (im Modus `multimodal` wird TTS intern verarbeitet)
-* Wenn Sie beim Erstellen eines Assistenten `synthesizer_provider_id` nicht setzen, wird der Standard-Provider der Sprache verwendet
+* Wenn du beim Erstellen eines Assistenten `synthesizer_provider_id` nicht setzt, wird der Standard-Provider der Sprache verwendet

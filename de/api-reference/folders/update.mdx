@@ -4,22 +4,22 @@ api: "PUT https://app.famulor.de/api/user/folder/{id}"
 description: "Ordner umbenennen oder Farbe ändern"
 ---
 
-Aktualisieren Sie den Namen oder die Farbe eines Ordners. Es werden nur die Felder geändert, die Sie senden.
+Aktualisiere den Namen oder die Farbe eines Ordners. Es werden nur die Felder geändert, die du sendest.
 
 ### Pfad-Parameter
 
 <ParamField path="id" type="integer" required>
-  Die Ordner-ID. Muss zu Ihrem Konto gehören.
+  Die Ordner-ID. Muss zu deinem Konto gehören.
 </ParamField>
 
 ### Request Body
 
 <ParamField body="name" type="string">
-  Neuer Name (max. 255 Zeichen). Muss innerhalb Ihres Kontos eindeutig sein.
+  Neuer Name (max. 255 Zeichen). Muss innerhalb deines Kontos eindeutig sein.
 </ParamField>
 
 <ParamField body="color" type="string">
-  Neue Farbe. Einer von: `gray`, `slate`, `red`, `orange`, `amber`, `green`, `teal`, `blue`, `purple`, `pink`. Senden Sie `null`, um sie zu entfernen.
+  Neue Farbe. Einer von: `gray`, `slate`, `red`, `orange`, `amber`, `green`, `teal`, `blue`, `purple`, `pink`. Sende `null`, um sie zu entfernen.
 </ParamField>
 
 ### Antwort

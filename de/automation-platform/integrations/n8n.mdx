@@ -1,36 +1,36 @@
 ---
 title: "N8N Integration"
-description: "Verbinden Sie Famulor mit N8N - Die open-source Alternative zu Famulor Automation für flexible, selbst-gehostete Workflows mit unserem offiziellen N8N-Node"
+description: "Verbinde Famulor mit N8N - Die open-source Alternative zu Famulor Automation für flexible, selbst-gehostete Workflows mit unserem offiziellen N8N-Node"
 ---
 
 
 # N8N Integration
 
-**Open-Source Alternative zu Famulor Automation**: Falls Sie die native Famulor Automation Platform nicht nutzen möchten, bietet N8N eine leistungsstarke, open-source Alternative für die Automatisierung Ihrer Workflows.
+**Open-Source Alternative zu Famulor Automation**: Falls du die native Famulor Automation Platform nicht nutzen möchtest, bietet N8N eine leistungsstarke, open-source Alternative für die Automatisierung deiner Workflows.
 
-Verbinden Sie Famulor nahtlos mit **N8N** durch unseren offiziellen N8N-Node. Automatisieren Sie Workflows zwischen Ihrer KI-Telefonie-Plattform und über **400 verfügbaren Nodes** - von CRM-Systemen bis hin zu selbst entwickelten APIs.
+Verbinde Famulor nahtlos mit **N8N** durch unseren offiziellen N8N-Node. Automatisiere Workflows zwischen deiner KI-Telefonie-Plattform und über **400 verfügbaren Nodes** - von CRM-Systemen bis hin zu selbst entwickelten APIs.
 
 <Card title="Offizieller Famulor N8N-Node" icon="github" href="https://github.com/bekservice/n8n-famulor">
-  Installieren Sie unseren offiziellen N8N-Node direkt von GitHub
+  Installiere unseren offiziellen N8N-Node direkt von GitHub
 </Card>
 
-## Wann sollten Sie N8N wählen?
+## Wann solltest du N8N wählen?
 
 <CardGroup cols={2}>
   <Card title="✅ N8N verwenden wenn" icon="check-circle" color="green">
-    - Sie open-source Lösungen bevorzugen
-    - Sie vollständige Kontrolle über Ihre Daten wünschen
-    - Sie eigene Nodes entwickeln möchten
-    - Sie kostenlosen, selbst-gehosteten Betrieb benötigen
-    - Sie komplexe, verzweigte Workflows erstellen wollen
-    - Sie bereits N8N für andere Integrationen nutzen
+    - du open-source Lösungen bevorzugst
+    - du vollständige Kontrolle über deine Daten wünschst
+    - du eigene Nodes entwickeln möchtest
+    - du kostenlosen, selbst-gehosteten Betrieb benötigst
+    - du komplexe, verzweigte Workflows erstellen willst
+    - du bereits N8N für andere Integrationen nutzt
   </Card>
   <Card title="⚡ Famulor Automation verwenden wenn" icon="wand-magic-sparkles" color="blue">
-    - Sie eine gehostete, wartungsfreie Lösung wünschen
-    - Sie sofort ohne Setup beginnen möchten
-    - Sie native Famulor-Features bevorzugen
-    - Sie die volle Integration ins Famulor-Ökosystem wollen
-    - Sie direkten Support von Famulor benötigen
+    - du eine gehostete, wartungsfreie Lösung wünschst
+    - du sofort ohne Setup beginnen möchtest
+    - du native Famulor-Features bevorzugst
+    - du die volle Integration ins Famulor-Ökosystem willst
+    - du direkten Support von Famulor benötigst
   </Card>
 </CardGroup>
 
@@ -55,7 +55,7 @@ Beiden Lösungen haben ihre spezifischen Stärken. Hier ist ein detaillierter Ve
 - **Custom Workflows**: Komplexe, mehrstufige Automatisierungen
 - **Datenverarbeitung**: Erweiterte Datenmanipulation und -transformation
 - **API-Integrationen**: Verbindung zu beliebigen REST/GraphQL APIs
-- **Datenschutz**: Vollständige Kontrolle über Ihre Daten
+- **Datenschutz**: Vollständige Kontrolle über deine Daten
 - **Enterprise-Integration**: Integration in bestehende IT-Infrastruktur
 
 **⚡ Besser mit Famulor Automation:**
@@ -69,13 +69,13 @@ Beiden Lösungen haben ihre spezifischen Stärken. Hier ist ein detaillierter Ve
 
 <Steps>
   <Step title="N8N-Installation">
-    Falls noch nicht installiert, installieren Sie N8N:
+    Falls noch nicht installiert, installiere N8N:
     ```bash
     npm install n8n -g
     ```
   </Step>
   <Step title="Famulor-Node installieren">
-    Klonen Sie unser Repository und installieren Sie den Node:
+    Klone unser Repository und installiere den Node:
     ```bash
     git clone https://github.com/bekservice/n8n-famulor.git
     cd n8n-famulor
@@ -84,15 +84,15 @@ Beiden Lösungen haben ihre spezifischen Stärken. Hier ist ein detaillierter Ve
     ```
   </Step>
   <Step title="Node zu N8N hinzufügen">
-    Kopieren Sie den gebauten Node in Ihr N8N-Custom-Nodes-Verzeichnis oder verwenden Sie npm link
+    Kopiere den gebauten Node in dein N8N-Custom-Nodes-Verzeichnis oder verwende npm link
   </Step>
   <Step title="N8N neu starten">
-    Starten Sie N8N neu, damit der neue Node erkannt wird
+    Starte N8N neu, damit der neue Node erkannt wird
   </Step>
 </Steps>
 
 <Note>
-**Tipp**: Detaillierte Installationsanweisungen finden Sie in der [README des GitHub-Repositories](https://github.com/bekservice/n8n-famulor).
+**Tipp**: Detaillierte Installationsanweisungen findest du in der [README des GitHub-Repositories](https://github.com/bekservice/n8n-famulor).
 </Note>
 
 ## Architektur-Übersicht
@@ -181,7 +181,7 @@ Der N8N-Node unterstützt auch Actions für ausgehende Operationen:
 
 Der N8N-Node implementiert robuste Sicherheitsmaßnahmen:
 
-- **API-Key-Authentifizierung**: Sichere Verbindung mit Ihrem Famulor-Account
+- **API-Key-Authentifizierung**: Sichere Verbindung mit deinem Famulor-Account
 - **Webhook-Signatur-Verifizierung**: Verifizierung aller eingehenden Webhooks
 - **HTTPS-Verschlüsselung**: Alle Datenübertragungen sind verschlüsselt
 - **Rate Limiting**: Schutz vor API-Missbrauch
@@ -237,7 +237,7 @@ flowchart LR
 ```
 
 ### Custom Node Development
-Der Famulor N8N-Node ist erweiterbar. Sie können eigene Nodes für spezifische Anwendungsfälle entwickeln:
+Der Famulor N8N-Node ist erweiterbar. Du kannst eigene Nodes für spezifische Anwendungsfälle entwickeln:
 
 ```javascript
 import {
@@ -261,30 +261,30 @@ export class FamulorCustom implements INodeType {
 ## Best Practices
 
 ### Performance-Optimierung
-- Verwenden Sie Webhook-Filter um unnötige Trigger zu vermeiden
-- Implementieren Sie Batch-Verarbeitung für hochvolumige Workflows
-- Nutzen Sie N8Ns Queue-Mode für ressourcenintensive Operationen
+- Verwende Webhook-Filter um unnötige Trigger zu vermeiden
+- Implementiere Batch-Verarbeitung für hochvolumige Workflows
+- Nutze N8Ns Queue-Mode für ressourcenintensive Operationen
 
 ### Sicherheit
-- Verwenden Sie starke Webhook-Secrets
-- Implementieren Sie IP-Whitelisting wenn möglich
-- Loggen Sie sensible Daten nicht in N8N-Logs
+- Verwende starke Webhook-Secrets
+- Implementiere IP-Whitelisting wenn möglich
+- Logge sensible Daten nicht in N8N-Logs
 
 ### Monitoring
-- Nutzen Sie N8Ns integriertes Monitoring
-- Implementieren Sie Health-Checks für kritische Workflows
-- Richten Sie Alerts für fehlgeschlagene Executions ein
+- Nutze N8Ns integriertes Monitoring
+- Implementiere Health-Checks für kritische Workflows
+- Richte Alerts für fehlgeschlagene Executions ein
 
 ## Warum N8N eine ausgezeichnete Alternative ist
 
 ### 🔓 Vollständige Kontrolle
-N8N ist open-source und selbst-gehostet. Sie behalten die vollständige Kontrolle über Ihre Daten und Workflows.
+N8N ist open-source und selbst-gehostet. Du behältst die vollständige Kontrolle über deine Daten und Workflows.
 
 ### 🛠️ Unendliche Erweiterbarkeit
-Mit der Möglichkeit, eigene Nodes zu entwickeln, sind Sie nicht auf vorgefertigte Integrationen beschränkt.
+Mit der Möglichkeit, eigene Nodes zu entwickeln, bist du nicht auf vorgefertigte Integrationen beschränkt.
 
 ### 💰 Kosteneffizient
-Keine monatlichen Gebühren - nur Ihre Hosting-Kosten. Ideal für Unternehmen mit hohem Workflow-Volumen.
+Keine monatlichen Gebühren - nur deine Hosting-Kosten. Ideal für Unternehmen mit hohem Workflow-Volumen.
 
 ### 🎯 Perfekt für Entwickler
 N8N bietet alle Tools, die Entwickler benötigen: Code-Nodes, Git-Integration, und vollständige API-Kontrolle.
@@ -306,10 +306,10 @@ Self-hosted Deployment, RBAC, und Integration in bestehende IT-Landschaften.
     Offizielle N8N-Dokumentation für erweiterte Workflows
   </Card>
   <Card title="Famulor Automation Platform" icon="wand-magic-sparkles" href="/de/automation-platform/introduction">
-    Vergleichen Sie mit unserer nativen Automatisierungsplattform
+    Vergleiche mit unserer nativen Automatisierungsplattform
   </Card>
   <Card title="Support kontaktieren" icon="life-ring" href="mailto:support@famulor.io">
-    Benötigen Sie Hilfe mit der Integration? Kontaktieren Sie uns
+    Benötigst du Hilfe mit der Integration? Kontaktiere uns
   </Card>
 </CardGroup>
 
@@ -317,18 +317,18 @@ Self-hosted Deployment, RBAC, und Integration in bestehende IT-Landschaften.
 
 Unser N8N-Node ist open-source und wir freuen uns über Beiträge:
 
-- **Bug Reports**: Melden Sie Probleme über GitHub Issues
-- **Feature Requests**: Schlagen Sie neue Features vor
-- **Pull Requests**: Tragen Sie Code-Verbesserungen bei
-- **Dokumentation**: Helfen Sie bei der Verbesserung der Docs
+- **Bug Reports**: Melde Probleme über GitHub Issues
+- **Feature Requests**: Schlage neue Features vor
+- **Pull Requests**: Trage Code-Verbesserungen bei
+- **Dokumentation**: Hilf bei der Verbesserung der Docs
 
 <Note>
-Folgen Sie unserem [GitHub-Repository](https://github.com/bekservice/n8n-famulor) für Updates und neue Features.
+Folge unserem [GitHub-Repository](https://github.com/bekservice/n8n-famulor) für Updates und neue Features.
 </Note>
 
 ---
 
-**Fazit**: N8N ist eine ausgezeichnete Alternative zur Famulor Automation Platform, besonders wenn Sie vollständige Kontrolle über Ihre Workflows und Daten wünschen. Für Entwickler und Enterprise-Umgebungen bietet N8N unschlagbare Flexibilität und Anpassungsmöglichkeiten.
+**Fazit**: N8N ist eine ausgezeichnete Alternative zur Famulor Automation Platform, besonders wenn du vollständige Kontrolle über deine Workflows und Daten wünschst. Für Entwickler und Enterprise-Umgebungen bietet N8N unschlagbare Flexibilität und Anpassungsmöglichkeiten.
 
 <Tip>
 Passende Seiten: [Introduction](/de/automation-platform/introduction) und [Building Flows](/de/automation-platform/building-flows) und [Debugging Runs](/de/automation-platform/debugging-runs).

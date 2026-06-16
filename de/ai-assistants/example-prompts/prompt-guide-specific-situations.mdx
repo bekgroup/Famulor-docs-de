@@ -8,7 +8,7 @@ description: 'Spezifische Prompt-Guides und Beispiele für häufige Situationen 
 # Prompt Guide für spezifische Situationen
 
 <Note>
-  Hier finden Sie spezifische Prompt-Guides und Beispiele für häufige Situationen, die Sie beim Aufbau eines Sprachassistenten mit Famulor antreffen könnten.
+  Hier findest du spezifische Prompt-Guides und Beispiele für häufige Situationen, die dir beim Aufbau eines Sprachassistenten mit Famulor begegnen könnten.
 </Note>
 
 ## Telefonnummern aussprechen
@@ -177,7 +177,7 @@ description: 'Spezifische Prompt-Guides und Beispiele für häufige Situationen 
   title="Kunden warten lassen"
   icon="pause"
   color="yellow">
-  Manchmal müssen Sie Kunden warten lassen oder es ist keine Antwort erforderlich. Famulor hat eine spezielle Funktion dafür:
+  Manchmal musst du Kunden warten lassen oder es ist keine Antwort erforderlich. Famulor hat eine spezielle Funktion dafür:
 </Card>
 
 ### Für nicht-reasoning Modelle
@@ -215,7 +215,7 @@ description: 'Spezifische Prompt-Guides und Beispiele für häufige Situationen 
 ### Für Reasoning Modelle
 
 <Warning>
-  Reasoning-Modelle wie `gpt-5` oder `gpt-5.1` unterstützen diese Funktion nicht. Sie müssen die Prompts anders gestalten, um dies zu erreichen.
+  Reasoning-Modelle wie `gpt-5` oder `gpt-5.1` unterstützen diese Funktion nicht. Du musst die Prompts anders gestalten, um dies zu erreichen.
 </Warning>
 
 <CodeGroup>
@@ -248,7 +248,7 @@ description: 'Spezifische Prompt-Guides und Beispiele für häufige Situationen 
   title="Text für Sprache normalisieren"
   icon="font"
   color="indigo">
-  Normalisieren Sie bestimmte Teile des Textes (Zahlen, Währung, Datum, etc.) in ihre gesprochene Form für eine konsistentere Sprachsynthese. Manchmal können TTS-Modelle nicht normalisierten Text falsch lesen.
+  Normalisiere bestimmte Teile des Textes (Zahlen, Währung, Datum, etc.) in ihre gesprochene Form für eine konsistentere Sprachsynthese. Manchmal können TTS-Modelle nicht normalisierten Text falsch lesen.
 </Card>
 
 ### Beispiel für Text-Normalisierung
@@ -295,8 +295,8 @@ description: 'Spezifische Prompt-Guides und Beispiele für häufige Situationen 
   title="Spracheinstellungen"
   icon="gear"
   color="blue">
-  Wenn Sie eine Sprache auswählen, die nicht mehrsprachig ist, wird dieser Sprachcode verwendet, um den Text zu normalisieren (z.B. wird 1 zu "eins" normalisiert, wenn Sie Deutsch verwenden).
-  Wenn Sie mehrsprachig auswählen, wird die Sprache automatisch basierend auf dem generierten Text erkannt und entsprechend normalisiert.
+  Wenn du eine Sprache auswählst, die nicht mehrsprachig ist, wird dieser Sprachcode verwendet, um den Text zu normalisieren (z.B. wird 1 zu "eins" normalisiert, wenn du Deutsch verwendest).
+  Wenn du mehrsprachig auswählst, wird die Sprache automatisch basierend auf dem generierten Text erkannt und entsprechend normalisiert.
 </Card>
 
 ## Prompt Engineering Guide
@@ -310,18 +310,18 @@ description: 'Spezifische Prompt-Guides und Beispiele für häufige Situationen 
 
 ### Einführung
 
-Prompt Engineering ist die Grundlage für die Erstellung effektiver KI-Telefonassistenten. Ein gut gestalteter Prompt bestimmt, wie Ihr Assistent Situationen interpretiert, auf Benutzer reagiert und Edge Cases behandelt. Dieser Guide bietet bewährte Strategien für das Schreiben von Prompts, die Assistenten zuverlässig befolgen können.
+Prompt Engineering ist die Grundlage für die Erstellung effektiver KI-Telefonassistenten. Ein gut gestalteter Prompt bestimmt, wie dein Assistent Situationen interpretiert, auf Benutzer reagiert und Edge Cases behandelt. Dieser Guide bietet bewährte Strategien für das Schreiben von Prompts, die Assistenten zuverlässig befolgen können.
 
 <Note>
   Dieser Guide konzentriert sich auf allgemeine Prompt-Engineering-Prinzipien. Für agentenspezifische Implementierung:
   
-  * **Single/Multi Prompt Agents**: Wenden Sie diese Prinzipien direkt in Ihren Prompts an
-  * **Conversation Flow Agents**: Verwenden Sie diese Prinzipien innerhalb einzelner Knoten-Anweisungen
+  * **Single/Multi Prompt Agents**: Wende diese Prinzipien direkt in deinen Prompts an
+  * **Conversation Flow Agents**: Verwende diese Prinzipien innerhalb einzelner Knoten-Anweisungen
 </Note>
 
-### Best Practice 1: Verwenden Sie strukturierte Prompts
+### Best Practice 1: Verwende strukturierte Prompts
 
-Teilen Sie große Prompts in fokussierte Abschnitte auf, um die Organisation und das LLM-Verständnis zu verbessern. Dieser strukturierte Ansatz bietet mehrere Vorteile:
+Teile große Prompts in fokussierte Abschnitte auf, um die Organisation und das LLM-Verständnis zu verbessern. Dieser strukturierte Ansatz bietet mehrere Vorteile:
 
 * **Wiederverwendbarkeit**: Abschnitte können über verschiedene Agenten hinweg angepasst werden
 * **Wartbarkeit**: Einfaches Aktualisieren spezifischer Verhaltensweisen ohne Beeinflussung anderer
@@ -365,9 +365,9 @@ Wenn der Anrufer sagt, dass er nicht interessiert ist: "Ich verstehe. Gibt es et
 Wenn der Anrufer frustriert ist: "Ich verstehe Ihre Frustration, lassen Sie mich helfen, dies zu lösen..."
 ```
 
-### Best Practice 2: Verwenden Sie Conversation Flow für komplexe Aufgaben
+### Best Practice 2: Verwende Conversation Flow für komplexe Aufgaben
 
-Wenn Ihr Assistent komplexe Logik oder mehrere Tools handhaben muss, sollten Sie Conversation Flow Agents verwenden, anstatt alles in einem einzelnen Prompt zu verwalten.
+Wenn dein Assistent komplexe Logik oder mehrere Tools handhaben muss, solltest du Conversation Flow Agents verwenden, anstatt alles in einem einzelnen Prompt zu verwalten.
 
 #### Wann zu Conversation Flow wechseln:
 
@@ -397,9 +397,9 @@ LLMs haben oft Schwierigkeiten zu bestimmen, wann Tools basierend nur auf Tool-B
 * Tools nicht aufrufen, wenn sie benötigt werden
 * Das falsche Tool für eine Situation verwenden
 
-#### Lösung: Definieren Sie klare Trigger
+#### Lösung: Definiere klare Trigger
 
-Geben Sie immer genaue Bedingungen für die Tool-Verwendung in Ihren Prompts an. Verweisen Sie auf Tools mit ihren genauen Namen.
+Gib immer genaue Bedingungen für die Tool-Verwendung in deinen Prompts an. Verweise auf Tools mit ihren genauen Namen.
 
 ##### Beispiel: Kundenservice-Agent
 
@@ -435,10 +435,10 @@ Geben Sie immer genaue Bedingungen für die Tool-Verwendung in Ihren Prompts an.
 
 #### Best Practices für Tool-Anweisungen
 
-1. **Verwenden Sie Trigger-Wörter**: Listen Sie spezifische Wörter/Phrasen auf, die Tool-Aufrufe auslösen sollten
-2. **Definieren Sie Sequenzen**: Geben Sie an, wann Tools in Reihenfolge aufgerufen werden sollen
-3. **Setzen Sie Grenzen**: Klären Sie, wann bestimmte Tools NICHT aufgerufen werden sollen
-4. **Bieten Sie Kontext**: Erklären Sie, warum jedes Tool aufgerufen wird
+1. **Verwende Trigger-Wörter**: Liste spezifische Wörter/Phrasen auf, die Tool-Aufrufe auslösen sollten
+2. **Definiere Sequenzen**: Gib an, wann Tools in Reihenfolge aufgerufen werden sollen
+3. **Setze Grenzen**: Kläre, wann bestimmte Tools NICHT aufgerufen werden sollen
+4. **Biete Kontext**: Erkläre, warum jedes Tool aufgerufen wird
 
 ## Praktische Beispiele für Famulor
 
@@ -488,21 +488,21 @@ Geben Sie immer genaue Bedingungen für die Tool-Verwendung in Ihren Prompts an.
 ## Testen und Optimieren
 
 <Card
-  title="Testen Sie Ihre Prompts"
+  title="Teste deine Prompts"
   icon="play"
   color="green">
   
-    - **Audio-Tests durchführen** - Hören Sie sich die Aussprache an
-    - **Verschiedene Szenarien testen** - Testen Sie alle spezifischen Situationen
-    - **Kundenfeedback sammeln** - Fragen Sie nach der Verständlichkeit
-    - **Iterativ verbessern** - Passen Sie basierend auf den Ergebnissen an
+    - **Audio-Tests durchführen** - Hör dir die Aussprache an
+    - **Verschiedene Szenarien testen** - Teste alle spezifischen Situationen
+    - **Kundenfeedback sammeln** - Frag nach der Verständlichkeit
+    - **Iterativ verbessern** - Passe basierend auf den Ergebnissen an
   
 </Card>
 
 ## Hilfe und Support
 
 <Tip>
-  Unser Support-Team kann Ihnen bei der Anpassung Ihrer Prompts für spezifische Situationen helfen.
+  Unser Support-Team kann dir bei der Anpassung deiner Prompts für spezifische Situationen helfen.
 </Tip>
 
 <Card
@@ -510,7 +510,7 @@ Geben Sie immer genaue Bedingungen für die Tool-Verwendung in Ihren Prompts an.
   icon="headphones"
   color="blue"
   href="mailto:support@famulor.io">
-  Benötigen Sie Hilfe bei der Anpassung Ihrer Prompts? Kontaktieren Sie unser Support-Team.
+  Benötigst du Hilfe bei der Anpassung deiner Prompts? Kontaktiere unser Support-Team.
 </Card>
 
 ## Nächste Schritte
@@ -520,10 +520,10 @@ Geben Sie immer genaue Bedingungen für die Tool-Verwendung in Ihren Prompts an.
   icon="arrow-right"
   color="purple">
   
-    - Schauen Sie sich unseren <a href="/de/ai-assistants/example-prompts/general-prompt-engineering-guide">Allgemeinen Prompt Engineering Guide</a> an
-    - Entdecken Sie unsere **Prompt-Vorlagen** im Dashboard
-    - Lernen Sie mehr über <a href="/de/ai-assistants/example-prompts/pause-or-read-slowly">Sprachsteuerbarkeit</a>
-    - Testen Sie Ihre Prompts mit **Audio-Tests**
+    - Schau dir unseren <a href="/de/ai-assistants/example-prompts/general-prompt-engineering-guide">Allgemeinen Prompt Engineering Guide</a> an
+    - Entdecke unsere **Prompt-Vorlagen** im Dashboard
+    - Lerne mehr über <a href="/de/ai-assistants/example-prompts/pause-or-read-slowly">Sprachsteuerbarkeit</a>
+    - Teste deine Prompts mit **Audio-Tests**
   
 </Card>
 

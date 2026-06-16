@@ -37,7 +37,7 @@ Dieser Endpunkt deaktiviert Webhook-Benachrichtigungen für einen Assistenten un
 
 Wenn der Webhook deaktiviert wird:
 
-- Der Assistent hört auf, HTTP POST-Requests an Ihre Webhook-URL zu senden
+- Der Assistent hört auf, HTTP POST-Requests an deine Webhook-URL zu senden
 - Sowohl `is_webhook_active` wird auf `false` gesetzt als auch `webhook_url` wird auf `null` gesetzt
 - Laufende Anrufe werden normal abgeschlossen, aber es werden keine Webhook-Benachrichtigungen gesendet
 - Anrufdaten sind weiterhin über die API-Endpunkte für Anrufe verfügbar
@@ -46,7 +46,7 @@ Wenn der Webhook deaktiviert wird:
 
 - Der Assistent muss dem authentifizierten Benutzer gehören
 - Dies entfernt die Webhook-Konfiguration vollständig vom Assistenten
-- Sie können später Webhooks mit einem neuen URL über den Enable Webhook Endpunkt wieder aktivieren
+- Du kannst später Webhooks mit einer neuen URL über den Enable Webhook Endpunkt wieder aktivieren
 - Das Deaktivieren von Webhooks beeinflusst nicht die Anrufaufzeichnung oder Datenerfassung
 
 

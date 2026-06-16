@@ -1,10 +1,10 @@
 ---
 title: "Kampagne erstellen"
 api: "POST https://app.famulor.de/api/user/campaigns"
-description: "Erstellen Sie eine neue Outbound-Anrufkampagne in Famulor per API. Weisen Sie einen KI-Voice-Agent zu, laden Sie Leads hoch und starten Sie automatisierte Anrufe."
+description: "Erstelle eine neue Outbound-Anrufkampagne in Famulor per API. Weise einen KI-Voice-Agent zu, lade Leads hoch und starte automatisierte Anrufe."
 ---
 
-Dieser Endpunkt ermöglicht es Ihnen, eine neue Outbound-Anrufkampagne mit der angegebenen Konfiguration zu erstellen.
+Dieser Endpunkt ermöglicht es dir, eine neue Outbound-Anrufkampagne mit der angegebenen Konfiguration zu erstellen.
 
 ### Request Body
 
@@ -17,11 +17,11 @@ Dieser Endpunkt ermöglicht es Ihnen, eine neue Outbound-Anrufkampagne mit der a
 </ParamField>
 
 <ParamField body="timezone" type="string">
-  Zeitzonen-Kennung für die Kampagne (z. B. `America/New_York`, `Europe/London`). Standard: Zeitzone Ihres Kontos.
+  Zeitzonen-Kennung für die Kampagne (z. B. `America/New_York`, `Europe/London`). Standard: Zeitzone deines Kontos.
 </ParamField>
 
 <ParamField body="max_calls_in_parallel" type="integer" default="3">
-  Maximale Anzahl gleichzeitiger Anrufe. Minimum: 1. Maximum abhängig vom Parallel-Anruf-Limit Ihres Tarifs (bis 10).
+  Maximale Anzahl gleichzeitiger Anrufe. Minimum: 1. Maximum abhängig vom Parallel-Anruf-Limit deines Tarifs (bis 10).
 </ParamField>
 
 <ParamField body="allowed_hours_start_time" type="string" default="00:00">
@@ -53,7 +53,7 @@ Dieser Endpunkt ermöglicht es Ihnen, eine neue Outbound-Anrufkampagne mit der a
 </ParamField>
 
 <ParamField body="goal_completion_variable" type="string">
-  Name einer Boolean-Variable aus dem Post-Call-Schema Ihres Assistenten zur Erfassung der Zielerreichung. Maximal 255 Zeichen.
+  Name einer Boolean-Variable aus dem Post-Call-Schema deines Assistenten zur Erfassung der Zielerreichung. Maximal 255 Zeichen.
 </ParamField>
 
 <ParamField body="mark_complete_when_no_leads" type="boolean" default="true">

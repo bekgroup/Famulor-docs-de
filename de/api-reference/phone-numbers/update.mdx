@@ -4,9 +4,9 @@ api: "PUT https://app.famulor.de/api/user/phone-numbers/{id}"
 description: "Spitzname einer Telefonnummer aktualisieren"
 ---
 
-Dieser Endpunkt aktualisiert die bearbeitbaren Attribute einer Telefonnummer, die Ihnen gehört. Derzeit ist dies der **Spitzname** — ein kurzes, menschenlesbares Label (z. B. „Vertrieb“, „Support — US“), das neben der Nummer im Dashboard angezeigt wird.
+Dieser Endpunkt aktualisiert die bearbeitbaren Attribute einer Telefonnummer, die dir gehört. Derzeit ist dies der **Spitzname** — ein kurzes, menschenlesbares Label (z. B. „Vertrieb“, „Support — US“), das neben der Nummer im Dashboard angezeigt wird.
 
-Nur der **Eigentümer** der Nummer kann sie aktualisieren. Mit Ihnen geteilte Nummern (granted) zeigen den Spitznamen an, können aber von Ihnen nicht geändert werden.
+Nur der **Eigentümer** der Nummer kann sie aktualisieren. Mit dir geteilte Nummern (granted) zeigen den Spitznamen an, können aber von dir nicht geändert werden.
 
 ### Pfad-Parameter
 
@@ -17,7 +17,7 @@ Nur der **Eigentümer** der Nummer kann sie aktualisieren. Mit Ihnen geteilte Nu
 ### Body-Parameter
 
 <ParamField body="nickname" type="string">
-  Ein kurzes Label für die Telefonnummer. Maximal 50 Zeichen. Senden Sie `null` oder einen leeren String, um es zu löschen.
+  Ein kurzes Label für die Telefonnummer. Maximal 50 Zeichen. Sende `null` oder einen leeren String, um es zu löschen.
 </ParamField>
 
 ### Antwort
@@ -83,5 +83,5 @@ Nur der **Eigentümer** der Nummer kann sie aktualisieren. Mit Ihnen geteilte Nu
 </ResponseExample>
 
 <Note>
-  Der Spitzname ist dasselbe Label, das Sie im Dashboard setzen können. Er wird von den Auflistungs-Endpunkten (`GET /user/phone-numbers/all`, `GET /user/phone-numbers/sip-trunks`) zurückgegeben, sodass andere Ressourcen, die eine Nummer per `phone_number_id` referenzieren, den Spitznamen dort auflösen können.
+  Der Spitzname ist dasselbe Label, das du im Dashboard setzen kannst. Er wird von den Auflistungs-Endpunkten (`GET /user/phone-numbers/all`, `GET /user/phone-numbers/sip-trunks`) zurückgegeben, sodass andere Ressourcen, die eine Nummer per `phone_number_id` referenzieren, den Spitznamen dort auflösen können.
 </Note>

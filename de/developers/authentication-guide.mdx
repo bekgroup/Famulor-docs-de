@@ -7,7 +7,7 @@ description: "Vollständiger Leitfaden zur API-Authentifizierung für Entwickler
 
 # Authentifizierung für Entwickler
 
-Dieser Leitfaden zeigt Ihnen, wie Sie Ihre Famulor API-Anfragen korrekt authentifizieren und dabei Best Practices für Sicherheit und Fehlerbehebung befolgen.
+Dieser Leitfaden zeigt dir, wie du deine Famulor API-Anfragen korrekt authentifizierst und dabei Best Practices für Sicherheit und Fehlerbehebung befolgst.
 
 <Info>
 Für eine schnelle Referenz siehe unsere [grundlegende Authentifizierungsseite](/de/api-reference/authentication) in der API-Referenz.
@@ -21,32 +21,32 @@ Die Famulor API verwendet **Bearer Token-Authentifizierung** mit API-Schlüsseln
 
 <Steps>
   <Step title="Dashboard öffnen">
-    Melden Sie sich bei Ihrem Famulor-Konto an unter [https://app.famulor.de](https://app.famulor.de)
+    Melde dich bei deinem Famulor-Konto an unter [https://app.famulor.de](https://app.famulor.de)
   </Step>
   <Step title="API-Schlüssel Seite">
-    Navigieren Sie zur **\"API-Schlüssel\"** Seite in Ihrem Dashboard
+    Navigiere zur **\"API-Schlüssel\"** Seite in deinem Dashboard
   </Step>
   <Step title="Schlüssel erstellen">
-    Klicken Sie auf **\"Neuen API-Schlüssel erstellen\"**
+    Klicke auf **\"Neuen API-Schlüssel erstellen\"**
   </Step>
   <Step title="Sicher speichern">
-    Kopieren Sie den Schlüssel sofort und speichern Sie ihn sicher ab - er wird nur einmal angezeigt
+    Kopiere den Schlüssel sofort und speichere ihn sicher ab - er wird nur einmal angezeigt
   </Step>
 </Steps>
 
 <Warning>
 **Wichtige Sicherheitshinweise:**
-- Halten Sie Ihren API-Schlüssel vertraulich und sicher
-- Teilen Sie ihn niemals öffentlich oder in Code-Repositories
-- Rotieren Sie Schlüssel regelmäßig (empfohlen: alle 90 Tage)
-- Verwenden Sie Umgebungsvariablen für die Speicherung
+- Halte deinen API-Schlüssel vertraulich und sicher
+- Teile ihn niemals öffentlich oder in Code-Repositories
+- Rotiere Schlüssel regelmäßig (empfohlen: alle 90 Tage)
+- Verwende Umgebungsvariablen für die Speicherung
 </Warning>
 
 ## API-Schlüssel verwenden
 
 ### Standard-Authentifizierung
 
-Fügen Sie Ihren API-Schlüssel in den `Authorization` Header jeder Anfrage ein:
+Füge deinen API-Schlüssel in den `Authorization` Header jeder Anfrage ein:
 
 ```
 Authorization: Bearer YOUR_API_KEY
@@ -170,10 +170,10 @@ docker run -e FAMULOR_API_KEY=your_actual_api_key_here your-app
     ```
     
     **Lösungen:**
-    - Überprüfen Sie, ob der API-Schlüssel korrekt kopiert wurde
-    - Stellen Sie sicher, dass keine Leerzeichen vor/nach dem Schlüssel stehen
-    - Prüfen Sie, ob der Schlüssel noch gültig ist (nicht abgelaufen)
-    - Erstellen Sie bei Bedarf einen neuen API-Schlüssel
+    - Überprüfe, ob der API-Schlüssel korrekt kopiert wurde
+    - Stelle sicher, dass keine Leerzeichen vor/nach dem Schlüssel stehen
+    - Prüfe, ob der Schlüssel noch gültig ist (nicht abgelaufen)
+    - Erstelle bei Bedarf einen neuen API-Schlüssel
   </Accordion>
 
   <Accordion title="403 Forbidden - Fehlende Berechtigung">
@@ -185,9 +185,9 @@ docker run -e FAMULOR_API_KEY=your_actual_api_key_here your-app
     ```
     
     **Lösungen:**
-    - Überprüfen Sie die Berechtigungen Ihres API-Schlüssels
-    - Kontaktieren Sie den Support, falls erweiterte Berechtigungen benötigt werden
-    - Stellen Sie sicher, dass Sie auf die richtige Ressource zugreifen
+    - Überprüfe die Berechtigungen deines API-Schlüssels
+    - Kontaktiere den Support, falls erweiterte Berechtigungen benötigt werden
+    - Stelle sicher, dass du auf die richtige Ressource zugreifst
   </Accordion>
 
   <Accordion title="Missing Authorization Header">
@@ -199,9 +199,9 @@ docker run -e FAMULOR_API_KEY=your_actual_api_key_here your-app
     ```
     
     **Lösungen:**
-    - Stellen Sie sicher, dass der `Authorization` Header gesetzt ist
-    - Prüfen Sie die Schreibweise: `Authorization: Bearer YOUR_API_KEY`
-    - Überprüfen Sie, ob der Header in Ihrem HTTP-Client korrekt konfiguriert ist
+    - Stelle sicher, dass der `Authorization` Header gesetzt ist
+    - Prüfe die Schreibweise: `Authorization: Bearer YOUR_API_KEY`
+    - Überprüfe, ob der Header in deinem HTTP-Client korrekt konfiguriert ist
   </Accordion>
 </AccordionGroup>
 
@@ -239,7 +239,7 @@ curl -X GET "https://app.famulor.de/api/user/assistants" \
 - **Minimale Berechtigungen** anwenden
 - **Logging** von API-Aufrufen ohne Schlüssel-Preisgabe
 
-### ❌ Vermeiden Sie
+### ❌ Vermeide
 
 - API-Schlüssel im Code hart codieren
 - Schlüssel in Versionskontrollsysteme committen
@@ -276,7 +276,7 @@ X-RateLimit-Reset: 1640995200
 
 <CardGroup cols={2}>
   <Card title="Ersten Anruf tätigen" icon="phone" href="/de/api-reference/calls/make">
-    Lernen Sie, wie Sie API-Aufrufe für Voice Agents implementieren
+    Lerne, wie du API-Aufrufe für Voice Agents implementierst
   </Card>
   <Card title="Webhook-Integration" icon="link" href="/de/api-reference/webhooks/post-call">
     Post-Call-Datenverarbeitung einrichten
@@ -290,5 +290,5 @@ X-RateLimit-Reset: 1640995200
 </CardGroup>
 
 <Tip>
-Beginnen Sie mit einem einfachen Test-Aufruf, um sicherzustellen, dass Ihre Authentifizierung korrekt funktioniert, bevor Sie komplexere Integrationen implementieren.
+Beginne mit einem einfachen Test-Aufruf, um sicherzustellen, dass deine Authentifizierung korrekt funktioniert, bevor du komplexere Integrationen implementierst.
 </Tip>

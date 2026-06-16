@@ -5,19 +5,19 @@ description: "Webhook, der nach Abschluss eines Anrufs gesendet wird und extrahi
 ---
 
 
-Der Post-Call Webhook wird automatisch an Ihre angegebene Webhook-URL gesendet, nachdem jeder Anruf abgeschlossen wurde. Dieser Webhook enthält Anrufdetails, extrahierte Variablen, Transkript und optional die Aufzeichnungs-URL.
+Der Post-Call Webhook wird automatisch an deine angegebene Webhook-URL gesendet, nachdem jeder Anruf abgeschlossen wurde. Dieser Webhook enthält Anrufdetails, extrahierte Variablen, Transkript und optional die Aufzeichnungs-URL.
 
 ## Webhook-Konfiguration
 
 Um Post-Call Webhooks zu aktivieren:
 
-1. Konfigurieren Sie die Webhook-URL Ihres Assistenten in den Assistenten-Einstellungen
-2. Aktivieren Sie "Post call webhook" in der Assistenten-Konfiguration
-3. Definieren Sie Post-Call-Variablen, die die KI extrahieren soll
+1. Konfiguriere die Webhook-URL deines Assistenten in den Assistenten-Einstellungen
+2. Aktiviere "Post call webhook" in der Assistenten-Konfiguration
+3. Definiere Post-Call-Variablen, die die KI extrahieren soll
 
 ## Request-Format
 
-Der Webhook wird als POST-Request an Ihre konfigurierte URL mit dem folgenden JSON-Payload gesendet:
+Der Webhook wird als POST-Request an deine konfigurierte URL mit dem folgenden JSON-Payload gesendet:
 
 ### Payload-Struktur
 
@@ -42,7 +42,7 @@ Der Webhook wird als POST-Request an Ihre konfigurierte URL mit dem folgenden JS
 </ResponseField>
 
 <ResponseField name="extracted_variables" type="object">
-  Von der KI extrahierte Variablen basierend auf Ihrer Post-Call-Schema-Konfiguration
+  Von der KI extrahierte Variablen basierend auf deiner Post-Call-Schema-Konfiguration
 
   <Expandable title="Beispiel extrahierte Variablen">
     ```json
@@ -159,7 +159,7 @@ Der Webhook wird als POST-Request an Ihre konfigurierte URL mit dem folgenden JS
 
 ## Webhook-Einstellungen
 
-Sie können die folgenden Optionen für Ihren Post-Call Webhook konfigurieren:
+Du kannst die folgenden Optionen für deinen Post-Call Webhook konfigurieren:
 
 - **Send webhook only on completed**: Webhook nur für erfolgreich abgeschlossene Anrufe senden
 - **Include recording in webhook**: Das Feld `recording_url` in den Payload einschließen
@@ -168,9 +168,9 @@ Sie können die folgenden Optionen für Ihren Post-Call Webhook konfigurieren:
 ## Wichtige Hinweise
 
 - Die Felder `customer_phone` und `assistant_phone` können null sein, wenn die Information nicht verfügbar ist
-- Das Feld `recording_url` ist nur enthalten, wenn Sie "Include recording in webhook" in Ihren Assistenten-Einstellungen aktiviert haben
+- Das Feld `recording_url` ist nur enthalten, wenn du "Include recording in webhook" in deinen Assistenten-Einstellungen aktiviert hast
 - Das `lead`-Objekt ist nur bei Anrufen enthalten, die Teil einer Kampagne sind
-- Das `extracted_variables`-Objekt enthält die Variablen, die Sie in der Post-Call-Schema-Konfiguration Ihres Assistenten definiert haben
+- Das `extracted_variables`-Objekt enthält die Variablen, die du in der Post-Call-Schema-Konfiguration deines Assistenten definiert hast
 
 <ResponseExample>
 

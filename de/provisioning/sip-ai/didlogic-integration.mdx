@@ -1,6 +1,6 @@
 ---
 title: "DIDLogic Integration"
-description: "Schritt-für-Schritt-Anleitung zur Verbindung Ihres DIDLogic-Kontos per SIP-Trunking"
+description: "Schritt-für-Schritt-Anleitung zur Verbindung deines DIDLogic-Kontos per SIP-Trunking"
 ---
 
 import SipDoneForYou from '/de/snippets/sip-done-for-you-partner-de.mdx';
@@ -9,11 +9,11 @@ import SipDoneForYou from '/de/snippets/sip-done-for-you-partner-de.mdx';
 
 
 <Note>
-  Folgen Sie dieser Anleitung, um DIDLogic mit Famulor für eingehende und ausgehende Anrufe zu verbinden.
+  Folge dieser Anleitung, um DIDLogic mit Famulor für eingehende und ausgehende Anrufe zu verbinden.
 </Note>
 
 <Note>
-**Rufnummern-Import (BYOC):** Öffnen Sie im Famulor-Dashboard **Ihre Telefonnummern → SIP-Trunk integrieren**. Der Assistent listet **Twilio**, **Telnyx**, **Zadarma** und **DIDLogic**. Mit **Nummer importieren** legt Famulor bei uns alles Nötige an und importiert Ihre Rufnummern vom Anbieter, sobald das Konto verbunden ist—ohne jedes SIP-Feld manuell zu pflegen. Nutzen Sie **Nummer importieren**, oder **folgen Sie der Anleitung unten** für die vollständig manuelle Einrichtung. Überblick: [SIP-Integration](/de/provisioning/sip-ai/sip-integration). Die folgenden Schritte beschreiben **manuelles DIDLogic** SIP-Trunking.
+**Rufnummern-Import (BYOC):** Öffne im Famulor-Dashboard **deine Telefonnummern → SIP-Trunk integrieren**. Der Assistent listet **Twilio**, **Telnyx**, **Zadarma** und **DIDLogic**. Mit **Nummer importieren** legt Famulor bei uns alles Nötige an und importiert deine Rufnummern vom Anbieter, sobald das Konto verbunden ist—ohne jedes SIP-Feld manuell zu pflegen. Nutze **Nummer importieren**, oder **folge der Anleitung unten** für die vollständig manuelle Einrichtung. Überblick: [SIP-Integration](/de/provisioning/sip-ai/sip-integration). Die folgenden Schritte beschreiben **manuelles DIDLogic** SIP-Trunking.
 </Note>
 
 <Frame>
@@ -34,14 +34,14 @@ import SipDoneForYou from '/de/snippets/sip-done-for-you-partner-de.mdx';
 
 <Steps>
   <Step title="Telefonnummer kaufen">
-    Melden Sie sich im DIDLogic-Dashboard unter [app.didlogic.com](https://app.didlogic.com) an und öffnen Sie den Tab **BUY**.
-    Suchen Sie nach Land und Ortsvorwahl, legen Sie eine Nummer in den Warenkorb und schließen Sie den Kauf ab.
+    Melde dich im DIDLogic-Dashboard unter [app.didlogic.com](https://app.didlogic.com) an und öffne den Tab **BUY**.
+    Suche nach Land und Ortsvorwahl, lege eine Nummer in den Warenkorb und schließe den Kauf ab.
 
     <Frame>
       <img src="/resources/didlogic-buy-tab.png" alt="DIDLogic BUY-Tab mit verfügbaren Nummern" />
     </Frame>
 
-    Ihre neue Nummer erscheint anschließend im Tab **PURCHASED**.
+    Deine neue Nummer erscheint anschließend im Tab **PURCHASED**.
 
     <Frame>
       <img src="/resources/didlogic-purchased-tab.png" alt="DIDLogic PURCHASED-Tab mit gekaufter Nummer" />
@@ -49,7 +49,7 @@ import SipDoneForYou from '/de/snippets/sip-done-for-you-partner-de.mdx';
   </Step>
 
   <Step title="SIP-Konto konfigurieren (Outbound)">
-    Öffnen Sie den Tab **SIP** und klicken Sie bei Ihrem SIP-Konto auf **Edit**.
+    Öffne den Tab **SIP** und klicke bei deinem SIP-Konto auf **Edit**.
 
     <Frame>
       <img src="/resources/didlogic-sip-accounts.png" alt="DIDLogic SIP-Kontenliste" />
@@ -69,11 +69,11 @@ import SipDoneForYou from '/de/snippets/sip-done-for-you-partner-de.mdx';
       <img src="/resources/didlogic-sip-update-confirmed.png" alt="DIDLogic SIP-Konto mit autorisierter IP und Update" />
     </Frame>
 
-    Scrollen Sie zur regionalen Gateway-Liste und kopieren Sie die SIP-URI Ihrer Region. Diese benötigen Sie später in den Outbound-Einstellungen in Famulor.
+    Scrolle zur regionalen Gateway-Liste und kopiere die SIP-URI deiner Region. Diese benötigst du später in den Outbound-Einstellungen in Famulor.
   </Step>
 
   <Step title="Inbound-Routing in DIDLogic konfigurieren">
-    Öffnen Sie **PURCHASED** und klicken Sie neben Ihrer Nummer auf **Destination**.
+    Öffne **PURCHASED** und klicke neben deiner Nummer auf **Destination**.
 
     - Vorhandenes Ziel löschen
     - Auswahl von **SIP device** auf **SIP URI** ändern
@@ -97,13 +97,13 @@ import SipDoneForYou from '/de/snippets/sip-done-for-you-partner-de.mdx';
   </Step>
 
   <Step title="Nummer in Famulor importieren">
-    Gehen Sie im Famulor-Dashboard zu **Your Phone Numbers** -> **Integrate SIP trunk**.
+    Geh im Famulor-Dashboard zu **Your Phone Numbers** -> **Integrate SIP trunk**.
 
     <Frame>
       <img src="/resources/didlogic-famulor-import-form.png" alt="Famulor SIP-Trunk-Importformular mit DIDLogic-Zugangsdaten" />
     </Frame>
 
-    Tragen Sie ein:
+    Trage ein:
 
     - **Phone number:** DIDLogic-Nummer im E.164-Format (Beispiel `+15551234567`)
     - **Username:** SIP-Kontonummer aus Schritt 2 (Beispiel `12345`)
@@ -146,18 +146,18 @@ import SipDoneForYou from '/de/snippets/sip-done-for-you-partner-de.mdx';
     | sip.za.didlogic.net | 102.130.116.205 |
     | sip.br.didlogic.net | 169.57.132.146 |
 
-    Wählen Sie das Land, in dem Ihr SIP-Trunk gehostet ist.
+    Wähle das Land, in dem dein SIP-Trunk gehostet ist.
   </Step>
 
   <Step title="Einrichtung verifizieren">
-    - Testanruf auf Ihre Nummer durchführen (Inbound)
+    - Testanruf auf deine Nummer durchführen (Inbound)
     - In Famulor einen Testanruf für Outbound durchführen
   </Step>
 </Steps>
 
 ## Sicherheitsanforderungen
 
-Ihre SIP-Zugangsdaten sollten sicher sein:
+Deine SIP-Zugangsdaten sollten sicher sein:
 
 - Mindestens 12 Zeichen
 - Zahlen enthalten

@@ -6,7 +6,7 @@ description: "Famulor Model Context Protocol Server — Voice Agents, Anrufe, Ka
 
 # Famulor MCP Server
 
-Steuern Sie Ihre Famulor-KI-Voice-Agents — Anrufe, Leads, Kampagnen, Wissensdatenbanken, Konversationen, WhatsApp, SIP-Trunks — direkt aus **ChatGPT**, **Claude**, **Cursor**, **Windsurf**, **VS Code** und jedem anderen MCP-kompatiblen Client.
+Steuere deine Famulor-KI-Voice-Agents — Anrufe, Leads, Kampagnen, Wissensdatenbanken, Konversationen, WhatsApp, SIP-Trunks — direkt aus **ChatGPT**, **Claude**, **Cursor**, **Windsurf**, **VS Code** und jedem anderen MCP-kompatiblen Client.
 
 <img
   src="/images/provisioning/sip-ai/famulor-mcp-server.png"
@@ -27,7 +27,7 @@ Steuern Sie Ihre Famulor-KI-Voice-Agents — Anrufe, Leads, Kampagnen, Wissensda
 
 ## Übersicht
 
-Der Famulor-MCP-Server stellt die gesamte Famulor-Plattform als **76 Tools** bereit, die Ihr KI-Assistent aufrufen kann. Fragen Sie in natürlicher Sprache — das Modell wählt die passenden Tools. Alle Tools liefern strukturierte Ausgaben (Output-Schemas + `structuredContent`) und Title-Annotations für Directory-kompatible Clients.
+Der Famulor-MCP-Server stellt die gesamte Famulor-Plattform als **76 Tools** bereit, die dein KI-Assistent aufrufen kann. Frag in natürlicher Sprache — das Modell wählt die passenden Tools. Alle Tools liefern strukturierte Ausgaben (Output-Schemas + `structuredContent`) und Title-Annotations für Directory-kompatible Clients.
 
 **Beispiel-Prompts:**
 
@@ -39,7 +39,7 @@ Der Famulor-MCP-Server stellt die gesamte Famulor-Plattform als **76 Tools** ber
 Mehr Inspiration: [Use Cases & Prompts](/de/mcp/use-cases) — gruppierte Anwendungsfälle mit fertigen Prompts und Best Practices.
 
 <Note>
-Neu bei MCP? Starten Sie mit [MCP Client einrichten](/de/mcp/client) — Server-URL hinzufügen, dann per OAuth und API-Schlüssel im Browser anmelden.
+Neu bei MCP? Starte mit [MCP Client einrichten](/de/mcp/client) — Server-URL hinzufügen, dann per OAuth und API-Schlüssel im Browser anmelden.
 </Note>
 
 ## Gehostete Endpunkte
@@ -53,7 +53,7 @@ Neu bei MCP? Starten Sie mit [MCP Client einrichten](/de/mcp/client) — Server-
 
 Sowohl `https://mcp.famulor.io/` als auch `https://mcp.famulor.io/mcp` funktionieren in Connector-Dialogen.
 
-## Was Sie steuern können
+## Was du steuern kannst
 
 | Bereich | Funktionen |
 | --- | --- |
@@ -74,11 +74,11 @@ Sowohl `https://mcp.famulor.io/` als auch `https://mcp.famulor.io/mcp` funktioni
 
 Der Server nutzt **MCP OAuth 2.1** (RFC 8414 Metadaten, RFC 7591 Dynamic Client Registration, PKCE S256):
 
-1. Ihr MCP-Client öffnet einen Browser-Tab.
-2. Sie fügen Ihren [Famulor API-Schlüssel](https://app.famulor.de/api-keys) ein.
+1. Dein MCP-Client öffnet einen Browser-Tab.
+2. Du fügst deinen [Famulor API-Schlüssel](https://app.famulor.de/api-keys) ein.
 3. Der Client erhält ein Access Token; der Server verschlüsselt es mit **AES-256-GCM**.
 
-**Ihr API-Schlüssel landet in keiner Datenbank** — nur im Token, den Ihr Client speichert. Tokens laufen nach **30 Tagen** ab; der Client fordert zur erneuten Anmeldung auf.
+**Dein API-Schlüssel landet in keiner Datenbank** — nur im Token, den dein Client speichert. Tokens laufen nach **30 Tagen** ab; der Client fordert zur erneuten Anmeldung auf.
 
 <Warning>
 API-Schlüssel nicht in `mcp.json`, geteilte Umgebungsvariablen oder Versionskontrolle legen. Anmeldung immer über OAuth im Client.
@@ -140,7 +140,7 @@ curl http://localhost:8787/.well-known/oauth-authorization-server
 
 ## Über MCP
 
-Das [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) verbindet KI-Assistenten sicher mit externen Tools und Daten. Der Famulor-MCP-Server mappt Plattform-APIs auf MCP-Tools — damit ChatGPT, Claude und andere Clients Ihre Voice Agents verwalten können, nach OAuth-Anmeldung mit Ihrem API-Schlüssel.
+Das [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) verbindet KI-Assistenten sicher mit externen Tools und Daten. Der Famulor-MCP-Server mappt Plattform-APIs auf MCP-Tools — damit ChatGPT, Claude und andere Clients deine Voice Agents verwalten können, nach OAuth-Anmeldung mit deinem API-Schlüssel.
 
 ## Ressourcen
 

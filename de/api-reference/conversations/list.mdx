@@ -5,10 +5,10 @@ description: "Alle Konversationen des authentifizierten Benutzers mit Filterung 
 ---
 
 
-Dieser Endpunkt gibt eine Cursor-paginierte Liste von Konversationen zurück, die den Assistenten des authentifizierten Benutzers gehören. Verwenden Sie dies, um den Konversationsverlauf anzuzeigen, nach Typ zu filtern oder eine Integration mit Ihrem CRM durchzuführen.
+Dieser Endpunkt gibt eine Cursor-paginierte Liste von Konversationen zurück, die den Assistenten des authentifizierten Benutzers gehören. Verwende dies, um den Konversationsverlauf anzuzeigen, nach Typ zu filtern oder eine Integration mit deinem CRM durchzuführen.
 
 <Note>
-  Dieser Endpunkt verwendet Cursor-basierte Paginierung für eine bessere Performance bei großen Datensätzen. Verwenden Sie `next_cursor` und `prev_cursor`, um zwischen den Seiten zu navigieren.
+  Dieser Endpunkt verwendet Cursor-basierte Paginierung für eine bessere Performance bei großen Datensätzen. Verwende `next_cursor` und `prev_cursor`, um zwischen den Seiten zu navigieren.
 </Note>
 
 ### Query-Parameter
@@ -30,7 +30,7 @@ Dieser Endpunkt gibt eine Cursor-paginierte Liste von Konversationen zurück, di
 </ParamField>
 
 <ParamField query="external_identifier" type="string" optional>
-  Filtert Konversationen nach einer externen Kennung. Nützlich, um Konversationen zu finden, die mit Datensätzen in Ihrem externen System verknüpft sind.
+  Filtert Konversationen nach einer externen Kennung. Nützlich, um Konversationen zu finden, die mit Datensätzen in deinem externen System verknüpft sind.
 </ParamField>
 
 <ParamField query="per_page" type="integer" optional>
@@ -38,7 +38,7 @@ Dieser Endpunkt gibt eine Cursor-paginierte Liste von Konversationen zurück, di
 </ParamField>
 
 <ParamField query="cursor" type="string" optional>
-  Cursor für die Paginierung. Verwenden Sie `next_cursor` oder `prev_cursor` aus einer vorherigen Antwort.
+  Cursor für die Paginierung. Verwende `next_cursor` oder `prev_cursor` aus einer vorherigen Antwort.
 </ParamField>
 
 ### Antwort-Felder
@@ -66,7 +66,7 @@ Dieser Endpunkt gibt eine Cursor-paginierte Liste von Konversationen zurück, di
     </ResponseField>
 
     <ResponseField name="external_identifier" type="string">
-      Die Kennung Ihres externen Systems für diese Konversation. Nur bei Konversationen vom Typ `api` vorhanden, wenn eine externe Kennung gesetzt wurde.
+      Die Kennung deines externen Systems für diese Konversation. Nur bei Konversationen vom Typ `api` vorhanden, wenn eine externe Kennung gesetzt wurde.
     </ResponseField>
 
     <ResponseField name="message_count" type="integer">
@@ -120,7 +120,7 @@ Dieser Endpunkt gibt eine Cursor-paginierte Liste von Konversationen zurück, di
 </ResponseField>
 
 <ResponseField name="next_cursor" type="string">
-  Cursor zum Abrufen der nächsten Seite mit Ergebnissen. Übergeben Sie dies als Parameter `cursor` in Ihrer nächsten Anfrage. `null`, wenn keine weiteren Ergebnisse vorliegen.
+  Cursor zum Abrufen der nächsten Seite mit Ergebnissen. Übergib dies als Parameter `cursor` in deiner nächsten Anfrage. `null`, wenn keine weiteren Ergebnisse vorliegen.
 </ResponseField>
 
 <ResponseField name="prev_cursor" type="string">
@@ -275,32 +275,32 @@ Alle Filterparameter verwenden indizierte Spalten für eine effiziente Abfrage:
 | `assistant_id`          | Nach spezifischem Assistenten filtern| Gespräche für einen einzelnen Assistenten anzeigen     |
 | `customer_phone`        | Nach Kundentelefonnummer filtern    | Alle Gespräche mit einem bestimmten Kunden finden      |
 | `whatsapp_sender_phone` | Nach WhatsApp-Absendernummer filtern| Alle Gespräche von einer Unternehmensnummer finden     |
-| `external_identifier`   | Nach Ihrer externen ID filtern      | Konversationen mit Ihren CRM-Datensätzen verknüpfen    |
+| `external_identifier`   | Nach deiner externen ID filtern     | Konversationen mit deinen CRM-Datensätzen verknüpfen   |
 
 ## WhatsApp-Konversationsdetails
 
 Für WhatsApp-Konversationen enthält die Antwort zusätzliche Felder:
 
-* **whatsapp\_sender**: Die Business-WhatsApp-Nummer, die das Gespräch geführt hat (Name und Telefonnummer Ihres WhatsApp-Absenders)
+* **whatsapp\_sender**: Die Business-WhatsApp-Nummer, die das Gespräch geführt hat (Name und Telefonnummer deines WhatsApp-Absenders)
 * **customer**: Der Kunde, der das Gespräch initiiert oder empfangen hat (dessen Name und Telefonnummer)
 
-Diese Felder sind nur bei Konversationen vom Typ `whatsapp` vorhanden und helfen Ihnen, die beteiligten Parteien zu identifizieren, wenn Sie eine Integration mit Ihren CRM- oder Support-Systemen vornehmen.
+Diese Felder sind nur bei Konversationen vom Typ `whatsapp` vorhanden und helfen dir, die beteiligten Parteien zu identifizieren, wenn du eine Integration mit deinen CRM- oder Support-Systemen vornimmst.
 
 ## API-Konversationsdetails
 
-Für über die API erstellte Konversationen können Sie beim Erstellen der Konversation einen `external_identifier` festlegen. Diese Kennung wird in der Antwort zurückgegeben und kann für Folgendes verwendet werden:
+Für über die API erstellte Konversationen kannst du beim Erstellen der Konversation einen `external_identifier` festlegen. Diese Kennung wird in der Antwort zurückgegeben und kann für Folgendes verwendet werden:
 
-* Verknüpfung von Konversationen mit Ihren CRM-Leads oder -Kontakten
-* Nachverfolgung von Konversationen über Ihre internen Systeme hinweg
-* Filterung von Konversationen nach Ihrer externen Referenz
+* Verknüpfung von Konversationen mit deinen CRM-Leads oder -Kontakten
+* Nachverfolgung von Konversationen über deine internen Systeme hinweg
+* Filterung von Konversationen nach deiner externen Referenz
 
 ## Anwendungsfälle
 
 * **Analyse-Dashboard**: Anzeige von Konversationsmetriken und Trends
-* **CRM-Integration**: Synchronisierung von Konversationsdaten mit Ihrer Kundendatenbank unter Verwendung von `external_identifier`
+* **CRM-Integration**: Synchronisierung von Konversationsdaten mit deiner Kundendatenbank unter Verwendung von `external_identifier`
 * **Kundensuche**: Finden aller Konversationen mit einem bestimmten Kunden über `customer_phone`
 * **Qualitätsüberwachung**: Überprüfung des Konversationsvolumens nach Typ und Assistent
-* **Abrechnungsprüfung**: Verfolgung der Konversationskosten in Ihrem Unternehmen
+* **Abrechnungsprüfung**: Verfolgung der Konversationskosten in deinem Unternehmen
 
 <Tip>
 Passende Seiten: [Introduction](/de/api-reference/introduction) und [Authentication Guide](/de/developers/authentication-guide) und [API Integration Examples](/de/developers/api-integration-examples).

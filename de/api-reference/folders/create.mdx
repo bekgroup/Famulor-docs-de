@@ -1,15 +1,15 @@
 ---
 title: "Ordner erstellen"
 api: "POST https://app.famulor.de/api/user/folder"
-description: "Ordner zur Organisation Ihrer Assistenten erstellen"
+description: "Ordner zur Organisation deiner Assistenten erstellen"
 ---
 
-Erstellen Sie einen Ordner, um Ihre Assistenten zu gruppieren. Weisen Sie Assistenten einem Ordner über das Feld `folder_id` bei [Assistent erstellen](/de/api-reference/assistants/create) und [Assistent aktualisieren](/de/api-reference/assistants/update) zu.
+Erstelle einen Ordner, um deine Assistenten zu gruppieren. Weise Assistenten einem Ordner über das Feld `folder_id` bei [Assistent erstellen](/de/api-reference/assistants/create) und [Assistent aktualisieren](/de/api-reference/assistants/update) zu.
 
 ### Request Body
 
 <ParamField body="name" type="string" required>
-  Der Ordnername (max. 255 Zeichen). Muss innerhalb Ihres Kontos eindeutig sein.
+  Der Ordnername (max. 255 Zeichen). Muss innerhalb deines Kontos eindeutig sein.
 </ParamField>
 
 <ParamField body="color" type="string">

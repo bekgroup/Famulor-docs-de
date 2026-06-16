@@ -6,24 +6,24 @@ description: "Webhook, der nach dem Ende einer Chat-Konversation gesendet wird u
 
 > Webhook, der nach dem Ende einer Chat-Konversation gesendet wird und Transkript, extrahierte Variablen und Kundendaten enthält
 
-Der Conversation Ended Webhook wird automatisch an Ihre angegebene Webhook-URL gesendet, nachdem eine Chat-Konversation (WhatsApp oder Web Widget) beendet wurde. Dieser Webhook enthält das vollständige Transkript, extrahierte Variablen, Kundeninformationen und Senderdetails.
+Der Conversation Ended Webhook wird automatisch an deine angegebene Webhook-URL gesendet, nachdem eine Chat-Konversation (WhatsApp oder Web Widget) beendet wurde. Dieser Webhook enthält das vollständige Transkript, extrahierte Variablen, Kundeninformationen und Senderdetails.
 
 ## Webhook-Konfiguration
 
 Um Conversation Ended Webhooks zu aktivieren:
 
-1. Verwenden Sie den API-Endpunkt [Enable Conversation Ended Webhook](/de/api-reference/assistants/enable-conversation-ended-webhook)
-2. Hinterlegen Sie Ihre Webhook-URL, an die Benachrichtigungen gesendet werden
-3. Konfigurieren Sie optional Post-Call-Variablen in Ihrem Assistenten, um strukturierte Daten aus Konversationen zu extrahieren
+1. Verwende den API-Endpunkt [Enable Conversation Ended Webhook](/de/api-reference/assistants/enable-conversation-ended-webhook)
+2. Hinterlege deine Webhook-URL, an die Benachrichtigungen gesendet werden
+3. Konfiguriere optional Post-Call-Variablen in deinem Assistenten, um strukturierte Daten aus Konversationen zu extrahieren
 
 ## Request-Format
 
-Der Webhook wird als POST-Request an Ihre konfigurierte URL mit dem folgenden JSON-Payload gesendet:
+Der Webhook wird als POST-Request an deine konfigurierte URL mit dem folgenden JSON-Payload gesendet:
 
 ### Payload-Struktur
 
 <ResponseField name="id" type="integer">
-  Numerische Kennung der Konversation (dieselbe `id` wie in der Dashboard-Konversations-URL). Verwenden Sie `conversation_id` (UUID), wenn Sie die API aufrufen.
+  Numerische Kennung der Konversation (dieselbe `id` wie in der Dashboard-Konversations-URL). Verwende `conversation_id` (UUID), wenn du die API aufrufst.
 </ResponseField>
 
 <ResponseField name="conversation_id" type="string">
@@ -47,7 +47,7 @@ Der Webhook wird als POST-Request an Ihre konfigurierte URL mit dem folgenden JS
 </ResponseField>
 
 <ResponseField name="extracted_variables" type="object">
-  Von der KI extrahierte Variablen basierend auf der Post-Call-Schema-Konfiguration Ihres Assistenten
+  Von der KI extrahierte Variablen basierend auf der Post-Call-Schema-Konfiguration deines Assistenten
 
   <Expandable title="Beispiel für extrahierte Variablen">
     <ResponseField name="status" type="boolean">
@@ -59,7 +59,7 @@ Der Webhook wird als POST-Request an Ihre konfigurierte URL mit dem folgenden JS
     </ResponseField>
 
     <ResponseField name="custom_variable" type="string|number|boolean">
-      Beliebige benutzerdefinierte Variablen, die Sie in der Assistenten-Konfiguration definiert haben
+      Beliebige benutzerdefinierte Variablen, die du in der Assistenten-Konfiguration definiert hast
     </ResponseField>
   </Expandable>
 </ResponseField>
@@ -95,7 +95,7 @@ Der Webhook wird als POST-Request an Ihre konfigurierte URL mit dem folgenden JS
 </ResponseField>
 
 <ResponseField name="attachments" type="array">
-  Medien-Dateien (Bilder, Videos, Dokumente), die während der Konversation geteilt wurden. Jeder Eintrag enthält eine direkte URL, die Sie an externe Dienste weitergeben können (z. B. Bild- oder Videoanalyse). Ein leeres Array, wenn keine Medien geteilt wurden — Medien sind typischerweise bei WhatsApp-Konversationen vorhanden.
+  Medien-Dateien (Bilder, Videos, Dokumente), die während der Konversation geteilt wurden. Jeder Eintrag enthält eine direkte URL, die du an externe Dienste weitergeben kannst (z. B. Bild- oder Videoanalyse). Ein leeres Array, wenn keine Medien geteilt wurden — Medien sind typischerweise bei WhatsApp-Konversationen vorhanden.
 
   <Expandable title="Anhang-Eigenschaften">
     <ResponseField name="type" type="string">
@@ -250,7 +250,7 @@ Der Webhook wird als POST-Request an Ihre konfigurierte URL mit dem folgenden JS
 
 ## Retry-Verhalten
 
-Wenn Ihr Webhook-Endpunkt einen Nicht-2xx-Statuscode zurückgibt oder die Anfrage fehlschlägt, wiederholt das System den Versand:
+Wenn dein Webhook-Endpunkt einen Nicht-2xx-Statuscode zurückgibt oder die Anfrage fehlschlägt, wiederholt das System den Versand:
 
 | Versuch    | Verzögerung |
 | ---------- | ----------- |
@@ -267,6 +267,6 @@ Nach 3 fehlgeschlagenen Versuchen wird die Webhook-Zustellung als fehlgeschlagen
 * `customer_phone` ist nur bei WhatsApp-Konversationen verfügbar
 * `customer_name` stammt aus Pre-Chat-Formulardaten oder dem Konversationskontext
 * Zeitstempel verwenden die konfigurierte Zeitzone des Nutzers (ISO-8601-Format)
-* `extracted_variables` werden aus der Post-Call-Schema-Auswertung Ihres Assistenten befüllt
+* `extracted_variables` werden aus der Post-Call-Schema-Auswertung deines Assistenten befüllt
 * `input_variables` enthalten Daten aus Pre-Chat-Formularen (Web Widget) oder Automatisierungs-Flows
 * Das `attachments`-Array listet Medien (Bilder, Videos, Dokumente) auf, die während der Konversation geteilt wurden — jeweils mit einer herunterladbaren `url`, nützlich zur Weiterleitung an externe Analyse-Tools. Es ist ein leeres Array, wenn keine Medien geteilt wurden (am häufigsten bei Web-Widget-Konversationen)

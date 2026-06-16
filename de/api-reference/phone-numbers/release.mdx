@@ -5,7 +5,7 @@ description: "Gibt eine Telefonnummer frei und kündigt ihr Abonnement"
 ---
 
 
-Dieser Endpunkt gibt eine Telefonnummer von Ihrem Konto frei. Für dedizierte Nummern mit Abonnements wird das Abonnement gekündigt und die Nummer wird am Ende des aktuellen Abrechnungszeitraums freigegeben.
+Dieser Endpunkt gibt eine Telefonnummer von deinem Konto frei. Für dedizierte Nummern mit Abonnements wird das Abonnement gekündigt und die Nummer wird am Ende des aktuellen Abrechnungszeitraums freigegeben.
 
 ### Pfad-Parameter
 
@@ -26,16 +26,16 @@ Das Freigabeverhalten hängt vom Telefonnummerntyp ab:
 | Typ                   | Verhalten                                                                                                |
 | ---------------------- | ------------------------------------------------------------------------------------------------------- |
 | **Dedicated (normal)** | Abonnement wird gekündigt. Nummer bleibt bis zum Ende des Abrechnungszeitraums aktiv, dann wird sie freigegeben. |
-| **SIP**                | Wird sofort aus Ihrem Konto gelöscht.                                                                  |
-| **Caller ID**          | Wird sofort aus Ihrem Konto gelöscht und vom Telefonieanbieter entfernt.                          |
+| **SIP**                | Wird sofort aus deinem Konto gelöscht.                                                                  |
+| **Caller ID**          | Wird sofort aus deinem Konto gelöscht und vom Telefonieanbieter entfernt.                          |
 
 <Warning>
-Sobald eine Telefonnummer freigegeben wurde, können Sie möglicherweise nicht mehr dieselbe Nummer zurückerhalten. Stellen Sie sicher, dass Sie alle Assistenten oder Kampagnen aktualisieren, die diese Nummer verwenden, bevor Sie sie freigeben.
+Sobald eine Telefonnummer freigegeben wurde, kannst du möglicherweise nicht mehr dieselbe Nummer zurückerhalten. Stelle sicher, dass du alle Assistenten oder Kampagnen aktualisierst, die diese Nummer verwenden, bevor du sie freigibst.
 </Warning>
 
 ### Was passiert mit zugeordneten Ressourcen
 
-Wenn Sie eine Telefonnummer freigeben:
+Wenn du eine Telefonnummer freigibst:
 
 * Alle **eingehenden Assistenten**, die dieser Nummer zugeordnet sind, haben ihre Telefonnummer entfernt
 * Alle **Kampagnen**, die diese Nummer verwenden, haben sie aus ihrer Telefonnummern-Rotation entfernt

@@ -6,7 +6,7 @@ description: "Famulor MCP mit ChatGPT, Claude, Cursor und anderen MCP-Clients ve
 
 # MCP Client einrichten
 
-Verbinden Sie den gehosteten Famulor-MCP-Server mit Ihrem KI-Client in wenigen Schritten. Nach der Einrichtung melden Sie sich im Browser mit Ihrem [Famulor API-Schlüssel](https://app.famulor.de/api-keys) an — der Schlüssel gehört **nicht** in Konfigurationsdateien.
+Verbinde den gehosteten Famulor-MCP-Server mit deinem KI-Client in wenigen Schritten. Nach der Einrichtung meldest du dich im Browser mit deinem [Famulor API-Schlüssel](https://app.famulor.de/api-keys) an — der Schlüssel gehört **nicht** in Konfigurationsdateien.
 
 <CardGroup cols={2}>
   <Card title="MCP Server" icon="plug" href="/de/mcp/server">
@@ -21,21 +21,21 @@ Verbinden Sie den gehosteten Famulor-MCP-Server mit Ihrem KI-Client in wenigen S
 
 **Kanonischer Endpunkt:** `https://mcp.famulor.io/mcp`
 
-Sowohl `https://mcp.famulor.io/` als auch `https://mcp.famulor.io/mcp` funktionieren — fügen Sie eine der URLs im Connector-Dialog Ihres Clients ein.
+Sowohl `https://mcp.famulor.io/` als auch `https://mcp.famulor.io/mcp` funktionieren — füge eine der URLs im Connector-Dialog deines Clients ein.
 
 ## Schnellstart
 
 1. Server im Client hinzufügen (siehe [ChatGPT](#chatgpt), [Claude](#claude) oder [weitere Clients](#weitere-clients)).
-2. Bei Aufforderung OAuth-Anmeldung im Browser abschließen und Ihren Famulor API-Schlüssel einfügen.
+2. Bei Aufforderung OAuth-Anmeldung im Browser abschließen und deinen Famulor API-Schlüssel einfügen.
 3. In natürlicher Sprache fragen, z. B. *„Zeige meine letzten 10 Anrufe“* oder *„Liste meine Assistenten“*.
 
 <Note>
-Die Authentifizierung nutzt MCP OAuth 2.1 (PKCE). Ihr API-Schlüssel wird **nicht** in einer Datenbank gespeichert — nur verschlüsselt im Access Token auf Ihrem Gerät. Tokens laufen nach 30 Tagen ab; der Client fordert Sie zur erneuten Anmeldung auf.
+Die Authentifizierung nutzt MCP OAuth 2.1 (PKCE). Dein API-Schlüssel wird **nicht** in einer Datenbank gespeichert — nur verschlüsselt im Access Token auf deinem Gerät. Tokens laufen nach 30 Tagen ab; der Client fordert dich zur erneuten Anmeldung auf.
 </Note>
 
 ## ChatGPT
 
-Famulor ist in **ChatGPT** (Web) als **eigene App** verfügbar. Sie benötigen einen ChatGPT-Plan mit Apps/Connectors und aktivierten **Entwicklermodus**.
+Famulor ist in **ChatGPT** (Web) als **eigene App** verfügbar. Du benötigst einen ChatGPT-Plan mit Apps/Connectors und aktivierten **Entwicklermodus**.
 
 ### Famulor-App hinzufügen
 
@@ -51,7 +51,7 @@ Famulor ist in **ChatGPT** (Web) als **eigene App** verfügbar. Sie benötigen e
 | **Authentifizierung** | **OAuth** |
 
 4. Sicherheitshinweis bestätigen und **Erstellen** klicken.
-5. OAuth-Anmeldung abschließen und Ihren [API-Schlüssel](https://app.famulor.de/api-keys) einfügen.
+5. OAuth-Anmeldung abschließen und deinen [API-Schlüssel](https://app.famulor.de/api-keys) einfügen.
 
 <img
   src="/images/mcp/chatgpt-add-app.png"
@@ -62,7 +62,7 @@ Famulor ist in **ChatGPT** (Web) als **eigene App** verfügbar. Sie benötigen e
 
 1. Neuen Chat starten und bei Bedarf **Entwicklermodus** aktivieren.
 2. **Famulor** im Tools-/Apps-Menü des Eingabefelds auswählen.
-3. Fragen zu Ihrem Konto stellen — z. B. *„Was waren meine letzten Anrufe?“*
+3. Fragen zu deinem Konto stellen — z. B. *„Was waren meine letzten Anrufe?“*
 
 <img
   src="/images/mcp/chatgpt-famulor-calls.png"
@@ -71,7 +71,7 @@ Famulor ist in **ChatGPT** (Web) als **eigene App** verfügbar. Sie benötigen e
 
 ## Claude
 
-Famulor funktioniert in **Claude Desktop** (eigener Connector) und **Claude Code** (CLI). Beide nutzen OAuth — melden Sie sich mit Ihrem [API-Schlüssel](https://app.famulor.de/api-keys) an, wenn Sie dazu aufgefordert werden.
+Famulor funktioniert in **Claude Desktop** (eigener Connector) und **Claude Code** (CLI). Beide nutzen OAuth — melde dich mit deinem [API-Schlüssel](https://app.famulor.de/api-keys) an, wenn du dazu aufgefordert wirst.
 
 ### Claude Desktop
 
@@ -107,7 +107,7 @@ Famulor funktioniert in **Claude Desktop** (eigener Connector) und **Claude Code
 claude mcp add --transport http famulor https://mcp.famulor.io/mcp
 ```
 
-Server zuerst hinzufügen — bei Aufforderung mit Ihrem [API-Schlüssel](https://app.famulor.de/api-keys) anmelden.
+Server zuerst hinzufügen — bei Aufforderung mit deinem [API-Schlüssel](https://app.famulor.de/api-keys) anmelden.
 
 ## Weitere Clients
 
@@ -126,7 +126,7 @@ Server zuerst hinzufügen — bei Aufforderung mit Ihrem [API-Schlüssel](https:
 }
 ```
 
-Nach dem Speichern MCP in den Einstellungen aktualisieren. Bei Aufforderung mit Ihrem [API-Schlüssel](https://app.famulor.de/api-keys) anmelden.
+Nach dem Speichern MCP in den Einstellungen aktualisieren. Bei Aufforderung mit deinem [API-Schlüssel](https://app.famulor.de/api-keys) anmelden.
 
 ### Windsurf
 

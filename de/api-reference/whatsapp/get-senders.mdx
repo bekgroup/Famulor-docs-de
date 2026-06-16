@@ -1,7 +1,7 @@
 ---
 title: "WhatsApp-Sender abrufen"
 api: "GET https://app.famulor.de/api/user/whatsapp/senders"
-description: "Alle WhatsApp Business Sender (Absendernummern) Ihres Famulor-Kontos abrufen"
+description: "Alle WhatsApp Business Sender (Absendernummern) deines Famulor-Kontos abrufen"
 ---
 
 
@@ -9,12 +9,12 @@ description: "Alle WhatsApp Business Sender (Absendernummern) Ihres Famulor-Kont
 
 > Alle WhatsApp Business Absendernummern für den authentifizierten Famulor-Benutzer auflisten
 
-Dieser Endpunkt gibt eine Liste der WhatsApp Business Sender (Telefonnummern) zurück, die in Ihrem Famulor-Konto konfiguriert sind. Verwenden Sie diesen Endpunkt, um Sender-IDs zu erhalten, die Sie zum Versenden von Nachrichten benötigen.
+Dieser Endpunkt gibt eine Liste der WhatsApp Business Sender (Telefonnummern) zurück, die in deinem Famulor-Konto konfiguriert sind. Verwende diesen Endpunkt, um Sender-IDs zu erhalten, die du zum Versenden von Nachrichten benötigst.
 
 ### Query-Parameter
 
 <ParamField query="status" type="string" optional>
-  Sender nach Status filtern. Standard: `online`. Verwenden Sie `all`, um alle Sender unabhängig vom Status zurückzugeben.
+  Sender nach Status filtern. Standard: `online`. Verwende `all`, um alle Sender unabhängig vom Status zurückzugeben.
 </ParamField>
 
 ### Antwort-Felder
@@ -22,7 +22,7 @@ Dieser Endpunkt gibt eine Liste der WhatsApp Business Sender (Telefonnummern) zu
 <ResponseField name="data" type="array">
   <Expandable title="Sender-Objekt Eigenschaften">
     <ResponseField name="id" type="integer">
-      Die eindeutige Kennung des WhatsApp-Senders. Verwenden Sie diese ID beim Versenden von Nachrichten.
+      Die eindeutige Kennung des WhatsApp-Senders. Verwende diese ID beim Versenden von Nachrichten.
     </ResponseField>
 
     <ResponseField name="phone_number" type="string">

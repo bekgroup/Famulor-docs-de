@@ -5,7 +5,7 @@ description: "Die Konfiguration eines bestehenden KI-Assistenten aktualisieren"
 ---
 
 
-Dieser Endpunkt ermöglicht es Ihnen, die Konfiguration eines bestehenden KI-Assistenten zu aktualisieren. Alle Felder sind optional – es werden nur die angegebenen Felder aktualisiert. Für ausführliche Feldbeschreibungen und Optionen siehe [Assistent erstellen](/de/api-reference/assistants/create).
+Dieser Endpunkt ermöglicht es dir, die Konfiguration eines bestehenden KI-Assistenten zu aktualisieren. Alle Felder sind optional – es werden nur die angegebenen Felder aktualisiert. Für ausführliche Feldbeschreibungen und Optionen siehe [Assistent erstellen](/de/api-reference/assistants/create).
 
 ### Path Parameter
 
@@ -22,11 +22,11 @@ Dieser Endpunkt ermöglicht es Ihnen, die Konfiguration eines bestehenden KI-Ass
 </ParamField>
 
 <ParamField body="voice_id" type="integer">
-  Die zu verwendende Stimmen-ID für den Assistenten. Verwenden Sie den Endpunkt [Stimmen abrufen](/de/api-reference/assistants/voices) mit dem Parameter `mode`, um kompatible Stimmen für Ihren Engine-Modus zu erhalten.
+  Die zu verwendende Stimmen-ID für den Assistenten. Verwende den Endpunkt [Stimmen abrufen](/de/api-reference/assistants/voices) mit dem Parameter `mode`, um kompatible Stimmen für deinen Engine-Modus zu erhalten.
 </ParamField>
 
 <ParamField body="language_id" type="integer">
-  Die Sprach-ID für den Assistenten. Verwenden Sie den Endpunkt [Sprachen abrufen](/de/api-reference/assistants/languages), um verfügbare Sprachen zu erhalten.
+  Die Sprach-ID für den Assistenten. Verwende den Endpunkt [Sprachen abrufen](/de/api-reference/assistants/languages), um verfügbare Sprachen zu erhalten.
 </ParamField>
 
 <ParamField body="type" type="string">
@@ -58,13 +58,13 @@ Dieser Endpunkt ermöglicht es Ihnen, die Konfiguration eines bestehenden KI-Ass
 <ParamField body="llm_model_id" type="integer">
   Die zu verwendende LLM-Modell-ID. Gilt nur für den Modus `pipeline`.
 
-  Verwenden Sie den Endpunkt [Modelle abrufen](/de/api-reference/assistants/models), um verfügbare Modelle zu erhalten.
+  Verwende den Endpunkt [Modelle abrufen](/de/api-reference/assistants/models), um verfügbare Modelle zu erhalten.
 </ParamField>
 
 <ParamField body="multimodal_model_id" type="integer">
   Die multimodale Modell-ID. Gilt nur für die Modi `multimodal` und `dualplex`.
 
-  Verwenden Sie den Endpunkt [Modelle abrufen](/de/api-reference/assistants/models), um verfügbare multimodale Modelle zu erhalten.
+  Verwende den Endpunkt [Modelle abrufen](/de/api-reference/assistants/models), um verfügbare multimodale Modelle zu erhalten.
 </ParamField>
 
 <ParamField body="chat_llm_fallback_id" type="integer">
@@ -78,7 +78,7 @@ Dieser Endpunkt ermöglicht es Ihnen, die Konfiguration eines bestehenden KI-Ass
 #### Sekundärsprachen
 
 <ParamField body="secondary_language_ids" type="integer[]">
-  Array mit zusätzlichen Sprach-IDs, die der Assistent sprechen kann. Ersetzt bestehende Sekundärsprachen. Übergeben Sie ein leeres Array `[]`, um alle Sekundärsprachen zu entfernen.
+  Array mit zusätzlichen Sprach-IDs, die der Assistent sprechen kann. Ersetzt bestehende Sekundärsprachen. Übergib ein leeres Array `[]`, um alle Sekundärsprachen zu entfernen.
 
   ```json  theme={null}
   "secondary_language_ids": [2, 3, 4]
@@ -101,11 +101,11 @@ Dieser Endpunkt ermöglicht es Ihnen, die Konfiguration eines bestehenden KI-Ass
 #### Organisation
 
 <ParamField body="folder_id" type="integer">
-  ID eines [Ordners](/de/api-reference/folders/create), in den dieser Assistent verschoben werden soll. Muss zu Ihrem Konto gehören. Auf `null` setzen, um ihn unkategorisiert zu machen. Weglassen, um den Ordner unverändert zu lassen.
+  ID eines [Ordners](/de/api-reference/folders/create), in den dieser Assistent verschoben werden soll. Muss zu deinem Konto gehören. Auf `null` setzen, um ihn unkategorisiert zu machen. Weglassen, um den Ordner unverändert zu lassen.
 </ParamField>
 
 <ParamField body="label_ids" type="integer[]">
-  Array von [Label](/de/api-reference/labels/create)-IDs für diesen Assistenten. Jedes Label muss zu Ihrem Konto gehören. Wenn angegeben, **ersetzt** dies die aktuellen Labels des Assistenten. Weglassen, um Labels unverändert zu lassen; `[]` senden, um alle Labels zu entfernen.
+  Array von [Label](/de/api-reference/labels/create)-IDs für diesen Assistenten. Jedes Label muss zu deinem Konto gehören. Wenn angegeben, **ersetzt** dies die aktuellen Labels des Assistenten. Weglassen, um Labels unverändert zu lassen; `[]` senden, um alle Labels zu entfernen.
 
   ```json theme={null}
   "label_ids": [3, 5]
@@ -115,7 +115,7 @@ Dieser Endpunkt ermöglicht es Ihnen, die Konfiguration eines bestehenden KI-Ass
 #### Telefonnummer
 
 <ParamField body="phone_number_id" type="integer">
-  Die ID einer zuzuweisenden Telefonnummer. Auf `null` setzen zum Aufheben der Zuweisung. Muss zu Ihrem Konto gehören.
+  Die ID einer zuzuweisenden Telefonnummer. Auf `null` setzen zum Aufheben der Zuweisung. Muss zu deinem Konto gehören.
 
   <Warning>
     Für `inbound` Assistenten kann die Telefonnummer kein Caller-ID-Typ sein und darf nicht bereits einem anderen Inbound-Assistenten zugewiesen sein.
@@ -125,7 +125,7 @@ Dieser Endpunkt ermöglicht es Ihnen, die Konfiguration eines bestehenden KI-Ass
 #### Benutzerdefinierte Mid-Call Tools
 
 <ParamField body="tool_ids" type="integer[]">
-  Array von benutzerdefinierten Mid-Call Tool-IDs zur Synchronisierung. **Ersetzt alle bestehenden Tool-Zuweisungen.** Übergeben Sie ein leeres Array `[]`, um alle Tools zu entfernen. Jedes Tool muss zu Ihrem Konto gehören.
+  Array von benutzerdefinierten Mid-Call Tool-IDs zur Synchronisierung. **Ersetzt alle bestehenden Tool-Zuweisungen.** Übergib ein leeres Array `[]`, um alle Tools zu entfernen. Jedes Tool muss zu deinem Konto gehören.
 
   ```json  theme={null}
   "tool_ids": [1, 5, 12]
@@ -135,7 +135,7 @@ Dieser Endpunkt ermöglicht es Ihnen, die Konfiguration eines bestehenden KI-Ass
 #### Integrierte Tools
 
 <ParamField body="tools" type="array">
-  Array von integrierten Tools. **Ersetzt alle bestehenden integrierten Tools.** Übergeben Sie ein leeres Array `[]`, um alle Tools zu entfernen.
+  Array von integrierten Tools. **Ersetzt alle bestehenden integrierten Tools.** Übergib ein leeres Array `[]`, um alle Tools zu entfernen.
 
   <Expandable title="Tool-Typen">
     **call\_transfer** - Den Anruf an eine andere Telefonnummer weiterleiten
@@ -177,7 +177,7 @@ Dieser Endpunkt ermöglicht es Ihnen, die Konfiguration eines bestehenden KI-Ass
 
     **calendar\_integration** - Termine über Cal.com planen
 
-    * `calcom_api_key` (erforderlich): Ihr Cal.com API-Schlüssel
+    * `calcom_api_key` (erforderlich): Dein Cal.com API-Schlüssel
     * `calcom_event_slug` (erforderlich): Event-Typ-Slug von Cal.com
     * `calcom_team_slug`: Team-Slug, wenn der Event zu einem Cal.com-Team gehört
     * `calcom_endpoint`: Cal.com API-Region. Optionen: `us` (Standard — `https://api.cal.com`), `eu` (`https://api.cal.eu`), `custom` (nutzt `calcom_custom_endpoint`)
@@ -187,7 +187,7 @@ Dieser Endpunkt ermöglicht es Ihnen, die Konfiguration eines bestehenden KI-Ass
 
     **assistant\_transfer** - Gespräch während des Anrufs an einen anderen KI-Assistenten übergeben (tauscht Stimme, LLM und STT zum Ziel-Assistenten)
 
-    * `assistant_id` (erforderlich): ID des Ziel-Assistenten. Muss zu Ihrem Konto gehören und darf nicht der aktualisierte Assistent selbst sein (kein Self-Transfer).
+    * `assistant_id` (erforderlich): ID des Ziel-Assistenten. Muss zu deinem Konto gehören und darf nicht der aktualisierte Assistent selbst sein (kein Self-Transfer).
     * `description`: Wann transferiert werden soll (max. 500 Zeichen, Standard: „Übergeben Sie das Gespräch an diesen Assistenten, wenn es passend ist.“)
     * `message_before_transfer`: Optionale Nachricht, die die KI vor dem Wechsel spricht (max. 500 Zeichen).
     * `speak_transfer_greeting`: Wenn true, spricht der Ziel-Assistent nach dem Transfer seine konfigurierte Erstnachricht (Standard: `true`)
@@ -558,11 +558,11 @@ Dieser Endpunkt ermöglicht es Ihnen, die Konfiguration eines bestehenden KI-Ass
 
 ## Hinweise
 
-* Nur die Felder, die Sie im Request Body angeben, werden aktualisiert
-* Um optionale Felder zu entfernen, setzen Sie diese explizit auf `null`
-* Um Arrays zu leeren (Tools, Sekundärsprachen), übergeben Sie ein leeres Array `[]`
+* Nur die Felder, die du im Request Body angibst, werden aktualisiert
+* Um optionale Felder zu entfernen, setze diese explizit auf `null`
+* Um Arrays zu leeren (Tools, Sekundärsprachen), übergib ein leeres Array `[]`
 * Der Assistent muss dem authentifizierten Benutzer gehören
-* Verwenden Sie den Endpunkt [Stimmen abrufen](/de/api-reference/assistants/voices) mit dem Parameter `mode`, um kompatible Stimmen zu erhalten
+* Verwende den Endpunkt [Stimmen abrufen](/de/api-reference/assistants/voices) mit dem Parameter `mode`, um kompatible Stimmen zu erhalten
 * Für multimodal/dualplex Modi muss `knowledgebase_mode` auf `function_call` gesetzt sein
 * In den Modi multimodal/dualplex können Unterbrechungen (`allow_interruptions`) nicht deaktiviert werden
 * Ein Moduswechsel setzt modusspezifische Einstellungen (LLM-Modell, multimodales Modell, Provider) zurück

@@ -10,7 +10,7 @@ Das ist ideal für **Human-Takeover**-Workflows, wenn ein Kunde mit einem mensch
 
 ### Authentifizierung
 
-Dieser Endpunkt benötigt Ihren **Automate API Key** als Bearer-Token.
+Dieser Endpunkt benötigt deinen **Automate API Key** als Bearer-Token.
 
 ### Path-Parameter
 
@@ -104,9 +104,9 @@ Dieser Endpunkt benötigt Ihren **Automate API Key** als Bearer-Token.
 
 Ein häufiger Übergabe-Flow:
 
-1. Erstellen Sie ein Mid-Call-Tool (z. B. `transfer_to_human`) mit Webhook zu ActivePieces oder Ihrem Automations-Flow.
-2. Rufen Sie im Automations-Flow `POST /automate/conversations/{uuid}/disable-ai` mit Ihrem API Key auf.
-3. Benachrichtigen Sie Ihr Support-Team (z. B. via Slack, E-Mail oder CRM) mit der Conversation-UUID.
-4. Die AI stoppt Antworten — Ihr menschlicher Agent übernimmt direkt im Chat.
+1. Erstelle ein Mid-Call-Tool (z. B. `transfer_to_human`) mit Webhook zu ActivePieces oder deinem Automations-Flow.
+2. Rufe im Automations-Flow `POST /automate/conversations/{uuid}/disable-ai` mit deinem API Key auf.
+3. Benachrichtige dein Support-Team (z. B. via Slack, E-Mail oder CRM) mit der Conversation-UUID.
+4. Die AI stoppt Antworten — dein menschlicher Agent übernimmt direkt im Chat.
 
-Zum späteren Reaktivieren nutzen Sie den Endpunkt [AI aktivieren](/de/api-reference/conversations/enable-ai).
+Zum späteren Reaktivieren nutzt du den Endpunkt [AI aktivieren](/de/api-reference/conversations/enable-ai).

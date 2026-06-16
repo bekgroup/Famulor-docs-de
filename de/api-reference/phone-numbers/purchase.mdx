@@ -1,14 +1,14 @@
 ---
 title: "Telefonnummer kaufen"
 api: "POST https://app.famulor.de/api/user/phone-numbers/purchase"
-description: "Kaufen Sie eine dedizierte Telefonnummer in Famulor per API. Lokale, mobile oder gebührenfreie Rufnummern für Inbound- oder Outbound-KI-Telefonate."
+description: "Kaufe eine dedizierte Telefonnummer in Famulor per API. Lokale, mobile oder gebührenfreie Rufnummern für Inbound- oder Outbound-KI-Telefonate."
 ---
 
 
-Dieser Endpunkt ermöglicht es Ihnen, eine Telefonnummer zu kaufen, die über den [Such-Endpunkt](/de/api-reference/phone-numbers/search) gefunden wurde. Die Plattform übernimmt automatisch Preisgestaltung, Abrechnung und Bereitstellung.
+Dieser Endpunkt ermöglicht es dir, eine Telefonnummer zu kaufen, die über den [Such-Endpunkt](/de/api-reference/phone-numbers/search) gefunden wurde. Die Plattform übernimmt automatisch Preisgestaltung, Abrechnung und Bereitstellung.
 
 <Note>
-Sie müssen eine gültige Zahlungsmethode hinterlegt haben, bevor Sie eine Telefonnummer kaufen können. Der Kauf erstellt ein monatliches Abonnement, das automatisch verlängert wird.
+Du musst eine gültige Zahlungsmethode hinterlegt haben, bevor du eine Telefonnummer kaufen kannst. Der Kauf erstellt ein monatliches Abonnement, das automatisch verlängert wird.
 </Note>
 
 ### Request Body
@@ -51,17 +51,17 @@ Sie müssen eine gültige Zahlungsmethode hinterlegt haben, bevor Sie eine Telef
 
 ### Funktionsweise
 
-1. **Suchen** - Verwenden Sie zuerst den [Such-Endpunkt](/de/api-reference/phone-numbers/search), um verfügbare Nummern zu finden
-2. **Kaufen** - Übermitteln Sie die gewünschte Telefonnummer an diesen Endpunkt
+1. **Suchen** - Verwende zuerst den [Such-Endpunkt](/de/api-reference/phone-numbers/search), um verfügbare Nummern zu finden
+2. **Kaufen** - Übermittle die gewünschte Telefonnummer an diesen Endpunkt
 3. **Automatische Verarbeitung** - Die Plattform:
    * Validiert, dass die Nummer noch verfügbar ist
    * Bestimmt den korrekten Preis basierend auf dem Land
-   * Erstellt ein monatliches Abonnement auf Ihrer Zahlungsmethode
+   * Erstellt ein monatliches Abonnement auf deiner Zahlungsmethode
    * Stellt die Nummer bei unserem Telefonieanbieter bereit
-   * Erstellt den Telefonnummern-Datensatz in Ihrem Konto
+   * Erstellt den Telefonnummern-Datensatz in deinem Konto
 
 <Warning>
-Telefonnummern-Käufe sind nicht erstattungsfähig. Das Abonnement wird fortgesetzt, bis Sie die Nummer [freigeben](/de/api-reference/phone-numbers/release).
+Telefonnummern-Käufe sind nicht erstattungsfähig. Das Abonnement wird fortgesetzt, bis du die Nummer [freigibst](/de/api-reference/phone-numbers/release).
 </Warning>
 
 

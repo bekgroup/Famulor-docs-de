@@ -11,7 +11,7 @@ import SipDoneForYou from '/de/snippets/sip-done-for-you-partner-de.mdx';
 
 # SIP-Fehlerbehebung
 
-Dieser Leitfaden hilft Ihnen, typische SIP-Integrationsprobleme zu lösen, wenn Sie Ihren SIP-Provider mit der Famulor-Plattform verbinden.
+Dieser Leitfaden hilft dir, typische SIP-Integrationsprobleme zu lösen, wenn du deinen SIP-Provider mit der Famulor-Plattform verbindest.
 
 ## Teststrategie
 
@@ -33,8 +33,8 @@ Dieser Leitfaden hilft Ihnen, typische SIP-Integrationsprobleme zu lösen, wenn 
 
 **Wichtig:** Die Famulor-Plattform:
 
-- sendet **keine SIP REGISTER**-Nachrichten an Ihren Provider
-- benötigt **keine eingehenden SIP REGISTER** von Ihrem Provider
+- sendet **keine SIP REGISTER**-Nachrichten an deinen Provider
+- benötigt **keine eingehenden SIP REGISTER** von deinem Provider
 - nutzt **direkte Call-Authentifizierung**
 
 ### Outbound testen
@@ -98,15 +98,15 @@ Dieser Leitfaden hilft Ihnen, typische SIP-Integrationsprobleme zu lösen, wenn 
 ### Call-Transfer funktioniert nicht
 
 **Frage:** Warum funktioniert die Funktion zum Weiterleiten eines Anrufs nicht?  
-**Antwort:** Wenn Call-Transfers fehlschlagen, probieren Sie folgende Schritte:
+**Antwort:** Wenn Call-Transfers fehlschlagen, probiere folgende Schritte:
 
 1. **SIP-Transfer-Einstellungen prüfen:**
    - Transfer auf „Advanced“ stellen
    - SIP-URI-Format verwenden: `sip:number@sip-server`
    - Beispiel: `sip:+1234567890@sip.provider.com:5060`
 2. **Provider-Support verifizieren:**
-   - Bestätigen, dass Ihr Provider SIP REFER unterstützt
-   - Prüfen, ob Transfer-Funktionalität in Ihrem Konto aktiviert ist
+   - Bestätigen, dass dein Provider SIP REFER unterstützt
+   - Prüfen, ob Transfer-Funktionalität in deinem Konto aktiviert ist
    - Manche Provider benötigen spezifische Einstellungen für Transfers
 3. **Unterschiedliche Formate testen:**
    - Mit Port: `sip:+1234567890@sip-server:5060`
@@ -131,14 +131,14 @@ Dieser Leitfaden hilft Ihnen, typische SIP-Integrationsprobleme zu lösen, wenn 
 
 ## Hilfe erhalten
 
-**Bitte angeben, wenn Sie den Support kontaktieren:**
+**Bitte angeben, wenn du den Support kontaktierst:**
 
 - Fehlermeldungen aus den Call-Logs
 - SIP-Trunk-Konfiguration
 - Testergebnisse (Outbound und Inbound)
 - Details zu Transfer-Versuchen inklusive verwendeter SIP-URI
 
-Unser Team unterstützt Sie gerne bei der Einrichtung oder Fehlersuche: `support@famulor.io`.
+Unser Team unterstützt dich gerne bei der Einrichtung oder Fehlersuche: `support@famulor.io`.
 
 <Tip>
 Passende Seiten: [Index](/de/index) und [Support](/de/support) und [FAQ](/de/faq).

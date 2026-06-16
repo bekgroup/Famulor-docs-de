@@ -56,7 +56,7 @@ Dieser Endpunkt erstellt einen neuen SIP-Trunk. Die Plattform provisioniert auto
 </ParamField>
 
 <ParamField body="outbound_proxy" type="boolean" optional>
-  Leitet ausgehende Anrufe über eine feste IP-Adresse. Standard: `false`. Nur aktivieren, wenn Ihr SIP-Provider IP-basierte Authentifizierung für Outbound erfordert.
+  Leitet ausgehende Anrufe über eine feste IP-Adresse. Standard: `false`. Nur aktivieren, wenn dein SIP-Provider IP-basierte Authentifizierung für Outbound erfordert.
 </ParamField>
 
 ### Antwort
@@ -139,16 +139,16 @@ Dieser Endpunkt erstellt einen neuen SIP-Trunk. Die Plattform provisioniert auto
 
 ### Was nach der Erstellung passiert
 
-Wenn Sie einen SIP-Trunk erstellen, passiert automatisch:
+Wenn du einen SIP-Trunk erstellst, passiert automatisch:
 
 1. **Provisionierung eines Inbound-Trunks** in der Voice-Infrastruktur - je nach `inbound_authorization_type` per Benutzername/Passwort oder IP-Authentifizierung
-2. **Provisionierung eines Outbound-Trunks** - mit der von Ihnen angegebenen SIP-Adresse und den Zugangsdaten, optional über den Outbound-Proxy
+2. **Provisionierung eines Outbound-Trunks** - mit der von dir angegebenen SIP-Adresse und den Zugangsdaten, optional über den Outbound-Proxy
 
 Falls die Provisionierung fehlschlägt, wird der SIP-Trunk nicht gespeichert und ein `500`-Fehler zurückgegeben.
 
 ### Nächste Schritte
 
-Nach dem Erstellen können Sie den SIP-Trunk einem KI-Assistenten zuweisen:
+Nach dem Erstellen kannst du den SIP-Trunk einem KI-Assistenten zuweisen:
 
 * **[Assistant erstellen](/de/api-reference/assistants/create)** - Parameter `phone_number_id` verwenden
 * **[Assistant aktualisieren](/de/api-reference/assistants/update)** - Telefonnummer eines bestehenden Assistenten ändern

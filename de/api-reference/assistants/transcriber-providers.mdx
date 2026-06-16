@@ -5,12 +5,12 @@ description: "Verfügbare STT- (Speech-to-Text-) Transcriber-Provider abrufen"
 ---
 
 
-Dieser Endpunkt gibt eine Liste verfügbarer Transcriber-Provider zurück, die beim Erstellen oder Aktualisieren von Assistenten verwendet werden können. Verwenden Sie die zurückgegebene `id` als `transcriber_provider_id` bei der Assistenten-Konfiguration.
+Dieser Endpunkt gibt eine Liste verfügbarer Transcriber-Provider zurück, die beim Erstellen oder Aktualisieren von Assistenten verwendet werden können. Verwende die zurückgegebene `id` als `transcriber_provider_id` bei der Assistenten-Konfiguration.
 
 ### Query-Parameter
 
 <ParamField query="language_id" type="integer">
-  Provider nach Sprachunterstützung filtern. Es werden nur Provider zurückgegeben, die die angegebene Sprache unterstützen. Verwenden Sie den Endpunkt [Sprachen abrufen](/de/api-reference/assistants/languages), um verfügbare Sprach-IDs zu erhalten.
+  Provider nach Sprachunterstützung filtern. Es werden nur Provider zurückgegeben, die die angegebene Sprache unterstützen. Verwende den Endpunkt [Sprachen abrufen](/de/api-reference/assistants/languages), um verfügbare Sprach-IDs zu erhalten.
 </ParamField>
 
 ### Antwort-Felder
@@ -18,7 +18,7 @@ Dieser Endpunkt gibt eine Liste verfügbarer Transcriber-Provider zurück, die b
 <ResponseField name="data" type="array">
   <Expandable title="Eigenschaften">
     <ResponseField name="id" type="integer">
-      Die eindeutige Kennung des Providers. Verwenden Sie diese als `transcriber_provider_id` beim Erstellen oder Aktualisieren von Assistenten.
+      Die eindeutige Kennung des Providers. Verwende diese als `transcriber_provider_id` beim Erstellen oder Aktualisieren von Assistenten.
     </ResponseField>
 
     <ResponseField name="name" type="string">
@@ -56,6 +56,6 @@ Dieser Endpunkt gibt eine Liste verfügbarer Transcriber-Provider zurück, die b
 ### Hinweise
 
 * Ohne Angabe von `language_id` werden alle Provider zurückgegeben
-* Nicht jeder Provider unterstützt alle Sprachen – nutzen Sie den Filter `language_id` für kompatible Provider
+* Nicht jeder Provider unterstützt alle Sprachen – nutze den Filter `language_id` für kompatible Provider
 * Transcriber-Provider sind nur für den Modus `pipeline` relevant (die Modi `multimodal` und `dualplex` verarbeiten STT intern)
-* Wenn Sie beim Erstellen eines Assistenten `transcriber_provider_id` nicht setzen, wird der Standard-Provider der Sprache verwendet
+* Wenn du beim Erstellen eines Assistenten `transcriber_provider_id` nicht setzt, wird der Standard-Provider der Sprache verwendet
