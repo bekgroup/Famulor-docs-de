@@ -9,6 +9,55 @@ keywords: ["Famulor changelog", "product updates", "release notes", "AI telephon
 
 Stay informed about new capabilities and improvements. We ship updates frequently to elevate your Voice AI and automation workflows.
 
+<Update label="June 15, 2026" tags={["MCP", "Mid-Call Tools", "Automation Platform", "Voice", "NEW"]} description="Connect external tools via MCP, redesigned mid-call tools, one-click automation linking, and voice reliability fixes">
+
+## 🔌 Connect external tools with MCP
+
+Your assistant can now plug into outside tools and live data through **MCP (Model Context Protocol)** — the open standard for connecting AI to external systems. Instead of building tools one at a time, you connect a whole toolset in a single step. Point your assistant at a compatible server (a CRM, your internal APIs, a knowledge tool) and it can look things up and take action right in the middle of a conversation — on voice calls, the web widget, and chat alike.
+
+<Frame>
+<img src="/images/mcp-servers-mid-call-tools.png" alt="MCP servers page — connect external tool servers to your assistant" />
+</Frame>
+
+- **Add a server in minutes, no code** — Paste the server address and (if needed) an authentication header. Nothing to install, nothing to build
+- **Tools discovered automatically** — The moment you connect, every tool the server offers is detected and listed with its description and parameters, so you see exactly what your assistant can do
+- **Pick precisely what's exposed** — Turn individual tools on or off per server, so an assistant only gets the abilities you want it to have
+- **Connect once, reuse everywhere** — Assign one server to a single assistant or to many, and manage them all from a dedicated page
+- **Always know the status** — Each server shows a live "connected" indicator, lists its available tools, and gives a clear message (with a one-click re-test) if anything needs attention
+- **Secure by design** — Authentication tokens are stored encrypted, and you stay in control of which tools and permissions each assistant can reach
+
+Popular uses: connect a CRM to look up contacts and create deals mid-call, query your own systems for live order or account data, or wire in a documentation tool so the assistant can answer detailed questions accurately.
+
+## 🛠 Redesigned mid-call tools — easier to build, easier to understand
+
+The tools that let your assistant do things during a conversation — look up an order, send an SMS, book an appointment, check availability, submit a form — got a full redesign. The whole experience is built so anyone can set up a working action, even with no technical background and no coding.
+
+- **Visual flow card** — A new step-by-step layout shows exactly how an action works, from the information the assistant collects to the response it gets back, all in one clear view
+- **"How it works" guidance built in** — Plain-language explanations sit right next to each setting, so you always understand what an action does and when your assistant will reach for it
+- **System variables at your fingertips** — Drop in live details like the caller's phone number or the current date and time straight into your action, with a handy reference so you never have to guess the right name
+- **One home for everything** — Custom actions and connected MCP servers now live together on a single, redesigned Tools page that's far easier to work with
+
+## ⚡ Build call actions with no-code automations
+
+This is the big one. You no longer need an API or a developer to give your assistant a custom action. When you create an action, choose the **Automation Platform** option — and the platform builds the entire technical connection for you.
+
+<Frame>
+<img src="/images/mid-call-tools-automation-platform.png" alt="Mid-call tool with Automation Platform — linked flow created automatically" />
+</Frame>
+
+- **The connection is created automatically** — Pick "Automation Platform" and a linked automation is generated and wired up instantly. The web address that connects it to your assistant is set and locked behind the scenes — no IDs to copy, paste, or keep in sync
+- **Build the logic visually** — Open the linked automation and drag together whatever steps you need: look up a record, check a calendar, send a message, run several actions in a row. Finish with a "Return Response" step to hand the result back to the assistant on the call
+- **Multi-step workflows made simple** — Anything that used to require custom code — chaining several systems together, transforming data, conditional logic — can now be assembled with no code at all
+- **Smart linking for existing automations** — Paste in an automation you've already built and the platform recognizes the workflow on its own and pulls in its details automatically, so connecting it takes seconds
+
+From "the assistant should be able to do X" to a working, live action in minutes — entirely point-and-click.
+
+## 🎙 Voice & call reliability
+
+- **Cleaner call endings** — Fixed a case where the assistant could repeat itself or hesitate when wrapping up a call
+- **Voice picker polish** — Follow-up fixes to the new voice picker for smoother selecting
+</Update>
+
 <Update label="June 6, 2026" tags={["Folders", "Labels", "Voice Picker", "Phone Numbers", "WhatsApp", "Coexistence", "Webhooks", "NEW"]} description="Assistant folders & labels, new voice picker, phone number nicknames, WhatsApp human takeover, conversation ended webhook upgrade and more fixes">
 
 ## 📁 Assistant folders & labels — organize your workspace

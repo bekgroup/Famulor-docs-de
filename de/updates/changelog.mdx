@@ -10,6 +10,55 @@ keywords: ["Famulor Changelog", "Produkt-Updates", "Release Notes", "KI-Telefoni
 
 > Bleib auf dem neuesten Stand — Folge unseren neuesten Produkt-Updates und Verbesserungen. Wir veröffentlichen regelmäßig neue Features, um deine KI-Anruf-Erfahrung zu verbessern.
 
+<Update label="15. Juni 2026" tags={["MCP", "Mid-Call Tools", "Automation Platform", "Voice", "NEU"]} description="Externe Tools per MCP verbinden, überarbeitete Mid-Call Tools, One-Click-Automation-Anbindung und Voice-Zuverlässigkeits-Fixes">
+
+## 🔌 Externe Tools per MCP anbinden
+
+Dein Assistent kann jetzt über **MCP (Model Context Protocol)** — den offenen Standard für KI-Anbindungen an externe Systeme — auf Tools und Live-Daten zugreifen. Statt Tools einzeln zu bauen, verbindest du ein ganzes Toolset in einem Schritt. Zeig den Assistenten auf einen kompatiblen Server (CRM, interne APIs, Wissens-Tool) — und er kann mitten im Gespräch nachschlagen und handeln: in Sprachanrufen, im Web-Widget und im Chat.
+
+<Frame>
+<img src="/images/mcp-servers-mid-call-tools.png" alt="MCP-Server-Seite — externe Tool-Server mit dem Assistenten verbinden" />
+</Frame>
+
+- **Server in Minuten hinzufügen, ohne Code** — Server-Adresse einfügen und bei Bedarf einen Auth-Header setzen. Nichts installieren, nichts bauen
+- **Tools werden automatisch erkannt** — Sobald verbunden, werden alle Tools des Servers mit Beschreibung und Parametern gelistet — du siehst genau, was der Assistent kann
+- **Präzise steuern, was freigegeben wird** — Einzelne Tools pro Server ein- oder ausschalten, damit der Assistent nur die Fähigkeiten bekommt, die du willst
+- **Einmal verbinden, überall nutzen** — Einen Server einem Assistenten oder vielen zuweisen — alles von einer zentralen Seite aus
+- **Status immer im Blick** — Jeder Server zeigt einen Live-„Verbunden“-Indikator, listet verfügbare Tools und meldet bei Problemen klar (mit Re-Test per Klick)
+- **Sicher by Design** — Auth-Tokens verschlüsselt gespeichert; du behältst die Kontrolle, welche Tools und Rechte jeder Assistent nutzen darf
+
+Typische Einsätze: CRM für Kontaktabfragen und Deal-Erstellung mitten im Anruf, eigene Systeme für Live-Bestell- oder Kontodaten, oder ein Dokumentations-Tool für präzise Antworten auf Detailfragen.
+
+## 🛠 Überarbeitete Mid-Call Tools — einfacher bauen, einfacher verstehen
+
+Die Tools, mit denen dein Assistent während eines Gesprächs handelt — Bestellung nachschlagen, SMS senden, Termin buchen, Verfügbarkeit prüfen, Formular absenden — wurden komplett neu gestaltet. Das ganze Setup ist so aufgebaut, dass auch ohne technischen Hintergrund und ohne Code eine funktionierende Aktion entsteht.
+
+- **Visuelle Flow-Karte** — Ein neues Schritt-für-Schritt-Layout zeigt genau, wie eine Aktion funktioniert: von den Infos, die der Assistent sammelt, bis zur Antwort — alles in einer klaren Ansicht
+- **„So funktioniert's“ direkt dabei** — Verständliche Erklärungen neben jeder Einstellung — du weißt immer, was eine Aktion tut und wann der Assistent sie nutzt
+- **Systemvariablen griffbereit** — Live-Details wie Anrufernummer oder aktuelles Datum direkt in die Aktion einfügen, mit Referenz — kein Raten mehr beim Variablennamen
+- **Alles an einem Ort** — Eigene Aktionen und verbundene MCP-Server leben jetzt zusammen auf einer überarbeiteten Tools-Seite
+
+## ⚡ Call Actions mit No-Code-Automationen bauen
+
+Das ist der große Schritt. Für eine eigene Assistenten-Aktion brauchst du kein API und keinen Entwickler mehr. Beim Anlegen einer Aktion wählst du **Automation Platform** — und die Plattform baut die technische Verbindung für dich.
+
+<Frame>
+<img src="/images/mid-call-tools-automation-platform.png" alt="Mid-Call Tool mit Automation Platform — verknüpfter Flow wird automatisch erstellt" />
+</Frame>
+
+- **Verbindung entsteht automatisch** — „Automation Platform“ wählen, verknüpfte Automation wird sofort erzeugt und verdrahtet. Die Web-Adresse für den Assistenten wird im Hintergrund gesetzt — keine IDs zum Kopieren, Einfügen oder Synchronhalten
+- **Logik visuell bauen** — Verknüpfte Automation öffnen und Schritte per Drag-and-drop zusammenstellen: Datensatz nachschlagen, Kalender prüfen, Nachricht senden, mehrere Aktionen hintereinander. Abschluss mit „Return Response“, damit der Assistent das Ergebnis im Anruf bekommt
+- **Mehrstufige Workflows ohne Code** — Was früher Custom Code brauchte — mehrere Systeme verketten, Daten transformieren, bedingte Logik — lässt sich jetzt komplett per Klick zusammenbauen
+- **Smartes Verknüpfen bestehender Automationen** — Bestehende Automation einfügen, die Plattform erkennt den Workflow selbst und zieht Details automatisch nach — Anbindung in Sekunden
+
+Von „Der Assistent soll X können“ zu einer live, funktionierenden Aktion in Minuten — komplett per Klick.
+
+## 🎙 Voice & Anruf-Zuverlässigkeit
+
+- **Sauberere Gesprächsabschlüsse** — Behoben: Der Assistent konnte sich beim Beenden eines Anrufs wiederholen oder zögern
+- **Voice-Picker-Feinschliff** — Nachbesserungen am neuen Voice Picker für flüssigere Auswahl
+</Update>
+
 <Update label="6. Juni 2026" tags={["Ordner", "Labels", "Voice Picker", "Telefonnummern", "WhatsApp", "Koexistenz", "Webhooks", "NEU"]} description="Assistenten-Ordner & Labels, neuer Voice Picker, Telefonnummer-Spitznamen, WhatsApp-Human-Takeover, Conversation-Ended-Webhook-Upgrade und weitere Fixes">
   ## 📁 Assistenten-Ordner & Labels — deinen Workspace strukturieren
 
