@@ -9,6 +9,42 @@ keywords: ["Famulor changelog", "product updates", "release notes", "AI telephon
 
 Stay informed about new capabilities and improvements. We ship updates frequently to elevate your Voice AI and automation workflows.
 
+<Update label="June 17, 2026" tags={["MCP", "MCP Client", "OAuth", "ChatGPT", "Claude", "NEW"]} description="Famulor MCP Client overhaul: all 76 tools redesigned, OAuth sign-in for ChatGPT, Claude, Cursor, Codex, and other MCP clients">
+
+## 🔗 Famulor MCP Client — fully overhauled
+
+The **Famulor MCP server** (`https://mcp.famulor.io/mcp`) has been rebuilt from the ground up: **all 76 tools** were redesigned — clearer descriptions, structured outputs, and better compatibility with directory-capable clients. Control assistants, calls, campaigns, leads, knowledge bases, conversations, WhatsApp, and more directly from your AI client — in plain language.
+
+### OAuth instead of API keys in config files
+
+New: **MCP OAuth 2.1 (PKCE)**. Paste the server URL, complete OAuth sign-in in the browser, enter your [API key](https://app.famulor.de/api-keys) — done. Your key never goes into `mcp.json` or environment variables; it lives encrypted inside an access token on your device. Tokens expire after 30 days; your client will prompt you to sign in again.
+
+### Connect to ChatGPT, Claude, Cursor & more
+
+Famulor now plugs cleanly into the MCP clients you already use:
+
+- **ChatGPT** — as a custom app with OAuth (Developer mode)
+- **Claude** — Desktop connector and **Claude Code** (CLI)
+- **Cursor**, **Windsurf**, **VS Code**, **Cline**, **Continue**, **Zed** — and any other MCP-compatible client
+- **Codex** and other clients with HTTP MCP support
+
+<Frame>
+<img src="/images/mcp/chatgpt-add-app.png" alt="Add Famulor as an MCP app in ChatGPT with OAuth" />
+</Frame>
+
+<Frame>
+<img src="/images/mcp/claude-famulor-calls.png" alt="Claude using Famulor MCP to list recent calls" />
+</Frame>
+
+**Example prompts after setup:**
+
+- *"Show my last 10 calls"*
+- *"Create a German sales assistant using GPT-4.1-mini and the Susi voice"*
+- *"Start campaign #42 and add these 50 leads"*
+
+**👉 Step-by-step setup:** [MCP Client](/en/mcp/client)
+</Update>
+
 <Update label="June 15, 2026" tags={["MCP", "Mid-Call Tools", "Automation Platform", "Voice", "NEW"]} description="Connect external tools via MCP, redesigned mid-call tools, one-click automation linking, and voice reliability fixes">
 
 ## 🔌 Connect external tools with MCP

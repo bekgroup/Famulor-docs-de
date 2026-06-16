@@ -13,22 +13,58 @@ Eine Variable ist ein Datenwert, den du während eines Anrufs speichern und wied
 
 ## System-Variablen
 
-Famulor bietet verschiedene System-Variablen, die automatisch verfügbar sind:
+Systemwerte, die automatisch zum Anrufzeitpunkt befüllt werden. Im **System-Prompt** und in Mid-Call-Tools (URL, Header-Wert, statisches Feld) mit **doppelten geschweiften Klammern** verwenden: `{{variable_name}}`.
 
-### Zeit- und Datumsvariablen
+### Verfügbare Systemvariablen
 
-- **`{{now}}`** - Aktuelle Zeit vom Assistenten (Datum und Uhrzeit)
-- **`{created_at}`** - Datum und Uhrzeit, wann der Anruf gestartet ist
+Diese werden automatisch zum Anrufzeitpunkt befüllt. In der App zum Kopieren klicken und an der gewünschten Stelle einfügen. Bei Web/Chat sind einige leer.
 
-### Telefonnummern-Variablen
+<ResponseField name="{{customer_phone}}" type="string">
+Telefonnummer der Gegenseite (Anrufer bei eingehend, Angerufener bei ausgehend). Leer bei Web/Chat.
+</ResponseField>
 
-- **`{client_phone_number}`** oder **`{customer_phone}`** - Telefonnummer des Anrufers
-- **`{assistant_phone_number}`** - Telefonnummer des Assistenten
+<ResponseField name="{{assistant_phone}}" type="string">
+Eigene Telefonnummer des Assistenten. Leer, wenn keine vorhanden.
+</ResponseField>
 
-### Assistenten- und Kampagnenvariablen
+<ResponseField name="{{assistant_id}}" type="string">
+Eindeutige ID des Assistenten.
+</ResponseField>
 
-- **`{assistant_name}`** - Name des Assistenten
-- **`{campaign_name}`** - Name der Kampagne (bei ausgehenden Anrufen)
+<ResponseField name="{{assistant_name}}" type="string">
+Name des Assistenten.
+</ResponseField>
+
+<ResponseField name="{{current_date}}" type="string">
+Aktuelles Datum in der Assistenten-Zeitzone (z. B. `2026-06-15`).
+</ResponseField>
+
+<ResponseField name="{{current_time}}" type="string">
+Aktuelle Uhrzeit in der Assistenten-Zeitzone (z. B. `14:30`).
+</ResponseField>
+
+### Verwendung im System-Prompt
+
+Systemvariablen im System-Prompt mit doppelten Klammern referenzieren:
+
+```
+Heute ist der {{current_date}}. Die Anrufernummer ist {{customer_phone}}.
+Du bist {{assistant_name}}.
+```
+
+### Verwendung in Mid-Call-Tools
+
+In einer Custom-HTTP-Aktion oder MCP-Tool-Konfiguration Systemvariablen einfügen in:
+
+- die Request-**URL**
+- einen **Header**-Wert
+- ein **statisches Feld** im Request-Body
+
+Sie werden durch Live-Werte ersetzt, sobald der Assistent die Aktion während des Gesprächs ausführt.
+
+<Note>
+Systemvariablen nutzen doppelte Klammern (`{{customer_phone}}`). Eigene Call Variables unten nutzen einfache Klammern (`{customer_name}`).
+</Note>
 
 ## Call Variables
 

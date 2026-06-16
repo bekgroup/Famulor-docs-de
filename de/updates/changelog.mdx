@@ -10,6 +10,42 @@ keywords: ["Famulor Changelog", "Produkt-Updates", "Release Notes", "KI-Telefoni
 
 > Bleib auf dem neuesten Stand — Folge unseren neuesten Produkt-Updates und Verbesserungen. Wir veröffentlichen regelmäßig neue Features, um deine KI-Anruf-Erfahrung zu verbessern.
 
+<Update label="17. Juni 2026" tags={["MCP", "MCP Client", "OAuth", "ChatGPT", "Claude", "NEU"]} description="Famulor MCP Client überarbeitet: alle 76 Tools neu, OAuth-Anbindung für ChatGPT, Claude, Cursor, Codex und weitere MCP-Clients">
+
+## 🔗 Famulor MCP Client — komplett überarbeitet
+
+Der **Famulor MCP Server** (`https://mcp.famulor.io/mcp`) ist neu aufgestellt: **alle 76 Tools** wurden überarbeitet — mit klareren Beschreibungen, strukturierten Ausgaben und besserer Kompatibilität mit Directory-fähigen Clients. Steuere Assistenten, Anrufe, Kampagnen, Leads, Wissensdatenbanken, Konversationen, WhatsApp und mehr direkt aus deinem KI-Client — in natürlicher Sprache.
+
+### OAuth statt API-Key in Config-Dateien
+
+Neu: **MCP OAuth 2.1 (PKCE)**. Server-URL einfügen, OAuth-Anmeldung im Browser abschließen, [API-Schlüssel](https://app.famulor.de/api-keys) einfügen — fertig. Der Schlüssel landet **nicht** in `mcp.json` oder Umgebungsvariablen, sondern verschlüsselt im Access Token auf deinem Gerät. Tokens laufen nach 30 Tagen ab; der Client fordert dich zur erneuten Anmeldung auf.
+
+### Verbinden mit ChatGPT, Claude, Cursor & Co.
+
+Famulor lässt sich jetzt nahtlos mit gängigen MCP-Clients verbinden:
+
+- **ChatGPT** — als eigene App mit OAuth (Entwicklermodus)
+- **Claude** — Desktop-Connector und **Claude Code** (CLI)
+- **Cursor**, **Windsurf**, **VS Code**, **Cline**, **Continue**, **Zed** — und jedem anderen MCP-kompatiblen Client
+- **Codex** und weitere Clients mit HTTP-MCP-Unterstützung
+
+<Frame>
+<img src="/images/mcp/chatgpt-add-app.png" alt="Famulor als MCP-App in ChatGPT mit OAuth hinzufügen" />
+</Frame>
+
+<Frame>
+<img src="/images/mcp/claude-famulor-calls.png" alt="Claude listet mit Famulor MCP die letzten Anrufe auf" />
+</Frame>
+
+**Beispiel-Prompts nach der Einrichtung:**
+
+- *„Zeige meine letzten 10 Anrufe“*
+- *„Erstelle einen deutschen Vertriebsassistenten mit GPT-4.1-mini und der Stimme Susi“*
+- *„Starte Kampagne #42 und füge diese 50 Leads hinzu“*
+
+**👉 Schritt-für-Schritt-Anleitung:** [MCP Client einrichten](/de/mcp/client)
+</Update>
+
 <Update label="15. Juni 2026" tags={["MCP", "Mid-Call Tools", "Automation Platform", "Voice", "NEU"]} description="Externe Tools per MCP verbinden, überarbeitete Mid-Call Tools, One-Click-Automation-Anbindung und Voice-Zuverlässigkeits-Fixes">
 
 ## 🔌 Externe Tools per MCP anbinden

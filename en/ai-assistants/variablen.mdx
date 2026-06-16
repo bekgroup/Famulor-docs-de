@@ -12,22 +12,58 @@ A variable is a data value that you can store and reuse during a call. Variables
 
 ## System Variables
 
-Famulor provides various system variables that are automatically available:
+System values that fill in automatically at call time. Use **double braces** — `{{variable_name}}` — in your system prompt, and in mid-call tool URLs, header values, or static fields.
 
-### Date and Time Variables
+### Available system variables
 
-- **`{{now}}`** – Current time from the assistant (date and time)
-- **`{created_at}`** – Date and time when the call started
+These fill in automatically at call time. Click to copy in the app, then paste where you need the value. Some are empty on web/chat.
 
-### Phone Number Variables
+<ResponseField name="{{customer_phone}}" type="string">
+The other party's phone number (caller for inbound, callee for outbound). Empty on web/chat.
+</ResponseField>
 
-- **`{client_phone_number}`** or **`{customer_phone}`** – Phone number of the caller
-- **`{assistant_phone_number}`** – Phone number of the assistant
+<ResponseField name="{{assistant_phone}}" type="string">
+The assistant's own phone number. Empty if it has none.
+</ResponseField>
 
-### Assistant and Campaign Variables
+<ResponseField name="{{assistant_id}}" type="string">
+The assistant's unique ID.
+</ResponseField>
 
-- **`{assistant_name}`** – Name of the assistant
-- **`{campaign_name}`** – Name of the campaign (for outbound calls)
+<ResponseField name="{{assistant_name}}" type="string">
+The assistant's name.
+</ResponseField>
+
+<ResponseField name="{{current_date}}" type="string">
+Current date in the assistant timezone (e.g. `2026-06-15`).
+</ResponseField>
+
+<ResponseField name="{{current_time}}" type="string">
+Current time in the assistant timezone (e.g. `14:30`).
+</ResponseField>
+
+### Usage in system prompts
+
+Reference system variables with double braces in your system prompt:
+
+```
+Today is {{current_date}}. The caller's number is {{customer_phone}}.
+You are {{assistant_name}}.
+```
+
+### Usage in mid-call tools
+
+In a custom HTTP action or MCP tool setup, paste system variables into:
+
+- The request **URL**
+- A **header** value
+- A **static field** in the request body
+
+They are replaced with live values when the assistant runs the action during a call.
+
+<Note>
+System variables use double braces (`{{customer_phone}}`). Custom call variables below use single braces (`{customer_name}`).
+</Note>
 
 ## Call Variables
 
