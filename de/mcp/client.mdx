@@ -19,9 +19,9 @@ Verbinde den gehosteten Famulor-MCP-Server mit deinem KI-Client in wenigen Schri
 
 ## Server-URL
 
-**Kanonischer Endpunkt:** `https://mcp.famulor.io/mcp`
+**Kanonischer Endpunkt:** `https://app.famulor.de/mcp`
 
-Sowohl `https://mcp.famulor.io/` als auch `https://mcp.famulor.io/mcp` funktionieren — füge eine der URLs im Connector-Dialog deines Clients ein.
+Sowohl `https://app.famulor.de/` als auch `https://app.famulor.de/mcp` funktionieren — füge eine der URLs im Connector-Dialog deines Clients ein.
 
 ## Schnellstart
 
@@ -47,7 +47,7 @@ Famulor ist in **ChatGPT** (Web) als **eigene App** verfügbar. Du benötigst ei
 | --- | --- |
 | **Name** | `Famulor` |
 | **Beschreibung** | `Famulor Voice Agent` (optional) |
-| **URL des MCP-Servers** | `https://mcp.famulor.io` oder `https://mcp.famulor.io/mcp` |
+| **URL des MCP-Servers** | `https://mcp.famulor.io` oder `https://app.famulor.de/mcp` |
 | **Authentifizierung** | **OAuth** |
 
 4. Sicherheitshinweis bestätigen und **Erstellen** klicken.
@@ -82,7 +82,7 @@ Famulor funktioniert in **Claude Desktop** (eigener Connector) und **Claude Code
 | Feld | Wert |
 | --- | --- |
 | **Name** | `Famulor` |
-| **URL** | `https://mcp.famulor.io/mcp` |
+| **URL** | `https://app.famulor.de/mcp` |
 
 4. **Hinzufügen** klicken und OAuth-Anmeldung im Browser abschließen.
 
@@ -104,7 +104,7 @@ Famulor funktioniert in **Claude Desktop** (eigener Connector) und **Claude Code
 ### Claude Code
 
 ```bash
-claude mcp add --transport http famulor https://mcp.famulor.io/mcp
+claude mcp add --transport http famulor https://app.famulor.de/mcp
 ```
 
 Server zuerst hinzufügen — bei Aufforderung mit deinem [API-Schlüssel](https://app.famulor.de/api-keys) anmelden.
@@ -120,7 +120,7 @@ Server zuerst hinzufügen — bei Aufforderung mit deinem [API-Schlüssel](https
   "mcpServers": {
     "famulor": {
       "type": "http",
-      "url": "https://mcp.famulor.io/mcp"
+      "url": "https://app.famulor.de/mcp"
     }
   }
 }
@@ -136,7 +136,7 @@ Nach dem Speichern MCP in den Einstellungen aktualisieren. Bei Aufforderung mit 
 {
   "mcpServers": {
     "famulor": {
-      "serverUrl": "https://mcp.famulor.io/mcp"
+      "serverUrl": "https://app.famulor.de/mcp"
     }
   }
 }
@@ -151,7 +151,7 @@ Nach dem Speichern MCP in den Einstellungen aktualisieren. Bei Aufforderung mit 
   "servers": {
     "famulor": {
       "type": "http",
-      "url": "https://mcp.famulor.io/mcp"
+      "url": "https://app.famulor.de/mcp"
     }
   }
 }
@@ -165,7 +165,7 @@ Nach dem Speichern MCP in den Einstellungen aktualisieren. Bei Aufforderung mit 
 {
   "mcpServers": {
     "famulor": {
-      "url": "https://mcp.famulor.io/mcp"
+      "url": "https://app.famulor.de/mcp"
     }
   }
 }
@@ -179,7 +179,7 @@ Nach dem Speichern MCP in den Einstellungen aktualisieren. Bei Aufforderung mit 
 mcpServers:
   - name: famulor
     type: streamable-http
-    url: "https://mcp.famulor.io/mcp"
+    url: "https://app.famulor.de/mcp"
 ```
 
 ### Zed
@@ -191,7 +191,7 @@ mcpServers:
   "context_servers": {
     "famulor": {
       "command": "npx",
-      "args": ["-y", "mcp-remote@latest", "https://mcp.famulor.io/mcp"]
+      "args": ["-y", "mcp-remote@latest", "https://app.famulor.de/mcp"]
     }
   }
 }
@@ -218,8 +218,8 @@ Eigenen Server statt des gehosteten betreiben: [MCP Server — Self-Hosting](/de
 
 ### Server verbindet nicht
 
-- `https://mcp.famulor.io/mcp` (oder `https://mcp.famulor.io/`) verwenden.
-- Health-Check: [https://mcp.famulor.io/health](https://mcp.famulor.io/health)
+- `https://app.famulor.de/mcp` (oder `https://app.famulor.de/`) verwenden.
+- Health-Check: [https://app.famulor.de/health](https://app.famulor.de/health)
 - Client neu starten; bei Cursor: **Einstellungen → MCP → Aktualisieren**.
 
 ### Tools erscheinen nicht
